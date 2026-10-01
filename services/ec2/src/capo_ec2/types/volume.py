@@ -44,6 +44,10 @@ class Volume(TypedDict, closed=True):
     """<p>The service provider that manages the volume.</p>"""
     volume_initialization_rate: NotRequired["capo_ec2.types.integer.Integer"]
     """<p>The Amazon EBS Provisioned Rate for Volume Initialization (volume initialization rate) specified for the volume during creation, in MiB/s. If no volume initialization rate was specified, the value is <code>null</code>.</p>"""
+    volume_arn: NotRequired["capo_ec2.types.string.String"]
+    """<p>The Amazon Resource Name (ARN) of the volume.</p>"""
+    owner_id: NotRequired["capo_ec2.types.string.String"]
+    """<p>The ID of the Amazon Web Services account that owns the volume.</p>"""
     volume_id: NotRequired["capo_ec2.types.string.String"]
     """<p>The ID of the volume.</p>"""
     size: NotRequired["capo_ec2.types.integer.Integer"]
@@ -125,6 +129,10 @@ def serialize_ec2_query(
                 str(value["volume_initialization_rate"]),
             )
         )
+    if "volume_arn" in value:
+        pairs.append((f"{key_prefix}VolumeArn", str(value["volume_arn"])))
+    if "owner_id" in value:
+        pairs.append((f"{key_prefix}OwnerId", str(value["owner_id"])))
     if "volume_id" in value:
         pairs.append((f"{key_prefix}VolumeId", str(value["volume_id"])))
     if "size" in value:
@@ -213,6 +221,12 @@ def deserialize_ec2_query(el: Element) -> Volume:
         out["volume_initialization_rate"] = int(
             child_volume_initialization_rate.text or ""
         )
+    child_volume_arn = el.find("volumeArn")
+    if child_volume_arn is not None:
+        out["volume_arn"] = str(child_volume_arn.text or "")
+    child_owner_id = el.find("ownerId")
+    if child_owner_id is not None:
+        out["owner_id"] = str(child_owner_id.text or "")
     child_volume_id = el.find("volumeId")
     if child_volume_id is not None:
         out["volume_id"] = str(child_volume_id.text or "")

@@ -2,7 +2,11 @@
 
 from typing import Literal, TypeAlias, cast
 
-ConnectorType: TypeAlias = Literal["VCENTER",]
+ConnectorType: TypeAlias = Literal[
+    "OPERATIONS_MANAGER",
+    "SDDC_MANAGER",
+    "VCENTER",
+]
 
 
 # --- awsJson1_0 ser/de ---

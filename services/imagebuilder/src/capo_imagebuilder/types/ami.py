@@ -19,6 +19,7 @@ class Ami(TypedDict, closed=True):
     description: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
     """<p>The description of the Amazon EC2 AMI. Minimum and maximum length are in characters.</p>"""
     state: NotRequired["capo_imagebuilder.types.image_state.ImageState"]
+    """<p>The state of the AMI, which includes the status and, if applicable, the reason for that status.</p>"""
     account_id: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
     """<p>The account ID of the owner of the AMI.</p>"""
 

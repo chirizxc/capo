@@ -7,10 +7,13 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_observabilityadmin.types.centralization_failure_reason
     import capo_observabilityadmin.types.centralization_rule
+    import capo_observabilityadmin.types.context_graph_status
     import capo_observabilityadmin.types.region
     import capo_observabilityadmin.types.resource_arn
     import capo_observabilityadmin.types.rule_health
     import capo_observabilityadmin.types.rule_name
+    import capo_observabilityadmin.types.tag_propagation_failure_reason
+    import capo_observabilityadmin.types.tag_propagation_status
 
 
 class GetCentralizationRuleForOrganizationOutput(TypedDict, closed=True):
@@ -32,6 +35,18 @@ class GetCentralizationRuleForOrganizationOutput(TypedDict, closed=True):
         "capo_observabilityadmin.types.centralization_failure_reason.CentralizationFailureReason"
     ]
     """<p>The reason why an organization centralization rule is marked UNHEALTHY.</p>"""
+    tag_propagation_status: NotRequired[
+        "capo_observabilityadmin.types.tag_propagation_status.TagPropagationStatus"
+    ]
+    """<p>The health status of tag propagation for this rule. This status is independent of the overall <code>RuleHealth</code> for log delivery. Returns <code>Healthy</code> when the most recent tag-propagation attempt succeeded, or <code>Unhealthy</code> when the most recent attempt failed.</p>"""
+    tag_propagation_failure_reason: NotRequired[
+        "capo_observabilityadmin.types.tag_propagation_failure_reason.TagPropagationFailureReason"
+    ]
+    """<p>The reason tag propagation is unhealthy for this rule. Only present when <code>TagPropagationStatus</code> is <code>Unhealthy</code>.</p>"""
+    context_graph_status: NotRequired[
+        "capo_observabilityadmin.types.context_graph_status.ContextGraphStatus"
+    ]
+    """<p>The status of context graph centralization for this rule. Returns <code>Provisioning</code> while the context graph is being set up, <code>Healthy</code> once it is active, or <code>Unhealthy</code> if provisioning failed. This status is independent of the overall <code>RuleHealth</code> for log delivery.</p>"""
     centralization_rule: NotRequired[
         "capo_observabilityadmin.types.centralization_rule.CentralizationRule"
     ]
@@ -65,6 +80,30 @@ def serialize_json(value: GetCentralizationRuleForOrganizationOutput) -> dict:
         out["FailureReason"] = (
             capo_observabilityadmin.types.centralization_failure_reason.serialize_json(
                 value["failure_reason"]
+            )
+        )
+    if "tag_propagation_status" in value:
+        import capo_observabilityadmin.types.tag_propagation_status
+
+        out["TagPropagationStatus"] = (
+            capo_observabilityadmin.types.tag_propagation_status.serialize_json(
+                value["tag_propagation_status"]
+            )
+        )
+    if "tag_propagation_failure_reason" in value:
+        import capo_observabilityadmin.types.tag_propagation_failure_reason
+
+        out["TagPropagationFailureReason"] = (
+            capo_observabilityadmin.types.tag_propagation_failure_reason.serialize_json(
+                value["tag_propagation_failure_reason"]
+            )
+        )
+    if "context_graph_status" in value:
+        import capo_observabilityadmin.types.context_graph_status
+
+        out["ContextGraphStatus"] = (
+            capo_observabilityadmin.types.context_graph_status.serialize_json(
+                value["context_graph_status"]
             )
         )
     if "centralization_rule" in value:
@@ -104,6 +143,30 @@ def deserialize_json(data: dict) -> GetCentralizationRuleForOrganizationOutput:
         out["failure_reason"] = (
             capo_observabilityadmin.types.centralization_failure_reason.deserialize_json(
                 data["FailureReason"]
+            )
+        )
+    if data.get("TagPropagationStatus") is not None:
+        import capo_observabilityadmin.types.tag_propagation_status
+
+        out["tag_propagation_status"] = (
+            capo_observabilityadmin.types.tag_propagation_status.deserialize_json(
+                data["TagPropagationStatus"]
+            )
+        )
+    if data.get("TagPropagationFailureReason") is not None:
+        import capo_observabilityadmin.types.tag_propagation_failure_reason
+
+        out["tag_propagation_failure_reason"] = (
+            capo_observabilityadmin.types.tag_propagation_failure_reason.deserialize_json(
+                data["TagPropagationFailureReason"]
+            )
+        )
+    if data.get("ContextGraphStatus") is not None:
+        import capo_observabilityadmin.types.context_graph_status
+
+        out["context_graph_status"] = (
+            capo_observabilityadmin.types.context_graph_status.deserialize_json(
+                data["ContextGraphStatus"]
             )
         )
     if data.get("CentralizationRule") is not None:

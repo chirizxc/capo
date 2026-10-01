@@ -25,6 +25,7 @@ import capo_config_service.types.organization_custom_rule_metadata
 import capo_config_service.types.organization_managed_rule_metadata
 import capo_config_service.types.put_organization_config_rule_request
 import capo_config_service.types.put_organization_config_rule_response
+import capo_config_service.types.tags_list
 from capo_config_service._protocol.errors import parse_error_metadata_json
 from capo_config_service._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_config_service._services._pipeline import (

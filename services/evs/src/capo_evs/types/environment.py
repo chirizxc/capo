@@ -54,7 +54,7 @@ class Environment(TypedDict, closed=True):
     environment_status: NotRequired["capo_evs.types.check_result.CheckResult"]
     """<p>Reports impaired functionality that stems from issues internal to the environment, such as impaired reachability.</p>"""
     checks: NotRequired["capo_evs.types.checks_list.ChecksList"]
-    """<p>A check on the environment to identify instance health and VMware VCF licensing issues.</p>"""
+    """<p>A check on the environment to identify connector health.</p>"""
     connectivity_info: NotRequired["capo_evs.types.connectivity_info.ConnectivityInfo"]
     """<p>The connectivity configuration for the environment. Amazon EVS requires that you specify two route server peer IDs. During environment creation, the route server endpoints peer with the NSX uplink VLAN for connectivity to the NSX overlay network.</p>"""
     vcf_hostnames: NotRequired["capo_evs.types.vcf_hostnames.VcfHostnames"]

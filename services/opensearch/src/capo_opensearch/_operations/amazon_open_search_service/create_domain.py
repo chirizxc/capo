@@ -30,8 +30,10 @@ import capo_opensearch.types.create_domain_response
 import capo_opensearch.types.deployment_strategy_options
 import capo_opensearch.types.domain_endpoint_options
 import capo_opensearch.types.domain_status
+import capo_opensearch.types.domain_use_case
 import capo_opensearch.types.ebs_options
 import capo_opensearch.types.encryption_at_rest_options
+import capo_opensearch.types.engine_mode
 import capo_opensearch.types.identity_center_options_input
 import capo_opensearch.types.ip_address_type
 import capo_opensearch.types.log_publishing_options

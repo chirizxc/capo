@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     import capo_ecs.types.canary_configuration
     import capo_ecs.types.deployment_alarms
     import capo_ecs.types.deployment_circuit_breaker
+    import capo_ecs.types.deployment_early_success_criteria
     import capo_ecs.types.deployment_lifecycle_hook_list
     import capo_ecs.types.deployment_strategy
     import capo_ecs.types.linear_configuration
@@ -41,6 +42,10 @@ class DeploymentConfiguration(TypedDict, closed=True):
         "capo_ecs.types.canary_configuration.CanaryConfiguration"
     ]
     """<p>Configuration for canary deployment strategy. Only valid when the deployment strategy is <code>CANARY</code>. This configuration enables shifting a fixed percentage of traffic for testing, followed by shifting the remaining traffic after a bake period.</p>"""
+    early_success_criteria: NotRequired[
+        "capo_ecs.types.deployment_early_success_criteria.DeploymentEarlySuccessCriteria"
+    ]
+    """<p>The early success criteria configuration for a rolling deployment. With early success criteria, you can configure an Amazon ECS deployment to complete faster. Amazon ECS declares a deployment successful once a target percentage of tasks are healthy, instead of waiting for the service to fully stabilize.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -96,6 +101,14 @@ def serialize_aws_json_1_1(value: DeploymentConfiguration) -> dict:
                 value["canary_configuration"]
             )
         )
+    if "early_success_criteria" in value:
+        import capo_ecs.types.deployment_early_success_criteria
+
+        out["earlySuccessCriteria"] = (
+            capo_ecs.types.deployment_early_success_criteria.serialize_aws_json_1_1(
+                value["early_success_criteria"]
+            )
+        )
     return out
 
 
@@ -149,6 +162,14 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentConfiguration:
         out["canary_configuration"] = (
             capo_ecs.types.canary_configuration.deserialize_aws_json_1_1(
                 data["canaryConfiguration"]
+            )
+        )
+    if data.get("earlySuccessCriteria") is not None:
+        import capo_ecs.types.deployment_early_success_criteria
+
+        out["early_success_criteria"] = (
+            capo_ecs.types.deployment_early_success_criteria.deserialize_aws_json_1_1(
+                data["earlySuccessCriteria"]
             )
         )
     return out

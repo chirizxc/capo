@@ -14,7 +14,7 @@ class DescribeApplicationsMessage(TypedDict, closed=True):
     application_names: NotRequired[
         "capo_elastic_beanstalk.types.application_names_list.ApplicationNamesList"
     ]
-    """<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to only include those with the specified names.</p>"""
+    """<p>If specified, Elastic Beanstalk restricts the returned descriptions to only include those with the specified names.</p>"""
 
 
 # --- awsQuery ser/de ---

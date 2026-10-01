@@ -12,7 +12,9 @@ if TYPE_CHECKING:
     import capo_elasticsearch_service.types.cognito_options
     import capo_elasticsearch_service.types.deployment_strategy_options
     import capo_elasticsearch_service.types.domain_endpoint_options
+    import capo_elasticsearch_service.types.domain_engine_mode
     import capo_elasticsearch_service.types.domain_name
+    import capo_elasticsearch_service.types.domain_use_case
     import capo_elasticsearch_service.types.dry_run
     import capo_elasticsearch_service.types.ebs_options
     import capo_elasticsearch_service.types.elasticsearch_cluster_config
@@ -85,6 +87,14 @@ class UpdateElasticsearchDomainConfigRequest(TypedDict, closed=True):
         "capo_elasticsearch_service.types.automated_snapshot_pause_request_options.AutomatedSnapshotPauseRequestOptions"
     ]
     """<p>Specifies the automated snapshot pause options for the domain.</p> <important> <p>Suspending snapshots reduces data protection. You cannot restore your domain to points in time when snapshots are suspended. Use this feature only for short-term operational needs such as migrations or maintenance windows.</p> </important> <p>Maximum suspension duration: 3 days.</p>"""
+    use_case: NotRequired[
+        "capo_elasticsearch_service.types.domain_use_case.DomainUseCase"
+    ]
+    """<p>The primary use case for the domain. For valid values, see <code>DomainUseCase</code>.</p>"""
+    engine_mode: NotRequired[
+        "capo_elasticsearch_service.types.domain_engine_mode.DomainEngineMode"
+    ]
+    """<p>The engine mode for the domain. For valid values and requirements, see <code>DomainEngineMode</code>.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -200,6 +210,22 @@ def serialize_json(value: UpdateElasticsearchDomainConfigRequest) -> dict:
         out["AutomatedSnapshotPauseOptions"] = (
             capo_elasticsearch_service.types.automated_snapshot_pause_request_options.serialize_json(
                 value["automated_snapshot_pause_options"]
+            )
+        )
+    if "use_case" in value:
+        import capo_elasticsearch_service.types.domain_use_case
+
+        out["UseCase"] = (
+            capo_elasticsearch_service.types.domain_use_case.serialize_json(
+                value["use_case"]
+            )
+        )
+    if "engine_mode" in value:
+        import capo_elasticsearch_service.types.domain_engine_mode
+
+        out["EngineMode"] = (
+            capo_elasticsearch_service.types.domain_engine_mode.serialize_json(
+                value["engine_mode"]
             )
         )
     return out
@@ -321,6 +347,22 @@ def deserialize_json(data: dict) -> UpdateElasticsearchDomainConfigRequest:
         out["automated_snapshot_pause_options"] = (
             capo_elasticsearch_service.types.automated_snapshot_pause_request_options.deserialize_json(
                 data["AutomatedSnapshotPauseOptions"]
+            )
+        )
+    if data.get("UseCase") is not None:
+        import capo_elasticsearch_service.types.domain_use_case
+
+        out["use_case"] = (
+            capo_elasticsearch_service.types.domain_use_case.deserialize_json(
+                data["UseCase"]
+            )
+        )
+    if data.get("EngineMode") is not None:
+        import capo_elasticsearch_service.types.domain_engine_mode
+
+        out["engine_mode"] = (
+            capo_elasticsearch_service.types.domain_engine_mode.deserialize_json(
+                data["EngineMode"]
             )
         )
     return out

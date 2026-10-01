@@ -1,0 +1,63 @@
+"""Generated from Smithy shape ``com.amazonaws.securityagent#GitLabRepositoryMetadata``."""
+
+from typing import TYPE_CHECKING
+
+from typing_extensions import NotRequired, TypedDict
+
+from capo_securityagent.errors import DeserializationError
+
+if TYPE_CHECKING:
+    import capo_securityagent.types.access_type
+    import capo_securityagent.types.git_lab_namespace
+    import capo_securityagent.types.provider_resource_id
+    import capo_securityagent.types.provider_resource_name
+
+
+class GitLabRepositoryMetadata(TypedDict, closed=True):
+    name: "capo_securityagent.types.provider_resource_name.ProviderResourceName"
+    provider_resource_id: (
+        "capo_securityagent.types.provider_resource_id.ProviderResourceId"
+    )
+    namespace: "capo_securityagent.types.git_lab_namespace.GitLabNamespace"
+    """<p>The namespace (group or user path) that owns the project.</p>"""
+    access_type: NotRequired["capo_securityagent.types.access_type.AccessType"]
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: GitLabRepositoryMetadata) -> dict:
+    out: dict = {}
+    out["name"] = value["name"]
+    out["providerResourceId"] = value["provider_resource_id"]
+    out["namespace"] = value["namespace"]
+    if "access_type" in value:
+        import capo_securityagent.types.access_type
+
+        out["accessType"] = capo_securityagent.types.access_type.serialize_json(
+            value["access_type"]
+        )
+    return out
+
+
+def deserialize_json(data: dict) -> GitLabRepositoryMetadata:
+    out: GitLabRepositoryMetadata = {}  # type: ignore[typeddict-item]
+    if data.get("name") is not None:
+        out["name"] = data["name"]
+    else:
+        raise DeserializationError("GitLabRepositoryMetadata.name required")
+    if data.get("providerResourceId") is not None:
+        out["provider_resource_id"] = data["providerResourceId"]
+    else:
+        raise DeserializationError(
+            "GitLabRepositoryMetadata.provider_resource_id required"
+        )
+    if data.get("namespace") is not None:
+        out["namespace"] = data["namespace"]
+    else:
+        raise DeserializationError("GitLabRepositoryMetadata.namespace required")
+    if data.get("accessType") is not None:
+        import capo_securityagent.types.access_type
+
+        out["access_type"] = capo_securityagent.types.access_type.deserialize_json(
+            data["accessType"]
+        )
+    return out

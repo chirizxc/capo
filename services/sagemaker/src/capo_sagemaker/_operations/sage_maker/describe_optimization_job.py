@@ -22,6 +22,7 @@ import capo_sagemaker.types.optimization_job_environment_variables
 import capo_sagemaker.types.optimization_job_model_source
 import capo_sagemaker.types.optimization_job_output_config
 import capo_sagemaker.types.optimization_job_status
+import capo_sagemaker.types.optimization_job_training_plan_arns
 import capo_sagemaker.types.optimization_output
 import capo_sagemaker.types.optimization_vpc_config
 import capo_sagemaker.types.stopping_condition

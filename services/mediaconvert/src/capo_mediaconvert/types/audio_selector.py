@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     import capo_mediaconvert.types.audio_default_selection
     import capo_mediaconvert.types.audio_duration_correction
     import capo_mediaconvert.types.audio_selector_type
+    import capo_mediaconvert.types.audio_smpte337_passthrough
     import capo_mediaconvert.types.hls_rendition_group_settings
     import capo_mediaconvert.types.language_code
     import capo_mediaconvert.types.remix_settings
@@ -59,6 +60,10 @@ class AudioSelector(TypedDict, closed=True):
         "capo_mediaconvert.types.audio_selector_type.AudioSelectorType"
     ]
     """Specify how MediaConvert selects audio content within your input. The default is Track. PID: Select audio by specifying the Packet Identifier (PID) values for MPEG Transport Stream inputs. Use this when you know the exact PID values of your audio streams. Track: Default. Select audio by track number. This is the most common option and works with most input container formats. If more types of audio data get recognized in the future, these numberings may shift, but the numberings used for Stream mode will not. Language code: Select audio by language using an ISO 639-2 or ISO 639-3 three-letter code in all capital letters. Use this when your source has embedded language metadata and you want to select tracks based on their language. HLS rendition group: Select audio from an HLS rendition group. Use this when your input is an HLS package with multiple audio renditions and you want to select specific rendition groups. All PCM: Select all uncompressed PCM audio tracks from your input automatically. This is useful when you want to include all PCM audio tracks without specifying individual track numbers. Stream: Select audio by stream number. Stream numbers include all tracks in the source file, regardless of type, and correspond to either the order of tracks in the file, or if applicable, the stream number metadata of the track. Although all tracks count toward these stream numbers, in this audio selector context, only the stream number of a track containing audio data may be used. If your source file contains a track which is not recognized by the service, then the corresponding stream number will still be reserved for future use. If more types of audio data get recognized in the future, these numberings will not shift."""
+    smpte337_passthrough: NotRequired[
+        "capo_mediaconvert.types.audio_smpte337_passthrough.AudioSmpte337Passthrough"
+    ]
+    """Specify whether to pass SMPTE 337M-wrapped audio (such as Dolby E) through without unwrapping. Choose Enabled to pass the SMPTE 337M container through unchanged, treating the track as raw PCM. Choose Disabled (default) to automatically detect and unwrap SMPTE 337M data, extracting the underlying Dolby E programs as separate audio tracks for encoding. When this field is absent, the service defaults to Disabled (auto-unwrap)."""
     streams: NotRequired[
         "capo_mediaconvert.types.__list_of__integer_min1_max2147483647.__listOf__integerMin1Max2147483647"
     ]
@@ -130,6 +135,14 @@ def serialize_json(value: AudioSelector) -> dict:
         out["selectorType"] = (
             capo_mediaconvert.types.audio_selector_type.serialize_json(
                 value["selector_type"]
+            )
+        )
+    if "smpte337_passthrough" in value:
+        import capo_mediaconvert.types.audio_smpte337_passthrough
+
+        out["smpte337Passthrough"] = (
+            capo_mediaconvert.types.audio_smpte337_passthrough.serialize_json(
+                value["smpte337_passthrough"]
             )
         )
     if "streams" in value:
@@ -211,6 +224,14 @@ def deserialize_json(data: dict) -> AudioSelector:
         out["selector_type"] = (
             capo_mediaconvert.types.audio_selector_type.deserialize_json(
                 data["selectorType"]
+            )
+        )
+    if data.get("smpte337Passthrough") is not None:
+        import capo_mediaconvert.types.audio_smpte337_passthrough
+
+        out["smpte337_passthrough"] = (
+            capo_mediaconvert.types.audio_smpte337_passthrough.deserialize_json(
+                data["smpte337Passthrough"]
             )
         )
     if data.get("streams") is not None:

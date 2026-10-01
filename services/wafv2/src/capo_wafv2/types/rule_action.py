@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_wafv2.types.captcha_action
     import capo_wafv2.types.challenge_action
     import capo_wafv2.types.count_action
+    import capo_wafv2.types.monetize_action
 
 
 class RuleAction(TypedDict, closed=True):
@@ -23,6 +24,8 @@ class RuleAction(TypedDict, closed=True):
     """<p>Instructs WAF to run a <code>CAPTCHA</code> check against the web request.</p>"""
     challenge: NotRequired["capo_wafv2.types.challenge_action.ChallengeAction"]
     """<p>Instructs WAF to run a <code>Challenge</code> check against the web request.</p>"""
+    monetize: NotRequired["capo_wafv2.types.monetize_action.MonetizeAction"]
+    """<p>Instructs WAF to return an HTTP 402 Payment Required response with a price manifest. The requesting client can complete payment and resubmit the request to gain access. This is a terminating action-requests that do not complete payment are blocked. This action is available only for web ACLs associated with Amazon CloudFront distributions and requires a <code>MonetizationConfig</code> on the web ACL.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -58,6 +61,12 @@ def serialize_aws_json_1_1(value: RuleAction) -> dict:
         out["Challenge"] = capo_wafv2.types.challenge_action.serialize_aws_json_1_1(
             value["challenge"]
         )
+    if "monetize" in value:
+        import capo_wafv2.types.monetize_action
+
+        out["Monetize"] = capo_wafv2.types.monetize_action.serialize_aws_json_1_1(
+            value["monetize"]
+        )
     return out
 
 
@@ -92,5 +101,11 @@ def deserialize_aws_json_1_1(data: dict) -> RuleAction:
 
         out["challenge"] = capo_wafv2.types.challenge_action.deserialize_aws_json_1_1(
             data["Challenge"]
+        )
+    if data.get("Monetize") is not None:
+        import capo_wafv2.types.monetize_action
+
+        out["monetize"] = capo_wafv2.types.monetize_action.deserialize_aws_json_1_1(
+            data["Monetize"]
         )
     return out

@@ -108,6 +108,8 @@ def build_request(
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + "/logging"
     params: list[tuple[str, str]] = []
+    if "workspace_name" in input_:
+        params.append(("workspaceName", input_["workspace_name"]))
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))

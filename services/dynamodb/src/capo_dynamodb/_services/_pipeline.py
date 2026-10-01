@@ -41,6 +41,7 @@ class OperationOptions:
     account_id_endpoint_mode: str | None = None
     resource_arn: str | None = None
     resource_arn_list: list[str] | None = None
+    is_search_operation: bool | None = None
     retry_max_attempts: int | None = None
     credentials_provider: IdentityProvider[Credentials] | None = None
 
@@ -56,6 +57,7 @@ class AsyncOperationOptions:
     account_id_endpoint_mode: str | None = None
     resource_arn: str | None = None
     resource_arn_list: list[str] | None = None
+    is_search_operation: bool | None = None
     retry_max_attempts: int | None = None
     credentials_provider: IdentityProvider[Credentials] | None = None
 

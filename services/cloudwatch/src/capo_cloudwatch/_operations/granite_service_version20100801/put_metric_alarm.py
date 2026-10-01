@@ -23,6 +23,7 @@ import capo_cloudwatch.types.resource_list
 import capo_cloudwatch.types.standard_unit
 import capo_cloudwatch.types.statistic
 import capo_cloudwatch.types.tag_list
+import capo_cloudwatch.types.warm_up_configuration
 from capo_cloudwatch._protocol.errors import parse_error_metadata_json
 from capo_cloudwatch._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_cloudwatch._services._pipeline import AsyncOperationOptions, OperationOptions

@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     import capo_eventbridge.types.event_bus_description
     import capo_eventbridge.types.kms_key_identifier
     import capo_eventbridge.types.log_config
+    import capo_eventbridge.types.managed_by
     import capo_eventbridge.types.string
     import capo_eventbridge.types.timestamp
 
@@ -32,11 +33,13 @@ class DescribeEventBusResponse(TypedDict, closed=True):
     policy: NotRequired["capo_eventbridge.types.string.String"]
     """<p>The policy that enables the external account to send events to your account.</p>"""
     log_config: NotRequired["capo_eventbridge.types.log_config.LogConfig"]
-    r"""<p>The logging configuration settings for the event bus.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/eb-event-bus-logs.html\">Configuring logs for event buses</a> in the <i>EventBridge User Guide</i>.</p>"""
+    r"""<p>The logging configuration settings for the event bus.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-bus-logs.html\">Configuring logs for event buses</a> in the <i>EventBridge User Guide</i>.</p>"""
     creation_time: NotRequired["capo_eventbridge.types.timestamp.Timestamp"]
     """<p>The time the event bus was created.</p>"""
     last_modified_time: NotRequired["capo_eventbridge.types.timestamp.Timestamp"]
     """<p>The time the event bus was last modified.</p>"""
+    managed_by: NotRequired["capo_eventbridge.types.managed_by.ManagedBy"]
+    """<p>If the event bus was created on behalf of your account by an Amazon Web Services service, this field displays the principal name of the service that created the event bus.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -80,6 +83,8 @@ def serialize_aws_json_1_1(value: DescribeEventBusResponse) -> dict:
                 value["last_modified_time"]
             )
         )
+    if "managed_by" in value:
+        out["ManagedBy"] = value["managed_by"]
     return out
 
 
@@ -125,4 +130,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEventBusResponse:
                 data["LastModifiedTime"]
             )
         )
+    if data.get("ManagedBy") is not None:
+        out["managed_by"] = data["ManagedBy"]
     return out

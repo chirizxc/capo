@@ -5,6 +5,8 @@ from typing import Literal, TypeAlias, cast
 TableAttributes: TypeAlias = Literal[
     "NAME",
     "TABLE_TYPE",
+    "DEFAULT",
+    "LATEST_ICEBERG_METADATA",
 ]
 
 

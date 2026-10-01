@@ -8,7 +8,7 @@ from capo_deadline.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_deadline.types.iam_role_arn
-    import capo_deadline.types.job_attachment_settings
+    import capo_deadline.types.job_details_job_attachment_settings
     import capo_deadline.types.job_id
     import capo_deadline.types.job_parameters
     import capo_deadline.types.job_run_as_user
@@ -20,7 +20,7 @@ class JobDetailsEntity(TypedDict, closed=True):
     job_id: "capo_deadline.types.job_id.JobId"
     """<p>The job ID.</p>"""
     job_attachment_settings: NotRequired[
-        "capo_deadline.types.job_attachment_settings.JobAttachmentSettings"
+        "capo_deadline.types.job_details_job_attachment_settings.JobDetailsJobAttachmentSettings"
     ]
     """<p>The job attachment settings.</p>"""
     job_run_as_user: NotRequired["capo_deadline.types.job_run_as_user.JobRunAsUser"]
@@ -44,10 +44,10 @@ def serialize_json(value: JobDetailsEntity) -> dict:
     out: dict = {}
     out["jobId"] = value["job_id"]
     if "job_attachment_settings" in value:
-        import capo_deadline.types.job_attachment_settings
+        import capo_deadline.types.job_details_job_attachment_settings
 
         out["jobAttachmentSettings"] = (
-            capo_deadline.types.job_attachment_settings.serialize_json(
+            capo_deadline.types.job_details_job_attachment_settings.serialize_json(
                 value["job_attachment_settings"]
             )
         )
@@ -83,10 +83,10 @@ def deserialize_json(data: dict) -> JobDetailsEntity:
     else:
         raise DeserializationError("JobDetailsEntity.job_id required")
     if data.get("jobAttachmentSettings") is not None:
-        import capo_deadline.types.job_attachment_settings
+        import capo_deadline.types.job_details_job_attachment_settings
 
         out["job_attachment_settings"] = (
-            capo_deadline.types.job_attachment_settings.deserialize_json(
+            capo_deadline.types.job_details_job_attachment_settings.deserialize_json(
                 data["jobAttachmentSettings"]
             )
         )

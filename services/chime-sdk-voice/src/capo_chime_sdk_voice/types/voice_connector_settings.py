@@ -5,11 +5,11 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
-    import capo_chime_sdk_voice.types.string
+    import capo_chime_sdk_voice.types.s3_bucket_name
 
 
 class VoiceConnectorSettings(TypedDict, closed=True):
-    cdr_bucket: NotRequired["capo_chime_sdk_voice.types.string.String"]
+    cdr_bucket: NotRequired["capo_chime_sdk_voice.types.s3_bucket_name.S3BucketName"]
     """<p>The S3 bucket that stores the Voice Connector's call detail records.</p>"""
 
 

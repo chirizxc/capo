@@ -188,6 +188,82 @@ class FilterCriteria(TypedDict, closed=True):
         "capo_inspector2.types.string_filter_list.StringFilterList"
     ]
     """<p>Filter criteria for findings based on the repository provider type (such as GitHub, GitLab, etc.).</p>"""
+    cloud_provider: NotRequired[
+        "capo_inspector2.types.string_filter_list.StringFilterList"
+    ]
+    """<p>Filter criteria for the cloud provider.</p>"""
+    cloud_provider_region: NotRequired[
+        "capo_inspector2.types.string_filter_list.StringFilterList"
+    ]
+    """<p>Filter criteria for the cloud provider region.</p>"""
+    cloud_provider_account_id: NotRequired[
+        "capo_inspector2.types.string_filter_list.StringFilterList"
+    ]
+    """<p>Filter criteria for the cloud provider account ID.</p>"""
+    cloud_provider_org_id: NotRequired[
+        "capo_inspector2.types.string_filter_list.StringFilterList"
+    ]
+    """<p>Filter criteria for the cloud provider organization ID.</p>"""
+    cloud_vm_image_reference: NotRequired[
+        "capo_inspector2.types.string_filter_list.StringFilterList"
+    ]
+    """<p>Filter criteria for the image reference of a VM instance.</p>"""
+    cloud_vm_network_id: NotRequired[
+        "capo_inspector2.types.string_filter_list.StringFilterList"
+    ]
+    """<p>Filter criteria for the network ID of a VM instance.</p>"""
+    cloud_vm_subnet_ids: NotRequired[
+        "capo_inspector2.types.string_filter_list.StringFilterList"
+    ]
+    """<p>Filter criteria for the subnet IDs of a VM instance.</p>"""
+    cloud_image_repository_name: NotRequired[
+        "capo_inspector2.types.string_filter_list.StringFilterList"
+    ]
+    """<p>Filter criteria for the repository name of a container image.</p>"""
+    cloud_image_registry: NotRequired[
+        "capo_inspector2.types.string_filter_list.StringFilterList"
+    ]
+    """<p>Filter criteria for the registry of a container image.</p>"""
+    cloud_image_digest: NotRequired[
+        "capo_inspector2.types.string_filter_list.StringFilterList"
+    ]
+    """<p>Filter criteria for the digest of a container image.</p>"""
+    cloud_image_tags: NotRequired[
+        "capo_inspector2.types.string_filter_list.StringFilterList"
+    ]
+    """<p>Filter criteria for the tags of a container image.</p>"""
+    cloud_image_pushed_at: NotRequired[
+        "capo_inspector2.types.date_filter_list.DateFilterList"
+    ]
+    """<p>Filter criteria for when a container image was pushed.</p>"""
+    cloud_image_architecture: NotRequired[
+        "capo_inspector2.types.string_filter_list.StringFilterList"
+    ]
+    """<p>Filter criteria for the architecture of a container image.</p>"""
+    cloud_image_last_in_use_at: NotRequired[
+        "capo_inspector2.types.date_filter_list.DateFilterList"
+    ]
+    """<p>Filter criteria for the last time a container image was in use.</p>"""
+    cloud_image_in_use_count: NotRequired[
+        "capo_inspector2.types.number_filter_list.NumberFilterList"
+    ]
+    """<p>Filter criteria for the in-use count of a container image.</p>"""
+    cloud_serverless_function_name: NotRequired[
+        "capo_inspector2.types.string_filter_list.StringFilterList"
+    ]
+    """<p>Filter criteria for the name of a serverless function.</p>"""
+    cloud_serverless_function_runtime: NotRequired[
+        "capo_inspector2.types.string_filter_list.StringFilterList"
+    ]
+    """<p>Filter criteria for the runtime of a serverless function.</p>"""
+    cloud_serverless_function_last_modified_at: NotRequired[
+        "capo_inspector2.types.date_filter_list.DateFilterList"
+    ]
+    """<p>Filter criteria for when a serverless function was last modified.</p>"""
+    cloud_serverless_function_execution_role: NotRequired[
+        "capo_inspector2.types.string_filter_list.StringFilterList"
+    ]
+    """<p>Filter criteria for the execution role of a serverless function.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -515,6 +591,154 @@ def serialize_json(value: FilterCriteria) -> dict:
         out["codeRepositoryProviderType"] = (
             capo_inspector2.types.string_filter_list.serialize_json(
                 value["code_repository_provider_type"]
+            )
+        )
+    if "cloud_provider" in value:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloudProvider"] = capo_inspector2.types.string_filter_list.serialize_json(
+            value["cloud_provider"]
+        )
+    if "cloud_provider_region" in value:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloudProviderRegion"] = (
+            capo_inspector2.types.string_filter_list.serialize_json(
+                value["cloud_provider_region"]
+            )
+        )
+    if "cloud_provider_account_id" in value:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloudProviderAccountId"] = (
+            capo_inspector2.types.string_filter_list.serialize_json(
+                value["cloud_provider_account_id"]
+            )
+        )
+    if "cloud_provider_org_id" in value:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloudProviderOrgId"] = (
+            capo_inspector2.types.string_filter_list.serialize_json(
+                value["cloud_provider_org_id"]
+            )
+        )
+    if "cloud_vm_image_reference" in value:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloudVmImageReference"] = (
+            capo_inspector2.types.string_filter_list.serialize_json(
+                value["cloud_vm_image_reference"]
+            )
+        )
+    if "cloud_vm_network_id" in value:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloudVmNetworkId"] = (
+            capo_inspector2.types.string_filter_list.serialize_json(
+                value["cloud_vm_network_id"]
+            )
+        )
+    if "cloud_vm_subnet_ids" in value:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloudVmSubnetIds"] = (
+            capo_inspector2.types.string_filter_list.serialize_json(
+                value["cloud_vm_subnet_ids"]
+            )
+        )
+    if "cloud_image_repository_name" in value:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloudImageRepositoryName"] = (
+            capo_inspector2.types.string_filter_list.serialize_json(
+                value["cloud_image_repository_name"]
+            )
+        )
+    if "cloud_image_registry" in value:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloudImageRegistry"] = (
+            capo_inspector2.types.string_filter_list.serialize_json(
+                value["cloud_image_registry"]
+            )
+        )
+    if "cloud_image_digest" in value:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloudImageDigest"] = (
+            capo_inspector2.types.string_filter_list.serialize_json(
+                value["cloud_image_digest"]
+            )
+        )
+    if "cloud_image_tags" in value:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloudImageTags"] = capo_inspector2.types.string_filter_list.serialize_json(
+            value["cloud_image_tags"]
+        )
+    if "cloud_image_pushed_at" in value:
+        import capo_inspector2.types.date_filter_list
+
+        out["cloudImagePushedAt"] = (
+            capo_inspector2.types.date_filter_list.serialize_json(
+                value["cloud_image_pushed_at"]
+            )
+        )
+    if "cloud_image_architecture" in value:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloudImageArchitecture"] = (
+            capo_inspector2.types.string_filter_list.serialize_json(
+                value["cloud_image_architecture"]
+            )
+        )
+    if "cloud_image_last_in_use_at" in value:
+        import capo_inspector2.types.date_filter_list
+
+        out["cloudImageLastInUseAt"] = (
+            capo_inspector2.types.date_filter_list.serialize_json(
+                value["cloud_image_last_in_use_at"]
+            )
+        )
+    if "cloud_image_in_use_count" in value:
+        import capo_inspector2.types.number_filter_list
+
+        out["cloudImageInUseCount"] = (
+            capo_inspector2.types.number_filter_list.serialize_json(
+                value["cloud_image_in_use_count"]
+            )
+        )
+    if "cloud_serverless_function_name" in value:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloudServerlessFunctionName"] = (
+            capo_inspector2.types.string_filter_list.serialize_json(
+                value["cloud_serverless_function_name"]
+            )
+        )
+    if "cloud_serverless_function_runtime" in value:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloudServerlessFunctionRuntime"] = (
+            capo_inspector2.types.string_filter_list.serialize_json(
+                value["cloud_serverless_function_runtime"]
+            )
+        )
+    if "cloud_serverless_function_last_modified_at" in value:
+        import capo_inspector2.types.date_filter_list
+
+        out["cloudServerlessFunctionLastModifiedAt"] = (
+            capo_inspector2.types.date_filter_list.serialize_json(
+                value["cloud_serverless_function_last_modified_at"]
+            )
+        )
+    if "cloud_serverless_function_execution_role" in value:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloudServerlessFunctionExecutionRole"] = (
+            capo_inspector2.types.string_filter_list.serialize_json(
+                value["cloud_serverless_function_execution_role"]
             )
         )
     return out
@@ -870,6 +1094,158 @@ def deserialize_json(data: dict) -> FilterCriteria:
         out["code_repository_provider_type"] = (
             capo_inspector2.types.string_filter_list.deserialize_json(
                 data["codeRepositoryProviderType"]
+            )
+        )
+    if data.get("cloudProvider") is not None:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloud_provider"] = (
+            capo_inspector2.types.string_filter_list.deserialize_json(
+                data["cloudProvider"]
+            )
+        )
+    if data.get("cloudProviderRegion") is not None:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloud_provider_region"] = (
+            capo_inspector2.types.string_filter_list.deserialize_json(
+                data["cloudProviderRegion"]
+            )
+        )
+    if data.get("cloudProviderAccountId") is not None:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloud_provider_account_id"] = (
+            capo_inspector2.types.string_filter_list.deserialize_json(
+                data["cloudProviderAccountId"]
+            )
+        )
+    if data.get("cloudProviderOrgId") is not None:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloud_provider_org_id"] = (
+            capo_inspector2.types.string_filter_list.deserialize_json(
+                data["cloudProviderOrgId"]
+            )
+        )
+    if data.get("cloudVmImageReference") is not None:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloud_vm_image_reference"] = (
+            capo_inspector2.types.string_filter_list.deserialize_json(
+                data["cloudVmImageReference"]
+            )
+        )
+    if data.get("cloudVmNetworkId") is not None:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloud_vm_network_id"] = (
+            capo_inspector2.types.string_filter_list.deserialize_json(
+                data["cloudVmNetworkId"]
+            )
+        )
+    if data.get("cloudVmSubnetIds") is not None:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloud_vm_subnet_ids"] = (
+            capo_inspector2.types.string_filter_list.deserialize_json(
+                data["cloudVmSubnetIds"]
+            )
+        )
+    if data.get("cloudImageRepositoryName") is not None:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloud_image_repository_name"] = (
+            capo_inspector2.types.string_filter_list.deserialize_json(
+                data["cloudImageRepositoryName"]
+            )
+        )
+    if data.get("cloudImageRegistry") is not None:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloud_image_registry"] = (
+            capo_inspector2.types.string_filter_list.deserialize_json(
+                data["cloudImageRegistry"]
+            )
+        )
+    if data.get("cloudImageDigest") is not None:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloud_image_digest"] = (
+            capo_inspector2.types.string_filter_list.deserialize_json(
+                data["cloudImageDigest"]
+            )
+        )
+    if data.get("cloudImageTags") is not None:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloud_image_tags"] = (
+            capo_inspector2.types.string_filter_list.deserialize_json(
+                data["cloudImageTags"]
+            )
+        )
+    if data.get("cloudImagePushedAt") is not None:
+        import capo_inspector2.types.date_filter_list
+
+        out["cloud_image_pushed_at"] = (
+            capo_inspector2.types.date_filter_list.deserialize_json(
+                data["cloudImagePushedAt"]
+            )
+        )
+    if data.get("cloudImageArchitecture") is not None:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloud_image_architecture"] = (
+            capo_inspector2.types.string_filter_list.deserialize_json(
+                data["cloudImageArchitecture"]
+            )
+        )
+    if data.get("cloudImageLastInUseAt") is not None:
+        import capo_inspector2.types.date_filter_list
+
+        out["cloud_image_last_in_use_at"] = (
+            capo_inspector2.types.date_filter_list.deserialize_json(
+                data["cloudImageLastInUseAt"]
+            )
+        )
+    if data.get("cloudImageInUseCount") is not None:
+        import capo_inspector2.types.number_filter_list
+
+        out["cloud_image_in_use_count"] = (
+            capo_inspector2.types.number_filter_list.deserialize_json(
+                data["cloudImageInUseCount"]
+            )
+        )
+    if data.get("cloudServerlessFunctionName") is not None:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloud_serverless_function_name"] = (
+            capo_inspector2.types.string_filter_list.deserialize_json(
+                data["cloudServerlessFunctionName"]
+            )
+        )
+    if data.get("cloudServerlessFunctionRuntime") is not None:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloud_serverless_function_runtime"] = (
+            capo_inspector2.types.string_filter_list.deserialize_json(
+                data["cloudServerlessFunctionRuntime"]
+            )
+        )
+    if data.get("cloudServerlessFunctionLastModifiedAt") is not None:
+        import capo_inspector2.types.date_filter_list
+
+        out["cloud_serverless_function_last_modified_at"] = (
+            capo_inspector2.types.date_filter_list.deserialize_json(
+                data["cloudServerlessFunctionLastModifiedAt"]
+            )
+        )
+    if data.get("cloudServerlessFunctionExecutionRole") is not None:
+        import capo_inspector2.types.string_filter_list
+
+        out["cloud_serverless_function_execution_role"] = (
+            capo_inspector2.types.string_filter_list.deserialize_json(
+                data["cloudServerlessFunctionExecutionRole"]
             )
         )
     return out

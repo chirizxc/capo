@@ -21,6 +21,7 @@ import capo_securityhub.errors.validation_exception
 import capo_securityhub.types.connector_status
 import capo_securityhub.types.create_connector_v2_request
 import capo_securityhub.types.create_connector_v2_response
+import capo_securityhub.types.enablement_status
 import capo_securityhub.types.provider_configuration
 import capo_securityhub.types.tag_map
 from capo_securityhub._protocol.errors import parse_error_metadata_json

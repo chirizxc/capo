@@ -1387,7 +1387,7 @@ class AsyncIoTClient:
     ) -> (
         "capo_iot.types.attach_security_profile_response.AttachSecurityProfileResponse"
     ):
-        r"""<p>Associates a Device Defender security profile with a thing group or this account. Each thing group or account can have up to five security profiles associated with it.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">AttachSecurityProfile</a> action.</p>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p>Associates a Device Defender security profile with a thing group or this account. Each thing group or account can have up to five security profiles associated with it.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">AttachSecurityProfile</a> action.</p>
 
         Args:
             security_profile_name: <p>The security profile that is attached.</p>
@@ -1638,7 +1638,7 @@ class AsyncIoTClient:
         *,
         config_overrides: Optional[AsyncIoTClientConfig] = None,
     ) -> "capo_iot.types.cancel_detect_mitigation_actions_task_response.CancelDetectMitigationActionsTaskResponse":
-        r"""<p> Cancels a Device Defender ML Detect mitigation action. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CancelDetectMitigationActionsTask</a> action.</p>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p> Cancels a Device Defender ML Detect mitigation action. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CancelDetectMitigationActionsTask</a> action.</p>
 
         Args:
             task_id: <p> The unique identifier of the task. </p>
@@ -2317,7 +2317,7 @@ class AsyncIoTClient:
         ] = None,
         tags: Optional["capo_iot.types.tag_list.TagList"] = None,
     ) -> "capo_iot.types.create_custom_metric_response.CreateCustomMetricResponse":
-        r"""<p> Use this API to define a Custom Metric published by your devices to Device Defender. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateCustomMetric</a> action.</p>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p> Use this API to define a Custom Metric published by your devices to Device Defender. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateCustomMetric</a> action.</p>
 
         Args:
             metric_name: <p> The name of the custom metric. This will be used in the metric report submitted from the device/thing. The name can't begin with <code>aws:</code>. You can't change the name after you define it.</p>
@@ -2379,7 +2379,7 @@ class AsyncIoTClient:
         config_overrides: Optional[AsyncIoTClientConfig] = None,
         tags: Optional["capo_iot.types.tag_list.TagList"] = None,
     ) -> "capo_iot.types.create_dimension_response.CreateDimensionResponse":
-        r"""<p>Create a dimension that you can use to limit the scope of a metric used in a security profile for IoT Device Defender. For example, using a <code>TOPIC_FILTER</code> dimension, you can narrow down the scope of the metric only to MQTT topics whose name match the pattern specified in the dimension.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateDimension</a> action.</p>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p>Create a dimension that you can use to limit the scope of a metric used in a security profile for IoT Device Defender. For example, using a <code>TOPIC_FILTER</code> dimension, you can narrow down the scope of the metric only to MQTT topics whose name match the pattern specified in the dimension.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateDimension</a> action.</p>
 
         Args:
             name: <p>A unique identifier for the dimension. Choose something that describes the type and value to make it easy to remember what it does.</p>
@@ -3749,7 +3749,7 @@ class AsyncIoTClient:
     ) -> (
         "capo_iot.types.create_security_profile_response.CreateSecurityProfileResponse"
     ):
-        r"""<p>Creates a Device Defender security profile.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateSecurityProfile</a> action.</p>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p>Creates a Device Defender security profile.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateSecurityProfile</a> action.</p>
 
         Args:
             security_profile_name: <p>The name you are giving to the security profile.</p>
@@ -4625,7 +4625,7 @@ class AsyncIoTClient:
         *,
         config_overrides: Optional[AsyncIoTClientConfig] = None,
     ) -> "capo_iot.types.delete_custom_metric_response.DeleteCustomMetricResponse":
-        r"""<p> Deletes a Device Defender detect custom metric. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteCustomMetric</a> action.</p> <note> <p>Before you can delete a custom metric, you must first remove the custom metric from all security profiles it's a part of. The security profile associated with the custom metric can be found using the <a href=\"https://docs.aws.amazon.com/iot/latest/apireference/API_ListSecurityProfiles.html\">ListSecurityProfiles</a> API with <code>metricName</code> set to your custom metric name.</p> </note>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p> Deletes a Device Defender detect custom metric. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteCustomMetric</a> action.</p> <note> <p>Before you can delete a custom metric, you must first remove the custom metric from all security profiles it's a part of. The security profile associated with the custom metric can be found using the <a href=\"https://docs.aws.amazon.com/iot/latest/apireference/API_ListSecurityProfiles.html\">ListSecurityProfiles</a> API with <code>metricName</code> set to your custom metric name.</p> </note>
 
         Args:
             metric_name: <p> The name of the custom metric. </p>
@@ -4671,7 +4671,7 @@ class AsyncIoTClient:
         *,
         config_overrides: Optional[AsyncIoTClientConfig] = None,
     ) -> "capo_iot.types.delete_dimension_response.DeleteDimensionResponse":
-        r"""<p>Removes the specified dimension from your Amazon Web Services accounts.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteDimension</a> action.</p>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p>Removes the specified dimension from your Amazon Web Services accounts.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteDimension</a> action.</p>
 
         Args:
             name: <p>The unique identifier for the dimension that you want to delete.</p>
@@ -5585,7 +5585,7 @@ class AsyncIoTClient:
     ) -> (
         "capo_iot.types.delete_security_profile_response.DeleteSecurityProfileResponse"
     ):
-        r"""<p>Deletes a Device Defender security profile.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteSecurityProfile</a> action.</p>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p>Deletes a Device Defender security profile.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteSecurityProfile</a> action.</p>
 
         Args:
             security_profile_name: <p>The name of the security profile to be deleted.</p>
@@ -5941,7 +5941,7 @@ class AsyncIoTClient:
         r"""<p>Deletes a logging level.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteV2LoggingLevel</a> action.</p>
 
         Args:
-            target_type: <p>The type of resource for which you are configuring logging. Must be <code>THING_Group</code>.</p>
+            target_type: <p>The type of resource for which you are configuring logging. Must be <code>DEFAULT</code>, <code>THING_GROUP</code>, <code>CLIENT_ID</code>, <code>SOURCE_IP</code>, or <code>PRINCIPAL_ID</code>.</p>
             target_name: <p>The name of the resource for which you are configuring logging.</p>
 
         Raises:
@@ -6506,7 +6506,7 @@ class AsyncIoTClient:
         *,
         config_overrides: Optional[AsyncIoTClientConfig] = None,
     ) -> "capo_iot.types.describe_custom_metric_response.DescribeCustomMetricResponse":
-        r"""<p> Gets information about a Device Defender detect custom metric. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeCustomMetric</a> action.</p>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p> Gets information about a Device Defender detect custom metric. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeCustomMetric</a> action.</p>
 
         Args:
             metric_name: <p> The name of the custom metric. </p>
@@ -6594,7 +6594,7 @@ class AsyncIoTClient:
         *,
         config_overrides: Optional[AsyncIoTClientConfig] = None,
     ) -> "capo_iot.types.describe_detect_mitigation_actions_task_response.DescribeDetectMitigationActionsTaskResponse":
-        r"""<p> Gets information about a Device Defender ML Detect mitigation action. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeDetectMitigationActionsTask</a> action.</p>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p> Gets information about a Device Defender ML Detect mitigation action. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeDetectMitigationActionsTask</a> action.</p>
 
         Args:
             task_id: <p> The unique identifier of the task. </p>
@@ -6641,7 +6641,7 @@ class AsyncIoTClient:
         *,
         config_overrides: Optional[AsyncIoTClientConfig] = None,
     ) -> "capo_iot.types.describe_dimension_response.DescribeDimensionResponse":
-        r"""<p>Provides details about a dimension that is defined in your Amazon Web Services accounts.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeDimension</a> action.</p>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p>Provides details about a dimension that is defined in your Amazon Web Services accounts.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeDimension</a> action.</p>
 
         Args:
             name: <p>The unique identifier for the dimension.</p>
@@ -7410,7 +7410,7 @@ class AsyncIoTClient:
         *,
         config_overrides: Optional[AsyncIoTClientConfig] = None,
     ) -> "capo_iot.types.describe_security_profile_response.DescribeSecurityProfileResponse":
-        r"""<p>Gets information about a Device Defender security profile.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeSecurityProfile</a> action.</p>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p>Gets information about a Device Defender security profile.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeSecurityProfile</a> action.</p>
 
         Args:
             security_profile_name: <p>The name of the security profile whose information you want to get.</p>
@@ -7802,7 +7802,7 @@ class AsyncIoTClient:
     ) -> (
         "capo_iot.types.detach_security_profile_response.DetachSecurityProfileResponse"
     ):
-        r"""<p>Disassociates a Device Defender security profile from a thing group or from this account.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DetachSecurityProfile</a> action.</p>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p>Disassociates a Device Defender security profile from a thing group or from this account.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DetachSecurityProfile</a> action.</p>
 
         Args:
             security_profile_name: <p>The security profile that is detached.</p>
@@ -8055,7 +8055,7 @@ class AsyncIoTClient:
         max_results: Optional["capo_iot.types.tiny_max_results.TinyMaxResults"] = None,
         next_token: Optional["capo_iot.types.next_token.NextToken"] = None,
     ) -> "capo_iot.types.get_behavior_model_training_summaries_response.GetBehaviorModelTrainingSummariesResponse":
-        r"""<p> Returns a Device Defender's ML Detect Security Profile training model's status. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetBehaviorModelTrainingSummaries</a> action.</p>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p> Returns a Device Defender's ML Detect Security Profile training model's status. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetBehaviorModelTrainingSummaries</a> action.</p>
 
         Args:
             security_profile_name: <p> The name of the security profile. </p>
@@ -9231,7 +9231,7 @@ class AsyncIoTClient:
         next_token: Optional["capo_iot.types.next_token.NextToken"] = None,
         max_results: Optional["capo_iot.types.max_results.MaxResults"] = None,
     ) -> "capo_iot.types.list_active_violations_response.ListActiveViolationsResponse":
-        r"""<p>Lists the active violations for a given Device Defender security profile.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListActiveViolations</a> action.</p>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p>Lists the active violations for a given Device Defender security profile.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListActiveViolations</a> action.</p>
 
         Args:
             thing_name: <p>The name of the thing whose active violations are listed.</p>
@@ -10642,7 +10642,7 @@ class AsyncIoTClient:
         next_token: Optional["capo_iot.types.next_token.NextToken"] = None,
         max_results: Optional["capo_iot.types.max_results.MaxResults"] = None,
     ) -> "capo_iot.types.list_custom_metrics_response.ListCustomMetricsResponse":
-        r"""<p> Lists your Device Defender detect custom metrics. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListCustomMetrics</a> action.</p>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p> Lists your Device Defender detect custom metrics. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListCustomMetrics</a> action.</p>
 
         Args:
             next_token: <p> The token for the next set of results. </p>
@@ -10722,7 +10722,7 @@ class AsyncIoTClient:
         max_results: Optional["capo_iot.types.max_results.MaxResults"] = None,
         next_token: Optional["capo_iot.types.next_token.NextToken"] = None,
     ) -> "capo_iot.types.list_detect_mitigation_actions_executions_response.ListDetectMitigationActionsExecutionsResponse":
-        r"""<p> Lists mitigation actions executions for a Device Defender ML Detect Security Profile. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListDetectMitigationActionsExecutions</a> action.</p>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p> Lists mitigation actions executions for a Device Defender ML Detect Security Profile. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListDetectMitigationActionsExecutions</a> action.</p>
 
         Args:
             task_id: <p> The unique identifier of the task. </p>
@@ -10824,7 +10824,7 @@ class AsyncIoTClient:
         max_results: Optional["capo_iot.types.max_results.MaxResults"] = None,
         next_token: Optional["capo_iot.types.next_token.NextToken"] = None,
     ) -> "capo_iot.types.list_detect_mitigation_actions_tasks_response.ListDetectMitigationActionsTasksResponse":
-        r"""<p> List of Device Defender ML Detect mitigation actions tasks. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListDetectMitigationActionsTasks</a> action.</p>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p> List of Device Defender ML Detect mitigation actions tasks. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListDetectMitigationActionsTasks</a> action.</p>
 
         Args:
             max_results: <p>The maximum number of results to return at one time. The default is 25.</p>
@@ -10904,7 +10904,7 @@ class AsyncIoTClient:
         next_token: Optional["capo_iot.types.next_token.NextToken"] = None,
         max_results: Optional["capo_iot.types.max_results.MaxResults"] = None,
     ) -> "capo_iot.types.list_dimensions_response.ListDimensionsResponse":
-        r"""<p>List the set of dimensions that are defined for your Amazon Web Services accounts.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListDimensions</a> action.</p>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p>List the set of dimensions that are defined for your Amazon Web Services accounts.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListDimensions</a> action.</p>
 
         Args:
             next_token: <p>The token for the next set of results.</p>
@@ -13179,7 +13179,7 @@ class AsyncIoTClient:
         dimension_name: Optional["capo_iot.types.dimension_name.DimensionName"] = None,
         metric_name: Optional["capo_iot.types.metric_name.MetricName"] = None,
     ) -> "capo_iot.types.list_security_profiles_response.ListSecurityProfilesResponse":
-        r"""<p>Lists the Device Defender security profiles you've created. You can filter security profiles by dimension or custom metric.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListSecurityProfiles</a> action.</p> <note> <p> <code>dimensionName</code> and <code>metricName</code> cannot be used in the same request.</p> </note>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p>Lists the Device Defender security profiles you've created. You can filter security profiles by dimension or custom metric.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListSecurityProfiles</a> action.</p> <note> <p> <code>dimensionName</code> and <code>metricName</code> cannot be used in the same request.</p> </note>
 
         Args:
             next_token: <p>The token for the next set of results.</p>
@@ -13263,7 +13263,7 @@ class AsyncIoTClient:
         max_results: Optional["capo_iot.types.max_results.MaxResults"] = None,
         recursive: Optional["capo_iot.types.recursive.Recursive"] = None,
     ) -> "capo_iot.types.list_security_profiles_for_target_response.ListSecurityProfilesForTargetResponse":
-        r"""<p>Lists the Device Defender security profiles attached to a target (thing group).</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListSecurityProfilesForTarget</a> action.</p>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p>Lists the Device Defender security profiles attached to a target (thing group).</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListSecurityProfilesForTarget</a> action.</p>
 
         Args:
             next_token: <p>The token for the next set of results.</p>
@@ -13582,7 +13582,7 @@ class AsyncIoTClient:
         next_token: Optional["capo_iot.types.next_token.NextToken"] = None,
         max_results: Optional["capo_iot.types.max_results.MaxResults"] = None,
     ) -> "capo_iot.types.list_targets_for_security_profile_response.ListTargetsForSecurityProfileResponse":
-        r"""<p>Lists the targets (thing groups) associated with a given Device Defender security profile.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListTargetsForSecurityProfile</a> action.</p>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p>Lists the targets (thing groups) associated with a given Device Defender security profile.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListTargetsForSecurityProfile</a> action.</p>
 
         Args:
             security_profile_name: <p>The security profile.</p>
@@ -14732,7 +14732,7 @@ class AsyncIoTClient:
         r"""<p>Lists logging levels.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListV2LoggingLevels</a> action.</p>
 
         Args:
-            target_type: <p>The type of resource for which you are configuring logging. Must be <code>THING_Group</code>.</p>
+            target_type: <p>The type of resource for which you are configuring logging. Must be <code>DEFAULT</code>, <code>THING_GROUP</code>, <code>CLIENT_ID</code>, <code>SOURCE_IP</code>, or <code>PRINCIPAL_ID</code>.</p>
             next_token: <p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <b>null</b> to receive the first set of results.</p>
             max_results: <p>The maximum number of results to return at one time.</p>
 
@@ -14827,7 +14827,7 @@ class AsyncIoTClient:
         next_token: Optional["capo_iot.types.next_token.NextToken"] = None,
         max_results: Optional["capo_iot.types.max_results.MaxResults"] = None,
     ) -> "capo_iot.types.list_violation_events_response.ListViolationEventsResponse":
-        r"""<p>Lists the Device Defender security profile violations discovered during the given time period. You can use filters to limit the results to those alerts issued for a particular security profile, behavior, or thing (device).</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListViolationEvents</a> action.</p>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p>Lists the Device Defender security profile violations discovered during the given time period. You can use filters to limit the results to those alerts issued for a particular security profile, behavior, or thing (device).</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListViolationEvents</a> action.</p>
 
         Args:
             start_time: <p>The start time for the alerts to be listed.</p>
@@ -14945,7 +14945,7 @@ class AsyncIoTClient:
             "capo_iot.types.verification_state_description.VerificationStateDescription"
         ] = None,
     ) -> "capo_iot.types.put_verification_state_on_violation_response.PutVerificationStateOnViolationResponse":
-        """<p>Set a verification state and provide a description of that verification state on a violation (detect alarm).</p>
+        """<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p>Set a verification state and provide a description of that verification state on a violation (detect alarm).</p>
 
         Args:
             violation_id: <p>The violation ID.</p>
@@ -15879,7 +15879,7 @@ class AsyncIoTClient:
             "capo_iot.types.nullable_boolean.NullableBoolean"
         ] = None,
     ) -> "capo_iot.types.start_detect_mitigation_actions_task_response.StartDetectMitigationActionsTaskResponse":
-        r"""<p> Starts a Device Defender ML Detect mitigation actions task. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">StartDetectMitigationActionsTask</a> action.</p>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p> Starts a Device Defender ML Detect mitigation actions task. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">StartDetectMitigationActionsTask</a> action.</p>
 
         Args:
             task_id: <p> The unique identifier of the task. </p>
@@ -16903,7 +16903,7 @@ class AsyncIoTClient:
         *,
         config_overrides: Optional[AsyncIoTClientConfig] = None,
     ) -> "capo_iot.types.update_custom_metric_response.UpdateCustomMetricResponse":
-        r"""<p>Updates a Device Defender detect custom metric. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateCustomMetric</a> action.</p>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p>Updates a Device Defender detect custom metric. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateCustomMetric</a> action.</p>
 
         Args:
             metric_name: <p> The name of the custom metric. Cannot be updated. </p>
@@ -16953,7 +16953,7 @@ class AsyncIoTClient:
         *,
         config_overrides: Optional[AsyncIoTClientConfig] = None,
     ) -> "capo_iot.types.update_dimension_response.UpdateDimensionResponse":
-        r"""<p>Updates the definition for a dimension. You cannot change the type of a dimension after it is created (you can delete it and recreate it).</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateDimension</a> action.</p>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p>Updates the definition for a dimension. You cannot change the type of a dimension after it is created (you can delete it and recreate it).</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateDimension</a> action.</p>
 
         Args:
             name: <p>A unique identifier for the dimension. Choose something that describes the type and value to make it easy to remember what it does.</p>
@@ -18012,7 +18012,7 @@ class AsyncIoTClient:
     ) -> (
         "capo_iot.types.update_security_profile_response.UpdateSecurityProfileResponse"
     ):
-        r"""<p>Updates a Device Defender security profile.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateSecurityProfile</a> action.</p>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p>Updates a Device Defender security profile.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateSecurityProfile</a> action.</p>
 
         Args:
             security_profile_name: <p>The name of the security profile you want to update.</p>
@@ -18460,7 +18460,7 @@ class AsyncIoTClient:
         *,
         config_overrides: Optional[AsyncIoTClientConfig] = None,
     ) -> "capo_iot.types.validate_security_profile_behaviors_response.ValidateSecurityProfileBehaviorsResponse":
-        r"""<p>Validates a Device Defender security profile behaviors specification.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ValidateSecurityProfileBehaviors</a> action.</p>
+        r"""<note> <p>The IoT Device Defender detect feature will no longer be available to new customers starting August 31, 2026. If you would like to use the detect feature, sign up prior to August 31, 2026. To learn about alternatives to IoT Device Defender detect, see IoT Device Defender detect feature availability change in the IoT Device Defender Developer Guide. There is no change to IoT Device Defender audit availability.</p> </note> <p>Validates a Device Defender security profile behaviors specification.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ValidateSecurityProfileBehaviors</a> action.</p>
 
         Args:
             behaviors: <p>Specifies the behaviors that, when violated by a device (thing), cause an alert.</p>

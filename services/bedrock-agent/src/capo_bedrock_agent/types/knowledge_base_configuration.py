@@ -9,17 +9,22 @@ from capo_bedrock_agent.errors import DeserializationError
 if TYPE_CHECKING:
     import capo_bedrock_agent.types.kendra_knowledge_base_configuration
     import capo_bedrock_agent.types.knowledge_base_type
+    import capo_bedrock_agent.types.managed_knowledge_base_configuration
     import capo_bedrock_agent.types.sql_knowledge_base_configuration
     import capo_bedrock_agent.types.vector_knowledge_base_configuration
 
 
 class KnowledgeBaseConfiguration(TypedDict, closed=True):
     type: "capo_bedrock_agent.types.knowledge_base_type.KnowledgeBaseType"
-    """<p>The type of data that the data source is converted into for the knowledge base.</p>"""
+    """<p>The type of data that the data source is converted into for the knowledge base. Choose <code>MANAGED</code> to create a managed knowledge base.</p>"""
     vector_knowledge_base_configuration: NotRequired[
         "capo_bedrock_agent.types.vector_knowledge_base_configuration.VectorKnowledgeBaseConfiguration"
     ]
     """<p>Contains details about the model that's used to convert the data source into vector embeddings.</p>"""
+    managed_knowledge_base_configuration: NotRequired[
+        "capo_bedrock_agent.types.managed_knowledge_base_configuration.ManagedKnowledgeBaseConfiguration"
+    ]
+    """<p>Contains configuration details for a knowledge base that uses a vector store fully managed by Amazon Bedrock. Specify this object when the knowledge base type is MANAGED.</p>"""
     kendra_knowledge_base_configuration: NotRequired[
         "capo_bedrock_agent.types.kendra_knowledge_base_configuration.KendraKnowledgeBaseConfiguration"
     ]
@@ -44,6 +49,14 @@ def serialize_json(value: KnowledgeBaseConfiguration) -> dict:
         out["vectorKnowledgeBaseConfiguration"] = (
             capo_bedrock_agent.types.vector_knowledge_base_configuration.serialize_json(
                 value["vector_knowledge_base_configuration"]
+            )
+        )
+    if "managed_knowledge_base_configuration" in value:
+        import capo_bedrock_agent.types.managed_knowledge_base_configuration
+
+        out["managedKnowledgeBaseConfiguration"] = (
+            capo_bedrock_agent.types.managed_knowledge_base_configuration.serialize_json(
+                value["managed_knowledge_base_configuration"]
             )
         )
     if "kendra_knowledge_base_configuration" in value:
@@ -81,6 +94,14 @@ def deserialize_json(data: dict) -> KnowledgeBaseConfiguration:
         out["vector_knowledge_base_configuration"] = (
             capo_bedrock_agent.types.vector_knowledge_base_configuration.deserialize_json(
                 data["vectorKnowledgeBaseConfiguration"]
+            )
+        )
+    if data.get("managedKnowledgeBaseConfiguration") is not None:
+        import capo_bedrock_agent.types.managed_knowledge_base_configuration
+
+        out["managed_knowledge_base_configuration"] = (
+            capo_bedrock_agent.types.managed_knowledge_base_configuration.deserialize_json(
+                data["managedKnowledgeBaseConfiguration"]
             )
         )
     if data.get("kendraKnowledgeBaseConfiguration") is not None:

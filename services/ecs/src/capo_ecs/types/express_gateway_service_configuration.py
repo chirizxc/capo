@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_ecs.types.express_cpu_architecture
     import capo_ecs.types.express_gateway_container
     import capo_ecs.types.express_gateway_scaling_target
     import capo_ecs.types.express_gateway_service_network_configuration
@@ -26,6 +27,10 @@ class ExpressGatewayServiceConfiguration(TypedDict, closed=True):
     """<p>The CPU allocation for tasks in this service revision.</p>"""
     memory: NotRequired["capo_ecs.types.string.String"]
     """<p>The memory allocation for tasks in this service revision.</p>"""
+    cpu_architecture: NotRequired[
+        "capo_ecs.types.express_cpu_architecture.ExpressCpuArchitecture"
+    ]
+    """<p>The CPU architecture that the tasks in this service revision run on. This is the architecture from the task definition that the service revision uses, so it reflects the default or the previously configured architecture when the request that created the revision didn't specify one.</p> <p>Valid values:</p> <ul> <li> <p> <code>X86_64</code> - The x86 64-bit architecture.</p> </li> <li> <p> <code>ARM64</code> - The 64-bit ARM architecture.</p> </li> </ul> <p>This value isn't returned when the task definition for the service revision doesn't specify a runtime platform. Because the architecture comes from each service revision's own task definition, revisions of the same service can report different architectures.</p>"""
     network_configuration: NotRequired[
         "capo_ecs.types.express_gateway_service_network_configuration.ExpressGatewayServiceNetworkConfiguration"
     ]
@@ -63,6 +68,14 @@ def serialize_aws_json_1_1(value: ExpressGatewayServiceConfiguration) -> dict:
         out["cpu"] = value["cpu"]
     if "memory" in value:
         out["memory"] = value["memory"]
+    if "cpu_architecture" in value:
+        import capo_ecs.types.express_cpu_architecture
+
+        out["cpuArchitecture"] = (
+            capo_ecs.types.express_cpu_architecture.serialize_aws_json_1_1(
+                value["cpu_architecture"]
+            )
+        )
     if "network_configuration" in value:
         import capo_ecs.types.express_gateway_service_network_configuration
 
@@ -120,6 +133,14 @@ def deserialize_aws_json_1_1(data: dict) -> ExpressGatewayServiceConfiguration:
         out["cpu"] = data["cpu"]
     if data.get("memory") is not None:
         out["memory"] = data["memory"]
+    if data.get("cpuArchitecture") is not None:
+        import capo_ecs.types.express_cpu_architecture
+
+        out["cpu_architecture"] = (
+            capo_ecs.types.express_cpu_architecture.deserialize_aws_json_1_1(
+                data["cpuArchitecture"]
+            )
+        )
     if data.get("networkConfiguration") is not None:
         import capo_ecs.types.express_gateway_service_network_configuration
 

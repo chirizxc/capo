@@ -1,0 +1,17 @@
+"""Generated from Smithy shape ``com.amazonaws.inspector2#AzureRegionList``."""
+
+from typing import TYPE_CHECKING, TypeAlias
+
+if TYPE_CHECKING:
+    import capo_inspector2.types.azure_region
+
+AzureRegionList: TypeAlias = list["capo_inspector2.types.azure_region.AzureRegion"]
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: AzureRegionList) -> list:
+    return list(value)
+
+
+def deserialize_json(data: list) -> AzureRegionList:
+    return [item for item in data if item is not None]

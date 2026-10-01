@@ -368,7 +368,7 @@ class LicenseManagerUserSubscriptionsClient:
 
         Args:
             identity_provider: <p>An object that specifies details for the Active Directory identity provider.</p>
-            product: <p>The name of the user-based subscription product.</p> <p>Valid values: <code>VISUAL_STUDIO_ENTERPRISE</code> | <code>VISUAL_STUDIO_PROFESSIONAL</code> | <code>OFFICE_PROFESSIONAL_PLUS</code> | <code>REMOTE_DESKTOP_SERVICES</code> </p>
+            product: <p>The name of the user-based subscription product.</p> <p>Valid values: <code>VISUAL_STUDIO_ENTERPRISE</code> | <code>VISUAL_STUDIO_PROFESSIONAL</code> | <code>OFFICE_PROFESSIONAL_PLUS</code> | <code>OFFICE_STANDARD</code> | <code>REMOTE_DESKTOP_SERVICES</code> </p>
             identity_provider_arn: <p>The Amazon Resource Name (ARN) that identifies the identity provider to deregister.</p>
 
         Raises:
@@ -762,7 +762,7 @@ class LicenseManagerUserSubscriptionsClient:
         """<p>Lists the user-based subscription products available from an identity provider.</p>
 
         Args:
-            product: <p>The name of the user-based subscription product.</p> <p>Valid values: <code>VISUAL_STUDIO_ENTERPRISE</code> | <code>VISUAL_STUDIO_PROFESSIONAL</code> | <code>OFFICE_PROFESSIONAL_PLUS</code> | <code>REMOTE_DESKTOP_SERVICES</code> </p>
+            product: <p>The name of the user-based subscription product.</p> <p>Valid values: <code>VISUAL_STUDIO_ENTERPRISE</code> | <code>VISUAL_STUDIO_PROFESSIONAL</code> | <code>OFFICE_PROFESSIONAL_PLUS</code> | <code>OFFICE_STANDARD</code> | <code>REMOTE_DESKTOP_SERVICES</code> </p>
             identity_provider: <p>An object that specifies details for the identity provider.</p>
             max_results: <p>The maximum number of results to return from a single request.</p>
             filters: <p>You can use the following filters to streamline results:</p> <ul> <li> <p>Status</p> </li> <li> <p>Username</p> </li> <li> <p>Domain</p> </li> </ul>
@@ -1006,7 +1006,7 @@ class LicenseManagerUserSubscriptionsClient:
 
         Args:
             identity_provider: <p>An object that specifies details for the identity provider to register.</p>
-            product: <p>The name of the user-based subscription product.</p> <p>Valid values: <code>VISUAL_STUDIO_ENTERPRISE</code> | <code>VISUAL_STUDIO_PROFESSIONAL</code> | <code>OFFICE_PROFESSIONAL_PLUS</code> | <code>REMOTE_DESKTOP_SERVICES</code> </p>
+            product: <p>The name of the user-based subscription product.</p> <p>Valid values: <code>VISUAL_STUDIO_ENTERPRISE</code> | <code>VISUAL_STUDIO_PROFESSIONAL</code> | <code>OFFICE_PROFESSIONAL_PLUS</code> | <code>OFFICE_STANDARD</code> | <code>REMOTE_DESKTOP_SERVICES</code> </p>
             settings: <p>The registered identity provider’s product related configuration settings such as the subnets to provision VPC endpoints.</p>
             tags: <p>The tags that apply to the identity provider's registration.</p>
 
@@ -1070,7 +1070,7 @@ class LicenseManagerUserSubscriptionsClient:
         Args:
             username: <p>The user name from the identity provider of the user.</p>
             identity_provider: <p>An object that specifies details for the identity provider.</p>
-            product: <p>The name of the user-based subscription product.</p> <p>Valid values: <code>VISUAL_STUDIO_ENTERPRISE</code> | <code>VISUAL_STUDIO_PROFESSIONAL</code> | <code>OFFICE_PROFESSIONAL_PLUS</code> | <code>REMOTE_DESKTOP_SERVICES</code> </p>
+            product: <p>The name of the user-based subscription product.</p> <p>Valid values: <code>VISUAL_STUDIO_ENTERPRISE</code> | <code>VISUAL_STUDIO_PROFESSIONAL</code> | <code>OFFICE_PROFESSIONAL_PLUS</code> | <code>OFFICE_STANDARD</code> | <code>REMOTE_DESKTOP_SERVICES</code> </p>
             domain: <p>The domain name of the Active Directory that contains the user for whom to start the product subscription.</p>
             tags: <p>The tags that apply to the product subscription.</p>
 
@@ -1137,7 +1137,7 @@ class LicenseManagerUserSubscriptionsClient:
         Args:
             username: <p>The user name from the identity provider for the user.</p>
             identity_provider: <p>An object that specifies details for the identity provider.</p>
-            product: <p>The name of the user-based subscription product.</p> <p>Valid values: <code>VISUAL_STUDIO_ENTERPRISE</code> | <code>VISUAL_STUDIO_PROFESSIONAL</code> | <code>OFFICE_PROFESSIONAL_PLUS</code> | <code>REMOTE_DESKTOP_SERVICES</code> </p>
+            product: <p>The name of the user-based subscription product.</p> <p>Valid values: <code>VISUAL_STUDIO_ENTERPRISE</code> | <code>VISUAL_STUDIO_PROFESSIONAL</code> | <code>OFFICE_PROFESSIONAL_PLUS</code> | <code>OFFICE_STANDARD</code> | <code>REMOTE_DESKTOP_SERVICES</code> </p>
             product_user_arn: <p>The Amazon Resource Name (ARN) of the product user.</p>
             domain: <p>The domain name of the Active Directory that contains the user for whom to stop the product subscription.</p>
 
@@ -1298,7 +1298,7 @@ class LicenseManagerUserSubscriptionsClient:
         """<p>Updates additional product configuration settings for the registered identity provider.</p>
 
         Args:
-            product: <p>The name of the user-based subscription product.</p> <p>Valid values: <code>VISUAL_STUDIO_ENTERPRISE</code> | <code>VISUAL_STUDIO_PROFESSIONAL</code> | <code>OFFICE_PROFESSIONAL_PLUS</code> | <code>REMOTE_DESKTOP_SERVICES</code> </p>
+            product: <p>The name of the user-based subscription product.</p> <p>Valid values: <code>VISUAL_STUDIO_ENTERPRISE</code> | <code>VISUAL_STUDIO_PROFESSIONAL</code> | <code>OFFICE_PROFESSIONAL_PLUS</code> | <code>OFFICE_STANDARD</code> | <code>REMOTE_DESKTOP_SERVICES</code> </p>
             identity_provider_arn: <p>The Amazon Resource Name (ARN) of the identity provider to update.</p>
             update_settings: <p>Updates the registered identity provider’s product related configuration settings. You can update any combination of settings in a single operation such as the:</p> <ul> <li> <p>Subnets which you want to add to provision VPC endpoints.</p> </li> <li> <p>Subnets which you want to remove the VPC endpoints from.</p> </li> <li> <p>Security group ID which permits traffic to the VPC endpoints.</p> </li> </ul>
 

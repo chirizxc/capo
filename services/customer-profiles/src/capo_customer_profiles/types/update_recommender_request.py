@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_customer_profiles.types.name
     import capo_customer_profiles.types.recommender_config
+    import capo_customer_profiles.types.recommender_version_name
     import capo_customer_profiles.types.sensitive_text
 
 
@@ -23,6 +24,10 @@ class UpdateRecommenderRequest(TypedDict, closed=True):
         "capo_customer_profiles.types.recommender_config.RecommenderConfig"
     ]
     """<p>The new configuration settings to apply to the recommender, including updated parameters and settings that define its behavior.</p>"""
+    recommender_version_name: NotRequired[
+        "capo_customer_profiles.types.recommender_version_name.RecommenderVersionName"
+    ]
+    """<p>The name of a specific recommender version to activate as part of this update (for example, to roll back to a previously trained version).</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -38,6 +43,8 @@ def serialize_json(value: UpdateRecommenderRequest) -> dict:
                 value["recommender_config"]
             )
         )
+    if "recommender_version_name" in value:
+        out["RecommenderVersionName"] = value["recommender_version_name"]
     return out
 
 
@@ -53,4 +60,6 @@ def deserialize_json(data: dict) -> UpdateRecommenderRequest:
                 data["RecommenderConfig"]
             )
         )
+    if data.get("RecommenderVersionName") is not None:
+        out["recommender_version_name"] = data["RecommenderVersionName"]
     return out

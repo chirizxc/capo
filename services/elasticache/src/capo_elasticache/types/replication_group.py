@@ -128,11 +128,11 @@ class ReplicationGroup(TypedDict, closed=True):
     engine: NotRequired["capo_elasticache.types.string.String"]
     """<p>The engine used in a replication group. The options are valkey, memcached or redis.</p>"""
     durability: NotRequired["capo_elasticache.types.durability.Durability"]
-    r"""<p>The durability setting of the replication group. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Durability.html\">Durability</a>.</p>"""
+    r"""<p>The durability setting of the replication group. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/durability.html\">Durability</a>.</p>"""
     effective_durability: NotRequired[
         "capo_elasticache.types.effective_durability.EffectiveDurability"
     ]
-    r"""<p>The effective durability of the replication group. When <code>Durability</code> is set to <code>default</code>, the service resolves the actual durability based on the engine version, cluster mode, and other parameters. This field reflects the resolved value. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonElastiCache/latest/dg/ConfiguringDurability.html\">Configuring Durability</a>.</p>"""
+    r"""<p>The effective durability of the replication group. When <code>Durability</code> is set to <code>default</code>, the service resolves the actual durability based on the engine version, cluster mode, and other parameters. This field reflects the resolved value. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Durability.Configuring.html\">Configuring Durability</a>.</p>"""
 
 
 # --- awsQuery ser/de ---

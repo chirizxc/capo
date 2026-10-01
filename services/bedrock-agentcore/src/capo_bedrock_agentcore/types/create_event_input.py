@@ -11,6 +11,8 @@ if TYPE_CHECKING:
 
     import capo_bedrock_agentcore.types.actor_id
     import capo_bedrock_agentcore.types.branch
+    import capo_bedrock_agentcore.types.extraction_config
+    import capo_bedrock_agentcore.types.extraction_mode
     import capo_bedrock_agentcore.types.memory_id
     import capo_bedrock_agentcore.types.metadata_map
     import capo_bedrock_agentcore.types.payload_type_list
@@ -27,13 +29,21 @@ class CreateEventInput(TypedDict, closed=True):
     event_timestamp: "datetime.datetime"
     """<p>The timestamp when the event occurred. If not specified, the current time is used.</p>"""
     payload: "capo_bedrock_agentcore.types.payload_type_list.PayloadTypeList"
-    """<p>The content payload of the event. This can include conversational data or binary content.</p>"""
+    """<p>The content payload of the event. This can include conversational data, JSON data, or binary content.</p>"""
     branch: NotRequired["capo_bedrock_agentcore.types.branch.Branch"]
     """<p>The branch information for this event. Branches allow for organizing events into different conversation threads or paths.</p>"""
     client_token: NotRequired["str"]
     """<p>A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, AgentCore ignores the request, but does not return an error.</p>"""
     metadata: NotRequired["capo_bedrock_agentcore.types.metadata_map.MetadataMap"]
     """<p>The key-value metadata to attach to the event.</p>"""
+    extraction_mode: NotRequired[
+        "capo_bedrock_agentcore.types.extraction_mode.ExtractionMode"
+    ]
+    """<p>Controls long-term memory extraction for this event. When set to <code>SKIP</code>, the event is stored in short-term memory but is excluded from long-term memory extraction. If not specified, the event is processed for extraction as usual.</p>"""
+    extraction_config: NotRequired[
+        "capo_bedrock_agentcore.types.extraction_config.ExtractionConfig"
+    ]
+    """<p>The extraction configuration for long-term memory records. Use this parameter to specify namespace variable keys and their values for namespace substitution during extraction.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -67,6 +77,22 @@ def serialize_json(value: CreateEventInput) -> dict:
 
         out["metadata"] = capo_bedrock_agentcore.types.metadata_map.serialize_json(
             value["metadata"]
+        )
+    if "extraction_mode" in value:
+        import capo_bedrock_agentcore.types.extraction_mode
+
+        out["extractionMode"] = (
+            capo_bedrock_agentcore.types.extraction_mode.serialize_json(
+                value["extraction_mode"]
+            )
+        )
+    if "extraction_config" in value:
+        import capo_bedrock_agentcore.types.extraction_config
+
+        out["extractionConfig"] = (
+            capo_bedrock_agentcore.types.extraction_config.serialize_json(
+                value["extraction_config"]
+            )
         )
     return out
 
@@ -112,5 +138,21 @@ def deserialize_json(data: dict) -> CreateEventInput:
 
         out["metadata"] = capo_bedrock_agentcore.types.metadata_map.deserialize_json(
             data["metadata"]
+        )
+    if data.get("extractionMode") is not None:
+        import capo_bedrock_agentcore.types.extraction_mode
+
+        out["extraction_mode"] = (
+            capo_bedrock_agentcore.types.extraction_mode.deserialize_json(
+                data["extractionMode"]
+            )
+        )
+    if data.get("extractionConfig") is not None:
+        import capo_bedrock_agentcore.types.extraction_config
+
+        out["extraction_config"] = (
+            capo_bedrock_agentcore.types.extraction_config.deserialize_json(
+                data["extractionConfig"]
+            )
         )
     return out

@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.arcregionswitch#ArcRegionSwitch``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -74,11 +75,14 @@ if TYPE_CHECKING:
     import capo_arc_region_switch.types.list_route53_health_checks_in_region_response
     import capo_arc_region_switch.types.list_route53_health_checks_request
     import capo_arc_region_switch.types.list_route53_health_checks_response
+    import capo_arc_region_switch.types.list_service_quota_warnings_request
+    import capo_arc_region_switch.types.list_service_quota_warnings_response
     import capo_arc_region_switch.types.list_tags_for_resource_request
     import capo_arc_region_switch.types.list_tags_for_resource_response
     import capo_arc_region_switch.types.max_results
     import capo_arc_region_switch.types.next_token
     import capo_arc_region_switch.types.plan_arn
+    import capo_arc_region_switch.types.plan_arn_list
     import capo_arc_region_switch.types.plan_name
     import capo_arc_region_switch.types.recovery_approach
     import capo_arc_region_switch.types.recovery_execution_id
@@ -89,6 +93,7 @@ if TYPE_CHECKING:
     import capo_arc_region_switch.types.route53_health_check
     import capo_arc_region_switch.types.route53_hosted_zone_id
     import capo_arc_region_switch.types.route53_record_name
+    import capo_arc_region_switch.types.service_quota_warning_summary
     import capo_arc_region_switch.types.start_plan_execution_request
     import capo_arc_region_switch.types.start_plan_execution_response
     import capo_arc_region_switch.types.step_name
@@ -1003,6 +1008,94 @@ class AsyncARCRegionswitchClient:
             if not _token:
                 break
 
+    async def list_service_quota_warnings(
+        self,
+        *,
+        config_overrides: Optional[AsyncARCRegionswitchClientConfig] = None,
+        plan_arns: Optional[
+            "capo_arc_region_switch.types.plan_arn_list.PlanArnList"
+        ] = None,
+        max_results: Optional[
+            "capo_arc_region_switch.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_arc_region_switch.types.next_token.NextToken"
+        ] = None,
+    ) -> "capo_arc_region_switch.types.list_service_quota_warnings_response.ListServiceQuotaWarningsResponse":
+        """<p>Lists the service quota warnings for the plans that you can access. Region switch creates a warning when the applied quota value in one Region of a plan is lower than the value required for the matching resource in another Region or account in the plan.</p> <p>Returns the warnings for the plans that you own and for plans that are shared with your account through AWS Resource Access Manager (AWS RAM). To return warnings for specific plans, provide a list of plan Amazon Resource Names (ARNs). Region switch ignores any plan ARN that you can't access. If you don't provide any plan ARNs, Region switch returns the warnings for all of your accessible plans.</p>
+
+        Args:
+            plan_arns: <p>The Amazon Resource Names (ARNs) of the plans to return service quota warnings for. You can specify up to 100 plan ARNs. Region switch ignores any plan ARN that you can't access. If you omit this parameter, Region switch returns the warnings for all of your accessible plans.</p>
+            max_results: <p>The maximum number of results to return with this call. Valid values are <code>1</code> to <code>100</code>. If you don't specify a value, the operation returns up to the maximum number of results.</p>
+            next_token: <p>Specifies that you want to receive the next page of results. Valid only if you received a <code>nextToken</code> response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's <code>nextToken</code> response to request the next page of results.</p>
+
+        Raises:
+            capo_arc_region_switch.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p> <p>HTTP Status Code: 403</p>
+            capo_arc_region_switch.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure.</p> <p>HTTP Status Code: 500</p>
+            capo_arc_region_switch.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_arc_region_switch.types.list_service_quota_warnings_request.ListServiceQuotaWarningsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_arc_region_switch.types.list_service_quota_warnings_response.ListServiceQuotaWarningsResponse"
+        ]:
+            import capo_arc_region_switch._operations.arc_region_switch.list_service_quota_warnings
+
+            (
+                output,
+                http_response,
+            ) = await capo_arc_region_switch._operations.arc_region_switch.list_service_quota_warnings.async_list_service_quota_warnings(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_arc_region_switch.types.list_service_quota_warnings_request.ListServiceQuotaWarningsRequest = {}
+        if plan_arns is not None:
+            input_["plan_arns"] = plan_arns
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_service_quota_warnings(
+        self,
+        *,
+        config_overrides: Optional[AsyncARCRegionswitchClientConfig] = None,
+        plan_arns: Optional[
+            "capo_arc_region_switch.types.plan_arn_list.PlanArnList"
+        ] = None,
+        max_results: Optional[
+            "capo_arc_region_switch.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_arc_region_switch.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_arc_region_switch.types.service_quota_warning_summary.ServiceQuotaWarningSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_service_quota_warnings(
+                config_overrides=config_overrides,
+                plan_arns=plan_arns,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("service_quota_warning_summaries",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     async def start_plan_execution(
         self,
         plan_arn: "capo_arc_region_switch.types.plan_arn.PlanArn",
@@ -1020,8 +1113,9 @@ class AsyncARCRegionswitchClient:
         recovery_execution_id: Optional[
             "capo_arc_region_switch.types.recovery_execution_id.RecoveryExecutionId"
         ] = None,
+        client_token: Optional[str] = None,
     ) -> "capo_arc_region_switch.types.start_plan_execution_response.StartPlanExecutionResponse":
-        """<p>Starts the execution of a Region switch plan. You can execute a plan in either <code>graceful</code> or <code>ungraceful</code> mode.</p> <p>Specifing <code>ungraceful</code> mode either changes the behavior of the execution blocks in a workflow or skips specific execution blocks.</p>
+        r"""<p>Starts the execution of a Region switch plan. You can execute a plan in either <code>graceful</code> or <code>ungraceful</code> mode.</p> <p>Specifing <code>ungraceful</code> mode either changes the behavior of the execution blocks in a workflow or skips specific execution blocks.</p>
 
         Args:
             plan_arn: <p>The Amazon Resource Name (ARN) of the plan to execute.</p>
@@ -1031,9 +1125,11 @@ class AsyncARCRegionswitchClient:
             comment: <p>An optional comment explaining why the plan execution is being started.</p>
             latest_version: <p>A boolean value indicating whether to use the latest version of the plan. If set to false, you must specify a specific version.</p>
             recovery_execution_id: <p>The execution identifier of the recovery execution that ran in the opposite region post-recovery is ran in. Required when starting a post-recovery execution.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, the service ignores the request and returns the result of the original successful request. If you don't provide a client token, the service automatically generates one. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>
 
         Raises:
             capo_arc_region_switch.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p> <p>HTTP Status Code: 403</p>
+            capo_arc_region_switch.errors.conflict_exception.ConflictException: <p>The client token was already used with different request parameters. A client token must map to the same parameters for every request. To retry this operation, provide a new client token.</p>
             capo_arc_region_switch.errors.illegal_argument_exception.IllegalArgumentException: <p>The request processing has an invalid argument.</p>
             capo_arc_region_switch.errors.illegal_state_exception.IllegalStateException: <p>The operation failed because the current state of the resource doesn't allow the operation to proceed.</p> <p>HTTP Status Code: 400</p>
             capo_arc_region_switch.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p> <p>HTTP Status Code: 404</p>
@@ -1069,6 +1165,9 @@ class AsyncARCRegionswitchClient:
             input_["latest_version"] = latest_version
         if recovery_execution_id is not None:
             input_["recovery_execution_id"] = recovery_execution_id
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1213,6 +1312,7 @@ class AsyncARCRegionswitchClient:
         report_configuration: Optional[
             "capo_arc_region_switch.types.report_configuration.ReportConfiguration"
         ] = None,
+        service_quota_checks_enabled: Optional[bool] = None,
         primary_region: Optional["capo_arc_region_switch.types.region.Region"] = None,
         tags: Optional["capo_arc_region_switch.types.tags.Tags"] = None,
     ) -> "capo_arc_region_switch.types.create_plan_response.CreatePlanResponse":
@@ -1225,6 +1325,7 @@ class AsyncARCRegionswitchClient:
             recovery_time_objective_minutes: <p>Optionally, you can specify an recovery time objective for a Region switch plan, in minutes.</p>
             associated_alarms: <p>The alarms associated with a Region switch plan.</p>
             triggers: <p>The triggers associated with a Region switch plan.</p>
+            service_quota_checks_enabled: <p>Specifies whether to enable service quota checks for the Region switch plan.</p>
             name: <p>The name of a Region switch plan.</p>
             regions: <p>An array that specifies the Amazon Web Services Regions for a Region switch plan. Specify two Regions.</p>
             recovery_approach: <p>The recovery approach for a Region switch plan, which can be active/active (activeActive) or active/passive (activePassive).</p>
@@ -1268,6 +1369,8 @@ class AsyncARCRegionswitchClient:
             input_["triggers"] = triggers
         if report_configuration is not None:
             input_["report_configuration"] = report_configuration
+        if service_quota_checks_enabled is not None:
+            input_["service_quota_checks_enabled"] = service_quota_checks_enabled
         if primary_region is not None:
             input_["primary_region"] = primary_region
         if tags is not None:
@@ -1343,6 +1446,7 @@ class AsyncARCRegionswitchClient:
         report_configuration: Optional[
             "capo_arc_region_switch.types.report_configuration.ReportConfiguration"
         ] = None,
+        service_quota_checks_enabled: Optional[bool] = None,
     ) -> "capo_arc_region_switch.types.update_plan_response.UpdatePlanResponse":
         """<p>Updates an existing Region switch plan. You can modify the plan's description, workflows, execution role, recovery time objective, associated alarms, and triggers.</p>
 
@@ -1355,6 +1459,7 @@ class AsyncARCRegionswitchClient:
             associated_alarms: <p>The updated CloudWatch alarms associated with the plan.</p>
             triggers: <p>The updated conditions that can automatically trigger the execution of the plan.</p>
             report_configuration: <p>The updated report configuration for the plan.</p>
+            service_quota_checks_enabled: <p>Specifies whether service quota checks are enabled for the Region switch plan.</p>
 
         Raises:
             capo_arc_region_switch.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p> <p>HTTP Status Code: 404</p>
@@ -1392,6 +1497,8 @@ class AsyncARCRegionswitchClient:
             input_["triggers"] = triggers
         if report_configuration is not None:
             input_["report_configuration"] = report_configuration
+        if service_quota_checks_enabled is not None:
+            input_["service_quota_checks_enabled"] = service_quota_checks_enabled
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

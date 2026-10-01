@@ -41,7 +41,7 @@ class ResourceConfigurationSummary(TypedDict, closed=True):
     type: NotRequired[
         "capo_vpc_lattice.types.resource_configuration_type.ResourceConfigurationType"
     ]
-    """<p>The type of resource configuration.</p> <ul> <li> <p> <code>SINGLE</code> - A single resource.</p> </li> <li> <p> <code>GROUP</code> - A group of resources. You must create a group resource configuration before you create a child resource configuration.</p> </li> <li> <p> <code>CHILD</code> - A single resource that is part of a group resource configuration.</p> </li> <li> <p> <code>ARN</code> - An Amazon Web Services resource.</p> </li> </ul>"""
+    """<p>The type of resource configuration.</p> <ul> <li> <p> <code>SINGLE</code> - A single resource.</p> </li> <li> <p> <code>GROUP</code> - A group of resources. You must create a group resource configuration before you create a child resource configuration.</p> </li> <li> <p> <code>CHILD</code> - A single resource that is part of a group resource configuration.</p> </li> <li> <p> <code>ARN</code> - An Amazon Web Services resource.</p> </li> <li> <p> <code>CIDR</code> - A network segment (a range of IP addresses) accessed through a <code>Tunnel</code> VPC endpoint.</p> </li> </ul>"""
     status: NotRequired[
         "capo_vpc_lattice.types.resource_configuration_status.ResourceConfigurationStatus"
     ]

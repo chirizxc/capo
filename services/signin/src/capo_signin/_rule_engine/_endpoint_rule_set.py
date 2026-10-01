@@ -21,12 +21,14 @@ class EndpointParams:
         Endpoint: str | None = None,
         Region: str | None = None,
         IsControlPlane: bool | None = None,
+        IsOAuthEndpoint: bool | None = None,
     ):
         self.UseDualStack = UseDualStack if UseDualStack is not None else False
         self.UseFIPS = UseFIPS if UseFIPS is not None else False
         self.Endpoint = Endpoint if Endpoint is not None else None
         self.Region = Region if Region is not None else None
         self.IsControlPlane = IsControlPlane if IsControlPlane is not None else None
+        self.IsOAuthEndpoint = IsOAuthEndpoint if IsOAuthEndpoint is not None else None
 
 
 def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
@@ -108,6 +110,50 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                         },
                         headers={},
                     )
+    _locals: dict[str, Any] = {}
+    if p.IsOAuthEndpoint is not None:
+        if p.IsOAuthEndpoint is True:
+            if p.UseFIPS is True:
+                raise EndpointError(
+                    interpolate(
+                        "FIPS endpoints are not supported for OAuth operations. Disable FIPS or use a non-OAuth operation.",
+                        p,
+                        _locals,
+                    )
+                )
+    _locals: dict[str, Any] = {}
+    if p.IsOAuthEndpoint is not None:
+        if p.IsOAuthEndpoint is True:
+            if p.Region is not None:
+                if not (p.Endpoint is not None):
+                    _locals["PartitionResult"] = aws_partition(p.Region)
+                    if _locals["PartitionResult"] is not None:
+                        if string_equals(
+                            get_attr(
+                                _locals["PartitionResult"],
+                                interpolate("name", p, _locals),
+                            ),
+                            interpolate("aws", p, _locals),
+                        ):
+                            return Endpoint(
+                                url=interpolate(
+                                    "https://{Region}.oauth.signin.aws", p, _locals
+                                ),
+                                properties={
+                                    "authSchemes": [
+                                        {
+                                            "name": interpolate("sigv4", p, _locals),
+                                            "signingName": interpolate(
+                                                "signin", p, _locals
+                                            ),
+                                            "signingRegion": interpolate(
+                                                "{Region}", p, _locals
+                                            ),
+                                        }
+                                    ]
+                                },
+                                headers={},
+                            )
     _locals: dict[str, Any] = {}
     if p.Region is not None:
         if not (p.Endpoint is not None):

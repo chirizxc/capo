@@ -34,17 +34,26 @@ from capo_bedrock_agentcore_control._resources.amazon_bedrock_agent_core_control
 from capo_bedrock_agentcore_control._resources.amazon_bedrock_agent_core_control.browser_resource import (
     BrowserResource,
 )
+from capo_bedrock_agentcore_control._resources.amazon_bedrock_agent_core_control.capacity_provider_resource import (
+    CapacityProviderResource,
+)
 from capo_bedrock_agentcore_control._resources.amazon_bedrock_agent_core_control.code_interpreter_resource import (
     CodeInterpreterResource,
 )
 from capo_bedrock_agentcore_control._resources.amazon_bedrock_agent_core_control.configuration_bundle import (
     ConfigurationBundle,
 )
+from capo_bedrock_agentcore_control._resources.amazon_bedrock_agent_core_control.consent_portal import (
+    ConsentPortal,
+)
 from capo_bedrock_agentcore_control._resources.amazon_bedrock_agent_core_control.dataset import (
     Dataset,
 )
 from capo_bedrock_agentcore_control._resources.amazon_bedrock_agent_core_control.evaluator import (
     Evaluator,
+)
+from capo_bedrock_agentcore_control._resources.amazon_bedrock_agent_core_control.gateway_rate_limit_resource import (
+    GatewayRateLimitResource,
 )
 from capo_bedrock_agentcore_control._resources.amazon_bedrock_agent_core_control.gateway_resource import (
     GatewayResource,
@@ -54,6 +63,9 @@ from capo_bedrock_agentcore_control._resources.amazon_bedrock_agent_core_control
 )
 from capo_bedrock_agentcore_control._resources.amazon_bedrock_agent_core_control.gateway_target_resource import (
     GatewayTargetResource,
+)
+from capo_bedrock_agentcore_control._resources.amazon_bedrock_agent_core_control.harness_endpoint_resource import (
+    HarnessEndpointResource,
 )
 from capo_bedrock_agentcore_control._resources.amazon_bedrock_agent_core_control.harness_resource import (
     HarnessResource,
@@ -66,6 +78,9 @@ from capo_bedrock_agentcore_control._resources.amazon_bedrock_agent_core_control
 )
 from capo_bedrock_agentcore_control._resources.amazon_bedrock_agent_core_control.online_evaluation_config import (
     OnlineEvaluationConfig,
+)
+from capo_bedrock_agentcore_control._resources.amazon_bedrock_agent_core_control.payment_connection_resource import (
+    PaymentConnectionResource,
 )
 from capo_bedrock_agentcore_control._resources.amazon_bedrock_agent_core_control.payment_credential_provider import (
     PaymentCredentialProvider,
@@ -112,11 +127,15 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.agent_runtime_id
     import capo_bedrock_agentcore_control.types.agent_runtime_name
     import capo_bedrock_agentcore_control.types.agent_runtime_version
+    import capo_bedrock_agentcore_control.types.agent_runtime_version_summary
     import capo_bedrock_agentcore_control.types.api_key_credential_provider_item
     import capo_bedrock_agentcore_control.types.approval_configuration
     import capo_bedrock_agentcore_control.types.arn
     import capo_bedrock_agentcore_control.types.authorizer_configuration
     import capo_bedrock_agentcore_control.types.authorizer_type
+    import capo_bedrock_agentcore_control.types.batch_put_gateway_rate_limits_request
+    import capo_bedrock_agentcore_control.types.batch_put_gateway_rate_limits_response
+    import capo_bedrock_agentcore_control.types.batch_put_limit_entries
     import capo_bedrock_agentcore_control.types.bedrock_agentcore_resource_arn
     import capo_bedrock_agentcore_control.types.branch_name
     import capo_bedrock_agentcore_control.types.browser_enterprise_policies
@@ -127,12 +146,18 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.browser_profile_summary
     import capo_bedrock_agentcore_control.types.browser_signing_config_input
     import capo_bedrock_agentcore_control.types.browser_summary
+    import capo_bedrock_agentcore_control.types.capacity_provider_configuration
+    import capo_bedrock_agentcore_control.types.capacity_provider_id
+    import capo_bedrock_agentcore_control.types.capacity_provider_name
+    import capo_bedrock_agentcore_control.types.capacity_provider_summary
     import capo_bedrock_agentcore_control.types.certificates
     import capo_bedrock_agentcore_control.types.client_token
+    import capo_bedrock_agentcore_control.types.clustering_config
     import capo_bedrock_agentcore_control.types.code_interpreter_id
     import capo_bedrock_agentcore_control.types.code_interpreter_network_configuration
     import capo_bedrock_agentcore_control.types.code_interpreter_summary
     import capo_bedrock_agentcore_control.types.component_configuration_map
+    import capo_bedrock_agentcore_control.types.compute_configuration
     import capo_bedrock_agentcore_control.types.conditions
     import capo_bedrock_agentcore_control.types.configuration_bundle_description
     import capo_bedrock_agentcore_control.types.configuration_bundle_id
@@ -141,6 +166,12 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.configuration_bundle_version
     import capo_bedrock_agentcore_control.types.configuration_bundle_version_list
     import capo_bedrock_agentcore_control.types.configuration_bundle_version_summary
+    import capo_bedrock_agentcore_control.types.consent_portal_description_type
+    import capo_bedrock_agentcore_control.types.consent_portal_identifier
+    import capo_bedrock_agentcore_control.types.consent_portal_idp_config
+    import capo_bedrock_agentcore_control.types.consent_portal_name_type
+    import capo_bedrock_agentcore_control.types.consent_portal_sources
+    import capo_bedrock_agentcore_control.types.consent_portal_summary
     import capo_bedrock_agentcore_control.types.content
     import capo_bedrock_agentcore_control.types.create_agent_runtime_endpoint_request
     import capo_bedrock_agentcore_control.types.create_agent_runtime_endpoint_response
@@ -152,22 +183,30 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.create_browser_profile_response
     import capo_bedrock_agentcore_control.types.create_browser_request
     import capo_bedrock_agentcore_control.types.create_browser_response
+    import capo_bedrock_agentcore_control.types.create_capacity_provider_input
+    import capo_bedrock_agentcore_control.types.create_capacity_provider_output
     import capo_bedrock_agentcore_control.types.create_code_interpreter_request
     import capo_bedrock_agentcore_control.types.create_code_interpreter_response
     import capo_bedrock_agentcore_control.types.create_configuration_bundle_request
     import capo_bedrock_agentcore_control.types.create_configuration_bundle_response
+    import capo_bedrock_agentcore_control.types.create_consent_portal_request
+    import capo_bedrock_agentcore_control.types.create_consent_portal_response
     import capo_bedrock_agentcore_control.types.create_dataset_request
     import capo_bedrock_agentcore_control.types.create_dataset_response
     import capo_bedrock_agentcore_control.types.create_dataset_version_request
     import capo_bedrock_agentcore_control.types.create_dataset_version_response
     import capo_bedrock_agentcore_control.types.create_evaluator_request
     import capo_bedrock_agentcore_control.types.create_evaluator_response
+    import capo_bedrock_agentcore_control.types.create_gateway_rate_limit_request
+    import capo_bedrock_agentcore_control.types.create_gateway_rate_limit_response
     import capo_bedrock_agentcore_control.types.create_gateway_request
     import capo_bedrock_agentcore_control.types.create_gateway_response
     import capo_bedrock_agentcore_control.types.create_gateway_rule_request
     import capo_bedrock_agentcore_control.types.create_gateway_rule_response
     import capo_bedrock_agentcore_control.types.create_gateway_target_request
     import capo_bedrock_agentcore_control.types.create_gateway_target_response
+    import capo_bedrock_agentcore_control.types.create_harness_endpoint_request
+    import capo_bedrock_agentcore_control.types.create_harness_endpoint_response
     import capo_bedrock_agentcore_control.types.create_harness_request
     import capo_bedrock_agentcore_control.types.create_harness_response
     import capo_bedrock_agentcore_control.types.create_memory_input
@@ -195,8 +234,10 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.credential_provider_configurations
     import capo_bedrock_agentcore_control.types.credential_provider_name
     import capo_bedrock_agentcore_control.types.credential_provider_vendor_type
+    import capo_bedrock_agentcore_control.types.credential_rotation_config
     import capo_bedrock_agentcore_control.types.credentials_provider_configurations
     import capo_bedrock_agentcore_control.types.custom_evaluator_name
+    import capo_bedrock_agentcore_control.types.custom_transform_configuration
     import capo_bedrock_agentcore_control.types.data_source_config
     import capo_bedrock_agentcore_control.types.data_source_type
     import capo_bedrock_agentcore_control.types.dataset_example_list
@@ -217,22 +258,30 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.delete_browser_profile_response
     import capo_bedrock_agentcore_control.types.delete_browser_request
     import capo_bedrock_agentcore_control.types.delete_browser_response
+    import capo_bedrock_agentcore_control.types.delete_capacity_provider_input
+    import capo_bedrock_agentcore_control.types.delete_capacity_provider_output
     import capo_bedrock_agentcore_control.types.delete_code_interpreter_request
     import capo_bedrock_agentcore_control.types.delete_code_interpreter_response
     import capo_bedrock_agentcore_control.types.delete_configuration_bundle_request
     import capo_bedrock_agentcore_control.types.delete_configuration_bundle_response
+    import capo_bedrock_agentcore_control.types.delete_consent_portal_request
+    import capo_bedrock_agentcore_control.types.delete_consent_portal_response
     import capo_bedrock_agentcore_control.types.delete_dataset_examples_request
     import capo_bedrock_agentcore_control.types.delete_dataset_examples_response
     import capo_bedrock_agentcore_control.types.delete_dataset_request
     import capo_bedrock_agentcore_control.types.delete_dataset_response
     import capo_bedrock_agentcore_control.types.delete_evaluator_request
     import capo_bedrock_agentcore_control.types.delete_evaluator_response
+    import capo_bedrock_agentcore_control.types.delete_gateway_rate_limit_request
+    import capo_bedrock_agentcore_control.types.delete_gateway_rate_limit_response
     import capo_bedrock_agentcore_control.types.delete_gateway_request
     import capo_bedrock_agentcore_control.types.delete_gateway_response
     import capo_bedrock_agentcore_control.types.delete_gateway_rule_request
     import capo_bedrock_agentcore_control.types.delete_gateway_rule_response
     import capo_bedrock_agentcore_control.types.delete_gateway_target_request
     import capo_bedrock_agentcore_control.types.delete_gateway_target_response
+    import capo_bedrock_agentcore_control.types.delete_harness_endpoint_request
+    import capo_bedrock_agentcore_control.types.delete_harness_endpoint_response
     import capo_bedrock_agentcore_control.types.delete_harness_request
     import capo_bedrock_agentcore_control.types.delete_harness_response
     import capo_bedrock_agentcore_control.types.delete_memory_input
@@ -262,7 +311,9 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.description
     import capo_bedrock_agentcore_control.types.descriptor_type
     import capo_bedrock_agentcore_control.types.descriptors
+    import capo_bedrock_agentcore_control.types.dimension_keys
     import capo_bedrock_agentcore_control.types.endpoint_name
+    import capo_bedrock_agentcore_control.types.enforcement_mode
     import capo_bedrock_agentcore_control.types.environment_variables_map
     import capo_bedrock_agentcore_control.types.evaluation_config_description
     import capo_bedrock_agentcore_control.types.evaluation_config_name
@@ -274,6 +325,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.evaluator_summary
     import capo_bedrock_agentcore_control.types.example_id_list
     import capo_bedrock_agentcore_control.types.exception_level
+    import capo_bedrock_agentcore_control.types.execution_role_arn_type
     import capo_bedrock_agentcore_control.types.filesystem_configurations
     import capo_bedrock_agentcore_control.types.gateway_description
     import capo_bedrock_agentcore_control.types.gateway_identifier
@@ -284,6 +336,11 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.gateway_policy_engine_configuration
     import capo_bedrock_agentcore_control.types.gateway_protocol_configuration
     import capo_bedrock_agentcore_control.types.gateway_protocol_type
+    import capo_bedrock_agentcore_control.types.gateway_rate_limit_description
+    import capo_bedrock_agentcore_control.types.gateway_rate_limit_detail
+    import capo_bedrock_agentcore_control.types.gateway_rate_limit_id
+    import capo_bedrock_agentcore_control.types.gateway_rate_limit_max_results
+    import capo_bedrock_agentcore_control.types.gateway_rate_limit_next_token
     import capo_bedrock_agentcore_control.types.gateway_rule_description
     import capo_bedrock_agentcore_control.types.gateway_rule_detail
     import capo_bedrock_agentcore_control.types.gateway_rule_id
@@ -301,22 +358,30 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.get_browser_profile_response
     import capo_bedrock_agentcore_control.types.get_browser_request
     import capo_bedrock_agentcore_control.types.get_browser_response
+    import capo_bedrock_agentcore_control.types.get_capacity_provider_input
+    import capo_bedrock_agentcore_control.types.get_capacity_provider_output
     import capo_bedrock_agentcore_control.types.get_code_interpreter_request
     import capo_bedrock_agentcore_control.types.get_code_interpreter_response
     import capo_bedrock_agentcore_control.types.get_configuration_bundle_request
     import capo_bedrock_agentcore_control.types.get_configuration_bundle_response
     import capo_bedrock_agentcore_control.types.get_configuration_bundle_version_request
     import capo_bedrock_agentcore_control.types.get_configuration_bundle_version_response
+    import capo_bedrock_agentcore_control.types.get_consent_portal_request
+    import capo_bedrock_agentcore_control.types.get_consent_portal_response
     import capo_bedrock_agentcore_control.types.get_dataset_request
     import capo_bedrock_agentcore_control.types.get_dataset_response
     import capo_bedrock_agentcore_control.types.get_evaluator_request
     import capo_bedrock_agentcore_control.types.get_evaluator_response
+    import capo_bedrock_agentcore_control.types.get_gateway_rate_limit_request
+    import capo_bedrock_agentcore_control.types.get_gateway_rate_limit_response
     import capo_bedrock_agentcore_control.types.get_gateway_request
     import capo_bedrock_agentcore_control.types.get_gateway_response
     import capo_bedrock_agentcore_control.types.get_gateway_rule_request
     import capo_bedrock_agentcore_control.types.get_gateway_rule_response
     import capo_bedrock_agentcore_control.types.get_gateway_target_request
     import capo_bedrock_agentcore_control.types.get_gateway_target_response
+    import capo_bedrock_agentcore_control.types.get_harness_endpoint_request
+    import capo_bedrock_agentcore_control.types.get_harness_endpoint_response
     import capo_bedrock_agentcore_control.types.get_harness_request
     import capo_bedrock_agentcore_control.types.get_harness_response
     import capo_bedrock_agentcore_control.types.get_memory_input
@@ -354,8 +419,12 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.get_workload_identity_request
     import capo_bedrock_agentcore_control.types.get_workload_identity_response
     import capo_bedrock_agentcore_control.types.harness_allowed_tools
+    import capo_bedrock_agentcore_control.types.harness_endpoint
+    import capo_bedrock_agentcore_control.types.harness_endpoint_description
+    import capo_bedrock_agentcore_control.types.harness_endpoint_name
     import capo_bedrock_agentcore_control.types.harness_environment_artifact
     import capo_bedrock_agentcore_control.types.harness_environment_provider_request
+    import capo_bedrock_agentcore_control.types.harness_hooks
     import capo_bedrock_agentcore_control.types.harness_id
     import capo_bedrock_agentcore_control.types.harness_memory_configuration
     import capo_bedrock_agentcore_control.types.harness_model_configuration
@@ -365,13 +434,19 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.harness_system_prompt
     import capo_bedrock_agentcore_control.types.harness_tools
     import capo_bedrock_agentcore_control.types.harness_truncation_configuration
+    import capo_bedrock_agentcore_control.types.harness_version
+    import capo_bedrock_agentcore_control.types.harness_version_summary
     import capo_bedrock_agentcore_control.types.included_data
     import capo_bedrock_agentcore_control.types.indexed_keys_list
+    import capo_bedrock_agentcore_control.types.insight_list
     import capo_bedrock_agentcore_control.types.kms_configuration
     import capo_bedrock_agentcore_control.types.kms_key_arn
     import capo_bedrock_agentcore_control.types.lifecycle_configuration
+    import capo_bedrock_agentcore_control.types.limit_entries
     import capo_bedrock_agentcore_control.types.list_agent_runtime_endpoints_request
     import capo_bedrock_agentcore_control.types.list_agent_runtime_endpoints_response
+    import capo_bedrock_agentcore_control.types.list_agent_runtime_versions_by_capacity_provider_input
+    import capo_bedrock_agentcore_control.types.list_agent_runtime_versions_by_capacity_provider_output
     import capo_bedrock_agentcore_control.types.list_agent_runtime_versions_request
     import capo_bedrock_agentcore_control.types.list_agent_runtime_versions_response
     import capo_bedrock_agentcore_control.types.list_agent_runtimes_request
@@ -382,12 +457,16 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.list_browser_profiles_response
     import capo_bedrock_agentcore_control.types.list_browsers_request
     import capo_bedrock_agentcore_control.types.list_browsers_response
+    import capo_bedrock_agentcore_control.types.list_capacity_providers_input
+    import capo_bedrock_agentcore_control.types.list_capacity_providers_output
     import capo_bedrock_agentcore_control.types.list_code_interpreters_request
     import capo_bedrock_agentcore_control.types.list_code_interpreters_response
     import capo_bedrock_agentcore_control.types.list_configuration_bundle_versions_request
     import capo_bedrock_agentcore_control.types.list_configuration_bundle_versions_response
     import capo_bedrock_agentcore_control.types.list_configuration_bundles_request
     import capo_bedrock_agentcore_control.types.list_configuration_bundles_response
+    import capo_bedrock_agentcore_control.types.list_consent_portals_request
+    import capo_bedrock_agentcore_control.types.list_consent_portals_response
     import capo_bedrock_agentcore_control.types.list_dataset_examples_request
     import capo_bedrock_agentcore_control.types.list_dataset_examples_response
     import capo_bedrock_agentcore_control.types.list_dataset_versions_request
@@ -396,12 +475,18 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.list_datasets_response
     import capo_bedrock_agentcore_control.types.list_evaluators_request
     import capo_bedrock_agentcore_control.types.list_evaluators_response
+    import capo_bedrock_agentcore_control.types.list_gateway_rate_limits_request
+    import capo_bedrock_agentcore_control.types.list_gateway_rate_limits_response
     import capo_bedrock_agentcore_control.types.list_gateway_rules_request
     import capo_bedrock_agentcore_control.types.list_gateway_rules_response
     import capo_bedrock_agentcore_control.types.list_gateway_targets_request
     import capo_bedrock_agentcore_control.types.list_gateway_targets_response
     import capo_bedrock_agentcore_control.types.list_gateways_request
     import capo_bedrock_agentcore_control.types.list_gateways_response
+    import capo_bedrock_agentcore_control.types.list_harness_endpoints_request
+    import capo_bedrock_agentcore_control.types.list_harness_endpoints_response
+    import capo_bedrock_agentcore_control.types.list_harness_versions_request
+    import capo_bedrock_agentcore_control.types.list_harness_versions_response
     import capo_bedrock_agentcore_control.types.list_harnesses_request
     import capo_bedrock_agentcore_control.types.list_harnesses_response
     import capo_bedrock_agentcore_control.types.list_memories_input
@@ -446,6 +531,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.metadata_configuration
     import capo_bedrock_agentcore_control.types.modify_memory_strategies
     import capo_bedrock_agentcore_control.types.name
+    import capo_bedrock_agentcore_control.types.namespace_keys_list
     import capo_bedrock_agentcore_control.types.network_configuration
     import capo_bedrock_agentcore_control.types.next_token
     import capo_bedrock_agentcore_control.types.non_empty_string
@@ -454,8 +540,10 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.online_evaluation_config_id
     import capo_bedrock_agentcore_control.types.online_evaluation_config_summary
     import capo_bedrock_agentcore_control.types.online_evaluation_execution_status
+    import capo_bedrock_agentcore_control.types.output_config
     import capo_bedrock_agentcore_control.types.payment_connector_id
     import capo_bedrock_agentcore_control.types.payment_connector_name
+    import capo_bedrock_agentcore_control.types.payment_connector_provision_mode
     import capo_bedrock_agentcore_control.types.payment_connector_summary
     import capo_bedrock_agentcore_control.types.payment_connector_type
     import capo_bedrock_agentcore_control.types.payment_credential_provider_item
@@ -466,6 +554,8 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.payment_provider_configuration_input
     import capo_bedrock_agentcore_control.types.payments_authorizer_type
     import capo_bedrock_agentcore_control.types.payments_description
+    import capo_bedrock_agentcore_control.types.permissions_configuration
+    import capo_bedrock_agentcore_control.types.platform_version
     import capo_bedrock_agentcore_control.types.policy
     import capo_bedrock_agentcore_control.types.policy_definition
     import capo_bedrock_agentcore_control.types.policy_engine
@@ -500,6 +590,8 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.resource_policy_body
     import capo_bedrock_agentcore_control.types.resource_type
     import capo_bedrock_agentcore_control.types.role_arn
+    import capo_bedrock_agentcore_control.types.rotate_payment_connector_credentials_request
+    import capo_bedrock_agentcore_control.types.rotate_payment_connector_credentials_response
     import capo_bedrock_agentcore_control.types.rule
     import capo_bedrock_agentcore_control.types.runtime_metadata_configuration
     import capo_bedrock_agentcore_control.types.sandbox_name
@@ -531,6 +623,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.target_next_token
     import capo_bedrock_agentcore_control.types.target_summary
     import capo_bedrock_agentcore_control.types.token_vault_id_type
+    import capo_bedrock_agentcore_control.types.tools_file_system_configurations
     import capo_bedrock_agentcore_control.types.untag_resource_request
     import capo_bedrock_agentcore_control.types.untag_resource_response
     import capo_bedrock_agentcore_control.types.update_agent_runtime_endpoint_request
@@ -539,20 +632,28 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.update_agent_runtime_response
     import capo_bedrock_agentcore_control.types.update_api_key_credential_provider_request
     import capo_bedrock_agentcore_control.types.update_api_key_credential_provider_response
+    import capo_bedrock_agentcore_control.types.update_capacity_provider_input
+    import capo_bedrock_agentcore_control.types.update_capacity_provider_output
     import capo_bedrock_agentcore_control.types.update_configuration_bundle_request
     import capo_bedrock_agentcore_control.types.update_configuration_bundle_response
+    import capo_bedrock_agentcore_control.types.update_consent_portal_request
+    import capo_bedrock_agentcore_control.types.update_consent_portal_response
     import capo_bedrock_agentcore_control.types.update_dataset_examples_request
     import capo_bedrock_agentcore_control.types.update_dataset_examples_response
     import capo_bedrock_agentcore_control.types.update_dataset_request
     import capo_bedrock_agentcore_control.types.update_dataset_response
     import capo_bedrock_agentcore_control.types.update_evaluator_request
     import capo_bedrock_agentcore_control.types.update_evaluator_response
+    import capo_bedrock_agentcore_control.types.update_gateway_rate_limit_request
+    import capo_bedrock_agentcore_control.types.update_gateway_rate_limit_response
     import capo_bedrock_agentcore_control.types.update_gateway_request
     import capo_bedrock_agentcore_control.types.update_gateway_response
     import capo_bedrock_agentcore_control.types.update_gateway_rule_request
     import capo_bedrock_agentcore_control.types.update_gateway_rule_response
     import capo_bedrock_agentcore_control.types.update_gateway_target_request
     import capo_bedrock_agentcore_control.types.update_gateway_target_response
+    import capo_bedrock_agentcore_control.types.update_harness_endpoint_request
+    import capo_bedrock_agentcore_control.types.update_harness_endpoint_response
     import capo_bedrock_agentcore_control.types.update_harness_request
     import capo_bedrock_agentcore_control.types.update_harness_response
     import capo_bedrock_agentcore_control.types.update_memory_input
@@ -589,6 +690,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.updated_synchronization_type
     import capo_bedrock_agentcore_control.types.version_created_by_source
     import capo_bedrock_agentcore_control.types.version_filter
+    import capo_bedrock_agentcore_control.types.waf_configuration
     import capo_bedrock_agentcore_control.types.workload_identity_name_type
     import capo_bedrock_agentcore_control.types.workload_identity_type
 
@@ -664,17 +766,22 @@ class BedrockAgentCoreControlClient:
         self.api_key_credential_provider = ApiKeyCredentialProvider(self)
         self.browser_profile_resource = BrowserProfileResource(self)
         self.browser_resource = BrowserResource(self)
+        self.capacity_provider_resource = CapacityProviderResource(self)
         self.code_interpreter_resource = CodeInterpreterResource(self)
         self.configuration_bundle = ConfigurationBundle(self)
+        self.consent_portal = ConsentPortal(self)
         self.dataset = Dataset(self)
         self.evaluator = Evaluator(self)
+        self.gateway_rate_limit_resource = GatewayRateLimitResource(self)
         self.gateway_resource = GatewayResource(self)
         self.gateway_rule_resource = GatewayRuleResource(self)
         self.gateway_target_resource = GatewayTargetResource(self)
+        self.harness_endpoint_resource = HarnessEndpointResource(self)
         self.harness_resource = HarnessResource(self)
         self.memory_resource = MemoryResource(self)
         self.oauth2_credential_provider = Oauth2CredentialProvider(self)
         self.online_evaluation_config = OnlineEvaluationConfig(self)
+        self.payment_connection_resource = PaymentConnectionResource(self)
         self.payment_credential_provider = PaymentCredentialProvider(self)
         self.payment_manager_resource = PaymentManagerResource(self)
         self.policy_engine_resource = PolicyEngineResource(self)
@@ -1317,7 +1424,7 @@ class BedrockAgentCoreControlClient:
             "capo_bedrock_agentcore_control.types.client_token.ClientToken"
         ] = None,
     ) -> "capo_bedrock_agentcore_control.types.delete_agent_runtime_endpoint_response.DeleteAgentRuntimeEndpointResponse":
-        """<p>Deletes an AAgentCore Runtime endpoint.</p>
+        """<p>Deletes an AgentCore Runtime endpoint.</p>
 
         Args:
             agent_runtime_id: <p>The unique identifier of the AgentCore Runtime associated with the endpoint.</p>
@@ -1454,9 +1561,11 @@ class BedrockAgentCoreControlClient:
         agent_runtime_name: "capo_bedrock_agentcore_control.types.agent_runtime_name.AgentRuntimeName",
         agent_runtime_artifact: "capo_bedrock_agentcore_control.types.agent_runtime_artifact.AgentRuntimeArtifact",
         role_arn: "capo_bedrock_agentcore_control.types.role_arn.RoleArn",
-        network_configuration: "capo_bedrock_agentcore_control.types.network_configuration.NetworkConfiguration",
         *,
         config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        network_configuration: Optional[
+            "capo_bedrock_agentcore_control.types.network_configuration.NetworkConfiguration"
+        ] = None,
         client_token: Optional[
             "capo_bedrock_agentcore_control.types.client_token.ClientToken"
         ] = None,
@@ -1481,7 +1590,13 @@ class BedrockAgentCoreControlClient:
         filesystem_configurations: Optional[
             "capo_bedrock_agentcore_control.types.filesystem_configurations.FilesystemConfigurations"
         ] = None,
+        capacity_provider_configuration: Optional[
+            "capo_bedrock_agentcore_control.types.capacity_provider_configuration.CapacityProviderConfiguration"
+        ] = None,
         tags: Optional["capo_bedrock_agentcore_control.types.tags_map.TagsMap"] = None,
+        platform_version: Optional[
+            "capo_bedrock_agentcore_control.types.platform_version.PlatformVersion"
+        ] = None,
     ) -> "capo_bedrock_agentcore_control.types.create_agent_runtime_response.CreateAgentRuntimeResponse":
         """<p>Creates an Amazon Bedrock AgentCore Runtime.</p>
 
@@ -1497,7 +1612,9 @@ class BedrockAgentCoreControlClient:
             lifecycle_configuration: <p>The life cycle configuration for the AgentCore Runtime.</p>
             environment_variables: <p>Environment variables to set in the AgentCore Runtime environment.</p>
             filesystem_configurations: <p>The filesystem configurations to mount into the AgentCore Runtime. Use filesystem configurations to provide persistent storage to your AgentCore Runtime sessions.</p>
+            capacity_provider_configuration: <p>The capacity provider configuration for the AgentCore Runtime. Use a capacity provider to run the AgentCore Runtime on the Instances compute type, which provisions Amazon Web Services managed compute in your account.</p>
             tags: <p>A map of tag keys and values to assign to the agent runtime. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.</p>
+            platform_version: <p>The version of the runtime platform to use for the AgentCore Runtime.</p>
 
         Raises:
             capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
@@ -1528,8 +1645,9 @@ class BedrockAgentCoreControlClient:
             "agent_runtime_name": agent_runtime_name,
             "agent_runtime_artifact": agent_runtime_artifact,
             "role_arn": role_arn,
-            "network_configuration": network_configuration,
         }
+        if network_configuration is not None:
+            input_["network_configuration"] = network_configuration
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -1547,8 +1665,12 @@ class BedrockAgentCoreControlClient:
             input_["environment_variables"] = environment_variables
         if filesystem_configurations is not None:
             input_["filesystem_configurations"] = filesystem_configurations
+        if capacity_provider_configuration is not None:
+            input_["capacity_provider_configuration"] = capacity_provider_configuration
         if tags is not None:
             input_["tags"] = tags
+        if platform_version is not None:
+            input_["platform_version"] = platform_version
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -1616,9 +1738,11 @@ class BedrockAgentCoreControlClient:
         agent_runtime_id: "capo_bedrock_agentcore_control.types.agent_runtime_id.AgentRuntimeId",
         agent_runtime_artifact: "capo_bedrock_agentcore_control.types.agent_runtime_artifact.AgentRuntimeArtifact",
         role_arn: "capo_bedrock_agentcore_control.types.role_arn.RoleArn",
-        network_configuration: "capo_bedrock_agentcore_control.types.network_configuration.NetworkConfiguration",
         *,
         config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        network_configuration: Optional[
+            "capo_bedrock_agentcore_control.types.network_configuration.NetworkConfiguration"
+        ] = None,
         description: Optional[
             "capo_bedrock_agentcore_control.types.description.Description"
         ] = None,
@@ -1643,6 +1767,12 @@ class BedrockAgentCoreControlClient:
         filesystem_configurations: Optional[
             "capo_bedrock_agentcore_control.types.filesystem_configurations.FilesystemConfigurations"
         ] = None,
+        capacity_provider_configuration: Optional[
+            "capo_bedrock_agentcore_control.types.capacity_provider_configuration.CapacityProviderConfiguration"
+        ] = None,
+        platform_version: Optional[
+            "capo_bedrock_agentcore_control.types.platform_version.PlatformVersion"
+        ] = None,
         client_token: Optional[
             "capo_bedrock_agentcore_control.types.client_token.ClientToken"
         ] = None,
@@ -1661,6 +1791,8 @@ class BedrockAgentCoreControlClient:
             metadata_configuration: <p>The updated configuration for microVM Metadata Service (MMDS) settings for the AgentCore Runtime.</p>
             environment_variables: <p>Updated environment variables to set in the AgentCore Runtime environment.</p>
             filesystem_configurations: <p>The updated filesystem configurations to mount into the AgentCore Runtime.</p>
+            capacity_provider_configuration: <p>The updated capacity provider configuration for the AgentCore Runtime.</p>
+            platform_version: <p>The updated version of the runtime platform to use for the AgentCore Runtime.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request.</p>
 
         Raises:
@@ -1693,8 +1825,9 @@ class BedrockAgentCoreControlClient:
             "agent_runtime_id": agent_runtime_id,
             "agent_runtime_artifact": agent_runtime_artifact,
             "role_arn": role_arn,
-            "network_configuration": network_configuration,
         }
+        if network_configuration is not None:
+            input_["network_configuration"] = network_configuration
         if description is not None:
             input_["description"] = description
         if authorizer_configuration is not None:
@@ -1711,6 +1844,10 @@ class BedrockAgentCoreControlClient:
             input_["environment_variables"] = environment_variables
         if filesystem_configurations is not None:
             input_["filesystem_configurations"] = filesystem_configurations
+        if capacity_provider_configuration is not None:
+            input_["capacity_provider_configuration"] = capacity_provider_configuration
+        if platform_version is not None:
+            input_["platform_version"] = platform_version
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -1728,14 +1865,18 @@ class BedrockAgentCoreControlClient:
         agent_runtime_id: "capo_bedrock_agentcore_control.types.agent_runtime_id.AgentRuntimeId",
         *,
         config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        agent_runtime_version: Optional[
+            "capo_bedrock_agentcore_control.types.agent_runtime_version.AgentRuntimeVersion"
+        ] = None,
         client_token: Optional[
             "capo_bedrock_agentcore_control.types.client_token.ClientToken"
         ] = None,
     ) -> "capo_bedrock_agentcore_control.types.delete_agent_runtime_response.DeleteAgentRuntimeResponse":
-        """<p>Deletes an Amazon Bedrock AgentCore Runtime.</p>
+        """<p>Deletes an Amazon Bedrock AgentCore Runtime, or a single version of an AgentCore Runtime when you provide the version qualifier.</p>
 
         Args:
             agent_runtime_id: <p>The unique identifier of the AgentCore Runtime to delete.</p>
+            agent_runtime_version: <p>The version of the AgentCore Runtime to delete. When you provide this value, only that version is deleted. When you omit it, the entire AgentCore Runtime and all of its versions are deleted.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, the service ignores the request but does not return an error.</p>
 
         Raises:
@@ -1765,6 +1906,8 @@ class BedrockAgentCoreControlClient:
         input_: capo_bedrock_agentcore_control.types.delete_agent_runtime_request.DeleteAgentRuntimeRequest = {
             "agent_runtime_id": agent_runtime_id
         }
+        if agent_runtime_version is not None:
+            input_["agent_runtime_version"] = agent_runtime_version
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -1963,8 +2106,8 @@ class BedrockAgentCoreControlClient:
         Args:
             name: <p>The name of the API key credential provider. The name must be unique within your account.</p>
             api_key: <p>The API key to use for authentication. This value is encrypted and stored securely.</p>
-            api_key_secret_config: <p>A reference to the AWS Secrets Manager secret that stores the API key. This includes the secret ID and the JSON key used to extract the API key value from the secret. Required when <code>apiKeySecretSource</code> is set to <code>EXTERNAL</code>.</p>
-            api_key_secret_source: <p>The source type of the API key secret. Use <code>MANAGED</code> if the secret is managed by the service, or <code>EXTERNAL</code> if you manage the secret yourself in AWS Secrets Manager.</p>
+            api_key_secret_config: <p>A reference to the Amazon Web Services Secrets Manager secret that stores the API key. This includes the secret ID and the JSON key used to extract the API key value from the secret. Required when <code>apiKeySecretSource</code> is set to <code>EXTERNAL</code>.</p>
+            api_key_secret_source: <p>The source type of the API key secret. Use <code>MANAGED</code> if the secret is managed by the service, or <code>EXTERNAL</code> if you manage the secret yourself in Amazon Web Services Secrets Manager.</p>
             tags: <p>A map of tag keys and values to assign to the API key credential provider. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.</p>
 
         Raises:
@@ -2086,8 +2229,8 @@ class BedrockAgentCoreControlClient:
         Args:
             name: <p>The name of the API key credential provider to update.</p>
             api_key: <p>The new API key to use for authentication. This value replaces the existing API key and is encrypted and stored securely.</p>
-            api_key_secret_config: <p>A reference to the AWS Secrets Manager secret that stores the API key. This includes the secret ID and the JSON key used to extract the API key value from the secret. Required when <code>apiKeySecretSource</code> is set to <code>EXTERNAL</code>.</p>
-            api_key_secret_source: <p>The source type of the API key secret. Use <code>MANAGED</code> if the secret is managed by the service, or <code>EXTERNAL</code> if you manage the secret yourself in AWS Secrets Manager.</p>
+            api_key_secret_config: <p>A reference to the Amazon Web Services Secrets Manager secret that stores the API key. This includes the secret ID and the JSON key used to extract the API key value from the secret. Required when <code>apiKeySecretSource</code> is set to <code>EXTERNAL</code>.</p>
+            api_key_secret_source: <p>The source type of the API key secret. Use <code>MANAGED</code> if the secret is managed by the service, or <code>EXTERNAL</code> if you manage the secret yourself in Amazon Web Services Secrets Manager.</p>
 
         Raises:
             capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
@@ -2541,6 +2684,9 @@ class BedrockAgentCoreControlClient:
         certificates: Optional[
             "capo_bedrock_agentcore_control.types.certificates.Certificates"
         ] = None,
+        filesystem_configurations: Optional[
+            "capo_bedrock_agentcore_control.types.tools_file_system_configurations.ToolsFileSystemConfigurations"
+        ] = None,
         client_token: Optional[
             "capo_bedrock_agentcore_control.types.client_token.ClientToken"
         ] = None,
@@ -2557,6 +2703,7 @@ class BedrockAgentCoreControlClient:
             browser_signing: <p>The browser signing configuration that enables cryptographic agent identification using HTTP message signatures for web bot authentication.</p>
             enterprise_policies: <p>A list of enterprise policy files for the browser.</p>
             certificates: <p>A list of certificates to install in the browser.</p>
+            filesystem_configurations: <p>The file system configurations to mount into the browser. Use these configurations to mount your own Amazon Simple Storage Service (Amazon S3) Files or Amazon Elastic File System (Amazon EFS) access points. Your sessions can then access your data. If you don't specify this field, no file systems are mounted.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, Amazon Bedrock AgentCore ignores the request but does not return an error.</p>
             tags: <p>A map of tag keys and values to assign to the browser. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.</p>
 
@@ -2601,6 +2748,8 @@ class BedrockAgentCoreControlClient:
             input_["enterprise_policies"] = enterprise_policies
         if certificates is not None:
             input_["certificates"] = certificates
+        if filesystem_configurations is not None:
+            input_["filesystem_configurations"] = filesystem_configurations
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -2809,6 +2958,408 @@ class BedrockAgentCoreControlClient:
             if not _token:
                 break
 
+    def create_capacity_provider(
+        self,
+        name: "capo_bedrock_agentcore_control.types.capacity_provider_name.CapacityProviderName",
+        permissions_configuration: "capo_bedrock_agentcore_control.types.permissions_configuration.PermissionsConfiguration",
+        compute_configuration: "capo_bedrock_agentcore_control.types.compute_configuration.ComputeConfiguration",
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        description: Optional[
+            "capo_bedrock_agentcore_control.types.description.Description"
+        ] = None,
+        client_token: Optional[
+            "capo_bedrock_agentcore_control.types.client_token.ClientToken"
+        ] = None,
+        tags: Optional["capo_bedrock_agentcore_control.types.tags_map.TagsMap"] = None,
+    ) -> "capo_bedrock_agentcore_control.types.create_capacity_provider_output.CreateCapacityProviderOutput":
+        r"""<p>Creates a capacity provider. A capacity provider defines the Amazon EC2 infrastructure for AgentCore Runtime, including the operating system, allowed instance types, networking, and storage. It also specifies the IAM permissions that AgentCore uses to manage those instances.</p> <p>The capacity provider name must be unique within your account. After you create the capacity provider, it enters a <code>CREATING</code> state and transitions to <code>READY</code> when it is available for use.</p>
+
+        Args:
+            name: <p>The name of the capacity provider. The name must be unique within your account.</p>
+            description: <p>An optional description of the capacity provider. If you don't specify a description, the service creates the capacity provider without one.</p>
+            permissions_configuration: <p>The permissions configuration for the capacity provider. This specifies the IAM role that AgentCore uses to manage the Amazon EC2 instances on your behalf.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
+            tags: <p>A map of tag keys and values to associate with the capacity provider. If you don't specify tags, the capacity provider is created with no tags.</p>
+            compute_configuration: <p>The compute configuration for the capacity provider. This defines the Amazon EC2 compute resources used to launch instances: the operating system, allowed instance types, networking, and storage.</p>
+
+        Raises:
+            capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
+            capo_bedrock_agentcore_control.errors.conflict_exception.ConflictException: <p>This exception is thrown when there is a conflict performing an operation</p>
+            capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
+            capo_bedrock_agentcore_control.errors.retryable_conflict_exception.RetryableConflictException: <p>The operation failed because of a conflicting request. Retry the request.</p>
+            capo_bedrock_agentcore_control.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>This exception is thrown when a request is made beyond the service quota</p>
+            capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
+            capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_bedrock_agentcore_control.types.create_capacity_provider_input.CreateCapacityProviderInput]",
+        ) -> OperationResponse[
+            "capo_bedrock_agentcore_control.types.create_capacity_provider_output.CreateCapacityProviderOutput"
+        ]:
+            import capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.create_capacity_provider
+
+            output, http_response = (
+                capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.create_capacity_provider.create_capacity_provider(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore_control.types.create_capacity_provider_input.CreateCapacityProviderInput = {
+            "name": name,
+            "permissions_configuration": permissions_configuration,
+            "compute_configuration": compute_configuration,
+        }
+        if description is not None:
+            input_["description"] = description
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_capacity_provider(
+        self,
+        capacity_provider_id: "capo_bedrock_agentcore_control.types.capacity_provider_id.CapacityProviderId",
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+    ) -> "capo_bedrock_agentcore_control.types.get_capacity_provider_output.GetCapacityProviderOutput":
+        """<p>Retrieves information about a capacity provider, including its status, permissions configuration, and compute configuration.</p>
+
+        Args:
+            capacity_provider_id: <p>The unique identifier of the capacity provider.</p>
+
+        Raises:
+            capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
+            capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
+            capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
+            capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_bedrock_agentcore_control.types.get_capacity_provider_input.GetCapacityProviderInput]",
+        ) -> OperationResponse[
+            "capo_bedrock_agentcore_control.types.get_capacity_provider_output.GetCapacityProviderOutput"
+        ]:
+            import capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.get_capacity_provider
+
+            output, http_response = (
+                capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.get_capacity_provider.get_capacity_provider(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore_control.types.get_capacity_provider_input.GetCapacityProviderInput = {
+            "capacity_provider_id": capacity_provider_id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_capacity_provider(
+        self,
+        capacity_provider_id: "capo_bedrock_agentcore_control.types.capacity_provider_id.CapacityProviderId",
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        description: Optional[
+            "capo_bedrock_agentcore_control.types.updated_description.UpdatedDescription"
+        ] = None,
+        client_token: Optional[
+            "capo_bedrock_agentcore_control.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_bedrock_agentcore_control.types.update_capacity_provider_output.UpdateCapacityProviderOutput":
+        r"""<p>Updates a capacity provider. Only the description can be changed. To change other configuration, such as instance types, networking, or storage, create a new capacity provider.</p>
+
+        Args:
+            capacity_provider_id: <p>The unique identifier of the capacity provider to update.</p>
+            description: <p>The updated description of the capacity provider.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
+
+        Raises:
+            capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
+            capo_bedrock_agentcore_control.errors.conflict_exception.ConflictException: <p>This exception is thrown when there is a conflict performing an operation</p>
+            capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
+            capo_bedrock_agentcore_control.errors.retryable_conflict_exception.RetryableConflictException: <p>The operation failed because of a conflicting request. Retry the request.</p>
+            capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
+            capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_bedrock_agentcore_control.types.update_capacity_provider_input.UpdateCapacityProviderInput]",
+        ) -> OperationResponse[
+            "capo_bedrock_agentcore_control.types.update_capacity_provider_output.UpdateCapacityProviderOutput"
+        ]:
+            import capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.update_capacity_provider
+
+            output, http_response = (
+                capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.update_capacity_provider.update_capacity_provider(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore_control.types.update_capacity_provider_input.UpdateCapacityProviderInput = {
+            "capacity_provider_id": capacity_provider_id
+        }
+        if description is not None:
+            input_["description"] = description
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_capacity_provider(
+        self,
+        capacity_provider_id: "capo_bedrock_agentcore_control.types.capacity_provider_id.CapacityProviderId",
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        client_token: Optional[
+            "capo_bedrock_agentcore_control.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_bedrock_agentcore_control.types.delete_capacity_provider_output.DeleteCapacityProviderOutput":
+        r"""<p>Deletes a capacity provider. Before you delete a capacity provider, disassociate all agent runtimes and runtime versions that reference it. If any references remain, the operation fails.</p>
+
+        Args:
+            capacity_provider_id: <p>The unique identifier of the capacity provider to delete.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
+
+        Raises:
+            capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
+            capo_bedrock_agentcore_control.errors.conflict_exception.ConflictException: <p>This exception is thrown when there is a conflict performing an operation</p>
+            capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
+            capo_bedrock_agentcore_control.errors.retryable_conflict_exception.RetryableConflictException: <p>The operation failed because of a conflicting request. Retry the request.</p>
+            capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
+            capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_bedrock_agentcore_control.types.delete_capacity_provider_input.DeleteCapacityProviderInput]",
+        ) -> OperationResponse[
+            "capo_bedrock_agentcore_control.types.delete_capacity_provider_output.DeleteCapacityProviderOutput"
+        ]:
+            import capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.delete_capacity_provider
+
+            output, http_response = (
+                capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.delete_capacity_provider.delete_capacity_provider(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore_control.types.delete_capacity_provider_input.DeleteCapacityProviderInput = {
+            "capacity_provider_id": capacity_provider_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_capacity_providers(
+        self,
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        max_results: Optional[
+            "capo_bedrock_agentcore_control.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_bedrock_agentcore_control.types.next_token.NextToken"
+        ] = None,
+    ) -> "capo_bedrock_agentcore_control.types.list_capacity_providers_output.ListCapacityProvidersOutput":
+        """<p>Lists the capacity providers in your account and returns summary information for each one. To retrieve the full configuration for a specific capacity provider, use <code>GetCapacityProvider</code>. Results are paginated; use the <code>nextToken</code> parameter to retrieve additional results.</p>
+
+        Args:
+            max_results: <p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>
+            next_token: <p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, enter the token returned in the <code>nextToken</code> field in the response in this field to return the next batch of results.</p>
+
+        Raises:
+            capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
+            capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
+            capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_bedrock_agentcore_control.types.list_capacity_providers_input.ListCapacityProvidersInput]",
+        ) -> OperationResponse[
+            "capo_bedrock_agentcore_control.types.list_capacity_providers_output.ListCapacityProvidersOutput"
+        ]:
+            import capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.list_capacity_providers
+
+            output, http_response = (
+                capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.list_capacity_providers.list_capacity_providers(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore_control.types.list_capacity_providers_input.ListCapacityProvidersInput = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_capacity_providers(
+        self,
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        max_results: Optional[
+            "capo_bedrock_agentcore_control.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_bedrock_agentcore_control.types.next_token.NextToken"
+        ] = None,
+    ) -> "Iterator[capo_bedrock_agentcore_control.types.capacity_provider_summary.CapacityProviderSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_capacity_providers(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("capacity_providers",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_agent_runtime_versions_by_capacity_provider(
+        self,
+        capacity_provider_id: "capo_bedrock_agentcore_control.types.capacity_provider_id.CapacityProviderId",
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        max_results: Optional[
+            "capo_bedrock_agentcore_control.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_bedrock_agentcore_control.types.next_token.NextToken"
+        ] = None,
+    ) -> "capo_bedrock_agentcore_control.types.list_agent_runtime_versions_by_capacity_provider_output.ListAgentRuntimeVersionsByCapacityProviderOutput":
+        """<p>Lists the agent runtime versions that are associated with a capacity provider. Use this operation to identify the runtimes you must disassociate before you can delete the capacity provider. Results are paginated; use the <code>nextToken</code> parameter to retrieve additional results.</p>
+
+        Args:
+            capacity_provider_id: <p>The unique identifier of the capacity provider.</p>
+            max_results: <p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>
+            next_token: <p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, enter the token returned in the <code>nextToken</code> field in the response in this field to return the next batch of results.</p>
+
+        Raises:
+            capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
+            capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
+            capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_bedrock_agentcore_control.types.list_agent_runtime_versions_by_capacity_provider_input.ListAgentRuntimeVersionsByCapacityProviderInput]",
+        ) -> OperationResponse[
+            "capo_bedrock_agentcore_control.types.list_agent_runtime_versions_by_capacity_provider_output.ListAgentRuntimeVersionsByCapacityProviderOutput"
+        ]:
+            import capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.list_agent_runtime_versions_by_capacity_provider
+
+            output, http_response = (
+                capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.list_agent_runtime_versions_by_capacity_provider.list_agent_runtime_versions_by_capacity_provider(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore_control.types.list_agent_runtime_versions_by_capacity_provider_input.ListAgentRuntimeVersionsByCapacityProviderInput = {
+            "capacity_provider_id": capacity_provider_id
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_agent_runtime_versions_by_capacity_provider(
+        self,
+        capacity_provider_id: "capo_bedrock_agentcore_control.types.capacity_provider_id.CapacityProviderId",
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        max_results: Optional[
+            "capo_bedrock_agentcore_control.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_bedrock_agentcore_control.types.next_token.NextToken"
+        ] = None,
+    ) -> "Iterator[capo_bedrock_agentcore_control.types.agent_runtime_version_summary.AgentRuntimeVersionSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_agent_runtime_versions_by_capacity_provider(
+                capacity_provider_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("agent_runtimes",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     def create_code_interpreter(
         self,
         name: "capo_bedrock_agentcore_control.types.sandbox_name.SandboxName",
@@ -2824,6 +3375,9 @@ class BedrockAgentCoreControlClient:
         certificates: Optional[
             "capo_bedrock_agentcore_control.types.certificates.Certificates"
         ] = None,
+        filesystem_configurations: Optional[
+            "capo_bedrock_agentcore_control.types.tools_file_system_configurations.ToolsFileSystemConfigurations"
+        ] = None,
         client_token: Optional[
             "capo_bedrock_agentcore_control.types.client_token.ClientToken"
         ] = None,
@@ -2837,6 +3391,7 @@ class BedrockAgentCoreControlClient:
             execution_role_arn: <p>The Amazon Resource Name (ARN) of the IAM role that provides permissions for the code interpreter to access Amazon Web Services services.</p>
             network_configuration: <p>The network configuration for the code interpreter. This configuration specifies the network mode for the code interpreter.</p>
             certificates: <p>A list of certificates to install in the code interpreter.</p>
+            filesystem_configurations: <p>The file system configurations to mount into the code interpreter. Use these configurations to mount your own Amazon Simple Storage Service (Amazon S3) Files or Amazon Elastic File System (Amazon EFS) access points. Your sessions can then access your data. If you don't specify this field, no file systems are mounted.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, Amazon Bedrock AgentCore ignores the request but does not return an error.</p>
             tags: <p>A map of tag keys and values to assign to the code interpreter. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.</p>
 
@@ -2875,6 +3430,8 @@ class BedrockAgentCoreControlClient:
             input_["execution_role_arn"] = execution_role_arn
         if certificates is not None:
             input_["certificates"] = certificates
+        if filesystem_configurations is not None:
+            input_["filesystem_configurations"] = filesystem_configurations
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -3100,6 +3657,9 @@ class BedrockAgentCoreControlClient:
         created_by: Optional[
             "capo_bedrock_agentcore_control.types.version_created_by_source.VersionCreatedBySource"
         ] = None,
+        kms_key_arn: Optional[
+            "capo_bedrock_agentcore_control.types.kms_key_arn.KmsKeyArn"
+        ] = None,
         tags: Optional["capo_bedrock_agentcore_control.types.tags_map.TagsMap"] = None,
     ) -> "capo_bedrock_agentcore_control.types.create_configuration_bundle_response.CreateConfigurationBundleResponse":
         r"""<p>Creates a new configuration bundle resource. A configuration bundle stores versioned component configurations for agent evaluation workflows.</p>
@@ -3112,6 +3672,7 @@ class BedrockAgentCoreControlClient:
             branch_name: <p>The branch name for version tracking. Defaults to <code>mainline</code> if not specified.</p>
             commit_message: <p>A commit message describing the initial version of the configuration bundle.</p>
             created_by: <p>The source that created this version, including the source name and optional ARN.</p>
+            kms_key_arn: <p>Optional KMS key ARN for encrypting component configurations.</p>
             tags: <p>A map of tag keys and values to assign to the configuration bundle. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.</p>
 
         Raises:
@@ -3154,6 +3715,8 @@ class BedrockAgentCoreControlClient:
             input_["commit_message"] = commit_message
         if created_by is not None:
             input_["created_by"] = created_by
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
         if tags is not None:
             input_["tags"] = tags
 
@@ -3221,6 +3784,7 @@ class BedrockAgentCoreControlClient:
     def update_configuration_bundle(
         self,
         bundle_id: "capo_bedrock_agentcore_control.types.configuration_bundle_id.ConfigurationBundleId",
+        parent_version_ids: "capo_bedrock_agentcore_control.types.configuration_bundle_version_list.ConfigurationBundleVersionList",
         *,
         config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
         client_token: Optional[
@@ -3235,15 +3799,15 @@ class BedrockAgentCoreControlClient:
         components: Optional[
             "capo_bedrock_agentcore_control.types.component_configuration_map.ComponentConfigurationMap"
         ] = None,
-        parent_version_ids: Optional[
-            "capo_bedrock_agentcore_control.types.configuration_bundle_version_list.ConfigurationBundleVersionList"
-        ] = None,
         branch_name: Optional[
             "capo_bedrock_agentcore_control.types.branch_name.BranchName"
         ] = None,
         commit_message: Optional[str] = None,
         created_by: Optional[
             "capo_bedrock_agentcore_control.types.version_created_by_source.VersionCreatedBySource"
+        ] = None,
+        kms_key_arn: Optional[
+            "capo_bedrock_agentcore_control.types.kms_key_arn.KmsKeyArn"
         ] = None,
     ) -> "capo_bedrock_agentcore_control.types.update_configuration_bundle_response.UpdateConfigurationBundleResponse":
         r"""<p>Updates a configuration bundle by creating a new version with the specified changes. Each update creates a new version in the version history.</p>
@@ -3258,6 +3822,7 @@ class BedrockAgentCoreControlClient:
             branch_name: <p>The branch name for this version. If not specified, inherits the parent's branch or defaults to <code>mainline</code>.</p>
             commit_message: <p>A commit message describing the changes in this version.</p>
             created_by: <p>The source that created this version, including the source name and optional ARN.</p>
+            kms_key_arn: <p>Optional KMS key ARN for encrypting component configurations. If provided, components will be encrypted with this key. If the bundle already has a KMS key, this rotates to the new key.</p>
 
         Raises:
             capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
@@ -3285,7 +3850,8 @@ class BedrockAgentCoreControlClient:
 
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_bedrock_agentcore_control.types.update_configuration_bundle_request.UpdateConfigurationBundleRequest = {
-            "bundle_id": bundle_id
+            "bundle_id": bundle_id,
+            "parent_version_ids": parent_version_ids,
         }
         if client_token is None:
             client_token = str(uuid.uuid4())
@@ -3296,14 +3862,14 @@ class BedrockAgentCoreControlClient:
             input_["description"] = description
         if components is not None:
             input_["components"] = components
-        if parent_version_ids is not None:
-            input_["parent_version_ids"] = parent_version_ids
         if branch_name is not None:
             input_["branch_name"] = branch_name
         if commit_message is not None:
             input_["commit_message"] = commit_message
         if created_by is not None:
             input_["created_by"] = created_by
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -3564,6 +4130,311 @@ class BedrockAgentCoreControlClient:
                 filter=filter,
             )
             _page = _resolve_path(_response, ("versions",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def create_consent_portal(
+        self,
+        execution_role_arn: "capo_bedrock_agentcore_control.types.execution_role_arn_type.ExecutionRoleArnType",
+        idp_config: "capo_bedrock_agentcore_control.types.consent_portal_idp_config.ConsentPortalIdpConfig",
+        name: "capo_bedrock_agentcore_control.types.consent_portal_name_type.ConsentPortalNameType",
+        sources: "capo_bedrock_agentcore_control.types.consent_portal_sources.ConsentPortalSources",
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        description: Optional[
+            "capo_bedrock_agentcore_control.types.consent_portal_description_type.ConsentPortalDescriptionType"
+        ] = None,
+        tags: Optional["capo_bedrock_agentcore_control.types.tags_map.TagsMap"] = None,
+    ) -> "capo_bedrock_agentcore_control.types.create_consent_portal_response.CreateConsentPortalResponse":
+        """<p>Creates a new consent portal.</p>
+
+        Args:
+            execution_role_arn: <p>The Amazon Resource Name (ARN) of the IAM role that the consent portal assumes to access the resources defined in its sources.</p>
+            idp_config: <p>The identity provider configuration that the consent portal uses to authenticate end users.</p>
+            name: <p>The name of the consent portal. The name must be unique within your account.</p>
+            sources: <p>The resources served by the consent portal. Currently, we only support type <code>agentcore-gateway</code>.</p>
+            description: <p>The description of the consent portal.</p>
+            tags: <p>A map of tag keys and values to assign to the consent portal. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.</p>
+
+        Raises:
+            capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
+            capo_bedrock_agentcore_control.errors.conflict_exception.ConflictException: <p>This exception is thrown when there is a conflict performing an operation</p>
+            capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
+            capo_bedrock_agentcore_control.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>This exception is thrown when a request is made beyond the service quota</p>
+            capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
+            capo_bedrock_agentcore_control.errors.unauthorized_exception.UnauthorizedException: <p>This exception is thrown when the JWT bearer token is invalid or not found for OAuth bearer token based access</p>
+            capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_bedrock_agentcore_control.types.create_consent_portal_request.CreateConsentPortalRequest]",
+        ) -> OperationResponse[
+            "capo_bedrock_agentcore_control.types.create_consent_portal_response.CreateConsentPortalResponse"
+        ]:
+            import capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.create_consent_portal
+
+            output, http_response = (
+                capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.create_consent_portal.create_consent_portal(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore_control.types.create_consent_portal_request.CreateConsentPortalRequest = {
+            "execution_role_arn": execution_role_arn,
+            "idp_config": idp_config,
+            "name": name,
+            "sources": sources,
+        }
+        if description is not None:
+            input_["description"] = description
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_consent_portal(
+        self,
+        consent_portal_identifier: "capo_bedrock_agentcore_control.types.consent_portal_identifier.ConsentPortalIdentifier",
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+    ) -> "capo_bedrock_agentcore_control.types.get_consent_portal_response.GetConsentPortalResponse":
+        """<p>Retrieves information about a consent portal.</p>
+
+        Args:
+            consent_portal_identifier: <p>The identifier of the consent portal. You can specify either the consent portal ID or its Amazon Resource Name (ARN).</p>
+
+        Raises:
+            capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
+            capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
+            capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
+            capo_bedrock_agentcore_control.errors.unauthorized_exception.UnauthorizedException: <p>This exception is thrown when the JWT bearer token is invalid or not found for OAuth bearer token based access</p>
+            capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_bedrock_agentcore_control.types.get_consent_portal_request.GetConsentPortalRequest]",
+        ) -> OperationResponse[
+            "capo_bedrock_agentcore_control.types.get_consent_portal_response.GetConsentPortalResponse"
+        ]:
+            import capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.get_consent_portal
+
+            output, http_response = (
+                capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.get_consent_portal.get_consent_portal(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore_control.types.get_consent_portal_request.GetConsentPortalRequest = {
+            "consent_portal_identifier": consent_portal_identifier
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_consent_portal(
+        self,
+        consent_portal_identifier: "capo_bedrock_agentcore_control.types.consent_portal_identifier.ConsentPortalIdentifier",
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        execution_role_arn: Optional[
+            "capo_bedrock_agentcore_control.types.execution_role_arn_type.ExecutionRoleArnType"
+        ] = None,
+        idp_config: Optional[
+            "capo_bedrock_agentcore_control.types.consent_portal_idp_config.ConsentPortalIdpConfig"
+        ] = None,
+        description: Optional[
+            "capo_bedrock_agentcore_control.types.consent_portal_description_type.ConsentPortalDescriptionType"
+        ] = None,
+    ) -> "capo_bedrock_agentcore_control.types.update_consent_portal_response.UpdateConsentPortalResponse":
+        """<p>Updates an existing consent portal.</p>
+
+        Args:
+            consent_portal_identifier: <p>The identifier of the consent portal. You can specify either the consent portal ID or its Amazon Resource Name (ARN).</p>
+            execution_role_arn: <p>The Amazon Resource Name (ARN) of the IAM role that the consent portal assumes to access the resources defined in its sources.</p>
+            idp_config: <p>The identity provider configuration that the consent portal uses to authenticate end users.</p>
+            description: <p>The description of the consent portal.</p>
+
+        Raises:
+            capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
+            capo_bedrock_agentcore_control.errors.conflict_exception.ConflictException: <p>This exception is thrown when there is a conflict performing an operation</p>
+            capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
+            capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
+            capo_bedrock_agentcore_control.errors.unauthorized_exception.UnauthorizedException: <p>This exception is thrown when the JWT bearer token is invalid or not found for OAuth bearer token based access</p>
+            capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_bedrock_agentcore_control.types.update_consent_portal_request.UpdateConsentPortalRequest]",
+        ) -> OperationResponse[
+            "capo_bedrock_agentcore_control.types.update_consent_portal_response.UpdateConsentPortalResponse"
+        ]:
+            import capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.update_consent_portal
+
+            output, http_response = (
+                capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.update_consent_portal.update_consent_portal(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore_control.types.update_consent_portal_request.UpdateConsentPortalRequest = {
+            "consent_portal_identifier": consent_portal_identifier
+        }
+        if execution_role_arn is not None:
+            input_["execution_role_arn"] = execution_role_arn
+        if idp_config is not None:
+            input_["idp_config"] = idp_config
+        if description is not None:
+            input_["description"] = description
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_consent_portal(
+        self,
+        consent_portal_identifier: "capo_bedrock_agentcore_control.types.consent_portal_identifier.ConsentPortalIdentifier",
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+    ) -> "capo_bedrock_agentcore_control.types.delete_consent_portal_response.DeleteConsentPortalResponse":
+        """<p>Deletes a consent portal.</p>
+
+        Args:
+            consent_portal_identifier: <p>The identifier of the consent portal. You can specify either the consent portal ID or its Amazon Resource Name (ARN).</p>
+
+        Raises:
+            capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
+            capo_bedrock_agentcore_control.errors.conflict_exception.ConflictException: <p>This exception is thrown when there is a conflict performing an operation</p>
+            capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
+            capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
+            capo_bedrock_agentcore_control.errors.unauthorized_exception.UnauthorizedException: <p>This exception is thrown when the JWT bearer token is invalid or not found for OAuth bearer token based access</p>
+            capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_bedrock_agentcore_control.types.delete_consent_portal_request.DeleteConsentPortalRequest]",
+        ) -> OperationResponse[
+            "capo_bedrock_agentcore_control.types.delete_consent_portal_response.DeleteConsentPortalResponse"
+        ]:
+            import capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.delete_consent_portal
+
+            output, http_response = (
+                capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.delete_consent_portal.delete_consent_portal(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore_control.types.delete_consent_portal_request.DeleteConsentPortalRequest = {
+            "consent_portal_identifier": consent_portal_identifier
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_consent_portals(
+        self,
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        max_results: Optional[int] = None,
+        next_token: Optional[str] = None,
+    ) -> "capo_bedrock_agentcore_control.types.list_consent_portals_response.ListConsentPortalsResponse":
+        """<p>Lists all of the consent portals in your account.</p>
+
+        Args:
+            max_results: <p>The maximum number of consent portals to return in a single call.</p>
+            next_token: <p>A token to retrieve the next page of results. Use the value returned in a previous response to request the next page.</p>
+
+        Raises:
+            capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
+            capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
+            capo_bedrock_agentcore_control.errors.unauthorized_exception.UnauthorizedException: <p>This exception is thrown when the JWT bearer token is invalid or not found for OAuth bearer token based access</p>
+            capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_bedrock_agentcore_control.types.list_consent_portals_request.ListConsentPortalsRequest]",
+        ) -> OperationResponse[
+            "capo_bedrock_agentcore_control.types.list_consent_portals_response.ListConsentPortalsResponse"
+        ]:
+            import capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.list_consent_portals
+
+            output, http_response = (
+                capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.list_consent_portals.list_consent_portals(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore_control.types.list_consent_portals_request.ListConsentPortalsRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_consent_portals(
+        self,
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        max_results: Optional[int] = None,
+        next_token: Optional[str] = None,
+    ) -> "Iterator[capo_bedrock_agentcore_control.types.consent_portal_summary.ConsentPortalSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_consent_portals(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("consent_portals",))
             for _item in _page or []:
                 yield _item
             _token = _resolve_path(_response, ("next_token",))
@@ -4613,6 +5484,386 @@ class BedrockAgentCoreControlClient:
             if not _token:
                 break
 
+    def batch_put_gateway_rate_limits(
+        self,
+        gateway_identifier: "capo_bedrock_agentcore_control.types.gateway_identifier.GatewayIdentifier",
+        rate_limits: "capo_bedrock_agentcore_control.types.batch_put_limit_entries.BatchPutLimitEntries",
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        client_token: Optional[
+            "capo_bedrock_agentcore_control.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_bedrock_agentcore_control.types.batch_put_gateway_rate_limits_response.BatchPutGatewayRateLimitsResponse":
+        r"""<p>Atomically creates or updates multiple rate limits for a gateway. The operation updates existing limits with matching keys and creates new limits for new keys. If the operation fails, the service applies no changes. Retry the request after resolving the issue.</p>
+
+        Args:
+            gateway_identifier: <p>The unique identifier of the gateway.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
+            rate_limits: <p>The complete set of rate limits for this gateway. This operation replaces all existing rate limits in a single request. If the operation fails, no rate limits are changed.</p>
+
+        Raises:
+            capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
+            capo_bedrock_agentcore_control.errors.conflict_exception.ConflictException: <p>This exception is thrown when there is a conflict performing an operation</p>
+            capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
+            capo_bedrock_agentcore_control.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>This exception is thrown when a request is made beyond the service quota</p>
+            capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
+            capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_bedrock_agentcore_control.types.batch_put_gateway_rate_limits_request.BatchPutGatewayRateLimitsRequest]",
+        ) -> OperationResponse[
+            "capo_bedrock_agentcore_control.types.batch_put_gateway_rate_limits_response.BatchPutGatewayRateLimitsResponse"
+        ]:
+            import capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.batch_put_gateway_rate_limits
+
+            output, http_response = (
+                capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.batch_put_gateway_rate_limits.batch_put_gateway_rate_limits(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore_control.types.batch_put_gateway_rate_limits_request.BatchPutGatewayRateLimitsRequest = {
+            "gateway_identifier": gateway_identifier,
+            "rate_limits": rate_limits,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def create_gateway_rate_limit(
+        self,
+        gateway_identifier: "capo_bedrock_agentcore_control.types.gateway_identifier.GatewayIdentifier",
+        dimension_keys: "capo_bedrock_agentcore_control.types.dimension_keys.DimensionKeys",
+        entries: "capo_bedrock_agentcore_control.types.limit_entries.LimitEntries",
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        client_token: Optional[
+            "capo_bedrock_agentcore_control.types.client_token.ClientToken"
+        ] = None,
+        rate_limit_id: Optional[
+            "capo_bedrock_agentcore_control.types.gateway_rate_limit_id.GatewayRateLimitId"
+        ] = None,
+        description: Optional[
+            "capo_bedrock_agentcore_control.types.gateway_rate_limit_description.GatewayRateLimitDescription"
+        ] = None,
+    ) -> "capo_bedrock_agentcore_control.types.create_gateway_rate_limit_response.CreateGatewayRateLimitResponse":
+        r"""<p>Creates a rate limit for a gateway. Rate limits define throttling rules for each dimension that control request rates, token consumption rates, and concurrent connections through the gateway.</p>
+
+        Args:
+            gateway_identifier: <p>The unique identifier of the gateway to create the rate limit for.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
+            rate_limit_id: <p>An optional customer-defined identifier for the rate limit. If not provided, the system generates one.</p>
+            description: <p>An optional human-readable description for this rate limit. If not provided, the rate limit is created without a description.</p>
+            dimension_keys: <p>The ordered list of dimension key names that define the scope of this rate limit. Must be unique per gateway—no two rate limits can share the same dimension keys.</p>
+            entries: <p>The rule entries that map dimension values to rate configurations.</p>
+
+        Raises:
+            capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
+            capo_bedrock_agentcore_control.errors.conflict_exception.ConflictException: <p>This exception is thrown when there is a conflict performing an operation</p>
+            capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
+            capo_bedrock_agentcore_control.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>This exception is thrown when a request is made beyond the service quota</p>
+            capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
+            capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_bedrock_agentcore_control.types.create_gateway_rate_limit_request.CreateGatewayRateLimitRequest]",
+        ) -> OperationResponse[
+            "capo_bedrock_agentcore_control.types.create_gateway_rate_limit_response.CreateGatewayRateLimitResponse"
+        ]:
+            import capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.create_gateway_rate_limit
+
+            output, http_response = (
+                capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.create_gateway_rate_limit.create_gateway_rate_limit(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore_control.types.create_gateway_rate_limit_request.CreateGatewayRateLimitRequest = {
+            "gateway_identifier": gateway_identifier,
+            "dimension_keys": dimension_keys,
+            "entries": entries,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if rate_limit_id is not None:
+            input_["rate_limit_id"] = rate_limit_id
+        if description is not None:
+            input_["description"] = description
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_gateway_rate_limit(
+        self,
+        gateway_identifier: "capo_bedrock_agentcore_control.types.gateway_identifier.GatewayIdentifier",
+        rate_limit_id: "capo_bedrock_agentcore_control.types.gateway_rate_limit_id.GatewayRateLimitId",
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+    ) -> "capo_bedrock_agentcore_control.types.delete_gateway_rate_limit_response.DeleteGatewayRateLimitResponse":
+        """<p>Deletes a gateway rate limit.</p>
+
+        Args:
+            gateway_identifier: <p>The unique identifier of the gateway.</p>
+            rate_limit_id: <p>The unique identifier of the rate limit to delete.</p>
+
+        Raises:
+            capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
+            capo_bedrock_agentcore_control.errors.conflict_exception.ConflictException: <p>This exception is thrown when there is a conflict performing an operation</p>
+            capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
+            capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
+            capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_bedrock_agentcore_control.types.delete_gateway_rate_limit_request.DeleteGatewayRateLimitRequest]",
+        ) -> OperationResponse[
+            "capo_bedrock_agentcore_control.types.delete_gateway_rate_limit_response.DeleteGatewayRateLimitResponse"
+        ]:
+            import capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.delete_gateway_rate_limit
+
+            output, http_response = (
+                capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.delete_gateway_rate_limit.delete_gateway_rate_limit(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore_control.types.delete_gateway_rate_limit_request.DeleteGatewayRateLimitRequest = {
+            "gateway_identifier": gateway_identifier,
+            "rate_limit_id": rate_limit_id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_gateway_rate_limit(
+        self,
+        gateway_identifier: "capo_bedrock_agentcore_control.types.gateway_identifier.GatewayIdentifier",
+        rate_limit_id: "capo_bedrock_agentcore_control.types.gateway_rate_limit_id.GatewayRateLimitId",
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+    ) -> "capo_bedrock_agentcore_control.types.get_gateway_rate_limit_response.GetGatewayRateLimitResponse":
+        """<p>Retrieves information about a gateway rate limit.</p>
+
+        Args:
+            gateway_identifier: <p>The unique identifier of the gateway.</p>
+            rate_limit_id: <p>The unique identifier of the rate limit to retrieve.</p>
+
+        Raises:
+            capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
+            capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
+            capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
+            capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_bedrock_agentcore_control.types.get_gateway_rate_limit_request.GetGatewayRateLimitRequest]",
+        ) -> OperationResponse[
+            "capo_bedrock_agentcore_control.types.get_gateway_rate_limit_response.GetGatewayRateLimitResponse"
+        ]:
+            import capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.get_gateway_rate_limit
+
+            output, http_response = (
+                capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.get_gateway_rate_limit.get_gateway_rate_limit(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore_control.types.get_gateway_rate_limit_request.GetGatewayRateLimitRequest = {
+            "gateway_identifier": gateway_identifier,
+            "rate_limit_id": rate_limit_id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_gateway_rate_limits(
+        self,
+        gateway_identifier: "capo_bedrock_agentcore_control.types.gateway_identifier.GatewayIdentifier",
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        max_results: Optional[
+            "capo_bedrock_agentcore_control.types.gateway_rate_limit_max_results.GatewayRateLimitMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_bedrock_agentcore_control.types.gateway_rate_limit_next_token.GatewayRateLimitNextToken"
+        ] = None,
+    ) -> "capo_bedrock_agentcore_control.types.list_gateway_rate_limits_response.ListGatewayRateLimitsResponse":
+        """<p>Lists all rate limits for a gateway. Results are paginated. Use the <code>nextToken</code> parameter to retrieve additional results.</p>
+
+        Args:
+            gateway_identifier: <p>The unique identifier of the gateway.</p>
+            max_results: <p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>
+            next_token: <p>The token to use to retrieve the next page of results. Use the value returned in a previous <code>ListGatewayRateLimits</code> response.</p>
+
+        Raises:
+            capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
+            capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
+            capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
+            capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_bedrock_agentcore_control.types.list_gateway_rate_limits_request.ListGatewayRateLimitsRequest]",
+        ) -> OperationResponse[
+            "capo_bedrock_agentcore_control.types.list_gateway_rate_limits_response.ListGatewayRateLimitsResponse"
+        ]:
+            import capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.list_gateway_rate_limits
+
+            output, http_response = (
+                capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.list_gateway_rate_limits.list_gateway_rate_limits(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore_control.types.list_gateway_rate_limits_request.ListGatewayRateLimitsRequest = {
+            "gateway_identifier": gateway_identifier
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_gateway_rate_limits(
+        self,
+        gateway_identifier: "capo_bedrock_agentcore_control.types.gateway_identifier.GatewayIdentifier",
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        max_results: Optional[
+            "capo_bedrock_agentcore_control.types.gateway_rate_limit_max_results.GatewayRateLimitMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_bedrock_agentcore_control.types.gateway_rate_limit_next_token.GatewayRateLimitNextToken"
+        ] = None,
+    ) -> "Iterator[capo_bedrock_agentcore_control.types.gateway_rate_limit_detail.GatewayRateLimitDetail]":
+        _token = next_token
+        while True:
+            _response = self.list_gateway_rate_limits(
+                gateway_identifier,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("rate_limits",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def update_gateway_rate_limit(
+        self,
+        gateway_identifier: "capo_bedrock_agentcore_control.types.gateway_identifier.GatewayIdentifier",
+        rate_limit_id: "capo_bedrock_agentcore_control.types.gateway_rate_limit_id.GatewayRateLimitId",
+        entries: "capo_bedrock_agentcore_control.types.limit_entries.LimitEntries",
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        description: Optional[
+            "capo_bedrock_agentcore_control.types.gateway_rate_limit_description.GatewayRateLimitDescription"
+        ] = None,
+    ) -> "capo_bedrock_agentcore_control.types.update_gateway_rate_limit_response.UpdateGatewayRateLimitResponse":
+        """<p>Updates the entries of a gateway rate limit. The dimension keys are immutable after creation.</p>
+
+        Args:
+            gateway_identifier: <p>The unique identifier of the gateway.</p>
+            rate_limit_id: <p>The unique identifier of the rate limit to update.</p>
+            description: <p>The updated human-readable description for this rate limit.</p>
+            entries: <p>The updated rule entries. The dimension keys are immutable after creation and cannot be changed.</p>
+
+        Raises:
+            capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
+            capo_bedrock_agentcore_control.errors.conflict_exception.ConflictException: <p>This exception is thrown when there is a conflict performing an operation</p>
+            capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
+            capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
+            capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_bedrock_agentcore_control.types.update_gateway_rate_limit_request.UpdateGatewayRateLimitRequest]",
+        ) -> OperationResponse[
+            "capo_bedrock_agentcore_control.types.update_gateway_rate_limit_response.UpdateGatewayRateLimitResponse"
+        ]:
+            import capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.update_gateway_rate_limit
+
+            output, http_response = (
+                capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.update_gateway_rate_limit.update_gateway_rate_limit(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore_control.types.update_gateway_rate_limit_request.UpdateGatewayRateLimitRequest = {
+            "gateway_identifier": gateway_identifier,
+            "rate_limit_id": rate_limit_id,
+            "entries": entries,
+        }
+        if description is not None:
+            input_["description"] = description
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def create_gateway(
         self,
         name: "capo_bedrock_agentcore_control.types.gateway_name.GatewayName",
@@ -4925,6 +6176,9 @@ class BedrockAgentCoreControlClient:
         kms_key_arn: Optional[
             "capo_bedrock_agentcore_control.types.kms_key_arn.KmsKeyArn"
         ] = None,
+        custom_transform_configuration: Optional[
+            "capo_bedrock_agentcore_control.types.custom_transform_configuration.CustomTransformConfiguration"
+        ] = None,
         interceptor_configurations: Optional[
             "capo_bedrock_agentcore_control.types.gateway_interceptor_configurations.GatewayInterceptorConfigurations"
         ] = None,
@@ -4933,6 +6187,9 @@ class BedrockAgentCoreControlClient:
         ] = None,
         exception_level: Optional[
             "capo_bedrock_agentcore_control.types.exception_level.ExceptionLevel"
+        ] = None,
+        waf_configuration: Optional[
+            "capo_bedrock_agentcore_control.types.waf_configuration.WafConfiguration"
         ] = None,
     ) -> "capo_bedrock_agentcore_control.types.update_gateway_response.UpdateGatewayResponse":
         """<p>Updates an existing gateway.</p>
@@ -4946,9 +6203,11 @@ class BedrockAgentCoreControlClient:
             authorizer_type: <p>The updated authorizer type for the gateway.</p>
             authorizer_configuration: <p>The updated authorizer configuration for the gateway.</p>
             kms_key_arn: <p>The updated ARN of the KMS key used to encrypt the gateway.</p>
+            custom_transform_configuration: <p>The updated custom transformation configuration for the gateway. This configuration defines how the gateway transforms requests and responses.</p>
             interceptor_configurations: <p>The updated interceptor configurations for the gateway.</p>
             policy_engine_configuration: <p>The updated policy engine configuration for the gateway. A policy engine is a collection of policies that evaluates and authorizes agent tool calls. When associated with a gateway, the policy engine intercepts all agent requests and determines whether to allow or deny each action based on the defined policies.</p>
             exception_level: <p>The level of detail in error messages returned when invoking the gateway.</p> <ul> <li> <p>If the value is <code>DEBUG</code>, granular exception messages are returned to help a user debug the gateway.</p> </li> <li> <p>If the value is omitted, a generic error message is returned to the end user.</p> </li> </ul>
+            waf_configuration: <p>The updated Amazon Web Services WAF configuration for the gateway.</p>
 
         Raises:
             capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
@@ -4992,12 +6251,16 @@ class BedrockAgentCoreControlClient:
             input_["authorizer_configuration"] = authorizer_configuration
         if kms_key_arn is not None:
             input_["kms_key_arn"] = kms_key_arn
+        if custom_transform_configuration is not None:
+            input_["custom_transform_configuration"] = custom_transform_configuration
         if interceptor_configurations is not None:
             input_["interceptor_configurations"] = interceptor_configurations
         if policy_engine_configuration is not None:
             input_["policy_engine_configuration"] = policy_engine_configuration
         if exception_level is not None:
             input_["exception_level"] = exception_level
+        if waf_configuration is not None:
+            input_["waf_configuration"] = waf_configuration
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -5346,10 +6609,12 @@ class BedrockAgentCoreControlClient:
     def create_gateway_target(
         self,
         gateway_identifier: "capo_bedrock_agentcore_control.types.gateway_identifier.GatewayIdentifier",
-        name: "capo_bedrock_agentcore_control.types.target_name.TargetName",
         target_configuration: "capo_bedrock_agentcore_control.types.target_configuration.TargetConfiguration",
         *,
         config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        name: Optional[
+            "capo_bedrock_agentcore_control.types.target_name.TargetName"
+        ] = None,
         description: Optional[
             "capo_bedrock_agentcore_control.types.target_description.TargetDescription"
         ] = None,
@@ -5406,9 +6671,10 @@ class BedrockAgentCoreControlClient:
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_bedrock_agentcore_control.types.create_gateway_target_request.CreateGatewayTargetRequest = {
             "gateway_identifier": gateway_identifier,
-            "name": name,
             "target_configuration": target_configuration,
         }
+        if name is not None:
+            input_["name"] = name
         if description is not None:
             input_["description"] = description
         if client_token is None:
@@ -5554,6 +6820,7 @@ class BedrockAgentCoreControlClient:
         Raises:
             capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
             capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
             capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
             capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
             capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -5673,10 +6940,12 @@ class BedrockAgentCoreControlClient:
         self,
         gateway_identifier: "capo_bedrock_agentcore_control.types.gateway_identifier.GatewayIdentifier",
         target_id: "capo_bedrock_agentcore_control.types.target_id.TargetId",
-        name: "capo_bedrock_agentcore_control.types.target_name.TargetName",
         target_configuration: "capo_bedrock_agentcore_control.types.target_configuration.TargetConfiguration",
         *,
         config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        name: Optional[
+            "capo_bedrock_agentcore_control.types.target_name.TargetName"
+        ] = None,
         description: Optional[
             "capo_bedrock_agentcore_control.types.target_description.TargetDescription"
         ] = None,
@@ -5730,9 +6999,10 @@ class BedrockAgentCoreControlClient:
         input_: capo_bedrock_agentcore_control.types.update_gateway_target_request.UpdateGatewayTargetRequest = {
             "gateway_identifier": gateway_identifier,
             "target_id": target_id,
-            "name": name,
             "target_configuration": target_configuration,
         }
+        if name is not None:
+            input_["name"] = name
         if description is not None:
             input_["description"] = description
         if credential_provider_configurations is not None:
@@ -5743,6 +7013,346 @@ class BedrockAgentCoreControlClient:
             input_["metadata_configuration"] = metadata_configuration
         if private_endpoint is not None:
             input_["private_endpoint"] = private_endpoint
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def create_harness_endpoint(
+        self,
+        harness_id: "capo_bedrock_agentcore_control.types.harness_id.HarnessId",
+        endpoint_name: "capo_bedrock_agentcore_control.types.harness_endpoint_name.HarnessEndpointName",
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        target_version: Optional[
+            "capo_bedrock_agentcore_control.types.harness_version.HarnessVersion"
+        ] = None,
+        description: Optional[
+            "capo_bedrock_agentcore_control.types.harness_endpoint_description.HarnessEndpointDescription"
+        ] = None,
+        client_token: Optional[
+            "capo_bedrock_agentcore_control.types.client_token.ClientToken"
+        ] = None,
+        tags: Optional["capo_bedrock_agentcore_control.types.tags_map.TagsMap"] = None,
+    ) -> "capo_bedrock_agentcore_control.types.create_harness_endpoint_response.CreateHarnessEndpointResponse":
+        """<p>Operation to create a harness endpoint.</p>
+
+        Args:
+            harness_id: <p>The ID of the harness to create an endpoint for.</p>
+            endpoint_name: <p>The name of the endpoint. Must start with a letter and contain only alphanumeric characters and underscores.</p>
+            target_version: <p>The harness version that the endpoint points to and serves invocations from.</p>
+            description: <p>A description of the endpoint.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request.</p>
+            tags: <p>Tags to apply to the endpoint resource.</p>
+
+        Raises:
+            capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
+            capo_bedrock_agentcore_control.errors.conflict_exception.ConflictException: <p>This exception is thrown when there is a conflict performing an operation</p>
+            capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
+            capo_bedrock_agentcore_control.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>This exception is thrown when a request is made beyond the service quota</p>
+            capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
+            capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_bedrock_agentcore_control.types.create_harness_endpoint_request.CreateHarnessEndpointRequest]",
+        ) -> OperationResponse[
+            "capo_bedrock_agentcore_control.types.create_harness_endpoint_response.CreateHarnessEndpointResponse"
+        ]:
+            import capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.create_harness_endpoint
+
+            output, http_response = (
+                capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.create_harness_endpoint.create_harness_endpoint(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore_control.types.create_harness_endpoint_request.CreateHarnessEndpointRequest = {
+            "harness_id": harness_id,
+            "endpoint_name": endpoint_name,
+        }
+        if target_version is not None:
+            input_["target_version"] = target_version
+        if description is not None:
+            input_["description"] = description
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_harness_endpoint(
+        self,
+        harness_id: "capo_bedrock_agentcore_control.types.harness_id.HarnessId",
+        endpoint_name: "capo_bedrock_agentcore_control.types.harness_endpoint_name.HarnessEndpointName",
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        client_token: Optional[
+            "capo_bedrock_agentcore_control.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_bedrock_agentcore_control.types.delete_harness_endpoint_response.DeleteHarnessEndpointResponse":
+        """<p>Operation to delete a harness endpoint.</p>
+
+        Args:
+            harness_id: <p>The ID of the harness that the endpoint belongs to.</p>
+            endpoint_name: <p>The name of the endpoint to delete.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request.</p>
+
+        Raises:
+            capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
+            capo_bedrock_agentcore_control.errors.conflict_exception.ConflictException: <p>This exception is thrown when there is a conflict performing an operation</p>
+            capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
+            capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
+            capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_bedrock_agentcore_control.types.delete_harness_endpoint_request.DeleteHarnessEndpointRequest]",
+        ) -> OperationResponse[
+            "capo_bedrock_agentcore_control.types.delete_harness_endpoint_response.DeleteHarnessEndpointResponse"
+        ]:
+            import capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.delete_harness_endpoint
+
+            output, http_response = (
+                capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.delete_harness_endpoint.delete_harness_endpoint(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore_control.types.delete_harness_endpoint_request.DeleteHarnessEndpointRequest = {
+            "harness_id": harness_id,
+            "endpoint_name": endpoint_name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_harness_endpoint(
+        self,
+        harness_id: "capo_bedrock_agentcore_control.types.harness_id.HarnessId",
+        endpoint_name: "capo_bedrock_agentcore_control.types.harness_endpoint_name.HarnessEndpointName",
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+    ) -> "capo_bedrock_agentcore_control.types.get_harness_endpoint_response.GetHarnessEndpointResponse":
+        """<p>Operation to get a single harness endpoint.</p>
+
+        Args:
+            harness_id: <p>The ID of the harness that the endpoint belongs to.</p>
+            endpoint_name: <p>The name of the endpoint to retrieve.</p>
+
+        Raises:
+            capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
+            capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
+            capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
+            capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_bedrock_agentcore_control.types.get_harness_endpoint_request.GetHarnessEndpointRequest]",
+        ) -> OperationResponse[
+            "capo_bedrock_agentcore_control.types.get_harness_endpoint_response.GetHarnessEndpointResponse"
+        ]:
+            import capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.get_harness_endpoint
+
+            output, http_response = (
+                capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.get_harness_endpoint.get_harness_endpoint(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore_control.types.get_harness_endpoint_request.GetHarnessEndpointRequest = {
+            "harness_id": harness_id,
+            "endpoint_name": endpoint_name,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_harness_endpoints(
+        self,
+        harness_id: "capo_bedrock_agentcore_control.types.harness_id.HarnessId",
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        max_results: Optional[
+            "capo_bedrock_agentcore_control.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_bedrock_agentcore_control.types.next_token.NextToken"
+        ] = None,
+    ) -> "capo_bedrock_agentcore_control.types.list_harness_endpoints_response.ListHarnessEndpointsResponse":
+        """<p>Operation to list the endpoints of a harness.</p>
+
+        Args:
+            harness_id: <p>The ID of the harness whose endpoints are listed.</p>
+            max_results: <p>The maximum number of results to return in a single call.</p>
+            next_token: <p>The token for the next set of results.</p>
+
+        Raises:
+            capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
+            capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
+            capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
+            capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_bedrock_agentcore_control.types.list_harness_endpoints_request.ListHarnessEndpointsRequest]",
+        ) -> OperationResponse[
+            "capo_bedrock_agentcore_control.types.list_harness_endpoints_response.ListHarnessEndpointsResponse"
+        ]:
+            import capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.list_harness_endpoints
+
+            output, http_response = (
+                capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.list_harness_endpoints.list_harness_endpoints(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore_control.types.list_harness_endpoints_request.ListHarnessEndpointsRequest = {
+            "harness_id": harness_id
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_harness_endpoints(
+        self,
+        harness_id: "capo_bedrock_agentcore_control.types.harness_id.HarnessId",
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        max_results: Optional[
+            "capo_bedrock_agentcore_control.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_bedrock_agentcore_control.types.next_token.NextToken"
+        ] = None,
+    ) -> "Iterator[capo_bedrock_agentcore_control.types.harness_endpoint.HarnessEndpoint]":
+        _token = next_token
+        while True:
+            _response = self.list_harness_endpoints(
+                harness_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("endpoints",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def update_harness_endpoint(
+        self,
+        harness_id: "capo_bedrock_agentcore_control.types.harness_id.HarnessId",
+        endpoint_name: "capo_bedrock_agentcore_control.types.harness_endpoint_name.HarnessEndpointName",
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        target_version: Optional[
+            "capo_bedrock_agentcore_control.types.harness_version.HarnessVersion"
+        ] = None,
+        description: Optional[
+            "capo_bedrock_agentcore_control.types.harness_endpoint_description.HarnessEndpointDescription"
+        ] = None,
+        client_token: Optional[
+            "capo_bedrock_agentcore_control.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_bedrock_agentcore_control.types.update_harness_endpoint_response.UpdateHarnessEndpointResponse":
+        """<p>Operation to update a harness endpoint.</p>
+
+        Args:
+            harness_id: <p>The ID of the harness that the endpoint belongs to.</p>
+            endpoint_name: <p>The name of the endpoint to update.</p>
+            target_version: <p>The harness version that the endpoint points to. If not specified, the existing value is retained.</p>
+            description: <p>A description of the endpoint. If not specified, the existing value is retained.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request.</p>
+
+        Raises:
+            capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
+            capo_bedrock_agentcore_control.errors.conflict_exception.ConflictException: <p>This exception is thrown when there is a conflict performing an operation</p>
+            capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
+            capo_bedrock_agentcore_control.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>This exception is thrown when a request is made beyond the service quota</p>
+            capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
+            capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_bedrock_agentcore_control.types.update_harness_endpoint_request.UpdateHarnessEndpointRequest]",
+        ) -> OperationResponse[
+            "capo_bedrock_agentcore_control.types.update_harness_endpoint_response.UpdateHarnessEndpointResponse"
+        ]:
+            import capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.update_harness_endpoint
+
+            output, http_response = (
+                capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.update_harness_endpoint.update_harness_endpoint(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore_control.types.update_harness_endpoint_request.UpdateHarnessEndpointRequest = {
+            "harness_id": harness_id,
+            "endpoint_name": endpoint_name,
+        }
+        if target_version is not None:
+            input_["target_version"] = target_version
+        if description is not None:
+            input_["description"] = description
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -5794,12 +7404,15 @@ class BedrockAgentCoreControlClient:
         truncation: Optional[
             "capo_bedrock_agentcore_control.types.harness_truncation_configuration.HarnessTruncationConfiguration"
         ] = None,
+        hooks: Optional[
+            "capo_bedrock_agentcore_control.types.harness_hooks.HarnessHooks"
+        ] = None,
         max_iterations: Optional[int] = None,
         max_tokens: Optional[int] = None,
         timeout_seconds: Optional[int] = None,
         tags: Optional["capo_bedrock_agentcore_control.types.tags_map.TagsMap"] = None,
     ) -> "capo_bedrock_agentcore_control.types.create_harness_response.CreateHarnessResponse":
-        """<p>Operation to create a Harness.</p>
+        """<p>Operation to create a harness.</p>
 
         Args:
             harness_name: <p>The name of the harness. Must start with a letter and contain only alphanumeric characters and underscores.</p>
@@ -5815,6 +7428,7 @@ class BedrockAgentCoreControlClient:
             allowed_tools: <p>The tools that the agent is allowed to use. Supports glob patterns such as * for all tools, @builtin for all built-in tools, or @serverName/toolName for specific MCP server tools.</p>
             memory: <p>The AgentCore Memory configuration for persisting conversation context across sessions.</p>
             truncation: <p>The truncation configuration for managing conversation context when it exceeds model limits.</p>
+            hooks: <p>The lifecycle hooks to run at defined points in the agent loop.</p>
             max_iterations: <p>The maximum number of iterations the agent loop can execute per invocation.</p>
             max_tokens: <p>The maximum total number of output tokens the agent can generate across all model calls within a single invocation.</p>
             timeout_seconds: <p>The maximum duration in seconds for the agent loop execution per invocation.</p>
@@ -5874,6 +7488,8 @@ class BedrockAgentCoreControlClient:
             input_["memory"] = memory
         if truncation is not None:
             input_["truncation"] = truncation
+        if hooks is not None:
+            input_["hooks"] = hooks
         if max_iterations is not None:
             input_["max_iterations"] = max_iterations
         if max_tokens is not None:
@@ -5899,12 +7515,14 @@ class BedrockAgentCoreControlClient:
         client_token: Optional[
             "capo_bedrock_agentcore_control.types.client_token.ClientToken"
         ] = None,
+        delete_managed_memory: Optional[bool] = None,
     ) -> "capo_bedrock_agentcore_control.types.delete_harness_response.DeleteHarnessResponse":
         """<p>Operation to delete a Harness.</p>
 
         Args:
             harness_id: <p>The ID of the harness to delete.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request.</p>
+            delete_managed_memory: <p>Whether to delete the managed memory on harness deletion. Default: true. If false, the memory is disassociated and becomes a regular customer-owned resource.</p>
 
         Raises:
             capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
@@ -5937,6 +7555,8 @@ class BedrockAgentCoreControlClient:
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
+        if delete_managed_memory is not None:
+            input_["delete_managed_memory"] = delete_managed_memory
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -5951,11 +7571,15 @@ class BedrockAgentCoreControlClient:
         harness_id: "capo_bedrock_agentcore_control.types.harness_id.HarnessId",
         *,
         config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        harness_version: Optional[
+            "capo_bedrock_agentcore_control.types.harness_version.HarnessVersion"
+        ] = None,
     ) -> "capo_bedrock_agentcore_control.types.get_harness_response.GetHarnessResponse":
-        """<p>Operation to get a single Harness.</p>
+        """<p>Operation to get a single harness.</p>
 
         Args:
             harness_id: <p>The ID of the harness to retrieve.</p>
+            harness_version: <p>Specific version of the harness to retrieve. If omitted, returns the current Harness configuration, including its status.</p>
 
         Raises:
             capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
@@ -5984,6 +7608,8 @@ class BedrockAgentCoreControlClient:
         input_: capo_bedrock_agentcore_control.types.get_harness_request.GetHarnessRequest = {
             "harness_id": harness_id
         }
+        if harness_version is not None:
+            input_["harness_version"] = harness_version
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -6004,7 +7630,7 @@ class BedrockAgentCoreControlClient:
             "capo_bedrock_agentcore_control.types.next_token.NextToken"
         ] = None,
     ) -> "capo_bedrock_agentcore_control.types.list_harnesses_response.ListHarnessesResponse":
-        """<p>Operation to list Harnesses.</p>
+        """<p>Operation to list harnesses.</p>
 
         Args:
             max_results: <p>The maximum number of results to return in a single call.</p>
@@ -6074,6 +7700,92 @@ class BedrockAgentCoreControlClient:
             if not _token:
                 break
 
+    def list_harness_versions(
+        self,
+        harness_id: "capo_bedrock_agentcore_control.types.harness_id.HarnessId",
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        max_results: Optional[
+            "capo_bedrock_agentcore_control.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_bedrock_agentcore_control.types.next_token.NextToken"
+        ] = None,
+    ) -> "capo_bedrock_agentcore_control.types.list_harness_versions_response.ListHarnessVersionsResponse":
+        """<p>Operation to list the versions of a Harness.</p>
+
+        Args:
+            harness_id: <p>The ID of the harness whose versions are listed.</p>
+            max_results: <p>The maximum number of results to return in a single call.</p>
+            next_token: <p>The token for the next set of results.</p>
+
+        Raises:
+            capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
+            capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
+            capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
+            capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_bedrock_agentcore_control.types.list_harness_versions_request.ListHarnessVersionsRequest]",
+        ) -> OperationResponse[
+            "capo_bedrock_agentcore_control.types.list_harness_versions_response.ListHarnessVersionsResponse"
+        ]:
+            import capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.list_harness_versions
+
+            output, http_response = (
+                capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.list_harness_versions.list_harness_versions(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore_control.types.list_harness_versions_request.ListHarnessVersionsRequest = {
+            "harness_id": harness_id
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_harness_versions(
+        self,
+        harness_id: "capo_bedrock_agentcore_control.types.harness_id.HarnessId",
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        max_results: Optional[
+            "capo_bedrock_agentcore_control.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_bedrock_agentcore_control.types.next_token.NextToken"
+        ] = None,
+    ) -> "Iterator[capo_bedrock_agentcore_control.types.harness_version_summary.HarnessVersionSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_harness_versions(
+                harness_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("harness_versions",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     def update_harness(
         self,
         harness_id: "capo_bedrock_agentcore_control.types.harness_id.HarnessId",
@@ -6118,11 +7830,14 @@ class BedrockAgentCoreControlClient:
         truncation: Optional[
             "capo_bedrock_agentcore_control.types.harness_truncation_configuration.HarnessTruncationConfiguration"
         ] = None,
+        hooks: Optional[
+            "capo_bedrock_agentcore_control.types.harness_hooks.HarnessHooks"
+        ] = None,
         max_iterations: Optional[int] = None,
         max_tokens: Optional[int] = None,
         timeout_seconds: Optional[int] = None,
     ) -> "capo_bedrock_agentcore_control.types.update_harness_response.UpdateHarnessResponse":
-        """<p>Operation to update a Harness.</p>
+        """<p>Operation to update a harness.</p>
 
         Args:
             harness_id: <p>The ID of the harness to update.</p>
@@ -6138,6 +7853,7 @@ class BedrockAgentCoreControlClient:
             allowed_tools: <p>The tools that the agent is allowed to use. If specified, this replaces all existing allowed tools. If not specified, the existing value is retained.</p>
             memory: <p>The AgentCore Memory configuration. Use the optionalValue wrapper to set a new value, or set it to null to clear the existing configuration.</p>
             truncation: <p>The truncation configuration for managing conversation context. If not specified, the existing value is retained.</p>
+            hooks: <p>The lifecycle hooks to run at defined points in the agent loop. If specified, this replaces all existing hooks. If not specified, the existing hooks are retained.</p>
             max_iterations: <p>The maximum number of iterations the agent loop can execute per invocation. If not specified, the existing value is retained.</p>
             max_tokens: <p>The maximum total number of output tokens the agent can generate across all model calls within a single invocation. If not specified, the existing value is retained.</p>
             timeout_seconds: <p>The maximum duration in seconds for the agent loop execution per invocation. If not specified, the existing value is retained.</p>
@@ -6147,6 +7863,7 @@ class BedrockAgentCoreControlClient:
             capo_bedrock_agentcore_control.errors.conflict_exception.ConflictException: <p>This exception is thrown when there is a conflict performing an operation</p>
             capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
             capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
+            capo_bedrock_agentcore_control.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>This exception is thrown when a request is made beyond the service quota</p>
             capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
             capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
             capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -6197,6 +7914,8 @@ class BedrockAgentCoreControlClient:
             input_["memory"] = memory
         if truncation is not None:
             input_["truncation"] = truncation
+        if hooks is not None:
+            input_["hooks"] = hooks
         if max_iterations is not None:
             input_["max_iterations"] = max_iterations
         if max_tokens is not None:
@@ -6236,6 +7955,9 @@ class BedrockAgentCoreControlClient:
         indexed_keys: Optional[
             "capo_bedrock_agentcore_control.types.indexed_keys_list.IndexedKeysList"
         ] = None,
+        namespace_keys: Optional[
+            "capo_bedrock_agentcore_control.types.namespace_keys_list.NamespaceKeysList"
+        ] = None,
         stream_delivery_resources: Optional[
             "capo_bedrock_agentcore_control.types.stream_delivery_resources.StreamDeliveryResources"
         ] = None,
@@ -6252,6 +7974,7 @@ class BedrockAgentCoreControlClient:
             event_expiry_duration: <p>The duration after which memory events expire. Specified as an ISO 8601 duration.</p>
             memory_strategies: <p>The memory strategies to use for this memory. Strategies define how information is extracted, processed, and consolidated.</p>
             indexed_keys: <p>Metadata keys to index for filtering. Once declared, indexed keys cannot be removed.</p>
+            namespace_keys: <p>The namespace variable key definitions with optional validation rules. Use these <code>namespaceKeys</code> in <code>namespaceTemplates</code> to control namespace hierarchy.</p>
             stream_delivery_resources: <p>Configuration for streaming memory record data to external resources.</p>
             tags: <p>A map of tag keys and values to assign to an AgentCore Memory. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.</p>
 
@@ -6298,6 +8021,8 @@ class BedrockAgentCoreControlClient:
             input_["memory_strategies"] = memory_strategies
         if indexed_keys is not None:
             input_["indexed_keys"] = indexed_keys
+        if namespace_keys is not None:
+            input_["namespace_keys"] = namespace_keys
         if stream_delivery_resources is not None:
             input_["stream_delivery_resources"] = stream_delivery_resources
         if tags is not None:
@@ -6385,6 +8110,9 @@ class BedrockAgentCoreControlClient:
         add_indexed_keys: Optional[
             "capo_bedrock_agentcore_control.types.indexed_keys_list.IndexedKeysList"
         ] = None,
+        namespace_keys: Optional[
+            "capo_bedrock_agentcore_control.types.namespace_keys_list.NamespaceKeysList"
+        ] = None,
         stream_delivery_resources: Optional[
             "capo_bedrock_agentcore_control.types.stream_delivery_resources.StreamDeliveryResources"
         ] = None,
@@ -6399,6 +8127,7 @@ class BedrockAgentCoreControlClient:
             memory_execution_role_arn: <p>The ARN of the IAM role that provides permissions for the AgentCore Memory resource.</p>
             memory_strategies: <p>The memory strategies to add, modify, or delete.</p>
             add_indexed_keys: <p>Additional metadata keys to index. Previously indexed keys cannot be removed.</p>
+            namespace_keys: <p>The namespace variable key definitions with validation rules for this memory. This value fully replaces the existing set — any key you omit is removed. Any referenced <code>namespaceKey</code> omission will throw ValidationException.</p>
             stream_delivery_resources: <p>Configuration for streaming memory record data to external resources.</p>
 
         Raises:
@@ -6443,6 +8172,8 @@ class BedrockAgentCoreControlClient:
             input_["memory_strategies"] = memory_strategies
         if add_indexed_keys is not None:
             input_["add_indexed_keys"] = add_indexed_keys
+        if namespace_keys is not None:
+            input_["namespace_keys"] = namespace_keys
         if stream_delivery_resources is not None:
             input_["stream_delivery_resources"] = stream_delivery_resources
 
@@ -6463,7 +8194,7 @@ class BedrockAgentCoreControlClient:
             "capo_bedrock_agentcore_control.types.non_empty_string.NonEmptyString"
         ] = None,
     ) -> "capo_bedrock_agentcore_control.types.delete_memory_output.DeleteMemoryOutput":
-        """<p>Deletes an Amazon Bedrock AgentCore Memory resource.</p>
+        """<p>Deletes an Amazon Bedrock AgentCore Memory resource. When you delete a memory resource, it is permanently removed.</p>
 
         Args:
             client_token: <p>A client token is used for keeping track of idempotent requests. It can contain a session id which can be around 250 chars, combined with a unique AWS identifier.</p>
@@ -6878,7 +8609,6 @@ class BedrockAgentCoreControlClient:
         online_evaluation_config_name: "capo_bedrock_agentcore_control.types.evaluation_config_name.EvaluationConfigName",
         rule: "capo_bedrock_agentcore_control.types.rule.Rule",
         data_source_config: "capo_bedrock_agentcore_control.types.data_source_config.DataSourceConfig",
-        evaluators: "capo_bedrock_agentcore_control.types.evaluator_list.EvaluatorList",
         evaluation_execution_role_arn: "capo_bedrock_agentcore_control.types.role_arn.RoleArn",
         enable_on_create: bool,
         *,
@@ -6888,6 +8618,18 @@ class BedrockAgentCoreControlClient:
         ] = None,
         description: Optional[
             "capo_bedrock_agentcore_control.types.evaluation_config_description.EvaluationConfigDescription"
+        ] = None,
+        evaluators: Optional[
+            "capo_bedrock_agentcore_control.types.evaluator_list.EvaluatorList"
+        ] = None,
+        insights: Optional[
+            "capo_bedrock_agentcore_control.types.insight_list.InsightList"
+        ] = None,
+        clustering_config: Optional[
+            "capo_bedrock_agentcore_control.types.clustering_config.ClusteringConfig"
+        ] = None,
+        output_config: Optional[
+            "capo_bedrock_agentcore_control.types.output_config.OutputConfig"
         ] = None,
         tags: Optional["capo_bedrock_agentcore_control.types.tags_map.TagsMap"] = None,
     ) -> "capo_bedrock_agentcore_control.types.create_online_evaluation_config_response.CreateOnlineEvaluationConfigResponse":
@@ -6900,6 +8642,8 @@ class BedrockAgentCoreControlClient:
             rule: <p> The evaluation rule that defines sampling configuration, filters, and session detection settings for the online evaluation. </p>
             data_source_config: <p> The data source configuration that specifies CloudWatch log groups and service names to monitor for agent traces. </p>
             evaluators: <p> The list of evaluators to apply during online evaluation. Can include both built-in evaluators and custom evaluators created with <code>CreateEvaluator</code>. </p>
+            insights: <p>The list of insight types to run against agent sessions.</p>
+            clustering_config: <p>Configuration for periodic batch evaluation clustering of insight results.</p>
             evaluation_execution_role_arn: <p> The Amazon Resource Name (ARN) of the IAM role that grants permissions to read from CloudWatch logs, write evaluation results, and invoke Amazon Bedrock models for evaluation. If the configuration references evaluators encrypted with a customer managed KMS key, this role must also have <code>kms:Decrypt</code> permission on the KMS key. The service validates this permission at configuration creation time. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations-encryption.html\">Encryption at rest for AgentCore Evaluations</a>. </p>
             enable_on_create: <p> Whether to enable the online evaluation configuration immediately upon creation. If true, evaluation begins automatically. </p>
             tags: <p>A map of tag keys and values to assign to an AgentCore Online Evaluation Config. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.</p>
@@ -6933,7 +8677,6 @@ class BedrockAgentCoreControlClient:
             "online_evaluation_config_name": online_evaluation_config_name,
             "rule": rule,
             "data_source_config": data_source_config,
-            "evaluators": evaluators,
             "evaluation_execution_role_arn": evaluation_execution_role_arn,
             "enable_on_create": enable_on_create,
         }
@@ -6942,6 +8685,14 @@ class BedrockAgentCoreControlClient:
         input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
+        if evaluators is not None:
+            input_["evaluators"] = evaluators
+        if insights is not None:
+            input_["insights"] = insights
+        if clustering_config is not None:
+            input_["clustering_config"] = clustering_config
+        if output_config is not None:
+            input_["output_config"] = output_config
         if tags is not None:
             input_["tags"] = tags
 
@@ -7018,6 +8769,15 @@ class BedrockAgentCoreControlClient:
         evaluators: Optional[
             "capo_bedrock_agentcore_control.types.evaluator_list.EvaluatorList"
         ] = None,
+        insights: Optional[
+            "capo_bedrock_agentcore_control.types.insight_list.InsightList"
+        ] = None,
+        clustering_config: Optional[
+            "capo_bedrock_agentcore_control.types.clustering_config.ClusteringConfig"
+        ] = None,
+        output_config: Optional[
+            "capo_bedrock_agentcore_control.types.output_config.OutputConfig"
+        ] = None,
         evaluation_execution_role_arn: Optional[
             "capo_bedrock_agentcore_control.types.role_arn.RoleArn"
         ] = None,
@@ -7034,6 +8794,8 @@ class BedrockAgentCoreControlClient:
             rule: <p> The updated evaluation rule containing sampling configuration, filters, and session settings. </p>
             data_source_config: <p> The updated data source configuration specifying CloudWatch log groups and service names to monitor. </p>
             evaluators: <p> The updated list of evaluators to apply during online evaluation. </p>
+            insights: <p>The updated list of insight types to run against agent sessions.</p>
+            clustering_config: <p>The updated clustering configuration for periodic batch evaluation.</p>
             evaluation_execution_role_arn: <p> The updated Amazon Resource Name (ARN) of the IAM role used for evaluation execution. </p>
             execution_status: <p> The updated execution status to enable or disable the online evaluation. </p>
 
@@ -7077,6 +8839,12 @@ class BedrockAgentCoreControlClient:
             input_["data_source_config"] = data_source_config
         if evaluators is not None:
             input_["evaluators"] = evaluators
+        if insights is not None:
+            input_["insights"] = insights
+        if clustering_config is not None:
+            input_["clustering_config"] = clustering_config
+        if output_config is not None:
+            input_["output_config"] = output_config
         if evaluation_execution_role_arn is not None:
             input_["evaluation_execution_role_arn"] = evaluation_execution_role_arn
         if execution_status is not None:
@@ -7517,6 +9285,9 @@ class BedrockAgentCoreControlClient:
             "capo_bedrock_agentcore_control.types.client_token.ClientToken"
         ] = None,
         tags: Optional["capo_bedrock_agentcore_control.types.tags_map.TagsMap"] = None,
+        kms_key_arn: Optional[
+            "capo_bedrock_agentcore_control.types.kms_key_arn.KmsKeyArn"
+        ] = None,
     ) -> "capo_bedrock_agentcore_control.types.create_payment_manager_response.CreatePaymentManagerResponse":
         r"""<p>Creates a new payment manager in your Amazon Web Services account. A payment manager serves as the top-level resource for managing payment processing capabilities, including payment connectors that integrate with supported payment providers.</p> <p>If you specify <code>CUSTOM_JWT</code> as the <code>authorizerType</code>, you must provide an <code>authorizerConfiguration</code>.</p>
 
@@ -7528,6 +9299,7 @@ class BedrockAgentCoreControlClient:
             role_arn: <p>The Amazon Resource Name (ARN) of the IAM role that the payment manager assumes to access resources on your behalf.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
             tags: <p>A map of tag keys and values to assign to the payment manager.</p>
+            kms_key_arn: <p>The Amazon Resource Name (ARN) of the customer managed KMS key to use for encrypting sensitive payment manager data at rest. If you don't specify a key, the data is encrypted with an Amazon Web Services owned key.</p>
 
         Raises:
             capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
@@ -7568,6 +9340,8 @@ class BedrockAgentCoreControlClient:
         input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -7644,6 +9418,9 @@ class BedrockAgentCoreControlClient:
         client_token: Optional[
             "capo_bedrock_agentcore_control.types.client_token.ClientToken"
         ] = None,
+        kms_key_arn: Optional[
+            "capo_bedrock_agentcore_control.types.kms_key_arn.KmsKeyArn"
+        ] = None,
     ) -> "capo_bedrock_agentcore_control.types.update_payment_manager_response.UpdatePaymentManagerResponse":
         r"""<p>Updates an existing payment manager. This operation uses PATCH semantics, so you only need to specify the fields you want to change.</p>
 
@@ -7654,6 +9431,7 @@ class BedrockAgentCoreControlClient:
             authorizer_configuration: <p>The updated authorizer configuration for the payment manager.</p>
             role_arn: <p>The updated Amazon Resource Name (ARN) of the IAM role for the payment manager.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
+            kms_key_arn: <p>The updated Amazon Resource Name (ARN) of the customer managed KMS key used to encrypt sensitive payment manager data at rest.</p>
 
         Raises:
             capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
@@ -7695,6 +9473,8 @@ class BedrockAgentCoreControlClient:
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -7848,6 +9628,9 @@ class BedrockAgentCoreControlClient:
         description: Optional[
             "capo_bedrock_agentcore_control.types.payments_description.PaymentsDescription"
         ] = None,
+        provision_mode: Optional[
+            "capo_bedrock_agentcore_control.types.payment_connector_provision_mode.PaymentConnectorProvisionMode"
+        ] = None,
         client_token: Optional[
             "capo_bedrock_agentcore_control.types.client_token.ClientToken"
         ] = None,
@@ -7860,6 +9643,7 @@ class BedrockAgentCoreControlClient:
             description: <p>A description of the payment connector.</p>
             type: <p>The type of payment connector, which determines the payment provider integration.</p>
             credential_provider_configurations: <p>The credential provider configurations for the payment connector. These configurations specify how the connector authenticates with the payment provider.</p>
+            provision_mode: <p>The provision mode for creating the payment connector. If you don't specify a value, the default is <code>MANUAL</code>.</p> <ul> <li> <p> <code>MANUAL</code> - You provide the credential provider configurations directly.</p> </li> <li> <p> <code>QUICK_CREATE</code> - The service orchestrates OAuth consent and provisions the credential provider for you.</p> </li> </ul>
             client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
 
         Raises:
@@ -7868,6 +9652,7 @@ class BedrockAgentCoreControlClient:
             capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
             capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
             capo_bedrock_agentcore_control.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>This exception is thrown when a request is made beyond the service quota</p>
+            capo_bedrock_agentcore_control.errors.subscription_required_exception.SubscriptionRequiredException: <p>The request failed because it requires an active Amazon Web Services Marketplace subscription that is not present. Subscribe to the required product in Amazon Web Services Marketplace and try again.</p>
             capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
             capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
             capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -7896,6 +9681,8 @@ class BedrockAgentCoreControlClient:
         }
         if description is not None:
             input_["description"] = description
+        if provision_mode is not None:
+            input_["provision_mode"] = provision_mode
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -7993,6 +9780,7 @@ class BedrockAgentCoreControlClient:
             capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
             capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
             capo_bedrock_agentcore_control.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>This exception is thrown when a request is made beyond the service quota</p>
+            capo_bedrock_agentcore_control.errors.subscription_required_exception.SubscriptionRequiredException: <p>The request failed because it requires an active Amazon Web Services Marketplace subscription that is not present. Subscribe to the required product in Amazon Web Services Marketplace and try again.</p>
             capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
             capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
             capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -8178,6 +9966,67 @@ class BedrockAgentCoreControlClient:
             _token = _resolve_path(_response, ("next_token",))
             if not _token:
                 break
+
+    def rotate_payment_connector_credentials(
+        self,
+        payment_manager_id: "capo_bedrock_agentcore_control.types.payment_manager_id.PaymentManagerId",
+        payment_connector_id: "capo_bedrock_agentcore_control.types.payment_connector_id.PaymentConnectorId",
+        credentials_to_rotate: "capo_bedrock_agentcore_control.types.credential_rotation_config.CredentialRotationConfig",
+        *,
+        config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
+        client_token: Optional[
+            "capo_bedrock_agentcore_control.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_bedrock_agentcore_control.types.rotate_payment_connector_credentials_response.RotatePaymentConnectorCredentialsResponse":
+        r"""<p>Replaces the service-managed credentials of a payment connector with newly issued credentials.</p> <p>Use this operation only for payment connectors with a <code>provisionMode</code> of <code>QUICK_CREATE</code>. For payment connectors with a <code>provisionMode</code> of <code>MANUAL</code>, call <code>UpdatePaymentCredentialProvider</code> instead after rotating credentials with the payment provider directly.</p> <p>The rotation finishes before the response is returned, and only one rotation runs at a time for a given payment connector. When it succeeds, the new credential is in effect and the payment connector stays in the <code>READY</code> state. When it fails, an error is returned, the payment connector and its existing credential are left unchanged, and you can retry the request.</p> <p>Rotation replaces the credential on the connector's credential provider, so every payment connector that uses that provider is affected. Replace any copy of the previous credential that you use outside AgentCore.</p>
+
+        Args:
+            payment_manager_id: <p>The unique identifier of the parent payment manager.</p>
+            payment_connector_id: <p>The unique identifier of the payment connector whose credentials you want to rotate.</p>
+            credentials_to_rotate: <p>The credentials to rotate. Specify the member that matches the payment connector's <code>type</code>. Each credential that you select is rotated independently.</p>
+            client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>
+
+        Raises:
+            capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
+            capo_bedrock_agentcore_control.errors.conflict_exception.ConflictException: <p>This exception is thrown when there is a conflict performing an operation</p>
+            capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
+            capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
+            capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
+            capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_bedrock_agentcore_control.types.rotate_payment_connector_credentials_request.RotatePaymentConnectorCredentialsRequest]",
+        ) -> OperationResponse[
+            "capo_bedrock_agentcore_control.types.rotate_payment_connector_credentials_response.RotatePaymentConnectorCredentialsResponse"
+        ]:
+            import capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.rotate_payment_connector_credentials
+
+            output, http_response = (
+                capo_bedrock_agentcore_control._operations.amazon_bedrock_agent_core_control.rotate_payment_connector_credentials.rotate_payment_connector_credentials(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_bedrock_agentcore_control.types.rotate_payment_connector_credentials_request.RotatePaymentConnectorCredentialsRequest = {
+            "payment_manager_id": payment_manager_id,
+            "payment_connector_id": payment_connector_id,
+            "credentials_to_rotate": credentials_to_rotate,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
 
     def create_policy_engine(
         self,
@@ -8616,12 +10465,12 @@ class BedrockAgentCoreControlClient:
             "capo_bedrock_agentcore_control.types.client_token.ClientToken"
         ] = None,
     ) -> "capo_bedrock_agentcore_control.types.start_policy_generation_response.StartPolicyGenerationResponse":
-        """<p>Initiates the AI-powered generation of Cedar policies from natural language descriptions within the AgentCore Policy system. This feature enables both technical and non-technical users to create policies by describing their authorization requirements in plain English, which is then automatically translated into formal Cedar policy statements. The generation process analyzes the natural language input along with the Gateway's tool context to produce validated policy options. Generated policy assets are automatically deleted after 7 days, so you should review and create policies from the generated assets within this timeframe. Once created, policies are permanent and not subject to this expiration. Generated policies should be reviewed and tested in log-only mode before deploying to production. Use this when you want to describe policy intent naturally rather than learning Cedar syntax, though generated policies may require refinement for complex scenarios.</p>
+        """<p>Initiates the AI-powered generation of Dogwood policies from natural language descriptions within the AgentCore Policy system. This feature enables both technical and non-technical users to create policies by describing their authorization requirements in plain English, which is then automatically translated into formal Dogwood policy statements. The generation process analyzes the natural language input along with the Gateway's tool context to produce validated policy options. Generated policy assets are automatically deleted after 7 days, so you should review and create policies from the generated assets within this timeframe. Once created, policies are permanent and not subject to this expiration. Generated policies should be reviewed and tested in log-only mode before deploying to production. Use this when you want to describe policy intent naturally rather than learning Dogwood syntax, though generated policies may require refinement for complex scenarios.</p>
 
         Args:
             policy_engine_id: <p>The identifier of the policy engine that provides the context for policy generation. This engine's schema and tool context are used to ensure generated policies are valid and applicable.</p>
             resource: <p>The resource information that provides context for policy generation. This helps the AI understand the target resources and generate appropriate access control rules.</p>
-            content: <p>The natural language description of the desired policy behavior. This content is processed by AI to generate corresponding Cedar policy statements that match the described intent.</p>
+            content: <p>The natural language description of the desired policy behavior. This content is processed by AI to generate corresponding Dogwood policy statements that match the described intent.</p>
             name: <p>A customer-assigned name for the policy generation request. This helps track and identify generation operations, especially when running multiple generations simultaneously.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure the idempotency of the request. The AWS SDK automatically generates this token, so you don't need to provide it in most cases. If you retry a request with the same client token, the service returns the same response without starting a duplicate generation.</p>
 
@@ -8676,7 +10525,7 @@ class BedrockAgentCoreControlClient:
         *,
         config_overrides: Optional[BedrockAgentCoreControlClientConfig] = None,
     ) -> "capo_bedrock_agentcore_control.types.get_policy_generation_response.GetPolicyGenerationResponse":
-        r"""<p>Retrieves information about a policy generation request within the AgentCore Policy system. Policy generation converts natural language descriptions into Cedar policy statements using AI-powered translation, enabling non-technical users to create policies.</p>
+        r"""<p>Retrieves information about a policy generation request within the AgentCore Policy system. Policy generation converts natural language descriptions into Dogwood policy statements using AI-powered translation, enabling non-technical users to create policies.</p>
 
         Args:
             policy_generation_id: <p>The unique identifier of the policy generation request to be retrieved. This must be a valid generation ID from a previous <a href=\"https://docs.aws.amazon.com/bedrock-agentcore-control/latest/APIReference/API_StartPolicyGeneration.html\">StartPolicyGeneration</a> call.</p>
@@ -8868,7 +10717,7 @@ class BedrockAgentCoreControlClient:
             "capo_bedrock_agentcore_control.types.max_results.MaxResults"
         ] = None,
     ) -> "capo_bedrock_agentcore_control.types.list_policy_generation_assets_response.ListPolicyGenerationAssetsResponse":
-        r"""<p>Retrieves a list of generated policy assets from a policy generation request within the AgentCore Policy system. This operation returns the actual Cedar policies and related artifacts produced by the AI-powered policy generation process, allowing users to review and select from multiple generated policy options.</p>
+        r"""<p>Retrieves a list of generated policy assets from a policy generation request within the AgentCore Policy system. This operation returns the actual Dogwood policies and related artifacts produced by the AI-powered policy generation process, allowing users to review and select from multiple generated policy options.</p>
 
         Args:
             policy_generation_id: <p>The unique identifier of the policy generation request whose assets are to be retrieved. This must be a valid generation ID from a previous <a href=\"https://docs.aws.amazon.com/bedrock-agentcore-control/latest/APIReference/API_StartPolicyGeneration.html\">StartPolicyGeneration</a> call that has completed processing.</p>
@@ -9045,17 +10894,21 @@ class BedrockAgentCoreControlClient:
         validation_mode: Optional[
             "capo_bedrock_agentcore_control.types.policy_validation_mode.PolicyValidationMode"
         ] = None,
+        enforcement_mode: Optional[
+            "capo_bedrock_agentcore_control.types.enforcement_mode.EnforcementMode"
+        ] = None,
         client_token: Optional[
             "capo_bedrock_agentcore_control.types.client_token.ClientToken"
         ] = None,
     ) -> "capo_bedrock_agentcore_control.types.create_policy_response.CreatePolicyResponse":
-        r"""<p>Creates a policy within the AgentCore Policy system. Policies provide real-time, deterministic control over agentic interactions with AgentCore Gateway. Using the Cedar policy language, you can define fine-grained policies that specify which interactions with Gateway tools are permitted based on input parameters and OAuth claims, ensuring agents operate within defined boundaries and business rules. The policy is validated during creation against the Cedar schema generated from the Gateway's tools' input schemas, which defines the available tools, their parameters, and expected data types. This is an asynchronous operation. Use the <a href=\"https://docs.aws.amazon.com/bedrock-agentcore-control/latest/APIReference/API_GetPolicy.html\">GetPolicy</a> operation to poll the <code>status</code> field to track completion.</p>
+        r"""<p>Creates a policy within the AgentCore Policy system. Policies provide real-time, deterministic control over agentic interactions with AgentCore Gateway. Using Cedar or Dogwood, you can define fine-grained policies that specify which interactions with Gateway tools are permitted based on input parameters and OAuth claims, ensuring agents operate within defined boundaries and business rules. The policy is validated during creation against the Cedar schema generated from the Gateway's tools' input schemas, which defines the available tools, their parameters, and expected data types. This is an asynchronous operation. Use the <a href=\"https://docs.aws.amazon.com/bedrock-agentcore-control/latest/APIReference/API_GetPolicy.html\">GetPolicy</a> operation to poll the <code>status</code> field to track completion.</p> <p>If the new policy is a temporal policy, creating it invalidates the policy engine's active temporal sessions. For more information about temporal policy sessions, see <a href=\"https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy-session-based-temporal.html\">session-based temporal policies</a>. The policy engine returns an HTTP 409 <code>ConflictException</code> to in-flight sessions. To resume, you must start a new session with a new session ID.</p>
 
         Args:
             name: <p>The customer-assigned immutable name for the policy. Must be unique within the account. This name is used for policy identification and cannot be changed after creation.</p>
-            definition: <p>The Cedar policy statement that defines the access control rules. This contains the actual policy logic written in Cedar policy language, specifying effect (permit or forbid), principals, actions, resources, and conditions for agent behavior control.</p>
+            definition: <p>The Cedar or Dogwood policy statement that defines the access control rules. This contains the actual policy logic written in Cedar or Dogwood, specifying effect (permit or forbid), principals, actions, resources, and conditions for agent behavior control.</p>
             description: <p>A human-readable description of the policy's purpose and functionality (1-4,096 characters). This helps policy administrators understand the policy's intent, business rules, and operational scope. Use this field to document why the policy exists, what business requirement it addresses, and any special considerations for maintenance. Clear descriptions are essential for policy governance, auditing, and troubleshooting.</p>
             validation_mode: <p>The validation mode for the policy creation. Determines how Cedar analyzer validation results are handled during policy creation. FAIL_ON_ANY_FINDINGS (default) runs the Cedar analyzer to validate the policy against the Cedar schema and tool context, failing creation if the analyzer detects any validation issues to ensure strict conformance. IGNORE_ALL_FINDINGS runs the Cedar analyzer but allows policy creation even if validation issues are detected, useful for testing or when the policy schema is evolving. Use FAIL_ON_ANY_FINDINGS for production policies to ensure correctness, and IGNORE_ALL_FINDINGS only when you understand and accept the analyzer findings.</p>
+            enforcement_mode: <p>The enforcement mode for the policy. Run this policy in <code>LOG_ONLY</code> mode to collect data on how it affects your application. Once you are satisfied with the data gathered, switch the policy to <code>ACTIVE</code>. Defaults to <code>ACTIVE</code>.</p>
             policy_engine_id: <p>The identifier of the policy engine which contains this policy. Policy engines group related policies and provide the execution context for policy evaluation.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure the idempotency of the request. The AWS SDK automatically generates this token, so you don't need to provide it in most cases. If you retry a request with the same client token, the service returns the same response without creating a duplicate policy.</p>
 
@@ -9094,6 +10947,8 @@ class BedrockAgentCoreControlClient:
             input_["description"] = description
         if validation_mode is not None:
             input_["validation_mode"] = validation_mode
+        if enforcement_mode is not None:
+            input_["enforcement_mode"] = enforcement_mode
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -9171,21 +11026,26 @@ class BedrockAgentCoreControlClient:
         validation_mode: Optional[
             "capo_bedrock_agentcore_control.types.policy_validation_mode.PolicyValidationMode"
         ] = None,
+        enforcement_mode: Optional[
+            "capo_bedrock_agentcore_control.types.enforcement_mode.EnforcementMode"
+        ] = None,
     ) -> "capo_bedrock_agentcore_control.types.update_policy_response.UpdatePolicyResponse":
-        """<p>Updates an existing policy within the AgentCore Policy system. This operation allows modification of the policy description and definition while maintaining the policy's identity. The updated policy is validated against the Cedar schema before being applied. This is an asynchronous operation. Use the <code>GetPolicy</code> operation to poll the <code>status</code> field to track completion.</p>
+        r"""<p>Updates an existing policy within the AgentCore Policy system. This operation allows modification of the policy description and definition while maintaining the policy's identity. The updated policy is validated against the Cedar schema before being applied. This is an asynchronous operation. Use the <code>GetPolicy</code> operation to poll the <code>status</code> field to track completion.</p> <p>If the updated policy is a temporal policy, the policy engine invalidates all active temporal sessions. If the update adds or removes temporal operators, the policy engine also invalidates active temporal sessions. For more information about temporal policy sessions, see <a href=\"https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy-session-based-temporal.html\">session-based temporal policies</a>. The policy engine returns an HTTP 409 <code>ConflictException</code> to in-flight sessions. To resume, you must start a new session with a new session ID.</p>
 
         Args:
             policy_engine_id: <p>The identifier of the policy engine that manages the policy to be updated. This ensures the policy is updated within the correct policy engine context.</p>
             policy_id: <p>The unique identifier of the policy to be updated. This must be a valid policy ID that exists within the specified policy engine.</p>
             description: <p>The new human-readable description for the policy. This optional field allows updating the policy's documentation while keeping the same policy logic.</p>
-            definition: <p>The new Cedar policy statement that defines the access control rules. This replaces the existing policy definition with new logic while maintaining the policy's identity.</p>
+            definition: <p>The new Cedar or Dogwood policy statement that defines the access control rules. This replaces the existing policy definition with new logic while maintaining the policy's identity.</p>
             validation_mode: <p>The validation mode for the policy update. Determines how Cedar analyzer validation results are handled during policy updates. FAIL_ON_ANY_FINDINGS runs the Cedar analyzer and fails the update if validation issues are detected, ensuring the policy conforms to the Cedar schema and tool context. IGNORE_ALL_FINDINGS runs the Cedar analyzer but allows updates despite validation warnings. Use FAIL_ON_ANY_FINDINGS to ensure policy correctness during updates, especially when modifying policy logic or conditions.</p>
+            enforcement_mode: <p>The enforcement mode for the policy. Run this policy in <code>LOG_ONLY</code> mode to collect data on how it affects your application. Once you are satisfied with the data gathered, switch the policy to <code>ACTIVE</code>. If you omit this field, the policy's existing enforcement mode is unchanged.</p>
 
         Raises:
             capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
             capo_bedrock_agentcore_control.errors.conflict_exception.ConflictException: <p>This exception is thrown when there is a conflict performing an operation</p>
             capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException: <p>This exception is thrown if there was an unexpected error during processing of request</p>
             capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when a resource referenced by the operation does not exist</p>
+            capo_bedrock_agentcore_control.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>This exception is thrown when a request is made beyond the service quota</p>
             capo_bedrock_agentcore_control.errors.throttling_exception.ThrottlingException: <p>This exception is thrown when the number of requests exceeds the limit</p>
             capo_bedrock_agentcore_control.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
             capo_bedrock_agentcore_control.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -9216,6 +11076,8 @@ class BedrockAgentCoreControlClient:
             input_["definition"] = definition
         if validation_mode is not None:
             input_["validation_mode"] = validation_mode
+        if enforcement_mode is not None:
+            input_["enforcement_mode"] = enforcement_mode
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),

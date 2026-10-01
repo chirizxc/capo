@@ -8,6 +8,8 @@ from capo_mediaconnect.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_mediaconnect.types.__map_of_string
+    import capo_mediaconnect.types.client_token
+    import capo_mediaconnect.types.fabric_configuration
     import capo_mediaconnect.types.maintenance_configuration
     import capo_mediaconnect.types.router_output_configuration
     import capo_mediaconnect.types.router_output_tier
@@ -37,7 +39,11 @@ class CreateRouterOutputRequest(TypedDict, closed=True):
     """<p>The maintenance configuration settings for the router output, including preferred maintenance windows and schedules.</p>"""
     tags: NotRequired["capo_mediaconnect.types.__map_of_string.__mapOfString"]
     """<p>Key-value pairs that can be used to tag this router output.</p>"""
-    client_token: NotRequired["str"]
+    fabric_configuration: NotRequired[
+        "capo_mediaconnect.types.fabric_configuration.FabricConfiguration"
+    ]
+    """<p>The fabric configuration settings for the router output.</p>"""
+    client_token: NotRequired["capo_mediaconnect.types.client_token.ClientToken"]
     """<p>A unique identifier for the request to ensure idempotency.</p>"""
 
 
@@ -80,6 +86,14 @@ def serialize_json(value: CreateRouterOutputRequest) -> dict:
 
         out["tags"] = capo_mediaconnect.types.__map_of_string.serialize_json(
             value["tags"]
+        )
+    if "fabric_configuration" in value:
+        import capo_mediaconnect.types.fabric_configuration
+
+        out["fabricConfiguration"] = (
+            capo_mediaconnect.types.fabric_configuration.serialize_json(
+                value["fabric_configuration"]
+            )
         )
     if "client_token" in value:
         out["clientToken"] = value["client_token"]
@@ -139,6 +153,14 @@ def deserialize_json(data: dict) -> CreateRouterOutputRequest:
 
         out["tags"] = capo_mediaconnect.types.__map_of_string.deserialize_json(
             data["tags"]
+        )
+    if data.get("fabricConfiguration") is not None:
+        import capo_mediaconnect.types.fabric_configuration
+
+        out["fabric_configuration"] = (
+            capo_mediaconnect.types.fabric_configuration.deserialize_json(
+                data["fabricConfiguration"]
+            )
         )
     if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]

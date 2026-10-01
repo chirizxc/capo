@@ -74,3 +74,10 @@ packages:
       - id: make-cached-async-s3
         match: '\bmake_cached_async_s3\b'
         replace: 'make_cached_s3'
+      # tests/test_eventbridgev2.py
+      - id: async-eventbridge-fixture
+        match: '\basync_eventbridge\b'
+        replace: 'eventbridge'
+      - id: async-wait-until-active
+        match: '\basync_wait_until_active\b'
+        replace: 'wait_until_active'

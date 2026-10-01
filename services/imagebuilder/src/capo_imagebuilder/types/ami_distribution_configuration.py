@@ -14,11 +14,11 @@ if TYPE_CHECKING:
 
 class AmiDistributionConfiguration(TypedDict, closed=True):
     name: NotRequired["capo_imagebuilder.types.ami_name_string.AmiNameString"]
-    """<p>The name of the output AMI.</p>"""
+    """<p>The name of the output AMI. The name must include the <code>{{ imagebuilder:buildDate }}</code> dynamic tag so that each build produces a uniquely named AMI. If you don't specify a name, Image Builder names the output AMI with the image name followed by the build timestamp, for example <code>my-image 2022-10-26T22-30-05.912619Z</code>.</p>"""
     description: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
-    """<p>The description of the AMI distribution configuration. Minimum and maximum length are in characters.</p>"""
+    """<p>The description to apply to the distributed AMI. Image Builder sets this as the output AMI's description in each target Region and account. If you don't specify a description, the AMI in the build Region uses the image recipe's description, if the recipe has one. Copies distributed to other Regions and accounts don't receive a default description.</p>"""
     target_account_ids: NotRequired["capo_imagebuilder.types.account_list.AccountList"]
-    """<p>The ID of an account to which you want to distribute an image.</p>"""
+    """<p>The Amazon Web Services account IDs to distribute the AMI to in this Region. Each listed account receives its own copy of the output AMI. If you don't specify accounts, Image Builder distributes the AMI only to your own account.</p>"""
     ami_tags: NotRequired["capo_imagebuilder.types.tag_map.TagMap"]
     """<p>The tags to apply to AMIs distributed to this Region.</p>"""
     kms_key_id: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]

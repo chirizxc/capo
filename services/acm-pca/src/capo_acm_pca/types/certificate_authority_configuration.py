@@ -17,7 +17,7 @@ class CertificateAuthorityConfiguration(TypedDict, closed=True):
     key_algorithm: "capo_acm_pca.types.key_algorithm.KeyAlgorithm"
     """<p>Type of the public key algorithm and size, in bits, of the key pair that your CA creates when it issues a certificate. When you create a subordinate CA, you must use a key algorithm supported by the parent CA.</p>"""
     signing_algorithm: "capo_acm_pca.types.signing_algorithm.SigningAlgorithm"
-    """<p>Name of the algorithm your private CA uses to sign certificate requests.</p> <p>This parameter should not be confused with the <code>SigningAlgorithm</code> parameter used to sign certificates when they are issued.</p>"""
+    """<p>Name of the algorithm your private CA uses to sign certificate requests.</p> <p>This parameter should not be confused with the <code>SigningAlgorithm</code> parameter of the <code>IssueCertificate</code> API action, which is used to sign certificates when they are issued.</p>"""
     subject: "capo_acm_pca.types.asn1_subject.ASN1Subject"
     """<p>Structure that contains X.500 distinguished name information for your private CA.</p>"""
     csr_extensions: NotRequired["capo_acm_pca.types.csr_extensions.CsrExtensions"]

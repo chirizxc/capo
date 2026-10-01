@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.memory_status
     import capo_bedrock_agentcore_control.types.memory_strategy_list
     import capo_bedrock_agentcore_control.types.name
+    import capo_bedrock_agentcore_control.types.namespace_keys_list
     import capo_bedrock_agentcore_control.types.stream_delivery_resources
 
 
@@ -55,10 +56,16 @@ class Memory(TypedDict, closed=True):
         "capo_bedrock_agentcore_control.types.indexed_keys_list.IndexedKeysList"
     ]
     """<p>The indexed metadata keys for this memory. Only indexed keys can be used in metadata filters.</p>"""
+    namespace_keys: NotRequired[
+        "capo_bedrock_agentcore_control.types.namespace_keys_list.NamespaceKeysList"
+    ]
+    """<p>The namespace variable key definitions for this memory. Namespace keys define custom variables used in <code>namespaceTemplates</code> with optional validation rules.</p>"""
     stream_delivery_resources: NotRequired[
         "capo_bedrock_agentcore_control.types.stream_delivery_resources.StreamDeliveryResources"
     ]
     """<p>Configuration for streaming memory record data to external resources.</p>"""
+    managed_by_resource_arn: NotRequired["capo_bedrock_agentcore_control.types.arn.Arn"]
+    """<p>ARN of the resource managing this memory (e.g. a harness). When set, strategy modifications and deletion are only allowed through the managing resource.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -111,6 +118,14 @@ def serialize_json(value: Memory) -> dict:
                 value["indexed_keys"]
             )
         )
+    if "namespace_keys" in value:
+        import capo_bedrock_agentcore_control.types.namespace_keys_list
+
+        out["namespaceKeys"] = (
+            capo_bedrock_agentcore_control.types.namespace_keys_list.serialize_json(
+                value["namespace_keys"]
+            )
+        )
     if "stream_delivery_resources" in value:
         import capo_bedrock_agentcore_control.types.stream_delivery_resources
 
@@ -119,6 +134,8 @@ def serialize_json(value: Memory) -> dict:
                 value["stream_delivery_resources"]
             )
         )
+    if "managed_by_resource_arn" in value:
+        out["managedByResourceArn"] = value["managed_by_resource_arn"]
     return out
 
 
@@ -194,6 +211,14 @@ def deserialize_json(data: dict) -> Memory:
                 data["indexedKeys"]
             )
         )
+    if data.get("namespaceKeys") is not None:
+        import capo_bedrock_agentcore_control.types.namespace_keys_list
+
+        out["namespace_keys"] = (
+            capo_bedrock_agentcore_control.types.namespace_keys_list.deserialize_json(
+                data["namespaceKeys"]
+            )
+        )
     if data.get("streamDeliveryResources") is not None:
         import capo_bedrock_agentcore_control.types.stream_delivery_resources
 
@@ -202,4 +227,6 @@ def deserialize_json(data: dict) -> Memory:
                 data["streamDeliveryResources"]
             )
         )
+    if data.get("managedByResourceArn") is not None:
+        out["managed_by_resource_arn"] = data["managedByResourceArn"]
     return out

@@ -8,6 +8,7 @@ from capo_bedrock_agentcore_control.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.date_timestamp
+    import capo_bedrock_agentcore_control.types.kms_key_arn
     import capo_bedrock_agentcore_control.types.payment_manager_arn
     import capo_bedrock_agentcore_control.types.payment_manager_id
     import capo_bedrock_agentcore_control.types.payment_manager_name
@@ -44,6 +45,10 @@ class PaymentManagerSummary(TypedDict, closed=True):
     """<p>The timestamp when the payment manager was created.</p>"""
     last_updated_at: "capo_bedrock_agentcore_control.types.date_timestamp.DateTimestamp"
     """<p>The timestamp when the payment manager was last updated.</p>"""
+    kms_key_arn: NotRequired[
+        "capo_bedrock_agentcore_control.types.kms_key_arn.KmsKeyArn"
+    ]
+    """<p>The Amazon Resource Name (ARN) of the KMS key used to encrypt sensitive payment manager data at rest, if configured.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -84,6 +89,8 @@ def serialize_json(value: PaymentManagerSummary) -> dict:
             value["last_updated_at"]
         )
     )
+    if "kms_key_arn" in value:
+        out["kmsKeyArn"] = value["kms_key_arn"]
     return out
 
 
@@ -145,4 +152,6 @@ def deserialize_json(data: dict) -> PaymentManagerSummary:
         )
     else:
         raise DeserializationError("PaymentManagerSummary.last_updated_at required")
+    if data.get("kmsKeyArn") is not None:
+        out["kms_key_arn"] = data["kmsKeyArn"]
     return out

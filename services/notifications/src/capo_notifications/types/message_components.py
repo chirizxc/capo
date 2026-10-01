@@ -22,6 +22,10 @@ class MessageComponents(TypedDict, closed=True):
         "capo_notifications.types.text_part_reference.TextPartReference"
     ]
     """<p>A complete summary with all possible relevant information.</p>"""
+    markup_description: NotRequired[
+        "capo_notifications.types.text_part_reference.TextPartReference"
+    ]
+    """<p>A rich description in Portable Text format, which you can convert to markup formats such as HTML, Markdown, or plain text. Channels that don't support rich rendering ignore this field and use the plain text components instead.</p>"""
     dimensions: NotRequired["capo_notifications.types.dimensions.Dimensions"]
     """<p>A list of properties in key-value pairs. Pairs are shown in order of importance from most important to least important. Channels may limit the number of dimensions shown to the notification viewer.</p> <note> <p>Included dimensions, keys, and values are subject to change.</p> </note>"""
 
@@ -35,6 +39,8 @@ def serialize_json(value: MessageComponents) -> dict:
         out["paragraphSummary"] = value["paragraph_summary"]
     if "complete_description" in value:
         out["completeDescription"] = value["complete_description"]
+    if "markup_description" in value:
+        out["markupDescription"] = value["markup_description"]
     if "dimensions" in value:
         import capo_notifications.types.dimensions
 
@@ -52,6 +58,8 @@ def deserialize_json(data: dict) -> MessageComponents:
         out["paragraph_summary"] = data["paragraphSummary"]
     if data.get("completeDescription") is not None:
         out["complete_description"] = data["completeDescription"]
+    if data.get("markupDescription") is not None:
+        out["markup_description"] = data["markupDescription"]
     if data.get("dimensions") is not None:
         import capo_notifications.types.dimensions
 

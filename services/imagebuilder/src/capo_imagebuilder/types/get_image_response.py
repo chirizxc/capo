@@ -18,7 +18,7 @@ class GetImageResponse(TypedDict, closed=True):
     latest_version_references: NotRequired[
         "capo_imagebuilder.types.latest_version_references.LatestVersionReferences"
     ]
-    """<p>The resource ARNs with different wildcard variations of semantic versioning.</p>"""
+    """<p>A set of wildcard version ARNs that always reference the latest version of the resource. ARNs are included for the latest version overall, and for the latest versions within the same major, minor, and patch levels.</p>"""
 
 
 # --- restJson1 ser/de ---

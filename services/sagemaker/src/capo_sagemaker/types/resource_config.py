@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_sagemaker.types.instance_groups
     import capo_sagemaker.types.instance_placement_config
+    import capo_sagemaker.types.instance_preference_list
     import capo_sagemaker.types.keep_alive_period_in_seconds
     import capo_sagemaker.types.kms_key_id
     import capo_sagemaker.types.optional_volume_size_in_gb
@@ -44,6 +45,18 @@ class ResourceConfig(TypedDict, closed=True):
         "capo_sagemaker.types.instance_placement_config.InstancePlacementConfig"
     ]
     """<p>Configuration for how training job instances are placed and allocated within UltraServers. Only applicable for UltraServer capacity.</p>"""
+    instance_preferences: NotRequired[
+        "capo_sagemaker.types.instance_preference_list.InstancePreferenceList"
+    ]
+    """<p>An ordered list of ML compute instance types for the training job, in priority order. SageMaker launches the training job on the first instance type in the list that has available capacity. If capacity is insufficient, SageMaker evaluates the next instance type in the preferred list. Exactly one instance type is selected for the job.</p> <p> <code>InstancePreferences</code> is mutually exclusive with <code>InstanceType</code>, <code>InstanceGroups</code>, <code>InstancePlacementConfig</code>, and <code>EnableManagedSpotTraining</code>, and supports only Flexible Training Plans (FTP) and On-Demand capacity.</p>"""
+    selected_instance_type: NotRequired[
+        "capo_sagemaker.types.training_instance_type.TrainingInstanceType"
+    ]
+    r"""<p>The instance type that SageMaker selected for the job from the provided <code>InstancePreferences</code>. The job is billed for this instance type and count. Returned by <code> <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeTrainingJob.html\">DescribeTrainingJob</a> </code> after an instance type is selected. This field is read-only and isn't accepted in <code>CreateTrainingJob</code> requests.</p>"""
+    selected_instance_count: NotRequired[
+        "capo_sagemaker.types.training_instance_count.TrainingInstanceCount"
+    ]
+    """<p>The number of instances of <code>SelectedInstanceType</code> that the training job launched with. The job is billed for this instance type and count. Returned by <code>DescribeTrainingJob</code> after an instance type is selected. This field is read-only and isn't accepted in <code>CreateTrainingJob</code> requests.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -83,6 +96,24 @@ def serialize_aws_json_1_1(value: ResourceConfig) -> dict:
                 value["instance_placement_config"]
             )
         )
+    if "instance_preferences" in value:
+        import capo_sagemaker.types.instance_preference_list
+
+        out["InstancePreferences"] = (
+            capo_sagemaker.types.instance_preference_list.serialize_aws_json_1_1(
+                value["instance_preferences"]
+            )
+        )
+    if "selected_instance_type" in value:
+        import capo_sagemaker.types.training_instance_type
+
+        out["SelectedInstanceType"] = (
+            capo_sagemaker.types.training_instance_type.serialize_aws_json_1_1(
+                value["selected_instance_type"]
+            )
+        )
+    if "selected_instance_count" in value:
+        out["SelectedInstanceCount"] = value["selected_instance_count"]
     return out
 
 
@@ -122,4 +153,22 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceConfig:
                 data["InstancePlacementConfig"]
             )
         )
+    if data.get("InstancePreferences") is not None:
+        import capo_sagemaker.types.instance_preference_list
+
+        out["instance_preferences"] = (
+            capo_sagemaker.types.instance_preference_list.deserialize_aws_json_1_1(
+                data["InstancePreferences"]
+            )
+        )
+    if data.get("SelectedInstanceType") is not None:
+        import capo_sagemaker.types.training_instance_type
+
+        out["selected_instance_type"] = (
+            capo_sagemaker.types.training_instance_type.deserialize_aws_json_1_1(
+                data["SelectedInstanceType"]
+            )
+        )
+    if data.get("SelectedInstanceCount") is not None:
+        out["selected_instance_count"] = data["SelectedInstanceCount"]
     return out

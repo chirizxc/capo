@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_workspaces.types.boolean_object
     import capo_workspaces.types.compute
     import capo_workspaces.types.global_accelerator_for_work_space
     import capo_workspaces.types.operating_system_name
@@ -33,7 +34,7 @@ class WorkspaceProperties(TypedDict, closed=True):
     compute_type_name: NotRequired["capo_workspaces.types.compute.Compute"]
     r"""<p>The compute type. For more information, see <a href=\"http://aws.amazon.com/workspaces/details/#Amazon_WorkSpaces_Bundles\">Amazon WorkSpaces Bundles</a>.</p>"""
     protocols: NotRequired["capo_workspaces.types.protocol_list.ProtocolList"]
-    r"""<p>The protocol. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/amazon-workspaces-protocols.html\"> Protocols for Amazon WorkSpaces</a>.</p> <note> <ul> <li> <p>Only available for WorkSpaces created with PCoIP bundles.</p> </li> <li> <p>The <code>Protocols</code> property is case sensitive. Ensure you use <code>PCOIP</code> or <code>DCV</code> (formerly WSP).</p> </li> <li> <p>Unavailable for Windows 7 WorkSpaces and WorkSpaces using GPU-based bundles (Graphics, GraphicsPro, Graphics.g4dn, and GraphicsPro.g4dn).</p> </li> </ul> </note>"""
+    r"""<p>The protocol. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/amazon-workspaces-protocols.html\"> Protocols for Amazon WorkSpaces</a>.</p> <note> <ul> <li> <p>Only available for WorkSpaces created with PCoIP bundles.</p> </li> <li> <p>The <code>Protocols</code> property is case sensitive. Ensure you use <code>PCOIP</code> or <code>DCV</code> (formerly WSP).</p> </li> <li> <p>Unavailable for Windows 7 WorkSpaces and WorkSpaces using GPU-based bundles (Graphics, GraphicsPro, Graphics.g4dn, GraphicsPro.g4dn, Graphics.g6, and Graphics.g7).</p> </li> </ul> </note>"""
     operating_system_name: NotRequired[
         "capo_workspaces.types.operating_system_name.OperatingSystemName"
     ]
@@ -42,6 +43,10 @@ class WorkspaceProperties(TypedDict, closed=True):
         "capo_workspaces.types.global_accelerator_for_work_space.GlobalAcceleratorForWorkSpace"
     ]
     """<p>Indicates the Global Accelerator properties.</p>"""
+    nested_virtualization_enabled: NotRequired[
+        "capo_workspaces.types.boolean_object.BooleanObject"
+    ]
+    r"""<p>Specifies whether nested virtualization is enabled for the WorkSpace.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/nested-virtualization.html\">Nested virtualization for Amazon WorkSpaces</a>.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -89,6 +94,8 @@ def serialize_aws_json_1_1(value: WorkspaceProperties) -> dict:
                 value["global_accelerator"]
             )
         )
+    if "nested_virtualization_enabled" in value:
+        out["NestedVirtualizationEnabled"] = value["nested_virtualization_enabled"]
     return out
 
 
@@ -140,4 +147,6 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceProperties:
                 data["GlobalAccelerator"]
             )
         )
+    if data.get("NestedVirtualizationEnabled") is not None:
+        out["nested_virtualization_enabled"] = data["NestedVirtualizationEnabled"]
     return out

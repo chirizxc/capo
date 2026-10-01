@@ -1901,7 +1901,7 @@ class AsyncMediaConvertClient:
             "capo_mediaconvert.types.__list_of_probe_input_file.__listOfProbeInputFile"
         ] = None,
     ) -> "capo_mediaconvert.types.probe_response.ProbeResponse":
-        """Use Probe to obtain detailed information about your input media files. Probe returns a JSON that includes container, codec, frame rate, resolution, track count, audio layout, captions, and more. You can use this information to learn more about your media files, or to help make decisions while automating your transcoding workflow.
+        """Use Probe to obtain detailed information about your input media files. Probe returns a JSON that includes container, codec, frame rate, resolution, track count, audio layout, captions, and more. You can use this information to learn more about your media files, or to help make decisions while automating your transcoding workflow. Probe supports the following input container formats: MP4, QuickTime (MOV), 3GP, 3G2, Matroska (MKV), WebM, MXF, MPEG-TS, MPEG-PS, AVI, WAV, MP3, FLAC, Ogg, and ASF (Windows Media / WMA). The fields that Probe returns vary by container and codec. A field isn't returned when the source doesn't contain it, or when it isn't available for that container and codec.
 
         Args:
             input_files: Specify a media file to probe.
@@ -1914,6 +1914,7 @@ class AsyncMediaConvertClient:
             capo_mediaconvert.errors.not_found_exception.NotFoundException: The resource you requested doesn't exist.
             capo_mediaconvert.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: You attempted to create more resources than the service allows based on service quotas.
             capo_mediaconvert.errors.too_many_requests_exception.TooManyRequestsException: Too many requests have been sent in too short of a time. The service limits the rate at which it will accept requests.
+            capo_mediaconvert.errors.unprocessable_entity_exception.UnprocessableEntityException: The input file was recognized but appears to be malformed or corrupt.
             capo_mediaconvert.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 

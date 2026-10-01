@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_customer_profiles.types.metrics
+    import capo_customer_profiles.types.recommender_version_name
     import capo_customer_profiles.types.timestamp
 
 
@@ -14,6 +15,10 @@ class TrainingMetrics(TypedDict, closed=True):
     """<p>The timestamp when these training metrics were recorded.</p>"""
     metrics: NotRequired["capo_customer_profiles.types.metrics.Metrics"]
     """<p>A collection of performance metrics and statistics from the training process.</p>"""
+    recommender_version_name: NotRequired[
+        "capo_customer_profiles.types.recommender_version_name.RecommenderVersionName"
+    ]
+    """<p>The name of the recommender version that produced these training metrics.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -31,6 +36,8 @@ def serialize_json(value: TrainingMetrics) -> dict:
         out["Metrics"] = capo_customer_profiles.types.metrics.serialize_json(
             value["metrics"]
         )
+    if "recommender_version_name" in value:
+        out["RecommenderVersionName"] = value["recommender_version_name"]
     return out
 
 
@@ -48,4 +55,6 @@ def deserialize_json(data: dict) -> TrainingMetrics:
         out["metrics"] = capo_customer_profiles.types.metrics.deserialize_json(
             data["Metrics"]
         )
+    if data.get("RecommenderVersionName") is not None:
+        out["recommender_version_name"] = data["RecommenderVersionName"]
     return out

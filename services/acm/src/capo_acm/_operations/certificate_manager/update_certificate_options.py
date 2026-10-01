@@ -11,10 +11,12 @@ from typing_extensions import Never
 import capo_acm._auth._signers
 import capo_acm._auth._sigv4
 import capo_acm._protocol.eventstream
+import capo_acm.errors.conflict_exception
 import capo_acm.errors.invalid_arn_exception
 import capo_acm.errors.invalid_state_exception
 import capo_acm.errors.limit_exceeded_exception
 import capo_acm.errors.resource_not_found_exception
+import capo_acm.errors.validation_exception
 import capo_acm.types.certificate_options
 import capo_acm.types.update_certificate_options_request
 from capo_acm._protocol.errors import parse_error_metadata_json
@@ -27,6 +29,10 @@ def handle_error(response: zapros.Response) -> Never:
     data = json.loads(response.read())
     code, message = parse_error_metadata_json(response, data)
     match code:
+        case "ConflictException":
+            raise capo_acm.errors.conflict_exception.ConflictException.from_aws_json_1_1(
+                data, message
+            )
         case "InvalidArnException":
             raise capo_acm.errors.invalid_arn_exception.InvalidArnException.from_aws_json_1_1(
                 data, message
@@ -41,6 +47,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "ResourceNotFoundException":
             raise capo_acm.errors.resource_not_found_exception.ResourceNotFoundException.from_aws_json_1_1(
+                data, message
+            )
+        case "ValidationException":
+            raise capo_acm.errors.validation_exception.ValidationException.from_aws_json_1_1(
                 data, message
             )
         case _:
@@ -82,9 +92,10 @@ def build_request(
     endpoint = resolve(
         EndpointParams(
             Region=options.region,
-            UseDualStack=options.use_dual_stack,
-            UseFIPS=options.use_fips,
             Endpoint=options.endpoint,
+            UseFIPS=options.use_fips,
+            UseDualStack=options.use_dual_stack,
+            ServiceType="ACM",
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + ""

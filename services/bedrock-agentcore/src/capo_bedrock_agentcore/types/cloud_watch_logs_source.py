@@ -9,6 +9,8 @@ from capo_bedrock_agentcore.errors import DeserializationError
 if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.cloud_watch_filter_config
     import capo_bedrock_agentcore.types.evaluation_string_list
+    import capo_bedrock_agentcore.types.log_group_name_list
+    import capo_bedrock_agentcore.types.log_group_name_prefix_list
 
 
 class CloudWatchLogsSource(TypedDict, closed=True):
@@ -16,10 +18,12 @@ class CloudWatchLogsSource(TypedDict, closed=True):
         "capo_bedrock_agentcore.types.evaluation_string_list.EvaluationStringList"
     )
     """<p>The list of agent service names to filter traces within the specified log groups.</p>"""
-    log_group_names: (
-        "capo_bedrock_agentcore.types.evaluation_string_list.EvaluationStringList"
-    )
-    """<p>The list of CloudWatch log group names to read agent traces from. Maximum of 5 log groups.</p>"""
+    log_group_names: "capo_bedrock_agentcore.types.log_group_name_list.LogGroupNameList"
+    """<p>The list of CloudWatch log group names to read agent traces from. Maximum of 10 log groups.</p>"""
+    log_group_name_prefixes: NotRequired[
+        "capo_bedrock_agentcore.types.log_group_name_prefix_list.LogGroupNamePrefixList"
+    ]
+    """<p>The list of CloudWatch log group name prefixes to read agent traces from. Specify this instead of <code>logGroupNames</code> to match log groups by prefix. Maximum of 5 prefixes. Specify either <code>logGroupNames</code> or <code>logGroupNamePrefixes</code>, not both. One of the two is required.</p>"""
     filter_config: NotRequired[
         "capo_bedrock_agentcore.types.cloud_watch_filter_config.CloudWatchFilterConfig"
     ]
@@ -36,13 +40,21 @@ def serialize_json(value: CloudWatchLogsSource) -> dict:
             value["service_names"]
         )
     )
-    import capo_bedrock_agentcore.types.evaluation_string_list
+    import capo_bedrock_agentcore.types.log_group_name_list
 
     out["logGroupNames"] = (
-        capo_bedrock_agentcore.types.evaluation_string_list.serialize_json(
-            value["log_group_names"]
+        capo_bedrock_agentcore.types.log_group_name_list.serialize_json(
+            value.get("log_group_names", [])
         )
     )
+    if "log_group_name_prefixes" in value:
+        import capo_bedrock_agentcore.types.log_group_name_prefix_list
+
+        out["logGroupNamePrefixes"] = (
+            capo_bedrock_agentcore.types.log_group_name_prefix_list.serialize_json(
+                value["log_group_name_prefixes"]
+            )
+        )
     if "filter_config" in value:
         import capo_bedrock_agentcore.types.cloud_watch_filter_config
 
@@ -67,15 +79,23 @@ def deserialize_json(data: dict) -> CloudWatchLogsSource:
     else:
         raise DeserializationError("CloudWatchLogsSource.service_names required")
     if data.get("logGroupNames") is not None:
-        import capo_bedrock_agentcore.types.evaluation_string_list
+        import capo_bedrock_agentcore.types.log_group_name_list
 
         out["log_group_names"] = (
-            capo_bedrock_agentcore.types.evaluation_string_list.deserialize_json(
+            capo_bedrock_agentcore.types.log_group_name_list.deserialize_json(
                 data["logGroupNames"]
             )
         )
     else:
-        raise DeserializationError("CloudWatchLogsSource.log_group_names required")
+        out["log_group_names"] = []
+    if data.get("logGroupNamePrefixes") is not None:
+        import capo_bedrock_agentcore.types.log_group_name_prefix_list
+
+        out["log_group_name_prefixes"] = (
+            capo_bedrock_agentcore.types.log_group_name_prefix_list.deserialize_json(
+                data["logGroupNamePrefixes"]
+            )
+        )
     if data.get("filterConfig") is not None:
         import capo_bedrock_agentcore.types.cloud_watch_filter_config
 

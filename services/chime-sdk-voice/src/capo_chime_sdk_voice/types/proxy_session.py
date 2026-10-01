@@ -15,11 +15,12 @@ if TYPE_CHECKING:
     import capo_chime_sdk_voice.types.positive_integer
     import capo_chime_sdk_voice.types.proxy_session_status
     import capo_chime_sdk_voice.types.string128
+    import capo_chime_sdk_voice.types.voice_connector_id
 
 
 class ProxySession(TypedDict, closed=True):
     voice_connector_id: NotRequired[
-        "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128"
+        "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId"
     ]
     """<p>The Voice Connector ID.</p>"""
     proxy_session_id: NotRequired[

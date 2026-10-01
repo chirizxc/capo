@@ -12,7 +12,7 @@ class SignInPolicyType(TypedDict, closed=True):
     allowed_first_auth_factors: NotRequired[
         "capo_cognito_identity_provider.types.allowed_first_auth_factors_list_type.AllowedFirstAuthFactorsListType"
     ]
-    """<p>The sign-in methods that a user pool supports as the first factor. You can permit users to start authentication with a standard username and password, or with other one-time password and hardware factors.</p>"""
+    """<p>The sign-in methods that a user pool supports as the first factor. You can permit users to start authentication with a standard username and password, or with other one-time password and hardware factors.</p> <note> <p> <code>SOFTWARE_TOKEN</code> is not currently supported as a first auth factor. Do not include this value in <code>AllowedFirstAuthFactors</code>.</p> </note>"""
 
 
 # --- awsJson1_1 ser/de ---

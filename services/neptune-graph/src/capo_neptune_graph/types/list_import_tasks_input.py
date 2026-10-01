@@ -5,11 +5,16 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_neptune_graph.types.graph_identifier
     import capo_neptune_graph.types.max_results
     import capo_neptune_graph.types.pagination_token
 
 
 class ListImportTasksInput(TypedDict, closed=True):
+    graph_identifier: NotRequired[
+        "capo_neptune_graph.types.graph_identifier.GraphIdentifier"
+    ]
+    """<p>The unique identifier of the Neptune Analytics graph. When provided, the service returns only import tasks associated with this graph. If not specified, the service returns all import tasks.</p>"""
     next_token: NotRequired["capo_neptune_graph.types.pagination_token.PaginationToken"]
     """<p>Pagination token used to paginate output.</p> <p>When this value is provided as input, the service returns results from where the previous response left off. When this value is present in output, it indicates that there are more results to retrieve.</p>"""
     max_results: NotRequired["capo_neptune_graph.types.max_results.MaxResults"]

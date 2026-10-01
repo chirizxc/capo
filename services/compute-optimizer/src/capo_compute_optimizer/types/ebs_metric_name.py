@@ -7,6 +7,8 @@ EBSMetricName: TypeAlias = Literal[
     "VolumeWriteOpsPerSecond",
     "VolumeReadBytesPerSecond",
     "VolumeWriteBytesPerSecond",
+    "VolumeIOPSExceeded",
+    "VolumeThroughputExceeded",
 ]
 
 

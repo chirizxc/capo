@@ -23,6 +23,7 @@ import capo_iot_wireless.types.geo_json_payload
 import capo_iot_wireless.types.get_position_estimate_request
 import capo_iot_wireless.types.get_position_estimate_response
 import capo_iot_wireless.types.gnss
+import capo_iot_wireless.types.gnss_multi_frame
 import capo_iot_wireless.types.ip
 import capo_iot_wireless.types.wi_fi_access_points
 from capo_iot_wireless._protocol.errors import parse_error_metadata_json

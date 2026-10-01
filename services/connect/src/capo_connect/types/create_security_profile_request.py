@@ -8,6 +8,7 @@ from capo_connect.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_connect.types.allowed_access_control_tags
+    import capo_connect.types.allowed_ai_agents
     import capo_connect.types.allowed_flow_modules
     import capo_connect.types.applications
     import capo_connect.types.create_security_profile_name
@@ -58,6 +59,10 @@ class CreateSecurityProfileRequest(TypedDict, closed=True):
         "capo_connect.types.allowed_flow_modules.AllowedFlowModules"
     ]
     """<p> A list of Flow Modules an AI Agent can invoke as a tool. </p>"""
+    allowed_ai_agents: NotRequired[
+        "capo_connect.types.allowed_ai_agents.AllowedAIAgents"
+    ]
+    """<p>A list of AI agents that the security profile will give access to.</p>"""
     granular_access_control_configuration: NotRequired[
         "capo_connect.types.granular_access_control_configuration.GranularAccessControlConfiguration"
     ]
@@ -121,6 +126,12 @@ def serialize_json(value: CreateSecurityProfileRequest) -> dict:
             capo_connect.types.allowed_flow_modules.serialize_json(
                 value["allowed_flow_modules"]
             )
+        )
+    if "allowed_ai_agents" in value:
+        import capo_connect.types.allowed_ai_agents
+
+        out["AllowedAIAgents"] = capo_connect.types.allowed_ai_agents.serialize_json(
+            value["allowed_ai_agents"]
         )
     if "granular_access_control_configuration" in value:
         import capo_connect.types.granular_access_control_configuration
@@ -193,6 +204,14 @@ def deserialize_json(data: dict) -> CreateSecurityProfileRequest:
         out["allowed_flow_modules"] = (
             capo_connect.types.allowed_flow_modules.deserialize_json(
                 data["AllowedFlowModules"]
+            )
+        )
+    if data.get("AllowedAIAgents") is not None:
+        import capo_connect.types.allowed_ai_agents
+
+        out["allowed_ai_agents"] = (
+            capo_connect.types.allowed_ai_agents.deserialize_json(
+                data["AllowedAIAgents"]
             )
         )
     if data.get("GranularAccessControlConfiguration") is not None:

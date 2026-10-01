@@ -85,6 +85,9 @@ from .max_number_of_configuration_recorders_exceeded_exception import (
 from .max_number_of_conformance_packs_exceeded_exception import (
     MaxNumberOfConformancePacksExceededException as MaxNumberOfConformancePacksExceededException,
 )
+from .max_number_of_connectors_exceeded_exception import (
+    MaxNumberOfConnectorsExceededException as MaxNumberOfConnectorsExceededException,
+)
 from .max_number_of_delivery_channels_exceeded_exception import (
     MaxNumberOfDeliveryChannelsExceededException as MaxNumberOfDeliveryChannelsExceededException,
 )

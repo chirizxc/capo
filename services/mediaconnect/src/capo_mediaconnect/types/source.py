@@ -33,9 +33,9 @@ class Source(TypedDict, closed=True):
     name: NotRequired["str"]
     """<p> The name of the source.</p>"""
     sender_control_port: NotRequired["int"]
-    """<p> The IP address that the flow communicates with to initiate connection with the sender.</p>"""
-    sender_ip_address: NotRequired["str"]
     """<p> The port that the flow uses to send outbound requests to initiate connection with the sender.</p>"""
+    sender_ip_address: NotRequired["str"]
+    """<p> The IP address that the flow communicates with to initiate connection with the sender.</p>"""
     source_arn: NotRequired["str"]
     """<p> The ARN of the source.</p>"""
     transport: NotRequired["capo_mediaconnect.types.transport.Transport"]

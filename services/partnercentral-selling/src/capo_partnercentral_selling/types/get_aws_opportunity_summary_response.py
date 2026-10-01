@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     import capo_partnercentral_selling.types.aws_opportunity_project
     import capo_partnercentral_selling.types.aws_opportunity_related_entities
     import capo_partnercentral_selling.types.aws_opportunity_team_members_list
+    import capo_partnercentral_selling.types.aws_software_revenue
     import capo_partnercentral_selling.types.catalog_identifier
     import capo_partnercentral_selling.types.involvement_type_change_reason
     import capo_partnercentral_selling.types.opportunity_identifier
@@ -64,6 +65,12 @@ class GetAwsOpportunitySummaryResponse(TypedDict, closed=True):
         "capo_partnercentral_selling.types.aws_opportunity_project.AwsOpportunityProject"
     ]
     """<p>Provides details about the project associated with the AWS Opportunity, including the customer’s business problem, expected outcomes, and project scope. This information is crucial for understanding the broader context of the opportunity.</p>"""
+    cosell_motion: NotRequired["str"]
+    """<p>Engagement classification for this opportunity. Read-only. Null before scoring. Known values: <code>AWS Field-engaged</code>, <code>Agent-engaged</code>, <code>Partner-led</code>.</p>"""
+    software_revenue: NotRequired[
+        "capo_partnercentral_selling.types.aws_software_revenue.AwsSoftwareRevenue"
+    ]
+    """<p>Seller-provided PARC deal terms: commitment value, discount, and contract dates.</p>"""
     catalog: "capo_partnercentral_selling.types.catalog_identifier.CatalogIdentifier"
     """<p>Specifies the catalog in which the AWS Opportunity exists. This is the environment (e.g., <code>AWS</code> or <code>Sandbox</code>) where the opportunity is being managed.</p>"""
 
@@ -153,6 +160,16 @@ def serialize_aws_json_1_0(value: GetAwsOpportunitySummaryResponse) -> dict:
                 value["project"]
             )
         )
+    if "cosell_motion" in value:
+        out["CosellMotion"] = value["cosell_motion"]
+    if "software_revenue" in value:
+        import capo_partnercentral_selling.types.aws_software_revenue
+
+        out["SoftwareRevenue"] = (
+            capo_partnercentral_selling.types.aws_software_revenue.serialize_aws_json_1_0(
+                value["software_revenue"]
+            )
+        )
     out["Catalog"] = value["catalog"]
     return out
 
@@ -239,6 +256,16 @@ def deserialize_aws_json_1_0(data: dict) -> GetAwsOpportunitySummaryResponse:
         out["project"] = (
             capo_partnercentral_selling.types.aws_opportunity_project.deserialize_aws_json_1_0(
                 data["Project"]
+            )
+        )
+    if data.get("CosellMotion") is not None:
+        out["cosell_motion"] = data["CosellMotion"]
+    if data.get("SoftwareRevenue") is not None:
+        import capo_partnercentral_selling.types.aws_software_revenue
+
+        out["software_revenue"] = (
+            capo_partnercentral_selling.types.aws_software_revenue.deserialize_aws_json_1_0(
+                data["SoftwareRevenue"]
             )
         )
     if data.get("Catalog") is not None:

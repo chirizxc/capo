@@ -10,12 +10,11 @@ if TYPE_CHECKING:
     import capo_chime_sdk_voice.types.capability_list
     import capo_chime_sdk_voice.types.non_empty_string128
     import capo_chime_sdk_voice.types.positive_integer
+    import capo_chime_sdk_voice.types.voice_connector_id
 
 
 class UpdateProxySessionRequest(TypedDict, closed=True):
-    voice_connector_id: (
-        "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128"
-    )
+    voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId"
     """<p>The Voice Connector ID.</p>"""
     proxy_session_id: "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128"
     """<p>The proxy session ID.</p>"""

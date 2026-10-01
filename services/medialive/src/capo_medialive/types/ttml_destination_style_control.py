@@ -6,6 +6,7 @@ from typing import Literal, TypeAlias, cast
 TtmlDestinationStyleControl: TypeAlias = Literal[
     "PASSTHROUGH",
     "USE_CONFIGURED",
+    "MANUAL",
 ]
 
 

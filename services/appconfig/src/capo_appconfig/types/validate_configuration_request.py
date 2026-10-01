@@ -5,14 +5,15 @@ from typing import TYPE_CHECKING
 from typing_extensions import TypedDict
 
 if TYPE_CHECKING:
-    import capo_appconfig.types.id
+    import capo_appconfig.types.long_name
+    import capo_appconfig.types.name
     import capo_appconfig.types.version
 
 
 class ValidateConfigurationRequest(TypedDict, closed=True):
-    application_id: "capo_appconfig.types.id.Id"
+    application_id: "capo_appconfig.types.name.Name"
     """<p>The application ID.</p>"""
-    configuration_profile_id: "capo_appconfig.types.id.Id"
+    configuration_profile_id: "capo_appconfig.types.long_name.LongName"
     """<p>The configuration profile ID.</p>"""
     configuration_version: "capo_appconfig.types.version.Version"
     """<p>The version of the configuration to validate.</p>"""

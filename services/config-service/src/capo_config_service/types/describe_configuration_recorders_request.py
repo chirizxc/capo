@@ -18,7 +18,7 @@ class DescribeConfigurationRecordersRequest(TypedDict, closed=True):
     service_principal: NotRequired[
         "capo_config_service.types.service_principal.ServicePrincipal"
     ]
-    """<p>For service-linked configuration recorders, you can use the service principal of the linked Amazon Web Services service to specify the configuration recorder.</p>"""
+    """<p>For service-linked configuration recorders, you can use the service principal of the linked Amazon Web Services service to specify the configuration recorder. This field is only supported for Amazon Web Services service principals. For third-party service-linked configuration recorders, use <code>Arn</code> instead.</p>"""
     arn: NotRequired[
         "capo_config_service.types.amazon_resource_name.AmazonResourceName"
     ]

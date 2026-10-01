@@ -16,11 +16,11 @@ class StartMetadataModelExportAsScriptMessage(TypedDict, closed=True):
     migration_project_identifier: "capo_database_migration_service.types.migration_project_identifier.MigrationProjectIdentifier"
     """<p>The migration project name or Amazon Resource Name (ARN).</p>"""
     selection_rules: "capo_database_migration_service.types.string.String"
-    """<p>A value that specifies the database objects to export.</p>"""
+    r"""<p>A JSON string that identifies the metadata models to export as a SQL script. For the selection rule format and examples, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/sc-selection-rules.html\">Selection rules in DMS Schema Conversion</a>.</p> <p>Usage:</p> <ul> <li> <p>Accepts source or target selection rules depending on the <code>Origin</code> parameter. The <code>server-name</code> in the object locator must match the corresponding data provider.</p> </li> <li> <p>Supports <code>explicit</code>, <code>include</code>, and <code>exclude</code> rule actions.</p> </li> </ul>"""
     origin: "capo_database_migration_service.types.origin_type_value.OriginTypeValue"
-    """<p>Whether to export the metadata model from the source or the target.</p>"""
+    """<p>Specifies the metadata tree to export from.</p>"""
     file_name: NotRequired["capo_database_migration_service.types.string.String"]
-    """<p>The name of the model file to create in the Amazon S3 bucket.</p>"""
+    """<p>The name for the exported file. When you omit this parameter, the service generates a name from the data provider engine name and an export timestamp.</p>"""
 
 
 # --- awsJson1_1 ser/de ---

@@ -15,7 +15,7 @@ class MixedInstancesPolicy(TypedDict, closed=True):
     launch_template: NotRequired[
         "capo_auto_scaling.types.launch_template.LaunchTemplate"
     ]
-    """<p>One or more launch templates and the instance types (overrides) that are used to launch EC2 instances to fulfill On-Demand and Spot capacities.</p>"""
+    """<p>One or more launch templates and the instance types (overrides) that are used to launch EC2 instances to fulfill the configured capacities.</p>"""
     instances_distribution: NotRequired[
         "capo_auto_scaling.types.instances_distribution.InstancesDistribution"
     ]

@@ -12,6 +12,7 @@ import capo_ec2._auth._signers
 import capo_ec2._auth._sigv4
 import capo_ec2._protocol.eventstream
 import capo_ec2.types.block_device_mapping_request_list
+import capo_ec2.types.boot_mode_override_values
 import capo_ec2.types.create_image_request
 import capo_ec2.types.create_image_result
 import capo_ec2.types.snapshot_location_enum

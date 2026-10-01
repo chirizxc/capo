@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.configuration_bundle_id
     import capo_bedrock_agentcore_control.types.configuration_bundle_name
     import capo_bedrock_agentcore_control.types.configuration_bundle_version
+    import capo_bedrock_agentcore_control.types.kms_key_arn
     import capo_bedrock_agentcore_control.types.version_lineage_metadata
 
 
@@ -41,6 +42,10 @@ class GetConfigurationBundleResponse(TypedDict, closed=True):
     """<p>The timestamp when the configuration bundle was created.</p>"""
     updated_at: "datetime.datetime"
     """<p>The timestamp when the configuration bundle was last updated.</p>"""
+    kms_key_arn: NotRequired[
+        "capo_bedrock_agentcore_control.types.kms_key_arn.KmsKeyArn"
+    ]
+    """<p>KMS key ARN used to encrypt component configurations, if CMK was provided.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -81,6 +86,8 @@ def serialize_json(value: GetConfigurationBundleResponse) -> dict:
             value["updated_at"]
         )
     )
+    if "kms_key_arn" in value:
+        out["kmsKeyArn"] = value["kms_key_arn"]
     return out
 
 
@@ -144,4 +151,6 @@ def deserialize_json(data: dict) -> GetConfigurationBundleResponse:
         )
     else:
         raise DeserializationError("GetConfigurationBundleResponse.updated_at required")
+    if data.get("kmsKeyArn") is not None:
+        out["kms_key_arn"] = data["kmsKeyArn"]
     return out

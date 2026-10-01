@@ -33,6 +33,8 @@ class ListManagedNotificationEventsRequest(TypedDict, closed=True):
     """<p>The Organizational Unit Id that an Amazon Web Services account belongs to.</p>"""
     related_account: NotRequired["capo_notifications.types.account_id.AccountId"]
     """<p>The Amazon Web Services account ID associated with the Managed Notification Events.</p>"""
+    include_sensitive_events: NotRequired["bool"]
+    """<p>Specifies whether to include sensitive events in the result. By default, only non-sensitive events are returned. The <code>notifications:AccessSensitiveEvents</code> permission controls access to sensitive events.</p>"""
 
 
 # --- restJson1 ser/de ---

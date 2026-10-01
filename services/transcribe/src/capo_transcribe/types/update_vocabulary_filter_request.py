@@ -8,6 +8,7 @@ from capo_transcribe.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_transcribe.types.data_access_role_arn
+    import capo_transcribe.types.encryption_configuration
     import capo_transcribe.types.uri
     import capo_transcribe.types.vocabulary_filter_name
     import capo_transcribe.types.words
@@ -25,7 +26,11 @@ class UpdateVocabularyFilterRequest(TypedDict, closed=True):
     data_access_role_arn: NotRequired[
         "capo_transcribe.types.data_access_role_arn.DataAccessRoleArn"
     ]
-    r"""<p>The Amazon Resource Name (ARN) of an IAM role that has permissions to access the Amazon S3 bucket that contains your input files (in this case, your custom vocabulary filter). If the role that you specify doesn’t have the appropriate permissions to access the specified Amazon S3 location, your request fails.</p> <p>IAM role ARNs have the format <code>arn:partition:iam::account:role/role-name-with-path</code>. For example: <code>arn:aws:iam::111122223333:role/Admin</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns\">IAM ARNs</a>.</p>"""
+    r"""<p>The Amazon Resource Name (ARN) of an IAM role that has permissions to access the Amazon S3 bucket that contains your input files (in this case, your custom vocabulary filter). If you include <code>EncryptionConfiguration</code> in your request, this role must also have permissions to access the specified KMS key. If the role that you specify doesn’t have the appropriate permissions, your request fails.</p> <p>IAM role ARNs have the format <code>arn:partition:iam::account:role/role-name-with-path</code>. For example: <code>arn:aws:iam::111122223333:role/Admin</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns\">IAM ARNs</a>.</p>"""
+    encryption_configuration: NotRequired[
+        "capo_transcribe.types.encryption_configuration.EncryptionConfiguration"
+    ]
+    """<p>Specifies the new encryption configuration for your custom vocabulary filter. The vocabulary filter artifacts are re-encrypted in place using the specified KMS key or with an AWS-owned key if a key is not supplied.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -42,6 +47,14 @@ def serialize_aws_json_1_1(value: UpdateVocabularyFilterRequest) -> dict:
         out["VocabularyFilterFileUri"] = value["vocabulary_filter_file_uri"]
     if "data_access_role_arn" in value:
         out["DataAccessRoleArn"] = value["data_access_role_arn"]
+    if "encryption_configuration" in value:
+        import capo_transcribe.types.encryption_configuration
+
+        out["EncryptionConfiguration"] = (
+            capo_transcribe.types.encryption_configuration.serialize_aws_json_1_1(
+                value["encryption_configuration"]
+            )
+        )
     return out
 
 
@@ -63,4 +76,12 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateVocabularyFilterRequest:
         out["vocabulary_filter_file_uri"] = data["VocabularyFilterFileUri"]
     if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
+    if data.get("EncryptionConfiguration") is not None:
+        import capo_transcribe.types.encryption_configuration
+
+        out["encryption_configuration"] = (
+            capo_transcribe.types.encryption_configuration.deserialize_aws_json_1_1(
+                data["EncryptionConfiguration"]
+            )
+        )
     return out

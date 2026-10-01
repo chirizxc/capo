@@ -20,11 +20,11 @@ class UpdateNotifyConfigurationRequest(TypedDict, closed=True):
     default_template_id: NotRequired[
         "capo_pinpoint_sms_voice_v2.types.notify_template_id.NotifyTemplateId"
     ]
-    """The template ID to set as the default, or the special value UNSET_DEFAULT_TEMPLATE to clear the current default template."""
+    """<p>The default template identifier to associate with the notify configuration. If specified, this template is used when sending messages without an explicit template identifier. Pass the special value <code>UNSET_DEFAULT_TEMPLATE</code> to clear the current default template from the notify configuration.</p>"""
     pool_id: NotRequired[
         "capo_pinpoint_sms_voice_v2.types.notify_pool_id_or_unset.NotifyPoolIdOrUnset"
     ]
-    """The pool ID or ARN to associate, or the special value UNSET_DEFAULT_POOL_FOR_NOTIFY to clear the current default pool."""
+    """<p>The pool identifier or Amazon Resource Name (ARN) to associate with the notify configuration. Pass the special value <code>UNSET_DEFAULT_POOL_FOR_NOTIFY</code> to clear the current default pool from the notify configuration.</p>"""
     enabled_countries: NotRequired[
         "capo_pinpoint_sms_voice_v2.types.iso_country_code_list.IsoCountryCodeList"
     ]

@@ -1,0 +1,54 @@
+"""Generated from Smithy shape ``com.amazonaws.healthlake#ServiceQuotaExceededException``."""
+
+from typing import TYPE_CHECKING
+
+from typing_extensions import NotRequired, TypedDict
+
+from capo_healthlake.errors import ServiceError
+
+if TYPE_CHECKING:
+    import capo_healthlake.types.health_lake_string
+
+
+class ServiceQuotaExceededException_(TypedDict, closed=True):
+    message: NotRequired["capo_healthlake.types.health_lake_string.HealthLakeString"]
+    """A message describing the error."""
+
+
+# --- awsJson1_0 ser/de ---
+def serialize_aws_json_1_0(value: ServiceQuotaExceededException_) -> dict:
+    out: dict = {}
+    if "message" in value:
+        out["Message"] = value["message"]
+    return out
+
+
+def deserialize_aws_json_1_0(data: dict) -> ServiceQuotaExceededException_:
+    out: ServiceQuotaExceededException_ = {}  # type: ignore[typeddict-item]
+    if data.get("Message") is not None:
+        out["message"] = data["Message"]
+    return out
+
+
+class ServiceQuotaExceededException(ServiceError):
+    """Modeled error for Smithy shape ``com.amazonaws.healthlake#ServiceQuotaExceededException``."""
+
+    code: str | None = "ServiceQuotaExceededException"
+
+    def __init__(
+        self, data: ServiceQuotaExceededException_, message: str | None = None
+    ):
+        super().__init__(
+            "client",
+            is_throttling_error=False,
+            is_retryable=False,
+            code="ServiceQuotaExceededException",
+            message=message,
+        )
+        self.data = data
+
+    @classmethod
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "ServiceQuotaExceededException":
+        return cls(deserialize_aws_json_1_0(data), message)

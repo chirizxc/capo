@@ -21,6 +21,7 @@ import capo_sesv2.types.archiving_options
 import capo_sesv2.types.create_configuration_set_request
 import capo_sesv2.types.create_configuration_set_response
 import capo_sesv2.types.delivery_options
+import capo_sesv2.types.message_security_options
 import capo_sesv2.types.reputation_options
 import capo_sesv2.types.sending_options
 import capo_sesv2.types.suppression_options

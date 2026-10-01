@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 from capo_partnercentral_account.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_partnercentral_account.types.headquarters
     import capo_partnercentral_account.types.industry_segment_list
     import capo_partnercentral_account.types.locale
     import capo_partnercentral_account.types.localized_content_list
@@ -39,6 +40,10 @@ class PartnerProfile(TypedDict, closed=True):
         "capo_partnercentral_account.types.localized_content_list.LocalizedContentList"
     ]
     """<p>A list of localized content versions for different languages and regions.</p>"""
+    headquarters: NotRequired[
+        "capo_partnercentral_account.types.headquarters.Headquarters"
+    ]
+    """<p>The ISO 3166 country and subdivision codes for the partner's headquarters location. If no headquarters location is set, this field is not included in the response.</p>"""
     profile_id: NotRequired[
         "capo_partnercentral_account.types.partner_profile_id.PartnerProfileId"
     ]
@@ -73,6 +78,14 @@ def serialize_aws_json_1_0(value: PartnerProfile) -> dict:
         out["LocalizedContents"] = (
             capo_partnercentral_account.types.localized_content_list.serialize_aws_json_1_0(
                 value["localized_contents"]
+            )
+        )
+    if "headquarters" in value:
+        import capo_partnercentral_account.types.headquarters
+
+        out["Headquarters"] = (
+            capo_partnercentral_account.types.headquarters.serialize_aws_json_1_0(
+                value["headquarters"]
             )
         )
     if "profile_id" in value:
@@ -128,6 +141,14 @@ def deserialize_aws_json_1_0(data: dict) -> PartnerProfile:
         out["localized_contents"] = (
             capo_partnercentral_account.types.localized_content_list.deserialize_aws_json_1_0(
                 data["LocalizedContents"]
+            )
+        )
+    if data.get("Headquarters") is not None:
+        import capo_partnercentral_account.types.headquarters
+
+        out["headquarters"] = (
+            capo_partnercentral_account.types.headquarters.deserialize_aws_json_1_0(
+                data["Headquarters"]
             )
         )
     if data.get("ProfileId") is not None:

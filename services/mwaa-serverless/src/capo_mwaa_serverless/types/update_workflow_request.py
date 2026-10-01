@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 from capo_mwaa_serverless.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_mwaa_serverless.types.code
     import capo_mwaa_serverless.types.definition_s3_location
     import capo_mwaa_serverless.types.description_string
     import capo_mwaa_serverless.types.engine_version
@@ -24,6 +25,8 @@ class UpdateWorkflowRequest(TypedDict, closed=True):
         "capo_mwaa_serverless.types.definition_s3_location.DefinitionS3Location"
     )
     """<p>The Amazon S3 location where the updated workflow definition file is stored.</p>"""
+    code: NotRequired["capo_mwaa_serverless.types.code.Code"]
+    """<p>The location of code artifacts in Amazon S3 for the updated workflow. The service copies the code from this location at the time of the request.</p>"""
     role_arn: "capo_mwaa_serverless.types.role_arn.RoleARN"
     """<p>The Amazon Resource Name (ARN) of the IAM role that Amazon Managed Workflows for Apache Airflow Serverless assumes when it executes the updated workflow.</p>"""
     description: NotRequired[
@@ -57,6 +60,12 @@ def serialize_aws_json_1_0(value: UpdateWorkflowRequest) -> dict:
             value["definition_s3_location"]
         )
     )
+    if "code" in value:
+        import capo_mwaa_serverless.types.code
+
+        out["Code"] = capo_mwaa_serverless.types.code.serialize_aws_json_1_0(
+            value["code"]
+        )
     out["RoleArn"] = value["role_arn"]
     if "description" in value:
         out["Description"] = value["description"]
@@ -106,6 +115,12 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateWorkflowRequest:
     else:
         raise DeserializationError(
             "UpdateWorkflowRequest.definition_s3_location required"
+        )
+    if data.get("Code") is not None:
+        import capo_mwaa_serverless.types.code
+
+        out["code"] = capo_mwaa_serverless.types.code.deserialize_aws_json_1_0(
+            data["Code"]
         )
     if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]

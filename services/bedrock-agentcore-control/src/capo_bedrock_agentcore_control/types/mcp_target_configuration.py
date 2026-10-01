@@ -12,6 +12,7 @@ from capo_bedrock_agentcore_control.errors import (
 if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.api_gateway_target_configuration
     import capo_bedrock_agentcore_control.types.api_schema_configuration
+    import capo_bedrock_agentcore_control.types.connector_target_configuration
     import capo_bedrock_agentcore_control.types.mcp_lambda_target_configuration
     import capo_bedrock_agentcore_control.types.mcp_server_target_configuration
 
@@ -41,12 +42,17 @@ class _McpTargetConfiguration_apiGateway(TypedDict, closed=True):
     apiGateway: "capo_bedrock_agentcore_control.types.api_gateway_target_configuration.ApiGatewayTargetConfiguration"
 
 
+class _McpTargetConfiguration_connector(TypedDict, closed=True):
+    connector: "capo_bedrock_agentcore_control.types.connector_target_configuration.ConnectorTargetConfiguration"
+
+
 McpTargetConfiguration: TypeAlias = (
     _McpTargetConfiguration_openApiSchema
     | _McpTargetConfiguration_smithyModel
     | _McpTargetConfiguration_lambda
     | _McpTargetConfiguration_mcpServer
     | _McpTargetConfiguration_apiGateway
+    | _McpTargetConfiguration_connector
 )
 
 
@@ -92,6 +98,14 @@ def serialize_json(value: McpTargetConfiguration) -> dict:
                 value["apiGateway"]
             )
         }
+    elif "connector" in value:
+        import capo_bedrock_agentcore_control.types.connector_target_configuration
+
+        return {
+            "connector": capo_bedrock_agentcore_control.types.connector_target_configuration.serialize_json(
+                value["connector"]
+            )
+        }
     else:
         raise SerializationError("McpTargetConfiguration: no variant present")
 
@@ -135,6 +149,14 @@ def deserialize_json(data: dict) -> McpTargetConfiguration:
         return {
             "apiGateway": capo_bedrock_agentcore_control.types.api_gateway_target_configuration.deserialize_json(
                 data["apiGateway"]
+            )
+        }
+    elif data.get("connector") is not None:
+        import capo_bedrock_agentcore_control.types.connector_target_configuration
+
+        return {
+            "connector": capo_bedrock_agentcore_control.types.connector_target_configuration.deserialize_json(
+                data["connector"]
             )
         }
     else:

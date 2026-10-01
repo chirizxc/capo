@@ -13,15 +13,15 @@ if TYPE_CHECKING:
 
 class ListContainerRecipesRequest(TypedDict, closed=True):
     owner: NotRequired["capo_imagebuilder.types.ownership.Ownership"]
-    """<p>Returns container recipes belonging to the specified owner, that have been shared with you. You can omit this field to return container recipes belonging to your account.</p>"""
+    """<p>Returns container recipes belonging to the specified owner, that have been shared with you. You can omit this field to return container recipes belonging to your account. For container recipes, the valid owner values are <code>Self</code>, <code>Shared</code>, and <code>Amazon</code>.</p>"""
     filters: NotRequired["capo_imagebuilder.types.filter_list.FilterList"]
     """<p>Use the following filters to streamline results:</p> <ul> <li> <p> <code>containerType</code> </p> </li> <li> <p> <code>name</code> </p> </li> <li> <p> <code>parentImage</code> </p> </li> <li> <p> <code>platform</code> </p> </li> </ul>"""
     max_results: NotRequired[
         "capo_imagebuilder.types.restricted_integer.RestrictedInteger"
     ]
-    """<p>Specify the maximum number of items to return in a request.</p>"""
+    """<p>The maximum number of items to return in a single request.</p>"""
     next_token: NotRequired["capo_imagebuilder.types.pagination_token.PaginationToken"]
-    """<p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>"""
+    """<p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>"""
 
 
 # --- restJson1 ser/de ---

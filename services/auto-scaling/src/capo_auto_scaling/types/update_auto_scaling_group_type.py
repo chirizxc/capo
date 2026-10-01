@@ -52,7 +52,7 @@ class UpdateAutoScalingGroupType(TypedDict, closed=True):
     mixed_instances_policy: NotRequired[
         "capo_auto_scaling.types.mixed_instances_policy.MixedInstancesPolicy"
     ]
-    r"""<p>The mixed instances policy. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-mixed-instances-groups.html\">Auto Scaling groups with multiple instance types and purchase options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>"""
+    r"""<p>The mixed instances policy. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-mixed-instances-groups.html\">Auto Scaling groups with multiple instance types and purchase options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p> <p>You can remove the Distribution Segments configuration by specifying <code>OnDemandBaseCapacity</code> or <code>OnDemandPercentageAboveBaseCapacity</code>. You can also remove it explicitly by specifying an empty list for <code>DistributionSegments</code>.</p>"""
     min_size: NotRequired[
         "capo_auto_scaling.types.auto_scaling_group_min_size.AutoScalingGroupMinSize"
     ]

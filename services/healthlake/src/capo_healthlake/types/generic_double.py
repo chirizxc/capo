@@ -2,4 +2,5 @@
 
 from typing import TypeAlias
 
+"""A double-precision floating-point number."""
 GenericDouble: TypeAlias = float

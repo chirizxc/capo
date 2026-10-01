@@ -34,6 +34,8 @@ if TYPE_CHECKING:
     import capo_customer_profiles.types.add_profile_key_response
     import capo_customer_profiles.types.additional_search_keys_list
     import capo_customer_profiles.types.address
+    import capo_customer_profiles.types.associate_stream_for_segments_request
+    import capo_customer_profiles.types.associate_stream_for_segments_response
     import capo_customer_profiles.types.attribute_details
     import capo_customer_profiles.types.attributes
     import capo_customer_profiles.types.batch_get_calculated_attribute_for_profile_id_list
@@ -111,10 +113,16 @@ if TYPE_CHECKING:
     import capo_customer_profiles.types.delete_recommender_schema_response
     import capo_customer_profiles.types.delete_segment_definition_request
     import capo_customer_profiles.types.delete_segment_definition_response
+    import capo_customer_profiles.types.delete_segment_subscription_request
+    import capo_customer_profiles.types.delete_segment_subscription_response
     import capo_customer_profiles.types.delete_workflow_request
     import capo_customer_profiles.types.delete_workflow_response
+    import capo_customer_profiles.types.destination_arn_string
+    import capo_customer_profiles.types.destination_role_arn
     import capo_customer_profiles.types.detect_profile_object_type_request
     import capo_customer_profiles.types.detect_profile_object_type_response
+    import capo_customer_profiles.types.disassociate_stream_for_segments_request
+    import capo_customer_profiles.types.disassociate_stream_for_segments_response
     import capo_customer_profiles.types.display_name
     import capo_customer_profiles.types.domain_object_type_fields
     import capo_customer_profiles.types.domain_object_types_list_item
@@ -179,8 +187,12 @@ if TYPE_CHECKING:
     import capo_customer_profiles.types.get_segment_membership_response
     import capo_customer_profiles.types.get_segment_snapshot_request
     import capo_customer_profiles.types.get_segment_snapshot_response
+    import capo_customer_profiles.types.get_segment_subscription_request
+    import capo_customer_profiles.types.get_segment_subscription_response
     import capo_customer_profiles.types.get_similar_profiles_request
     import capo_customer_profiles.types.get_similar_profiles_response
+    import capo_customer_profiles.types.get_stream_for_segments_request
+    import capo_customer_profiles.types.get_stream_for_segments_response
     import capo_customer_profiles.types.get_upload_job_path_request
     import capo_customer_profiles.types.get_upload_job_path_response
     import capo_customer_profiles.types.get_upload_job_request
@@ -191,6 +203,7 @@ if TYPE_CHECKING:
     import capo_customer_profiles.types.get_workflow_steps_response
     import capo_customer_profiles.types.integration_config
     import capo_customer_profiles.types.key_map
+    import capo_customer_profiles.types.key_values_list
     import capo_customer_profiles.types.layout_item
     import capo_customer_profiles.types.layout_type
     import capo_customer_profiles.types.list_account_integrations_request
@@ -240,6 +253,8 @@ if TYPE_CHECKING:
     import capo_customer_profiles.types.list_rule_based_matches_response
     import capo_customer_profiles.types.list_segment_definitions_request
     import capo_customer_profiles.types.list_segment_definitions_response
+    import capo_customer_profiles.types.list_segment_subscription_events_request
+    import capo_customer_profiles.types.list_segment_subscription_events_response
     import capo_customer_profiles.types.list_tags_for_resource_request
     import capo_customer_profiles.types.list_tags_for_resource_response
     import capo_customer_profiles.types.list_upload_jobs_request
@@ -274,6 +289,11 @@ if TYPE_CHECKING:
     import capo_customer_profiles.types.put_profile_object_response
     import capo_customer_profiles.types.put_profile_object_type_request
     import capo_customer_profiles.types.put_profile_object_type_response
+    import capo_customer_profiles.types.put_segment_subscription_request
+    import capo_customer_profiles.types.put_segment_subscription_response
+    import capo_customer_profiles.types.recommendation_diversity_config
+    import capo_customer_profiles.types.recommendation_metadata
+    import capo_customer_profiles.types.recommender
     import capo_customer_profiles.types.recommender_config
     import capo_customer_profiles.types.recommender_context
     import capo_customer_profiles.types.recommender_filter_expression
@@ -286,12 +306,16 @@ if TYPE_CHECKING:
     import capo_customer_profiles.types.recommender_schema_fields
     import capo_customer_profiles.types.recommender_schema_summary
     import capo_customer_profiles.types.recommender_summary
+    import capo_customer_profiles.types.recommender_version_name
     import capo_customer_profiles.types.request_value_list
     import capo_customer_profiles.types.role_arn
     import capo_customer_profiles.types.rule_based_matching_request
+    import capo_customer_profiles.types.schedule_configuration
     import capo_customer_profiles.types.scope
     import capo_customer_profiles.types.search_profiles_request
     import capo_customer_profiles.types.search_profiles_response
+    import capo_customer_profiles.types.search_recommendations_request
+    import capo_customer_profiles.types.search_recommendations_response
     import capo_customer_profiles.types.segment_definition_item
     import capo_customer_profiles.types.segment_group
     import capo_customer_profiles.types.segment_group_structure
@@ -319,6 +343,7 @@ if TYPE_CHECKING:
     import capo_customer_profiles.types.string1_to255
     import capo_customer_profiles.types.string1_to1000
     import capo_customer_profiles.types.stringified_json
+    import capo_customer_profiles.types.subscription_event_item
     import capo_customer_profiles.types.tag_arn
     import capo_customer_profiles.types.tag_key_list
     import capo_customer_profiles.types.tag_map
@@ -488,6 +513,59 @@ class CustomerProfilesClient:
             "key_name": key_name,
             "values": values,
             "domain_name": domain_name,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def associate_stream_for_segments(
+        self,
+        domain_name: "capo_customer_profiles.types.name.name",
+        destination_arn: "capo_customer_profiles.types.destination_arn_string.DestinationArnString",
+        destination_role_arn: "capo_customer_profiles.types.destination_role_arn.DestinationRoleArn",
+        *,
+        config_overrides: Optional[CustomerProfilesClientConfig] = None,
+    ) -> "capo_customer_profiles.types.associate_stream_for_segments_response.AssociateStreamForSegmentsResponse":
+        """<p>Associates an Amazon Kinesis data stream to receive segment membership events for a given domain. This is a domain-level configuration that applies to all segment subscriptions within the domain. A domain can have only one associated stream at a time. </p>
+
+        Args:
+            domain_name: <p>The unique name of the domain.</p>
+            destination_arn: <p>The Amazon Resource Name (ARN) of the Amazon Kinesis data stream to deliver segment membership events to. For example, <code>arn:aws:kinesis:region:account-id:stream/stream-name</code>. </p>
+            destination_role_arn: <p>The Amazon Resource Name (ARN) of the IAM role that allows Customer Profiles service principal to assume the role for conducting AWS Key Management Service (KMS) and Amazon Kinesis operations. The role must grant the following Amazon Kinesis permissions to deliver segment membership events to the stream: </p> <ul> <li> <p> <code>kinesis:PutRecord</code> </p> </li> <li> <p> <code>kinesis:PutRecords</code> </p> </li> <li> <p> <code>kinesis:DescribeStream</code> </p> </li> </ul>
+
+        Raises:
+            capo_customer_profiles.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_customer_profiles.errors.bad_request_exception.BadRequestException: <p>The input you provided is invalid.</p>
+            capo_customer_profiles.errors.internal_server_exception.InternalServerException: <p>An internal service error occurred.</p>
+            capo_customer_profiles.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource does not exist, or access was denied.</p>
+            capo_customer_profiles.errors.throttling_exception.ThrottlingException: <p>You exceeded the maximum number of requests.</p>
+            capo_customer_profiles.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_customer_profiles.types.associate_stream_for_segments_request.AssociateStreamForSegmentsRequest]",
+        ) -> OperationResponse[
+            "capo_customer_profiles.types.associate_stream_for_segments_response.AssociateStreamForSegmentsResponse"
+        ]:
+            import capo_customer_profiles._operations.customer_profiles_20200815.associate_stream_for_segments
+
+            output, http_response = (
+                capo_customer_profiles._operations.customer_profiles_20200815.associate_stream_for_segments.associate_stream_for_segments(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_customer_profiles.types.associate_stream_for_segments_request.AssociateStreamForSegmentsRequest = {
+            "domain_name": domain_name,
+            "destination_arn": destination_arn,
+            "destination_role_arn": destination_role_arn,
         }
 
         response = execute_pipeline(
@@ -2522,6 +2600,56 @@ class CustomerProfilesClient:
         response.response.close()
         return response.output
 
+    def delete_segment_subscription(
+        self,
+        domain_name: "capo_customer_profiles.types.name.name",
+        segment_definition_name: "capo_customer_profiles.types.name.name",
+        *,
+        config_overrides: Optional[CustomerProfilesClientConfig] = None,
+    ) -> "capo_customer_profiles.types.delete_segment_subscription_response.DeleteSegmentSubscriptionResponse":
+        """<p>Deletes a segment subscription for membership events. All active event notifications for this segment are stopped. </p>
+
+        Args:
+            domain_name: <p>The unique name of the domain.</p>
+            segment_definition_name: <p>The unique name of the segment definition. </p>
+
+        Raises:
+            capo_customer_profiles.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_customer_profiles.errors.bad_request_exception.BadRequestException: <p>The input you provided is invalid.</p>
+            capo_customer_profiles.errors.internal_server_exception.InternalServerException: <p>An internal service error occurred.</p>
+            capo_customer_profiles.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource does not exist, or access was denied.</p>
+            capo_customer_profiles.errors.throttling_exception.ThrottlingException: <p>You exceeded the maximum number of requests.</p>
+            capo_customer_profiles.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_customer_profiles.types.delete_segment_subscription_request.DeleteSegmentSubscriptionRequest]",
+        ) -> OperationResponse[
+            "capo_customer_profiles.types.delete_segment_subscription_response.DeleteSegmentSubscriptionResponse"
+        ]:
+            import capo_customer_profiles._operations.customer_profiles_20200815.delete_segment_subscription
+
+            output, http_response = (
+                capo_customer_profiles._operations.customer_profiles_20200815.delete_segment_subscription.delete_segment_subscription(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_customer_profiles.types.delete_segment_subscription_request.DeleteSegmentSubscriptionRequest = {
+            "domain_name": domain_name,
+            "segment_definition_name": segment_definition_name,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def delete_workflow(
         self,
         domain_name: "capo_customer_profiles.types.name.name",
@@ -2612,6 +2740,53 @@ class CustomerProfilesClient:
         input_: capo_customer_profiles.types.detect_profile_object_type_request.DetectProfileObjectTypeRequest = {
             "objects": objects,
             "domain_name": domain_name,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def disassociate_stream_for_segments(
+        self,
+        domain_name: "capo_customer_profiles.types.name.name",
+        *,
+        config_overrides: Optional[CustomerProfilesClientConfig] = None,
+    ) -> "capo_customer_profiles.types.disassociate_stream_for_segments_response.DisassociateStreamForSegmentsResponse":
+        """<p>Disassociates the Amazon Kinesis data stream configured for segment membership events. All active segment subscriptions delivering events to this stream are eventually stopped. </p>
+
+        Args:
+            domain_name: <p>The unique name of the domain.</p>
+
+        Raises:
+            capo_customer_profiles.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_customer_profiles.errors.bad_request_exception.BadRequestException: <p>The input you provided is invalid.</p>
+            capo_customer_profiles.errors.internal_server_exception.InternalServerException: <p>An internal service error occurred.</p>
+            capo_customer_profiles.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource does not exist, or access was denied.</p>
+            capo_customer_profiles.errors.throttling_exception.ThrottlingException: <p>You exceeded the maximum number of requests.</p>
+            capo_customer_profiles.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_customer_profiles.types.disassociate_stream_for_segments_request.DisassociateStreamForSegmentsRequest]",
+        ) -> OperationResponse[
+            "capo_customer_profiles.types.disassociate_stream_for_segments_response.DisassociateStreamForSegmentsResponse"
+        ]:
+            import capo_customer_profiles._operations.customer_profiles_20200815.disassociate_stream_for_segments
+
+            output, http_response = (
+                capo_customer_profiles._operations.customer_profiles_20200815.disassociate_stream_for_segments.disassociate_stream_for_segments(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_customer_profiles.types.disassociate_stream_for_segments_request.DisassociateStreamForSegmentsRequest = {
+            "domain_name": domain_name
         }
 
         response = execute_pipeline(
@@ -3420,6 +3595,9 @@ class CustomerProfilesClient:
         metadata_config: Optional[
             "capo_customer_profiles.types.metadata_config.MetadataConfig"
         ] = None,
+        diversity_config: Optional[
+            "capo_customer_profiles.types.recommendation_diversity_config.RecommendationDiversityConfig"
+        ] = None,
     ) -> "capo_customer_profiles.types.get_profile_recommendations_response.GetProfileRecommendationsResponse":
         """<p>Fetches the recommendations for a profile in the input Customer Profiles domain. Fetches all the profile recommendations </p>
 
@@ -3433,6 +3611,7 @@ class CustomerProfilesClient:
             candidate_ids: <p>A list of item IDs to rank for the user. Use this when you want to re-rank a specific set of items rather than getting recommendations from the full item catalog. Required for personalized-ranking use cases.</p>
             max_results: <p>The maximum number of recommendations to return. The default value is 10.</p>
             metadata_config: <p>Configuration for including item metadata in the recommendation response. Use this to specify which metadata columns to return alongside recommended items.</p>
+            diversity_config: <p>Runtime diversity configuration for this request. Enables diversity-aware recommendations and optionally supplies values for placeholder-based diversity caps configured on the recommender.</p>
 
         Raises:
             capo_customer_profiles.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -3475,6 +3654,8 @@ class CustomerProfilesClient:
             input_["max_results"] = max_results
         if metadata_config is not None:
             input_["metadata_config"] = metadata_config
+        if diversity_config is not None:
+            input_["diversity_config"] = diversity_config
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -3846,6 +4027,56 @@ class CustomerProfilesClient:
         response.response.close()
         return response.output
 
+    def get_segment_subscription(
+        self,
+        domain_name: "capo_customer_profiles.types.name.name",
+        segment_definition_name: "capo_customer_profiles.types.name.name",
+        *,
+        config_overrides: Optional[CustomerProfilesClientConfig] = None,
+    ) -> "capo_customer_profiles.types.get_segment_subscription_response.GetSegmentSubscriptionResponse":
+        """<p>Returns the current subscription configuration, execution schedule, and status for segment membership events. </p>
+
+        Args:
+            domain_name: <p>The unique name of the domain.</p>
+            segment_definition_name: <p>The unique name of the segment definition. </p>
+
+        Raises:
+            capo_customer_profiles.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_customer_profiles.errors.bad_request_exception.BadRequestException: <p>The input you provided is invalid.</p>
+            capo_customer_profiles.errors.internal_server_exception.InternalServerException: <p>An internal service error occurred.</p>
+            capo_customer_profiles.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource does not exist, or access was denied.</p>
+            capo_customer_profiles.errors.throttling_exception.ThrottlingException: <p>You exceeded the maximum number of requests.</p>
+            capo_customer_profiles.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_customer_profiles.types.get_segment_subscription_request.GetSegmentSubscriptionRequest]",
+        ) -> OperationResponse[
+            "capo_customer_profiles.types.get_segment_subscription_response.GetSegmentSubscriptionResponse"
+        ]:
+            import capo_customer_profiles._operations.customer_profiles_20200815.get_segment_subscription
+
+            output, http_response = (
+                capo_customer_profiles._operations.customer_profiles_20200815.get_segment_subscription.get_segment_subscription(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_customer_profiles.types.get_segment_subscription_request.GetSegmentSubscriptionRequest = {
+            "domain_name": domain_name,
+            "segment_definition_name": segment_definition_name,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def get_similar_profiles(
         self,
         domain_name: "capo_customer_profiles.types.name.name",
@@ -3942,6 +4173,53 @@ class CustomerProfilesClient:
             _token = _resolve_path(_response, ("next_token",))
             if not _token:
                 break
+
+    def get_stream_for_segments(
+        self,
+        domain_name: "capo_customer_profiles.types.name.name",
+        *,
+        config_overrides: Optional[CustomerProfilesClientConfig] = None,
+    ) -> "capo_customer_profiles.types.get_stream_for_segments_response.GetStreamForSegmentsResponse":
+        """<p>Returns information about the segment membership event stream configured for a specific domain, including the stream state and associated segments. </p>
+
+        Args:
+            domain_name: <p>The unique name of the domain.</p>
+
+        Raises:
+            capo_customer_profiles.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_customer_profiles.errors.bad_request_exception.BadRequestException: <p>The input you provided is invalid.</p>
+            capo_customer_profiles.errors.internal_server_exception.InternalServerException: <p>An internal service error occurred.</p>
+            capo_customer_profiles.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource does not exist, or access was denied.</p>
+            capo_customer_profiles.errors.throttling_exception.ThrottlingException: <p>You exceeded the maximum number of requests.</p>
+            capo_customer_profiles.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_customer_profiles.types.get_stream_for_segments_request.GetStreamForSegmentsRequest]",
+        ) -> OperationResponse[
+            "capo_customer_profiles.types.get_stream_for_segments_response.GetStreamForSegmentsResponse"
+        ]:
+            import capo_customer_profiles._operations.customer_profiles_20200815.get_stream_for_segments
+
+            output, http_response = (
+                capo_customer_profiles._operations.customer_profiles_20200815.get_stream_for_segments.get_stream_for_segments(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_customer_profiles.types.get_stream_for_segments_request.GetStreamForSegmentsRequest = {
+            "domain_name": domain_name
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
 
     def get_upload_job(
         self,
@@ -5780,6 +6058,93 @@ class CustomerProfilesClient:
             if not _token:
                 break
 
+    def list_segment_subscription_events(
+        self,
+        domain_name: "capo_customer_profiles.types.name.name",
+        segment_definition_name: "capo_customer_profiles.types.name.name",
+        *,
+        config_overrides: Optional[CustomerProfilesClientConfig] = None,
+        max_results: Optional[
+            "capo_customer_profiles.types.max_size100.maxSize100"
+        ] = None,
+        next_token: Optional["capo_customer_profiles.types.token.token"] = None,
+    ) -> "capo_customer_profiles.types.list_segment_subscription_events_response.ListSegmentSubscriptionEventsResponse":
+        """<p>Returns the most recent membership events for a segment. Each event represents a profile that entered or exited the segment. </p> <p>This operation is paginated. </p>
+
+        Args:
+            domain_name: <p>The unique name of the domain.</p>
+            segment_definition_name: <p>The unique name of the segment definition. </p>
+            max_results: <p>The maximum number of events to return per page. </p>
+            next_token: <p>The pagination token from the previous call to retrieve the next page of results. </p>
+
+        Raises:
+            capo_customer_profiles.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_customer_profiles.errors.bad_request_exception.BadRequestException: <p>The input you provided is invalid.</p>
+            capo_customer_profiles.errors.internal_server_exception.InternalServerException: <p>An internal service error occurred.</p>
+            capo_customer_profiles.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource does not exist, or access was denied.</p>
+            capo_customer_profiles.errors.throttling_exception.ThrottlingException: <p>You exceeded the maximum number of requests.</p>
+            capo_customer_profiles.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_customer_profiles.types.list_segment_subscription_events_request.ListSegmentSubscriptionEventsRequest]",
+        ) -> OperationResponse[
+            "capo_customer_profiles.types.list_segment_subscription_events_response.ListSegmentSubscriptionEventsResponse"
+        ]:
+            import capo_customer_profiles._operations.customer_profiles_20200815.list_segment_subscription_events
+
+            output, http_response = (
+                capo_customer_profiles._operations.customer_profiles_20200815.list_segment_subscription_events.list_segment_subscription_events(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_customer_profiles.types.list_segment_subscription_events_request.ListSegmentSubscriptionEventsRequest = {
+            "domain_name": domain_name,
+            "segment_definition_name": segment_definition_name,
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_segment_subscription_events(
+        self,
+        domain_name: "capo_customer_profiles.types.name.name",
+        segment_definition_name: "capo_customer_profiles.types.name.name",
+        *,
+        config_overrides: Optional[CustomerProfilesClientConfig] = None,
+        max_results: Optional[
+            "capo_customer_profiles.types.max_size100.maxSize100"
+        ] = None,
+        next_token: Optional["capo_customer_profiles.types.token.token"] = None,
+    ) -> "Iterator[capo_customer_profiles.types.subscription_event_item.SubscriptionEventItem]":
+        _token = next_token
+        while True:
+            _response = self.list_segment_subscription_events(
+                domain_name,
+                segment_definition_name,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("events",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     def list_tags_for_resource(
         self,
         resource_arn: "capo_customer_profiles.types.tag_arn.TagArn",
@@ -6362,6 +6727,62 @@ class CustomerProfilesClient:
         response.response.close()
         return response.output
 
+    def put_segment_subscription(
+        self,
+        domain_name: "capo_customer_profiles.types.name.name",
+        segment_definition_name: "capo_customer_profiles.types.name.name",
+        *,
+        config_overrides: Optional[CustomerProfilesClientConfig] = None,
+        schedule_configuration: Optional[
+            "capo_customer_profiles.types.schedule_configuration.ScheduleConfiguration"
+        ] = None,
+    ) -> "capo_customer_profiles.types.put_segment_subscription_response.PutSegmentSubscriptionResponse":
+        """<p>Creates or updates a segment subscription for membership events. When a subscription is created, an initial snapshot is taken and the system begins monitoring for membership changes. </p> <p>You can optionally set a schedule configuration interval to control how often membership snapshots are run. The interval can be from 1 to 24 hours. If not set, the interval defaults to 24 hours. Scheduled snapshots run on a best-effort basis. If a scheduled snapshot takes longer than the configured interval, the next scheduled run does not start until the in-progress snapshot completes, so a run might be delayed or skipped and is not guaranteed to occur at exactly the requested time. </p> <p>For Classic segments, membership events are generated from these scheduled snapshots and also in near real-time as profile attribute changes occur. For SQL segments, membership events are generated only from the scheduled snapshots. </p>
+
+        Args:
+            domain_name: <p>The unique name of the domain.</p>
+            segment_definition_name: <p>The unique name of the segment definition. </p>
+            schedule_configuration: <p>The optional schedule configuration that controls how often membership snapshots are run. If not provided, the subscription defaults to a 24-hour interval. </p>
+
+        Raises:
+            capo_customer_profiles.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_customer_profiles.errors.bad_request_exception.BadRequestException: <p>The input you provided is invalid.</p>
+            capo_customer_profiles.errors.internal_server_exception.InternalServerException: <p>An internal service error occurred.</p>
+            capo_customer_profiles.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource does not exist, or access was denied.</p>
+            capo_customer_profiles.errors.throttling_exception.ThrottlingException: <p>You exceeded the maximum number of requests.</p>
+            capo_customer_profiles.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_customer_profiles.types.put_segment_subscription_request.PutSegmentSubscriptionRequest]",
+        ) -> OperationResponse[
+            "capo_customer_profiles.types.put_segment_subscription_response.PutSegmentSubscriptionResponse"
+        ]:
+            import capo_customer_profiles._operations.customer_profiles_20200815.put_segment_subscription
+
+            output, http_response = (
+                capo_customer_profiles._operations.customer_profiles_20200815.put_segment_subscription.put_segment_subscription(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_customer_profiles.types.put_segment_subscription_request.PutSegmentSubscriptionRequest = {
+            "domain_name": domain_name,
+            "segment_definition_name": segment_definition_name,
+        }
+        if schedule_configuration is not None:
+            input_["schedule_configuration"] = schedule_configuration
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def search_profiles(
         self,
         domain_name: "capo_customer_profiles.types.name.name",
@@ -6428,6 +6849,92 @@ class CustomerProfilesClient:
             input_["additional_search_keys"] = additional_search_keys
         if logical_operator is not None:
             input_["logical_operator"] = logical_operator
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def search_recommendations(
+        self,
+        domain_name: "capo_customer_profiles.types.name.name",
+        key_name: "capo_customer_profiles.types.name.name",
+        key_values: "capo_customer_profiles.types.key_values_list.KeyValuesList",
+        recommender: "capo_customer_profiles.types.recommender.Recommender",
+        *,
+        config_overrides: Optional[CustomerProfilesClientConfig] = None,
+        candidate_ids: Optional[
+            "capo_customer_profiles.types.candidate_id_list.CandidateIdList"
+        ] = None,
+        context: Optional[
+            "capo_customer_profiles.types.recommender_context.RecommenderContext"
+        ] = None,
+        diversity: Optional[
+            "capo_customer_profiles.types.recommendation_diversity_config.RecommendationDiversityConfig"
+        ] = None,
+        metadata: Optional[
+            "capo_customer_profiles.types.recommendation_metadata.RecommendationMetadata"
+        ] = None,
+        max_recommendations: Optional[
+            "capo_customer_profiles.types.max_size500.MaxSize500"
+        ] = None,
+    ) -> "capo_customer_profiles.types.search_recommendations_response.SearchRecommendationsResponse":
+        """<p>Retrieves recommendations for a profile in a specific domain. The profile is identified using a search key, which consists of a <code>KeyName</code> and a <code>KeyValues</code> list. The <code>KeyName</code> can be a predefined key (for example, <code>_profileId</code>, <code>_phone</code>, <code>_email</code>) or a custom-defined key.</p> <p>The search key must match exactly one profile. If no profile matches the search key, the operation returns a <code>ResourceNotFoundException</code>. If more than one profile matches the search key, the operation returns a <code>BadRequestException</code>. You can use the SearchProfiles API to review the matching profiles.</p>
+
+        Args:
+            domain_name: <p>The unique name of the domain.</p>
+            key_name: <p>A searchable identifier of a customer profile. You can use a predefined key, such as <code>_profileId</code>, <code>_phone</code>, or <code>_email</code>, or a custom-defined key.</p>
+            key_values: <p>A list of key values. Provide one value for each field of the search key.</p>
+            recommender: <p>The recommender used to generate the recommendations.</p>
+            candidate_ids: <p>A list of item IDs to rank for the user. Use this when you want to re-rank a specific set of items rather than getting recommendations from the full item catalog. Required for personalized-ranking use cases.</p>
+            context: <p>The contextual metadata used to provide dynamic runtime information to tailor recommendations.</p>
+            diversity: <p>Runtime diversity configuration for this request. Enables diversity-aware recommendations and optionally supplies values for placeholder-based diversity caps configured on the recommender.</p>
+            metadata: <p>Configuration for metadata to include in recommendation responses.</p>
+            max_recommendations: <p>The maximum number of recommendations to return. The default value is 5.</p>
+
+        Raises:
+            capo_customer_profiles.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_customer_profiles.errors.bad_request_exception.BadRequestException: <p>The input you provided is invalid.</p>
+            capo_customer_profiles.errors.internal_server_exception.InternalServerException: <p>An internal service error occurred.</p>
+            capo_customer_profiles.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource does not exist, or access was denied.</p>
+            capo_customer_profiles.errors.throttling_exception.ThrottlingException: <p>You exceeded the maximum number of requests.</p>
+            capo_customer_profiles.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_customer_profiles.types.search_recommendations_request.SearchRecommendationsRequest]",
+        ) -> OperationResponse[
+            "capo_customer_profiles.types.search_recommendations_response.SearchRecommendationsResponse"
+        ]:
+            import capo_customer_profiles._operations.customer_profiles_20200815.search_recommendations
+
+            output, http_response = (
+                capo_customer_profiles._operations.customer_profiles_20200815.search_recommendations.search_recommendations(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_customer_profiles.types.search_recommendations_request.SearchRecommendationsRequest = {
+            "domain_name": domain_name,
+            "key_name": key_name,
+            "key_values": key_values,
+            "recommender": recommender,
+        }
+        if candidate_ids is not None:
+            input_["candidate_ids"] = candidate_ids
+        if context is not None:
+            input_["context"] = context
+        if diversity is not None:
+            input_["diversity"] = diversity
+        if metadata is not None:
+            input_["metadata"] = metadata
+        if max_recommendations is not None:
+            input_["max_recommendations"] = max_recommendations
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -7258,6 +7765,9 @@ class CustomerProfilesClient:
         recommender_config: Optional[
             "capo_customer_profiles.types.recommender_config.RecommenderConfig"
         ] = None,
+        recommender_version_name: Optional[
+            "capo_customer_profiles.types.recommender_version_name.RecommenderVersionName"
+        ] = None,
     ) -> "capo_customer_profiles.types.update_recommender_response.UpdateRecommenderResponse":
         """<p>Updates the properties of an existing recommender, allowing you to modify its configuration and description.</p>
 
@@ -7266,6 +7776,7 @@ class CustomerProfilesClient:
             recommender_name: <p>The name of the recommender to update.</p>
             description: <p>The new description to assign to the recommender.</p>
             recommender_config: <p>The new configuration settings to apply to the recommender, including updated parameters and settings that define its behavior.</p>
+            recommender_version_name: <p>The name of a specific recommender version to activate as part of this update (for example, to roll back to a previously trained version).</p>
 
         Raises:
             capo_customer_profiles.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -7299,6 +7810,8 @@ class CustomerProfilesClient:
             input_["description"] = description
         if recommender_config is not None:
             input_["recommender_config"] = recommender_config
+        if recommender_version_name is not None:
+            input_["recommender_version_name"] = recommender_version_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),

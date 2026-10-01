@@ -27,6 +27,7 @@ import capo_bedrock_agentcore.types.date_timestamp
 import capo_bedrock_agentcore.types.get_browser_session_request
 import capo_bedrock_agentcore.types.get_browser_session_response
 import capo_bedrock_agentcore.types.proxy_configuration
+import capo_bedrock_agentcore.types.tools_file_system_configurations
 import capo_bedrock_agentcore.types.view_port
 from capo_bedrock_agentcore._protocol.errors import parse_error_metadata_json
 from capo_bedrock_agentcore._rule_engine._endpoint_rule_set import (

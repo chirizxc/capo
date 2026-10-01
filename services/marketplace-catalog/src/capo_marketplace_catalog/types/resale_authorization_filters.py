@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     import capo_marketplace_catalog.types.resale_authorization_availability_end_date_filter
     import capo_marketplace_catalog.types.resale_authorization_created_date_filter
     import capo_marketplace_catalog.types.resale_authorization_entity_id_filter
+    import capo_marketplace_catalog.types.resale_authorization_issuer_account_id_filter
     import capo_marketplace_catalog.types.resale_authorization_last_modified_date_filter
     import capo_marketplace_catalog.types.resale_authorization_manufacturer_account_id_filter
     import capo_marketplace_catalog.types.resale_authorization_manufacturer_legal_name_filter
@@ -17,6 +18,8 @@ if TYPE_CHECKING:
     import capo_marketplace_catalog.types.resale_authorization_product_name_filter
     import capo_marketplace_catalog.types.resale_authorization_reseller_account_id_filter
     import capo_marketplace_catalog.types.resale_authorization_reseller_legal_name_filter
+    import capo_marketplace_catalog.types.resale_authorization_reseller_role_filter
+    import capo_marketplace_catalog.types.resale_authorization_source_authorization_filter
     import capo_marketplace_catalog.types.resale_authorization_status_filter
 
 
@@ -73,6 +76,18 @@ class ResaleAuthorizationFilters(TypedDict, closed=True):
         "capo_marketplace_catalog.types.resale_authorization_last_modified_date_filter.ResaleAuthorizationLastModifiedDateFilter"
     ]
     """<p>Allows filtering on the <code>LastModifiedDate</code> of a ResaleAuthorization.</p>"""
+    reseller_role: NotRequired[
+        "capo_marketplace_catalog.types.resale_authorization_reseller_role_filter.ResaleAuthorizationResellerRoleFilter"
+    ]
+    """<p>Allows filtering on the <code>ResellerRole</code> of a ResaleAuthorization.</p>"""
+    source_authorization: NotRequired[
+        "capo_marketplace_catalog.types.resale_authorization_source_authorization_filter.ResaleAuthorizationSourceAuthorizationFilter"
+    ]
+    """<p>Allows filtering on the <code>SourceAuthorization</code> of a ResaleAuthorization.</p>"""
+    issuer_account_id: NotRequired[
+        "capo_marketplace_catalog.types.resale_authorization_issuer_account_id_filter.ResaleAuthorizationIssuerAccountIdFilter"
+    ]
+    """<p>Allows filtering on the <code>IssuerAccountId</code> of a ResaleAuthorization.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -182,6 +197,30 @@ def serialize_json(value: ResaleAuthorizationFilters) -> dict:
                 value["last_modified_date"]
             )
         )
+    if "reseller_role" in value:
+        import capo_marketplace_catalog.types.resale_authorization_reseller_role_filter
+
+        out["ResellerRole"] = (
+            capo_marketplace_catalog.types.resale_authorization_reseller_role_filter.serialize_json(
+                value["reseller_role"]
+            )
+        )
+    if "source_authorization" in value:
+        import capo_marketplace_catalog.types.resale_authorization_source_authorization_filter
+
+        out["SourceAuthorization"] = (
+            capo_marketplace_catalog.types.resale_authorization_source_authorization_filter.serialize_json(
+                value["source_authorization"]
+            )
+        )
+    if "issuer_account_id" in value:
+        import capo_marketplace_catalog.types.resale_authorization_issuer_account_id_filter
+
+        out["IssuerAccountId"] = (
+            capo_marketplace_catalog.types.resale_authorization_issuer_account_id_filter.serialize_json(
+                value["issuer_account_id"]
+            )
+        )
     return out
 
 
@@ -289,6 +328,30 @@ def deserialize_json(data: dict) -> ResaleAuthorizationFilters:
         out["last_modified_date"] = (
             capo_marketplace_catalog.types.resale_authorization_last_modified_date_filter.deserialize_json(
                 data["LastModifiedDate"]
+            )
+        )
+    if data.get("ResellerRole") is not None:
+        import capo_marketplace_catalog.types.resale_authorization_reseller_role_filter
+
+        out["reseller_role"] = (
+            capo_marketplace_catalog.types.resale_authorization_reseller_role_filter.deserialize_json(
+                data["ResellerRole"]
+            )
+        )
+    if data.get("SourceAuthorization") is not None:
+        import capo_marketplace_catalog.types.resale_authorization_source_authorization_filter
+
+        out["source_authorization"] = (
+            capo_marketplace_catalog.types.resale_authorization_source_authorization_filter.deserialize_json(
+                data["SourceAuthorization"]
+            )
+        )
+    if data.get("IssuerAccountId") is not None:
+        import capo_marketplace_catalog.types.resale_authorization_issuer_account_id_filter
+
+        out["issuer_account_id"] = (
+            capo_marketplace_catalog.types.resale_authorization_issuer_account_id_filter.deserialize_json(
+                data["IssuerAccountId"]
             )
         )
     return out

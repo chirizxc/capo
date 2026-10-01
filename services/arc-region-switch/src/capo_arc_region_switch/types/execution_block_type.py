@@ -20,6 +20,7 @@ ExecutionBlockType: TypeAlias = Literal[
     "AuroraServerlessScaling",
     "AuroraProvisionedScaling",
     "NeptuneGlobalDatabase",
+    "RdsSwitchoverReadReplica",
 ]
 
 

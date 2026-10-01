@@ -11,9 +11,11 @@ from typing_extensions import Never
 import capo_inspector2._auth._signers
 import capo_inspector2._auth._sigv4
 import capo_inspector2._protocol.eventstream
+import capo_inspector2.errors.access_denied_exception
 import capo_inspector2.errors.internal_server_exception
 import capo_inspector2.errors.resource_not_found_exception
 import capo_inspector2.errors.throttling_exception
+import capo_inspector2.errors.validation_exception
 import capo_inspector2.types.ec2_configuration_state
 import capo_inspector2.types.ecr_configuration_state
 import capo_inspector2.types.get_configuration_request
@@ -28,6 +30,10 @@ def handle_error(response: zapros.Response) -> Never:
     data = json.loads(response.read())
     code, message = parse_error_metadata_json(response, data)
     match code:
+        case "AccessDeniedException":
+            raise capo_inspector2.errors.access_denied_exception.AccessDeniedException.from_json(
+                data, message
+            )
         case "InternalServerException":
             raise capo_inspector2.errors.internal_server_exception.InternalServerException.from_json(
                 data, message
@@ -38,6 +44,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "ThrottlingException":
             raise capo_inspector2.errors.throttling_exception.ThrottlingException.from_json(
+                data, message
+            )
+        case "ValidationException":
+            raise capo_inspector2.errors.validation_exception.ValidationException.from_json(
                 data, message
             )
         case _:
@@ -109,7 +119,11 @@ def build_request(
     url = endpoint.url.rstrip("/") + "/configuration/get"
     params: list[tuple[str, str]] = []
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
-    body: bytes | None = b""
+    body: bytes | None = json.dumps(
+        capo_inspector2.types.get_configuration_request.serialize_json(input_),
+        allow_nan=False,
+    ).encode()
+    headers["content-type"] = "application/json"
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
     for k, v in params:

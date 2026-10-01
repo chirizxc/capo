@@ -12,13 +12,13 @@ if TYPE_CHECKING:
 
 class VpcConfig(TypedDict, closed=True):
     vpc_arn: NotRequired["capo_securityagent.types.vpc_arn.VpcArn"]
-    """<p>The Amazon Resource Name (ARN) of the VPC.</p>"""
+    """<p>The Amazon Resource Name (ARN) or ID of the VPC.</p>"""
     security_group_arns: NotRequired[
         "capo_securityagent.types.security_group_arns.SecurityGroupArns"
     ]
-    """<p>The Amazon Resource Names (ARNs) of the security groups for the VPC configuration.</p>"""
+    """<p>The Amazon Resource Names (ARNs) or IDs of the security groups for the VPC configuration.</p>"""
     subnet_arns: NotRequired["capo_securityagent.types.subnet_arns.SubnetArns"]
-    """<p>The Amazon Resource Names (ARNs) of the subnets for the VPC configuration.</p>"""
+    """<p>The Amazon Resource Names (ARNs) or IDs of the subnets for the VPC configuration.</p>"""
 
 
 # --- restJson1 ser/de ---

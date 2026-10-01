@@ -4,8 +4,12 @@ from typing import TYPE_CHECKING, TypeAlias
 
 if TYPE_CHECKING:
     import capo_sustainability.types.dimension
+    import capo_sustainability.types.dimension_value
 
-DimensionsMap: TypeAlias = dict["capo_sustainability.types.dimension.Dimension", "str"]
+DimensionsMap: TypeAlias = dict[
+    "capo_sustainability.types.dimension.Dimension",
+    "capo_sustainability.types.dimension_value.DimensionValue",
+]
 
 
 # --- restJson1 ser/de ---

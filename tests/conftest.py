@@ -35,8 +35,16 @@ from urllib.parse import urlparse
 
 import anyio
 import pytest
-from capo_s3 import AsyncS3Client, Credentials, S3Client
-from zapros import AsyncBaseHandler, BaseHandler
+from capo_s3 import (
+    AsyncS3Client,
+    ChainedProvider,
+    Credentials,
+    EnvCredentialsProvider,
+    ProfileCredentialsProvider,
+    S3Client,
+    SsoCredentialsProvider,
+)
+from zapros import AsyncBaseHandler, AsyncClient, BaseHandler, Client
 
 # Third-party S3-compatible backends. Endpoint and credentials can be overridden
 # with CAPO_<BACKEND>_ENDPOINT / _ACCESS_KEY / _SECRET_KEY.
@@ -57,6 +65,9 @@ if sys.platform == "emscripten":
     from anyio._backends._asyncio import TestRunner as _AsyncioTestRunner
 
     _AsyncioTestRunner.is_running = lambda self: False  # type: ignore[method-assign]
+
+    # scripts/test-pyodide.sh does not install capo-eventbridgev2: the locked cbor2 has no Pyodide wheel
+    collect_ignore = ["test_eventbridgev2.py"]
 
 
 def _reachable(url: str) -> bool:
@@ -97,6 +108,28 @@ def pytest_collection_modifyitems(config: pytest.Config, items: list[pytest.Item
 @pytest.fixture(params=["asyncio"] if sys.platform == "emscripten" else ["asyncio", "trio"])
 def anyio_backend(request: pytest.FixtureRequest) -> str:
     return request.param
+
+
+@pytest.fixture(scope="session")
+def aws_credentials() -> Credentials:
+    """Credentials of the active profile, or a skip when there are none."""
+    chain = ChainedProvider(EnvCredentialsProvider(), SsoCredentialsProvider(Client()), ProfileCredentialsProvider())
+    try:
+        return chain.resolve_identity()
+    except Exception as exc:  # each provider raises its own error type
+        pytest.skip(f"no AWS credentials: {exc}")
+
+
+@pytest.fixture
+async def async_aws_credentials() -> Credentials:
+    """Async twin of :func:`aws_credentials` (function-scoped: anyio_backend is)."""
+    chain = ChainedProvider(
+        EnvCredentialsProvider(), SsoCredentialsProvider(AsyncClient()), ProfileCredentialsProvider()
+    )
+    try:
+        return await chain.aresolve_identity()
+    except Exception as exc:  # each provider raises its own error type
+        pytest.skip(f"no AWS credentials: {exc}")
 
 
 async def agather(fn: Callable[[], Coroutine[Any, Any, T]], n: int) -> list[T]:

@@ -51,7 +51,9 @@ if TYPE_CHECKING:
     import capo_resiliencehubv2.types.assertion
     import capo_resiliencehubv2.types.assertion_source
     import capo_resiliencehubv2.types.assertion_text
+    import capo_resiliencehubv2.types.assessment_sort_field
     import capo_resiliencehubv2.types.assessment_status
+    import capo_resiliencehubv2.types.assessment_status_list
     import capo_resiliencehubv2.types.assessment_summary
     import capo_resiliencehubv2.types.associated_system_list
     import capo_resiliencehubv2.types.availability_slo
@@ -73,6 +75,8 @@ if TYPE_CHECKING:
     import capo_resiliencehubv2.types.create_service_response
     import capo_resiliencehubv2.types.create_system_request
     import capo_resiliencehubv2.types.create_system_response
+    import capo_resiliencehubv2.types.create_test_request
+    import capo_resiliencehubv2.types.create_test_response
     import capo_resiliencehubv2.types.create_user_journey_request
     import capo_resiliencehubv2.types.create_user_journey_response
     import capo_resiliencehubv2.types.data_recovery_targets
@@ -90,6 +94,10 @@ if TYPE_CHECKING:
     import capo_resiliencehubv2.types.delete_service_response
     import capo_resiliencehubv2.types.delete_system_request
     import capo_resiliencehubv2.types.delete_system_response
+    import capo_resiliencehubv2.types.delete_test_request
+    import capo_resiliencehubv2.types.delete_test_response
+    import capo_resiliencehubv2.types.delete_test_sources_request
+    import capo_resiliencehubv2.types.delete_test_sources_response
     import capo_resiliencehubv2.types.delete_user_journey_request
     import capo_resiliencehubv2.types.delete_user_journey_response
     import capo_resiliencehubv2.types.dependency_criticality
@@ -103,6 +111,8 @@ if TYPE_CHECKING:
     import capo_resiliencehubv2.types.finding_severity
     import capo_resiliencehubv2.types.finding_status
     import capo_resiliencehubv2.types.finding_summary
+    import capo_resiliencehubv2.types.get_dependency_insights_request
+    import capo_resiliencehubv2.types.get_dependency_insights_response
     import capo_resiliencehubv2.types.get_failure_mode_finding_request
     import capo_resiliencehubv2.types.get_failure_mode_finding_response
     import capo_resiliencehubv2.types.get_policy_request
@@ -111,8 +121,15 @@ if TYPE_CHECKING:
     import capo_resiliencehubv2.types.get_service_response
     import capo_resiliencehubv2.types.get_system_request
     import capo_resiliencehubv2.types.get_system_response
+    import capo_resiliencehubv2.types.get_test_request
+    import capo_resiliencehubv2.types.get_test_response
+    import capo_resiliencehubv2.types.get_test_run_request
+    import capo_resiliencehubv2.types.get_test_run_response
+    import capo_resiliencehubv2.types.get_test_template_request
+    import capo_resiliencehubv2.types.get_test_template_response
     import capo_resiliencehubv2.types.get_user_journey_request
     import capo_resiliencehubv2.types.get_user_journey_response
+    import capo_resiliencehubv2.types.iam_role_name
     import capo_resiliencehubv2.types.import_app_request
     import capo_resiliencehubv2.types.import_app_response
     import capo_resiliencehubv2.types.import_policy_request
@@ -133,8 +150,12 @@ if TYPE_CHECKING:
     import capo_resiliencehubv2.types.list_input_sources_response
     import capo_resiliencehubv2.types.list_policies_request
     import capo_resiliencehubv2.types.list_policies_response
+    import capo_resiliencehubv2.types.list_policy_events_request
+    import capo_resiliencehubv2.types.list_policy_events_response
     import capo_resiliencehubv2.types.list_reports_request
     import capo_resiliencehubv2.types.list_reports_response
+    import capo_resiliencehubv2.types.list_resolved_test_run_target_resources_request
+    import capo_resiliencehubv2.types.list_resolved_test_run_target_resources_response
     import capo_resiliencehubv2.types.list_resources_request
     import capo_resiliencehubv2.types.list_resources_response
     import capo_resiliencehubv2.types.list_service_events_request
@@ -151,8 +172,25 @@ if TYPE_CHECKING:
     import capo_resiliencehubv2.types.list_systems_response
     import capo_resiliencehubv2.types.list_tags_for_resource_request
     import capo_resiliencehubv2.types.list_tags_for_resource_response
+    import capo_resiliencehubv2.types.list_test_run_dependencies_request
+    import capo_resiliencehubv2.types.list_test_run_dependencies_response
+    import capo_resiliencehubv2.types.list_test_run_events_request
+    import capo_resiliencehubv2.types.list_test_run_events_response
+    import capo_resiliencehubv2.types.list_test_run_source_events_request
+    import capo_resiliencehubv2.types.list_test_run_source_events_response
+    import capo_resiliencehubv2.types.list_test_run_sources_request
+    import capo_resiliencehubv2.types.list_test_run_sources_response
+    import capo_resiliencehubv2.types.list_test_runs_request
+    import capo_resiliencehubv2.types.list_test_runs_response
+    import capo_resiliencehubv2.types.list_test_sources_request
+    import capo_resiliencehubv2.types.list_test_sources_response
+    import capo_resiliencehubv2.types.list_test_templates_request
+    import capo_resiliencehubv2.types.list_test_templates_response
+    import capo_resiliencehubv2.types.list_tests_request
+    import capo_resiliencehubv2.types.list_tests_response
     import capo_resiliencehubv2.types.list_user_journeys_request
     import capo_resiliencehubv2.types.list_user_journeys_response
+    import capo_resiliencehubv2.types.logging_configuration
     import capo_resiliencehubv2.types.long_description
     import capo_resiliencehubv2.types.max_results
     import capo_resiliencehubv2.types.multi_az_disaster_recovery_approach
@@ -162,23 +200,38 @@ if TYPE_CHECKING:
     import capo_resiliencehubv2.types.next_token
     import capo_resiliencehubv2.types.ou_id
     import capo_resiliencehubv2.types.permission_model
+    import capo_resiliencehubv2.types.policy_event
+    import capo_resiliencehubv2.types.policy_event_type_list
     import capo_resiliencehubv2.types.policy_summary
+    import capo_resiliencehubv2.types.put_test_sources_request
+    import capo_resiliencehubv2.types.put_test_sources_response
     import capo_resiliencehubv2.types.query_granularity
     import capo_resiliencehubv2.types.region_list
     import capo_resiliencehubv2.types.report_generation_result
     import capo_resiliencehubv2.types.report_type
+    import capo_resiliencehubv2.types.resolved_target_resource
     import capo_resiliencehubv2.types.resource_configuration
     import capo_resiliencehubv2.types.resource_list
+    import capo_resiliencehubv2.types.resource_type_filter_list
     import capo_resiliencehubv2.types.service_event
     import capo_resiliencehubv2.types.service_event_type_list
     import capo_resiliencehubv2.types.service_function
     import capo_resiliencehubv2.types.service_function_criticality
+    import capo_resiliencehubv2.types.service_owned_arn
     import capo_resiliencehubv2.types.service_report_configuration
     import capo_resiliencehubv2.types.service_resource
     import capo_resiliencehubv2.types.service_summary
     import capo_resiliencehubv2.types.service_topology_edge_summary
+    import capo_resiliencehubv2.types.sort_order
+    import capo_resiliencehubv2.types.start_dependency_insights_request
+    import capo_resiliencehubv2.types.start_dependency_insights_response
     import capo_resiliencehubv2.types.start_failure_mode_assessment_request
     import capo_resiliencehubv2.types.start_failure_mode_assessment_response
+    import capo_resiliencehubv2.types.start_test_run_request
+    import capo_resiliencehubv2.types.start_test_run_response
+    import capo_resiliencehubv2.types.stop_condition_list
+    import capo_resiliencehubv2.types.stop_test_run_request
+    import capo_resiliencehubv2.types.stop_test_run_response
     import capo_resiliencehubv2.types.system_event
     import capo_resiliencehubv2.types.system_event_type_list
     import capo_resiliencehubv2.types.system_summary
@@ -186,6 +239,20 @@ if TYPE_CHECKING:
     import capo_resiliencehubv2.types.tag_map
     import capo_resiliencehubv2.types.tag_resource_request
     import capo_resiliencehubv2.types.tag_resource_response
+    import capo_resiliencehubv2.types.test_id
+    import capo_resiliencehubv2.types.test_parameters
+    import capo_resiliencehubv2.types.test_run_dependency_summary
+    import capo_resiliencehubv2.types.test_run_event
+    import capo_resiliencehubv2.types.test_run_id
+    import capo_resiliencehubv2.types.test_run_source_arn
+    import capo_resiliencehubv2.types.test_run_source_event
+    import capo_resiliencehubv2.types.test_run_source_summary
+    import capo_resiliencehubv2.types.test_run_source_type
+    import capo_resiliencehubv2.types.test_run_summary
+    import capo_resiliencehubv2.types.test_source_input_list
+    import capo_resiliencehubv2.types.test_source_summary
+    import capo_resiliencehubv2.types.test_source_type
+    import capo_resiliencehubv2.types.test_summary
     import capo_resiliencehubv2.types.untag_resource_request
     import capo_resiliencehubv2.types.untag_resource_response
     import capo_resiliencehubv2.types.update_assertion_request
@@ -202,6 +269,8 @@ if TYPE_CHECKING:
     import capo_resiliencehubv2.types.update_service_response
     import capo_resiliencehubv2.types.update_system_request
     import capo_resiliencehubv2.types.update_system_response
+    import capo_resiliencehubv2.types.update_test_request
+    import capo_resiliencehubv2.types.update_test_response
     import capo_resiliencehubv2.types.update_user_journey_request
     import capo_resiliencehubv2.types.update_user_journey_response
     import capo_resiliencehubv2.types.user_journey_id
@@ -438,6 +507,7 @@ class resiliencehubv2Client:
         data_recovery: Optional[
             "capo_resiliencehubv2.types.data_recovery_targets.DataRecoveryTargets"
         ] = None,
+        sharing_enabled: Optional[bool] = None,
         kms_key_id: Optional["capo_resiliencehubv2.types.kms_key_id.KmsKeyId"] = None,
         tags: Optional["capo_resiliencehubv2.types.tag_map.TagMap"] = None,
         client_token: Optional[
@@ -451,6 +521,7 @@ class resiliencehubv2Client:
             multi_az: <p>The multi-AZ disaster recovery targets for the resilience policy.</p>
             multi_region: <p>The multi-Region disaster recovery targets for the resilience policy.</p>
             data_recovery: <p>The data recovery targets for the resilience policy.</p>
+            sharing_enabled: <p>Specifies whether cross-account sharing is enabled for the policy. Only a delegated administrator or the management account can enable sharing.</p>
 
         Raises:
             capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
@@ -490,6 +561,8 @@ class resiliencehubv2Client:
             input_["multi_region"] = multi_region
         if data_recovery is not None:
             input_["data_recovery"] = data_recovery
+        if sharing_enabled is not None:
+            input_["sharing_enabled"] = sharing_enabled
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
         if tags is not None:
@@ -592,7 +665,7 @@ class resiliencehubv2Client:
 
         Args:
             associated_systems: <p>The systems to associate with the service.</p>
-            regions: <p>The AWS Regions where the service operates.</p>
+            regions: <p>The Regions where the service operates.</p>
             permission_model: <p>The permission model for the service.</p>
 
         Raises:
@@ -825,6 +898,80 @@ class resiliencehubv2Client:
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def create_test(
+        self,
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        test_template_arn: "capo_resiliencehubv2.types.service_owned_arn.ServiceOwnedArn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+        logging_configuration: Optional[
+            "capo_resiliencehubv2.types.logging_configuration.LoggingConfiguration"
+        ] = None,
+        stop_conditions: Optional[
+            "capo_resiliencehubv2.types.stop_condition_list.StopConditionList"
+        ] = None,
+        role_name: Optional[
+            "capo_resiliencehubv2.types.iam_role_name.IamRoleName"
+        ] = None,
+        parameters: Optional[
+            "capo_resiliencehubv2.types.test_parameters.TestParameters"
+        ] = None,
+    ) -> "capo_resiliencehubv2.types.create_test_response.CreateTestResponse":
+        """<p>Creates a test for a service by configuring a test template. Each service has one test per template.</p>
+
+        Args:
+            service_arn: <p>The ARN of the service to create the test for.</p>
+            test_template_arn: <p>The ARN of the test template to configure.</p>
+            logging_configuration: <p>The logging configuration for the test.</p>
+            stop_conditions: <p>The stop conditions for the test.</p>
+            role_name: <p>The name of the IAM execution role to use when running the test.</p>
+            parameters: <p>The parameter values for the test.</p>
+
+        Raises:
+            capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
+            capo_resiliencehubv2.errors.conflict_exception.ConflictException: <p>Conflict — resource already exists.</p>
+            capo_resiliencehubv2.errors.internal_server_exception.InternalServerException: <p>Internal service error.</p>
+            capo_resiliencehubv2.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found.</p>
+            capo_resiliencehubv2.errors.validation_exception.ValidationException: <p>Validation error — invalid input parameters.</p>
+            capo_resiliencehubv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_resiliencehubv2.types.create_test_request.CreateTestRequest]",
+        ) -> OperationResponse[
+            "capo_resiliencehubv2.types.create_test_response.CreateTestResponse"
+        ]:
+            import capo_resiliencehubv2._operations.ngrh_service_core.create_test
+
+            output, http_response = (
+                capo_resiliencehubv2._operations.ngrh_service_core.create_test.create_test(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_resiliencehubv2.types.create_test_request.CreateTestRequest = {
+            "service_arn": service_arn,
+            "test_template_arn": test_template_arn,
+        }
+        if logging_configuration is not None:
+            input_["logging_configuration"] = logging_configuration
+        if stop_conditions is not None:
+            input_["stop_conditions"] = stop_conditions
+        if role_name is not None:
+            input_["role_name"] = role_name
+        if parameters is not None:
+            input_["parameters"] = parameters
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -1224,6 +1371,109 @@ class resiliencehubv2Client:
         response.response.close()
         return response.output
 
+    def delete_test(
+        self,
+        test_id: "capo_resiliencehubv2.types.test_id.TestId",
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+    ) -> "capo_resiliencehubv2.types.delete_test_response.DeleteTestResponse":
+        """<p>Deletes a test.</p>
+
+        Args:
+            test_id: <p>The identifier of the test to delete.</p>
+            service_arn: <p>The ARN of the service the test belongs to.</p>
+
+        Raises:
+            capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
+            capo_resiliencehubv2.errors.conflict_exception.ConflictException: <p>Conflict — resource already exists.</p>
+            capo_resiliencehubv2.errors.internal_server_exception.InternalServerException: <p>Internal service error.</p>
+            capo_resiliencehubv2.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found.</p>
+            capo_resiliencehubv2.errors.validation_exception.ValidationException: <p>Validation error — invalid input parameters.</p>
+            capo_resiliencehubv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_resiliencehubv2.types.delete_test_request.DeleteTestRequest]",
+        ) -> OperationResponse[
+            "capo_resiliencehubv2.types.delete_test_response.DeleteTestResponse"
+        ]:
+            import capo_resiliencehubv2._operations.ngrh_service_core.delete_test
+
+            output, http_response = (
+                capo_resiliencehubv2._operations.ngrh_service_core.delete_test.delete_test(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_resiliencehubv2.types.delete_test_request.DeleteTestRequest = {
+            "test_id": test_id,
+            "service_arn": service_arn,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_test_sources(
+        self,
+        test_id: "capo_resiliencehubv2.types.test_id.TestId",
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        test_sources: "capo_resiliencehubv2.types.test_source_input_list.TestSourceInputList",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+    ) -> "capo_resiliencehubv2.types.delete_test_sources_response.DeleteTestSourcesResponse":
+        """<p>Removes monitoring sources from a test. The operation is transactional and idempotent — removing a source that is not attached is a no-op.</p>
+
+        Args:
+            test_id: <p>The identifier of the test to remove sources from.</p>
+            service_arn: <p>The ARN of the service the test belongs to.</p>
+            test_sources: <p>The monitoring sources to remove.</p>
+
+        Raises:
+            capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
+            capo_resiliencehubv2.errors.conflict_exception.ConflictException: <p>Conflict — resource already exists.</p>
+            capo_resiliencehubv2.errors.internal_server_exception.InternalServerException: <p>Internal service error.</p>
+            capo_resiliencehubv2.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found.</p>
+            capo_resiliencehubv2.errors.validation_exception.ValidationException: <p>Validation error — invalid input parameters.</p>
+            capo_resiliencehubv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_resiliencehubv2.types.delete_test_sources_request.DeleteTestSourcesRequest]",
+        ) -> OperationResponse[
+            "capo_resiliencehubv2.types.delete_test_sources_response.DeleteTestSourcesResponse"
+        ]:
+            import capo_resiliencehubv2._operations.ngrh_service_core.delete_test_sources
+
+            output, http_response = (
+                capo_resiliencehubv2._operations.ngrh_service_core.delete_test_sources.delete_test_sources(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_resiliencehubv2.types.delete_test_sources_request.DeleteTestSourcesRequest = {
+            "test_id": test_id,
+            "service_arn": service_arn,
+            "test_sources": test_sources,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def delete_user_journey(
         self,
         system_arn: "capo_resiliencehubv2.types.arn.Arn",
@@ -1263,6 +1513,50 @@ class resiliencehubv2Client:
         input_: capo_resiliencehubv2.types.delete_user_journey_request.DeleteUserJourneyRequest = {
             "system_arn": system_arn,
             "user_journey_id": user_journey_id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_dependency_insights(
+        self,
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+    ) -> "capo_resiliencehubv2.types.get_dependency_insights_response.GetDependencyInsightsResponse":
+        """<p>Retrieves the dependency insights generated for a service. The response reports the current generation status; insights are populated once generation has completed. If generation failed, the response includes an error code, whose possible values are listed under the response's errorCode field, and a message describing the cause. To use this operation, you must have the <code>resiliencehub:GetDependencyInsights</code> permission on the service.</p>
+
+        Raises:
+            capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
+            capo_resiliencehubv2.errors.internal_server_exception.InternalServerException: <p>Internal service error.</p>
+            capo_resiliencehubv2.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found.</p>
+            capo_resiliencehubv2.errors.throttling_exception.ThrottlingException: <p>Too many requests — rate limit exceeded.</p>
+            capo_resiliencehubv2.errors.validation_exception.ValidationException: <p>Validation error — invalid input parameters.</p>
+            capo_resiliencehubv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_resiliencehubv2.types.get_dependency_insights_request.GetDependencyInsightsRequest]",
+        ) -> OperationResponse[
+            "capo_resiliencehubv2.types.get_dependency_insights_response.GetDependencyInsightsResponse"
+        ]:
+            import capo_resiliencehubv2._operations.ngrh_service_core.get_dependency_insights
+
+            output, http_response = (
+                capo_resiliencehubv2._operations.ngrh_service_core.get_dependency_insights.get_dependency_insights(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_resiliencehubv2.types.get_dependency_insights_request.GetDependencyInsightsRequest = {
+            "service_arn": service_arn
         }
 
         response = execute_pipeline(
@@ -1440,6 +1734,152 @@ class resiliencehubv2Client:
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_resiliencehubv2.types.get_system_request.GetSystemRequest = {
             "system_arn": system_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_test(
+        self,
+        test_id: "capo_resiliencehubv2.types.test_id.TestId",
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+    ) -> "capo_resiliencehubv2.types.get_test_response.GetTestResponse":
+        """<p>Retrieves a test by ID.</p>
+
+        Args:
+            test_id: <p>The identifier of the test to retrieve.</p>
+            service_arn: <p>The ARN of the service the test belongs to.</p>
+
+        Raises:
+            capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
+            capo_resiliencehubv2.errors.internal_server_exception.InternalServerException: <p>Internal service error.</p>
+            capo_resiliencehubv2.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found.</p>
+            capo_resiliencehubv2.errors.validation_exception.ValidationException: <p>Validation error — invalid input parameters.</p>
+            capo_resiliencehubv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_resiliencehubv2.types.get_test_request.GetTestRequest]",
+        ) -> OperationResponse[
+            "capo_resiliencehubv2.types.get_test_response.GetTestResponse"
+        ]:
+            import capo_resiliencehubv2._operations.ngrh_service_core.get_test
+
+            output, http_response = (
+                capo_resiliencehubv2._operations.ngrh_service_core.get_test.get_test(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_resiliencehubv2.types.get_test_request.GetTestRequest = {
+            "test_id": test_id,
+            "service_arn": service_arn,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_test_run(
+        self,
+        test_run_id: "capo_resiliencehubv2.types.test_run_id.TestRunId",
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+    ) -> "capo_resiliencehubv2.types.get_test_run_response.GetTestRunResponse":
+        """<p>Retrieves a test run by ID, including its status, results, and the configuration snapshotted when the run started.</p>
+
+        Args:
+            test_run_id: <p>The identifier of the test run to retrieve.</p>
+            service_arn: <p>The ARN of the service the test run belongs to.</p>
+
+        Raises:
+            capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
+            capo_resiliencehubv2.errors.internal_server_exception.InternalServerException: <p>Internal service error.</p>
+            capo_resiliencehubv2.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found.</p>
+            capo_resiliencehubv2.errors.validation_exception.ValidationException: <p>Validation error — invalid input parameters.</p>
+            capo_resiliencehubv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_resiliencehubv2.types.get_test_run_request.GetTestRunRequest]",
+        ) -> OperationResponse[
+            "capo_resiliencehubv2.types.get_test_run_response.GetTestRunResponse"
+        ]:
+            import capo_resiliencehubv2._operations.ngrh_service_core.get_test_run
+
+            output, http_response = (
+                capo_resiliencehubv2._operations.ngrh_service_core.get_test_run.get_test_run(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_resiliencehubv2.types.get_test_run_request.GetTestRunRequest = {
+            "test_run_id": test_run_id,
+            "service_arn": service_arn,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_test_template(
+        self,
+        test_template_arn: "capo_resiliencehubv2.types.service_owned_arn.ServiceOwnedArn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+    ) -> (
+        "capo_resiliencehubv2.types.get_test_template_response.GetTestTemplateResponse"
+    ):
+        """<p>Retrieves a resilience test template by ARN, including the parameters it accepts and the fault actions it runs.</p>
+
+        Args:
+            test_template_arn: <p>The ARN of the test template to retrieve.</p>
+
+        Raises:
+            capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
+            capo_resiliencehubv2.errors.internal_server_exception.InternalServerException: <p>Internal service error.</p>
+            capo_resiliencehubv2.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found.</p>
+            capo_resiliencehubv2.errors.validation_exception.ValidationException: <p>Validation error — invalid input parameters.</p>
+            capo_resiliencehubv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_resiliencehubv2.types.get_test_template_request.GetTestTemplateRequest]",
+        ) -> OperationResponse[
+            "capo_resiliencehubv2.types.get_test_template_response.GetTestTemplateResponse"
+        ]:
+            import capo_resiliencehubv2._operations.ngrh_service_core.get_test_template
+
+            output, http_response = (
+                capo_resiliencehubv2._operations.ngrh_service_core.get_test_template.get_test_template(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_resiliencehubv2.types.get_test_template_request.GetTestTemplateRequest = {
+            "test_template_arn": test_template_arn
         }
 
         response = execute_pipeline(
@@ -1844,12 +2284,28 @@ class resiliencehubv2Client:
         service_arn: "capo_resiliencehubv2.types.arn.Arn",
         *,
         config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+        assessment_statuses: Optional[
+            "capo_resiliencehubv2.types.assessment_status_list.AssessmentStatusList"
+        ] = None,
+        started_after: Optional[datetime.datetime] = None,
+        ended_before: Optional[datetime.datetime] = None,
+        sort_by: Optional[
+            "capo_resiliencehubv2.types.assessment_sort_field.AssessmentSortField"
+        ] = None,
+        sort_order: Optional["capo_resiliencehubv2.types.sort_order.SortOrder"] = None,
         max_results: Optional[
             "capo_resiliencehubv2.types.max_results.MaxResults"
         ] = None,
         next_token: Optional["capo_resiliencehubv2.types.next_token.NextToken"] = None,
     ) -> "capo_resiliencehubv2.types.list_failure_mode_assessments_response.ListFailureModeAssessmentsResponse":
         """<p>Lists failure mode assessments.</p>
+
+        Args:
+            assessment_statuses: <p>Specifies the assessment statuses to include in the results.</p>
+            started_after: <p>Specifies that only assessments that started at or after this timestamp appear in the results.</p>
+            ended_before: <p>Specifies that only assessments that ended at or before this timestamp appear in the results.</p>
+            sort_by: <p>The field to use for sorting failure mode assessments.</p>
+            sort_order: <p>The sort order for results.</p>
 
         Raises:
             capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
@@ -1877,6 +2333,16 @@ class resiliencehubv2Client:
         input_: capo_resiliencehubv2.types.list_failure_mode_assessments_request.ListFailureModeAssessmentsRequest = {
             "service_arn": service_arn
         }
+        if assessment_statuses is not None:
+            input_["assessment_statuses"] = assessment_statuses
+        if started_after is not None:
+            input_["started_after"] = started_after
+        if ended_before is not None:
+            input_["ended_before"] = ended_before
+        if sort_by is not None:
+            input_["sort_by"] = sort_by
+        if sort_order is not None:
+            input_["sort_order"] = sort_order
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1895,6 +2361,15 @@ class resiliencehubv2Client:
         service_arn: "capo_resiliencehubv2.types.arn.Arn",
         *,
         config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+        assessment_statuses: Optional[
+            "capo_resiliencehubv2.types.assessment_status_list.AssessmentStatusList"
+        ] = None,
+        started_after: Optional[datetime.datetime] = None,
+        ended_before: Optional[datetime.datetime] = None,
+        sort_by: Optional[
+            "capo_resiliencehubv2.types.assessment_sort_field.AssessmentSortField"
+        ] = None,
+        sort_order: Optional["capo_resiliencehubv2.types.sort_order.SortOrder"] = None,
         max_results: Optional[
             "capo_resiliencehubv2.types.max_results.MaxResults"
         ] = None,
@@ -1905,6 +2380,11 @@ class resiliencehubv2Client:
             _response = self.list_failure_mode_assessments(
                 service_arn,
                 config_overrides=config_overrides,
+                assessment_statuses=assessment_statuses,
+                started_after=started_after,
+                ended_before=ended_before,
+                sort_by=sort_by,
+                sort_order=sort_order,
                 max_results=max_results,
                 next_token=_token,
             )
@@ -2115,12 +2595,16 @@ class resiliencehubv2Client:
         self,
         *,
         config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+        account_id: Optional["capo_resiliencehubv2.types.account_id.AccountId"] = None,
         max_results: Optional[
             "capo_resiliencehubv2.types.max_results.MaxResults"
         ] = None,
         next_token: Optional["capo_resiliencehubv2.types.next_token.NextToken"] = None,
     ) -> "capo_resiliencehubv2.types.list_policies_response.ListPoliciesResponse":
         """<p>Lists resilience policies.</p>
+
+        Args:
+            account_id: <p>The identifier of the account that owns the policies to include in the results.</p>
 
         Raises:
             capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
@@ -2145,6 +2629,8 @@ class resiliencehubv2Client:
 
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_resiliencehubv2.types.list_policies_request.ListPoliciesRequest = {}
+        if account_id is not None:
+            input_["account_id"] = account_id
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2162,6 +2648,7 @@ class resiliencehubv2Client:
         self,
         *,
         config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+        account_id: Optional["capo_resiliencehubv2.types.account_id.AccountId"] = None,
         max_results: Optional[
             "capo_resiliencehubv2.types.max_results.MaxResults"
         ] = None,
@@ -2171,10 +2658,111 @@ class resiliencehubv2Client:
         while True:
             _response = self.list_policies(
                 config_overrides=config_overrides,
+                account_id=account_id,
                 max_results=max_results,
                 next_token=_token,
             )
             _page = _resolve_path(_response, ("policy_summaries",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_policy_events(
+        self,
+        policy_arn: "capo_resiliencehubv2.types.arn.Arn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+        event_types: Optional[
+            "capo_resiliencehubv2.types.policy_event_type_list.PolicyEventTypeList"
+        ] = None,
+        start_time: Optional[datetime.datetime] = None,
+        end_time: Optional[datetime.datetime] = None,
+        max_results: Optional[
+            "capo_resiliencehubv2.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional["capo_resiliencehubv2.types.next_token.NextToken"] = None,
+    ) -> "capo_resiliencehubv2.types.list_policy_events_response.ListPolicyEventsResponse":
+        """<p>Lists events for a resilience policy, including services that started or stopped using it, changes to cross-account sharing, and deletion of the policy.</p>
+
+        Args:
+            event_types: <p>The type of events to include in the results.</p>
+            start_time: <p>The start time for filtering events.</p>
+            end_time: <p>The end time for filtering events.</p>
+
+        Raises:
+            capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
+            capo_resiliencehubv2.errors.internal_server_exception.InternalServerException: <p>Internal service error.</p>
+            capo_resiliencehubv2.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found.</p>
+            capo_resiliencehubv2.errors.validation_exception.ValidationException: <p>Validation error — invalid input parameters.</p>
+            capo_resiliencehubv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_resiliencehubv2.types.list_policy_events_request.ListPolicyEventsRequest]",
+        ) -> OperationResponse[
+            "capo_resiliencehubv2.types.list_policy_events_response.ListPolicyEventsResponse"
+        ]:
+            import capo_resiliencehubv2._operations.ngrh_service_core.list_policy_events
+
+            output, http_response = (
+                capo_resiliencehubv2._operations.ngrh_service_core.list_policy_events.list_policy_events(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_resiliencehubv2.types.list_policy_events_request.ListPolicyEventsRequest = {
+            "policy_arn": policy_arn
+        }
+        if event_types is not None:
+            input_["event_types"] = event_types
+        if start_time is not None:
+            input_["start_time"] = start_time
+        if end_time is not None:
+            input_["end_time"] = end_time
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_policy_events(
+        self,
+        policy_arn: "capo_resiliencehubv2.types.arn.Arn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+        event_types: Optional[
+            "capo_resiliencehubv2.types.policy_event_type_list.PolicyEventTypeList"
+        ] = None,
+        start_time: Optional[datetime.datetime] = None,
+        end_time: Optional[datetime.datetime] = None,
+        max_results: Optional[
+            "capo_resiliencehubv2.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional["capo_resiliencehubv2.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_resiliencehubv2.types.policy_event.PolicyEvent]":
+        _token = next_token
+        while True:
+            _response = self.list_policy_events(
+                policy_arn,
+                config_overrides=config_overrides,
+                event_types=event_types,
+                start_time=start_time,
+                end_time=end_time,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("events",))
             for _item in _page or []:
                 yield _item
             _token = _resolve_path(_response, ("next_token",))
@@ -2188,6 +2776,9 @@ class resiliencehubv2Client:
         service_arn: Optional["capo_resiliencehubv2.types.arn.Arn"] = None,
         report_type: Optional[
             "capo_resiliencehubv2.types.report_type.ReportType"
+        ] = None,
+        test_run_id: Optional[
+            "capo_resiliencehubv2.types.test_run_id.TestRunId"
         ] = None,
         max_results: Optional[
             "capo_resiliencehubv2.types.max_results.MaxResults"
@@ -2229,6 +2820,8 @@ class resiliencehubv2Client:
             input_["service_arn"] = service_arn
         if report_type is not None:
             input_["report_type"] = report_type
+        if test_run_id is not None:
+            input_["test_run_id"] = test_run_id
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2250,6 +2843,9 @@ class resiliencehubv2Client:
         report_type: Optional[
             "capo_resiliencehubv2.types.report_type.ReportType"
         ] = None,
+        test_run_id: Optional[
+            "capo_resiliencehubv2.types.test_run_id.TestRunId"
+        ] = None,
         max_results: Optional[
             "capo_resiliencehubv2.types.max_results.MaxResults"
         ] = None,
@@ -2261,10 +2857,95 @@ class resiliencehubv2Client:
                 config_overrides=config_overrides,
                 service_arn=service_arn,
                 report_type=report_type,
+                test_run_id=test_run_id,
                 max_results=max_results,
                 next_token=_token,
             )
             _page = _resolve_path(_response, ("report_generation_results",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_resolved_test_run_target_resources(
+        self,
+        test_run_id: "capo_resiliencehubv2.types.test_run_id.TestRunId",
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+        max_results: Optional[
+            "capo_resiliencehubv2.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional["capo_resiliencehubv2.types.next_token.NextToken"] = None,
+    ) -> "capo_resiliencehubv2.types.list_resolved_test_run_target_resources_response.ListResolvedTestRunTargetResourcesResponse":
+        """<p>Lists the AWS resources that AWS Fault Injection Service (AWS FIS) resolved as targets for a test run.</p>
+
+        Args:
+            test_run_id: <p>The identifier of the test run to list resolved target resources for.</p>
+            service_arn: <p>The ARN of the service the test run belongs to.</p>
+
+        Raises:
+            capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
+            capo_resiliencehubv2.errors.internal_server_exception.InternalServerException: <p>Internal service error.</p>
+            capo_resiliencehubv2.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found.</p>
+            capo_resiliencehubv2.errors.validation_exception.ValidationException: <p>Validation error — invalid input parameters.</p>
+            capo_resiliencehubv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_resiliencehubv2.types.list_resolved_test_run_target_resources_request.ListResolvedTestRunTargetResourcesRequest]",
+        ) -> OperationResponse[
+            "capo_resiliencehubv2.types.list_resolved_test_run_target_resources_response.ListResolvedTestRunTargetResourcesResponse"
+        ]:
+            import capo_resiliencehubv2._operations.ngrh_service_core.list_resolved_test_run_target_resources
+
+            output, http_response = (
+                capo_resiliencehubv2._operations.ngrh_service_core.list_resolved_test_run_target_resources.list_resolved_test_run_target_resources(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_resiliencehubv2.types.list_resolved_test_run_target_resources_request.ListResolvedTestRunTargetResourcesRequest = {
+            "test_run_id": test_run_id,
+            "service_arn": service_arn,
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_resolved_test_run_target_resources(
+        self,
+        test_run_id: "capo_resiliencehubv2.types.test_run_id.TestRunId",
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+        max_results: Optional[
+            "capo_resiliencehubv2.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional["capo_resiliencehubv2.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_resiliencehubv2.types.resolved_target_resource.ResolvedTargetResource]":
+        _token = next_token
+        while True:
+            _response = self.list_resolved_test_run_target_resources(
+                test_run_id,
+                service_arn,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("resolved_target_resources",))
             for _item in _page or []:
                 yield _item
             _token = _resolve_path(_response, ("next_token",))
@@ -2280,6 +2961,10 @@ class resiliencehubv2Client:
             "capo_resiliencehubv2.types.entity_id.EntityId"
         ] = None,
         aws_region: Optional["capo_resiliencehubv2.types.aws_region.AwsRegion"] = None,
+        resource_types: Optional[
+            "capo_resiliencehubv2.types.resource_type_filter_list.ResourceTypeFilterList"
+        ] = None,
+        billable: Optional[bool] = None,
         max_results: Optional[
             "capo_resiliencehubv2.types.max_results.MaxResults"
         ] = None,
@@ -2290,6 +2975,8 @@ class resiliencehubv2Client:
         Args:
             service_function_id: <p>Filter resources by service function identifier.</p>
             aws_region: <p>Filter resources by AWS Region.</p>
+            resource_types: <p>The CloudFormation resource types to include in the response.</p>
+            billable: <p>Specifies whether to filter non-billable resources. When true (the default), the operation returns only billable resources.</p>
 
         Raises:
             capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
@@ -2321,6 +3008,10 @@ class resiliencehubv2Client:
             input_["service_function_id"] = service_function_id
         if aws_region is not None:
             input_["aws_region"] = aws_region
+        if resource_types is not None:
+            input_["resource_types"] = resource_types
+        if billable is not None:
+            input_["billable"] = billable
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2343,6 +3034,10 @@ class resiliencehubv2Client:
             "capo_resiliencehubv2.types.entity_id.EntityId"
         ] = None,
         aws_region: Optional["capo_resiliencehubv2.types.aws_region.AwsRegion"] = None,
+        resource_types: Optional[
+            "capo_resiliencehubv2.types.resource_type_filter_list.ResourceTypeFilterList"
+        ] = None,
+        billable: Optional[bool] = None,
         max_results: Optional[
             "capo_resiliencehubv2.types.max_results.MaxResults"
         ] = None,
@@ -2355,6 +3050,8 @@ class resiliencehubv2Client:
                 config_overrides=config_overrides,
                 service_function_id=service_function_id,
                 aws_region=aws_region,
+                resource_types=resource_types,
+                billable=billable,
                 max_results=max_results,
                 next_token=_token,
             )
@@ -2383,7 +3080,7 @@ class resiliencehubv2Client:
         """<p>Lists events for a service.</p>
 
         Args:
-            event_types: <p>Filter events by type.</p>
+            event_types: <p>The type of events to include in the results.</p>
             start_time: <p>The start time for filtering events.</p>
             end_time: <p>The end time for filtering events.</p>
 
@@ -2748,7 +3445,7 @@ class resiliencehubv2Client:
         """<p>Lists events for a system.</p>
 
         Args:
-            event_types: <p>Filter events by type.</p>
+            event_types: <p>The type of events to include in the results.</p>
             start_time: <p>The start time for filtering events.</p>
             end_time: <p>The end time for filtering events.</p>
 
@@ -2952,6 +3649,668 @@ class resiliencehubv2Client:
         response.response.close()
         return response.output
 
+    def list_test_run_dependencies(
+        self,
+        test_run_id: "capo_resiliencehubv2.types.test_run_id.TestRunId",
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+        max_results: Optional[
+            "capo_resiliencehubv2.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional["capo_resiliencehubv2.types.next_token.NextToken"] = None,
+    ) -> "capo_resiliencehubv2.types.list_test_run_dependencies_response.ListTestRunDependenciesResponse":
+        """<p>Lists the dependencies that a test run blocked. Each dependency reflects the discovered classification captured when the run started, so results do not change if a dependency is reclassified after the run.</p>
+
+        Args:
+            test_run_id: <p>The identifier of the test run to list dependencies for.</p>
+            service_arn: <p>The ARN of the service the test run belongs to.</p>
+
+        Raises:
+            capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
+            capo_resiliencehubv2.errors.internal_server_exception.InternalServerException: <p>Internal service error.</p>
+            capo_resiliencehubv2.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found.</p>
+            capo_resiliencehubv2.errors.validation_exception.ValidationException: <p>Validation error — invalid input parameters.</p>
+            capo_resiliencehubv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_resiliencehubv2.types.list_test_run_dependencies_request.ListTestRunDependenciesRequest]",
+        ) -> OperationResponse[
+            "capo_resiliencehubv2.types.list_test_run_dependencies_response.ListTestRunDependenciesResponse"
+        ]:
+            import capo_resiliencehubv2._operations.ngrh_service_core.list_test_run_dependencies
+
+            output, http_response = (
+                capo_resiliencehubv2._operations.ngrh_service_core.list_test_run_dependencies.list_test_run_dependencies(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_resiliencehubv2.types.list_test_run_dependencies_request.ListTestRunDependenciesRequest = {
+            "test_run_id": test_run_id,
+            "service_arn": service_arn,
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_test_run_dependencies(
+        self,
+        test_run_id: "capo_resiliencehubv2.types.test_run_id.TestRunId",
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+        max_results: Optional[
+            "capo_resiliencehubv2.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional["capo_resiliencehubv2.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_resiliencehubv2.types.test_run_dependency_summary.TestRunDependencySummary]":
+        _token = next_token
+        while True:
+            _response = self.list_test_run_dependencies(
+                test_run_id,
+                service_arn,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("dependencies",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_test_run_events(
+        self,
+        test_run_id: "capo_resiliencehubv2.types.test_run_id.TestRunId",
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+        started_at: Optional[datetime.datetime] = None,
+        ended_at: Optional[datetime.datetime] = None,
+        max_results: Optional[
+            "capo_resiliencehubv2.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional["capo_resiliencehubv2.types.next_token.NextToken"] = None,
+    ) -> "capo_resiliencehubv2.types.list_test_run_events_response.ListTestRunEventsResponse":
+        """<p>Lists the events in a test run's timeline.</p>
+
+        Args:
+            test_run_id: <p>The identifier of the test run to list events for.</p>
+            service_arn: <p>The ARN of the service the test run belongs to.</p>
+            started_at: <p>Return events at or after this timestamp.</p>
+            ended_at: <p>Return events at or before this timestamp.</p>
+
+        Raises:
+            capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
+            capo_resiliencehubv2.errors.internal_server_exception.InternalServerException: <p>Internal service error.</p>
+            capo_resiliencehubv2.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found.</p>
+            capo_resiliencehubv2.errors.validation_exception.ValidationException: <p>Validation error — invalid input parameters.</p>
+            capo_resiliencehubv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_resiliencehubv2.types.list_test_run_events_request.ListTestRunEventsRequest]",
+        ) -> OperationResponse[
+            "capo_resiliencehubv2.types.list_test_run_events_response.ListTestRunEventsResponse"
+        ]:
+            import capo_resiliencehubv2._operations.ngrh_service_core.list_test_run_events
+
+            output, http_response = (
+                capo_resiliencehubv2._operations.ngrh_service_core.list_test_run_events.list_test_run_events(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_resiliencehubv2.types.list_test_run_events_request.ListTestRunEventsRequest = {
+            "test_run_id": test_run_id,
+            "service_arn": service_arn,
+        }
+        if started_at is not None:
+            input_["started_at"] = started_at
+        if ended_at is not None:
+            input_["ended_at"] = ended_at
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_test_run_events(
+        self,
+        test_run_id: "capo_resiliencehubv2.types.test_run_id.TestRunId",
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+        started_at: Optional[datetime.datetime] = None,
+        ended_at: Optional[datetime.datetime] = None,
+        max_results: Optional[
+            "capo_resiliencehubv2.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional["capo_resiliencehubv2.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_resiliencehubv2.types.test_run_event.TestRunEvent]":
+        _token = next_token
+        while True:
+            _response = self.list_test_run_events(
+                test_run_id,
+                service_arn,
+                config_overrides=config_overrides,
+                started_at=started_at,
+                ended_at=ended_at,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("events",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_test_runs(
+        self,
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+        test_id: Optional["capo_resiliencehubv2.types.test_id.TestId"] = None,
+        max_results: Optional[
+            "capo_resiliencehubv2.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional["capo_resiliencehubv2.types.next_token.NextToken"] = None,
+    ) -> "capo_resiliencehubv2.types.list_test_runs_response.ListTestRunsResponse":
+        """<p>Lists the runs of a test, or all test runs for a service.</p>
+
+        Args:
+            service_arn: <p>The ARN of the service to list test runs for.</p>
+            test_id: <p>Filter test runs by test identifier.</p>
+
+        Raises:
+            capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
+            capo_resiliencehubv2.errors.internal_server_exception.InternalServerException: <p>Internal service error.</p>
+            capo_resiliencehubv2.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found.</p>
+            capo_resiliencehubv2.errors.validation_exception.ValidationException: <p>Validation error — invalid input parameters.</p>
+            capo_resiliencehubv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_resiliencehubv2.types.list_test_runs_request.ListTestRunsRequest]",
+        ) -> OperationResponse[
+            "capo_resiliencehubv2.types.list_test_runs_response.ListTestRunsResponse"
+        ]:
+            import capo_resiliencehubv2._operations.ngrh_service_core.list_test_runs
+
+            output, http_response = (
+                capo_resiliencehubv2._operations.ngrh_service_core.list_test_runs.list_test_runs(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_resiliencehubv2.types.list_test_runs_request.ListTestRunsRequest = {
+            "service_arn": service_arn
+        }
+        if test_id is not None:
+            input_["test_id"] = test_id
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_test_runs(
+        self,
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+        test_id: Optional["capo_resiliencehubv2.types.test_id.TestId"] = None,
+        max_results: Optional[
+            "capo_resiliencehubv2.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional["capo_resiliencehubv2.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_resiliencehubv2.types.test_run_summary.TestRunSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_test_runs(
+                service_arn,
+                config_overrides=config_overrides,
+                test_id=test_id,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("test_runs",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_test_run_source_events(
+        self,
+        test_run_id: "capo_resiliencehubv2.types.test_run_id.TestRunId",
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        source_arn: "capo_resiliencehubv2.types.test_run_source_arn.TestRunSourceArn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+        max_results: Optional[
+            "capo_resiliencehubv2.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional["capo_resiliencehubv2.types.next_token.NextToken"] = None,
+    ) -> "capo_resiliencehubv2.types.list_test_run_source_events_response.ListTestRunSourceEventsResponse":
+        """<p>Lists the state-change events observed for a test run monitoring source. Events are returned for one source per call, in chronological order.</p>
+
+        Args:
+            test_run_id: <p>The identifier of the test run to list source events for.</p>
+            service_arn: <p>The ARN of the service the test run belongs to.</p>
+            source_arn: <p>The ARN of the monitoring source to list events for, such as the ARN of a CloudWatch alarm. If the source was not monitored during the test run, the response is an empty list.</p>
+
+        Raises:
+            capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
+            capo_resiliencehubv2.errors.internal_server_exception.InternalServerException: <p>Internal service error.</p>
+            capo_resiliencehubv2.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found.</p>
+            capo_resiliencehubv2.errors.validation_exception.ValidationException: <p>Validation error — invalid input parameters.</p>
+            capo_resiliencehubv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_resiliencehubv2.types.list_test_run_source_events_request.ListTestRunSourceEventsRequest]",
+        ) -> OperationResponse[
+            "capo_resiliencehubv2.types.list_test_run_source_events_response.ListTestRunSourceEventsResponse"
+        ]:
+            import capo_resiliencehubv2._operations.ngrh_service_core.list_test_run_source_events
+
+            output, http_response = (
+                capo_resiliencehubv2._operations.ngrh_service_core.list_test_run_source_events.list_test_run_source_events(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_resiliencehubv2.types.list_test_run_source_events_request.ListTestRunSourceEventsRequest = {
+            "test_run_id": test_run_id,
+            "service_arn": service_arn,
+            "source_arn": source_arn,
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_test_run_source_events(
+        self,
+        test_run_id: "capo_resiliencehubv2.types.test_run_id.TestRunId",
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        source_arn: "capo_resiliencehubv2.types.test_run_source_arn.TestRunSourceArn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+        max_results: Optional[
+            "capo_resiliencehubv2.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional["capo_resiliencehubv2.types.next_token.NextToken"] = None,
+    ) -> (
+        "Iterator[capo_resiliencehubv2.types.test_run_source_event.TestRunSourceEvent]"
+    ):
+        _token = next_token
+        while True:
+            _response = self.list_test_run_source_events(
+                test_run_id,
+                service_arn,
+                source_arn,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("test_run_source_events",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_test_run_sources(
+        self,
+        test_run_id: "capo_resiliencehubv2.types.test_run_id.TestRunId",
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+        type: Optional[
+            "capo_resiliencehubv2.types.test_run_source_type.TestRunSourceType"
+        ] = None,
+        max_results: Optional[
+            "capo_resiliencehubv2.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional["capo_resiliencehubv2.types.next_token.NextToken"] = None,
+    ) -> "capo_resiliencehubv2.types.list_test_run_sources_response.ListTestRunSourcesResponse":
+        """<p>Lists the monitoring source snapshots captured for a test run, optionally filtered by type.</p>
+
+        Args:
+            test_run_id: <p>The identifier of the test run to list sources for.</p>
+            service_arn: <p>The ARN of the service the test run belongs to.</p>
+            type: <p>Filter sources by type.</p>
+
+        Raises:
+            capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
+            capo_resiliencehubv2.errors.internal_server_exception.InternalServerException: <p>Internal service error.</p>
+            capo_resiliencehubv2.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found.</p>
+            capo_resiliencehubv2.errors.validation_exception.ValidationException: <p>Validation error — invalid input parameters.</p>
+            capo_resiliencehubv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_resiliencehubv2.types.list_test_run_sources_request.ListTestRunSourcesRequest]",
+        ) -> OperationResponse[
+            "capo_resiliencehubv2.types.list_test_run_sources_response.ListTestRunSourcesResponse"
+        ]:
+            import capo_resiliencehubv2._operations.ngrh_service_core.list_test_run_sources
+
+            output, http_response = (
+                capo_resiliencehubv2._operations.ngrh_service_core.list_test_run_sources.list_test_run_sources(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_resiliencehubv2.types.list_test_run_sources_request.ListTestRunSourcesRequest = {
+            "test_run_id": test_run_id,
+            "service_arn": service_arn,
+        }
+        if type is not None:
+            input_["type"] = type
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_test_run_sources(
+        self,
+        test_run_id: "capo_resiliencehubv2.types.test_run_id.TestRunId",
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+        type: Optional[
+            "capo_resiliencehubv2.types.test_run_source_type.TestRunSourceType"
+        ] = None,
+        max_results: Optional[
+            "capo_resiliencehubv2.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional["capo_resiliencehubv2.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_resiliencehubv2.types.test_run_source_summary.TestRunSourceSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_test_run_sources(
+                test_run_id,
+                service_arn,
+                config_overrides=config_overrides,
+                type=type,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("test_run_sources",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_tests(
+        self,
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+        max_results: Optional[
+            "capo_resiliencehubv2.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional["capo_resiliencehubv2.types.next_token.NextToken"] = None,
+    ) -> "capo_resiliencehubv2.types.list_tests_response.ListTestsResponse":
+        """<p>Lists the tests configured for a service.</p>
+
+        Args:
+            service_arn: <p>The ARN of the service to list tests for.</p>
+
+        Raises:
+            capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
+            capo_resiliencehubv2.errors.internal_server_exception.InternalServerException: <p>Internal service error.</p>
+            capo_resiliencehubv2.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found.</p>
+            capo_resiliencehubv2.errors.validation_exception.ValidationException: <p>Validation error — invalid input parameters.</p>
+            capo_resiliencehubv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_resiliencehubv2.types.list_tests_request.ListTestsRequest]",
+        ) -> OperationResponse[
+            "capo_resiliencehubv2.types.list_tests_response.ListTestsResponse"
+        ]:
+            import capo_resiliencehubv2._operations.ngrh_service_core.list_tests
+
+            output, http_response = (
+                capo_resiliencehubv2._operations.ngrh_service_core.list_tests.list_tests(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_resiliencehubv2.types.list_tests_request.ListTestsRequest = {
+            "service_arn": service_arn
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_tests(
+        self,
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+        max_results: Optional[
+            "capo_resiliencehubv2.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional["capo_resiliencehubv2.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_resiliencehubv2.types.test_summary.TestSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_tests(
+                service_arn,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("tests",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_test_sources(
+        self,
+        test_id: "capo_resiliencehubv2.types.test_id.TestId",
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+        type: Optional[
+            "capo_resiliencehubv2.types.test_source_type.TestSourceType"
+        ] = None,
+        max_results: Optional[
+            "capo_resiliencehubv2.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional["capo_resiliencehubv2.types.next_token.NextToken"] = None,
+    ) -> (
+        "capo_resiliencehubv2.types.list_test_sources_response.ListTestSourcesResponse"
+    ):
+        """<p>Lists the monitoring sources attached to a test, optionally filtered by type.</p>
+
+        Args:
+            test_id: <p>The identifier of the test to list sources for.</p>
+            service_arn: <p>The ARN of the service the test belongs to.</p>
+            type: <p>Filter sources by type.</p>
+
+        Raises:
+            capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
+            capo_resiliencehubv2.errors.internal_server_exception.InternalServerException: <p>Internal service error.</p>
+            capo_resiliencehubv2.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found.</p>
+            capo_resiliencehubv2.errors.validation_exception.ValidationException: <p>Validation error — invalid input parameters.</p>
+            capo_resiliencehubv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_resiliencehubv2.types.list_test_sources_request.ListTestSourcesRequest]",
+        ) -> OperationResponse[
+            "capo_resiliencehubv2.types.list_test_sources_response.ListTestSourcesResponse"
+        ]:
+            import capo_resiliencehubv2._operations.ngrh_service_core.list_test_sources
+
+            output, http_response = (
+                capo_resiliencehubv2._operations.ngrh_service_core.list_test_sources.list_test_sources(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_resiliencehubv2.types.list_test_sources_request.ListTestSourcesRequest = {
+            "test_id": test_id,
+            "service_arn": service_arn,
+        }
+        if type is not None:
+            input_["type"] = type
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_test_sources(
+        self,
+        test_id: "capo_resiliencehubv2.types.test_id.TestId",
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+        type: Optional[
+            "capo_resiliencehubv2.types.test_source_type.TestSourceType"
+        ] = None,
+        max_results: Optional[
+            "capo_resiliencehubv2.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional["capo_resiliencehubv2.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_resiliencehubv2.types.test_source_summary.TestSourceSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_test_sources(
+                test_id,
+                service_arn,
+                config_overrides=config_overrides,
+                type=type,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("test_sources",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_test_templates(
+        self, *, config_overrides: Optional[resiliencehubv2ClientConfig] = None
+    ) -> "capo_resiliencehubv2.types.list_test_templates_response.ListTestTemplatesResponse":
+        """<p>Lists the available resilience test templates. A test template is a pre-configured, AWS recommended test that defines which resilience capability to validate.</p>
+
+        Raises:
+            capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
+            capo_resiliencehubv2.errors.internal_server_exception.InternalServerException: <p>Internal service error.</p>
+            capo_resiliencehubv2.errors.validation_exception.ValidationException: <p>Validation error — invalid input parameters.</p>
+            capo_resiliencehubv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_resiliencehubv2.types.list_test_templates_request.ListTestTemplatesRequest]",
+        ) -> OperationResponse[
+            "capo_resiliencehubv2.types.list_test_templates_response.ListTestTemplatesResponse"
+        ]:
+            import capo_resiliencehubv2._operations.ngrh_service_core.list_test_templates
+
+            output, http_response = (
+                capo_resiliencehubv2._operations.ngrh_service_core.list_test_templates.list_test_templates(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_resiliencehubv2.types.list_test_templates_request.ListTestTemplatesRequest = {}
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def list_user_journeys(
         self,
         system_arn: "capo_resiliencehubv2.types.arn.Arn",
@@ -3028,6 +4387,111 @@ class resiliencehubv2Client:
             if not _token:
                 break
 
+    def put_test_sources(
+        self,
+        test_id: "capo_resiliencehubv2.types.test_id.TestId",
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        test_sources: "capo_resiliencehubv2.types.test_source_input_list.TestSourceInputList",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+    ) -> "capo_resiliencehubv2.types.put_test_sources_response.PutTestSourcesResponse":
+        """<p>Adds or updates the monitoring sources on a test. The operation is transactional — either every source is written or the call fails and nothing is written.</p>
+
+        Args:
+            test_id: <p>The identifier of the test to add sources to.</p>
+            service_arn: <p>The ARN of the service the test belongs to.</p>
+            test_sources: <p>The monitoring sources to add or update.</p>
+
+        Raises:
+            capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
+            capo_resiliencehubv2.errors.conflict_exception.ConflictException: <p>Conflict — resource already exists.</p>
+            capo_resiliencehubv2.errors.internal_server_exception.InternalServerException: <p>Internal service error.</p>
+            capo_resiliencehubv2.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found.</p>
+            capo_resiliencehubv2.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Service quota exceeded.</p>
+            capo_resiliencehubv2.errors.validation_exception.ValidationException: <p>Validation error — invalid input parameters.</p>
+            capo_resiliencehubv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_resiliencehubv2.types.put_test_sources_request.PutTestSourcesRequest]",
+        ) -> OperationResponse[
+            "capo_resiliencehubv2.types.put_test_sources_response.PutTestSourcesResponse"
+        ]:
+            import capo_resiliencehubv2._operations.ngrh_service_core.put_test_sources
+
+            output, http_response = (
+                capo_resiliencehubv2._operations.ngrh_service_core.put_test_sources.put_test_sources(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_resiliencehubv2.types.put_test_sources_request.PutTestSourcesRequest = {
+            "test_id": test_id,
+            "service_arn": service_arn,
+            "test_sources": test_sources,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def start_dependency_insights(
+        self,
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+        client_token: Optional[
+            "capo_resiliencehubv2.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_resiliencehubv2.types.start_dependency_insights_response.StartDependencyInsightsResponse":
+        """<p>Starts generating dependency insights for a service. Generation runs asynchronously; the response returns the initial status, and you retrieve the results with GetDependencyInsights. To use this operation, you must have the <code>resiliencehub:StartDependencyInsights</code> permission on the service.</p>
+
+        Raises:
+            capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
+            capo_resiliencehubv2.errors.conflict_exception.ConflictException: <p>Conflict — resource already exists.</p>
+            capo_resiliencehubv2.errors.internal_server_exception.InternalServerException: <p>Internal service error.</p>
+            capo_resiliencehubv2.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found.</p>
+            capo_resiliencehubv2.errors.throttling_exception.ThrottlingException: <p>Too many requests — rate limit exceeded.</p>
+            capo_resiliencehubv2.errors.validation_exception.ValidationException: <p>Validation error — invalid input parameters.</p>
+            capo_resiliencehubv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_resiliencehubv2.types.start_dependency_insights_request.StartDependencyInsightsRequest]",
+        ) -> OperationResponse[
+            "capo_resiliencehubv2.types.start_dependency_insights_response.StartDependencyInsightsResponse"
+        ]:
+            import capo_resiliencehubv2._operations.ngrh_service_core.start_dependency_insights
+
+            output, http_response = (
+                capo_resiliencehubv2._operations.ngrh_service_core.start_dependency_insights.start_dependency_insights(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_resiliencehubv2.types.start_dependency_insights_request.StartDependencyInsightsRequest = {
+            "service_arn": service_arn
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def start_failure_mode_assessment(
         self,
         service_arn: "capo_resiliencehubv2.types.arn.Arn",
@@ -3037,7 +4501,7 @@ class resiliencehubv2Client:
             "capo_resiliencehubv2.types.client_token.ClientToken"
         ] = None,
     ) -> "capo_resiliencehubv2.types.start_failure_mode_assessment_response.StartFailureModeAssessmentResponse":
-        """<p>Start a failure mode assessment.</p>
+        """<p>Starts a failure mode assessment.</p>
 
         Raises:
             capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
@@ -3070,6 +4534,106 @@ class resiliencehubv2Client:
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def start_test_run(
+        self,
+        test_id: "capo_resiliencehubv2.types.test_id.TestId",
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+    ) -> "capo_resiliencehubv2.types.start_test_run_response.StartTestRunResponse":
+        """<p>Starts a run of a test. Each run scopes to the current resources in the service and produces a pass or fail outcome.</p>
+
+        Args:
+            test_id: <p>The identifier of the test to run.</p>
+            service_arn: <p>The ARN of the service the test belongs to.</p>
+
+        Raises:
+            capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
+            capo_resiliencehubv2.errors.conflict_exception.ConflictException: <p>Conflict — resource already exists.</p>
+            capo_resiliencehubv2.errors.internal_server_exception.InternalServerException: <p>Internal service error.</p>
+            capo_resiliencehubv2.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found.</p>
+            capo_resiliencehubv2.errors.validation_exception.ValidationException: <p>Validation error — invalid input parameters.</p>
+            capo_resiliencehubv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_resiliencehubv2.types.start_test_run_request.StartTestRunRequest]",
+        ) -> OperationResponse[
+            "capo_resiliencehubv2.types.start_test_run_response.StartTestRunResponse"
+        ]:
+            import capo_resiliencehubv2._operations.ngrh_service_core.start_test_run
+
+            output, http_response = (
+                capo_resiliencehubv2._operations.ngrh_service_core.start_test_run.start_test_run(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_resiliencehubv2.types.start_test_run_request.StartTestRunRequest = {
+            "test_id": test_id,
+            "service_arn": service_arn,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def stop_test_run(
+        self,
+        test_run_id: "capo_resiliencehubv2.types.test_run_id.TestRunId",
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+    ) -> "capo_resiliencehubv2.types.stop_test_run_response.StopTestRunResponse":
+        """<p>Stops an in-progress test run.</p>
+
+        Args:
+            test_run_id: <p>The identifier of the test run to stop.</p>
+            service_arn: <p>The ARN of the service the test run belongs to.</p>
+
+        Raises:
+            capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
+            capo_resiliencehubv2.errors.conflict_exception.ConflictException: <p>Conflict — resource already exists.</p>
+            capo_resiliencehubv2.errors.internal_server_exception.InternalServerException: <p>Internal service error.</p>
+            capo_resiliencehubv2.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found.</p>
+            capo_resiliencehubv2.errors.validation_exception.ValidationException: <p>Validation error — invalid input parameters.</p>
+            capo_resiliencehubv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_resiliencehubv2.types.stop_test_run_request.StopTestRunRequest]",
+        ) -> OperationResponse[
+            "capo_resiliencehubv2.types.stop_test_run_response.StopTestRunResponse"
+        ]:
+            import capo_resiliencehubv2._operations.ngrh_service_core.stop_test_run
+
+            output, http_response = (
+                capo_resiliencehubv2._operations.ngrh_service_core.stop_test_run.stop_test_run(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_resiliencehubv2.types.stop_test_run_request.StopTestRunRequest = {
+            "test_run_id": test_run_id,
+            "service_arn": service_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -3366,6 +4930,7 @@ class resiliencehubv2Client:
         data_recovery: Optional[
             "capo_resiliencehubv2.types.data_recovery_targets.DataRecoveryTargets"
         ] = None,
+        sharing_enabled: Optional[bool] = None,
     ) -> "capo_resiliencehubv2.types.update_policy_response.UpdatePolicyResponse":
         """<p>Updates an existing resilience policy.</p>
 
@@ -3374,6 +4939,7 @@ class resiliencehubv2Client:
             multi_az: <p>The updated multi-AZ disaster recovery targets for the policy.</p>
             multi_region: <p>The updated multi-Region disaster recovery targets for the policy.</p>
             data_recovery: <p>The updated data recovery targets for the policy.</p>
+            sharing_enabled: <p>Specifies whether cross-account sharing is enabled for the policy. Disabling sharing stops member services from using the policy.</p>
 
         Raises:
             capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
@@ -3412,6 +4978,8 @@ class resiliencehubv2Client:
             input_["multi_region"] = multi_region
         if data_recovery is not None:
             input_["data_recovery"] = data_recovery
+        if sharing_enabled is not None:
+            input_["sharing_enabled"] = sharing_enabled
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -3611,6 +5179,80 @@ class resiliencehubv2Client:
             input_["description"] = description
         if sharing_enabled is not None:
             input_["sharing_enabled"] = sharing_enabled
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_test(
+        self,
+        test_id: "capo_resiliencehubv2.types.test_id.TestId",
+        service_arn: "capo_resiliencehubv2.types.arn.Arn",
+        *,
+        config_overrides: Optional[resiliencehubv2ClientConfig] = None,
+        logging_configuration: Optional[
+            "capo_resiliencehubv2.types.logging_configuration.LoggingConfiguration"
+        ] = None,
+        stop_conditions: Optional[
+            "capo_resiliencehubv2.types.stop_condition_list.StopConditionList"
+        ] = None,
+        role_name: Optional[
+            "capo_resiliencehubv2.types.iam_role_name.IamRoleName"
+        ] = None,
+        parameters: Optional[
+            "capo_resiliencehubv2.types.test_parameters.TestParameters"
+        ] = None,
+    ) -> "capo_resiliencehubv2.types.update_test_response.UpdateTestResponse":
+        """<p>Updates the configuration of an existing test.</p>
+
+        Args:
+            test_id: <p>The identifier of the test to update.</p>
+            service_arn: <p>The ARN of the service the test belongs to.</p>
+            logging_configuration: <p>The updated logging configuration for the test.</p>
+            stop_conditions: <p>The updated stop conditions for the test.</p>
+            role_name: <p>The updated IAM execution role name.</p>
+            parameters: <p>The updated parameter values for the test.</p>
+
+        Raises:
+            capo_resiliencehubv2.errors.access_denied_exception.AccessDeniedException: <p>Access denied — caller lacks required permissions.</p>
+            capo_resiliencehubv2.errors.conflict_exception.ConflictException: <p>Conflict — resource already exists.</p>
+            capo_resiliencehubv2.errors.internal_server_exception.InternalServerException: <p>Internal service error.</p>
+            capo_resiliencehubv2.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found.</p>
+            capo_resiliencehubv2.errors.validation_exception.ValidationException: <p>Validation error — invalid input parameters.</p>
+            capo_resiliencehubv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_resiliencehubv2.types.update_test_request.UpdateTestRequest]",
+        ) -> OperationResponse[
+            "capo_resiliencehubv2.types.update_test_response.UpdateTestResponse"
+        ]:
+            import capo_resiliencehubv2._operations.ngrh_service_core.update_test
+
+            output, http_response = (
+                capo_resiliencehubv2._operations.ngrh_service_core.update_test.update_test(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_resiliencehubv2.types.update_test_request.UpdateTestRequest = {
+            "test_id": test_id,
+            "service_arn": service_arn,
+        }
+        if logging_configuration is not None:
+            input_["logging_configuration"] = logging_configuration
+        if stop_conditions is not None:
+            input_["stop_conditions"] = stop_conditions
+        if role_name is not None:
+            input_["role_name"] = role_name
+        if parameters is not None:
+            input_["parameters"] = parameters
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),

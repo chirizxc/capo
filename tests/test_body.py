@@ -237,6 +237,7 @@ class TestAsyncBodyReplay:  # unasync: generate
         with pytest.raises(NotFound):
             await async_s3.head_object(bucket, "k")
 
+
 class TestBodyReplay:  # unasync: generated
     @needs_threads
     def test_body_is_replayed_after_500(
@@ -385,6 +386,7 @@ class TestAsyncEarlyResponse:  # unasync: generate
             await async_s3.put_object(unique_name("no-such-bucket"), "k", body=DATA)
         assert info.value.code == "NoSuchBucket"
 
+
 class TestEarlyResponse:  # unasync: generated
     def test_error_response_during_upload_is_reported(self, s3: S3Client):
         # The server can answer before the whole body arrived; the client should
@@ -421,6 +423,7 @@ class TestAsyncBodyFiles:  # unasync: generate
         await async_s3.put_object(bucket, "b.bin", body=body)
         assert await aread_body(async_s3.get_object(bucket, "a.bin")) == DATA
         assert await aread_body(async_s3.get_object(bucket, "b.bin")) == DATA
+
 
 class TestBodyFiles:  # unasync: generated
     @needs_threads

@@ -2,11 +2,12 @@
 
 from typing import TYPE_CHECKING
 
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 from capo_connect.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_connect.types.evaluation_form_score_threshold_list
     import capo_connect.types.evaluation_form_scoring_mode
     import capo_connect.types.evaluation_form_scoring_status
 
@@ -18,6 +19,10 @@ class EvaluationFormScoringStrategy(TypedDict, closed=True):
         "capo_connect.types.evaluation_form_scoring_status.EvaluationFormScoringStatus"
     )
     """<p>The scoring status of the evaluation form.</p>"""
+    score_thresholds: NotRequired[
+        "capo_connect.types.evaluation_form_score_threshold_list.EvaluationFormScoreThresholdList"
+    ]
+    """<p>The score thresholds for performance categories.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -33,6 +38,14 @@ def serialize_json(value: EvaluationFormScoringStrategy) -> dict:
     out["Status"] = capo_connect.types.evaluation_form_scoring_status.serialize_json(
         value["status"]
     )
+    if "score_thresholds" in value:
+        import capo_connect.types.evaluation_form_score_threshold_list
+
+        out["ScoreThresholds"] = (
+            capo_connect.types.evaluation_form_score_threshold_list.serialize_json(
+                value["score_thresholds"]
+            )
+        )
     return out
 
 
@@ -56,4 +69,12 @@ def deserialize_json(data: dict) -> EvaluationFormScoringStrategy:
         )
     else:
         raise DeserializationError("EvaluationFormScoringStrategy.status required")
+    if data.get("ScoreThresholds") is not None:
+        import capo_connect.types.evaluation_form_score_threshold_list
+
+        out["score_thresholds"] = (
+            capo_connect.types.evaluation_form_score_threshold_list.deserialize_json(
+                data["ScoreThresholds"]
+            )
+        )
     return out

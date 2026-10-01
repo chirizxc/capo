@@ -2,7 +2,10 @@
 
 from typing import Literal, TypeAlias, cast
 
-ProfileType: TypeAlias = Literal["FREQUENCY",]
+ProfileType: TypeAlias = Literal[
+    "FREQUENCY",
+    "VOLUME",
+]
 
 
 # --- restJson1 ser/de ---

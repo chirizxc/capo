@@ -17,6 +17,7 @@ import capo_mwaa_serverless.errors.operation_timeout_exception
 import capo_mwaa_serverless.errors.resource_not_found_exception
 import capo_mwaa_serverless.errors.throttling_exception
 import capo_mwaa_serverless.errors.validation_exception
+import capo_mwaa_serverless.types.code
 import capo_mwaa_serverless.types.definition_s3_location
 import capo_mwaa_serverless.types.encryption_configuration
 import capo_mwaa_serverless.types.engine_version

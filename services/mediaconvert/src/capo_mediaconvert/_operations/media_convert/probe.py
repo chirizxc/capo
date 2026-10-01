@@ -18,6 +18,7 @@ import capo_mediaconvert.errors.internal_server_error_exception
 import capo_mediaconvert.errors.not_found_exception
 import capo_mediaconvert.errors.service_quota_exceeded_exception
 import capo_mediaconvert.errors.too_many_requests_exception
+import capo_mediaconvert.errors.unprocessable_entity_exception
 import capo_mediaconvert.types.__list_of_probe_input_file
 import capo_mediaconvert.types.__list_of_probe_result
 import capo_mediaconvert.types.probe_request
@@ -61,6 +62,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "TooManyRequestsException":
             raise capo_mediaconvert.errors.too_many_requests_exception.TooManyRequestsException.from_json(
+                data, message
+            )
+        case "UnprocessableEntityException":
+            raise capo_mediaconvert.errors.unprocessable_entity_exception.UnprocessableEntityException.from_json(
                 data, message
             )
         case _:

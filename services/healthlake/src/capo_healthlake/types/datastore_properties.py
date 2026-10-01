@@ -9,18 +9,19 @@ from capo_healthlake.errors import DeserializationError
 if TYPE_CHECKING:
     import capo_healthlake.types.analytics_configuration
     import capo_healthlake.types.datastore_arn
+    import capo_healthlake.types.datastore_backup_status
     import capo_healthlake.types.datastore_id
     import capo_healthlake.types.datastore_name
     import capo_healthlake.types.datastore_status
     import capo_healthlake.types.error_cause
     import capo_healthlake.types.fhir_version
+    import capo_healthlake.types.health_lake_string
+    import capo_healthlake.types.health_lake_timestamp
     import capo_healthlake.types.identity_provider_configuration
     import capo_healthlake.types.nlp_configuration
     import capo_healthlake.types.preload_data_config
     import capo_healthlake.types.profile_configuration
     import capo_healthlake.types.sse_configuration
-    import capo_healthlake.types.string
-    import capo_healthlake.types.timestamp
 
 
 class DatastoreProperties(TypedDict, closed=True):
@@ -32,12 +33,14 @@ class DatastoreProperties(TypedDict, closed=True):
     """<p>The data store name.</p>"""
     datastore_status: "capo_healthlake.types.datastore_status.DatastoreStatus"
     """<p>The data store status.</p>"""
-    created_at: NotRequired["capo_healthlake.types.timestamp.Timestamp"]
+    created_at: NotRequired[
+        "capo_healthlake.types.health_lake_timestamp.HealthLakeTimestamp"
+    ]
     """<p>The time the data store was created. </p>"""
     datastore_type_version: "capo_healthlake.types.fhir_version.FHIRVersion"
     """<p>The FHIR release version supported by the data store. Current support is for version <code>R4</code>.</p>"""
-    datastore_endpoint: "capo_healthlake.types.string.String"
-    """<p>The AWS endpoint for the data store.</p>"""
+    datastore_endpoint: "capo_healthlake.types.health_lake_string.HealthLakeString"
+    """<p>The Amazon Web Services endpoint for the data store.</p>"""
     sse_configuration: NotRequired[
         "capo_healthlake.types.sse_configuration.SseConfiguration"
     ]
@@ -55,15 +58,19 @@ class DatastoreProperties(TypedDict, closed=True):
     nlp_configuration: NotRequired[
         "capo_healthlake.types.nlp_configuration.NlpConfiguration"
     ]
-    """<para>The natural language processing (NLP) configuration for the data store.</para>"""
+    """<p>The natural language processing (NLP) configuration for the data store.</p>"""
     analytics_configuration: NotRequired[
         "capo_healthlake.types.analytics_configuration.AnalyticsConfiguration"
     ]
-    """<para>The analytics configuration for the data store.</para>"""
+    """<p>The analytics configuration for the data store.</p>"""
     profile_configuration: NotRequired[
         "capo_healthlake.types.profile_configuration.ProfileConfiguration"
     ]
-    """<para>The profile configuration for the data store.</para>"""
+    """<p>The profile configuration for the data store.</p>"""
+    backup_status_info: NotRequired[
+        "capo_healthlake.types.datastore_backup_status.DatastoreBackupStatus"
+    ]
+    """The backup status information for the data store."""
 
 
 # --- awsJson1_0 ser/de ---
@@ -81,10 +88,12 @@ def serialize_aws_json_1_0(value: DatastoreProperties) -> dict:
         )
     )
     if "created_at" in value:
-        import capo_healthlake.types.timestamp
+        import capo_healthlake.types.health_lake_timestamp
 
-        out["CreatedAt"] = capo_healthlake.types.timestamp.serialize_aws_json_1_0(
-            value["created_at"]
+        out["CreatedAt"] = (
+            capo_healthlake.types.health_lake_timestamp.serialize_aws_json_1_0(
+                value["created_at"]
+            )
         )
     import capo_healthlake.types.fhir_version
 
@@ -148,6 +157,14 @@ def serialize_aws_json_1_0(value: DatastoreProperties) -> dict:
                 value["profile_configuration"]
             )
         )
+    if "backup_status_info" in value:
+        import capo_healthlake.types.datastore_backup_status
+
+        out["BackupStatusInfo"] = (
+            capo_healthlake.types.datastore_backup_status.serialize_aws_json_1_0(
+                value["backup_status_info"]
+            )
+        )
     return out
 
 
@@ -174,10 +191,12 @@ def deserialize_aws_json_1_0(data: dict) -> DatastoreProperties:
     else:
         raise DeserializationError("DatastoreProperties.datastore_status required")
     if data.get("CreatedAt") is not None:
-        import capo_healthlake.types.timestamp
+        import capo_healthlake.types.health_lake_timestamp
 
-        out["created_at"] = capo_healthlake.types.timestamp.deserialize_aws_json_1_0(
-            data["CreatedAt"]
+        out["created_at"] = (
+            capo_healthlake.types.health_lake_timestamp.deserialize_aws_json_1_0(
+                data["CreatedAt"]
+            )
         )
     if data.get("DatastoreTypeVersion") is not None:
         import capo_healthlake.types.fhir_version
@@ -247,6 +266,14 @@ def deserialize_aws_json_1_0(data: dict) -> DatastoreProperties:
         out["profile_configuration"] = (
             capo_healthlake.types.profile_configuration.deserialize_aws_json_1_0(
                 data["ProfileConfiguration"]
+            )
+        )
+    if data.get("BackupStatusInfo") is not None:
+        import capo_healthlake.types.datastore_backup_status
+
+        out["backup_status_info"] = (
+            capo_healthlake.types.datastore_backup_status.deserialize_aws_json_1_0(
+                data["BackupStatusInfo"]
             )
         )
     return out

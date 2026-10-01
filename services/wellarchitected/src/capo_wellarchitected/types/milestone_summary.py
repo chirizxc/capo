@@ -5,9 +5,10 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import datetime
+
     import capo_wellarchitected.types.milestone_name
     import capo_wellarchitected.types.milestone_number
-    import capo_wellarchitected.types.timestamp
     import capo_wellarchitected.types.workload_summary
 
 
@@ -18,7 +19,8 @@ class MilestoneSummary(TypedDict, closed=True):
     milestone_name: NotRequired[
         "capo_wellarchitected.types.milestone_name.MilestoneName"
     ]
-    recorded_at: NotRequired["capo_wellarchitected.types.timestamp.Timestamp"]
+    recorded_at: NotRequired["datetime.datetime"]
+    """<p>The date and time when the milestone was recorded.</p>"""
     workload_summary: NotRequired[
         "capo_wellarchitected.types.workload_summary.WorkloadSummary"
     ]
@@ -32,10 +34,12 @@ def serialize_json(value: MilestoneSummary) -> dict:
     if "milestone_name" in value:
         out["MilestoneName"] = value["milestone_name"]
     if "recorded_at" in value:
-        import capo_wellarchitected.types.timestamp
+        import capo_wellarchitected.types._prelude.timestamp
 
-        out["RecordedAt"] = capo_wellarchitected.types.timestamp.serialize_json(
-            value["recorded_at"]
+        out["RecordedAt"] = (
+            capo_wellarchitected.types._prelude.timestamp.serialize_json(
+                value["recorded_at"]
+            )
         )
     if "workload_summary" in value:
         import capo_wellarchitected.types.workload_summary
@@ -55,10 +59,12 @@ def deserialize_json(data: dict) -> MilestoneSummary:
     if data.get("MilestoneName") is not None:
         out["milestone_name"] = data["MilestoneName"]
     if data.get("RecordedAt") is not None:
-        import capo_wellarchitected.types.timestamp
+        import capo_wellarchitected.types._prelude.timestamp
 
-        out["recorded_at"] = capo_wellarchitected.types.timestamp.deserialize_json(
-            data["RecordedAt"]
+        out["recorded_at"] = (
+            capo_wellarchitected.types._prelude.timestamp.deserialize_json(
+                data["RecordedAt"]
+            )
         )
     if data.get("WorkloadSummary") is not None:
         import capo_wellarchitected.types.workload_summary

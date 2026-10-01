@@ -18,8 +18,13 @@ UpdateType: TypeAlias = Literal[
     "AutoModeUpdate",
     "RemoteNetworkConfigUpdate",
     "DeletionProtectionUpdate",
+    "CapabilityUpdate",
     "ControlPlaneScalingConfigUpdate",
     "VendedLogsUpdate",
+    "ControlPlaneEgressUpdate",
+    "VersionRollback",
+    "ControlPlaneComponentConfigUpdate",
+    "CertificateAuthorityUpdate",
 ]
 
 

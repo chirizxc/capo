@@ -9,8 +9,10 @@ if TYPE_CHECKING:
     import capo_qconnect.types.ai_prompt_type
     import capo_qconnect.types.arn_with_qualifier
     import capo_qconnect.types.generic_arn
+    import capo_qconnect.types.interaction_mode
     import capo_qconnect.types.name
     import capo_qconnect.types.non_empty_string
+    import capo_qconnect.types.return_reason
     import capo_qconnect.types.span_finish_reason_list
     import capo_qconnect.types.span_guardrail_assessment_list
     import capo_qconnect.types.span_message_list
@@ -51,6 +53,14 @@ class SpanAttributes(TypedDict, closed=True):
         "capo_qconnect.types.non_empty_string.NonEmptyString"
     ]
     """<p>AI agent orchestrator use case</p>"""
+    interaction_mode: NotRequired[
+        "capo_qconnect.types.interaction_mode.InteractionMode"
+    ]
+    """<p>How the orchestrator engaged the collaborator agent. Present on spans that invoke a collaborator agent.</p>"""
+    target_agent_id: NotRequired["capo_qconnect.types.non_empty_string.NonEmptyString"]
+    """<p>Identifier of the collaborator agent being invoked. For first-party collaborators this is the Amazon Connect AI agent ID; for third-party collaborators this is the external application ID.</p>"""
+    return_reason: NotRequired["capo_qconnect.types.return_reason.ReturnReason"]
+    """<p>Reason a sub-agent returned control to the calling agent. Present on return_to_agent spans.</p>"""
     request_model: NotRequired["capo_qconnect.types.non_empty_string.NonEmptyString"]
     """<p>LLM model ID for request (e.g., anthropic.claude-3-sonnet)</p>"""
     request_max_tokens: NotRequired["int"]
@@ -136,6 +146,12 @@ def serialize_json(value: SpanAttributes) -> dict:
         out["aiAgentInvoker"] = value["ai_agent_invoker"]
     if "ai_agent_orchestrator_use_case" in value:
         out["aiAgentOrchestratorUseCase"] = value["ai_agent_orchestrator_use_case"]
+    if "interaction_mode" in value:
+        out["interactionMode"] = value["interaction_mode"]
+    if "target_agent_id" in value:
+        out["targetAgentId"] = value["target_agent_id"]
+    if "return_reason" in value:
+        out["returnReason"] = value["return_reason"]
     if "request_model" in value:
         out["requestModel"] = value["request_model"]
     if "request_max_tokens" in value:
@@ -255,6 +271,12 @@ def deserialize_json(data: dict) -> SpanAttributes:
         out["ai_agent_invoker"] = data["aiAgentInvoker"]
     if data.get("aiAgentOrchestratorUseCase") is not None:
         out["ai_agent_orchestrator_use_case"] = data["aiAgentOrchestratorUseCase"]
+    if data.get("interactionMode") is not None:
+        out["interaction_mode"] = data["interactionMode"]
+    if data.get("targetAgentId") is not None:
+        out["target_agent_id"] = data["targetAgentId"]
+    if data.get("returnReason") is not None:
+        out["return_reason"] = data["returnReason"]
     if data.get("requestModel") is not None:
         out["request_model"] = data["requestModel"]
     if data.get("requestMaxTokens") is not None:

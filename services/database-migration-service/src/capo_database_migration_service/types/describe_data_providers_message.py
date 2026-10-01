@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 class DescribeDataProvidersMessage(TypedDict, closed=True):
     filters: NotRequired["capo_database_migration_service.types.filter_list.FilterList"]
-    """<p>Filters applied to the data providers described in the form of key-value pairs.</p> <p>Valid filter names and values: data-provider-identifier, data provider arn or name</p>"""
+    """<p>The filters to apply to the data providers.</p> <p>The following filter names are supported:</p> <ul> <li> <p> <code>data-provider-identifier</code> – The data provider name or ARN.</p> </li> </ul>"""
     max_records: NotRequired[
         "capo_database_migration_service.types.integer_optional.IntegerOptional"
     ]

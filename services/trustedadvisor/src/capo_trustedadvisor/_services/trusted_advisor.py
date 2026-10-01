@@ -33,8 +33,10 @@ if TYPE_CHECKING:
     import capo_trustedadvisor.types.account_id
     import capo_trustedadvisor.types.account_recommendation_identifier
     import capo_trustedadvisor.types.account_recommendation_lifecycle_summary
+    import capo_trustedadvisor.types.aws_resource_arn
     import capo_trustedadvisor.types.batch_update_recommendation_resource_exclusion_request
     import capo_trustedadvisor.types.batch_update_recommendation_resource_exclusion_response
+    import capo_trustedadvisor.types.check_arn
     import capo_trustedadvisor.types.check_identifier
     import capo_trustedadvisor.types.check_summary
     import capo_trustedadvisor.types.exclusion_status
@@ -52,12 +54,15 @@ if TYPE_CHECKING:
     import capo_trustedadvisor.types.list_organization_recommendations_response
     import capo_trustedadvisor.types.list_recommendation_resources_request
     import capo_trustedadvisor.types.list_recommendation_resources_response
+    import capo_trustedadvisor.types.list_recommendations_for_resource_request
+    import capo_trustedadvisor.types.list_recommendations_for_resource_response
     import capo_trustedadvisor.types.list_recommendations_request
     import capo_trustedadvisor.types.list_recommendations_response
     import capo_trustedadvisor.types.organization_recommendation_identifier
     import capo_trustedadvisor.types.organization_recommendation_resource_summary
     import capo_trustedadvisor.types.organization_recommendation_summary
     import capo_trustedadvisor.types.recommendation_aws_service
+    import capo_trustedadvisor.types.recommendation_for_resource_summary
     import capo_trustedadvisor.types.recommendation_language
     import capo_trustedadvisor.types.recommendation_pillar
     import capo_trustedadvisor.types.recommendation_resource_exclusion_list
@@ -1092,6 +1097,124 @@ class TrustedAdvisorClient:
                 language=language,
             )
             _page = _resolve_path(_response, ("recommendation_summaries",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_recommendations_for_resource(
+        self,
+        aws_resource_arn: "capo_trustedadvisor.types.aws_resource_arn.AwsResourceArn",
+        *,
+        config_overrides: Optional[TrustedAdvisorClientConfig] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[int] = None,
+        pillar: Optional[
+            "capo_trustedadvisor.types.recommendation_pillar.RecommendationPillar"
+        ] = None,
+        status: Optional[
+            "capo_trustedadvisor.types.resource_status.ResourceStatus"
+        ] = None,
+        check_arn: Optional["capo_trustedadvisor.types.check_arn.CheckArn"] = None,
+        language: Optional[
+            "capo_trustedadvisor.types.recommendation_language.RecommendationLanguage"
+        ] = None,
+    ) -> "capo_trustedadvisor.types.list_recommendations_for_resource_response.ListRecommendationsForResourceResponse":
+        """<p>List all Trusted Advisor recommendations for a given AWS resource ARN.</p>
+
+        Args:
+            next_token: <p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results. </p>
+            max_results: <p>The maximum number of results to return per page</p>
+            aws_resource_arn: <p>The ARN of the AWS resource to query recommendations for</p>
+            pillar: <p>The pillar that the recommendation belongs to</p>
+            status: <p>The current status of the Recommendation Resource</p>
+            check_arn: <p>The AWS Trusted Advisor Check ARN that relates to the Recommendation</p>
+            language: <p>The ISO 639-1 code for the language that you want your recommendations to appear in.</p>
+
+        Raises:
+            capo_trustedadvisor.errors.access_denied_exception.AccessDeniedException: <p>Exception that access has been denied due to insufficient access</p>
+            capo_trustedadvisor.errors.internal_server_exception.InternalServerException: <p>Exception to notify that an unexpected internal error occurred during processing of the request</p>
+            capo_trustedadvisor.errors.throttling_exception.ThrottlingException: <p>Exception to notify that requests are being throttled</p>
+            capo_trustedadvisor.errors.validation_exception.ValidationException: <p>Exception that the request failed to satisfy service constraints</p>
+            capo_trustedadvisor.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List all Trusted Advisor Recommendations for an AWS Resource
+
+            >>> client.list_recommendations_for_resource(aws_resource_arn='arn:aws:ec2:us-east-1:000000000000:instance/i-0abcd1234efgh5678')
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_trustedadvisor.types.list_recommendations_for_resource_request.ListRecommendationsForResourceRequest]",
+        ) -> OperationResponse[
+            "capo_trustedadvisor.types.list_recommendations_for_resource_response.ListRecommendationsForResourceResponse"
+        ]:
+            import capo_trustedadvisor._operations.trusted_advisor.list_recommendations_for_resource
+
+            output, http_response = (
+                capo_trustedadvisor._operations.trusted_advisor.list_recommendations_for_resource.list_recommendations_for_resource(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_trustedadvisor.types.list_recommendations_for_resource_request.ListRecommendationsForResourceRequest = {
+            "aws_resource_arn": aws_resource_arn
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if pillar is not None:
+            input_["pillar"] = pillar
+        if status is not None:
+            input_["status"] = status
+        if check_arn is not None:
+            input_["check_arn"] = check_arn
+        if language is not None:
+            input_["language"] = language
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_recommendations_for_resource(
+        self,
+        aws_resource_arn: "capo_trustedadvisor.types.aws_resource_arn.AwsResourceArn",
+        *,
+        config_overrides: Optional[TrustedAdvisorClientConfig] = None,
+        next_token: Optional[str] = None,
+        max_results: Optional[int] = None,
+        pillar: Optional[
+            "capo_trustedadvisor.types.recommendation_pillar.RecommendationPillar"
+        ] = None,
+        status: Optional[
+            "capo_trustedadvisor.types.resource_status.ResourceStatus"
+        ] = None,
+        check_arn: Optional["capo_trustedadvisor.types.check_arn.CheckArn"] = None,
+        language: Optional[
+            "capo_trustedadvisor.types.recommendation_language.RecommendationLanguage"
+        ] = None,
+    ) -> "Iterator[capo_trustedadvisor.types.recommendation_for_resource_summary.RecommendationForResourceSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_recommendations_for_resource(
+                aws_resource_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                pillar=pillar,
+                status=status,
+                check_arn=check_arn,
+                language=language,
+            )
+            _page = _resolve_path(_response, ("recommendation_for_resource_summaries",))
             for _item in _page or []:
                 yield _item
             _token = _resolve_path(_response, ("next_token",))

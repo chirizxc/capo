@@ -23,7 +23,7 @@ class CreateFleetInstance(TypedDict, closed=True):
     ]
     """<p>The launch templates and overrides that were used for launching the instances. The values that you specify in the Overrides replace the values in the launch template.</p>"""
     lifecycle: NotRequired["capo_ec2.types.instance_lifecycle.InstanceLifecycle"]
-    """<p>Indicates if the instance that was launched is a Spot, On-Demand, Capacity Block, or Interruptible Capacity Reservation instance.</p>"""
+    """<p>Indicates if the instance that was launched is a Spot, On-Demand, Capacity Block for ML, or interruptible Capacity Reservation instance.</p>"""
     instance_ids: NotRequired["capo_ec2.types.instance_ids_set.InstanceIdsSet"]
     """<p>The IDs of the instances.</p>"""
     instance_type: NotRequired["capo_ec2.types.instance_type.InstanceType"]

@@ -23,6 +23,7 @@ import capo_glue.types.audit_context
 import capo_glue.types.get_table_request
 import capo_glue.types.get_table_response
 import capo_glue.types.table
+import capo_glue.types.table_attributes_list
 import capo_glue.types.timestamp
 from capo_glue._protocol.errors import parse_error_metadata_json
 from capo_glue._rule_engine._endpoint_rule_set import EndpointParams, resolve

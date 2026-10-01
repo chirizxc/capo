@@ -15,13 +15,17 @@ import capo_geo_places.errors.access_denied_exception
 import capo_geo_places.errors.internal_server_exception
 import capo_geo_places.errors.throttling_exception
 import capo_geo_places.errors.validation_exception
+import capo_geo_places.types.address_translation_component_list
 import capo_geo_places.types.geocode_additional_feature_list
+import capo_geo_places.types.geocode_address_names_mode
 import capo_geo_places.types.geocode_filter
+import capo_geo_places.types.geocode_intended_use
 import capo_geo_places.types.geocode_query_components
 import capo_geo_places.types.geocode_request
 import capo_geo_places.types.geocode_response
 import capo_geo_places.types.geocode_result_item_list
 import capo_geo_places.types.position
+import capo_geo_places.types.postal_code_mode
 from capo_geo_places._protocol.errors import parse_error_metadata_json
 from capo_geo_places._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_geo_places._services._pipeline import AsyncOperationOptions, OperationOptions

@@ -62,7 +62,7 @@ class CreateDBClusterMessage(TypedDict, closed=True):
     enable_cloudwatch_logs_exports: NotRequired[
         "capo_docdb.types.log_type_list.LogTypeList"
     ]
-    r"""<p>A list of log types that need to be enabled for exporting to Amazon CloudWatch Logs. You can enable audit logs or profiler logs. For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/event-auditing.html\"> Auditing Amazon DocumentDB Events</a> and <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/profiling.html\"> Profiling Amazon DocumentDB Operations</a>. </p>"""
+    r"""<p>A list of log types that need to be enabled for exporting to Amazon CloudWatch Logs. You can enable audit logs or profiler logs. For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/devguide/event-auditing.html\"> Auditing Amazon DocumentDB Events</a> and <a href=\"https://docs.aws.amazon.com/documentdb/latest/devguide/profiling.html\"> Profiling Amazon DocumentDB Operations</a>. </p>"""
     deletion_protection: NotRequired[
         "capo_docdb.types.boolean_optional.BooleanOptional"
     ]
@@ -84,7 +84,11 @@ class CreateDBClusterMessage(TypedDict, closed=True):
     master_user_secret_kms_key_id: NotRequired["capo_docdb.types.string.String"]
     """<p>The Amazon Web Services KMS key identifier to encrypt a secret that is automatically generated and managed in Amazon Web Services Secrets Manager. This setting is valid only if the master user password is managed by Amazon DocumentDB in Amazon Web Services Secrets Manager for the DB cluster.</p> <p>The Amazon Web Services KMS key identifier is the key ARN, key ID, alias ARN, or alias name for the KMS key. To use a KMS key in a different Amazon Web Services account, specify the key ARN or alias ARN.</p> <p>If you don't specify <code>MasterUserSecretKmsKeyId</code>, then the <code>aws/secretsmanager</code> KMS key is used to encrypt the secret. If the secret is in a different Amazon Web Services account, then you can't use the <code>aws/secretsmanager</code> KMS key to encrypt the secret, and you must use a customer managed KMS key.</p> <p>There is a default KMS key for your Amazon Web Services account. Your Amazon Web Services account has a different default KMS key for each Amazon Web Services Region.</p>"""
     network_type: NotRequired["capo_docdb.types.string.String"]
-    r"""<p>The network type of the cluster.</p> <p>The network type is determined by the <code>DBSubnetGroup</code> specified for the cluster. A <code>DBSubnetGroup</code> can support only the IPv4 protocol or the IPv4 and the IPv6 protocols (<code>DUAL</code>).</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/vpc-clusters.html\">DocumentDB clusters in a VPC</a> in the Amazon DocumentDB Developer Guide.</p> <p>Valid Values: <code>IPV4</code> | <code>DUAL</code> </p>"""
+    r"""<p>The network type of the cluster.</p> <p>The network type is determined by the <code>DBSubnetGroup</code> specified for the cluster. A <code>DBSubnetGroup</code> can support only the IPv4 protocol or the IPv4 and the IPv6 protocols (<code>DUAL</code>).</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/devguide/vpc-clusters.html\">DocumentDB clusters in a VPC</a> in the Amazon DocumentDB Developer Guide.</p> <p>Valid Values: <code>IPV4</code> | <code>DUAL</code> </p>"""
+    copy_tags_to_snapshot: NotRequired[
+        "capo_docdb.types.boolean_optional.BooleanOptional"
+    ]
+    """<p>Specifies whether to copy all tags from the DB cluster to snapshots of the DB cluster. The default is not to copy them.</p>"""
 
 
 # --- awsQuery ser/de ---
@@ -217,6 +221,13 @@ def serialize_query(
         )
     if "network_type" in value:
         pairs.append((f"{key_prefix}NetworkType", str(value["network_type"])))
+    if "copy_tags_to_snapshot" in value:
+        pairs.append(
+            (
+                f"{key_prefix}CopyTagsToSnapshot",
+                "true" if value["copy_tags_to_snapshot"] else "false",
+            )
+        )
 
 
 def deserialize_query(el: Element) -> CreateDBClusterMessage:
@@ -338,4 +349,9 @@ def deserialize_query(el: Element) -> CreateDBClusterMessage:
     child_network_type = el.find("NetworkType")
     if child_network_type is not None:
         out["network_type"] = str(child_network_type.text or "")
+    child_copy_tags_to_snapshot = el.find("CopyTagsToSnapshot")
+    if child_copy_tags_to_snapshot is not None:
+        out["copy_tags_to_snapshot"] = (
+            child_copy_tags_to_snapshot.text or ""
+        ).lower() == "true"
     return out

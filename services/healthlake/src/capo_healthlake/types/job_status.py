@@ -2,6 +2,7 @@
 
 from typing import Literal, TypeAlias, cast
 
+"""The status of a job."""
 JobStatus: TypeAlias = Literal[
     "SUBMITTED",
     "QUEUED",

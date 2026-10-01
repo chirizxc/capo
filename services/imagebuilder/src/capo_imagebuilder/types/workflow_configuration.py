@@ -25,7 +25,7 @@ class WorkflowConfiguration(TypedDict, closed=True):
     on_failure: NotRequired[
         "capo_imagebuilder.types.on_workflow_failure.OnWorkflowFailure"
     ]
-    """<p>The action to take if the workflow fails.</p>"""
+    """<p>The action to take if the workflow fails. With <code>CONTINUE</code>, a failed workflow is logged and image creation proceeds to the next workflow. If you don't set a value, the image build fails when the workflow fails. You can only set this property for test workflows.</p>"""
 
 
 # --- restJson1 ser/de ---

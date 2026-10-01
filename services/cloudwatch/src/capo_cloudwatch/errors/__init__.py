@@ -57,3 +57,4 @@ from .resource_not_found import ResourceNotFound as ResourceNotFound
 from .resource_not_found_exception import (
     ResourceNotFoundException as ResourceNotFoundException,
 )
+from .validation_exception import ValidationException as ValidationException

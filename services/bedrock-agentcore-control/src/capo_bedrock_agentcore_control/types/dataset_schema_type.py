@@ -6,6 +6,7 @@ from typing import Literal, TypeAlias, cast
 DatasetSchemaType: TypeAlias = Literal[
     "AGENTCORE_EVALUATION_PREDEFINED_V1",
     "AGENTCORE_EVALUATION_SIMULATED_V1",
+    "THIRD_PARTY_EVALUATION_V1",
 ]
 
 

@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.client_token
     import capo_bedrock_agentcore_control.types.create_gateway_request
     import capo_bedrock_agentcore_control.types.create_gateway_response
+    import capo_bedrock_agentcore_control.types.custom_transform_configuration
     import capo_bedrock_agentcore_control.types.delete_gateway_request
     import capo_bedrock_agentcore_control.types.delete_gateway_response
     import capo_bedrock_agentcore_control.types.exception_level
@@ -42,6 +43,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.tags_map
     import capo_bedrock_agentcore_control.types.update_gateway_request
     import capo_bedrock_agentcore_control.types.update_gateway_response
+    import capo_bedrock_agentcore_control.types.waf_configuration
     from capo_bedrock_agentcore_control._services.async_bedrock_agent_core_control import (
         AsyncBedrockAgentCoreControlClient,
         AsyncBedrockAgentCoreControlClientConfig,
@@ -341,6 +343,9 @@ class GatewayResource:
         kms_key_arn: Optional[
             "capo_bedrock_agentcore_control.types.kms_key_arn.KmsKeyArn"
         ] = None,
+        custom_transform_configuration: Optional[
+            "capo_bedrock_agentcore_control.types.custom_transform_configuration.CustomTransformConfiguration"
+        ] = None,
         interceptor_configurations: Optional[
             "capo_bedrock_agentcore_control.types.gateway_interceptor_configurations.GatewayInterceptorConfigurations"
         ] = None,
@@ -349,6 +354,9 @@ class GatewayResource:
         ] = None,
         exception_level: Optional[
             "capo_bedrock_agentcore_control.types.exception_level.ExceptionLevel"
+        ] = None,
+        waf_configuration: Optional[
+            "capo_bedrock_agentcore_control.types.waf_configuration.WafConfiguration"
         ] = None,
     ) -> "capo_bedrock_agentcore_control.types.update_gateway_response.UpdateGatewayResponse":
         """<p>Updates an existing gateway.</p>
@@ -362,9 +370,11 @@ class GatewayResource:
             authorizer_type: <p>The updated authorizer type for the gateway.</p>
             authorizer_configuration: <p>The updated authorizer configuration for the gateway.</p>
             kms_key_arn: <p>The updated ARN of the KMS key used to encrypt the gateway.</p>
+            custom_transform_configuration: <p>The updated custom transformation configuration for the gateway. This configuration defines how the gateway transforms requests and responses.</p>
             interceptor_configurations: <p>The updated interceptor configurations for the gateway.</p>
             policy_engine_configuration: <p>The updated policy engine configuration for the gateway. A policy engine is a collection of policies that evaluates and authorizes agent tool calls. When associated with a gateway, the policy engine intercepts all agent requests and determines whether to allow or deny each action based on the defined policies.</p>
             exception_level: <p>The level of detail in error messages returned when invoking the gateway.</p> <ul> <li> <p>If the value is <code>DEBUG</code>, granular exception messages are returned to help a user debug the gateway.</p> </li> <li> <p>If the value is omitted, a generic error message is returned to the end user.</p> </li> </ul>
+            waf_configuration: <p>The updated Amazon Web Services WAF configuration for the gateway.</p>
 
         Raises:
             capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
@@ -408,12 +418,16 @@ class GatewayResource:
             input_["authorizer_configuration"] = authorizer_configuration
         if kms_key_arn is not None:
             input_["kms_key_arn"] = kms_key_arn
+        if custom_transform_configuration is not None:
+            input_["custom_transform_configuration"] = custom_transform_configuration
         if interceptor_configurations is not None:
             input_["interceptor_configurations"] = interceptor_configurations
         if policy_engine_configuration is not None:
             input_["policy_engine_configuration"] = policy_engine_configuration
         if exception_level is not None:
             input_["exception_level"] = exception_level
+        if waf_configuration is not None:
+            input_["waf_configuration"] = waf_configuration
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -717,6 +731,9 @@ class AsyncGatewayResource:
         kms_key_arn: Optional[
             "capo_bedrock_agentcore_control.types.kms_key_arn.KmsKeyArn"
         ] = None,
+        custom_transform_configuration: Optional[
+            "capo_bedrock_agentcore_control.types.custom_transform_configuration.CustomTransformConfiguration"
+        ] = None,
         interceptor_configurations: Optional[
             "capo_bedrock_agentcore_control.types.gateway_interceptor_configurations.GatewayInterceptorConfigurations"
         ] = None,
@@ -725,6 +742,9 @@ class AsyncGatewayResource:
         ] = None,
         exception_level: Optional[
             "capo_bedrock_agentcore_control.types.exception_level.ExceptionLevel"
+        ] = None,
+        waf_configuration: Optional[
+            "capo_bedrock_agentcore_control.types.waf_configuration.WafConfiguration"
         ] = None,
     ) -> "capo_bedrock_agentcore_control.types.update_gateway_response.UpdateGatewayResponse":
         """<p>Updates an existing gateway.</p>
@@ -738,9 +758,11 @@ class AsyncGatewayResource:
             authorizer_type: <p>The updated authorizer type for the gateway.</p>
             authorizer_configuration: <p>The updated authorizer configuration for the gateway.</p>
             kms_key_arn: <p>The updated ARN of the KMS key used to encrypt the gateway.</p>
+            custom_transform_configuration: <p>The updated custom transformation configuration for the gateway. This configuration defines how the gateway transforms requests and responses.</p>
             interceptor_configurations: <p>The updated interceptor configurations for the gateway.</p>
             policy_engine_configuration: <p>The updated policy engine configuration for the gateway. A policy engine is a collection of policies that evaluates and authorizes agent tool calls. When associated with a gateway, the policy engine intercepts all agent requests and determines whether to allow or deny each action based on the defined policies.</p>
             exception_level: <p>The level of detail in error messages returned when invoking the gateway.</p> <ul> <li> <p>If the value is <code>DEBUG</code>, granular exception messages are returned to help a user debug the gateway.</p> </li> <li> <p>If the value is omitted, a generic error message is returned to the end user.</p> </li> </ul>
+            waf_configuration: <p>The updated Amazon Web Services WAF configuration for the gateway.</p>
 
         Raises:
             capo_bedrock_agentcore_control.errors.access_denied_exception.AccessDeniedException: <p>This exception is thrown when a request is denied per access permissions</p>
@@ -785,12 +807,16 @@ class AsyncGatewayResource:
             input_["authorizer_configuration"] = authorizer_configuration
         if kms_key_arn is not None:
             input_["kms_key_arn"] = kms_key_arn
+        if custom_transform_configuration is not None:
+            input_["custom_transform_configuration"] = custom_transform_configuration
         if interceptor_configurations is not None:
             input_["interceptor_configurations"] = interceptor_configurations
         if policy_engine_configuration is not None:
             input_["policy_engine_configuration"] = policy_engine_configuration
         if exception_level is not None:
             input_["exception_level"] = exception_level
+        if waf_configuration is not None:
+            input_["waf_configuration"] = waf_configuration
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

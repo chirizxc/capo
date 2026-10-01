@@ -26,6 +26,7 @@ import capo_bedrock_agent_runtime.types.retrieve_and_generate_session_configurat
 import capo_bedrock_agent_runtime.types.retrieve_and_generate_stream_request
 import capo_bedrock_agent_runtime.types.retrieve_and_generate_stream_response
 import capo_bedrock_agent_runtime.types.retrieve_and_generate_stream_response_output
+import capo_bedrock_agent_runtime.types.user_context
 from capo_bedrock_agent_runtime._protocol.errors import parse_error_metadata_json
 from capo_bedrock_agent_runtime._protocol.eventstream import (
     MessageDecoder,

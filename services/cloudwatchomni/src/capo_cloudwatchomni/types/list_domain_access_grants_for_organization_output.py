@@ -1,0 +1,52 @@
+"""Generated from Smithy shape ``com.amazonaws.cloudwatchomni#ListDomainAccessGrantsForOrganizationOutput``."""
+
+from typing import TYPE_CHECKING
+
+from typing_extensions import NotRequired, TypedDict
+
+from capo_cloudwatchomni.errors import DeserializationError
+
+if TYPE_CHECKING:
+    import capo_cloudwatchomni.types.next_token
+    import capo_cloudwatchomni.types.organization_access_grant_summary_list
+
+
+class ListDomainAccessGrantsForOrganizationOutput(TypedDict, closed=True):
+    items: "capo_cloudwatchomni.types.organization_access_grant_summary_list.OrganizationAccessGrantSummaryList"
+    """The list of organization access grant summaries."""
+    next_token: NotRequired["capo_cloudwatchomni.types.next_token.NextToken"]
+    """A token to retrieve the next page of results, or null if there are no more results."""
+
+
+# --- rpcv2Cbor ser/de ---
+def serialize_cbor(value: ListDomainAccessGrantsForOrganizationOutput) -> dict:
+    out: dict = {}
+    import capo_cloudwatchomni.types.organization_access_grant_summary_list
+
+    out["items"] = (
+        capo_cloudwatchomni.types.organization_access_grant_summary_list.serialize_cbor(
+            value["items"]
+        )
+    )
+    if "next_token" in value:
+        out["nextToken"] = value["next_token"]
+    return out
+
+
+def deserialize_cbor(data: dict) -> ListDomainAccessGrantsForOrganizationOutput:
+    out: ListDomainAccessGrantsForOrganizationOutput = {}  # type: ignore[typeddict-item]
+    if data.get("items") is not None:
+        import capo_cloudwatchomni.types.organization_access_grant_summary_list
+
+        out["items"] = (
+            capo_cloudwatchomni.types.organization_access_grant_summary_list.deserialize_cbor(
+                data["items"]
+            )
+        )
+    else:
+        raise DeserializationError(
+            "ListDomainAccessGrantsForOrganizationOutput.items required"
+        )
+    if data.get("nextToken") is not None:
+        out["next_token"] = data["nextToken"]
+    return out

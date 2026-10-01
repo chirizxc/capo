@@ -29,7 +29,7 @@ class ServiceSummary(TypedDict, closed=True):
     ]
     """<p>The systems associated with the service.</p>"""
     regions: NotRequired["capo_resiliencehubv2.types.region_list.RegionList"]
-    """<p>The AWS Regions where the service operates.</p>"""
+    """<p>The Regions where the service operates.</p>"""
     policy_arn: NotRequired["capo_resiliencehubv2.types.arn.Arn"]
     assessment_status: NotRequired[
         "capo_resiliencehubv2.types.assessment_status.AssessmentStatus"

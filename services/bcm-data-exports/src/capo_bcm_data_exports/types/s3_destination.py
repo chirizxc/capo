@@ -16,7 +16,7 @@ class S3Destination(TypedDict, closed=True):
     s3_bucket: "capo_bcm_data_exports.types.generic_string.GenericString"
     """<p>The name of the Amazon S3 bucket used as the destination of a data export file.</p>"""
     s3_bucket_owner: NotRequired["capo_bcm_data_exports.types.account_id.AccountId"]
-    """<p>The AWS Account ID that owns the S3 bucket used as the destination for the data export.</p>"""
+    """<p>The Amazon Web Services account ID that owns the S3 bucket used as the destination for the data export.</p>"""
     s3_prefix: "capo_bcm_data_exports.types.generic_string.GenericString"
     """<p>The S3 path prefix you want prepended to the name of your data export.</p>"""
     s3_region: "capo_bcm_data_exports.types.generic_string.GenericString"

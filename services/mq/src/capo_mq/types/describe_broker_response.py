@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_mq.types.__boolean
+    import capo_mq.types.__integer
     import capo_mq.types.__list_of__string
     import capo_mq.types.__list_of_action_required
     import capo_mq.types.__list_of_broker_instance
@@ -92,10 +93,14 @@ class DescribeBrokerResponse(TypedDict, closed=True):
         "capo_mq.types.__list_of__string.__listOf__string"
     ]
     """<p>The list of pending security groups to authorize connections to brokers.</p>"""
+    pending_storage_size: NotRequired["capo_mq.types.__integer.__integer"]
+    """<p>The pending storage size in GB, to be applied on the next broker restart.</p>"""
     publicly_accessible: NotRequired["capo_mq.types.__boolean.__boolean"]
     """<p>Enables connections from applications outside of the VPC that hosts the broker's subnets.</p>"""
     security_groups: NotRequired["capo_mq.types.__list_of__string.__listOf__string"]
     """<p>The list of rules (1 minimum, 125 maximum) that authorize connections to brokers.</p>"""
+    storage_size: NotRequired["capo_mq.types.__integer.__integer"]
+    """<p>The broker's storage size in GB.</p>"""
     storage_type: NotRequired["capo_mq.types.broker_storage_type.BrokerStorageType"]
     """<p>The broker's storage type.</p>"""
     subnet_ids: NotRequired["capo_mq.types.__list_of__string.__listOf__string"]
@@ -239,6 +244,8 @@ def serialize_json(value: DescribeBrokerResponse) -> dict:
         out["pendingSecurityGroups"] = capo_mq.types.__list_of__string.serialize_json(
             value["pending_security_groups"]
         )
+    if "pending_storage_size" in value:
+        out["pendingStorageSize"] = value["pending_storage_size"]
     if "publicly_accessible" in value:
         out["publiclyAccessible"] = value["publicly_accessible"]
     if "security_groups" in value:
@@ -247,6 +254,8 @@ def serialize_json(value: DescribeBrokerResponse) -> dict:
         out["securityGroups"] = capo_mq.types.__list_of__string.serialize_json(
             value["security_groups"]
         )
+    if "storage_size" in value:
+        out["storageSize"] = value["storage_size"]
     if "storage_type" in value:
         import capo_mq.types.broker_storage_type
 
@@ -424,6 +433,8 @@ def deserialize_json(data: dict) -> DescribeBrokerResponse:
                 data["pendingSecurityGroups"]
             )
         )
+    if data.get("pendingStorageSize") is not None:
+        out["pending_storage_size"] = data["pendingStorageSize"]
     if data.get("publiclyAccessible") is not None:
         out["publicly_accessible"] = data["publiclyAccessible"]
     if data.get("securityGroups") is not None:
@@ -432,6 +443,8 @@ def deserialize_json(data: dict) -> DescribeBrokerResponse:
         out["security_groups"] = capo_mq.types.__list_of__string.deserialize_json(
             data["securityGroups"]
         )
+    if data.get("storageSize") is not None:
+        out["storage_size"] = data["storageSize"]
     if data.get("storageType") is not None:
         import capo_mq.types.broker_storage_type
 

@@ -7,12 +7,12 @@ from typing_extensions import TypedDict
 from capo_chime_sdk_voice.errors import DeserializationError
 
 if TYPE_CHECKING:
-    import capo_chime_sdk_voice.types.non_empty_string
+    import capo_chime_sdk_voice.types.voice_connector_id
     import capo_chime_sdk_voice.types.voice_connector_item_priority
 
 
 class VoiceConnectorItem(TypedDict, closed=True):
-    voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString"
+    voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId"
     """<p>The Voice Connector ID.</p>"""
     priority: "capo_chime_sdk_voice.types.voice_connector_item_priority.VoiceConnectorItemPriority"
     """<p>The priority setting of a Voice Connector item. Calls are routed to hosts in priority order, with 1 as the highest priority. When hosts have equal priority, the system distributes calls among them based on their relative weight.</p>"""
@@ -22,7 +22,7 @@ class VoiceConnectorItem(TypedDict, closed=True):
 def serialize_json(value: VoiceConnectorItem) -> dict:
     out: dict = {}
     out["VoiceConnectorId"] = value["voice_connector_id"]
-    out["Priority"] = value["priority"]
+    out["Priority"] = value.get("priority", 1)
     return out
 
 
@@ -35,5 +35,5 @@ def deserialize_json(data: dict) -> VoiceConnectorItem:
     if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
     else:
-        raise DeserializationError("VoiceConnectorItem.priority required")
+        out["priority"] = 1
     return out

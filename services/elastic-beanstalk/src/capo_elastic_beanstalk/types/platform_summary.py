@@ -27,7 +27,7 @@ class PlatformSummary(TypedDict, closed=True):
     platform_owner: NotRequired[
         "capo_elastic_beanstalk.types.platform_owner.PlatformOwner"
     ]
-    """<p>The AWS account ID of the person who created the platform version.</p>"""
+    """<p>The Amazon Web Services account ID of the person who created the platform version.</p>"""
     platform_status: NotRequired[
         "capo_elastic_beanstalk.types.platform_status.PlatformStatus"
     ]

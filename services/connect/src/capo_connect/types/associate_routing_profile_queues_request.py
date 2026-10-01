@@ -23,7 +23,7 @@ class AssociateRoutingProfileQueuesRequest(TypedDict, closed=True):
     manual_assignment_queue_configs: NotRequired[
         "capo_connect.types.routing_profile_manual_assignment_queue_config_list.RoutingProfileManualAssignmentQueueConfigList"
     ]
-    """<p>The manual assignment queues to associate with this routing profile.</p> <p>Note: Use this config for chat, email, and task contacts. It does not support voice contacts.</p>"""
+    """<p>The manual assignment queues to associate with this routing profile.</p> <note> <p>For voice contacts, manual assignment supports only agent-first callback contacts. Chat, email, and task contacts are fully supported.</p> </note>"""
 
 
 # --- restJson1 ser/de ---

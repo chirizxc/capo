@@ -45,6 +45,19 @@ OptimizationJobDeploymentInstanceType: TypeAlias = Literal[
     "ml.trn1.2xlarge",
     "ml.trn1.32xlarge",
     "ml.trn1n.32xlarge",
+    "ml.p6-b200.48xlarge",
+    "ml.g7e.2xlarge",
+    "ml.g7e.4xlarge",
+    "ml.g7e.8xlarge",
+    "ml.g7e.12xlarge",
+    "ml.g7e.24xlarge",
+    "ml.g7e.48xlarge",
+    "ml.g7.2xlarge",
+    "ml.g7.4xlarge",
+    "ml.g7.8xlarge",
+    "ml.g7.12xlarge",
+    "ml.g7.24xlarge",
+    "ml.g7.48xlarge",
 ]
 
 

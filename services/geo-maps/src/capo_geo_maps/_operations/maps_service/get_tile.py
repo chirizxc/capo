@@ -126,7 +126,9 @@ def build_request(
             Region=options.region,
         )
     )  # noqa: F841
-    url = endpoint.url.rstrip("/") + "/tiles/{Tileset}/{Z}/{X}/{Y}"
+    import capo_geo_maps.types.tile_additional_feature
+
+    url = endpoint.url.rstrip("/") + "/v2/tiles/{Tileset}/{Z}/{X}/{Y}"
     url = url.replace("{Tileset}", quote(input_["tileset"], safe=""))
     url = url.replace("{Z}", quote(input_["z"], safe=""))
     url = url.replace("{X}", quote(input_["x"], safe=""))
@@ -134,7 +136,12 @@ def build_request(
     params: list[tuple[str, str]] = []
     if "additional_features" in input_:
         for item in input_["additional_features"]:
-            params.append(("additional-features", item))
+            params.append(
+                (
+                    "additional-features",
+                    capo_geo_maps.types.tile_additional_feature.serialize_json(item),
+                )
+            )
     if "key" in input_:
         params.append(("key", input_["key"]))
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}

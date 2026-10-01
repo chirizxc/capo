@@ -25,6 +25,7 @@ from .access_denied_by_meta_exception import (
     AccessDeniedByMetaException as AccessDeniedByMetaException,
 )
 from .access_denied_exception import AccessDeniedException as AccessDeniedException
+from .conflict_exception import ConflictException as ConflictException
 from .dependency_exception import DependencyException as DependencyException
 from .internal_service_exception import (
     InternalServiceException as InternalServiceException,

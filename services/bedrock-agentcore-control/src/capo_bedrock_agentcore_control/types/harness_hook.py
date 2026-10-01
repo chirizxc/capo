@@ -1,0 +1,115 @@
+"""Generated from Smithy shape ``com.amazonaws.bedrockagentcorecontrol#HarnessHook``."""
+
+from typing import TYPE_CHECKING, TypeAlias
+
+from typing_extensions import TypedDict
+
+from capo_bedrock_agentcore_control.errors import (
+    DeserializationError,
+    SerializationError,
+)
+
+if TYPE_CHECKING:
+    import capo_bedrock_agentcore_control.types.harness_after_invocation_hook
+    import capo_bedrock_agentcore_control.types.harness_after_tool_call_hook
+    import capo_bedrock_agentcore_control.types.harness_before_invocation_hook
+    import capo_bedrock_agentcore_control.types.harness_before_tool_call_hook
+
+
+class _HarnessHook_beforeInvocation(TypedDict, closed=True):
+    beforeInvocation: "capo_bedrock_agentcore_control.types.harness_before_invocation_hook.HarnessBeforeInvocationHook"
+
+
+class _HarnessHook_afterInvocation(TypedDict, closed=True):
+    afterInvocation: "capo_bedrock_agentcore_control.types.harness_after_invocation_hook.HarnessAfterInvocationHook"
+
+
+class _HarnessHook_beforeToolCall(TypedDict, closed=True):
+    beforeToolCall: "capo_bedrock_agentcore_control.types.harness_before_tool_call_hook.HarnessBeforeToolCallHook"
+
+
+class _HarnessHook_afterToolCall(TypedDict, closed=True):
+    afterToolCall: "capo_bedrock_agentcore_control.types.harness_after_tool_call_hook.HarnessAfterToolCallHook"
+
+
+HarnessHook: TypeAlias = (
+    _HarnessHook_beforeInvocation
+    | _HarnessHook_afterInvocation
+    | _HarnessHook_beforeToolCall
+    | _HarnessHook_afterToolCall
+)
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: HarnessHook) -> dict:
+    if "beforeInvocation" in value:
+        import capo_bedrock_agentcore_control.types.harness_before_invocation_hook
+
+        return {
+            "beforeInvocation": capo_bedrock_agentcore_control.types.harness_before_invocation_hook.serialize_json(
+                value["beforeInvocation"]
+            )
+        }
+    elif "afterInvocation" in value:
+        import capo_bedrock_agentcore_control.types.harness_after_invocation_hook
+
+        return {
+            "afterInvocation": capo_bedrock_agentcore_control.types.harness_after_invocation_hook.serialize_json(
+                value["afterInvocation"]
+            )
+        }
+    elif "beforeToolCall" in value:
+        import capo_bedrock_agentcore_control.types.harness_before_tool_call_hook
+
+        return {
+            "beforeToolCall": capo_bedrock_agentcore_control.types.harness_before_tool_call_hook.serialize_json(
+                value["beforeToolCall"]
+            )
+        }
+    elif "afterToolCall" in value:
+        import capo_bedrock_agentcore_control.types.harness_after_tool_call_hook
+
+        return {
+            "afterToolCall": capo_bedrock_agentcore_control.types.harness_after_tool_call_hook.serialize_json(
+                value["afterToolCall"]
+            )
+        }
+    else:
+        raise SerializationError("HarnessHook: no variant present")
+
+
+def deserialize_json(data: dict) -> HarnessHook:
+    if data.get("beforeInvocation") is not None:
+        import capo_bedrock_agentcore_control.types.harness_before_invocation_hook
+
+        return {
+            "beforeInvocation": capo_bedrock_agentcore_control.types.harness_before_invocation_hook.deserialize_json(
+                data["beforeInvocation"]
+            )
+        }
+    elif data.get("afterInvocation") is not None:
+        import capo_bedrock_agentcore_control.types.harness_after_invocation_hook
+
+        return {
+            "afterInvocation": capo_bedrock_agentcore_control.types.harness_after_invocation_hook.deserialize_json(
+                data["afterInvocation"]
+            )
+        }
+    elif data.get("beforeToolCall") is not None:
+        import capo_bedrock_agentcore_control.types.harness_before_tool_call_hook
+
+        return {
+            "beforeToolCall": capo_bedrock_agentcore_control.types.harness_before_tool_call_hook.deserialize_json(
+                data["beforeToolCall"]
+            )
+        }
+    elif data.get("afterToolCall") is not None:
+        import capo_bedrock_agentcore_control.types.harness_after_tool_call_hook
+
+        return {
+            "afterToolCall": capo_bedrock_agentcore_control.types.harness_after_tool_call_hook.deserialize_json(
+                data["afterToolCall"]
+            )
+        }
+    else:
+        raise DeserializationError("HarnessHook: no recognized variant key")

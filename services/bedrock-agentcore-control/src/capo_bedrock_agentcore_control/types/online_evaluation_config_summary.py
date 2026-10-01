@@ -9,8 +9,10 @@ from capo_bedrock_agentcore_control.errors import DeserializationError
 if TYPE_CHECKING:
     import datetime
 
+    import capo_bedrock_agentcore_control.types.clustering_config
     import capo_bedrock_agentcore_control.types.evaluation_config_description
     import capo_bedrock_agentcore_control.types.evaluation_config_name
+    import capo_bedrock_agentcore_control.types.insight_list
     import capo_bedrock_agentcore_control.types.online_evaluation_config_arn
     import capo_bedrock_agentcore_control.types.online_evaluation_config_id
     import capo_bedrock_agentcore_control.types.online_evaluation_config_status
@@ -38,6 +40,14 @@ class OnlineEvaluationConfigSummary(TypedDict, closed=True):
     """<p> The timestamp when the online evaluation configuration was last updated. </p>"""
     failure_reason: NotRequired["str"]
     """<p> The reason for failure if the online evaluation configuration execution failed. </p>"""
+    insights: NotRequired[
+        "capo_bedrock_agentcore_control.types.insight_list.InsightList"
+    ]
+    """<p>The list of insight types configured for this evaluation.</p>"""
+    clustering_config: NotRequired[
+        "capo_bedrock_agentcore_control.types.clustering_config.ClusteringConfig"
+    ]
+    """<p>The clustering configuration for periodic batch evaluation.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -78,6 +88,22 @@ def serialize_json(value: OnlineEvaluationConfigSummary) -> dict:
     )
     if "failure_reason" in value:
         out["failureReason"] = value["failure_reason"]
+    if "insights" in value:
+        import capo_bedrock_agentcore_control.types.insight_list
+
+        out["insights"] = (
+            capo_bedrock_agentcore_control.types.insight_list.serialize_json(
+                value["insights"]
+            )
+        )
+    if "clustering_config" in value:
+        import capo_bedrock_agentcore_control.types.clustering_config
+
+        out["clusteringConfig"] = (
+            capo_bedrock_agentcore_control.types.clustering_config.serialize_json(
+                value["clustering_config"]
+            )
+        )
     return out
 
 
@@ -147,4 +173,20 @@ def deserialize_json(data: dict) -> OnlineEvaluationConfigSummary:
         raise DeserializationError("OnlineEvaluationConfigSummary.updated_at required")
     if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
+    if data.get("insights") is not None:
+        import capo_bedrock_agentcore_control.types.insight_list
+
+        out["insights"] = (
+            capo_bedrock_agentcore_control.types.insight_list.deserialize_json(
+                data["insights"]
+            )
+        )
+    if data.get("clusteringConfig") is not None:
+        import capo_bedrock_agentcore_control.types.clustering_config
+
+        out["clustering_config"] = (
+            capo_bedrock_agentcore_control.types.clustering_config.deserialize_json(
+                data["clusteringConfig"]
+            )
+        )
     return out

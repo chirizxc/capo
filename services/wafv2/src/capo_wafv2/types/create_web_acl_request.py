@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     import capo_wafv2.types.default_action
     import capo_wafv2.types.entity_description
     import capo_wafv2.types.entity_name
+    import capo_wafv2.types.monetization_config
     import capo_wafv2.types.on_source_d_do_s_protection_config
     import capo_wafv2.types.rules
     import capo_wafv2.types.scope
@@ -65,6 +66,10 @@ class CreateWebACLRequest(TypedDict, closed=True):
         "capo_wafv2.types.application_config.ApplicationConfig"
     ]
     """<p>Configures the ability for the WAF console to store and retrieve application attributes during the web ACL creation process. Application attributes help WAF give recommendations for protection packs.</p>"""
+    monetization_config: NotRequired[
+        "capo_wafv2.types.monetization_config.MonetizationConfig"
+    ]
+    """<p>The monetization configuration for the web ACL. Provide this when any rule in the web ACL uses the <code>Monetize</code> action.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -152,6 +157,14 @@ def serialize_aws_json_1_1(value: CreateWebACLRequest) -> dict:
         out["ApplicationConfig"] = (
             capo_wafv2.types.application_config.serialize_aws_json_1_1(
                 value["application_config"]
+            )
+        )
+    if "monetization_config" in value:
+        import capo_wafv2.types.monetization_config
+
+        out["MonetizationConfig"] = (
+            capo_wafv2.types.monetization_config.serialize_aws_json_1_1(
+                value["monetization_config"]
             )
         )
     return out
@@ -259,6 +272,14 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWebACLRequest:
         out["application_config"] = (
             capo_wafv2.types.application_config.deserialize_aws_json_1_1(
                 data["ApplicationConfig"]
+            )
+        )
+    if data.get("MonetizationConfig") is not None:
+        import capo_wafv2.types.monetization_config
+
+        out["monetization_config"] = (
+            capo_wafv2.types.monetization_config.deserialize_aws_json_1_1(
+                data["MonetizationConfig"]
             )
         )
     return out

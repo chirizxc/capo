@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 
 class S3JobManifestGenerator(TypedDict, closed=True):
     expected_bucket_owner: NotRequired["capo_s3_control.types.account_id.AccountId"]
-    """<p>The Amazon Web Services account ID that owns the bucket the generated manifest is written to. If provided the generated manifest bucket's owner Amazon Web Services account ID must match this value, else the job fails.</p>"""
+    """<p>The Amazon Web Services account ID that owns the source bucket specified in <code>SourceBucket</code>. If provided, the manifest source bucket owner's Amazon Web Services account ID must match this value, else the job fails.</p>"""
     source_bucket: "capo_s3_control.types.s3_bucket_arn_string.S3BucketArnString"
     """<p>The ARN of the source bucket used by the ManifestGenerator.</p> <note> <p> <b>Directory buckets</b> - Directory buckets aren't supported as the source buckets used by <code>S3JobManifestGenerator</code> to generate the job manifest.</p> </note>"""
     manifest_output_location: NotRequired[

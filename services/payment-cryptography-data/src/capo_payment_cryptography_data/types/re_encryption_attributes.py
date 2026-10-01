@@ -10,6 +10,7 @@ from capo_payment_cryptography_data.errors import (
 )
 
 if TYPE_CHECKING:
+    import capo_payment_cryptography_data.types.asymmetric_encryption_attributes
     import capo_payment_cryptography_data.types.dukpt_encryption_attributes
     import capo_payment_cryptography_data.types.symmetric_encryption_attributes
 
@@ -18,12 +19,18 @@ class _ReEncryptionAttributes_Symmetric(TypedDict, closed=True):
     Symmetric: "capo_payment_cryptography_data.types.symmetric_encryption_attributes.SymmetricEncryptionAttributes"
 
 
+class _ReEncryptionAttributes_Asymmetric(TypedDict, closed=True):
+    Asymmetric: "capo_payment_cryptography_data.types.asymmetric_encryption_attributes.AsymmetricEncryptionAttributes"
+
+
 class _ReEncryptionAttributes_Dukpt(TypedDict, closed=True):
     Dukpt: "capo_payment_cryptography_data.types.dukpt_encryption_attributes.DukptEncryptionAttributes"
 
 
 ReEncryptionAttributes: TypeAlias = (
-    _ReEncryptionAttributes_Symmetric | _ReEncryptionAttributes_Dukpt
+    _ReEncryptionAttributes_Symmetric
+    | _ReEncryptionAttributes_Asymmetric
+    | _ReEncryptionAttributes_Dukpt
 )
 
 
@@ -35,6 +42,14 @@ def serialize_json(value: ReEncryptionAttributes) -> dict:
         return {
             "Symmetric": capo_payment_cryptography_data.types.symmetric_encryption_attributes.serialize_json(
                 value["Symmetric"]
+            )
+        }
+    elif "Asymmetric" in value:
+        import capo_payment_cryptography_data.types.asymmetric_encryption_attributes
+
+        return {
+            "Asymmetric": capo_payment_cryptography_data.types.asymmetric_encryption_attributes.serialize_json(
+                value["Asymmetric"]
             )
         }
     elif "Dukpt" in value:
@@ -56,6 +71,14 @@ def deserialize_json(data: dict) -> ReEncryptionAttributes:
         return {
             "Symmetric": capo_payment_cryptography_data.types.symmetric_encryption_attributes.deserialize_json(
                 data["Symmetric"]
+            )
+        }
+    elif data.get("Asymmetric") is not None:
+        import capo_payment_cryptography_data.types.asymmetric_encryption_attributes
+
+        return {
+            "Asymmetric": capo_payment_cryptography_data.types.asymmetric_encryption_attributes.deserialize_json(
+                data["Asymmetric"]
             )
         }
     elif data.get("Dukpt") is not None:

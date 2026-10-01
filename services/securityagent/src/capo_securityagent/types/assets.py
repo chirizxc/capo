@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_securityagent.types.endpoint_list
     import capo_securityagent.types.integrated_repository_list
     import capo_securityagent.types.source_code_repository_list
+    import capo_securityagent.types.trusted_ca_certificate_list
 
 
 class Assets(TypedDict, closed=True):
@@ -27,6 +28,10 @@ class Assets(TypedDict, closed=True):
         "capo_securityagent.types.integrated_repository_list.IntegratedRepositoryList"
     ]
     """<p>The list of integrated repositories associated with the pentest.</p>"""
+    trusted_ca_certificates: NotRequired[
+        "capo_securityagent.types.trusted_ca_certificate_list.TrustedCaCertificateList"
+    ]
+    """<p>The trust anchors used to validate target endpoint TLS certificates. Provide these for endpoints served by a private or internal certificate authority (CA), an intermediate CA, or a self-signed certificate.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -66,6 +71,14 @@ def serialize_json(value: Assets) -> dict:
                 value["integrated_repositories"]
             )
         )
+    if "trusted_ca_certificates" in value:
+        import capo_securityagent.types.trusted_ca_certificate_list
+
+        out["trustedCaCertificates"] = (
+            capo_securityagent.types.trusted_ca_certificate_list.serialize_json(
+                value["trusted_ca_certificates"]
+            )
+        )
     return out
 
 
@@ -103,6 +116,14 @@ def deserialize_json(data: dict) -> Assets:
         out["integrated_repositories"] = (
             capo_securityagent.types.integrated_repository_list.deserialize_json(
                 data["integratedRepositories"]
+            )
+        )
+    if data.get("trustedCaCertificates") is not None:
+        import capo_securityagent.types.trusted_ca_certificate_list
+
+        out["trusted_ca_certificates"] = (
+            capo_securityagent.types.trusted_ca_certificate_list.deserialize_json(
+                data["trustedCaCertificates"]
             )
         )
     return out

@@ -11,9 +11,9 @@ if TYPE_CHECKING:
 
 class OutputResources(TypedDict, closed=True):
     amis: NotRequired["capo_imagebuilder.types.ami_list.AmiList"]
-    """<p>The Amazon EC2 AMIs created by this image.</p>"""
+    """<p>The Amazon EC2 AMIs created by this image. The list contains one entry per AMI, including copies that distribution created in each target Amazon Web Services Region and account.</p>"""
     containers: NotRequired["capo_imagebuilder.types.container_list.ContainerList"]
-    """<p>Container images that the pipeline has generated and stored in the output repository.</p>"""
+    """<p>The container images that Image Builder created when it built this image, stored in the output Amazon ECR repository.</p>"""
 
 
 # --- restJson1 ser/de ---

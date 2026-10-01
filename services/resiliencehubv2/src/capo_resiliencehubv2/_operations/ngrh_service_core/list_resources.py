@@ -17,6 +17,7 @@ import capo_resiliencehubv2.errors.resource_not_found_exception
 import capo_resiliencehubv2.errors.validation_exception
 import capo_resiliencehubv2.types.list_resources_request
 import capo_resiliencehubv2.types.list_resources_response
+import capo_resiliencehubv2.types.resource_type_filter_list
 import capo_resiliencehubv2.types.service_resource_list
 from capo_resiliencehubv2._protocol.errors import parse_error_metadata_json
 from capo_resiliencehubv2._rule_engine._endpoint_rule_set import EndpointParams, resolve
@@ -121,6 +122,10 @@ def build_request(
         params.append(("serviceFunctionId", input_["service_function_id"]))
     if "aws_region" in input_:
         params.append(("awsRegion", input_["aws_region"]))
+    if "resource_types" in input_:
+        for item in input_["resource_types"]:
+            params.append(("resourceTypes", item))
+    params.append(("billable", "true" if input_.get("billable", True) else "false"))
     params.append(("maxResults", str(input_.get("max_results", 100))))
     if "next_token" in input_:
         params.append(("nextToken", input_["next_token"]))

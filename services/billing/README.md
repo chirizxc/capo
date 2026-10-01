@@ -29,8 +29,8 @@ from capo_billing import AsyncBillingClient
 
 async def main():
     async with AsyncBillingClient() as billing:
-        # Example: paginate over list_billing_views
-        async for item in billing.iter_list_billing_views():
+        # Example: paginate over get_credit_allocation_history
+        async for item in billing.iter_get_credit_allocation_history():
             print(item)
 ```
 

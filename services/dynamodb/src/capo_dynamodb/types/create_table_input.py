@@ -22,6 +22,7 @@ if TYPE_CHECKING:
     import capo_dynamodb.types.table_arn
     import capo_dynamodb.types.table_class
     import capo_dynamodb.types.tag_list
+    import capo_dynamodb.types.vector_index_list
     import capo_dynamodb.types.warm_throughput
 
 
@@ -78,6 +79,8 @@ class CreateTableInput(TypedDict, closed=True):
         "capo_dynamodb.types.global_table_settings_replication_mode.GlobalTableSettingsReplicationMode"
     ]
     """<p>Controls the settings synchronization mode for the global table. For multi-account global tables, this parameter is required and the only supported value is ENABLED. For same-account global tables, this parameter is set to ENABLED_WITH_OVERRIDES. </p>"""
+    vector_indexes: NotRequired["capo_dynamodb.types.vector_index_list.VectorIndexList"]
+    """<p>One or more vector indexes to be created on the table. Each vector index enables similarity search on a vector attribute. Each element in the list consists of:</p> <ul> <li> <p> <code>IndexName</code> - The name of the vector index. Must be unique within the table.</p> </li> <li> <p> <code>VectorAttribute</code> - The attribute that contains vector embeddings. If multiple vector indexes reference the same attribute, they must all use the same number of dimensions.</p> </li> <li> <p> <code>Dimensions</code> - The number of dimensions in each vector.</p> </li> <li> <p> <code>DistanceFunction</code> - The distance function used to calculate similarity. Valid values: <code>COSINE</code>, <code>EUCLIDEAN</code>, <code>DOT_PRODUCT</code>.</p> </li> <li> <p> <code>Projection</code> - Specifies attributes that are copied (projected) from the table into the vector index. The total number of projected non-key attributes is shared across the vector attribute (counts as 1) and <code>INLINE_FILTER</code> search schema elements (each counts as 1). <code>HASH</code> search schema elements do not count toward this limit.</p> </li> <li> <p> <code>SearchSchema</code> - (Optional) Defines the partition key (<code>HASH</code>) and inline filter (<code>INLINE_FILTER</code>) attributes for the vector index.</p> </li> </ul>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -182,6 +185,14 @@ def serialize_aws_json_1_0(value: CreateTableInput) -> dict:
         out["GlobalTableSettingsReplicationMode"] = (
             capo_dynamodb.types.global_table_settings_replication_mode.serialize_aws_json_1_0(
                 value["global_table_settings_replication_mode"]
+            )
+        )
+    if "vector_indexes" in value:
+        import capo_dynamodb.types.vector_index_list
+
+        out["VectorIndexes"] = (
+            capo_dynamodb.types.vector_index_list.serialize_aws_json_1_0(
+                value["vector_indexes"]
             )
         )
     return out
@@ -293,6 +304,14 @@ def deserialize_aws_json_1_0(data: dict) -> CreateTableInput:
         out["global_table_settings_replication_mode"] = (
             capo_dynamodb.types.global_table_settings_replication_mode.deserialize_aws_json_1_0(
                 data["GlobalTableSettingsReplicationMode"]
+            )
+        )
+    if data.get("VectorIndexes") is not None:
+        import capo_dynamodb.types.vector_index_list
+
+        out["vector_indexes"] = (
+            capo_dynamodb.types.vector_index_list.deserialize_aws_json_1_0(
+                data["VectorIndexes"]
             )
         )
     return out

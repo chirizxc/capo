@@ -14,18 +14,34 @@ from capo_socialmessaging._services._pipeline import (
 )
 
 if TYPE_CHECKING:
+    import capo_socialmessaging.types.business_public_key_pem
     import capo_socialmessaging.types.delete_whats_app_message_media_input
     import capo_socialmessaging.types.delete_whats_app_message_media_output
     import capo_socialmessaging.types.get_linked_whats_app_business_account_phone_number_input
     import capo_socialmessaging.types.get_linked_whats_app_business_account_phone_number_output
+    import capo_socialmessaging.types.get_whats_app_business_public_key_input
+    import capo_socialmessaging.types.get_whats_app_business_public_key_output
+    import capo_socialmessaging.types.get_whats_app_call_permission_input
+    import capo_socialmessaging.types.get_whats_app_call_permission_output
     import capo_socialmessaging.types.get_whats_app_message_media_input
     import capo_socialmessaging.types.get_whats_app_message_media_output
+    import capo_socialmessaging.types.kms_key_arn
     import capo_socialmessaging.types.post_whats_app_message_media_input
     import capo_socialmessaging.types.post_whats_app_message_media_output
+    import capo_socialmessaging.types.put_whats_app_business_public_key_input
+    import capo_socialmessaging.types.put_whats_app_business_public_key_output
     import capo_socialmessaging.types.s3_file
     import capo_socialmessaging.types.s3_presigned_url
+    import capo_socialmessaging.types.send_whats_app_call_event_input
+    import capo_socialmessaging.types.send_whats_app_call_event_output
     import capo_socialmessaging.types.send_whats_app_message_input
     import capo_socialmessaging.types.send_whats_app_message_output
+    import capo_socialmessaging.types.update_linked_whats_app_business_account_phone_number_input
+    import capo_socialmessaging.types.update_linked_whats_app_business_account_phone_number_output
+    import capo_socialmessaging.types.whats_app_business_scoped_user_id
+    import capo_socialmessaging.types.whats_app_call_event_blob
+    import capo_socialmessaging.types.whats_app_call_settings
+    import capo_socialmessaging.types.whats_app_destination_phone_number
     import capo_socialmessaging.types.whats_app_media_id
     import capo_socialmessaging.types.whats_app_message_blob
     import capo_socialmessaging.types.whats_app_phone_number_id
@@ -136,6 +152,118 @@ class LinkedWhatsAppPhoneNumberResource:
             "media_id": media_id,
             "origination_phone_number_id": origination_phone_number_id,
         }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_whats_app_business_public_key(
+        self,
+        origination_phone_number_id: "capo_socialmessaging.types.whats_app_phone_number_id.WhatsAppPhoneNumberId",
+        *,
+        config_overrides: Optional[SocialMessagingClientConfig] = None,
+    ) -> "capo_socialmessaging.types.get_whats_app_business_public_key_output.GetWhatsAppBusinessPublicKeyOutput":
+        """<p>Retrieves the business public key for a phone number and its signature status.</p>
+
+        Args:
+            origination_phone_number_id: <p>The unique identifier of the phone number whose business public key to retrieve.</p>
+
+        Raises:
+            capo_socialmessaging.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.validation_exception.ValidationException: <p>The request contains an invalid parameter value. </p>
+            capo_socialmessaging.errors.access_denied_by_meta_exception.AccessDeniedByMetaException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.dependency_exception.DependencyException: <p>Thrown when performing an action because a dependency would be broken.</p>
+            capo_socialmessaging.errors.internal_service_exception.InternalServiceException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_socialmessaging.errors.invalid_parameters_exception.InvalidParametersException: <p>One or more parameters provided to the action are not valid.</p>
+            capo_socialmessaging.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource was not found.</p>
+            capo_socialmessaging.errors.throttled_request_exception.ThrottledRequestException: <p>The request was denied due to request throttling.</p>
+            capo_socialmessaging.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_socialmessaging.types.get_whats_app_business_public_key_input.GetWhatsAppBusinessPublicKeyInput]",
+        ) -> OperationResponse[
+            "capo_socialmessaging.types.get_whats_app_business_public_key_output.GetWhatsAppBusinessPublicKeyOutput"
+        ]:
+            import capo_socialmessaging._operations.social_messaging.get_whats_app_business_public_key
+
+            output, http_response = (
+                capo_socialmessaging._operations.social_messaging.get_whats_app_business_public_key.get_whats_app_business_public_key(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_socialmessaging.types.get_whats_app_business_public_key_input.GetWhatsAppBusinessPublicKeyInput = {
+            "origination_phone_number_id": origination_phone_number_id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_whats_app_call_permission(
+        self,
+        origination_phone_number_id: "capo_socialmessaging.types.whats_app_phone_number_id.WhatsAppPhoneNumberId",
+        *,
+        config_overrides: Optional[SocialMessagingClientConfig] = None,
+        destination_phone_number: Optional[
+            "capo_socialmessaging.types.whats_app_destination_phone_number.WhatsAppDestinationPhoneNumber"
+        ] = None,
+        end_user_bsuid: Optional[
+            "capo_socialmessaging.types.whats_app_business_scoped_user_id.WhatsAppBusinessScopedUserId"
+        ] = None,
+    ) -> "capo_socialmessaging.types.get_whats_app_call_permission_output.GetWhatsAppCallPermissionOutput":
+        """<p>Retrieves the current calling permission for a WhatsApp end user, along with the calling actions the business is allowed to take with that user. Provide the destination phone number or the business-scoped user ID to identify the end user.</p>
+
+        Args:
+            origination_phone_number_id: <p>The unique identifier of the business phone number for which to retrieve the calling permission. The phone number identifiers are formatted as <code>phone-number-id-01234567890123456789012345678901</code>.</p>
+            destination_phone_number: <p>The end user's phone number, in E.164 format, for which to retrieve the calling permission.</p>
+            end_user_bsuid: <p>The business-scoped user identifier (BSUID) of the end user for which to retrieve the calling permission.</p>
+
+        Raises:
+            capo_socialmessaging.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.validation_exception.ValidationException: <p>The request contains an invalid parameter value. </p>
+            capo_socialmessaging.errors.access_denied_by_meta_exception.AccessDeniedByMetaException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.dependency_exception.DependencyException: <p>Thrown when performing an action because a dependency would be broken.</p>
+            capo_socialmessaging.errors.internal_service_exception.InternalServiceException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_socialmessaging.errors.invalid_parameters_exception.InvalidParametersException: <p>One or more parameters provided to the action are not valid.</p>
+            capo_socialmessaging.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource was not found.</p>
+            capo_socialmessaging.errors.throttled_request_exception.ThrottledRequestException: <p>The request was denied due to request throttling.</p>
+            capo_socialmessaging.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_socialmessaging.types.get_whats_app_call_permission_input.GetWhatsAppCallPermissionInput]",
+        ) -> OperationResponse[
+            "capo_socialmessaging.types.get_whats_app_call_permission_output.GetWhatsAppCallPermissionOutput"
+        ]:
+            import capo_socialmessaging._operations.social_messaging.get_whats_app_call_permission
+
+            output, http_response = (
+                capo_socialmessaging._operations.social_messaging.get_whats_app_call_permission.get_whats_app_call_permission(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_socialmessaging.types.get_whats_app_call_permission_input.GetWhatsAppCallPermissionInput = {
+            "origination_phone_number_id": origination_phone_number_id
+        }
+        if destination_phone_number is not None:
+            input_["destination_phone_number"] = destination_phone_number
+        if end_user_bsuid is not None:
+            input_["end_user_bsuid"] = end_user_bsuid
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -274,6 +402,125 @@ class LinkedWhatsAppPhoneNumberResource:
         response.response.close()
         return response.output
 
+    def put_whats_app_business_public_key(
+        self,
+        origination_phone_number_id: "capo_socialmessaging.types.whats_app_phone_number_id.WhatsAppPhoneNumberId",
+        *,
+        config_overrides: Optional[SocialMessagingClientConfig] = None,
+        business_public_key: Optional[
+            "capo_socialmessaging.types.business_public_key_pem.BusinessPublicKeyPem"
+        ] = None,
+        kms_key_arn: Optional[
+            "capo_socialmessaging.types.kms_key_arn.KmsKeyArn"
+        ] = None,
+    ) -> "capo_socialmessaging.types.put_whats_app_business_public_key_output.PutWhatsAppBusinessPublicKeyOutput":
+        """<p>Sets the business public key used to encrypt the data exchanged with the endpoint of a data exchange Flow.</p>
+
+        Args:
+            origination_phone_number_id: <p>The unique identifier of the phone number to associate with the business public key.</p>
+            business_public_key: <p>The PEM-encoded 2048-bit RSA public key to set. Mutually exclusive with <code>kmsKeyArn</code>.</p>
+            kms_key_arn: <p>The ARN of a customer managed asymmetric RSA key in Amazon Web Services KMS. Mutually exclusive with <code>businessPublicKey</code>.</p>
+
+        Raises:
+            capo_socialmessaging.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.validation_exception.ValidationException: <p>The request contains an invalid parameter value. </p>
+            capo_socialmessaging.errors.access_denied_by_meta_exception.AccessDeniedByMetaException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.dependency_exception.DependencyException: <p>Thrown when performing an action because a dependency would be broken.</p>
+            capo_socialmessaging.errors.internal_service_exception.InternalServiceException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_socialmessaging.errors.invalid_parameters_exception.InvalidParametersException: <p>One or more parameters provided to the action are not valid.</p>
+            capo_socialmessaging.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource was not found.</p>
+            capo_socialmessaging.errors.throttled_request_exception.ThrottledRequestException: <p>The request was denied due to request throttling.</p>
+            capo_socialmessaging.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_socialmessaging.types.put_whats_app_business_public_key_input.PutWhatsAppBusinessPublicKeyInput]",
+        ) -> OperationResponse[
+            "capo_socialmessaging.types.put_whats_app_business_public_key_output.PutWhatsAppBusinessPublicKeyOutput"
+        ]:
+            import capo_socialmessaging._operations.social_messaging.put_whats_app_business_public_key
+
+            output, http_response = (
+                capo_socialmessaging._operations.social_messaging.put_whats_app_business_public_key.put_whats_app_business_public_key(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_socialmessaging.types.put_whats_app_business_public_key_input.PutWhatsAppBusinessPublicKeyInput = {
+            "origination_phone_number_id": origination_phone_number_id
+        }
+        if business_public_key is not None:
+            input_["business_public_key"] = business_public_key
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def send_whats_app_call_event(
+        self,
+        origination_phone_number_id: "capo_socialmessaging.types.whats_app_phone_number_id.WhatsAppPhoneNumberId",
+        meta_api_version: str,
+        call_event: "capo_socialmessaging.types.whats_app_call_event_blob.WhatsAppCallEventBlob",
+        *,
+        config_overrides: Optional[SocialMessagingClientConfig] = None,
+    ) -> "capo_socialmessaging.types.send_whats_app_call_event_output.SendWhatsAppCallEventOutput":
+        """<p>Sends a WhatsApp calling event, such as connecting or terminating a call, for a business phone number. This operation passes the event through to Meta. To use this operation, the origination phone number must belong to a WhatsApp Business Account that is linked to your Amazon Web Services account.</p>
+
+        Args:
+            origination_phone_number_id: <p>The unique identifier of the origination phone number for the call. The phone number identifiers are formatted as <code>phone-number-id-01234567890123456789012345678901</code>. Use <code>GetLinkedWhatsAppBusinessAccount</code> to find a phone number's ID.</p>
+            meta_api_version: <p>The version of the Meta Graph API to use for the request.</p>
+            call_event: <p>The call event payload to send, as a JSON blob in the format defined by the Meta calling API.</p>
+
+        Raises:
+            capo_socialmessaging.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.validation_exception.ValidationException: <p>The request contains an invalid parameter value. </p>
+            capo_socialmessaging.errors.access_denied_by_meta_exception.AccessDeniedByMetaException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.conflict_exception.ConflictException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
+            capo_socialmessaging.errors.dependency_exception.DependencyException: <p>Thrown when performing an action because a dependency would be broken.</p>
+            capo_socialmessaging.errors.internal_service_exception.InternalServiceException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_socialmessaging.errors.invalid_parameters_exception.InvalidParametersException: <p>One or more parameters provided to the action are not valid.</p>
+            capo_socialmessaging.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource was not found.</p>
+            capo_socialmessaging.errors.throttled_request_exception.ThrottledRequestException: <p>The request was denied due to request throttling.</p>
+            capo_socialmessaging.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_socialmessaging.types.send_whats_app_call_event_input.SendWhatsAppCallEventInput]",
+        ) -> OperationResponse[
+            "capo_socialmessaging.types.send_whats_app_call_event_output.SendWhatsAppCallEventOutput"
+        ]:
+            import capo_socialmessaging._operations.social_messaging.send_whats_app_call_event
+
+            output, http_response = (
+                capo_socialmessaging._operations.social_messaging.send_whats_app_call_event.send_whats_app_call_event(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_socialmessaging.types.send_whats_app_call_event_input.SendWhatsAppCallEventInput = {
+            "origination_phone_number_id": origination_phone_number_id,
+            "meta_api_version": meta_api_version,
+            "call_event": call_event,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def send_whats_app_message(
         self,
         origination_phone_number_id: "capo_socialmessaging.types.whats_app_phone_number_id.WhatsAppPhoneNumberId",
@@ -319,6 +566,59 @@ class LinkedWhatsAppPhoneNumberResource:
             "origination_phone_number_id": origination_phone_number_id,
             "message": message,
             "meta_api_version": meta_api_version,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_linked_whats_app_business_account_phone_number(
+        self,
+        id: "capo_socialmessaging.types.whats_app_phone_number_id.WhatsAppPhoneNumberId",
+        call_settings: "capo_socialmessaging.types.whats_app_call_settings.WhatsAppCallSettings",
+        *,
+        config_overrides: Optional[SocialMessagingClientConfig] = None,
+    ) -> "capo_socialmessaging.types.update_linked_whats_app_business_account_phone_number_output.UpdateLinkedWhatsAppBusinessAccountPhoneNumberOutput":
+        """<p>Updates the calling settings for a linked WhatsApp business phone number, such as whether calling is enabled and the hours during which the business accepts calls.</p>
+
+        Args:
+            id: <p>The unique identifier of the phone number to update. The phone number identifiers are formatted as <code>phone-number-id-01234567890123456789012345678901</code>.</p>
+            call_settings: <p>The calling settings to apply to the phone number.</p>
+
+        Raises:
+            capo_socialmessaging.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.validation_exception.ValidationException: <p>The request contains an invalid parameter value. </p>
+            capo_socialmessaging.errors.access_denied_by_meta_exception.AccessDeniedByMetaException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.dependency_exception.DependencyException: <p>Thrown when performing an action because a dependency would be broken.</p>
+            capo_socialmessaging.errors.internal_service_exception.InternalServiceException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_socialmessaging.errors.invalid_parameters_exception.InvalidParametersException: <p>One or more parameters provided to the action are not valid.</p>
+            capo_socialmessaging.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource was not found.</p>
+            capo_socialmessaging.errors.throttled_request_exception.ThrottledRequestException: <p>The request was denied due to request throttling.</p>
+            capo_socialmessaging.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_socialmessaging.types.update_linked_whats_app_business_account_phone_number_input.UpdateLinkedWhatsAppBusinessAccountPhoneNumberInput]",
+        ) -> OperationResponse[
+            "capo_socialmessaging.types.update_linked_whats_app_business_account_phone_number_output.UpdateLinkedWhatsAppBusinessAccountPhoneNumberOutput"
+        ]:
+            import capo_socialmessaging._operations.social_messaging.update_linked_whats_app_business_account_phone_number
+
+            output, http_response = (
+                capo_socialmessaging._operations.social_messaging.update_linked_whats_app_business_account_phone_number.update_linked_whats_app_business_account_phone_number(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_socialmessaging.types.update_linked_whats_app_business_account_phone_number_input.UpdateLinkedWhatsAppBusinessAccountPhoneNumberInput = {
+            "id": id,
+            "call_settings": call_settings,
         }
 
         response = execute_pipeline(
@@ -429,6 +729,120 @@ class AsyncLinkedWhatsAppPhoneNumberResource:
             "media_id": media_id,
             "origination_phone_number_id": origination_phone_number_id,
         }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_whats_app_business_public_key(
+        self,
+        origination_phone_number_id: "capo_socialmessaging.types.whats_app_phone_number_id.WhatsAppPhoneNumberId",
+        *,
+        config_overrides: Optional[AsyncSocialMessagingClientConfig] = None,
+    ) -> "capo_socialmessaging.types.get_whats_app_business_public_key_output.GetWhatsAppBusinessPublicKeyOutput":
+        """<p>Retrieves the business public key for a phone number and its signature status.</p>
+
+        Args:
+            origination_phone_number_id: <p>The unique identifier of the phone number whose business public key to retrieve.</p>
+
+        Raises:
+            capo_socialmessaging.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.validation_exception.ValidationException: <p>The request contains an invalid parameter value. </p>
+            capo_socialmessaging.errors.access_denied_by_meta_exception.AccessDeniedByMetaException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.dependency_exception.DependencyException: <p>Thrown when performing an action because a dependency would be broken.</p>
+            capo_socialmessaging.errors.internal_service_exception.InternalServiceException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_socialmessaging.errors.invalid_parameters_exception.InvalidParametersException: <p>One or more parameters provided to the action are not valid.</p>
+            capo_socialmessaging.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource was not found.</p>
+            capo_socialmessaging.errors.throttled_request_exception.ThrottledRequestException: <p>The request was denied due to request throttling.</p>
+            capo_socialmessaging.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_socialmessaging.types.get_whats_app_business_public_key_input.GetWhatsAppBusinessPublicKeyInput]",
+        ) -> AsyncOperationResponse[
+            "capo_socialmessaging.types.get_whats_app_business_public_key_output.GetWhatsAppBusinessPublicKeyOutput"
+        ]:
+            import capo_socialmessaging._operations.social_messaging.get_whats_app_business_public_key
+
+            (
+                output,
+                http_response,
+            ) = await capo_socialmessaging._operations.social_messaging.get_whats_app_business_public_key.async_get_whats_app_business_public_key(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_socialmessaging.types.get_whats_app_business_public_key_input.GetWhatsAppBusinessPublicKeyInput = {
+            "origination_phone_number_id": origination_phone_number_id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_whats_app_call_permission(
+        self,
+        origination_phone_number_id: "capo_socialmessaging.types.whats_app_phone_number_id.WhatsAppPhoneNumberId",
+        *,
+        config_overrides: Optional[AsyncSocialMessagingClientConfig] = None,
+        destination_phone_number: Optional[
+            "capo_socialmessaging.types.whats_app_destination_phone_number.WhatsAppDestinationPhoneNumber"
+        ] = None,
+        end_user_bsuid: Optional[
+            "capo_socialmessaging.types.whats_app_business_scoped_user_id.WhatsAppBusinessScopedUserId"
+        ] = None,
+    ) -> "capo_socialmessaging.types.get_whats_app_call_permission_output.GetWhatsAppCallPermissionOutput":
+        """<p>Retrieves the current calling permission for a WhatsApp end user, along with the calling actions the business is allowed to take with that user. Provide the destination phone number or the business-scoped user ID to identify the end user.</p>
+
+        Args:
+            origination_phone_number_id: <p>The unique identifier of the business phone number for which to retrieve the calling permission. The phone number identifiers are formatted as <code>phone-number-id-01234567890123456789012345678901</code>.</p>
+            destination_phone_number: <p>The end user's phone number, in E.164 format, for which to retrieve the calling permission.</p>
+            end_user_bsuid: <p>The business-scoped user identifier (BSUID) of the end user for which to retrieve the calling permission.</p>
+
+        Raises:
+            capo_socialmessaging.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.validation_exception.ValidationException: <p>The request contains an invalid parameter value. </p>
+            capo_socialmessaging.errors.access_denied_by_meta_exception.AccessDeniedByMetaException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.dependency_exception.DependencyException: <p>Thrown when performing an action because a dependency would be broken.</p>
+            capo_socialmessaging.errors.internal_service_exception.InternalServiceException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_socialmessaging.errors.invalid_parameters_exception.InvalidParametersException: <p>One or more parameters provided to the action are not valid.</p>
+            capo_socialmessaging.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource was not found.</p>
+            capo_socialmessaging.errors.throttled_request_exception.ThrottledRequestException: <p>The request was denied due to request throttling.</p>
+            capo_socialmessaging.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_socialmessaging.types.get_whats_app_call_permission_input.GetWhatsAppCallPermissionInput]",
+        ) -> AsyncOperationResponse[
+            "capo_socialmessaging.types.get_whats_app_call_permission_output.GetWhatsAppCallPermissionOutput"
+        ]:
+            import capo_socialmessaging._operations.social_messaging.get_whats_app_call_permission
+
+            (
+                output,
+                http_response,
+            ) = await capo_socialmessaging._operations.social_messaging.get_whats_app_call_permission.async_get_whats_app_call_permission(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_socialmessaging.types.get_whats_app_call_permission_input.GetWhatsAppCallPermissionInput = {
+            "origination_phone_number_id": origination_phone_number_id
+        }
+        if destination_phone_number is not None:
+            input_["destination_phone_number"] = destination_phone_number
+        if end_user_bsuid is not None:
+            input_["end_user_bsuid"] = end_user_bsuid
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -569,6 +983,127 @@ class AsyncLinkedWhatsAppPhoneNumberResource:
         await response.response.aclose()
         return response.output
 
+    async def put_whats_app_business_public_key(
+        self,
+        origination_phone_number_id: "capo_socialmessaging.types.whats_app_phone_number_id.WhatsAppPhoneNumberId",
+        *,
+        config_overrides: Optional[AsyncSocialMessagingClientConfig] = None,
+        business_public_key: Optional[
+            "capo_socialmessaging.types.business_public_key_pem.BusinessPublicKeyPem"
+        ] = None,
+        kms_key_arn: Optional[
+            "capo_socialmessaging.types.kms_key_arn.KmsKeyArn"
+        ] = None,
+    ) -> "capo_socialmessaging.types.put_whats_app_business_public_key_output.PutWhatsAppBusinessPublicKeyOutput":
+        """<p>Sets the business public key used to encrypt the data exchanged with the endpoint of a data exchange Flow.</p>
+
+        Args:
+            origination_phone_number_id: <p>The unique identifier of the phone number to associate with the business public key.</p>
+            business_public_key: <p>The PEM-encoded 2048-bit RSA public key to set. Mutually exclusive with <code>kmsKeyArn</code>.</p>
+            kms_key_arn: <p>The ARN of a customer managed asymmetric RSA key in Amazon Web Services KMS. Mutually exclusive with <code>businessPublicKey</code>.</p>
+
+        Raises:
+            capo_socialmessaging.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.validation_exception.ValidationException: <p>The request contains an invalid parameter value. </p>
+            capo_socialmessaging.errors.access_denied_by_meta_exception.AccessDeniedByMetaException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.dependency_exception.DependencyException: <p>Thrown when performing an action because a dependency would be broken.</p>
+            capo_socialmessaging.errors.internal_service_exception.InternalServiceException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_socialmessaging.errors.invalid_parameters_exception.InvalidParametersException: <p>One or more parameters provided to the action are not valid.</p>
+            capo_socialmessaging.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource was not found.</p>
+            capo_socialmessaging.errors.throttled_request_exception.ThrottledRequestException: <p>The request was denied due to request throttling.</p>
+            capo_socialmessaging.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_socialmessaging.types.put_whats_app_business_public_key_input.PutWhatsAppBusinessPublicKeyInput]",
+        ) -> AsyncOperationResponse[
+            "capo_socialmessaging.types.put_whats_app_business_public_key_output.PutWhatsAppBusinessPublicKeyOutput"
+        ]:
+            import capo_socialmessaging._operations.social_messaging.put_whats_app_business_public_key
+
+            (
+                output,
+                http_response,
+            ) = await capo_socialmessaging._operations.social_messaging.put_whats_app_business_public_key.async_put_whats_app_business_public_key(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_socialmessaging.types.put_whats_app_business_public_key_input.PutWhatsAppBusinessPublicKeyInput = {
+            "origination_phone_number_id": origination_phone_number_id
+        }
+        if business_public_key is not None:
+            input_["business_public_key"] = business_public_key
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def send_whats_app_call_event(
+        self,
+        origination_phone_number_id: "capo_socialmessaging.types.whats_app_phone_number_id.WhatsAppPhoneNumberId",
+        meta_api_version: str,
+        call_event: "capo_socialmessaging.types.whats_app_call_event_blob.WhatsAppCallEventBlob",
+        *,
+        config_overrides: Optional[AsyncSocialMessagingClientConfig] = None,
+    ) -> "capo_socialmessaging.types.send_whats_app_call_event_output.SendWhatsAppCallEventOutput":
+        """<p>Sends a WhatsApp calling event, such as connecting or terminating a call, for a business phone number. This operation passes the event through to Meta. To use this operation, the origination phone number must belong to a WhatsApp Business Account that is linked to your Amazon Web Services account.</p>
+
+        Args:
+            origination_phone_number_id: <p>The unique identifier of the origination phone number for the call. The phone number identifiers are formatted as <code>phone-number-id-01234567890123456789012345678901</code>. Use <code>GetLinkedWhatsAppBusinessAccount</code> to find a phone number's ID.</p>
+            meta_api_version: <p>The version of the Meta Graph API to use for the request.</p>
+            call_event: <p>The call event payload to send, as a JSON blob in the format defined by the Meta calling API.</p>
+
+        Raises:
+            capo_socialmessaging.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.validation_exception.ValidationException: <p>The request contains an invalid parameter value. </p>
+            capo_socialmessaging.errors.access_denied_by_meta_exception.AccessDeniedByMetaException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.conflict_exception.ConflictException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>
+            capo_socialmessaging.errors.dependency_exception.DependencyException: <p>Thrown when performing an action because a dependency would be broken.</p>
+            capo_socialmessaging.errors.internal_service_exception.InternalServiceException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_socialmessaging.errors.invalid_parameters_exception.InvalidParametersException: <p>One or more parameters provided to the action are not valid.</p>
+            capo_socialmessaging.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource was not found.</p>
+            capo_socialmessaging.errors.throttled_request_exception.ThrottledRequestException: <p>The request was denied due to request throttling.</p>
+            capo_socialmessaging.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_socialmessaging.types.send_whats_app_call_event_input.SendWhatsAppCallEventInput]",
+        ) -> AsyncOperationResponse[
+            "capo_socialmessaging.types.send_whats_app_call_event_output.SendWhatsAppCallEventOutput"
+        ]:
+            import capo_socialmessaging._operations.social_messaging.send_whats_app_call_event
+
+            (
+                output,
+                http_response,
+            ) = await capo_socialmessaging._operations.social_messaging.send_whats_app_call_event.async_send_whats_app_call_event(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_socialmessaging.types.send_whats_app_call_event_input.SendWhatsAppCallEventInput = {
+            "origination_phone_number_id": origination_phone_number_id,
+            "meta_api_version": meta_api_version,
+            "call_event": call_event,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def send_whats_app_message(
         self,
         origination_phone_number_id: "capo_socialmessaging.types.whats_app_phone_number_id.WhatsAppPhoneNumberId",
@@ -615,6 +1150,60 @@ class AsyncLinkedWhatsAppPhoneNumberResource:
             "origination_phone_number_id": origination_phone_number_id,
             "message": message,
             "meta_api_version": meta_api_version,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_linked_whats_app_business_account_phone_number(
+        self,
+        id: "capo_socialmessaging.types.whats_app_phone_number_id.WhatsAppPhoneNumberId",
+        call_settings: "capo_socialmessaging.types.whats_app_call_settings.WhatsAppCallSettings",
+        *,
+        config_overrides: Optional[AsyncSocialMessagingClientConfig] = None,
+    ) -> "capo_socialmessaging.types.update_linked_whats_app_business_account_phone_number_output.UpdateLinkedWhatsAppBusinessAccountPhoneNumberOutput":
+        """<p>Updates the calling settings for a linked WhatsApp business phone number, such as whether calling is enabled and the hours during which the business accepts calls.</p>
+
+        Args:
+            id: <p>The unique identifier of the phone number to update. The phone number identifiers are formatted as <code>phone-number-id-01234567890123456789012345678901</code>.</p>
+            call_settings: <p>The calling settings to apply to the phone number.</p>
+
+        Raises:
+            capo_socialmessaging.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.validation_exception.ValidationException: <p>The request contains an invalid parameter value. </p>
+            capo_socialmessaging.errors.access_denied_by_meta_exception.AccessDeniedByMetaException: <p>You do not have sufficient access to perform this action.</p>
+            capo_socialmessaging.errors.dependency_exception.DependencyException: <p>Thrown when performing an action because a dependency would be broken.</p>
+            capo_socialmessaging.errors.internal_service_exception.InternalServiceException: <p>The request processing has failed because of an unknown error, exception, or failure.</p>
+            capo_socialmessaging.errors.invalid_parameters_exception.InvalidParametersException: <p>One or more parameters provided to the action are not valid.</p>
+            capo_socialmessaging.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource was not found.</p>
+            capo_socialmessaging.errors.throttled_request_exception.ThrottledRequestException: <p>The request was denied due to request throttling.</p>
+            capo_socialmessaging.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_socialmessaging.types.update_linked_whats_app_business_account_phone_number_input.UpdateLinkedWhatsAppBusinessAccountPhoneNumberInput]",
+        ) -> AsyncOperationResponse[
+            "capo_socialmessaging.types.update_linked_whats_app_business_account_phone_number_output.UpdateLinkedWhatsAppBusinessAccountPhoneNumberOutput"
+        ]:
+            import capo_socialmessaging._operations.social_messaging.update_linked_whats_app_business_account_phone_number
+
+            (
+                output,
+                http_response,
+            ) = await capo_socialmessaging._operations.social_messaging.update_linked_whats_app_business_account_phone_number.async_update_linked_whats_app_business_account_phone_number(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_socialmessaging.types.update_linked_whats_app_business_account_phone_number_input.UpdateLinkedWhatsAppBusinessAccountPhoneNumberInput = {
+            "id": id,
+            "call_settings": call_settings,
         }
 
         response = await aexecute_pipeline(

@@ -5,12 +5,14 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
-    import capo_devops_agent.types.agent_space_id
+    import capo_devops_agent.types.agent_space_identifier
     import capo_devops_agent.types.goal_schedule_input
 
 
 class UpdateGoalRequest(TypedDict, closed=True):
-    agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId"
+    agent_space_id: (
+        "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier"
+    )
     """<p>The unique identifier for the agent space containing the goal</p>"""
     goal_id: "str"
     """<p>The unique identifier of the goal to update</p>"""

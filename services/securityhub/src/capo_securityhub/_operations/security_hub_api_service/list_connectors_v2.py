@@ -20,6 +20,7 @@ import capo_securityhub.errors.validation_exception
 import capo_securityhub.types.connector_provider_name
 import capo_securityhub.types.connector_status
 import capo_securityhub.types.connector_summary_list
+import capo_securityhub.types.enablement_status
 import capo_securityhub.types.list_connectors_v2_request
 import capo_securityhub.types.list_connectors_v2_response
 from capo_securityhub._protocol.errors import parse_error_metadata_json
@@ -124,6 +125,7 @@ def build_request(
     )  # noqa: F841
     import capo_securityhub.types.connector_provider_name
     import capo_securityhub.types.connector_status
+    import capo_securityhub.types.enablement_status
 
     url = endpoint.url.rstrip("/") + "/connectorsv2"
     params: list[tuple[str, str]] = []
@@ -146,6 +148,15 @@ def build_request(
                 "ConnectorStatus",
                 capo_securityhub.types.connector_status.serialize_json(
                     input_["connector_status"]
+                ),
+            )
+        )
+    if "enablement_status" in input_:
+        params.append(
+            (
+                "EnablementStatus",
+                capo_securityhub.types.enablement_status.serialize_json(
+                    input_["enablement_status"]
                 ),
             )
         )

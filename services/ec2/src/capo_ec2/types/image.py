@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     import capo_ec2.types.image_type_values
     import capo_ec2.types.image_watermark_list
     import capo_ec2.types.imds_support_values
+    import capo_ec2.types.instance_type_specification
     import capo_ec2.types.platform_values
     import capo_ec2.types.product_code_list
     import capo_ec2.types.state_reason
@@ -87,6 +88,10 @@ class Image(TypedDict, closed=True):
         "capo_ec2.types.image_watermark_list.ImageWatermarkList"
     ]
     """<p>The watermarks attached to the AMI.</p>"""
+    instance_type_specification: NotRequired[
+        "capo_ec2.types.instance_type_specification.InstanceTypeSpecification"
+    ]
+    """<p>The instance type specification for the AMI, which defines which instance types are compatible with this image.</p>"""
     image_id: NotRequired["capo_ec2.types.string.String"]
     """<p>The ID of the AMI.</p>"""
     image_location: NotRequired["capo_ec2.types.string.String"]
@@ -236,6 +241,14 @@ def serialize_ec2_query(
 
         capo_ec2.types.image_watermark_list.serialize_ec2_query(
             value["image_watermarks"], pairs, f"{key_prefix}ImageWatermarkSet"
+        )
+    if "instance_type_specification" in value:
+        import capo_ec2.types.instance_type_specification
+
+        capo_ec2.types.instance_type_specification.serialize_ec2_query(
+            value["instance_type_specification"],
+            pairs,
+            f"{key_prefix}InstanceTypeSpecification",
         )
     if "image_id" in value:
         pairs.append((f"{key_prefix}ImageId", str(value["image_id"])))
@@ -414,6 +427,15 @@ def deserialize_ec2_query(el: Element) -> Image:
         out["image_watermarks"] = (
             capo_ec2.types.image_watermark_list.deserialize_ec2_query(
                 child_image_watermarks
+            )
+        )
+    child_instance_type_specification = el.find("instanceTypeSpecification")
+    if child_instance_type_specification is not None:
+        import capo_ec2.types.instance_type_specification
+
+        out["instance_type_specification"] = (
+            capo_ec2.types.instance_type_specification.deserialize_ec2_query(
+                child_instance_type_specification
             )
         )
     child_image_id = el.find("imageId")

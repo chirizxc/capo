@@ -25,6 +25,7 @@ import capo_transcribe_streaming.types.media_encoding
 import capo_transcribe_streaming.types.partial_results_stability
 import capo_transcribe_streaming.types.start_stream_transcription_request
 import capo_transcribe_streaming.types.start_stream_transcription_response
+import capo_transcribe_streaming.types.transcript_format
 import capo_transcribe_streaming.types.transcript_result_stream
 import capo_transcribe_streaming.types.vocabulary_filter_method
 from capo_transcribe_streaming._protocol.errors import parse_error_metadata_json
@@ -183,6 +184,12 @@ def handle_response(
         out["session_resume_window"] = int(
             response.headers["x-amzn-transcribe-session-resume-window"]
         )
+    if "x-amzn-transcribe-transcript-format" in response.headers:
+        out["transcript_format"] = (
+            capo_transcribe_streaming.types.transcript_format.deserialize_json(
+                response.headers["x-amzn-transcribe-transcript-format"]
+            )
+        )
     return out
 
 
@@ -297,6 +304,12 @@ async def async_handle_response(
         out["session_resume_window"] = int(
             response.headers["x-amzn-transcribe-session-resume-window"]
         )
+    if "x-amzn-transcribe-transcript-format" in response.headers:
+        out["transcript_format"] = (
+            capo_transcribe_streaming.types.transcript_format.deserialize_json(
+                response.headers["x-amzn-transcribe-transcript-format"]
+            )
+        )
     return out
 
 
@@ -349,6 +362,7 @@ def build_request(
     import capo_transcribe_streaming.types.language_code
     import capo_transcribe_streaming.types.media_encoding
     import capo_transcribe_streaming.types.partial_results_stability
+    import capo_transcribe_streaming.types.transcript_format
     import capo_transcribe_streaming.types.vocabulary_filter_method
 
     url = endpoint.url.rstrip("/") + "/stream-transcription"
@@ -442,6 +456,12 @@ def build_request(
     if "session_resume_window" in input_:
         headers["x-amzn-transcribe-session-resume-window"] = str(
             input_["session_resume_window"]
+        )
+    if "transcript_format" in input_:
+        headers["x-amzn-transcribe-transcript-format"] = (
+            capo_transcribe_streaming.types.transcript_format.serialize_json(
+                input_["transcript_format"]
+            )
         )
 
     body = capo_transcribe_streaming._iter.map_sync_iterator(
@@ -476,6 +496,7 @@ def async_build_request(
     import capo_transcribe_streaming.types.language_code
     import capo_transcribe_streaming.types.media_encoding
     import capo_transcribe_streaming.types.partial_results_stability
+    import capo_transcribe_streaming.types.transcript_format
     import capo_transcribe_streaming.types.vocabulary_filter_method
 
     url = endpoint.url.rstrip("/") + "/stream-transcription"
@@ -569,6 +590,12 @@ def async_build_request(
     if "session_resume_window" in input_:
         headers["x-amzn-transcribe-session-resume-window"] = str(
             input_["session_resume_window"]
+        )
+    if "transcript_format" in input_:
+        headers["x-amzn-transcribe-transcript-format"] = (
+            capo_transcribe_streaming.types.transcript_format.serialize_json(
+                input_["transcript_format"]
+            )
         )
 
     body = capo_transcribe_streaming._iter.map_async_iterator(

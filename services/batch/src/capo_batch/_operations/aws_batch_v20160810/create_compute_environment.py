@@ -18,6 +18,7 @@ import capo_batch.types.ce_type
 import capo_batch.types.compute_resource
 import capo_batch.types.create_compute_environment_request
 import capo_batch.types.create_compute_environment_response
+import capo_batch.types.ecs_settings
 import capo_batch.types.eks_configuration
 import capo_batch.types.tagris_tags_map
 from capo_batch._protocol.errors import parse_error_metadata_json

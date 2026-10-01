@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     import capo_codedeploy.types.boolean
     import capo_codedeploy.types.deployment_config_name
     import capo_codedeploy.types.deployment_group_name
+    import capo_codedeploy.types.deployment_mode
     import capo_codedeploy.types.description
     import capo_codedeploy.types.file_exists_behavior
     import capo_codedeploy.types.revision_location
@@ -50,6 +51,8 @@ class CreateDeploymentInput(TypedDict, closed=True):
         "capo_codedeploy.types.file_exists_behavior.FileExistsBehavior"
     ]
     """<p>Information about how CodeDeploy handles files that already exist in a deployment target location but weren't part of the previous successful deployment.</p> <p>The <code>fileExistsBehavior</code> parameter takes any of the following values:</p> <ul> <li> <p>DISALLOW: The deployment fails. This is also the default behavior if no option is specified.</p> </li> <li> <p>OVERWRITE: The version of the file from the application revision currently being deployed replaces the version already on the instance.</p> </li> <li> <p>RETAIN: The version of the file already on the instance is kept and used as part of the new deployment.</p> </li> </ul>"""
+    deployment_mode: NotRequired["capo_codedeploy.types.deployment_mode.DeploymentMode"]
+    """<p>The type of deployment to create. Valid values are:</p> <ul> <li> <p> <code>STANDARD</code>: Deploys the specified revision. This is the default behavior if <code>deploymentMode</code> is not specified.</p> </li> <li> <p> <code>RESTART</code>: Restarts the application on the target instances using the revision from the deployment group's last successful deployment, without downloading a new revision. <code>RESTART</code> is supported only for EC2/On-premises in-place deployments.</p> <p>When <code>deploymentMode</code> is <code>RESTART</code>, the following apply:</p> <ul> <li> <p>The call is rejected for Amazon ECS and Lambda deployments.</p> </li> <li> <p>The <code>revision</code> parameter (including its <code>s3Location</code> and <code>gitHubLocation</code>) must not be specified, and is rejected if provided. The revision is resolved by the service from the deployment group's last successful deployment.</p> </li> <li> <p>The <code>updateOutdatedInstancesOnly</code> parameter must not be set to <code>true</code>, and is rejected if provided.</p> </li> </ul> </li> </ul>"""
     override_alarm_configuration: NotRequired[
         "capo_codedeploy.types.alarm_configuration.AlarmConfiguration"
     ]
@@ -102,6 +105,14 @@ def serialize_aws_json_1_1(value: CreateDeploymentInput) -> dict:
         out["fileExistsBehavior"] = (
             capo_codedeploy.types.file_exists_behavior.serialize_aws_json_1_1(
                 value["file_exists_behavior"]
+            )
+        )
+    if "deployment_mode" in value:
+        import capo_codedeploy.types.deployment_mode
+
+        out["deploymentMode"] = (
+            capo_codedeploy.types.deployment_mode.serialize_aws_json_1_1(
+                value["deployment_mode"]
             )
         )
     if "override_alarm_configuration" in value:
@@ -165,6 +176,14 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDeploymentInput:
         out["file_exists_behavior"] = (
             capo_codedeploy.types.file_exists_behavior.deserialize_aws_json_1_1(
                 data["fileExistsBehavior"]
+            )
+        )
+    if data.get("deploymentMode") is not None:
+        import capo_codedeploy.types.deployment_mode
+
+        out["deployment_mode"] = (
+            capo_codedeploy.types.deployment_mode.deserialize_aws_json_1_1(
+                data["deploymentMode"]
             )
         )
     if data.get("overrideAlarmConfiguration") is not None:

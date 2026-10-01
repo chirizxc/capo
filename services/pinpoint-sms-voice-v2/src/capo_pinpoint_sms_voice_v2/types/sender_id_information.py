@@ -9,6 +9,7 @@ from capo_pinpoint_sms_voice_v2.errors import DeserializationError
 if TYPE_CHECKING:
     import capo_pinpoint_sms_voice_v2.types.iso_country_code
     import capo_pinpoint_sms_voice_v2.types.message_type_list
+    import capo_pinpoint_sms_voice_v2.types.messaging_limits
     import capo_pinpoint_sms_voice_v2.types.sender_id
 
 
@@ -29,6 +30,10 @@ class SenderIdInformation(TypedDict, closed=True):
     """<p>True if the sender ID is registered.</p>"""
     registration_id: NotRequired["str"]
     """<p>The unique identifier for the registration.</p>"""
+    messaging_limits: NotRequired[
+        "capo_pinpoint_sms_voice_v2.types.messaging_limits.MessagingLimits"
+    ]
+    """<p>The messaging limits that apply to the sender ID, including the per-capability send rates.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -49,6 +54,14 @@ def serialize_aws_json_1_0(value: SenderIdInformation) -> dict:
     out["Registered"] = value.get("registered", False)
     if "registration_id" in value:
         out["RegistrationId"] = value["registration_id"]
+    if "messaging_limits" in value:
+        import capo_pinpoint_sms_voice_v2.types.messaging_limits
+
+        out["MessagingLimits"] = (
+            capo_pinpoint_sms_voice_v2.types.messaging_limits.serialize_aws_json_1_0(
+                value["messaging_limits"]
+            )
+        )
     return out
 
 
@@ -90,4 +103,12 @@ def deserialize_aws_json_1_0(data: dict) -> SenderIdInformation:
         out["registered"] = False
     if data.get("RegistrationId") is not None:
         out["registration_id"] = data["RegistrationId"]
+    if data.get("MessagingLimits") is not None:
+        import capo_pinpoint_sms_voice_v2.types.messaging_limits
+
+        out["messaging_limits"] = (
+            capo_pinpoint_sms_voice_v2.types.messaging_limits.deserialize_aws_json_1_0(
+                data["MessagingLimits"]
+            )
+        )
     return out

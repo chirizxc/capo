@@ -18,6 +18,7 @@ import capo_connect.errors.invalid_request_exception
 import capo_connect.errors.resource_conflict_exception
 import capo_connect.errors.resource_not_found_exception
 import capo_connect.errors.throttling_exception
+import capo_connect.types.pre_evaluation_filters
 import capo_connect.types.rule_actions
 import capo_connect.types.rule_publish_status
 import capo_connect.types.update_rule_request

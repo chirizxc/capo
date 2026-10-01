@@ -12,6 +12,7 @@ class CancelMetadataModelConversionResponse(TypedDict, closed=True):
     request: NotRequired[
         "capo_database_migration_service.types.schema_conversion_request.SchemaConversionRequest"
     ]
+    """<p>The metadata model conversion request.</p> <note> <p>DMS never populates the <code>ExportSqlDetails</code> field for this operation.</p> </note>"""
 
 
 # --- awsJson1_1 ser/de ---

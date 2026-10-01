@@ -126,6 +126,12 @@ class AgenticResource:
         mcp_protocol_version: Optional[
             "capo_bedrock_agentcore.types.string_type.StringType"
         ] = None,
+        mcp_method: Optional[
+            "capo_bedrock_agentcore.types.string_type.StringType"
+        ] = None,
+        mcp_name: Optional[
+            "capo_bedrock_agentcore.types.string_type.StringType"
+        ] = None,
         runtime_user_id: Optional[
             "capo_bedrock_agentcore.types.string_type.StringType"
         ] = None,
@@ -144,6 +150,8 @@ class AgenticResource:
             mcp_session_id: <p>The identifier of the MCP session.</p>
             runtime_session_id: <p>The identifier of the runtime session.</p>
             mcp_protocol_version: <p>The version of the MCP protocol being used.</p>
+            mcp_method: <p>The MCP method being invoked. For example, <code>tools/call</code>, <code>resources/read</code>, or <code>prompts/get</code>.</p>
+            mcp_name: <p>The name of the MCP resource, tool, or prompt being accessed. The value depends on the method:</p> <ul> <li> <p> <code>tools/call</code> – The tool name.</p> </li> <li> <p> <code>resources/read</code> – The resource URI.</p> </li> <li> <p> <code>prompts/get</code> – The prompt name.</p> </li> </ul>
             runtime_user_id: <p>The identifier of the runtime user.</p>
             trace_id: <p>The trace identifier for request tracking.</p>
             trace_parent: <p>The parent trace information for distributed tracing.</p>
@@ -196,6 +204,10 @@ class AgenticResource:
         input_["runtime_session_id"] = runtime_session_id
         if mcp_protocol_version is not None:
             input_["mcp_protocol_version"] = mcp_protocol_version
+        if mcp_method is not None:
+            input_["mcp_method"] = mcp_method
+        if mcp_name is not None:
+            input_["mcp_name"] = mcp_name
         if runtime_user_id is not None:
             input_["runtime_user_id"] = runtime_user_id
         if trace_id is not None:
@@ -471,6 +483,12 @@ class AsyncAgenticResource:
         mcp_protocol_version: Optional[
             "capo_bedrock_agentcore.types.string_type.StringType"
         ] = None,
+        mcp_method: Optional[
+            "capo_bedrock_agentcore.types.string_type.StringType"
+        ] = None,
+        mcp_name: Optional[
+            "capo_bedrock_agentcore.types.string_type.StringType"
+        ] = None,
         runtime_user_id: Optional[
             "capo_bedrock_agentcore.types.string_type.StringType"
         ] = None,
@@ -489,6 +507,8 @@ class AsyncAgenticResource:
             mcp_session_id: <p>The identifier of the MCP session.</p>
             runtime_session_id: <p>The identifier of the runtime session.</p>
             mcp_protocol_version: <p>The version of the MCP protocol being used.</p>
+            mcp_method: <p>The MCP method being invoked. For example, <code>tools/call</code>, <code>resources/read</code>, or <code>prompts/get</code>.</p>
+            mcp_name: <p>The name of the MCP resource, tool, or prompt being accessed. The value depends on the method:</p> <ul> <li> <p> <code>tools/call</code> – The tool name.</p> </li> <li> <p> <code>resources/read</code> – The resource URI.</p> </li> <li> <p> <code>prompts/get</code> – The prompt name.</p> </li> </ul>
             runtime_user_id: <p>The identifier of the runtime user.</p>
             trace_id: <p>The trace identifier for request tracking.</p>
             trace_parent: <p>The parent trace information for distributed tracing.</p>
@@ -542,6 +562,10 @@ class AsyncAgenticResource:
         input_["runtime_session_id"] = runtime_session_id
         if mcp_protocol_version is not None:
             input_["mcp_protocol_version"] = mcp_protocol_version
+        if mcp_method is not None:
+            input_["mcp_method"] = mcp_method
+        if mcp_name is not None:
+            input_["mcp_name"] = mcp_name
         if runtime_user_id is not None:
             input_["runtime_user_id"] = runtime_user_id
         if trace_id is not None:

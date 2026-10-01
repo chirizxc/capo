@@ -4,6 +4,7 @@ from typing import Literal, TypeAlias, cast
 
 ProcurementPortalPreferenceStatus: TypeAlias = Literal[
     "PENDING_VERIFICATION",
+    "VALIDATED",
     "TEST_INITIALIZED",
     "TEST_INITIALIZATION_FAILED",
     "TEST_FAILED",

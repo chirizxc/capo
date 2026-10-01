@@ -7,12 +7,14 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_cloudwatch_logs.types.arn
     import capo_cloudwatch_logs.types.destination_configuration
+    import capo_cloudwatch_logs.types.end_time_offset
     import capo_cloudwatch_logs.types.execution_status
     import capo_cloudwatch_logs.types.query_language
     import capo_cloudwatch_logs.types.query_string
     import capo_cloudwatch_logs.types.role_arn
     import capo_cloudwatch_logs.types.schedule_expression
     import capo_cloudwatch_logs.types.schedule_timezone
+    import capo_cloudwatch_logs.types.schedule_type
     import capo_cloudwatch_logs.types.scheduled_query_description
     import capo_cloudwatch_logs.types.scheduled_query_log_group_identifiers
     import capo_cloudwatch_logs.types.scheduled_query_name
@@ -54,6 +56,10 @@ class GetScheduledQueryResponse(TypedDict, closed=True):
         "capo_cloudwatch_logs.types.start_time_offset.StartTimeOffset"
     ]
     """<p>The time offset in seconds that defines the lookback period for the query.</p>"""
+    end_time_offset: NotRequired[
+        "capo_cloudwatch_logs.types.end_time_offset.EndTimeOffset"
+    ]
+    """<p>The time offset in seconds that defines the end of the lookback period for the query.</p>"""
     destination_configuration: NotRequired[
         "capo_cloudwatch_logs.types.destination_configuration.DestinationConfiguration"
     ]
@@ -62,6 +68,8 @@ class GetScheduledQueryResponse(TypedDict, closed=True):
         "capo_cloudwatch_logs.types.scheduled_query_state.ScheduledQueryState"
     ]
     """<p>The current state of the scheduled query.</p>"""
+    schedule_type: NotRequired["capo_cloudwatch_logs.types.schedule_type.ScheduleType"]
+    """<p>The schedule type of the scheduled query. Valid values are <code>CUSTOMER_MANAGED</code> and <code>AWS_MANAGED</code>.</p>"""
     last_triggered_time: NotRequired["capo_cloudwatch_logs.types.timestamp.Timestamp"]
     """<p>The timestamp when the scheduled query was last executed.</p>"""
     last_execution_status: NotRequired[
@@ -113,6 +121,8 @@ def serialize_aws_json_1_1(value: GetScheduledQueryResponse) -> dict:
         out["timezone"] = value["timezone"]
     if "start_time_offset" in value:
         out["startTimeOffset"] = value["start_time_offset"]
+    if "end_time_offset" in value:
+        out["endTimeOffset"] = value["end_time_offset"]
     if "destination_configuration" in value:
         import capo_cloudwatch_logs.types.destination_configuration
 
@@ -127,6 +137,14 @@ def serialize_aws_json_1_1(value: GetScheduledQueryResponse) -> dict:
         out["state"] = (
             capo_cloudwatch_logs.types.scheduled_query_state.serialize_aws_json_1_1(
                 value["state"]
+            )
+        )
+    if "schedule_type" in value:
+        import capo_cloudwatch_logs.types.schedule_type
+
+        out["scheduleType"] = (
+            capo_cloudwatch_logs.types.schedule_type.serialize_aws_json_1_1(
+                value["schedule_type"]
             )
         )
     if "last_triggered_time" in value:
@@ -184,6 +202,8 @@ def deserialize_aws_json_1_1(data: dict) -> GetScheduledQueryResponse:
         out["timezone"] = data["timezone"]
     if data.get("startTimeOffset") is not None:
         out["start_time_offset"] = data["startTimeOffset"]
+    if data.get("endTimeOffset") is not None:
+        out["end_time_offset"] = data["endTimeOffset"]
     if data.get("destinationConfiguration") is not None:
         import capo_cloudwatch_logs.types.destination_configuration
 
@@ -198,6 +218,14 @@ def deserialize_aws_json_1_1(data: dict) -> GetScheduledQueryResponse:
         out["state"] = (
             capo_cloudwatch_logs.types.scheduled_query_state.deserialize_aws_json_1_1(
                 data["state"]
+            )
+        )
+    if data.get("scheduleType") is not None:
+        import capo_cloudwatch_logs.types.schedule_type
+
+        out["schedule_type"] = (
+            capo_cloudwatch_logs.types.schedule_type.deserialize_aws_json_1_1(
+                data["scheduleType"]
             )
         )
     if data.get("lastTriggeredTime") is not None:

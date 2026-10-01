@@ -12,6 +12,7 @@ import capo_arc_region_switch._auth._signers
 import capo_arc_region_switch._auth._sigv4
 import capo_arc_region_switch._protocol.eventstream
 import capo_arc_region_switch.errors.access_denied_exception
+import capo_arc_region_switch.errors.conflict_exception
 import capo_arc_region_switch.errors.illegal_argument_exception
 import capo_arc_region_switch.errors.illegal_state_exception
 import capo_arc_region_switch.errors.resource_not_found_exception
@@ -37,6 +38,10 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "AccessDeniedException":
             raise capo_arc_region_switch.errors.access_denied_exception.AccessDeniedException.from_aws_json_1_0(
+                data, message
+            )
+        case "ConflictException":
+            raise capo_arc_region_switch.errors.conflict_exception.ConflictException.from_aws_json_1_0(
                 data, message
             )
         case "IllegalArgumentException":

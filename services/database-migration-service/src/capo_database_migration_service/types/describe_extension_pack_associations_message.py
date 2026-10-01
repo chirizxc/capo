@@ -15,9 +15,9 @@ if TYPE_CHECKING:
 
 class DescribeExtensionPackAssociationsMessage(TypedDict, closed=True):
     migration_project_identifier: "capo_database_migration_service.types.migration_project_identifier.MigrationProjectIdentifier"
-    """<p>The name or Amazon Resource Name (ARN) for the migration project.</p>"""
+    """<p>The migration project name or Amazon Resource Name (ARN).</p>"""
     filters: NotRequired["capo_database_migration_service.types.filter_list.FilterList"]
-    """<p>Filters applied to the extension pack associations described in the form of key-value pairs.</p>"""
+    """<p>The filters to apply to the extension pack installation requests.</p> <p>The following filter names are supported:</p> <ul> <li> <p> <code>request-id</code> – The request identifier.</p> </li> <li> <p> <code>status</code> – The request status. Valid values: <code>RECEIVED</code>, <code>IN_PROGRESS</code>, <code>SUCCESS</code>, <code>FAILED</code>.</p> </li> </ul>"""
     marker: NotRequired["capo_database_migration_service.types.string.String"]
     """<p>Specifies the unique pagination token that makes it possible to display the next page of results. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p> <p>If <code>Marker</code> is returned by a previous response, there are more results available. The value of <code>Marker</code> is a unique pagination token for each page. To retrieve the next page, make the call again using the returned token and keeping all other arguments unchanged.</p>"""
     max_records: NotRequired[

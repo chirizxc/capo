@@ -47,7 +47,7 @@ class Share:
         config_overrides: Optional[OmicsClientConfig] = None,
         share_name: Optional["capo_omics.types.share_name.ShareName"] = None,
     ) -> "capo_omics.types.create_share_response.CreateShareResponse":
-        """<p>Creates a cross-account shared resource. The resource owner makes an offer to share the resource with the principal subscriber (an AWS user with a different account than the resource owner).</p> <p>The following resources support cross-account sharing:</p> <ul> <li> <p>HealthOmics variant stores</p> </li> <li> <p>HealthOmics annotation stores</p> </li> <li> <p>Private workflows</p> </li> </ul>
+        """<p>Creates a cross-account shared resource. The resource owner makes an offer to share the resource with the principal subscriber (an Amazon Web Services user with a different account than the resource owner).</p> <p>The following resources support cross-account sharing:</p> <ul> <li> <p>HealthOmics variant stores</p> </li> <li> <p>HealthOmics annotation stores</p> </li> <li> <p>Private workflows</p> </li> </ul>
 
         Args:
             resource_arn: <p>The ARN of the resource to be shared.</p>
@@ -61,7 +61,7 @@ class Share:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -110,7 +110,7 @@ class Share:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -152,7 +152,7 @@ class Share:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -198,7 +198,7 @@ class Share:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -253,7 +253,7 @@ class Share:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -303,7 +303,7 @@ class AsyncShare:
         config_overrides: Optional[AsyncOmicsClientConfig] = None,
         share_name: Optional["capo_omics.types.share_name.ShareName"] = None,
     ) -> "capo_omics.types.create_share_response.CreateShareResponse":
-        """<p>Creates a cross-account shared resource. The resource owner makes an offer to share the resource with the principal subscriber (an AWS user with a different account than the resource owner).</p> <p>The following resources support cross-account sharing:</p> <ul> <li> <p>HealthOmics variant stores</p> </li> <li> <p>HealthOmics annotation stores</p> </li> <li> <p>Private workflows</p> </li> </ul>
+        """<p>Creates a cross-account shared resource. The resource owner makes an offer to share the resource with the principal subscriber (an Amazon Web Services user with a different account than the resource owner).</p> <p>The following resources support cross-account sharing:</p> <ul> <li> <p>HealthOmics variant stores</p> </li> <li> <p>HealthOmics annotation stores</p> </li> <li> <p>Private workflows</p> </li> </ul>
 
         Args:
             resource_arn: <p>The ARN of the resource to be shared.</p>
@@ -317,7 +317,7 @@ class AsyncShare:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -370,7 +370,7 @@ class AsyncShare:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -420,7 +420,7 @@ class AsyncShare:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -470,7 +470,7 @@ class AsyncShare:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -526,7 +526,7 @@ class AsyncShare:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 

@@ -226,11 +226,11 @@ class EnabledControlResource:
         r"""<p>Lists the controls enabled by Amazon Web Services Control Tower on the specified organizational unit and the accounts it contains. For usage examples, see the <a href=\"https://docs.aws.amazon.com/controltower/latest/controlreference/control-api-examples-short.html\"> <i>Controls Reference Guide</i> </a>.</p>
 
         Args:
-            target_identifier: <p>The ARN of the organizational unit. For information on how to find the <code>targetIdentifier</code>, see <a href=\"https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html\">the overview page</a>.</p>
+            target_identifier: <p>The ARN of the target. The value depends on the target type:</p> <ul> <li> <p>Organizational unit (OU) – Specify the ARN of the OU.</p> </li> <li> <p>Account – Specify the ARN of the account.</p> </li> </ul> <p>For information on how to find the <code>targetIdentifier</code>, see <a href=\"https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html\">the overview page</a>.</p>
             next_token: <p>The token to continue the list from a previous API call with the same parameters.</p>
             max_results: <p>How many results to return per API call.</p>
             filter: <p>An input filter for the <code>ListEnabledControls</code> API that lets you select the types of control operations to view.</p>
-            include_children: <p>A boolean value that determines whether to include enabled controls from child organizational units in the response.</p>
+            include_children: <p>Specifies whether to include enabled controls from child organizational units and child accounts in the response.</p>
 
         Raises:
             capo_controltower.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -515,11 +515,11 @@ class AsyncEnabledControlResource:
         r"""<p>Lists the controls enabled by Amazon Web Services Control Tower on the specified organizational unit and the accounts it contains. For usage examples, see the <a href=\"https://docs.aws.amazon.com/controltower/latest/controlreference/control-api-examples-short.html\"> <i>Controls Reference Guide</i> </a>.</p>
 
         Args:
-            target_identifier: <p>The ARN of the organizational unit. For information on how to find the <code>targetIdentifier</code>, see <a href=\"https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html\">the overview page</a>.</p>
+            target_identifier: <p>The ARN of the target. The value depends on the target type:</p> <ul> <li> <p>Organizational unit (OU) – Specify the ARN of the OU.</p> </li> <li> <p>Account – Specify the ARN of the account.</p> </li> </ul> <p>For information on how to find the <code>targetIdentifier</code>, see <a href=\"https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html\">the overview page</a>.</p>
             next_token: <p>The token to continue the list from a previous API call with the same parameters.</p>
             max_results: <p>How many results to return per API call.</p>
             filter: <p>An input filter for the <code>ListEnabledControls</code> API that lets you select the types of control operations to view.</p>
-            include_children: <p>A boolean value that determines whether to include enabled controls from child organizational units in the response.</p>
+            include_children: <p>Specifies whether to include enabled controls from child organizational units and child accounts in the response.</p>
 
         Raises:
             capo_controltower.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>

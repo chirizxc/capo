@@ -18,7 +18,7 @@ class ListServiceEventsRequest(TypedDict, closed=True):
     event_types: NotRequired[
         "capo_resiliencehubv2.types.service_event_type_list.ServiceEventTypeList"
     ]
-    """<p>Filter events by type.</p>"""
+    """<p>The type of events to include in the results.</p>"""
     start_time: NotRequired["datetime.datetime"]
     """<p>The start time for filtering events.</p>"""
     end_time: NotRequired["datetime.datetime"]

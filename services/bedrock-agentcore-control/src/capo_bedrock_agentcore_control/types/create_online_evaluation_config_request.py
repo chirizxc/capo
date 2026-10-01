@@ -8,10 +8,13 @@ from capo_bedrock_agentcore_control.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.client_token
+    import capo_bedrock_agentcore_control.types.clustering_config
     import capo_bedrock_agentcore_control.types.data_source_config
     import capo_bedrock_agentcore_control.types.evaluation_config_description
     import capo_bedrock_agentcore_control.types.evaluation_config_name
     import capo_bedrock_agentcore_control.types.evaluator_list
+    import capo_bedrock_agentcore_control.types.insight_list
+    import capo_bedrock_agentcore_control.types.output_config
     import capo_bedrock_agentcore_control.types.role_arn
     import capo_bedrock_agentcore_control.types.rule
     import capo_bedrock_agentcore_control.types.tags_map
@@ -34,8 +37,21 @@ class CreateOnlineEvaluationConfigRequest(TypedDict, closed=True):
         "capo_bedrock_agentcore_control.types.data_source_config.DataSourceConfig"
     )
     """<p> The data source configuration that specifies CloudWatch log groups and service names to monitor for agent traces. </p>"""
-    evaluators: "capo_bedrock_agentcore_control.types.evaluator_list.EvaluatorList"
+    evaluators: NotRequired[
+        "capo_bedrock_agentcore_control.types.evaluator_list.EvaluatorList"
+    ]
     """<p> The list of evaluators to apply during online evaluation. Can include both built-in evaluators and custom evaluators created with <code>CreateEvaluator</code>. </p>"""
+    insights: NotRequired[
+        "capo_bedrock_agentcore_control.types.insight_list.InsightList"
+    ]
+    """<p>The list of insight types to run against agent sessions.</p>"""
+    clustering_config: NotRequired[
+        "capo_bedrock_agentcore_control.types.clustering_config.ClusteringConfig"
+    ]
+    """<p>Configuration for periodic batch evaluation clustering of insight results.</p>"""
+    output_config: NotRequired[
+        "capo_bedrock_agentcore_control.types.output_config.OutputConfig"
+    ]
     evaluation_execution_role_arn: (
         "capo_bedrock_agentcore_control.types.role_arn.RoleArn"
     )
@@ -66,13 +82,38 @@ def serialize_json(value: CreateOnlineEvaluationConfigRequest) -> dict:
             value["data_source_config"]
         )
     )
-    import capo_bedrock_agentcore_control.types.evaluator_list
+    if "evaluators" in value:
+        import capo_bedrock_agentcore_control.types.evaluator_list
 
-    out["evaluators"] = (
-        capo_bedrock_agentcore_control.types.evaluator_list.serialize_json(
-            value["evaluators"]
+        out["evaluators"] = (
+            capo_bedrock_agentcore_control.types.evaluator_list.serialize_json(
+                value["evaluators"]
+            )
         )
-    )
+    if "insights" in value:
+        import capo_bedrock_agentcore_control.types.insight_list
+
+        out["insights"] = (
+            capo_bedrock_agentcore_control.types.insight_list.serialize_json(
+                value["insights"]
+            )
+        )
+    if "clustering_config" in value:
+        import capo_bedrock_agentcore_control.types.clustering_config
+
+        out["clusteringConfig"] = (
+            capo_bedrock_agentcore_control.types.clustering_config.serialize_json(
+                value["clustering_config"]
+            )
+        )
+    if "output_config" in value:
+        import capo_bedrock_agentcore_control.types.output_config
+
+        out["outputConfig"] = (
+            capo_bedrock_agentcore_control.types.output_config.serialize_json(
+                value["output_config"]
+            )
+        )
     out["evaluationExecutionRoleArn"] = value["evaluation_execution_role_arn"]
     out["enableOnCreate"] = value["enable_on_create"]
     if "tags" in value:
@@ -124,9 +165,29 @@ def deserialize_json(data: dict) -> CreateOnlineEvaluationConfigRequest:
                 data["evaluators"]
             )
         )
-    else:
-        raise DeserializationError(
-            "CreateOnlineEvaluationConfigRequest.evaluators required"
+    if data.get("insights") is not None:
+        import capo_bedrock_agentcore_control.types.insight_list
+
+        out["insights"] = (
+            capo_bedrock_agentcore_control.types.insight_list.deserialize_json(
+                data["insights"]
+            )
+        )
+    if data.get("clusteringConfig") is not None:
+        import capo_bedrock_agentcore_control.types.clustering_config
+
+        out["clustering_config"] = (
+            capo_bedrock_agentcore_control.types.clustering_config.deserialize_json(
+                data["clusteringConfig"]
+            )
+        )
+    if data.get("outputConfig") is not None:
+        import capo_bedrock_agentcore_control.types.output_config
+
+        out["output_config"] = (
+            capo_bedrock_agentcore_control.types.output_config.deserialize_json(
+                data["outputConfig"]
+            )
         )
     if data.get("evaluationExecutionRoleArn") is not None:
         out["evaluation_execution_role_arn"] = data["evaluationExecutionRoleArn"]

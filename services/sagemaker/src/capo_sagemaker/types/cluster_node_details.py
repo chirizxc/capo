@@ -21,6 +21,7 @@ if TYPE_CHECKING:
     import capo_sagemaker.types.cluster_private_primary_ipv6
     import capo_sagemaker.types.cluster_threads_per_core
     import capo_sagemaker.types.image_id
+    import capo_sagemaker.types.image_release_version
     import capo_sagemaker.types.timestamp
     import capo_sagemaker.types.ultra_server_info
     import capo_sagemaker.types.vpc_config
@@ -83,6 +84,14 @@ class ClusterNodeDetails(TypedDict, closed=True):
     """<p>The ID of the Amazon Machine Image (AMI) currently in use by the node.</p>"""
     desired_image_id: NotRequired["capo_sagemaker.types.image_id.ImageId"]
     """<p>The ID of the Amazon Machine Image (AMI) desired for the node.</p>"""
+    current_image_release_version: NotRequired[
+        "capo_sagemaker.types.image_release_version.ImageReleaseVersion"
+    ]
+    """<p>The version of the HyperPod-managed AMI currently running on the node.</p>"""
+    desired_image_release_version: NotRequired[
+        "capo_sagemaker.types.image_release_version.ImageReleaseVersion"
+    ]
+    """<p>The desired version of the HyperPod-managed AMI for the node. This may differ from the current version when an update is pending.</p>"""
     image_version_status: NotRequired[
         "capo_sagemaker.types.cluster_image_version_status.ClusterImageVersionStatus"
     ]
@@ -188,6 +197,10 @@ def serialize_aws_json_1_1(value: ClusterNodeDetails) -> dict:
         out["CurrentImageId"] = value["current_image_id"]
     if "desired_image_id" in value:
         out["DesiredImageId"] = value["desired_image_id"]
+    if "current_image_release_version" in value:
+        out["CurrentImageReleaseVersion"] = value["current_image_release_version"]
+    if "desired_image_release_version" in value:
+        out["DesiredImageReleaseVersion"] = value["desired_image_release_version"]
     if "image_version_status" in value:
         import capo_sagemaker.types.cluster_image_version_status
 
@@ -313,6 +326,10 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterNodeDetails:
         out["current_image_id"] = data["CurrentImageId"]
     if data.get("DesiredImageId") is not None:
         out["desired_image_id"] = data["DesiredImageId"]
+    if data.get("CurrentImageReleaseVersion") is not None:
+        out["current_image_release_version"] = data["CurrentImageReleaseVersion"]
+    if data.get("DesiredImageReleaseVersion") is not None:
+        out["desired_image_release_version"] = data["DesiredImageReleaseVersion"]
     if data.get("ImageVersionStatus") is not None:
         import capo_sagemaker.types.cluster_image_version_status
 

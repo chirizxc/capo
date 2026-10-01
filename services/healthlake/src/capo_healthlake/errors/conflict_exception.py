@@ -7,11 +7,11 @@ from typing_extensions import NotRequired, TypedDict
 from capo_healthlake.errors import ServiceError
 
 if TYPE_CHECKING:
-    import capo_healthlake.types.string
+    import capo_healthlake.types.health_lake_string
 
 
 class ConflictException_(TypedDict, closed=True):
-    message: NotRequired["capo_healthlake.types.string.String"]
+    message: NotRequired["capo_healthlake.types.health_lake_string.HealthLakeString"]
 
 
 # --- awsJson1_0 ser/de ---

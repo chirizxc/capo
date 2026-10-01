@@ -13,11 +13,11 @@ class ImageTestsConfiguration(TypedDict, closed=True):
     image_tests_enabled: NotRequired[
         "capo_imagebuilder.types.nullable_boolean.NullableBoolean"
     ]
-    """<p>Determines if tests should run after building the image. Image Builder defaults to enable tests to run following the image build, before image distribution.</p>"""
+    """<p>Specifies whether tests run after building the image. When enabled, tests run after the image build and before image distribution. Defaults to <code>true</code>.</p>"""
     timeout_minutes: NotRequired[
         "capo_imagebuilder.types.image_tests_timeout_minutes.ImageTestsTimeoutMinutes"
     ]
-    """<p>The maximum time in minutes that tests are permitted to run.</p> <note> <p>The timeout property is not currently active. This value is ignored.</p> </note>"""
+    """<p>The maximum time in minutes that tests are permitted to run. If you don't specify a value, Image Builder stores and returns 720.</p> <note> <p>The timeout property is not currently active. This value is ignored.</p> </note>"""
 
 
 # --- restJson1 ser/de ---

@@ -15,6 +15,7 @@ import capo_batch.errors.client_exception
 import capo_batch.errors.server_exception
 import capo_batch.types.ce_state
 import capo_batch.types.compute_resource_update
+import capo_batch.types.ecs_settings
 import capo_batch.types.update_compute_environment_request
 import capo_batch.types.update_compute_environment_response
 import capo_batch.types.update_policy

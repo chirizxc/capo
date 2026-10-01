@@ -130,6 +130,13 @@ def build_request(
     params: list[tuple[str, str]] = []
     if "client_token" in input_:
         params.append(("clientToken", input_["client_token"]))
+    if "delete_managed_memory" in input_:
+        params.append(
+            (
+                "deleteManagedMemory",
+                "true" if input_["delete_managed_memory"] else "false",
+            )
+        )
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))

@@ -49,11 +49,11 @@ class GameSessionPlacement(TypedDict, closed=True):
     game_session_id: NotRequired[
         "capo_gamelift.types.non_zero_and_max_string.NonZeroAndMaxString"
     ]
-    """<p>An identifier for the game session that is unique across all regions. The value is always a full ARN in the following format: <code>arn:aws:gamelift:<location>::gamesession/<fleet ID>/<ID string></code>. This value is the same as <code>GameSessionArn</code>. This value isn't final until placement status is <code>FULFILLED</code>.</p>"""
+    """<p>An identifier for the game session that is unique across all regions. The value is always a full ARN in the following format: For Home Region game session - <code>arn:aws:gamelift:<home_region>::gamesession/<fleet ID>/<ID string></code>. For Remote Location game session - <code>arn:aws:gamelift:<home_region>::gamesession/<fleet ID>/<location>/<ID string></code>. This value is the same as <code>GameSessionArn</code>. This value isn't final until placement status is <code>FULFILLED</code>.</p>"""
     game_session_arn: NotRequired[
         "capo_gamelift.types.non_zero_and_max_string.NonZeroAndMaxString"
     ]
-    """<p>An identifier for the game session that is unique across all regions. The value is always a full ARN in the following format: <code>arn:aws:gamelift:<location>::gamesession/<fleet ID>/<ID string></code>. This value is the same as <code>GameSessionId</code>. This value isn't final until placement status is <code>FULFILLED</code>.</p>"""
+    """<p>An identifier for the game session that is unique across all regions. The value is always a full ARN in the following format: For Home Region game session - <code>arn:aws:gamelift:<home_region>::gamesession/<fleet ID>/<ID string></code>. For Remote Location game session - <code>arn:aws:gamelift:<home_region>::gamesession/<fleet ID>/<location>/<ID string></code>. This value is the same as <code>GameSessionId</code>. This value isn't final until placement status is <code>FULFILLED</code>.</p>"""
     game_session_region: NotRequired[
         "capo_gamelift.types.non_zero_and_max_string.NonZeroAndMaxString"
     ]
@@ -61,7 +61,7 @@ class GameSessionPlacement(TypedDict, closed=True):
     player_latencies: NotRequired[
         "capo_gamelift.types.player_latency_list.PlayerLatencyList"
     ]
-    """<p>A set of values, expressed in milliseconds, that indicates the amount of latency that a player experiences when connected to Amazon Web Services Regions.</p>"""
+    """<p>A set of values, expressed in milliseconds, that indicates the amount of latency that a player experiences when connected to a fleet location (Amazon Web Services Regions or custom locations for Amazon GameLift Servers Anywhere fleets).</p>"""
     start_time: NotRequired["capo_gamelift.types.timestamp.Timestamp"]
     r"""<p>Time stamp indicating when this request was placed in the queue. Format is a number expressed in Unix time as milliseconds (for example <code>\"1469498468.057\"</code>).</p>"""
     end_time: NotRequired["capo_gamelift.types.timestamp.Timestamp"]

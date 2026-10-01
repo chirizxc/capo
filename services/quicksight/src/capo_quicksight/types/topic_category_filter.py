@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     import capo_quicksight.types.boolean
     import capo_quicksight.types.category_filter_function
     import capo_quicksight.types.category_filter_type
+    import capo_quicksight.types.null_filter_type
     import capo_quicksight.types.topic_category_filter_constant
 
 
@@ -26,6 +27,8 @@ class TopicCategoryFilter(TypedDict, closed=True):
     """<p>The constant used in a category filter.</p>"""
     inverse: "capo_quicksight.types.boolean.Boolean"
     """<p>A Boolean value that indicates if the filter is inverse.</p>"""
+    null_filter: NotRequired["capo_quicksight.types.null_filter_type.NullFilterType"]
+    """<p>The <code>null</code> filter that is applied to the category filter.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -56,6 +59,12 @@ def serialize_json(value: TopicCategoryFilter) -> dict:
             )
         )
     out["Inverse"] = value.get("inverse", False)
+    if "null_filter" in value:
+        import capo_quicksight.types.null_filter_type
+
+        out["NullFilter"] = capo_quicksight.types.null_filter_type.serialize_json(
+            value["null_filter"]
+        )
     return out
 
 
@@ -89,4 +98,10 @@ def deserialize_json(data: dict) -> TopicCategoryFilter:
         out["inverse"] = data["Inverse"]
     else:
         out["inverse"] = False
+    if data.get("NullFilter") is not None:
+        import capo_quicksight.types.null_filter_type
+
+        out["null_filter"] = capo_quicksight.types.null_filter_type.deserialize_json(
+            data["NullFilter"]
+        )
     return out

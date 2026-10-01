@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_kinesis.types.max_record_size_in_ki_b
     import capo_kinesis.types.natural_integer_object
     import capo_kinesis.types.positive_integer_object
+    import capo_kinesis.types.record_distribution_strategy
     import capo_kinesis.types.stream_mode_details
     import capo_kinesis.types.stream_name
     import capo_kinesis.types.tag_map
@@ -36,6 +37,10 @@ class CreateStreamInput(TypedDict, closed=True):
         "capo_kinesis.types.max_record_size_in_ki_b.MaxRecordSizeInKiB"
     ]
     """<p>The maximum record size of a single record in kibibyte (KiB) that you can write to, and read from a stream.</p>"""
+    record_distribution_strategy: NotRequired[
+        "capo_kinesis.types.record_distribution_strategy.RecordDistributionStrategy"
+    ]
+    """<p>The record distribution strategy for the stream, which determines how Amazon Kinesis Data Streams distributes records across shards. Specify one of the following values:</p> <ul> <li> <p> <code>AUTO</code> – Amazon Kinesis Data Streams distributes records evenly across shards and ignores any partition key and <code>ExplicitHashKey</code> that producers supply. Use this value for stateless workloads that do not require partition-key ordering.</p> </li> <li> <p> <code>USER_PARTITION_KEY</code> – Producers must supply a partition key, which Amazon Kinesis Data Streams uses to determine shard placement. This is the default.</p> </li> </ul> <p>The record distribution strategy is only supported for streams that use the on-demand capacity mode. If you do not specify this parameter, the stream uses <code>USER_PARTITION_KEY</code>.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -60,6 +65,14 @@ def serialize_aws_json_1_1(value: CreateStreamInput) -> dict:
         out["WarmThroughputMiBps"] = value["warm_throughput_mi_bps"]
     if "max_record_size_in_ki_b" in value:
         out["MaxRecordSizeInKiB"] = value["max_record_size_in_ki_b"]
+    if "record_distribution_strategy" in value:
+        import capo_kinesis.types.record_distribution_strategy
+
+        out["RecordDistributionStrategy"] = (
+            capo_kinesis.types.record_distribution_strategy.serialize_aws_json_1_1(
+                value["record_distribution_strategy"]
+            )
+        )
     return out
 
 
@@ -87,4 +100,12 @@ def deserialize_aws_json_1_1(data: dict) -> CreateStreamInput:
         out["warm_throughput_mi_bps"] = data["WarmThroughputMiBps"]
     if data.get("MaxRecordSizeInKiB") is not None:
         out["max_record_size_in_ki_b"] = data["MaxRecordSizeInKiB"]
+    if data.get("RecordDistributionStrategy") is not None:
+        import capo_kinesis.types.record_distribution_strategy
+
+        out["record_distribution_strategy"] = (
+            capo_kinesis.types.record_distribution_strategy.deserialize_aws_json_1_1(
+                data["RecordDistributionStrategy"]
+            )
+        )
     return out

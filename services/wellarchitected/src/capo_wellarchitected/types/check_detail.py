@@ -5,6 +5,8 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import datetime
+
     import capo_wellarchitected.types.aws_account_id
     import capo_wellarchitected.types.check_description
     import capo_wellarchitected.types.check_failure_reason
@@ -17,7 +19,6 @@ if TYPE_CHECKING:
     import capo_wellarchitected.types.lens_arn
     import capo_wellarchitected.types.pillar_id
     import capo_wellarchitected.types.question_id
-    import capo_wellarchitected.types.timestamp
 
 
 class CheckDetail(TypedDict, closed=True):
@@ -47,7 +48,8 @@ class CheckDetail(TypedDict, closed=True):
         "capo_wellarchitected.types.check_failure_reason.CheckFailureReason"
     ]
     """<p>Reason associated to the check.</p>"""
-    updated_at: NotRequired["capo_wellarchitected.types.timestamp.Timestamp"]
+    updated_at: NotRequired["datetime.datetime"]
+    """<p>The date and time when the check was last updated.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -90,9 +92,9 @@ def serialize_json(value: CheckDetail) -> dict:
             value["reason"]
         )
     if "updated_at" in value:
-        import capo_wellarchitected.types.timestamp
+        import capo_wellarchitected.types._prelude.timestamp
 
-        out["UpdatedAt"] = capo_wellarchitected.types.timestamp.serialize_json(
+        out["UpdatedAt"] = capo_wellarchitected.types._prelude.timestamp.serialize_json(
             value["updated_at"]
         )
     return out
@@ -139,9 +141,11 @@ def deserialize_json(data: dict) -> CheckDetail:
             )
         )
     if data.get("UpdatedAt") is not None:
-        import capo_wellarchitected.types.timestamp
+        import capo_wellarchitected.types._prelude.timestamp
 
-        out["updated_at"] = capo_wellarchitected.types.timestamp.deserialize_json(
-            data["UpdatedAt"]
+        out["updated_at"] = (
+            capo_wellarchitected.types._prelude.timestamp.deserialize_json(
+                data["UpdatedAt"]
+            )
         )
     return out

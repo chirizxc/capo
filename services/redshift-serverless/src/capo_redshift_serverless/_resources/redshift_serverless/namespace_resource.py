@@ -27,10 +27,14 @@ if TYPE_CHECKING:
     import capo_redshift_serverless.types.lakehouse_registration
     import capo_redshift_serverless.types.list_namespaces_request
     import capo_redshift_serverless.types.list_namespaces_response
+    import capo_redshift_serverless.types.log_destination_type
     import capo_redshift_serverless.types.log_export_list
     import capo_redshift_serverless.types.namespace
     import capo_redshift_serverless.types.namespace_name
     import capo_redshift_serverless.types.redshift_idc_application_arn
+    import capo_redshift_serverless.types.s3_table_action
+    import capo_redshift_serverless.types.s3_table_granularity
+    import capo_redshift_serverless.types.s3_table_name_list
     import capo_redshift_serverless.types.tag_list
     import capo_redshift_serverless.types.update_lakehouse_configuration_request
     import capo_redshift_serverless.types.update_lakehouse_configuration_response
@@ -222,12 +226,27 @@ class NamespaceResource:
         admin_password_secret_kms_key_id: Optional[
             "capo_redshift_serverless.types.kms_key_id.KmsKeyId"
         ] = None,
+        log_destination_type: Optional[
+            "capo_redshift_serverless.types.log_destination_type.LogDestinationType"
+        ] = None,
+        s3_table_action: Optional[
+            "capo_redshift_serverless.types.s3_table_action.S3TableAction"
+        ] = None,
+        s3_table_names: Optional[
+            "capo_redshift_serverless.types.s3_table_name_list.S3TableNameList"
+        ] = None,
+        s3_table_kms_key_id: Optional[
+            "capo_redshift_serverless.types.kms_key_id.KmsKeyId"
+        ] = None,
+        s3_table_granularity: Optional[
+            "capo_redshift_serverless.types.s3_table_granularity.S3TableGranularity"
+        ] = None,
     ) -> "capo_redshift_serverless.types.update_namespace_response.UpdateNamespaceResponse":
-        """<p>Updates a namespace with the specified settings. Unless required, you can't update multiple parameters in one request. For example, you must specify both <code>adminUsername</code> and <code>adminUserPassword</code> to update either field, but you can't update both <code>kmsKeyId</code> and <code>logExports</code> in a single request.</p>
+        """<p>Updates a namespace with the specified settings. Unless required, you can't update multiple parameters in one request. For example, you must specify both <code>adminUsername</code> and <code>adminUserPassword</code> to update either field, but you can't update both <code>kmsKeyId</code> and <code>logExports</code> in a single request.</p> <p>Similarly, an S3 Tables log-publishing update (a request where <code>logDestinationType</code> is <code>s3table</code>) cannot be combined with any other namespace configuration change and must be submitted as its own request.</p>
 
         Args:
             namespace_name: <p>The name of the namespace to update. You can't update the name of a namespace once it is created.</p>
-            admin_user_password: <p>The password of the administrator for the first database created in the namespace. This parameter must be updated together with <code>adminUsername</code>.</p> <p>You can't use <code>adminUserPassword</code> if <code>manageAdminPassword</code> is true. </p>
+            admin_user_password: <p>The password of the administrator for the first database created in the namespace. This parameter must be updated together with <code>adminUsername</code>.</p> <p>You can't use <code>adminUserPassword</code> if <code>manageAdminPassword</code> is true. </p> <p>If your admin user account is locked, this operation also unlocks your account and resets the failed-login counter. This option is available only when account lockout security is enabled for the namespace.</p>
             admin_username: <p>The username of the administrator for the first database created in the namespace. This parameter must be updated together with <code>adminUserPassword</code>.</p>
             kms_key_id: <p>The ID of the Amazon Web Services Key Management Service key used to encrypt your data.</p>
             default_iam_role_arn: <p>The Amazon Resource Name (ARN) of the IAM role to set as a default in the namespace. This parameter must be updated together with <code>iamRoles</code>.</p>
@@ -235,6 +254,11 @@ class NamespaceResource:
             log_exports: <p>The types of logs the namespace can export. The export types are <code>userlog</code>, <code>connectionlog</code>, and <code>useractivitylog</code>.</p>
             manage_admin_password: <p>If <code>true</code>, Amazon Redshift uses Secrets Manager to manage the namespace's admin credentials. You can't use <code>adminUserPassword</code> if <code>manageAdminPassword</code> is true. If <code>manageAdminPassword</code> is false or not set, Amazon Redshift uses <code>adminUserPassword</code> for the admin user account's password. </p>
             admin_password_secret_kms_key_id: <p>The ID of the Key Management Service (KMS) key used to encrypt and store the namespace's admin credentials secret. You can only use this parameter if <code>manageAdminPassword</code> is true.</p>
+            log_destination_type: <p>The destination for the log data. Valid values are <code>s3table</code> and <code>cloudwatch</code>.</p> <p>Set this to <code>s3table</code> to manage Amazon S3 Tables system-table publishing for the namespace.</p>
+            s3_table_action: <p>Whether to enable or disable Amazon S3 Tables publishing. Valid values are <code>Enable</code> and <code>Disable</code>, matched case-insensitively.</p> <p>When omitted, defaults to <code>Enable</code>. Valid only when <code>logDestinationType</code> is <code>s3table</code>.</p>
+            s3_table_names: <p>The system tables to publish (on enable) or to stop publishing (on disable). Each value is either a system table view name that begins with <code>sys_</code> or the keyword <code>all</code>.</p> <p>Omitting this parameter, passing an empty list, or including <code>all</code> each select every current and future system table. Each name must be 1-128 characters, and the list can contain up to 256 names.</p> <p>Valid only when <code>logDestinationType</code> is <code>s3table</code>.</p>
+            s3_table_kms_key_id: <p>The identifier of the Key Management Service key used to encrypt the published Amazon S3 Tables data. When omitted, the data is encrypted with SSE-S3 (Amazon S3 managed keys).</p> <p>Valid only when <code>logDestinationType</code> is <code>s3table</code>.</p>
+            s3_table_granularity: <p>The scope of the Amazon S3 Tables destination. Valid values are <code>namespace</code> and <code>account</code>, matched case-insensitively. <code>namespace</code> scopes the published tables to this namespace; <code>account</code> scopes them to the Amazon Web Services account.</p> <p>Required when enabling. Omitting this parameter or passing a blank value fails with <code>ValidationException</code>. Valid only when <code>logDestinationType</code> is <code>s3table</code>.</p>
 
         Raises:
             capo_redshift_serverless.errors.conflict_exception.ConflictException: <p>The submitted action has conflicts.</p>
@@ -280,6 +304,16 @@ class NamespaceResource:
             input_["admin_password_secret_kms_key_id"] = (
                 admin_password_secret_kms_key_id
             )
+        if log_destination_type is not None:
+            input_["log_destination_type"] = log_destination_type
+        if s3_table_action is not None:
+            input_["s3_table_action"] = s3_table_action
+        if s3_table_names is not None:
+            input_["s3_table_names"] = s3_table_names
+        if s3_table_kms_key_id is not None:
+            input_["s3_table_kms_key_id"] = s3_table_kms_key_id
+        if s3_table_granularity is not None:
+            input_["s3_table_granularity"] = s3_table_granularity
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -645,12 +679,27 @@ class AsyncNamespaceResource:
         admin_password_secret_kms_key_id: Optional[
             "capo_redshift_serverless.types.kms_key_id.KmsKeyId"
         ] = None,
+        log_destination_type: Optional[
+            "capo_redshift_serverless.types.log_destination_type.LogDestinationType"
+        ] = None,
+        s3_table_action: Optional[
+            "capo_redshift_serverless.types.s3_table_action.S3TableAction"
+        ] = None,
+        s3_table_names: Optional[
+            "capo_redshift_serverless.types.s3_table_name_list.S3TableNameList"
+        ] = None,
+        s3_table_kms_key_id: Optional[
+            "capo_redshift_serverless.types.kms_key_id.KmsKeyId"
+        ] = None,
+        s3_table_granularity: Optional[
+            "capo_redshift_serverless.types.s3_table_granularity.S3TableGranularity"
+        ] = None,
     ) -> "capo_redshift_serverless.types.update_namespace_response.UpdateNamespaceResponse":
-        """<p>Updates a namespace with the specified settings. Unless required, you can't update multiple parameters in one request. For example, you must specify both <code>adminUsername</code> and <code>adminUserPassword</code> to update either field, but you can't update both <code>kmsKeyId</code> and <code>logExports</code> in a single request.</p>
+        """<p>Updates a namespace with the specified settings. Unless required, you can't update multiple parameters in one request. For example, you must specify both <code>adminUsername</code> and <code>adminUserPassword</code> to update either field, but you can't update both <code>kmsKeyId</code> and <code>logExports</code> in a single request.</p> <p>Similarly, an S3 Tables log-publishing update (a request where <code>logDestinationType</code> is <code>s3table</code>) cannot be combined with any other namespace configuration change and must be submitted as its own request.</p>
 
         Args:
             namespace_name: <p>The name of the namespace to update. You can't update the name of a namespace once it is created.</p>
-            admin_user_password: <p>The password of the administrator for the first database created in the namespace. This parameter must be updated together with <code>adminUsername</code>.</p> <p>You can't use <code>adminUserPassword</code> if <code>manageAdminPassword</code> is true. </p>
+            admin_user_password: <p>The password of the administrator for the first database created in the namespace. This parameter must be updated together with <code>adminUsername</code>.</p> <p>You can't use <code>adminUserPassword</code> if <code>manageAdminPassword</code> is true. </p> <p>If your admin user account is locked, this operation also unlocks your account and resets the failed-login counter. This option is available only when account lockout security is enabled for the namespace.</p>
             admin_username: <p>The username of the administrator for the first database created in the namespace. This parameter must be updated together with <code>adminUserPassword</code>.</p>
             kms_key_id: <p>The ID of the Amazon Web Services Key Management Service key used to encrypt your data.</p>
             default_iam_role_arn: <p>The Amazon Resource Name (ARN) of the IAM role to set as a default in the namespace. This parameter must be updated together with <code>iamRoles</code>.</p>
@@ -658,6 +707,11 @@ class AsyncNamespaceResource:
             log_exports: <p>The types of logs the namespace can export. The export types are <code>userlog</code>, <code>connectionlog</code>, and <code>useractivitylog</code>.</p>
             manage_admin_password: <p>If <code>true</code>, Amazon Redshift uses Secrets Manager to manage the namespace's admin credentials. You can't use <code>adminUserPassword</code> if <code>manageAdminPassword</code> is true. If <code>manageAdminPassword</code> is false or not set, Amazon Redshift uses <code>adminUserPassword</code> for the admin user account's password. </p>
             admin_password_secret_kms_key_id: <p>The ID of the Key Management Service (KMS) key used to encrypt and store the namespace's admin credentials secret. You can only use this parameter if <code>manageAdminPassword</code> is true.</p>
+            log_destination_type: <p>The destination for the log data. Valid values are <code>s3table</code> and <code>cloudwatch</code>.</p> <p>Set this to <code>s3table</code> to manage Amazon S3 Tables system-table publishing for the namespace.</p>
+            s3_table_action: <p>Whether to enable or disable Amazon S3 Tables publishing. Valid values are <code>Enable</code> and <code>Disable</code>, matched case-insensitively.</p> <p>When omitted, defaults to <code>Enable</code>. Valid only when <code>logDestinationType</code> is <code>s3table</code>.</p>
+            s3_table_names: <p>The system tables to publish (on enable) or to stop publishing (on disable). Each value is either a system table view name that begins with <code>sys_</code> or the keyword <code>all</code>.</p> <p>Omitting this parameter, passing an empty list, or including <code>all</code> each select every current and future system table. Each name must be 1-128 characters, and the list can contain up to 256 names.</p> <p>Valid only when <code>logDestinationType</code> is <code>s3table</code>.</p>
+            s3_table_kms_key_id: <p>The identifier of the Key Management Service key used to encrypt the published Amazon S3 Tables data. When omitted, the data is encrypted with SSE-S3 (Amazon S3 managed keys).</p> <p>Valid only when <code>logDestinationType</code> is <code>s3table</code>.</p>
+            s3_table_granularity: <p>The scope of the Amazon S3 Tables destination. Valid values are <code>namespace</code> and <code>account</code>, matched case-insensitively. <code>namespace</code> scopes the published tables to this namespace; <code>account</code> scopes them to the Amazon Web Services account.</p> <p>Required when enabling. Omitting this parameter or passing a blank value fails with <code>ValidationException</code>. Valid only when <code>logDestinationType</code> is <code>s3table</code>.</p>
 
         Raises:
             capo_redshift_serverless.errors.conflict_exception.ConflictException: <p>The submitted action has conflicts.</p>
@@ -704,6 +758,16 @@ class AsyncNamespaceResource:
             input_["admin_password_secret_kms_key_id"] = (
                 admin_password_secret_kms_key_id
             )
+        if log_destination_type is not None:
+            input_["log_destination_type"] = log_destination_type
+        if s3_table_action is not None:
+            input_["s3_table_action"] = s3_table_action
+        if s3_table_names is not None:
+            input_["s3_table_names"] = s3_table_names
+        if s3_table_kms_key_id is not None:
+            input_["s3_table_kms_key_id"] = s3_table_kms_key_id
+        if s3_table_granularity is not None:
+            input_["s3_table_granularity"] = s3_table_granularity
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

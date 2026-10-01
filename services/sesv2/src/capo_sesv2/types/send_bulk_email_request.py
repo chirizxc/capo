@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_sesv2.types.amazon_resource_name
     import capo_sesv2.types.bulk_email_content
     import capo_sesv2.types.bulk_email_entry_list
+    import capo_sesv2.types.configuration_overrides
     import capo_sesv2.types.configuration_set_name
     import capo_sesv2.types.email_address
     import capo_sesv2.types.email_address_list
@@ -51,6 +52,10 @@ class SendBulkEmailRequest(TypedDict, closed=True):
     """<p>The ID of the multi-region endpoint (global-endpoint).</p>"""
     tenant_name: NotRequired["capo_sesv2.types.tenant_name.TenantName"]
     """<p>The name of the tenant through which this bulk email will be sent.</p> <note> <p> The email sending operation will only succeed if all referenced resources (identities, configuration sets, and templates) are associated with this tenant. </p> </note>"""
+    configuration_overrides: NotRequired[
+        "capo_sesv2.types.configuration_overrides.ConfigurationOverrides"
+    ]
+    """<p>An object that overrides, for the messages in this request only, settings that would otherwise apply to them. The overrides apply to every message in the request. Each setting that you don't override keeps the value that already applies.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -96,6 +101,14 @@ def serialize_json(value: SendBulkEmailRequest) -> dict:
         out["EndpointId"] = value["endpoint_id"]
     if "tenant_name" in value:
         out["TenantName"] = value["tenant_name"]
+    if "configuration_overrides" in value:
+        import capo_sesv2.types.configuration_overrides
+
+        out["ConfigurationOverrides"] = (
+            capo_sesv2.types.configuration_overrides.serialize_json(
+                value["configuration_overrides"]
+            )
+        )
     return out
 
 
@@ -151,4 +164,12 @@ def deserialize_json(data: dict) -> SendBulkEmailRequest:
         out["endpoint_id"] = data["EndpointId"]
     if data.get("TenantName") is not None:
         out["tenant_name"] = data["TenantName"]
+    if data.get("ConfigurationOverrides") is not None:
+        import capo_sesv2.types.configuration_overrides
+
+        out["configuration_overrides"] = (
+            capo_sesv2.types.configuration_overrides.deserialize_json(
+                data["ConfigurationOverrides"]
+            )
+        )
     return out

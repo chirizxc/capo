@@ -21,6 +21,7 @@ import capo_customer_profiles.types.candidate_id_list
 import capo_customer_profiles.types.get_profile_recommendations_request
 import capo_customer_profiles.types.get_profile_recommendations_response
 import capo_customer_profiles.types.metadata_config
+import capo_customer_profiles.types.recommendation_diversity_config
 import capo_customer_profiles.types.recommendations
 import capo_customer_profiles.types.recommender_context
 import capo_customer_profiles.types.recommender_filters

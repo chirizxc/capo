@@ -17,6 +17,7 @@ import capo_codedeploy.errors.application_name_required_exception
 import capo_codedeploy.errors.invalid_application_name_exception
 import capo_codedeploy.errors.invalid_compute_platform_exception
 import capo_codedeploy.errors.invalid_tags_to_add_exception
+import capo_codedeploy.errors.throttling_exception
 import capo_codedeploy.types.compute_platform
 import capo_codedeploy.types.create_application_input
 import capo_codedeploy.types.create_application_output
@@ -53,6 +54,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "InvalidTagsToAddException":
             raise capo_codedeploy.errors.invalid_tags_to_add_exception.InvalidTagsToAddException.from_aws_json_1_1(
+                data, message
+            )
+        case "ThrottlingException":
+            raise capo_codedeploy.errors.throttling_exception.ThrottlingException.from_aws_json_1_1(
                 data, message
             )
         case _:

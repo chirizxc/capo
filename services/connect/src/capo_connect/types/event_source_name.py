@@ -7,6 +7,8 @@ EventSourceName: TypeAlias = Literal[
     "OnRealTimeCallAnalysisAvailable",
     "OnRealTimeChatAnalysisAvailable",
     "OnPostChatAnalysisAvailable",
+    "OnAfterCallWorkAvailable",
+    "OnAfterChatWorkAvailable",
     "OnEmailAnalysisAvailable",
     "OnZendeskTicketCreate",
     "OnZendeskTicketStatusUpdate",

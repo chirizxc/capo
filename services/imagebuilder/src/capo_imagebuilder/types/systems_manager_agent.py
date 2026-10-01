@@ -12,7 +12,7 @@ class SystemsManagerAgent(TypedDict, closed=True):
     uninstall_after_build: NotRequired[
         "capo_imagebuilder.types.nullable_boolean.NullableBoolean"
     ]
-    """<p>Controls whether the Systems Manager agent is removed from your final build image, prior to creating the new AMI. If this is set to true, then the agent is removed from the final image. If it's set to false, then the agent is left in, so that it is included in the new AMI. default value is false.</p> <p>The default behavior of uninstallAfterBuild is to remove the SSM Agent if it was installed by EC2 Image Builder</p>"""
+    """<p>Specifies whether the Systems Manager agent is removed from your final build image before Image Builder creates the new AMI. If <code>true</code>, the agent is removed. If <code>false</code>, the agent is kept, so that it's included in the AMI. If you don't set this property, Image Builder removes the agent only if Image Builder installed the agent during the build. An agent that was pre-installed on the base image is kept.</p>"""
 
 
 # --- restJson1 ser/de ---

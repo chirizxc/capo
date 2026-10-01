@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     import capo_lightsail.types.cache_behavior
     import capo_lightsail.types.cache_behavior_list
     import capo_lightsail.types.cache_settings
+    import capo_lightsail.types.distribution_custom_error_response_list
     import capo_lightsail.types.ip_address_type
     import capo_lightsail.types.iso_date
     import capo_lightsail.types.non_empty_string
@@ -72,6 +73,12 @@ class LightsailDistribution(TypedDict, closed=True):
         "capo_lightsail.types.string.string"
     ]
     """<p>The minimum TLS protocol version that the distribution can use to communicate with viewers.</p>"""
+    default_root_object: NotRequired["capo_lightsail.types.string.string"]
+    """<p>The object (for example, <code>index.html</code>) that the distribution returns when a viewer requests the root URL of the distribution (<code>/</code>) instead of a specific object.</p>"""
+    custom_error_responses: NotRequired[
+        "capo_lightsail.types.distribution_custom_error_response_list.DistributionCustomErrorResponseList"
+    ]
+    """<p>An array of objects that describe the custom error responses configured for the distribution.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -171,6 +178,16 @@ def serialize_aws_json_1_1(value: LightsailDistribution) -> dict:
         out["viewerMinimumTlsProtocolVersion"] = value[
             "viewer_minimum_tls_protocol_version"
         ]
+    if "default_root_object" in value:
+        out["defaultRootObject"] = value["default_root_object"]
+    if "custom_error_responses" in value:
+        import capo_lightsail.types.distribution_custom_error_response_list
+
+        out["customErrorResponses"] = (
+            capo_lightsail.types.distribution_custom_error_response_list.serialize_aws_json_1_1(
+                value["custom_error_responses"]
+            )
+        )
     return out
 
 
@@ -274,4 +291,14 @@ def deserialize_aws_json_1_1(data: dict) -> LightsailDistribution:
         out["viewer_minimum_tls_protocol_version"] = data[
             "viewerMinimumTlsProtocolVersion"
         ]
+    if data.get("defaultRootObject") is not None:
+        out["default_root_object"] = data["defaultRootObject"]
+    if data.get("customErrorResponses") is not None:
+        import capo_lightsail.types.distribution_custom_error_response_list
+
+        out["custom_error_responses"] = (
+            capo_lightsail.types.distribution_custom_error_response_list.deserialize_aws_json_1_1(
+                data["customErrorResponses"]
+            )
+        )
     return out

@@ -32,6 +32,7 @@ if TYPE_CHECKING:
     import capo_mgn.types.replication_configuration_template_i_ds
     import capo_mgn.types.replication_configuration_template_id
     import capo_mgn.types.replication_servers_security_groups_i_ds
+    import capo_mgn.types.storage_configuration
     import capo_mgn.types.subnet_id
     import capo_mgn.types.tags_map
     import capo_mgn.types.update_replication_configuration_template_request
@@ -65,6 +66,9 @@ class ReplicationConfigurationTemplateResource:
             "capo_mgn.types.internet_protocol.InternetProtocol"
         ] = None,
         store_snapshot_on_local_zone: Optional[bool] = None,
+        storage_configuration: Optional[
+            "capo_mgn.types.storage_configuration.StorageConfiguration"
+        ] = None,
     ) -> "capo_mgn.types.replication_configuration_template.ReplicationConfigurationTemplate":
         """<p>Creates a new ReplicationConfigurationTemplate.</p>
 
@@ -85,9 +89,10 @@ class ReplicationConfigurationTemplateResource:
             tags: <p>Request to configure tags during Replication Settings template creation.</p>
             internet_protocol: <p>Request to configure the internet protocol to IPv4 or IPv6.</p>
             store_snapshot_on_local_zone: <p>Request to store snapshot on local zone during Replication Settings template creation.</p>
+            storage_configuration: <p>Request to configure storage during Replication Settings template creation.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.uninitialized_account_exception.UninitializedAccountException: <p>Uninitialized account exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -131,6 +136,8 @@ class ReplicationConfigurationTemplateResource:
             input_["internet_protocol"] = internet_protocol
         if store_snapshot_on_local_zone is not None:
             input_["store_snapshot_on_local_zone"] = store_snapshot_on_local_zone
+        if storage_configuration is not None:
+            input_["storage_configuration"] = storage_configuration
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -175,8 +182,11 @@ class ReplicationConfigurationTemplateResource:
             "capo_mgn.types.internet_protocol.InternetProtocol"
         ] = None,
         store_snapshot_on_local_zone: Optional[bool] = None,
+        storage_configuration: Optional[
+            "capo_mgn.types.storage_configuration.StorageConfiguration"
+        ] = None,
     ) -> "capo_mgn.types.replication_configuration_template.ReplicationConfigurationTemplate":
-        """<p>Updates multiple ReplicationConfigurationTemplates by ID.</p>
+        """<p>Updates a ReplicationConfigurationTemplate by ID.</p>
 
         Args:
             replication_configuration_template_id: <p>Update replication configuration template template ID request.</p>
@@ -196,9 +206,10 @@ class ReplicationConfigurationTemplateResource:
             use_fips_endpoint: <p>Update replication configuration template use Fips Endpoint request.</p>
             internet_protocol: <p>Update replication configuration template internet protocol request.</p>
             store_snapshot_on_local_zone: <p>Update replication configuration template store snapshot on local zone request.</p>
+            storage_configuration: <p>Update replication configuration template storage configuration request.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.uninitialized_account_exception.UninitializedAccountException: <p>Uninitialized account exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
@@ -263,6 +274,8 @@ class ReplicationConfigurationTemplateResource:
             input_["internet_protocol"] = internet_protocol
         if store_snapshot_on_local_zone is not None:
             input_["store_snapshot_on_local_zone"] = store_snapshot_on_local_zone
+        if storage_configuration is not None:
+            input_["storage_configuration"] = storage_configuration
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -327,7 +340,7 @@ class ReplicationConfigurationTemplateResource:
         max_results: Optional["capo_mgn.types.max_results_type.MaxResultsType"] = None,
         next_token: Optional["capo_mgn.types.pagination_token.PaginationToken"] = None,
     ) -> "capo_mgn.types.describe_replication_configuration_templates_response.DescribeReplicationConfigurationTemplatesResponse":
-        """<p>Lists all ReplicationConfigurationTemplates, filtered by Source Server IDs.</p>
+        """<p>Lists all ReplicationConfigurationTemplates, filtered by replication configuration template IDs.</p>
 
         Args:
             replication_configuration_template_i_ds: <p>Request to describe Replication Configuration template by template IDs.</p>
@@ -401,6 +414,9 @@ class AsyncReplicationConfigurationTemplateResource:
             "capo_mgn.types.internet_protocol.InternetProtocol"
         ] = None,
         store_snapshot_on_local_zone: Optional[bool] = None,
+        storage_configuration: Optional[
+            "capo_mgn.types.storage_configuration.StorageConfiguration"
+        ] = None,
     ) -> "capo_mgn.types.replication_configuration_template.ReplicationConfigurationTemplate":
         """<p>Creates a new ReplicationConfigurationTemplate.</p>
 
@@ -421,9 +437,10 @@ class AsyncReplicationConfigurationTemplateResource:
             tags: <p>Request to configure tags during Replication Settings template creation.</p>
             internet_protocol: <p>Request to configure the internet protocol to IPv4 or IPv6.</p>
             store_snapshot_on_local_zone: <p>Request to store snapshot on local zone during Replication Settings template creation.</p>
+            storage_configuration: <p>Request to configure storage during Replication Settings template creation.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.uninitialized_account_exception.UninitializedAccountException: <p>Uninitialized account exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -468,6 +485,8 @@ class AsyncReplicationConfigurationTemplateResource:
             input_["internet_protocol"] = internet_protocol
         if store_snapshot_on_local_zone is not None:
             input_["store_snapshot_on_local_zone"] = store_snapshot_on_local_zone
+        if storage_configuration is not None:
+            input_["storage_configuration"] = storage_configuration
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -512,8 +531,11 @@ class AsyncReplicationConfigurationTemplateResource:
             "capo_mgn.types.internet_protocol.InternetProtocol"
         ] = None,
         store_snapshot_on_local_zone: Optional[bool] = None,
+        storage_configuration: Optional[
+            "capo_mgn.types.storage_configuration.StorageConfiguration"
+        ] = None,
     ) -> "capo_mgn.types.replication_configuration_template.ReplicationConfigurationTemplate":
-        """<p>Updates multiple ReplicationConfigurationTemplates by ID.</p>
+        """<p>Updates a ReplicationConfigurationTemplate by ID.</p>
 
         Args:
             replication_configuration_template_id: <p>Update replication configuration template template ID request.</p>
@@ -533,9 +555,10 @@ class AsyncReplicationConfigurationTemplateResource:
             use_fips_endpoint: <p>Update replication configuration template use Fips Endpoint request.</p>
             internet_protocol: <p>Update replication configuration template internet protocol request.</p>
             store_snapshot_on_local_zone: <p>Update replication configuration template store snapshot on local zone request.</p>
+            storage_configuration: <p>Update replication configuration template storage configuration request.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.uninitialized_account_exception.UninitializedAccountException: <p>Uninitialized account exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
@@ -601,6 +624,8 @@ class AsyncReplicationConfigurationTemplateResource:
             input_["internet_protocol"] = internet_protocol
         if store_snapshot_on_local_zone is not None:
             input_["store_snapshot_on_local_zone"] = store_snapshot_on_local_zone
+        if storage_configuration is not None:
+            input_["storage_configuration"] = storage_configuration
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -666,7 +691,7 @@ class AsyncReplicationConfigurationTemplateResource:
         max_results: Optional["capo_mgn.types.max_results_type.MaxResultsType"] = None,
         next_token: Optional["capo_mgn.types.pagination_token.PaginationToken"] = None,
     ) -> "capo_mgn.types.describe_replication_configuration_templates_response.DescribeReplicationConfigurationTemplatesResponse":
-        """<p>Lists all ReplicationConfigurationTemplates, filtered by Source Server IDs.</p>
+        """<p>Lists all ReplicationConfigurationTemplates, filtered by replication configuration template IDs.</p>
 
         Args:
             replication_configuration_template_i_ds: <p>Request to describe Replication Configuration template by template IDs.</p>

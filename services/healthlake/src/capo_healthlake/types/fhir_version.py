@@ -2,6 +2,7 @@
 
 from typing import Literal, TypeAlias, cast
 
+"""The FHIR version supported by the data store."""
 FHIRVersion: TypeAlias = Literal["R4",]
 
 

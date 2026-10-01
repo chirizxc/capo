@@ -15,6 +15,10 @@ from capo_cleanrooms._services._pipeline import (
 
 if TYPE_CHECKING:
     import capo_cleanrooms.types.account_id
+    import capo_cleanrooms.types.analysis_log_export_identifier
+    import capo_cleanrooms.types.analysis_log_export_result_configuration
+    import capo_cleanrooms.types.analysis_log_export_status
+    import capo_cleanrooms.types.analysis_log_export_summary
     import capo_cleanrooms.types.budgeted_resource_arn
     import capo_cleanrooms.types.collaboration_identifier
     import capo_cleanrooms.types.compute_configuration
@@ -22,12 +26,19 @@ if TYPE_CHECKING:
     import capo_cleanrooms.types.create_membership_output
     import capo_cleanrooms.types.delete_membership_input
     import capo_cleanrooms.types.delete_membership_output
+    import capo_cleanrooms.types.disallow_intermediate_table_input
+    import capo_cleanrooms.types.disallow_intermediate_table_output
+    import capo_cleanrooms.types.display_name
+    import capo_cleanrooms.types.get_analysis_log_export_input
+    import capo_cleanrooms.types.get_analysis_log_export_output
     import capo_cleanrooms.types.get_membership_input
     import capo_cleanrooms.types.get_membership_output
     import capo_cleanrooms.types.get_protected_job_input
     import capo_cleanrooms.types.get_protected_job_output
     import capo_cleanrooms.types.get_protected_query_input
     import capo_cleanrooms.types.get_protected_query_output
+    import capo_cleanrooms.types.list_analysis_log_exports_input
+    import capo_cleanrooms.types.list_analysis_log_exports_output
     import capo_cleanrooms.types.list_memberships_input
     import capo_cleanrooms.types.list_memberships_output
     import capo_cleanrooms.types.list_privacy_budgets_input
@@ -36,6 +47,7 @@ if TYPE_CHECKING:
     import capo_cleanrooms.types.list_protected_jobs_output
     import capo_cleanrooms.types.list_protected_queries_input
     import capo_cleanrooms.types.list_protected_queries_output
+    import capo_cleanrooms.types.log_export_analysis_type
     import capo_cleanrooms.types.max_results
     import capo_cleanrooms.types.membership_identifier
     import capo_cleanrooms.types.membership_job_log_status
@@ -63,6 +75,8 @@ if TYPE_CHECKING:
     import capo_cleanrooms.types.protected_query_status
     import capo_cleanrooms.types.protected_query_summary
     import capo_cleanrooms.types.protected_query_type
+    import capo_cleanrooms.types.start_analysis_log_export_input
+    import capo_cleanrooms.types.start_analysis_log_export_output
     import capo_cleanrooms.types.start_protected_job_input
     import capo_cleanrooms.types.start_protected_job_output
     import capo_cleanrooms.types.start_protected_query_input
@@ -77,6 +91,7 @@ if TYPE_CHECKING:
     import capo_cleanrooms.types.update_protected_job_output
     import capo_cleanrooms.types.update_protected_query_input
     import capo_cleanrooms.types.update_protected_query_output
+    import capo_cleanrooms.types.uuid
     from capo_cleanrooms._services.async_clean_rooms import (
         AsyncCleanRoomsClient,
         AsyncCleanRoomsClientConfig,
@@ -412,6 +427,111 @@ class MembershipResource:
         response.response.close()
         return response.output
 
+    def disallow_intermediate_table(
+        self,
+        membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
+        intermediate_table_name: "capo_cleanrooms.types.display_name.DisplayName",
+        *,
+        config_overrides: Optional[CleanRoomsClientConfig] = None,
+        include_descendants: Optional[bool] = None,
+    ) -> "capo_cleanrooms.types.disallow_intermediate_table_output.DisallowIntermediateTableOutput":
+        """<p>Marks an intermediate table as invalid when it references the caller's base table. The data provider (base table owner) calls this operation, not the intermediate table owner. By default, the operation also marks all descendant intermediate tables as invalid.</p>
+
+        Args:
+            membership_identifier: <p>The unique identifier of the membership that contains the intermediate table to disallow.</p>
+            intermediate_table_name: <p>The name of the intermediate table to disallow.</p>
+            include_descendants: <p>Specifies whether to cascade the disallow action to descendant intermediate tables. Default is <code>true</code>.</p>
+
+        Raises:
+            capo_cleanrooms.errors.access_denied_exception.AccessDeniedException: <p>Caller does not have sufficient access to perform this action.</p>
+            capo_cleanrooms.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_cleanrooms.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_cleanrooms.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_cleanrooms.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_cleanrooms.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints.</p>
+            capo_cleanrooms.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanrooms.types.disallow_intermediate_table_input.DisallowIntermediateTableInput]",
+        ) -> OperationResponse[
+            "capo_cleanrooms.types.disallow_intermediate_table_output.DisallowIntermediateTableOutput"
+        ]:
+            import capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.disallow_intermediate_table
+
+            output, http_response = (
+                capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.disallow_intermediate_table.disallow_intermediate_table(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_cleanrooms.types.disallow_intermediate_table_input.DisallowIntermediateTableInput = {
+            "membership_identifier": membership_identifier,
+            "intermediate_table_name": intermediate_table_name,
+        }
+        if include_descendants is not None:
+            input_["include_descendants"] = include_descendants
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_analysis_log_export(
+        self,
+        membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
+        analysis_log_export_identifier: "capo_cleanrooms.types.analysis_log_export_identifier.AnalysisLogExportIdentifier",
+        *,
+        config_overrides: Optional[CleanRoomsClientConfig] = None,
+    ) -> "capo_cleanrooms.types.get_analysis_log_export_output.GetAnalysisLogExportOutput":
+        """<p>Returns information about an analysis log export, including its current status and, if the export failed, the reason for the failure.</p> <p>Poll this operation until the <code>status</code> is <code>SUCCESS</code> or <code>FAILED</code>. An export can't be canceled after it starts.</p>
+
+        Args:
+            membership_identifier: <p>A unique identifier for the membership that the analysis log export belongs to. Currently accepts the membership ID.</p>
+            analysis_log_export_identifier: <p>The unique identifier of the analysis log export to retrieve.</p>
+
+        Raises:
+            capo_cleanrooms.errors.access_denied_exception.AccessDeniedException: <p>Caller does not have sufficient access to perform this action.</p>
+            capo_cleanrooms.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_cleanrooms.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_cleanrooms.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_cleanrooms.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints.</p>
+            capo_cleanrooms.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanrooms.types.get_analysis_log_export_input.GetAnalysisLogExportInput]",
+        ) -> OperationResponse[
+            "capo_cleanrooms.types.get_analysis_log_export_output.GetAnalysisLogExportOutput"
+        ]:
+            import capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.get_analysis_log_export
+
+            output, http_response = (
+                capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.get_analysis_log_export.get_analysis_log_export(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_cleanrooms.types.get_analysis_log_export_input.GetAnalysisLogExportInput = {
+            "membership_identifier": membership_identifier,
+            "analysis_log_export_identifier": analysis_log_export_identifier,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def get_protected_job(
         self,
         membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
@@ -503,6 +623,73 @@ class MembershipResource:
             "membership_identifier": membership_identifier,
             "protected_query_identifier": protected_query_identifier,
         }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_analysis_log_exports(
+        self,
+        membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
+        *,
+        config_overrides: Optional[CleanRoomsClientConfig] = None,
+        analysis_identifier: Optional["capo_cleanrooms.types.uuid.UUID"] = None,
+        status: Optional[
+            "capo_cleanrooms.types.analysis_log_export_status.AnalysisLogExportStatus"
+        ] = None,
+        next_token: Optional[
+            "capo_cleanrooms.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_cleanrooms.types.max_results.MaxResults"] = None,
+    ) -> "capo_cleanrooms.types.list_analysis_log_exports_output.ListAnalysisLogExportsOutput":
+        """<p>Lists analysis log exports, sorted by the most recent export. Results are paginated. Use the <code>nextToken</code> parameter to retrieve additional results.</p>
+
+        Args:
+            membership_identifier: <p>A unique identifier for the membership to list analysis log exports for. Currently accepts the membership ID.</p>
+            analysis_identifier: <p>A filter on the unique identifier of the protected query that the analysis logs were exported for.</p>
+            status: <p>A filter on the status of the analysis log export.</p>
+            next_token: <p>The pagination token that's used to fetch the next set of results.</p>
+            max_results: <p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a <code>nextToken</code> even if the <code>maxResults</code> value has not been met.</p>
+
+        Raises:
+            capo_cleanrooms.errors.access_denied_exception.AccessDeniedException: <p>Caller does not have sufficient access to perform this action.</p>
+            capo_cleanrooms.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_cleanrooms.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_cleanrooms.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_cleanrooms.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints.</p>
+            capo_cleanrooms.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanrooms.types.list_analysis_log_exports_input.ListAnalysisLogExportsInput]",
+        ) -> OperationResponse[
+            "capo_cleanrooms.types.list_analysis_log_exports_output.ListAnalysisLogExportsOutput"
+        ]:
+            import capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.list_analysis_log_exports
+
+            output, http_response = (
+                capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.list_analysis_log_exports.list_analysis_log_exports(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_cleanrooms.types.list_analysis_log_exports_input.ListAnalysisLogExportsInput = {
+            "membership_identifier": membership_identifier
+        }
+        if analysis_identifier is not None:
+            input_["analysis_identifier"] = analysis_identifier
+        if status is not None:
+            input_["status"] = status
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -748,6 +935,63 @@ class MembershipResource:
         input_: capo_cleanrooms.types.preview_privacy_impact_input.PreviewPrivacyImpactInput = {
             "membership_identifier": membership_identifier,
             "parameters": parameters,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def start_analysis_log_export(
+        self,
+        membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
+        analysis_id: "capo_cleanrooms.types.uuid.UUID",
+        analysis_type: "capo_cleanrooms.types.log_export_analysis_type.LogExportAnalysisType",
+        result_configuration: "capo_cleanrooms.types.analysis_log_export_result_configuration.AnalysisLogExportResultConfiguration",
+        *,
+        config_overrides: Optional[CleanRoomsClientConfig] = None,
+    ) -> "capo_cleanrooms.types.start_analysis_log_export_output.StartAnalysisLogExportOutput":
+        r"""<p>Starts an export of the Apache Spark logs for a protected query to an Amazon S3 bucket that you own. Use the exported logs to diagnose a query that failed or that ran more slowly than you expected.</p> <p>Clean Rooms exports a redacted copy of the Spark logs instead of the raw logs. Analyze the exported logs with the tooling of your choice, such as Spark History Server. For details about what the exported logs contain, see <a href=\"https://docs.aws.amazon.com/clean-rooms/latest/userguide/export-analysis-logs-contents.html\">https://docs.aws.amazon.com/clean-rooms/latest/userguide/export-analysis-logs-contents.html</a>.</p> <p>The export runs asynchronously and returns with a <code>status</code> of <code>IN_PROGRESS</code>. Call <code>GetAnalysisLogExport</code> to poll for the final status.</p> <important> <p>To use this operation, you must have the <code>CAN_EXPORT_QUERY_ANALYSIS_LOG</code> ability for your membership. You must also be the query runner or the query payer. Having the ability alone is not sufficient.</p> <p>The query must have reached a terminal state, and it must have reached the execution stage. A query that failed validation or that was canceled before it started produces no Spark logs.</p> <p>Log export isn't supported for queries that use differential privacy, and isn't supported for PySpark jobs.</p> <p>The destination bucket must be in the same Amazon Web Services Region as the collaboration. Cross-Region export isn't supported.</p> </important> <p>For more information, see <a href=\"https://docs.aws.amazon.com/clean-rooms/latest/userguide/export-analysis-logs.html\">https://docs.aws.amazon.com/clean-rooms/latest/userguide/export-analysis-logs.html</a>.</p>
+
+        Args:
+            membership_identifier: <p>A unique identifier for the membership to export the analysis logs for. Currently accepts a membership ID.</p>
+            analysis_id: <p>The unique identifier of the protected query that you want to export the analysis logs for.</p>
+            analysis_type: <p>The type of analysis that the logs are exported for. Currently, only <code>PROTECTED_QUERY</code> is supported.</p>
+            result_configuration: <p>The details needed to write the exported analysis logs.</p> <p>You don't need to create an IAM role for log export. Clean Rooms writes the exported logs using your own identity, so Clean Rooms writes the exported logs only where your existing permissions allow.</p>
+
+        Raises:
+            capo_cleanrooms.errors.access_denied_exception.AccessDeniedException: <p>Caller does not have sufficient access to perform this action.</p>
+            capo_cleanrooms.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_cleanrooms.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_cleanrooms.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request denied because service quota has been exceeded.</p>
+            capo_cleanrooms.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_cleanrooms.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints.</p>
+            capo_cleanrooms.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanrooms.types.start_analysis_log_export_input.StartAnalysisLogExportInput]",
+        ) -> OperationResponse[
+            "capo_cleanrooms.types.start_analysis_log_export_output.StartAnalysisLogExportOutput"
+        ]:
+            import capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.start_analysis_log_export
+
+            output, http_response = (
+                capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.start_analysis_log_export.start_analysis_log_export(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_cleanrooms.types.start_analysis_log_export_input.StartAnalysisLogExportInput = {
+            "membership_identifier": membership_identifier,
+            "analysis_id": analysis_id,
+            "analysis_type": analysis_type,
+            "result_configuration": result_configuration,
         }
 
         response = execute_pipeline(
@@ -1343,6 +1587,113 @@ class AsyncMembershipResource:
         await response.response.aclose()
         return response.output
 
+    async def disallow_intermediate_table(
+        self,
+        membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
+        intermediate_table_name: "capo_cleanrooms.types.display_name.DisplayName",
+        *,
+        config_overrides: Optional[AsyncCleanRoomsClientConfig] = None,
+        include_descendants: Optional[bool] = None,
+    ) -> "capo_cleanrooms.types.disallow_intermediate_table_output.DisallowIntermediateTableOutput":
+        """<p>Marks an intermediate table as invalid when it references the caller's base table. The data provider (base table owner) calls this operation, not the intermediate table owner. By default, the operation also marks all descendant intermediate tables as invalid.</p>
+
+        Args:
+            membership_identifier: <p>The unique identifier of the membership that contains the intermediate table to disallow.</p>
+            intermediate_table_name: <p>The name of the intermediate table to disallow.</p>
+            include_descendants: <p>Specifies whether to cascade the disallow action to descendant intermediate tables. Default is <code>true</code>.</p>
+
+        Raises:
+            capo_cleanrooms.errors.access_denied_exception.AccessDeniedException: <p>Caller does not have sufficient access to perform this action.</p>
+            capo_cleanrooms.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_cleanrooms.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_cleanrooms.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_cleanrooms.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_cleanrooms.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints.</p>
+            capo_cleanrooms.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_cleanrooms.types.disallow_intermediate_table_input.DisallowIntermediateTableInput]",
+        ) -> AsyncOperationResponse[
+            "capo_cleanrooms.types.disallow_intermediate_table_output.DisallowIntermediateTableOutput"
+        ]:
+            import capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.disallow_intermediate_table
+
+            (
+                output,
+                http_response,
+            ) = await capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.disallow_intermediate_table.async_disallow_intermediate_table(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_cleanrooms.types.disallow_intermediate_table_input.DisallowIntermediateTableInput = {
+            "membership_identifier": membership_identifier,
+            "intermediate_table_name": intermediate_table_name,
+        }
+        if include_descendants is not None:
+            input_["include_descendants"] = include_descendants
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_analysis_log_export(
+        self,
+        membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
+        analysis_log_export_identifier: "capo_cleanrooms.types.analysis_log_export_identifier.AnalysisLogExportIdentifier",
+        *,
+        config_overrides: Optional[AsyncCleanRoomsClientConfig] = None,
+    ) -> "capo_cleanrooms.types.get_analysis_log_export_output.GetAnalysisLogExportOutput":
+        """<p>Returns information about an analysis log export, including its current status and, if the export failed, the reason for the failure.</p> <p>Poll this operation until the <code>status</code> is <code>SUCCESS</code> or <code>FAILED</code>. An export can't be canceled after it starts.</p>
+
+        Args:
+            membership_identifier: <p>A unique identifier for the membership that the analysis log export belongs to. Currently accepts the membership ID.</p>
+            analysis_log_export_identifier: <p>The unique identifier of the analysis log export to retrieve.</p>
+
+        Raises:
+            capo_cleanrooms.errors.access_denied_exception.AccessDeniedException: <p>Caller does not have sufficient access to perform this action.</p>
+            capo_cleanrooms.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_cleanrooms.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_cleanrooms.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_cleanrooms.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints.</p>
+            capo_cleanrooms.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_cleanrooms.types.get_analysis_log_export_input.GetAnalysisLogExportInput]",
+        ) -> AsyncOperationResponse[
+            "capo_cleanrooms.types.get_analysis_log_export_output.GetAnalysisLogExportOutput"
+        ]:
+            import capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.get_analysis_log_export
+
+            (
+                output,
+                http_response,
+            ) = await capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.get_analysis_log_export.async_get_analysis_log_export(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_cleanrooms.types.get_analysis_log_export_input.GetAnalysisLogExportInput = {
+            "membership_identifier": membership_identifier,
+            "analysis_log_export_identifier": analysis_log_export_identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def get_protected_job(
         self,
         membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
@@ -1436,6 +1787,74 @@ class AsyncMembershipResource:
             "membership_identifier": membership_identifier,
             "protected_query_identifier": protected_query_identifier,
         }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_analysis_log_exports(
+        self,
+        membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
+        *,
+        config_overrides: Optional[AsyncCleanRoomsClientConfig] = None,
+        analysis_identifier: Optional["capo_cleanrooms.types.uuid.UUID"] = None,
+        status: Optional[
+            "capo_cleanrooms.types.analysis_log_export_status.AnalysisLogExportStatus"
+        ] = None,
+        next_token: Optional[
+            "capo_cleanrooms.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_cleanrooms.types.max_results.MaxResults"] = None,
+    ) -> "capo_cleanrooms.types.list_analysis_log_exports_output.ListAnalysisLogExportsOutput":
+        """<p>Lists analysis log exports, sorted by the most recent export. Results are paginated. Use the <code>nextToken</code> parameter to retrieve additional results.</p>
+
+        Args:
+            membership_identifier: <p>A unique identifier for the membership to list analysis log exports for. Currently accepts the membership ID.</p>
+            analysis_identifier: <p>A filter on the unique identifier of the protected query that the analysis logs were exported for.</p>
+            status: <p>A filter on the status of the analysis log export.</p>
+            next_token: <p>The pagination token that's used to fetch the next set of results.</p>
+            max_results: <p>The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a <code>nextToken</code> even if the <code>maxResults</code> value has not been met.</p>
+
+        Raises:
+            capo_cleanrooms.errors.access_denied_exception.AccessDeniedException: <p>Caller does not have sufficient access to perform this action.</p>
+            capo_cleanrooms.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_cleanrooms.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_cleanrooms.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_cleanrooms.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints.</p>
+            capo_cleanrooms.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_cleanrooms.types.list_analysis_log_exports_input.ListAnalysisLogExportsInput]",
+        ) -> AsyncOperationResponse[
+            "capo_cleanrooms.types.list_analysis_log_exports_output.ListAnalysisLogExportsOutput"
+        ]:
+            import capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.list_analysis_log_exports
+
+            (
+                output,
+                http_response,
+            ) = await capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.list_analysis_log_exports.async_list_analysis_log_exports(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_cleanrooms.types.list_analysis_log_exports_input.ListAnalysisLogExportsInput = {
+            "membership_identifier": membership_identifier
+        }
+        if analysis_identifier is not None:
+            input_["analysis_identifier"] = analysis_identifier
+        if status is not None:
+            input_["status"] = status
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1685,6 +2104,64 @@ class AsyncMembershipResource:
         input_: capo_cleanrooms.types.preview_privacy_impact_input.PreviewPrivacyImpactInput = {
             "membership_identifier": membership_identifier,
             "parameters": parameters,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def start_analysis_log_export(
+        self,
+        membership_identifier: "capo_cleanrooms.types.membership_identifier.MembershipIdentifier",
+        analysis_id: "capo_cleanrooms.types.uuid.UUID",
+        analysis_type: "capo_cleanrooms.types.log_export_analysis_type.LogExportAnalysisType",
+        result_configuration: "capo_cleanrooms.types.analysis_log_export_result_configuration.AnalysisLogExportResultConfiguration",
+        *,
+        config_overrides: Optional[AsyncCleanRoomsClientConfig] = None,
+    ) -> "capo_cleanrooms.types.start_analysis_log_export_output.StartAnalysisLogExportOutput":
+        r"""<p>Starts an export of the Apache Spark logs for a protected query to an Amazon S3 bucket that you own. Use the exported logs to diagnose a query that failed or that ran more slowly than you expected.</p> <p>Clean Rooms exports a redacted copy of the Spark logs instead of the raw logs. Analyze the exported logs with the tooling of your choice, such as Spark History Server. For details about what the exported logs contain, see <a href=\"https://docs.aws.amazon.com/clean-rooms/latest/userguide/export-analysis-logs-contents.html\">https://docs.aws.amazon.com/clean-rooms/latest/userguide/export-analysis-logs-contents.html</a>.</p> <p>The export runs asynchronously and returns with a <code>status</code> of <code>IN_PROGRESS</code>. Call <code>GetAnalysisLogExport</code> to poll for the final status.</p> <important> <p>To use this operation, you must have the <code>CAN_EXPORT_QUERY_ANALYSIS_LOG</code> ability for your membership. You must also be the query runner or the query payer. Having the ability alone is not sufficient.</p> <p>The query must have reached a terminal state, and it must have reached the execution stage. A query that failed validation or that was canceled before it started produces no Spark logs.</p> <p>Log export isn't supported for queries that use differential privacy, and isn't supported for PySpark jobs.</p> <p>The destination bucket must be in the same Amazon Web Services Region as the collaboration. Cross-Region export isn't supported.</p> </important> <p>For more information, see <a href=\"https://docs.aws.amazon.com/clean-rooms/latest/userguide/export-analysis-logs.html\">https://docs.aws.amazon.com/clean-rooms/latest/userguide/export-analysis-logs.html</a>.</p>
+
+        Args:
+            membership_identifier: <p>A unique identifier for the membership to export the analysis logs for. Currently accepts a membership ID.</p>
+            analysis_id: <p>The unique identifier of the protected query that you want to export the analysis logs for.</p>
+            analysis_type: <p>The type of analysis that the logs are exported for. Currently, only <code>PROTECTED_QUERY</code> is supported.</p>
+            result_configuration: <p>The details needed to write the exported analysis logs.</p> <p>You don't need to create an IAM role for log export. Clean Rooms writes the exported logs using your own identity, so Clean Rooms writes the exported logs only where your existing permissions allow.</p>
+
+        Raises:
+            capo_cleanrooms.errors.access_denied_exception.AccessDeniedException: <p>Caller does not have sufficient access to perform this action.</p>
+            capo_cleanrooms.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_cleanrooms.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_cleanrooms.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request denied because service quota has been exceeded.</p>
+            capo_cleanrooms.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_cleanrooms.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints.</p>
+            capo_cleanrooms.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_cleanrooms.types.start_analysis_log_export_input.StartAnalysisLogExportInput]",
+        ) -> AsyncOperationResponse[
+            "capo_cleanrooms.types.start_analysis_log_export_output.StartAnalysisLogExportOutput"
+        ]:
+            import capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.start_analysis_log_export
+
+            (
+                output,
+                http_response,
+            ) = await capo_cleanrooms._operations.aws_bastion_control_plane_service_lambda.start_analysis_log_export.async_start_analysis_log_export(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_cleanrooms.types.start_analysis_log_export_input.StartAnalysisLogExportInput = {
+            "membership_identifier": membership_identifier,
+            "analysis_id": analysis_id,
+            "analysis_type": analysis_type,
+            "result_configuration": result_configuration,
         }
 
         response = await aexecute_pipeline(

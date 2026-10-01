@@ -34,7 +34,11 @@ class RelatedPlace(TypedDict, closed=True):
 def serialize_json(value: RelatedPlace) -> dict:
     out: dict = {}
     out["PlaceId"] = value["place_id"]
-    out["PlaceType"] = value["place_type"]
+    import capo_geo_places.types.place_type
+
+    out["PlaceType"] = capo_geo_places.types.place_type.serialize_json(
+        value["place_type"]
+    )
     out["Title"] = value["title"]
     if "address" in value:
         import capo_geo_places.types.address
@@ -62,7 +66,11 @@ def deserialize_json(data: dict) -> RelatedPlace:
     else:
         raise DeserializationError("RelatedPlace.place_id required")
     if data.get("PlaceType") is not None:
-        out["place_type"] = data["PlaceType"]
+        import capo_geo_places.types.place_type
+
+        out["place_type"] = capo_geo_places.types.place_type.deserialize_json(
+            data["PlaceType"]
+        )
     else:
         raise DeserializationError("RelatedPlace.place_type required")
     if data.get("Title") is not None:

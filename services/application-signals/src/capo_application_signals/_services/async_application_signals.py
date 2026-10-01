@@ -39,27 +39,47 @@ if TYPE_CHECKING:
     import capo_application_signals.types.audit_targets
     import capo_application_signals.types.auditors
     import capo_application_signals.types.aws_account_id
+    import capo_application_signals.types.batch_delete_deletion_target
+    import capo_application_signals.types.batch_delete_instrumentation_configurations_request
+    import capo_application_signals.types.batch_delete_instrumentation_configurations_response
     import capo_application_signals.types.batch_get_service_level_objective_budget_report_input
     import capo_application_signals.types.batch_get_service_level_objective_budget_report_output
     import capo_application_signals.types.batch_update_exclusion_windows_input
     import capo_application_signals.types.batch_update_exclusion_windows_output
     import capo_application_signals.types.burn_rate_configurations
+    import capo_application_signals.types.capture_configuration
     import capo_application_signals.types.change_event
+    import capo_application_signals.types.create_instrumentation_configuration_request
+    import capo_application_signals.types.create_instrumentation_configuration_response
     import capo_application_signals.types.create_service_level_objective_input
     import capo_application_signals.types.create_service_level_objective_output
     import capo_application_signals.types.delete_grouping_configuration_output
+    import capo_application_signals.types.delete_instrumentation_configuration_request
+    import capo_application_signals.types.delete_instrumentation_configuration_response
     import capo_application_signals.types.delete_service_level_objective_input
     import capo_application_signals.types.delete_service_level_objective_output
     import capo_application_signals.types.dependency_config
     import capo_application_signals.types.detail_level
+    import capo_application_signals.types.dynamic_instrumentation_attribute_filters
+    import capo_application_signals.types.dynamic_instrumentation_signal_type
     import capo_application_signals.types.exclusion_window
     import capo_application_signals.types.exclusion_windows
+    import capo_application_signals.types.get_instrumentation_configuration_request
+    import capo_application_signals.types.get_instrumentation_configuration_response
+    import capo_application_signals.types.get_instrumentation_configuration_status_request
+    import capo_application_signals.types.get_instrumentation_configuration_status_response
     import capo_application_signals.types.get_service_input
     import capo_application_signals.types.get_service_level_objective_input
     import capo_application_signals.types.get_service_level_objective_output
     import capo_application_signals.types.get_service_output
     import capo_application_signals.types.goal
     import capo_application_signals.types.grouping_attribute_definitions
+    import capo_application_signals.types.instrumentation_configuration_status
+    import capo_application_signals.types.instrumentation_configuration_status_list
+    import capo_application_signals.types.instrumentation_configuration_without_service_env
+    import capo_application_signals.types.instrumentation_configurations_page
+    import capo_application_signals.types.instrumentation_status_event
+    import capo_application_signals.types.instrumentation_type
     import capo_application_signals.types.list_audit_finding_max_results
     import capo_application_signals.types.list_audit_findings_input
     import capo_application_signals.types.list_audit_findings_output
@@ -68,6 +88,7 @@ if TYPE_CHECKING:
     import capo_application_signals.types.list_entity_events_output
     import capo_application_signals.types.list_grouping_attribute_definitions_input
     import capo_application_signals.types.list_grouping_attribute_definitions_output
+    import capo_application_signals.types.list_instrumentation_configurations_request
     import capo_application_signals.types.list_service_dependencies_input
     import capo_application_signals.types.list_service_dependencies_max_results
     import capo_application_signals.types.list_service_dependencies_output
@@ -91,12 +112,16 @@ if TYPE_CHECKING:
     import capo_application_signals.types.list_services_output
     import capo_application_signals.types.list_tags_for_resource_request
     import capo_application_signals.types.list_tags_for_resource_response
+    import capo_application_signals.types.location
+    import capo_application_signals.types.location_identifier
     import capo_application_signals.types.metric_source
     import capo_application_signals.types.metric_source_types
     import capo_application_signals.types.next_token
     import capo_application_signals.types.operation_name
     import capo_application_signals.types.put_grouping_configuration_input
     import capo_application_signals.types.put_grouping_configuration_output
+    import capo_application_signals.types.report_instrumentation_configuration_status_request
+    import capo_application_signals.types.report_instrumentation_configuration_status_response
     import capo_application_signals.types.request_based_service_level_indicator_config
     import capo_application_signals.types.service_dependency
     import capo_application_signals.types.service_dependent
@@ -210,6 +235,51 @@ class AsyncApplicationSignalsClient:
         )
         return interceptors_, options_
 
+    async def batch_delete_instrumentation_configurations(
+        self,
+        deletion_target: "capo_application_signals.types.batch_delete_deletion_target.BatchDeleteDeletionTarget",
+        *,
+        config_overrides: Optional[AsyncApplicationSignalsClientConfig] = None,
+    ) -> "capo_application_signals.types.batch_delete_instrumentation_configurations_response.BatchDeleteInstrumentationConfigurationsResponse":
+        """Deletes multiple instrumentation configurations in a single request. Supports two mutually exclusive selection methods: - By scope: Delete all configurations matching a Service + Environment + InstrumentationType - By ARN list: Delete specific configurations by providing a list of resource ARNs
+
+        Args:
+            deletion_target: The deletion target - either bulk by scope or targeted by ARN list.
+
+        Raises:
+            capo_application_signals.errors.throttling_exception.ThrottlingException: <p>The request was throttled because of quota limits.</p>
+            capo_application_signals.errors.validation_exception.ValidationException: <p>The resource is not valid.</p>
+            capo_application_signals.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_application_signals.types.batch_delete_instrumentation_configurations_request.BatchDeleteInstrumentationConfigurationsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_application_signals.types.batch_delete_instrumentation_configurations_response.BatchDeleteInstrumentationConfigurationsResponse"
+        ]:
+            import capo_application_signals._operations.application_signals.batch_delete_instrumentation_configurations
+
+            (
+                output,
+                http_response,
+            ) = await capo_application_signals._operations.application_signals.batch_delete_instrumentation_configurations.async_batch_delete_instrumentation_configurations(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_application_signals.types.batch_delete_instrumentation_configurations_request.BatchDeleteInstrumentationConfigurationsRequest = {
+            "deletion_target": deletion_target
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def batch_get_service_level_objective_budget_report(
         self,
         timestamp: datetime.datetime,
@@ -316,6 +386,86 @@ class AsyncApplicationSignalsClient:
         await response.response.aclose()
         return response.output
 
+    async def create_instrumentation_configuration(
+        self,
+        instrumentation_type: "capo_application_signals.types.instrumentation_type.InstrumentationType",
+        service: str,
+        environment: str,
+        signal_type: "capo_application_signals.types.dynamic_instrumentation_signal_type.DynamicInstrumentationSignalType",
+        location: "capo_application_signals.types.location.Location",
+        capture_configuration: "capo_application_signals.types.capture_configuration.CaptureConfiguration",
+        *,
+        config_overrides: Optional[AsyncApplicationSignalsClientConfig] = None,
+        description: Optional[str] = None,
+        expires_at: Optional[datetime.datetime] = None,
+        attribute_filters: Optional[
+            "capo_application_signals.types.dynamic_instrumentation_attribute_filters.DynamicInstrumentationAttributeFilters"
+        ] = None,
+        tags: Optional["capo_application_signals.types.tag_list.TagList"] = None,
+    ) -> "capo_application_signals.types.create_instrumentation_configuration_response.CreateInstrumentationConfigurationResponse":
+        """<p>Creates a dynamic instrumentation configuration for a specific code or endpoint location within a service and environment. Configurations are immutable after creation.</p> <p>For <code>BREAKPOINT</code> type configurations, they expire after 24 hours unless a shorter expiration is provided. For <code>PROBE</code> type configurations, they persist until explicitly deleted; an expiration cannot be set for <code>PROBE</code> configurations.</p> <p>If a configuration already exists for the same service, environment, signal type, and location, this operation returns a conflict instead of overwriting it. Use attribute filters and capture settings to control where the instrumentation runs and which data is collected.</p>
+
+        Args:
+            instrumentation_type: Type of instrumentation: BREAKPOINT (temporary) or PROBE (permanent)
+            service: <p>The name of the service to instrument. This should match the <code>service.name</code> resource attribute reported by the application.</p>
+            environment: <p>The environment that the service is running in, such as <code>eks:cluster-prod/namespace</code> or <code>ec2:production</code>.</p>
+            signal_type: <p>The telemetry signal type to emit for this instrumentation. The supported value is <code>SNAPSHOT</code>.</p>
+            location: <p>The location where instrumentation should be applied. Specify a <code>CodeLocation</code> for code-level instrumentation.</p>
+            description: <p>An optional short description (up to 50 characters) that explains the purpose of this instrumentation.</p>
+            expires_at: For BREAKPOINT: optional, defaults to 24 hours, must be between 5 min and 24 hours. For PROBE: not supported. PROBE configurations are permanent and persist until explicitly deleted.
+            attribute_filters: <p>Client-side filters that target specific instances. Each object in the array is AND-matched on its keys, and multiple objects are OR-matched to decide where to apply the instrumentation.</p>
+            capture_configuration: <p>Specifies what to capture when the instrumentation point is hit. Specify <code>CodeCapture</code> for code-level capture settings.</p>
+            tags: <p>An optional list of key-value pairs to associate with the instrumentation configuration. Tags can help you organize and categorize your resources.</p>
+
+        Raises:
+            capo_application_signals.errors.conflict_exception.ConflictException: <p>This operation attempted to create a resource that already exists.</p>
+            capo_application_signals.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>This request exceeds a service quota.</p>
+            capo_application_signals.errors.throttling_exception.ThrottlingException: <p>The request was throttled because of quota limits.</p>
+            capo_application_signals.errors.validation_exception.ValidationException: <p>The resource is not valid.</p>
+            capo_application_signals.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_application_signals.types.create_instrumentation_configuration_request.CreateInstrumentationConfigurationRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_application_signals.types.create_instrumentation_configuration_response.CreateInstrumentationConfigurationResponse"
+        ]:
+            import capo_application_signals._operations.application_signals.create_instrumentation_configuration
+
+            (
+                output,
+                http_response,
+            ) = await capo_application_signals._operations.application_signals.create_instrumentation_configuration.async_create_instrumentation_configuration(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_application_signals.types.create_instrumentation_configuration_request.CreateInstrumentationConfigurationRequest = {
+            "instrumentation_type": instrumentation_type,
+            "service": service,
+            "environment": environment,
+            "signal_type": signal_type,
+            "location": location,
+            "capture_configuration": capture_configuration,
+        }
+        if description is not None:
+            input_["description"] = description
+        if expires_at is not None:
+            input_["expires_at"] = expires_at
+        if attribute_filters is not None:
+            input_["attribute_filters"] = attribute_filters
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def delete_grouping_configuration(
         self, *, config_overrides: Optional[AsyncApplicationSignalsClientConfig] = None
     ) -> "capo_application_signals.types.delete_grouping_configuration_output.DeleteGroupingConfigurationOutput":
@@ -352,6 +502,245 @@ class AsyncApplicationSignalsClient:
         )
         await response.response.aclose()
         return response.output
+
+    async def delete_instrumentation_configuration(
+        self,
+        instrumentation_type: "capo_application_signals.types.instrumentation_type.InstrumentationType",
+        service: str,
+        environment: str,
+        signal_type: "capo_application_signals.types.dynamic_instrumentation_signal_type.DynamicInstrumentationSignalType",
+        location_identifier: "capo_application_signals.types.location_identifier.LocationIdentifier",
+        *,
+        config_overrides: Optional[AsyncApplicationSignalsClientConfig] = None,
+    ) -> "capo_application_signals.types.delete_instrumentation_configuration_response.DeleteInstrumentationConfigurationResponse":
+        """<p>Deletes the specified instrumentation configuration. SDKs remove the instrumentation during their next sync after the configuration is deleted or expires.</p>
+
+        Args:
+            instrumentation_type: Type of instrumentation configuration (BREAKPOINT or PROBE). Required to identify the configuration to delete.
+            service: Service name for the instrumentation configuration.
+            environment: Environment name for the instrumentation configuration.
+            signal_type: Signal type for the instrumentation configuration.
+            location_identifier: Location identifier - either full code location or a pre-computed hash.
+
+        Raises:
+            capo_application_signals.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found.</p>
+            capo_application_signals.errors.throttling_exception.ThrottlingException: <p>The request was throttled because of quota limits.</p>
+            capo_application_signals.errors.validation_exception.ValidationException: <p>The resource is not valid.</p>
+            capo_application_signals.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_application_signals.types.delete_instrumentation_configuration_request.DeleteInstrumentationConfigurationRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_application_signals.types.delete_instrumentation_configuration_response.DeleteInstrumentationConfigurationResponse"
+        ]:
+            import capo_application_signals._operations.application_signals.delete_instrumentation_configuration
+
+            (
+                output,
+                http_response,
+            ) = await capo_application_signals._operations.application_signals.delete_instrumentation_configuration.async_delete_instrumentation_configuration(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_application_signals.types.delete_instrumentation_configuration_request.DeleteInstrumentationConfigurationRequest = {
+            "instrumentation_type": instrumentation_type,
+            "service": service,
+            "environment": environment,
+            "signal_type": signal_type,
+            "location_identifier": location_identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_instrumentation_configuration(
+        self,
+        instrumentation_type: "capo_application_signals.types.instrumentation_type.InstrumentationType",
+        service: str,
+        environment: str,
+        signal_type: "capo_application_signals.types.dynamic_instrumentation_signal_type.DynamicInstrumentationSignalType",
+        location_identifier: "capo_application_signals.types.location_identifier.LocationIdentifier",
+        *,
+        config_overrides: Optional[AsyncApplicationSignalsClientConfig] = None,
+    ) -> "capo_application_signals.types.get_instrumentation_configuration_response.GetInstrumentationConfigurationResponse":
+        """<p>Returns the details of a single instrumentation configuration identified by service, environment, signal type, and location. Use this to audit or display configuration details.</p>
+
+        Args:
+            instrumentation_type: Type of instrumentation configuration (BREAKPOINT or PROBE). Required to identify the configuration to retrieve.
+            service: Service name for the instrumentation configuration.
+            environment: Environment name for the instrumentation configuration.
+            signal_type: Signal type for the instrumentation configuration.
+            location_identifier: Location identifier - either full code location or a pre-computed hash.
+
+        Raises:
+            capo_application_signals.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found.</p>
+            capo_application_signals.errors.throttling_exception.ThrottlingException: <p>The request was throttled because of quota limits.</p>
+            capo_application_signals.errors.validation_exception.ValidationException: <p>The resource is not valid.</p>
+            capo_application_signals.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_application_signals.types.get_instrumentation_configuration_request.GetInstrumentationConfigurationRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_application_signals.types.get_instrumentation_configuration_response.GetInstrumentationConfigurationResponse"
+        ]:
+            import capo_application_signals._operations.application_signals.get_instrumentation_configuration
+
+            (
+                output,
+                http_response,
+            ) = await capo_application_signals._operations.application_signals.get_instrumentation_configuration.async_get_instrumentation_configuration(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_application_signals.types.get_instrumentation_configuration_request.GetInstrumentationConfigurationRequest = {
+            "instrumentation_type": instrumentation_type,
+            "service": service,
+            "environment": environment,
+            "signal_type": signal_type,
+            "location_identifier": location_identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_instrumentation_configuration_status(
+        self,
+        instrumentation_type: "capo_application_signals.types.instrumentation_type.InstrumentationType",
+        service: str,
+        environment: str,
+        signal_type: "capo_application_signals.types.dynamic_instrumentation_signal_type.DynamicInstrumentationSignalType",
+        location_identifier: "capo_application_signals.types.location_identifier.LocationIdentifier",
+        *,
+        config_overrides: Optional[AsyncApplicationSignalsClientConfig] = None,
+        status: Optional[
+            "capo_application_signals.types.instrumentation_configuration_status.InstrumentationConfigurationStatus"
+        ] = None,
+        start_time: Optional[datetime.datetime] = None,
+        end_time: Optional[datetime.datetime] = None,
+        max_results: Optional[int] = None,
+        next_token: Optional[
+            "capo_application_signals.types.next_token.NextToken"
+        ] = None,
+    ) -> "capo_application_signals.types.get_instrumentation_configuration_status_response.GetInstrumentationConfigurationStatusResponse":
+        """<p>Retrieves the status history for a single instrumentation configuration during a specified time range. The response lists when the configuration was ACTIVE, READY, ERROR, or DISABLED.</p> <p>If no status or time window is provided, the operation defaults to ACTIVE events from the last hour.</p>
+
+        Args:
+            instrumentation_type: Type of instrumentation configuration (BREAKPOINT or PROBE). Required to identify the configuration to retrieve.
+            service: Service name for the instrumentation configuration.
+            environment: Environment name for the instrumentation configuration.
+            signal_type: Signal type for the instrumentation configuration.
+            location_identifier: Location identifier - either full code location or a pre-computed hash.
+            status: <p>The single status to query for. If omitted, only <code>ACTIVE</code> status events are returned.</p>
+            start_time: <p>The start of the time range to retrieve status events for. <code>StartTime</code> and <code>EndTime</code> must both be provided together or both be omitted. When both are omitted, the time range defaults to the last hour.</p>
+            end_time: <p>The end of the time range to retrieve status events for. <code>StartTime</code> and <code>EndTime</code> must both be provided together or both be omitted. When both are omitted, the time range defaults to the last hour.</p>
+            max_results: <p>The maximum number of status events to return in one call. The default is 60.</p>
+            next_token: <p>Use the token returned by a previous call to retrieve the next page of status events.</p>
+
+        Raises:
+            capo_application_signals.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found.</p>
+            capo_application_signals.errors.throttling_exception.ThrottlingException: <p>The request was throttled because of quota limits.</p>
+            capo_application_signals.errors.validation_exception.ValidationException: <p>The resource is not valid.</p>
+            capo_application_signals.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_application_signals.types.get_instrumentation_configuration_status_request.GetInstrumentationConfigurationStatusRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_application_signals.types.get_instrumentation_configuration_status_response.GetInstrumentationConfigurationStatusResponse"
+        ]:
+            import capo_application_signals._operations.application_signals.get_instrumentation_configuration_status
+
+            (
+                output,
+                http_response,
+            ) = await capo_application_signals._operations.application_signals.get_instrumentation_configuration_status.async_get_instrumentation_configuration_status(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_application_signals.types.get_instrumentation_configuration_status_request.GetInstrumentationConfigurationStatusRequest = {
+            "instrumentation_type": instrumentation_type,
+            "service": service,
+            "environment": environment,
+            "signal_type": signal_type,
+            "location_identifier": location_identifier,
+        }
+        if status is not None:
+            input_["status"] = status
+        if start_time is not None:
+            input_["start_time"] = start_time
+        if end_time is not None:
+            input_["end_time"] = end_time
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_get_instrumentation_configuration_status(
+        self,
+        instrumentation_type: "capo_application_signals.types.instrumentation_type.InstrumentationType",
+        service: str,
+        environment: str,
+        signal_type: "capo_application_signals.types.dynamic_instrumentation_signal_type.DynamicInstrumentationSignalType",
+        location_identifier: "capo_application_signals.types.location_identifier.LocationIdentifier",
+        *,
+        config_overrides: Optional[AsyncApplicationSignalsClientConfig] = None,
+        status: Optional[
+            "capo_application_signals.types.instrumentation_configuration_status.InstrumentationConfigurationStatus"
+        ] = None,
+        start_time: Optional[datetime.datetime] = None,
+        end_time: Optional[datetime.datetime] = None,
+        max_results: Optional[int] = None,
+        next_token: Optional[
+            "capo_application_signals.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_application_signals.types.instrumentation_status_event.InstrumentationStatusEvent]":
+        _token = next_token
+        while True:
+            _response = await self.get_instrumentation_configuration_status(
+                instrumentation_type,
+                service,
+                environment,
+                signal_type,
+                location_identifier,
+                config_overrides=config_overrides,
+                status=status,
+                start_time=start_time,
+                end_time=end_time,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("events",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_service(
         self,
@@ -628,6 +1017,103 @@ class AsyncApplicationSignalsClient:
         )
         await response.response.aclose()
         return response.output
+
+    async def list_instrumentation_configurations(
+        self,
+        service: str,
+        environment: str,
+        instrumentation_type: "capo_application_signals.types.instrumentation_type.InstrumentationType",
+        *,
+        config_overrides: Optional[AsyncApplicationSignalsClientConfig] = None,
+        synced_at: Optional[datetime.datetime] = None,
+        max_results: Optional[int] = None,
+        next_token: Optional[
+            "capo_application_signals.types.next_token.NextToken"
+        ] = None,
+    ) -> "capo_application_signals.types.instrumentation_configurations_page.InstrumentationConfigurationsPage":
+        """<p>Returns all active instrumentation configurations for a service and environment. SDKs use this operation to sync configurations and apply client-side filters locally.</p> <p>Include the previous <code>SyncedAt</code> value to perform incremental syncs. When no changes are detected, the response sets <code>Changed</code> to <code>false</code> and omits configuration details.</p>
+
+        Args:
+            service: <p>The name of the service to retrieve instrumentation configurations for.</p>
+            environment: <p>The environment that the service is running in.</p>
+            instrumentation_type: Type of instrumentation configuration (BREAKPOINT or PROBE). Required to determine which backing store to query.
+            synced_at: <p>The timestamp from the last successful sync. When provided, the response returns <code>Changed</code> as <code>false</code> if nothing is new since this time, or returns the latest configurations when changes exist.</p>
+            max_results: <p>The maximum number of configurations to return in one call. The default is 50 and the maximum is 100.</p>
+            next_token: <p>Use the token returned by a previous call to retrieve the next page of configurations.</p>
+
+        Raises:
+            capo_application_signals.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found.</p>
+            capo_application_signals.errors.throttling_exception.ThrottlingException: <p>The request was throttled because of quota limits.</p>
+            capo_application_signals.errors.validation_exception.ValidationException: <p>The resource is not valid.</p>
+            capo_application_signals.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_application_signals.types.list_instrumentation_configurations_request.ListInstrumentationConfigurationsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_application_signals.types.instrumentation_configurations_page.InstrumentationConfigurationsPage"
+        ]:
+            import capo_application_signals._operations.application_signals.list_instrumentation_configurations
+
+            (
+                output,
+                http_response,
+            ) = await capo_application_signals._operations.application_signals.list_instrumentation_configurations.async_list_instrumentation_configurations(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_application_signals.types.list_instrumentation_configurations_request.ListInstrumentationConfigurationsRequest = {
+            "service": service,
+            "environment": environment,
+            "instrumentation_type": instrumentation_type,
+        }
+        if synced_at is not None:
+            input_["synced_at"] = synced_at
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_instrumentation_configurations(
+        self,
+        service: str,
+        environment: str,
+        instrumentation_type: "capo_application_signals.types.instrumentation_type.InstrumentationType",
+        *,
+        config_overrides: Optional[AsyncApplicationSignalsClientConfig] = None,
+        synced_at: Optional[datetime.datetime] = None,
+        max_results: Optional[int] = None,
+        next_token: Optional[
+            "capo_application_signals.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_application_signals.types.instrumentation_configuration_without_service_env.InstrumentationConfigurationWithoutServiceEnv]":
+        _token = next_token
+        while True:
+            _response = await self.list_instrumentation_configurations(
+                service,
+                environment,
+                instrumentation_type,
+                config_overrides=config_overrides,
+                synced_at=synced_at,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("latest_configurations",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_service_dependencies(
         self,
@@ -1299,6 +1785,57 @@ class AsyncApplicationSignalsClient:
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_application_signals.types.put_grouping_configuration_input.PutGroupingConfigurationInput = {
             "grouping_attribute_definitions": grouping_attribute_definitions
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def report_instrumentation_configuration_status(
+        self,
+        service: str,
+        environment: str,
+        configurations: "capo_application_signals.types.instrumentation_configuration_status_list.InstrumentationConfigurationStatusList",
+        *,
+        config_overrides: Optional[AsyncApplicationSignalsClientConfig] = None,
+    ) -> "capo_application_signals.types.report_instrumentation_configuration_status_response.ReportInstrumentationConfigurationStatusResponse":
+        """<p>Reports the status of one or more instrumentation configurations from SDK instances. Use this to record when configurations become ready, hit errors, become active, or are disabled by limits.</p> <p>Report <code>READY</code>, <code>ERROR</code>, and <code>DISABLED</code> when the status changes. Report <code>ACTIVE</code> periodically (for example, every minute) while instrumentation is running.</p>
+
+        Args:
+            service: <p>The service that the reported configurations belong to.</p>
+            environment: <p>The environment that the service is running in.</p>
+            configurations: <p>An array of configuration status reports (up to 100) that include the instrumentation type, signal type, location hash, status, timestamp, and optional error cause.</p>
+
+        Raises:
+            capo_application_signals.errors.throttling_exception.ThrottlingException: <p>The request was throttled because of quota limits.</p>
+            capo_application_signals.errors.validation_exception.ValidationException: <p>The resource is not valid.</p>
+            capo_application_signals.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_application_signals.types.report_instrumentation_configuration_status_request.ReportInstrumentationConfigurationStatusRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_application_signals.types.report_instrumentation_configuration_status_response.ReportInstrumentationConfigurationStatusResponse"
+        ]:
+            import capo_application_signals._operations.application_signals.report_instrumentation_configuration_status
+
+            (
+                output,
+                http_response,
+            ) = await capo_application_signals._operations.application_signals.report_instrumentation_configuration_status.async_report_instrumentation_configuration_status(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_application_signals.types.report_instrumentation_configuration_status_request.ReportInstrumentationConfigurationStatusRequest = {
+            "service": service,
+            "environment": environment,
+            "configurations": configurations,
         }
 
         response = await aexecute_pipeline(

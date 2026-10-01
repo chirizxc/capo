@@ -23,6 +23,7 @@ import capo_bedrock_agent.types.flow_status
 import capo_bedrock_agent.types.flow_validations
 import capo_bedrock_agent.types.get_flow_request
 import capo_bedrock_agent.types.get_flow_response
+import capo_bedrock_agent.types.included_data
 from capo_bedrock_agent._protocol.errors import parse_error_metadata_json
 from capo_bedrock_agent._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_bedrock_agent._services._pipeline import (
@@ -122,9 +123,20 @@ def build_request(
             Endpoint=options.endpoint,
         )
     )  # noqa: F841
+    import capo_bedrock_agent.types.included_data
+
     url = endpoint.url.rstrip("/") + "/flows/{flowIdentifier}/"
     url = url.replace("{flowIdentifier}", quote(input_["flow_identifier"], safe=""))
     params: list[tuple[str, str]] = []
+    if "included_data" in input_:
+        params.append(
+            (
+                "includedData",
+                capo_bedrock_agent.types.included_data.serialize_json(
+                    input_["included_data"]
+                ),
+            )
+        )
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))

@@ -9,7 +9,6 @@ from capo_ec2._protocol.xml import Element
 if TYPE_CHECKING:
     import capo_ec2.types.attribute_boolean_value
     import capo_ec2.types.attribute_value
-    import capo_ec2.types.blob_attribute_value
     import capo_ec2.types.boolean
     import capo_ec2.types.enclave_options_request
     import capo_ec2.types.group_id_string_list
@@ -17,6 +16,7 @@ if TYPE_CHECKING:
     import capo_ec2.types.instance_block_device_mapping_specification_list
     import capo_ec2.types.instance_id
     import capo_ec2.types.modify_instance_attribute_value
+    import capo_ec2.types.secure_blob_attribute_value
 
 
 class ModifyInstanceAttributeRequest(TypedDict, closed=True):
@@ -58,7 +58,9 @@ class ModifyInstanceAttributeRequest(TypedDict, closed=True):
     r"""<p>Changes the instance's kernel to the specified value. We recommend that you use PV-GRUB instead of kernels and RAM disks. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html\">PV-GRUB</a>.</p>"""
     ramdisk: NotRequired["capo_ec2.types.attribute_value.AttributeValue"]
     r"""<p>Changes the instance's RAM disk to the specified value. We recommend that you use PV-GRUB instead of kernels and RAM disks. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html\">PV-GRUB</a>.</p>"""
-    user_data: NotRequired["capo_ec2.types.blob_attribute_value.BlobAttributeValue"]
+    user_data: NotRequired[
+        "capo_ec2.types.secure_blob_attribute_value.SecureBlobAttributeValue"
+    ]
     r"""<p>Changes the instance's user data to the specified value. User data must be base64-encoded. Depending on the tool or SDK that you're using, the base64-encoding might be performed for you. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-add-user-data.html\">Work with instance user data</a>.</p>"""
     instance_initiated_shutdown_behavior: NotRequired[
         "capo_ec2.types.attribute_value.AttributeValue"
@@ -146,9 +148,9 @@ def serialize_ec2_query(
             value["ramdisk"], pairs, f"{key_prefix}Ramdisk"
         )
     if "user_data" in value:
-        import capo_ec2.types.blob_attribute_value
+        import capo_ec2.types.secure_blob_attribute_value
 
-        capo_ec2.types.blob_attribute_value.serialize_ec2_query(
+        capo_ec2.types.secure_blob_attribute_value.serialize_ec2_query(
             value["user_data"], pairs, f"{key_prefix}UserData"
         )
     if "instance_initiated_shutdown_behavior" in value:
@@ -271,10 +273,12 @@ def deserialize_ec2_query(el: Element) -> ModifyInstanceAttributeRequest:
         )
     child_user_data = el.find("userData")
     if child_user_data is not None:
-        import capo_ec2.types.blob_attribute_value
+        import capo_ec2.types.secure_blob_attribute_value
 
-        out["user_data"] = capo_ec2.types.blob_attribute_value.deserialize_ec2_query(
-            child_user_data
+        out["user_data"] = (
+            capo_ec2.types.secure_blob_attribute_value.deserialize_ec2_query(
+                child_user_data
+            )
         )
     child_instance_initiated_shutdown_behavior = el.find(
         "instanceInitiatedShutdownBehavior"

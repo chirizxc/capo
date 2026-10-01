@@ -6,13 +6,14 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_appconfig.types.deletion_protection_check
-    import capo_appconfig.types.id
+    import capo_appconfig.types.long_name
+    import capo_appconfig.types.name
 
 
 class DeleteConfigurationProfileRequest(TypedDict, closed=True):
-    application_id: "capo_appconfig.types.id.Id"
+    application_id: "capo_appconfig.types.name.Name"
     """<p>The application ID that includes the configuration profile you want to delete.</p>"""
-    configuration_profile_id: "capo_appconfig.types.id.Id"
+    configuration_profile_id: "capo_appconfig.types.long_name.LongName"
     """<p>The ID of the configuration profile you want to delete.</p>"""
     deletion_protection_check: NotRequired[
         "capo_appconfig.types.deletion_protection_check.DeletionProtectionCheck"

@@ -13,6 +13,10 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.data_source_config
     import capo_bedrock_agentcore.types.evaluation_metadata
     import capo_bedrock_agentcore.types.evaluator_list
+    import capo_bedrock_agentcore.types.insight_list
+    import capo_bedrock_agentcore.types.kms_key_arn
+    import capo_bedrock_agentcore.types.output_config
+    import capo_bedrock_agentcore.types.tags_map
 
 
 class StartBatchEvaluationRequest(TypedDict, closed=True):
@@ -22,6 +26,8 @@ class StartBatchEvaluationRequest(TypedDict, closed=True):
     """<p>The name of the batch evaluation. Must be unique within your account.</p>"""
     evaluators: NotRequired["capo_bedrock_agentcore.types.evaluator_list.EvaluatorList"]
     """<p>The list of evaluators to apply during the batch evaluation. Can include both built-in evaluators and custom evaluators. Maximum of 10 evaluators.</p>"""
+    insights: NotRequired["capo_bedrock_agentcore.types.insight_list.InsightList"]
+    """<p>The list of insight analyses to run against sessions during the batch evaluation. Maximum of 10 insights.</p>"""
     data_source_config: (
         "capo_bedrock_agentcore.types.data_source_config.DataSourceConfig"
     )
@@ -32,10 +38,17 @@ class StartBatchEvaluationRequest(TypedDict, closed=True):
         "capo_bedrock_agentcore.types.evaluation_metadata.EvaluationMetadata"
     ]
     """<p>Optional metadata for the evaluation, including session-specific ground truth data and test scenario identifiers.</p>"""
+    tags: NotRequired["capo_bedrock_agentcore.types.tags_map.TagsMap"]
+    """<p>A map of tag keys and values to associate with the batch evaluation.</p>"""
+    kms_key_arn: NotRequired["capo_bedrock_agentcore.types.kms_key_arn.KmsKeyArn"]
+    """<p>The ARN of the KMS key used to encrypt evaluation data. If provided, customer data is encrypted at rest with the specified key.</p>"""
     description: NotRequired[
         "capo_bedrock_agentcore.types.batch_evaluation_description.BatchEvaluationDescription"
     ]
     """<p>The description of the batch evaluation.</p>"""
+    output_config: NotRequired[
+        "capo_bedrock_agentcore.types.output_config.OutputConfig"
+    ]
 
 
 # --- restJson1 ser/de ---
@@ -47,6 +60,12 @@ def serialize_json(value: StartBatchEvaluationRequest) -> dict:
 
         out["evaluators"] = capo_bedrock_agentcore.types.evaluator_list.serialize_json(
             value["evaluators"]
+        )
+    if "insights" in value:
+        import capo_bedrock_agentcore.types.insight_list
+
+        out["insights"] = capo_bedrock_agentcore.types.insight_list.serialize_json(
+            value["insights"]
         )
     import capo_bedrock_agentcore.types.data_source_config
 
@@ -65,8 +84,22 @@ def serialize_json(value: StartBatchEvaluationRequest) -> dict:
                 value["evaluation_metadata"]
             )
         )
+    if "tags" in value:
+        import capo_bedrock_agentcore.types.tags_map
+
+        out["tags"] = capo_bedrock_agentcore.types.tags_map.serialize_json(
+            value["tags"]
+        )
+    if "kms_key_arn" in value:
+        out["kmsKeyArn"] = value["kms_key_arn"]
     if "description" in value:
         out["description"] = value["description"]
+    if "output_config" in value:
+        import capo_bedrock_agentcore.types.output_config
+
+        out["outputConfig"] = capo_bedrock_agentcore.types.output_config.serialize_json(
+            value["output_config"]
+        )
     return out
 
 
@@ -85,6 +118,12 @@ def deserialize_json(data: dict) -> StartBatchEvaluationRequest:
             capo_bedrock_agentcore.types.evaluator_list.deserialize_json(
                 data["evaluators"]
             )
+        )
+    if data.get("insights") is not None:
+        import capo_bedrock_agentcore.types.insight_list
+
+        out["insights"] = capo_bedrock_agentcore.types.insight_list.deserialize_json(
+            data["insights"]
         )
     if data.get("dataSourceConfig") is not None:
         import capo_bedrock_agentcore.types.data_source_config
@@ -108,6 +147,22 @@ def deserialize_json(data: dict) -> StartBatchEvaluationRequest:
                 data["evaluationMetadata"]
             )
         )
+    if data.get("tags") is not None:
+        import capo_bedrock_agentcore.types.tags_map
+
+        out["tags"] = capo_bedrock_agentcore.types.tags_map.deserialize_json(
+            data["tags"]
+        )
+    if data.get("kmsKeyArn") is not None:
+        out["kms_key_arn"] = data["kmsKeyArn"]
     if data.get("description") is not None:
         out["description"] = data["description"]
+    if data.get("outputConfig") is not None:
+        import capo_bedrock_agentcore.types.output_config
+
+        out["output_config"] = (
+            capo_bedrock_agentcore.types.output_config.deserialize_json(
+                data["outputConfig"]
+            )
+        )
     return out

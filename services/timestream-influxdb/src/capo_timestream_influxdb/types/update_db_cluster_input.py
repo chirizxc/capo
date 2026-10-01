@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 from capo_timestream_influxdb.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_timestream_influxdb.types.db_backup_configuration_input_list
     import capo_timestream_influxdb.types.db_cluster_id
     import capo_timestream_influxdb.types.db_instance_type
     import capo_timestream_influxdb.types.db_parameter_group_identifier
@@ -41,6 +42,10 @@ class UpdateDbClusterInput(TypedDict, closed=True):
         "capo_timestream_influxdb.types.maintenance_schedule.MaintenanceSchedule"
     ]
     """<p>Specifies the maintenance schedule for the DB cluster, including the preferred maintenance window and timezone.</p>"""
+    db_backup_configurations: NotRequired[
+        "capo_timestream_influxdb.types.db_backup_configuration_input_list.DbBackupConfigurationInputList"
+    ]
+    """<p>A list of backup configurations to update for the DB cluster.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -81,6 +86,14 @@ def serialize_aws_json_1_0(value: UpdateDbClusterInput) -> dict:
         out["maintenanceSchedule"] = (
             capo_timestream_influxdb.types.maintenance_schedule.serialize_aws_json_1_0(
                 value["maintenance_schedule"]
+            )
+        )
+    if "db_backup_configurations" in value:
+        import capo_timestream_influxdb.types.db_backup_configuration_input_list
+
+        out["dbBackupConfigurations"] = (
+            capo_timestream_influxdb.types.db_backup_configuration_input_list.serialize_aws_json_1_0(
+                value["db_backup_configurations"]
             )
         )
     return out
@@ -126,6 +139,14 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateDbClusterInput:
         out["maintenance_schedule"] = (
             capo_timestream_influxdb.types.maintenance_schedule.deserialize_aws_json_1_0(
                 data["maintenanceSchedule"]
+            )
+        )
+    if data.get("dbBackupConfigurations") is not None:
+        import capo_timestream_influxdb.types.db_backup_configuration_input_list
+
+        out["db_backup_configurations"] = (
+            capo_timestream_influxdb.types.db_backup_configuration_input_list.deserialize_aws_json_1_0(
+                data["dbBackupConfigurations"]
             )
         )
     return out

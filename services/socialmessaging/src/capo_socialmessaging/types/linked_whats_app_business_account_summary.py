@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     import capo_socialmessaging.types.whats_app_business_account_link_date
     import capo_socialmessaging.types.whats_app_business_account_marketing_messages_onboarding_status
     import capo_socialmessaging.types.whats_app_business_account_name
+    import capo_socialmessaging.types.whats_app_dataset_id
 
 
 class LinkedWhatsAppBusinessAccountSummary(TypedDict, closed=True):
@@ -38,6 +39,10 @@ class LinkedWhatsAppBusinessAccountSummary(TypedDict, closed=True):
         "capo_socialmessaging.types.whats_app_business_account_marketing_messages_onboarding_status.WhatsAppBusinessAccountMarketingMessagesOnboardingStatus"
     ]
     """<p>The onboarding status for the Marketing Messages API. This value is fetched from Meta and indicates whether the WhatsApp Business Account is onboarded for Meta's Marketing Messages API.</p>"""
+    dataset_id: NotRequired[
+        "capo_socialmessaging.types.whats_app_dataset_id.WhatsAppDatasetId"
+    ]
+    """<p>The Meta Conversions API dataset ID associated with this WhatsApp Business Account. This value is a numeric string of 10 to 20 digits. This field is not present when no dataset has been created for this account.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -72,6 +77,8 @@ def serialize_json(value: LinkedWhatsAppBusinessAccountSummary) -> dict:
         out["marketingMessagesOnboardingStatus"] = value[
             "marketing_messages_onboarding_status"
         ]
+    if "dataset_id" in value:
+        out["datasetId"] = value["dataset_id"]
     return out
 
 
@@ -137,4 +144,6 @@ def deserialize_json(data: dict) -> LinkedWhatsAppBusinessAccountSummary:
         out["marketing_messages_onboarding_status"] = data[
             "marketingMessagesOnboardingStatus"
         ]
+    if data.get("datasetId") is not None:
+        out["dataset_id"] = data["datasetId"]
     return out

@@ -126,6 +126,7 @@ def build_request(
             AccountIdEndpointMode=options.account_id_endpoint_mode,
             ResourceArn=options.resource_arn,
             ResourceArnList=jmespath.search("keys(RequestItems)", input_),
+            IsSearchOperation=options.is_search_operation,
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + ""

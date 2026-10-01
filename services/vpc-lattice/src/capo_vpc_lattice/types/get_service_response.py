@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_vpc_lattice.types.dns_entry
     import capo_vpc_lattice.types.failure_code
     import capo_vpc_lattice.types.failure_message
+    import capo_vpc_lattice.types.idle_timeout_seconds
     import capo_vpc_lattice.types.service_arn
     import capo_vpc_lattice.types.service_custom_domain_name
     import capo_vpc_lattice.types.service_id
@@ -43,6 +44,10 @@ class GetServiceResponse(TypedDict, closed=True):
     """<p>The status of the service.</p>"""
     auth_type: NotRequired["capo_vpc_lattice.types.auth_type.AuthType"]
     """<p>The type of IAM policy.</p>"""
+    idle_timeout_seconds: NotRequired[
+        "capo_vpc_lattice.types.idle_timeout_seconds.IdleTimeoutSeconds"
+    ]
+    """<p>The amount of time, in seconds, that a connection can remain idle before VPC Lattice closes it.</p>"""
     failure_code: NotRequired["capo_vpc_lattice.types.failure_code.FailureCode"]
     """<p>The failure code.</p>"""
     failure_message: NotRequired[
@@ -86,6 +91,8 @@ def serialize_json(value: GetServiceResponse) -> dict:
         out["status"] = value["status"]
     if "auth_type" in value:
         out["authType"] = value["auth_type"]
+    if "idle_timeout_seconds" in value:
+        out["idleTimeoutSeconds"] = value["idle_timeout_seconds"]
     if "failure_code" in value:
         out["failureCode"] = value["failure_code"]
     if "failure_message" in value:
@@ -127,6 +134,8 @@ def deserialize_json(data: dict) -> GetServiceResponse:
         out["status"] = data["status"]
     if data.get("authType") is not None:
         out["auth_type"] = data["authType"]
+    if data.get("idleTimeoutSeconds") is not None:
+        out["idle_timeout_seconds"] = data["idleTimeoutSeconds"]
     if data.get("failureCode") is not None:
         out["failure_code"] = data["failureCode"]
     if data.get("failureMessage") is not None:

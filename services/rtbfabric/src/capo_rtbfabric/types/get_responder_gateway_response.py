@@ -9,6 +9,7 @@ from capo_rtbfabric.errors import DeserializationError
 if TYPE_CHECKING:
     import datetime
 
+    import capo_rtbfabric.types.client_routing_policy
     import capo_rtbfabric.types.domain_name
     import capo_rtbfabric.types.gateway_id
     import capo_rtbfabric.types.gateway_type
@@ -64,8 +65,6 @@ class GetResponderGatewayResponse(TypedDict, closed=True):
     """<p>The count of active links for the responder gateway.</p>"""
     total_links_count: NotRequired["int"]
     """<p>The total count of links for the responder gateway.</p>"""
-    inbound_links_count: NotRequired["int"]
-    """<p>Deprecated. Use 'linksRequestedCount' instead.</p>"""
     links_requested_count: NotRequired["int"]
     """<p>The count of requested links waiting for the responder gateway to accept or reject.</p>"""
     gateway_type: NotRequired["capo_rtbfabric.types.gateway_type.GatewayType"]
@@ -74,6 +73,10 @@ class GetResponderGatewayResponse(TypedDict, closed=True):
         "capo_rtbfabric.types.domain_name.DomainName"
     ]
     """<p>The external inbound endpoint for the responder gateway.</p>"""
+    client_routing_policy: NotRequired[
+        "capo_rtbfabric.types.client_routing_policy.ClientRoutingPolicy"
+    ]
+    r"""<p>The client routing policy of the gateway. This policy controls which Availability Zones RTB Fabric uses to reach the gateway for the requester gateways that send traffic to it. RTB Fabric omits this member if the gateway has never had a client routing policy. An omitted value means that the gateway uses <code>AVAILABILITY_ZONE_AFFINITY</code>. For more information, see <a href=\"https://docs.aws.amazon.com/rtb-fabric/latest/userguide/working-with-responder-gateways.html#configuring-availability-zone-affinity\">Configuring Availability Zone affinity</a> in the <i>Amazon Web Services RTB Fabric User Guide</i>.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -148,8 +151,6 @@ def serialize_json(value: GetResponderGatewayResponse) -> dict:
         out["activeLinksCount"] = value["active_links_count"]
     if "total_links_count" in value:
         out["totalLinksCount"] = value["total_links_count"]
-    if "inbound_links_count" in value:
-        out["inboundLinksCount"] = value["inbound_links_count"]
     if "links_requested_count" in value:
         out["linksRequestedCount"] = value["links_requested_count"]
     if "gateway_type" in value:
@@ -160,6 +161,14 @@ def serialize_json(value: GetResponderGatewayResponse) -> dict:
         )
     if "external_inbound_endpoint" in value:
         out["externalInboundEndpoint"] = value["external_inbound_endpoint"]
+    if "client_routing_policy" in value:
+        import capo_rtbfabric.types.client_routing_policy
+
+        out["clientRoutingPolicy"] = (
+            capo_rtbfabric.types.client_routing_policy.serialize_json(
+                value["client_routing_policy"]
+            )
+        )
     return out
 
 
@@ -259,8 +268,6 @@ def deserialize_json(data: dict) -> GetResponderGatewayResponse:
         out["active_links_count"] = data["activeLinksCount"]
     if data.get("totalLinksCount") is not None:
         out["total_links_count"] = data["totalLinksCount"]
-    if data.get("inboundLinksCount") is not None:
-        out["inbound_links_count"] = data["inboundLinksCount"]
     if data.get("linksRequestedCount") is not None:
         out["links_requested_count"] = data["linksRequestedCount"]
     if data.get("gatewayType") is not None:
@@ -271,4 +278,12 @@ def deserialize_json(data: dict) -> GetResponderGatewayResponse:
         )
     if data.get("externalInboundEndpoint") is not None:
         out["external_inbound_endpoint"] = data["externalInboundEndpoint"]
+    if data.get("clientRoutingPolicy") is not None:
+        import capo_rtbfabric.types.client_routing_policy
+
+        out["client_routing_policy"] = (
+            capo_rtbfabric.types.client_routing_policy.deserialize_json(
+                data["clientRoutingPolicy"]
+            )
+        )
     return out

@@ -13,9 +13,11 @@ import capo_iotsitewise._auth._sigv4
 import capo_iotsitewise._protocol.eventstream
 import capo_iotsitewise.errors.internal_failure_exception
 import capo_iotsitewise.errors.invalid_request_exception
+import capo_iotsitewise.errors.resource_not_found_exception
 import capo_iotsitewise.errors.throttling_exception
 import capo_iotsitewise.types.dataset_source_type
 import capo_iotsitewise.types.dataset_summaries
+import capo_iotsitewise.types.dataset_type_enum
 import capo_iotsitewise.types.list_datasets_request
 import capo_iotsitewise.types.list_datasets_response
 from capo_iotsitewise._protocol.errors import parse_error_metadata_json
@@ -34,6 +36,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "InvalidRequestException":
             raise capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException.from_json(
+                data, message
+            )
+        case "ResourceNotFoundException":
+            raise capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException.from_json(
                 data, message
             )
         case "ThrottlingException":
@@ -107,6 +113,7 @@ def build_request(
         )
     )  # noqa: F841
     import capo_iotsitewise.types.dataset_source_type
+    import capo_iotsitewise.types.dataset_type_enum
 
     url = endpoint.url.rstrip("/") + "/datasets"
     params: list[tuple[str, str]] = []
@@ -116,6 +123,17 @@ def build_request(
                 "sourceType",
                 capo_iotsitewise.types.dataset_source_type.serialize_json(
                     input_["source_type"]
+                ),
+            )
+        )
+    if "workspace_name" in input_:
+        params.append(("workspaceName", input_["workspace_name"]))
+    if "dataset_type" in input_:
+        params.append(
+            (
+                "datasetType",
+                capo_iotsitewise.types.dataset_type_enum.serialize_json(
+                    input_["dataset_type"]
                 ),
             )
         )

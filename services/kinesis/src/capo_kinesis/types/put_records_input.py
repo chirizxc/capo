@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 from capo_kinesis.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_kinesis.types.boolean_object
     import capo_kinesis.types.put_records_request_entry_list
     import capo_kinesis.types.stream_arn
     import capo_kinesis.types.stream_id
@@ -24,6 +25,8 @@ class PutRecordsInput(TypedDict, closed=True):
     """<p>The ARN of the stream.</p>"""
     stream_id: NotRequired["capo_kinesis.types.stream_id.StreamId"]
     """<p>Not Implemented. Reserved for future use.</p>"""
+    dry_run: NotRequired["capo_kinesis.types.boolean_object.BooleanObject"]
+    """<p>Checks if your request will succeed. <code>DryRun</code> is an optional parameter.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -42,6 +45,8 @@ def serialize_aws_json_1_1(value: PutRecordsInput) -> dict:
         out["StreamARN"] = value["stream_arn"]
     if "stream_id" in value:
         out["StreamId"] = value["stream_id"]
+    if "dry_run" in value:
+        out["DryRun"] = value["dry_run"]
     return out
 
 
@@ -63,4 +68,6 @@ def deserialize_aws_json_1_1(data: dict) -> PutRecordsInput:
         out["stream_arn"] = data["StreamARN"]
     if data.get("StreamId") is not None:
         out["stream_id"] = data["StreamId"]
+    if data.get("DryRun") is not None:
+        out["dry_run"] = data["DryRun"]
     return out

@@ -23,6 +23,7 @@ import capo_lex_models_v2.types.bot_locale_status
 import capo_lex_models_v2.types.create_bot_locale_request
 import capo_lex_models_v2.types.create_bot_locale_response
 import capo_lex_models_v2.types.generative_ai_settings
+import capo_lex_models_v2.types.speaker_diarization_settings
 import capo_lex_models_v2.types.speech_detection_sensitivity
 import capo_lex_models_v2.types.speech_recognition_settings
 import capo_lex_models_v2.types.timestamp

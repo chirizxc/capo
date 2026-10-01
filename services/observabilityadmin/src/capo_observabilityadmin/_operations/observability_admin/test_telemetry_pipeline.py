@@ -17,6 +17,7 @@ import capo_observabilityadmin.errors.too_many_requests_exception
 import capo_observabilityadmin.errors.validation_exception
 import capo_observabilityadmin.types.pipeline_outputs
 import capo_observabilityadmin.types.records
+import capo_observabilityadmin.types.signal_type
 import capo_observabilityadmin.types.telemetry_pipeline_configuration
 import capo_observabilityadmin.types.test_telemetry_pipeline_input
 import capo_observabilityadmin.types.test_telemetry_pipeline_output

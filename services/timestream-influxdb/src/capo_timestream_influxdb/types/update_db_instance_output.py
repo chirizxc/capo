@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 
     import capo_timestream_influxdb.types.allocated_storage
     import capo_timestream_influxdb.types.arn
+    import capo_timestream_influxdb.types.db_backup_configuration_output_list
     import capo_timestream_influxdb.types.db_cluster_id
     import capo_timestream_influxdb.types.db_instance_id
     import capo_timestream_influxdb.types.db_instance_name
@@ -20,6 +21,7 @@ if TYPE_CHECKING:
     import capo_timestream_influxdb.types.deployment_type
     import capo_timestream_influxdb.types.instance_mode
     import capo_timestream_influxdb.types.instance_mode_list
+    import capo_timestream_influxdb.types.kms_key_id
     import capo_timestream_influxdb.types.log_delivery_configuration
     import capo_timestream_influxdb.types.maintenance_schedule
     import capo_timestream_influxdb.types.network_type
@@ -102,6 +104,12 @@ class UpdateDbInstanceOutput(TypedDict, closed=True):
     """<p>The timestamp of the last completed maintenance operation on the DB instance.</p>"""
     next_maintenance_time: NotRequired["datetime.datetime"]
     """<p>The timestamp of the next scheduled maintenance operation on the DB instance.</p>"""
+    db_backup_configurations: NotRequired[
+        "capo_timestream_influxdb.types.db_backup_configuration_output_list.DbBackupConfigurationOutputList"
+    ]
+    """<p>The backup configurations for the DB instance.</p>"""
+    kms_key_id: NotRequired["capo_timestream_influxdb.types.kms_key_id.KmsKeyId"]
+    """<p>The Amazon Web Services KMS key ARN used for encryption of the DB instance.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -231,6 +239,16 @@ def serialize_aws_json_1_0(value: UpdateDbInstanceOutput) -> dict:
                 value["next_maintenance_time"]
             )
         )
+    if "db_backup_configurations" in value:
+        import capo_timestream_influxdb.types.db_backup_configuration_output_list
+
+        out["dbBackupConfigurations"] = (
+            capo_timestream_influxdb.types.db_backup_configuration_output_list.serialize_aws_json_1_0(
+                value["db_backup_configurations"]
+            )
+        )
+    if "kms_key_id" in value:
+        out["kmsKeyId"] = value["kms_key_id"]
     return out
 
 
@@ -366,4 +384,14 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateDbInstanceOutput:
         out["next_maintenance_time"] = datetime.datetime.fromisoformat(
             data["nextMaintenanceTime"].replace("Z", "+00:00")
         )
+    if data.get("dbBackupConfigurations") is not None:
+        import capo_timestream_influxdb.types.db_backup_configuration_output_list
+
+        out["db_backup_configurations"] = (
+            capo_timestream_influxdb.types.db_backup_configuration_output_list.deserialize_aws_json_1_0(
+                data["dbBackupConfigurations"]
+            )
+        )
+    if data.get("kmsKeyId") is not None:
+        out["kms_key_id"] = data["kmsKeyId"]
     return out

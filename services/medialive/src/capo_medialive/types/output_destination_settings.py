@@ -17,6 +17,8 @@ class OutputDestinationSettings(TypedDict, closed=True):
     """A URL specifying a destination"""
     username: NotRequired["capo_medialive.types.__string.__string"]
     """username for destination"""
+    virtual_source_address: NotRequired["capo_medialive.types.__string.__string"]
+    """Specifies the source IP address for outbound multicast packets."""
 
 
 # --- restJson1 ser/de ---
@@ -30,6 +32,8 @@ def serialize_json(value: OutputDestinationSettings) -> dict:
         out["url"] = value["url"]
     if "username" in value:
         out["username"] = value["username"]
+    if "virtual_source_address" in value:
+        out["virtualSourceAddress"] = value["virtual_source_address"]
     return out
 
 
@@ -43,4 +47,6 @@ def deserialize_json(data: dict) -> OutputDestinationSettings:
         out["url"] = data["url"]
     if data.get("username") is not None:
         out["username"] = data["username"]
+    if data.get("virtualSourceAddress") is not None:
+        out["virtual_source_address"] = data["virtualSourceAddress"]
     return out

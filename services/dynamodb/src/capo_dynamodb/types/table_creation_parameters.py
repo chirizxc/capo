@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     import capo_dynamodb.types.provisioned_throughput
     import capo_dynamodb.types.sse_specification
     import capo_dynamodb.types.table_name
+    import capo_dynamodb.types.vector_index_list
 
 
 class TableCreationParameters(TypedDict, closed=True):
@@ -41,6 +42,8 @@ class TableCreationParameters(TypedDict, closed=True):
         "capo_dynamodb.types.global_secondary_index_list.GlobalSecondaryIndexList"
     ]
     """<p> The Global Secondary Indexes (GSI) of the table to be created as part of the import operation. </p>"""
+    vector_indexes: NotRequired["capo_dynamodb.types.vector_index_list.VectorIndexList"]
+    """<p>The vector indexes of the table to be created as part of the import operation.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -95,6 +98,14 @@ def serialize_aws_json_1_0(value: TableCreationParameters) -> dict:
         out["GlobalSecondaryIndexes"] = (
             capo_dynamodb.types.global_secondary_index_list.serialize_aws_json_1_0(
                 value["global_secondary_indexes"]
+            )
+        )
+    if "vector_indexes" in value:
+        import capo_dynamodb.types.vector_index_list
+
+        out["VectorIndexes"] = (
+            capo_dynamodb.types.vector_index_list.serialize_aws_json_1_0(
+                value["vector_indexes"]
             )
         )
     return out
@@ -162,6 +173,14 @@ def deserialize_aws_json_1_0(data: dict) -> TableCreationParameters:
         out["global_secondary_indexes"] = (
             capo_dynamodb.types.global_secondary_index_list.deserialize_aws_json_1_0(
                 data["GlobalSecondaryIndexes"]
+            )
+        )
+    if data.get("VectorIndexes") is not None:
+        import capo_dynamodb.types.vector_index_list
+
+        out["vector_indexes"] = (
+            capo_dynamodb.types.vector_index_list.deserialize_aws_json_1_0(
+                data["VectorIndexes"]
             )
         )
     return out

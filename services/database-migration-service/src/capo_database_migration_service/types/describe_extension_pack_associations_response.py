@@ -15,7 +15,7 @@ class DescribeExtensionPackAssociationsResponse(TypedDict, closed=True):
     requests: NotRequired[
         "capo_database_migration_service.types.schema_conversion_request_list.SchemaConversionRequestList"
     ]
-    """<p>A paginated list of extension pack associations for the specified migration project.</p>"""
+    """<p>A paginated list of extension pack installation requests.</p> <note> <p>DMS never populates the <code>ExportSqlDetails</code> field for this operation.</p> </note>"""
 
 
 # --- awsJson1_1 ser/de ---

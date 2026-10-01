@@ -12,7 +12,7 @@ class FilterExpression(TypedDict, closed=True):
     dimensions: NotRequired[
         "capo_sustainability.types.dimension_list_map.DimensionListMap"
     ]
-    """<p>Filters emission values by specific dimension values.</p>"""
+    """<p>Filters environmental impact values by specific dimension values.</p>"""
 
 
 # --- restJson1 ser/de ---

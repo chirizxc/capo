@@ -13,6 +13,7 @@ from capo_ecs._services._pipeline import (
 
 if TYPE_CHECKING:
     import capo_ecs.types.boolean
+    import capo_ecs.types.boxed_boolean
     import capo_ecs.types.boxed_integer
     import capo_ecs.types.create_daemon_request
     import capo_ecs.types.create_daemon_response
@@ -59,6 +60,7 @@ class DaemonResource:
         enable_ecs_managed_tags: Optional["capo_ecs.types.boolean.Boolean"] = None,
         enable_execute_command: Optional["capo_ecs.types.boolean.Boolean"] = None,
         client_token: Optional["capo_ecs.types.string.String"] = None,
+        critical: Optional["capo_ecs.types.boxed_boolean.BoxedBoolean"] = None,
     ) -> "capo_ecs.types.create_daemon_response.CreateDaemonResponse":
         r"""<p>Creates a new daemon in the specified cluster and capacity providers. A daemon deploys cross-cutting software agents such as security monitoring, telemetry, and logging independently across your Amazon ECS infrastructure.</p> <p>Amazon ECS deploys exactly one daemon task on each container instance of the specified capacity providers. When a container instance registers with the cluster, Amazon ECS automatically starts daemon tasks. Amazon ECS starts a daemon task before scheduling other tasks.</p> <p>Daemons are essential for instance health - if a daemon task stops, Amazon ECS automatically drains and replaces that container instance.</p> <note> <p>ECS Managed Daemons is only supported for Amazon ECS Managed Instances Capacity Providers.</p> </note>
 
@@ -73,6 +75,7 @@ class DaemonResource:
             enable_ecs_managed_tags: <p>Specifies whether to turn on Amazon ECS managed tags for the tasks in the daemon. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html\">Tagging your Amazon ECS resources</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p>
             enable_execute_command: <p>Determines whether the execute command functionality is turned on for the daemon. If <code>true</code>, the execute command functionality is turned on for all tasks in the daemon.</p>
             client_token: <p>An identifier that you provide to ensure the idempotency of the request. It must be unique and is case sensitive. Up to 36 ASCII characters in the range of 33-126 (inclusive) are allowed.</p>
+            critical: <p>If the <code>critical</code> parameter of a daemon is <code>true</code>, and the daemon task fails, stops, or becomes unhealthy, Amazon ECS drains the container instance and stops the other tasks running on it. If the <code>critical</code> parameter is <code>false</code>, the daemon task failure doesn't affect the other tasks on the instance. The default value is <code>true</code>.</p> <p>A non-critical daemon doesn't block instance registration. The container instance becomes active and continues to run your other tasks, whether the daemon task fails during scale-out or during a deployment.</p> <p>Amazon ECS emits an EventBridge event when a daemon task fails to start, for both critical and non-critical daemons.</p> <p>Daemon task launch failures during a deployment are still counted by the deployment circuit breaker. The circuit breaker can roll back an unstable target revision.</p>
 
         Raises:
             capo_ecs.errors.access_denied_exception.AccessDeniedException: <p>You don't have authorization to perform the requested action.</p>
@@ -125,6 +128,8 @@ class DaemonResource:
             input_["enable_execute_command"] = enable_execute_command
         if client_token is not None:
             input_["client_token"] = client_token
+        if critical is not None:
+            input_["critical"] = critical
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -402,6 +407,7 @@ class DaemonResource:
         ] = None,
         enable_ecs_managed_tags: Optional["capo_ecs.types.boolean.Boolean"] = None,
         enable_execute_command: Optional["capo_ecs.types.boolean.Boolean"] = None,
+        critical: Optional["capo_ecs.types.boxed_boolean.BoxedBoolean"] = None,
     ) -> "capo_ecs.types.update_daemon_response.UpdateDaemonResponse":
         r"""<p>Updates the specified daemon. When you update a daemon, a new deployment is triggered that progressively rolls out the changes to the container instances associated with the daemon's capacity providers. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/daemon-deployments.html\">Daemon deployments</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p> <p>Amazon ECS drains existing container instances and provisions new instances with the updated daemon. Amazon ECS automatically launches replacement tasks for your services.</p> <important> <p>Updating a daemon triggers a rolling deployment that drains and replaces container instances. Plan updates during maintenance windows to minimize impact on running services.</p> </important> <note> <p>ECS Managed Daemons is only supported for Amazon ECS Managed Instances Capacity Providers.</p> </note>
 
@@ -413,6 +419,7 @@ class DaemonResource:
             propagate_tags: <p>Specifies whether to propagate the tags from the daemon to the daemon tasks. If you don't specify a value, the tags aren't propagated. You can only propagate tags to daemon tasks during task creation.</p>
             enable_ecs_managed_tags: <p>Specifies whether to turn on Amazon ECS managed tags for the tasks in the daemon. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html\">Tagging your Amazon ECS resources</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p>
             enable_execute_command: <p>If <code>true</code>, the execute command functionality is turned on for all tasks in the daemon. If <code>false</code>, the execute command functionality is turned off.</p>
+            critical: <p>If the <code>critical</code> parameter of a daemon is <code>true</code>, and the daemon task fails, stops, or becomes unhealthy, Amazon ECS drains the container instance and stops the other tasks running on it. If the <code>critical</code> parameter is <code>false</code>, the daemon task failure doesn't affect the other tasks on the instance. The default value is <code>true</code>.</p> <p>A non-critical daemon doesn't block instance registration. The container instance becomes active and continues to run your other tasks, whether the daemon task fails during scale-out or during a deployment.</p> <p>Amazon ECS emits an EventBridge event when a daemon task fails to start, for both critical and non-critical daemons.</p> <p>Daemon task launch failures during a deployment are still counted by the deployment circuit breaker. The circuit breaker can roll back an unstable target revision.</p>
 
         Raises:
             capo_ecs.errors.access_denied_exception.AccessDeniedException: <p>You don't have authorization to perform the requested action.</p>
@@ -461,6 +468,8 @@ class DaemonResource:
             input_["enable_ecs_managed_tags"] = enable_ecs_managed_tags
         if enable_execute_command is not None:
             input_["enable_execute_command"] = enable_execute_command
+        if critical is not None:
+            input_["critical"] = critical
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -493,6 +502,7 @@ class AsyncDaemonResource:
         enable_ecs_managed_tags: Optional["capo_ecs.types.boolean.Boolean"] = None,
         enable_execute_command: Optional["capo_ecs.types.boolean.Boolean"] = None,
         client_token: Optional["capo_ecs.types.string.String"] = None,
+        critical: Optional["capo_ecs.types.boxed_boolean.BoxedBoolean"] = None,
     ) -> "capo_ecs.types.create_daemon_response.CreateDaemonResponse":
         r"""<p>Creates a new daemon in the specified cluster and capacity providers. A daemon deploys cross-cutting software agents such as security monitoring, telemetry, and logging independently across your Amazon ECS infrastructure.</p> <p>Amazon ECS deploys exactly one daemon task on each container instance of the specified capacity providers. When a container instance registers with the cluster, Amazon ECS automatically starts daemon tasks. Amazon ECS starts a daemon task before scheduling other tasks.</p> <p>Daemons are essential for instance health - if a daemon task stops, Amazon ECS automatically drains and replaces that container instance.</p> <note> <p>ECS Managed Daemons is only supported for Amazon ECS Managed Instances Capacity Providers.</p> </note>
 
@@ -507,6 +517,7 @@ class AsyncDaemonResource:
             enable_ecs_managed_tags: <p>Specifies whether to turn on Amazon ECS managed tags for the tasks in the daemon. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html\">Tagging your Amazon ECS resources</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p>
             enable_execute_command: <p>Determines whether the execute command functionality is turned on for the daemon. If <code>true</code>, the execute command functionality is turned on for all tasks in the daemon.</p>
             client_token: <p>An identifier that you provide to ensure the idempotency of the request. It must be unique and is case sensitive. Up to 36 ASCII characters in the range of 33-126 (inclusive) are allowed.</p>
+            critical: <p>If the <code>critical</code> parameter of a daemon is <code>true</code>, and the daemon task fails, stops, or becomes unhealthy, Amazon ECS drains the container instance and stops the other tasks running on it. If the <code>critical</code> parameter is <code>false</code>, the daemon task failure doesn't affect the other tasks on the instance. The default value is <code>true</code>.</p> <p>A non-critical daemon doesn't block instance registration. The container instance becomes active and continues to run your other tasks, whether the daemon task fails during scale-out or during a deployment.</p> <p>Amazon ECS emits an EventBridge event when a daemon task fails to start, for both critical and non-critical daemons.</p> <p>Daemon task launch failures during a deployment are still counted by the deployment circuit breaker. The circuit breaker can roll back an unstable target revision.</p>
 
         Raises:
             capo_ecs.errors.access_denied_exception.AccessDeniedException: <p>You don't have authorization to perform the requested action.</p>
@@ -560,6 +571,8 @@ class AsyncDaemonResource:
             input_["enable_execute_command"] = enable_execute_command
         if client_token is not None:
             input_["client_token"] = client_token
+        if critical is not None:
+            input_["critical"] = critical
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -841,6 +854,7 @@ class AsyncDaemonResource:
         ] = None,
         enable_ecs_managed_tags: Optional["capo_ecs.types.boolean.Boolean"] = None,
         enable_execute_command: Optional["capo_ecs.types.boolean.Boolean"] = None,
+        critical: Optional["capo_ecs.types.boxed_boolean.BoxedBoolean"] = None,
     ) -> "capo_ecs.types.update_daemon_response.UpdateDaemonResponse":
         r"""<p>Updates the specified daemon. When you update a daemon, a new deployment is triggered that progressively rolls out the changes to the container instances associated with the daemon's capacity providers. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/daemon-deployments.html\">Daemon deployments</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p> <p>Amazon ECS drains existing container instances and provisions new instances with the updated daemon. Amazon ECS automatically launches replacement tasks for your services.</p> <important> <p>Updating a daemon triggers a rolling deployment that drains and replaces container instances. Plan updates during maintenance windows to minimize impact on running services.</p> </important> <note> <p>ECS Managed Daemons is only supported for Amazon ECS Managed Instances Capacity Providers.</p> </note>
 
@@ -852,6 +866,7 @@ class AsyncDaemonResource:
             propagate_tags: <p>Specifies whether to propagate the tags from the daemon to the daemon tasks. If you don't specify a value, the tags aren't propagated. You can only propagate tags to daemon tasks during task creation.</p>
             enable_ecs_managed_tags: <p>Specifies whether to turn on Amazon ECS managed tags for the tasks in the daemon. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html\">Tagging your Amazon ECS resources</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p>
             enable_execute_command: <p>If <code>true</code>, the execute command functionality is turned on for all tasks in the daemon. If <code>false</code>, the execute command functionality is turned off.</p>
+            critical: <p>If the <code>critical</code> parameter of a daemon is <code>true</code>, and the daemon task fails, stops, or becomes unhealthy, Amazon ECS drains the container instance and stops the other tasks running on it. If the <code>critical</code> parameter is <code>false</code>, the daemon task failure doesn't affect the other tasks on the instance. The default value is <code>true</code>.</p> <p>A non-critical daemon doesn't block instance registration. The container instance becomes active and continues to run your other tasks, whether the daemon task fails during scale-out or during a deployment.</p> <p>Amazon ECS emits an EventBridge event when a daemon task fails to start, for both critical and non-critical daemons.</p> <p>Daemon task launch failures during a deployment are still counted by the deployment circuit breaker. The circuit breaker can roll back an unstable target revision.</p>
 
         Raises:
             capo_ecs.errors.access_denied_exception.AccessDeniedException: <p>You don't have authorization to perform the requested action.</p>
@@ -901,6 +916,8 @@ class AsyncDaemonResource:
             input_["enable_ecs_managed_tags"] = enable_ecs_managed_tags
         if enable_execute_command is not None:
             input_["enable_execute_command"] = enable_execute_command
+        if critical is not None:
+            input_["critical"] = critical
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

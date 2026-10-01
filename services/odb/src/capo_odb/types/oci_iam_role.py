@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_odb.types.oci_aws_integration
+    import capo_odb.types.oci_iam_role_status
     import capo_odb.types.role_arn
 
 
@@ -14,6 +15,10 @@ class OciIamRole(TypedDict, closed=True):
     """<p>The Amazon Resource Name (ARN) of the Amazon Web Services Identity and Access Management (IAM) service role.</p>"""
     aws_integration: NotRequired["capo_odb.types.oci_aws_integration.OciAwsIntegration"]
     """<p>The Amazon Web Services integration configuration settings for the Amazon Web Services Identity and Access Management (IAM) service role.</p>"""
+    status: NotRequired["capo_odb.types.oci_iam_role_status.OciIamRoleStatus"]
+    """<p>The current lifecycle status of the IAM service role.</p>"""
+    status_reason: NotRequired["str"]
+    """<p>Additional information about the current status of the IAM service role, if applicable.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -29,6 +34,14 @@ def serialize_aws_json_1_0(value: OciIamRole) -> dict:
                 value["aws_integration"]
             )
         )
+    if "status" in value:
+        import capo_odb.types.oci_iam_role_status
+
+        out["status"] = capo_odb.types.oci_iam_role_status.serialize_aws_json_1_0(
+            value["status"]
+        )
+    if "status_reason" in value:
+        out["statusReason"] = value["status_reason"]
     return out
 
 
@@ -44,4 +57,12 @@ def deserialize_aws_json_1_0(data: dict) -> OciIamRole:
                 data["awsIntegration"]
             )
         )
+    if data.get("status") is not None:
+        import capo_odb.types.oci_iam_role_status
+
+        out["status"] = capo_odb.types.oci_iam_role_status.deserialize_aws_json_1_0(
+            data["status"]
+        )
+    if data.get("statusReason") is not None:
+        out["status_reason"] = data["statusReason"]
     return out

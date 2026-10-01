@@ -24,6 +24,7 @@ import capo_devops_agent.errors.validation_exception
 import capo_devops_agent.types.associate_service_input
 import capo_devops_agent.types.associate_service_output
 import capo_devops_agent.types.association
+import capo_devops_agent.types.association_capabilities
 import capo_devops_agent.types.generic_webhook
 import capo_devops_agent.types.service_configuration
 from capo_devops_agent._protocol.errors import parse_error_metadata_json

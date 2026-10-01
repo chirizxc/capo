@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_acm.types.certificate_key_pair_origins
     import capo_acm.types.certificate_statuses
     import capo_acm.types.filters
     import capo_acm.types.max_items
@@ -18,6 +19,10 @@ class ListCertificatesRequest(TypedDict, closed=True):
         "capo_acm.types.certificate_statuses.CertificateStatuses"
     ]
     """<p>Filter the certificate list by status value.</p>"""
+    certificate_key_pair_origins: NotRequired[
+        "capo_acm.types.certificate_key_pair_origins.CertificateKeyPairOrigins"
+    ]
+    """<p>Filter the certificate list by certificate key pair origin. Specify one or more <code>CertificateKeyPairOrigin</code> values. Default filtering returns only certificates with key pair origin of <code>AWS_MANAGED</code> and <code>CUSTOMER_PROVIDED</code>.</p>"""
     includes: NotRequired["capo_acm.types.filters.Filters"]
     """<p>Filter the certificate list. For more information, see the <a>Filters</a> structure.</p>"""
     next_token: NotRequired["capo_acm.types.next_token.NextToken"]
@@ -39,6 +44,14 @@ def serialize_aws_json_1_1(value: ListCertificatesRequest) -> dict:
         out["CertificateStatuses"] = (
             capo_acm.types.certificate_statuses.serialize_aws_json_1_1(
                 value["certificate_statuses"]
+            )
+        )
+    if "certificate_key_pair_origins" in value:
+        import capo_acm.types.certificate_key_pair_origins
+
+        out["CertificateKeyPairOrigins"] = (
+            capo_acm.types.certificate_key_pair_origins.serialize_aws_json_1_1(
+                value["certificate_key_pair_origins"]
             )
         )
     if "includes" in value:
@@ -72,6 +85,14 @@ def deserialize_aws_json_1_1(data: dict) -> ListCertificatesRequest:
         out["certificate_statuses"] = (
             capo_acm.types.certificate_statuses.deserialize_aws_json_1_1(
                 data["CertificateStatuses"]
+            )
+        )
+    if data.get("CertificateKeyPairOrigins") is not None:
+        import capo_acm.types.certificate_key_pair_origins
+
+        out["certificate_key_pair_origins"] = (
+            capo_acm.types.certificate_key_pair_origins.deserialize_aws_json_1_1(
+                data["CertificateKeyPairOrigins"]
             )
         )
     if data.get("Includes") is not None:

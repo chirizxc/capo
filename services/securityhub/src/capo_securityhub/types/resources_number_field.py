@@ -12,6 +12,14 @@ ResourcesNumberField: TypeAlias = Literal[
     "FindingsSummary.Severities.Low",
     "FindingsSummary.Severities.Informational",
     "FindingsSummary.Severities.Unknown",
+    "ResourceInfo.AIDetails.SelfHostedAIModelResourceCount",
+    "ResourceInfo.AIDetails.SelfHostedAIAgentResourceCount",
+    "ResourceInfo.AIDetails.SelfHostedAIModelServingResourceCount",
+    "ResourceInfo.AIDetails.SelfHostedAIExternalEndpointResourceCount",
+    "ResourceInfo.AIDetails.SelfHostedAIDevelopmentResourceCount",
+    "ResourceInfo.AIDetails.SelfHostedAIAgentFrameworkResourceCount",
+    "ResourceInfo.AIDetails.SelfHostedAIAgentToolsAndIdentityResourceCount",
+    "ResourceInfo.AIDetails.SelfHostedTotalAIResourceCount",
 ]
 
 

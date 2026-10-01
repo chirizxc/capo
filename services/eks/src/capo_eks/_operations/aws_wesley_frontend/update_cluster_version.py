@@ -20,6 +20,7 @@ import capo_eks.errors.resource_in_use_exception
 import capo_eks.errors.resource_not_found_exception
 import capo_eks.errors.server_exception
 import capo_eks.errors.throttling_exception
+import capo_eks.types.rollback_config
 import capo_eks.types.update
 import capo_eks.types.update_cluster_version_request
 import capo_eks.types.update_cluster_version_response

@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     import capo_transcribe.types.boolean
     import capo_transcribe.types.clm_language_code
     import capo_transcribe.types.date_time
+    import capo_transcribe.types.encryption_configuration
     import capo_transcribe.types.failure_reason
     import capo_transcribe.types.input_data_config
     import capo_transcribe.types.model_name
@@ -38,6 +39,10 @@ class LanguageModel(TypedDict, closed=True):
         "capo_transcribe.types.input_data_config.InputDataConfig"
     ]
     """<p>The Amazon S3 location of the input files used to train and tune your custom language model, in addition to the data access role ARN (Amazon Resource Name) that has permissions to access these data.</p>"""
+    encryption_configuration: NotRequired[
+        "capo_transcribe.types.encryption_configuration.EncryptionConfiguration"
+    ]
+    """<p>The encryption configuration used for your custom language model.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -91,6 +96,14 @@ def serialize_aws_json_1_1(value: LanguageModel) -> dict:
         out["InputDataConfig"] = (
             capo_transcribe.types.input_data_config.serialize_aws_json_1_1(
                 value["input_data_config"]
+            )
+        )
+    if "encryption_configuration" in value:
+        import capo_transcribe.types.encryption_configuration
+
+        out["EncryptionConfiguration"] = (
+            capo_transcribe.types.encryption_configuration.serialize_aws_json_1_1(
+                value["encryption_configuration"]
             )
         )
     return out
@@ -148,6 +161,14 @@ def deserialize_aws_json_1_1(data: dict) -> LanguageModel:
         out["input_data_config"] = (
             capo_transcribe.types.input_data_config.deserialize_aws_json_1_1(
                 data["InputDataConfig"]
+            )
+        )
+    if data.get("EncryptionConfiguration") is not None:
+        import capo_transcribe.types.encryption_configuration
+
+        out["encryption_configuration"] = (
+            capo_transcribe.types.encryption_configuration.deserialize_aws_json_1_1(
+                data["EncryptionConfiguration"]
             )
         )
     return out

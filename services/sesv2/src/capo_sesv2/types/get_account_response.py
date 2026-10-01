@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     import capo_sesv2.types.account_details
     import capo_sesv2.types.enabled
     import capo_sesv2.types.general_enforcement_status
+    import capo_sesv2.types.pricing_attributes
     import capo_sesv2.types.send_quota
     import capo_sesv2.types.suppression_attributes
     import capo_sesv2.types.vdm_attributes
@@ -34,6 +35,10 @@ class GetAccountResponse(TypedDict, closed=True):
     """<p>An object that defines your account details.</p>"""
     vdm_attributes: NotRequired["capo_sesv2.types.vdm_attributes.VdmAttributes"]
     """<p>The VDM attributes that apply to your Amazon SES account.</p>"""
+    pricing_attributes: NotRequired[
+        "capo_sesv2.types.pricing_attributes.PricingAttributes"
+    ]
+    """<p>The pricing attributes that apply to your Amazon SES account, including the currently active pricing plan and any scheduled change.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -71,6 +76,12 @@ def serialize_json(value: GetAccountResponse) -> dict:
 
         out["VdmAttributes"] = capo_sesv2.types.vdm_attributes.serialize_json(
             value["vdm_attributes"]
+        )
+    if "pricing_attributes" in value:
+        import capo_sesv2.types.pricing_attributes
+
+        out["PricingAttributes"] = capo_sesv2.types.pricing_attributes.serialize_json(
+            value["pricing_attributes"]
         )
     return out
 
@@ -116,5 +127,13 @@ def deserialize_json(data: dict) -> GetAccountResponse:
 
         out["vdm_attributes"] = capo_sesv2.types.vdm_attributes.deserialize_json(
             data["VdmAttributes"]
+        )
+    if data.get("PricingAttributes") is not None:
+        import capo_sesv2.types.pricing_attributes
+
+        out["pricing_attributes"] = (
+            capo_sesv2.types.pricing_attributes.deserialize_json(
+                data["PricingAttributes"]
+            )
         )
     return out

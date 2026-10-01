@@ -29,6 +29,7 @@ from capo_synthetics._services._pipeline import (
 )
 
 if TYPE_CHECKING:
+    import capo_synthetics.types.add_replica_locations
     import capo_synthetics.types.artifact_config_input
     import capo_synthetics.types.associate_resource_request
     import capo_synthetics.types.associate_resource_response
@@ -66,6 +67,7 @@ if TYPE_CHECKING:
     import capo_synthetics.types.get_group_response
     import capo_synthetics.types.group_identifier
     import capo_synthetics.types.group_name
+    import capo_synthetics.types.kms_key_arn
     import capo_synthetics.types.list_associated_groups_request
     import capo_synthetics.types.list_associated_groups_response
     import capo_synthetics.types.list_group_resources_request
@@ -80,6 +82,7 @@ if TYPE_CHECKING:
     import capo_synthetics.types.max_size1024
     import capo_synthetics.types.pagination_token
     import capo_synthetics.types.provisioned_resource_cleanup_setting
+    import capo_synthetics.types.remove_replica_locations
     import capo_synthetics.types.resource_arn
     import capo_synthetics.types.resource_list
     import capo_synthetics.types.role_arn
@@ -281,10 +284,14 @@ class AsyncsyntheticsClient:
         browser_configs: Optional[
             "capo_synthetics.types.browser_configs.BrowserConfigs"
         ] = None,
+        add_replica_locations: Optional[
+            "capo_synthetics.types.add_replica_locations.AddReplicaLocations"
+        ] = None,
         tags: Optional["capo_synthetics.types.tag_map.TagMap"] = None,
         artifact_config: Optional[
             "capo_synthetics.types.artifact_config_input.ArtifactConfigInput"
         ] = None,
+        kms_key_arn: Optional["capo_synthetics.types.kms_key_arn.KmsKeyArn"] = None,
     ) -> "capo_synthetics.types.create_canary_response.CreateCanaryResponse":
         r"""<p>Creates a canary. Canaries are scripts that monitor your endpoints and APIs from the outside-in. Canaries help you check the availability and latency of your web services and troubleshoot anomalies by investigating load time data, screenshots of the UI, logs, and metrics. You can set up a canary to run continuously or just once. </p> <p>Do not use <code>CreateCanary</code> to modify an existing canary. Use <a href=\"https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_UpdateCanary.html\">UpdateCanary</a> instead.</p> <p>To create canaries, you must have the <code>CloudWatchSyntheticsFullAccess</code> policy. If you are creating a new IAM role for the canary, you also need the <code>iam:CreateRole</code>, <code>iam:CreatePolicy</code> and <code>iam:AttachRolePolicy</code> permissions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Roles\">Necessary Roles and Permissions</a>.</p> <p>Do not include secrets or proprietary information in your canary names. The canary name makes up part of the Amazon Resource Name (ARN) for the canary, and the ARN is included in outbound calls over the internet. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/servicelens_canaries_security.html\">Security Considerations for Synthetics Canaries</a>.</p>
 
@@ -302,8 +309,10 @@ class AsyncsyntheticsClient:
             resources_to_replicate_tags: <p>To have the tags that you apply to this canary also be applied to the Lambda function that the canary uses, specify this parameter with the value <code>lambda-function</code>.</p> <p>If you specify this parameter and don't specify any tags in the <code>Tags</code> parameter, the canary creation fails.</p>
             provisioned_resource_cleanup: <p>Specifies whether to also delete the Lambda functions and layers used by this canary when the canary is deleted. If you omit this parameter, the default of <code>AUTOMATIC</code> is used, which means that the Lambda functions and layers will be deleted when the canary is deleted.</p> <p>If the value of this parameter is <code>OFF</code>, then the value of the <code>DeleteLambda</code> parameter of the <a href=\"https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_DeleteCanary.html\">DeleteCanary</a> operation determines whether the Lambda functions and layers will be deleted.</p>
             browser_configs: <p>CloudWatch Synthetics now supports multibrowser canaries for <code>syn-nodejs-puppeteer-11.0</code> and <code>syn-nodejs-playwright-3.0</code> runtimes. This feature allows you to run your canaries on both Firefox and Chrome browsers. To create a multibrowser canary, you need to specify the BrowserConfigs with a list of browsers you want to use.</p> <note> <p>If not specified, <code>browserConfigs</code> defaults to Chrome.</p> </note>
+            add_replica_locations: <p>A list of locations (Amazon Web Services Regions) to add as replicas for the canary. Each location specifies a Region and optional VPC configuration for the replica. You can add up to 50 replica locations.</p>
             tags: <p>A list of key-value pairs to associate with the canary. You can associate as many as 50 tags with a canary.</p> <p>Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only the resources that have certain tag values.</p> <p>To have the tags that you apply to this canary also be applied to the Lambda function that the canary uses, specify this parameter with the value <code>lambda-function</code>.</p>
             artifact_config: <p>A structure that contains the configuration for canary artifacts, including the encryption-at-rest settings for artifacts that the canary uploads to Amazon S3.</p>
+            kms_key_arn: <p>The Amazon Resource Name (ARN) of the customer-managed AWS Key Management Service (AWS KMS) key used to encrypt the canary's AWS Lambda function environment variables at rest. If you don't specify a value, the service uses an AWS-managed key.</p>
 
         Raises:
             capo_synthetics.errors.internal_server_exception.InternalServerException: <p>An unknown internal error occurred.</p>
@@ -354,10 +363,14 @@ class AsyncsyntheticsClient:
             input_["provisioned_resource_cleanup"] = provisioned_resource_cleanup
         if browser_configs is not None:
             input_["browser_configs"] = browser_configs
+        if add_replica_locations is not None:
+            input_["add_replica_locations"] = add_replica_locations
         if tags is not None:
             input_["tags"] = tags
         if artifact_config is not None:
             input_["artifact_config"] = artifact_config
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1635,6 +1648,13 @@ class AsyncsyntheticsClient:
         browser_configs: Optional[
             "capo_synthetics.types.browser_configs.BrowserConfigs"
         ] = None,
+        add_replica_locations: Optional[
+            "capo_synthetics.types.add_replica_locations.AddReplicaLocations"
+        ] = None,
+        remove_replica_locations: Optional[
+            "capo_synthetics.types.remove_replica_locations.RemoveReplicaLocations"
+        ] = None,
+        kms_key_arn: Optional["capo_synthetics.types.kms_key_arn.KmsKeyArn"] = None,
     ) -> "capo_synthetics.types.update_canary_response.UpdateCanaryResponse":
         r"""<p>Updates the configuration of a canary that has already been created.</p> <p>For multibrowser canaries, you can add or remove browsers by updating the browserConfig list in the update call. For example:</p> <ul> <li> <p>To add Firefox to a canary that currently uses Chrome, specify browserConfigs as [CHROME, FIREFOX]</p> </li> <li> <p>To remove Firefox and keep only Chrome, specify browserConfigs as [CHROME]</p> </li> </ul> <p>You can't use this operation to update the tags of an existing canary. To change the tags of an existing canary, use <a href=\"https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_TagResource.html\">TagResource</a>.</p> <note> <p>When you use the <code>dryRunId</code> field when updating a canary, the only other field you can provide is the <code>Schedule</code>. Adding any other field will thrown an exception.</p> </note>
 
@@ -1655,6 +1675,9 @@ class AsyncsyntheticsClient:
             dry_run_id: <p>Update the existing canary using the updated configurations from the DryRun associated with the DryRunId.</p> <note> <p>When you use the <code>dryRunId</code> field when updating a canary, the only other field you can provide is the <code>Schedule</code>. Adding any other field will thrown an exception.</p> </note>
             visual_references: <p>A list of visual reference configurations for the canary, one for each browser type that the canary is configured to run on. Visual references are used for visual monitoring comparisons.</p> <p> <code>syn-nodejs-puppeteer-11.0</code> and above, and <code>syn-nodejs-playwright-3.0</code> and above, only supports <code>visualReferences</code>. <code>visualReference</code> field is not supported.</p> <p>Versions older than <code>syn-nodejs-puppeteer-11.0</code> supports both <code>visualReference</code> and <code>visualReferences</code> for backward compatibility. It is recommended to use <code>visualReferences</code> for consistency and future compatibility.</p> <p>For multibrowser visual monitoring, you can update the baseline for all configured browsers in a single update call by specifying a list of VisualReference objects, one per browser. Each VisualReference object maps to a specific browser configuration, allowing you to manage visual baselines for multiple browsers simultaneously.</p> <p>For single configuration canaries using Chrome browser (default browser), use visualReferences for <code>syn-nodejs-puppeteer-11.0</code> and above, and <code>syn-nodejs-playwright-3.0</code> and above canaries. The browserType in the visualReference object is not mandatory.</p>
             browser_configs: <p>A structure that specifies the browser type to use for a canary run. CloudWatch Synthetics supports running canaries on both <code>CHROME</code> and <code>FIREFOX</code> browsers.</p> <note> <p>If not specified, <code>browserConfigs</code> defaults to Chrome.</p> </note>
+            add_replica_locations: <p>A list of locations (Amazon Web Services Regions) to add as replicas for the canary. Each location specifies a Region and optional VPC configuration for the replica. You can add up to 50 replica locations.</p>
+            remove_replica_locations: <p>A list of locations (Amazon Web Services Regions) to remove as replicas for the canary. You must specify at least one location to remove. All replicas can be removed in a single API call and you cannot remove the primary location.</p>
+            kms_key_arn: <p>The Amazon Resource Name (ARN) of the customer-managed AWS Key Management Service (AWS KMS) key used to encrypt the canary's AWS Lambda function environment variables at rest. If you don't specify a value, the service uses an AWS-managed key. If you omit this parameter, the service retains the existing value. To revert to the AWS-managed key, set this parameter to an empty string.</p>
 
         Raises:
             capo_synthetics.errors.access_denied_exception.AccessDeniedException: <p>You don't have permission to perform this operation on this resource.</p>
@@ -1719,6 +1742,12 @@ class AsyncsyntheticsClient:
             input_["visual_references"] = visual_references
         if browser_configs is not None:
             input_["browser_configs"] = browser_configs
+        if add_replica_locations is not None:
+            input_["add_replica_locations"] = add_replica_locations
+        if remove_replica_locations is not None:
+            input_["remove_replica_locations"] = remove_replica_locations
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

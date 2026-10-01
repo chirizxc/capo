@@ -1,0 +1,44 @@
+"""Generated from Smithy shape ``com.amazonaws.quicksight#ProviderConfig``."""
+
+from typing import TYPE_CHECKING, TypeAlias
+
+from typing_extensions import TypedDict
+
+from capo_quicksight.errors import DeserializationError, SerializationError
+
+if TYPE_CHECKING:
+    import capo_quicksight.types.microsoft_purview_provider_config
+
+
+class _ProviderConfig_MicrosoftPurview(TypedDict, closed=True):
+    MicrosoftPurview: "capo_quicksight.types.microsoft_purview_provider_config.MicrosoftPurviewProviderConfig"
+
+
+ProviderConfig: TypeAlias = _ProviderConfig_MicrosoftPurview
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: ProviderConfig) -> dict:
+    if "MicrosoftPurview" in value:
+        import capo_quicksight.types.microsoft_purview_provider_config
+
+        return {
+            "MicrosoftPurview": capo_quicksight.types.microsoft_purview_provider_config.serialize_json(
+                value["MicrosoftPurview"]
+            )
+        }
+    else:
+        raise SerializationError("ProviderConfig: no variant present")
+
+
+def deserialize_json(data: dict) -> ProviderConfig:
+    if data.get("MicrosoftPurview") is not None:
+        import capo_quicksight.types.microsoft_purview_provider_config
+
+        return {
+            "MicrosoftPurview": capo_quicksight.types.microsoft_purview_provider_config.deserialize_json(
+                data["MicrosoftPurview"]
+            )
+        }
+    else:
+        raise DeserializationError("ProviderConfig: no recognized variant key")

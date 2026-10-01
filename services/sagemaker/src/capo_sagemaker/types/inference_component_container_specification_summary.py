@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_sagemaker.types.container_metrics_config
     import capo_sagemaker.types.deployed_image
     import capo_sagemaker.types.environment_map
     import capo_sagemaker.types.url
@@ -16,6 +17,10 @@ class InferenceComponentContainerSpecificationSummary(TypedDict, closed=True):
     """<p>The Amazon S3 path where the model artifacts are stored.</p>"""
     environment: NotRequired["capo_sagemaker.types.environment_map.EnvironmentMap"]
     """<p>The environment variables to set in the Docker container.</p>"""
+    container_metrics_config: NotRequired[
+        "capo_sagemaker.types.container_metrics_config.ContainerMetricsConfig"
+    ]
+    """<p>The container metrics scraping configuration for this inference component, including the metrics endpoint path and publishing frequency.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -41,6 +46,14 @@ def serialize_aws_json_1_1(
                 value["environment"]
             )
         )
+    if "container_metrics_config" in value:
+        import capo_sagemaker.types.container_metrics_config
+
+        out["ContainerMetricsConfig"] = (
+            capo_sagemaker.types.container_metrics_config.serialize_aws_json_1_1(
+                value["container_metrics_config"]
+            )
+        )
     return out
 
 
@@ -64,6 +77,14 @@ def deserialize_aws_json_1_1(
         out["environment"] = (
             capo_sagemaker.types.environment_map.deserialize_aws_json_1_1(
                 data["Environment"]
+            )
+        )
+    if data.get("ContainerMetricsConfig") is not None:
+        import capo_sagemaker.types.container_metrics_config
+
+        out["container_metrics_config"] = (
+            capo_sagemaker.types.container_metrics_config.deserialize_aws_json_1_1(
+                data["ContainerMetricsConfig"]
             )
         )
     return out

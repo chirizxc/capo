@@ -20,7 +20,7 @@ class StartRunBatchRequest(TypedDict, closed=True):
     request_id: "capo_omics.types.batch_request_id.BatchRequestId"
     """<p>A client token used to deduplicate retry requests and prevent duplicate batches from being created.</p>"""
     tags: NotRequired["capo_omics.types.tag_map.TagMap"]
-    """<p>AWS tags to associate with the batch resource. These tags are not inherited by individual runs. To tag individual runs, use <code>defaultRunSetting.runTags</code>.</p>"""
+    """<p>Amazon Web Services tags to associate with the batch resource. These tags are not inherited by individual runs. To tag individual runs, use <code>defaultRunSetting.runTags</code>.</p>"""
     default_run_setting: "capo_omics.types.default_run_setting.DefaultRunSetting"
     """<p>Shared configuration applied to all runs in the batch. See <code>DefaultRunSetting</code>.</p>"""
     batch_run_settings: "capo_omics.types.batch_run_settings.BatchRunSettings"

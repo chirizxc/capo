@@ -19,25 +19,25 @@ if TYPE_CHECKING:
 
 class GetEstimatedCarbonEmissionsRequest(TypedDict, closed=True):
     time_period: "capo_sustainability.types.time_period.TimePeriod"
-    """<p>The date range for fetching estimated carbon emissions.</p>"""
+    """<p> The date range for fetching estimated carbon emissions. The range must include the start date of a month for that month's data to be included in the response. </p>"""
     group_by: NotRequired["capo_sustainability.types.dimension_list.DimensionList"]
     """<p>The dimensions available for grouping estimated carbon emissions.</p>"""
     filter_by: NotRequired[
         "capo_sustainability.types.filter_expression.FilterExpression"
     ]
-    """<p>The criteria for filtering estimated carbon emissions.</p>"""
+    """<p> The criteria for filtering estimated carbon emissions. To determine which dimensions are available to be filtered by, you can first call <a>GetEstimatedCarbonEmissionsDimensionValues</a> </p>"""
     emissions_types: NotRequired[
         "capo_sustainability.types.emissions_type_list.EmissionsTypeList"
     ]
     """<p>The emission types to include in the results. If absent, returns <code>TOTAL_LBM_CARBON_EMISSIONS</code> and <code>TOTAL_MBM_CARBON_EMISSIONS</code> emissions types. </p>"""
     granularity: "capo_sustainability.types.time_granularity.TimeGranularity"
-    """<p>The time granularity for the results. If absent, uses <code>MONTHLY</code> time granularity.</p>"""
+    """<p> The time granularity for the results. If absent, uses <code>MONTHLY</code> time granularity. The smallest supported granularity for carbon emissions is <code>MONTHLY</code>. </p> <p> If requesting partial time periods, data will be returned based on the smallest supported granularity. For example, requesting <code>2025-04-01T00:00:00Z</code> to <code>2026-04-01T00:00:00Z</code> with <code>YEARLY_CALENDAR</code> granularity will return the last 9 months for 2025 and the first 3 months of 2026. </p>"""
     granularity_configuration: NotRequired[
         "capo_sustainability.types.granularity_configuration.GranularityConfiguration"
     ]
     """<p>Configuration for fiscal year calculations when using <code>YEARLY_FISCAL</code> or <code>QUARTERLY_FISCAL</code> granularity. </p>"""
     max_results: "capo_sustainability.types.max_results.MaxResults"
-    """<p>The maximum number of results to return in a single call. Default is 40.</p>"""
+    """<p>The maximum number of results to return in a single call. Default is 1000.</p>"""
     next_token: NotRequired["capo_sustainability.types.next_token.NextToken"]
     """<p>The pagination token specifying which page of results to return in the response. If no token is provided, the default page is the first page. </p>"""
 

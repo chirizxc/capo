@@ -22,6 +22,9 @@ from ._base import (
     WaiterTimeoutError as WaiterTimeoutError,
 )
 from .access_denied_exception import AccessDeniedException as AccessDeniedException
+from .dry_run_operation_exception import (
+    DryRunOperationException as DryRunOperationException,
+)
 from .expired_iterator_exception import (
     ExpiredIteratorException as ExpiredIteratorException,
 )

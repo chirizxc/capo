@@ -21,6 +21,7 @@ import capo_cloudwatch_logs.types.execution_status
 import capo_cloudwatch_logs.types.get_scheduled_query_request
 import capo_cloudwatch_logs.types.get_scheduled_query_response
 import capo_cloudwatch_logs.types.query_language
+import capo_cloudwatch_logs.types.schedule_type
 import capo_cloudwatch_logs.types.scheduled_query_log_group_identifiers
 import capo_cloudwatch_logs.types.scheduled_query_state
 from capo_cloudwatch_logs._protocol.errors import parse_error_metadata_json

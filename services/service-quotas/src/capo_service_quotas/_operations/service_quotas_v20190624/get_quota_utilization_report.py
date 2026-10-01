@@ -13,6 +13,7 @@ import capo_service_quotas._auth._sigv4
 import capo_service_quotas._protocol.eventstream
 import capo_service_quotas.errors.access_denied_exception
 import capo_service_quotas.errors.illegal_argument_exception
+import capo_service_quotas.errors.invalid_pagination_token_exception
 import capo_service_quotas.errors.no_such_resource_exception
 import capo_service_quotas.errors.service_exception
 import capo_service_quotas.errors.too_many_requests_exception
@@ -40,6 +41,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "IllegalArgumentException":
             raise capo_service_quotas.errors.illegal_argument_exception.IllegalArgumentException.from_aws_json_1_1(
+                data, message
+            )
+        case "InvalidPaginationTokenException":
+            raise capo_service_quotas.errors.invalid_pagination_token_exception.InvalidPaginationTokenException.from_aws_json_1_1(
                 data, message
             )
         case "NoSuchResourceException":

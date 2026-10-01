@@ -9,8 +9,10 @@ from capo_bedrock_agentcore_control.errors import DeserializationError
 if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.credentials_provider_configurations
     import capo_bedrock_agentcore_control.types.date_timestamp
+    import capo_bedrock_agentcore_control.types.payment_connector_authorization_url
     import capo_bedrock_agentcore_control.types.payment_connector_id
     import capo_bedrock_agentcore_control.types.payment_connector_name
+    import capo_bedrock_agentcore_control.types.payment_connector_provision_mode
     import capo_bedrock_agentcore_control.types.payment_connector_status
     import capo_bedrock_agentcore_control.types.payment_connector_type
     import capo_bedrock_agentcore_control.types.payments_description
@@ -29,6 +31,10 @@ class GetPaymentConnectorResponse(TypedDict, closed=True):
     """<p>The description of the payment connector.</p>"""
     type: "capo_bedrock_agentcore_control.types.payment_connector_type.PaymentConnectorType"
     """<p>The type of the payment connector, which determines the payment provider integration.</p>"""
+    provision_mode: NotRequired[
+        "capo_bedrock_agentcore_control.types.payment_connector_provision_mode.PaymentConnectorProvisionMode"
+    ]
+    """<p>Specifies how the payment connector was provisioned. Payment connectors that were created before this field was available return <code>MANUAL</code>.</p> <ul> <li> <p> <code>MANUAL</code> - You provided the credential provider configurations, so you own the credentials. Rotate them with the payment provider, then call <code>UpdatePaymentCredentialProvider</code>.</p> </li> <li> <p> <code>QUICK_CREATE</code> - AgentCore provisioned the credential provider for you, so the credentials are service-managed. You can rotate them with <code>RotatePaymentConnectorCredentials</code>.</p> </li> </ul>"""
     credential_provider_configurations: "capo_bedrock_agentcore_control.types.credentials_provider_configurations.CredentialsProviderConfigurations"
     """<p>The credential provider configurations for the payment connector.</p>"""
     created_at: "capo_bedrock_agentcore_control.types.date_timestamp.DateTimestamp"
@@ -37,6 +43,14 @@ class GetPaymentConnectorResponse(TypedDict, closed=True):
     """<p>The timestamp when the payment connector was last updated.</p>"""
     status: "capo_bedrock_agentcore_control.types.payment_connector_status.PaymentConnectorStatus"
     """<p>The current status of the payment connector. Possible values include <code>CREATING</code>, <code>READY</code>, <code>UPDATING</code>, <code>DELETING</code>, <code>CREATE_FAILED</code>, <code>UPDATE_FAILED</code>, and <code>DELETE_FAILED</code>.</p>"""
+    authorization_url: NotRequired[
+        "capo_bedrock_agentcore_control.types.payment_connector_authorization_url.PaymentConnectorAuthorizationUrl"
+    ]
+    """<p>The URL that the user must open to complete OAuth consent. This field is only present when the payment connector status is <code>PENDING_AUTHENTICATION</code>.</p>"""
+    credentials_updated_at: NotRequired[
+        "capo_bedrock_agentcore_control.types.date_timestamp.DateTimestamp"
+    ]
+    """<p>The timestamp when the payment connector's current service-managed credentials took effect. It is first set when the credentials are provisioned and is updated by each rotation. This field is present only for payment connectors with a <code>provisionMode</code> of <code>QUICK_CREATE</code>.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -53,6 +67,14 @@ def serialize_json(value: GetPaymentConnectorResponse) -> dict:
             value["type"]
         )
     )
+    if "provision_mode" in value:
+        import capo_bedrock_agentcore_control.types.payment_connector_provision_mode
+
+        out["provisionMode"] = (
+            capo_bedrock_agentcore_control.types.payment_connector_provision_mode.serialize_json(
+                value["provision_mode"]
+            )
+        )
     import capo_bedrock_agentcore_control.types.credentials_provider_configurations
 
     out["credentialProviderConfigurations"] = (
@@ -81,6 +103,16 @@ def serialize_json(value: GetPaymentConnectorResponse) -> dict:
             value["status"]
         )
     )
+    if "authorization_url" in value:
+        out["authorizationUrl"] = value["authorization_url"]
+    if "credentials_updated_at" in value:
+        import capo_bedrock_agentcore_control.types.date_timestamp
+
+        out["credentialsUpdatedAt"] = (
+            capo_bedrock_agentcore_control.types.date_timestamp.serialize_json(
+                value["credentials_updated_at"]
+            )
+        )
     return out
 
 
@@ -108,6 +140,14 @@ def deserialize_json(data: dict) -> GetPaymentConnectorResponse:
         )
     else:
         raise DeserializationError("GetPaymentConnectorResponse.type required")
+    if data.get("provisionMode") is not None:
+        import capo_bedrock_agentcore_control.types.payment_connector_provision_mode
+
+        out["provision_mode"] = (
+            capo_bedrock_agentcore_control.types.payment_connector_provision_mode.deserialize_json(
+                data["provisionMode"]
+            )
+        )
     if data.get("credentialProviderConfigurations") is not None:
         import capo_bedrock_agentcore_control.types.credentials_provider_configurations
 
@@ -152,4 +192,14 @@ def deserialize_json(data: dict) -> GetPaymentConnectorResponse:
         )
     else:
         raise DeserializationError("GetPaymentConnectorResponse.status required")
+    if data.get("authorizationUrl") is not None:
+        out["authorization_url"] = data["authorizationUrl"]
+    if data.get("credentialsUpdatedAt") is not None:
+        import capo_bedrock_agentcore_control.types.date_timestamp
+
+        out["credentials_updated_at"] = (
+            capo_bedrock_agentcore_control.types.date_timestamp.deserialize_json(
+                data["credentialsUpdatedAt"]
+            )
+        )
     return out

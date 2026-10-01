@@ -8,12 +8,13 @@ from capo_sustainability.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_sustainability.types.dimension
+    import capo_sustainability.types.dimension_value
 
 
 class DimensionEntry(TypedDict, closed=True):
     dimension: "capo_sustainability.types.dimension.Dimension"
     """<p>The dimension type that categorizes this entry.</p>"""
-    value: "str"
+    value: "capo_sustainability.types.dimension_value.DimensionValue"
     """<p> The value for the specified dimension. Valid values vary based on the dimension type (e.g., <code>us-east-1</code> for the <code>REGION</code> dimension, <code>AmazonEC2</code> for the <code>SERVICE</code> dimension). </p>"""
 
 

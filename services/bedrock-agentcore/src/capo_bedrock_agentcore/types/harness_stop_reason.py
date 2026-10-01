@@ -17,6 +17,7 @@ HarnessStopReason: TypeAlias = Literal[
     "max_iterations_exceeded",
     "max_output_tokens_exceeded",
     "timeout_exceeded",
+    "hook_stopped",
 ]
 
 

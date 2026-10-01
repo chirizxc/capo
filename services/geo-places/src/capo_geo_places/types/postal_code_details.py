@@ -35,9 +35,17 @@ def serialize_json(value: PostalCodeDetails) -> dict:
     if "postal_code" in value:
         out["PostalCode"] = value["postal_code"]
     if "postal_authority" in value:
-        out["PostalAuthority"] = value["postal_authority"]
+        import capo_geo_places.types.postal_authority
+
+        out["PostalAuthority"] = capo_geo_places.types.postal_authority.serialize_json(
+            value["postal_authority"]
+        )
     if "postal_code_type" in value:
-        out["PostalCodeType"] = value["postal_code_type"]
+        import capo_geo_places.types.postal_code_type
+
+        out["PostalCodeType"] = capo_geo_places.types.postal_code_type.serialize_json(
+            value["postal_code_type"]
+        )
     if "usps_zip" in value:
         import capo_geo_places.types.usps_zip
 
@@ -58,9 +66,21 @@ def deserialize_json(data: dict) -> PostalCodeDetails:
     if data.get("PostalCode") is not None:
         out["postal_code"] = data["PostalCode"]
     if data.get("PostalAuthority") is not None:
-        out["postal_authority"] = data["PostalAuthority"]
+        import capo_geo_places.types.postal_authority
+
+        out["postal_authority"] = (
+            capo_geo_places.types.postal_authority.deserialize_json(
+                data["PostalAuthority"]
+            )
+        )
     if data.get("PostalCodeType") is not None:
-        out["postal_code_type"] = data["PostalCodeType"]
+        import capo_geo_places.types.postal_code_type
+
+        out["postal_code_type"] = (
+            capo_geo_places.types.postal_code_type.deserialize_json(
+                data["PostalCodeType"]
+            )
+        )
     if data.get("UspsZip") is not None:
         import capo_geo_places.types.usps_zip
 

@@ -23,7 +23,7 @@ if TYPE_CHECKING:
 
 class ImportDiskImageRequest(TypedDict, closed=True):
     name: "capo_imagebuilder.types.resource_name.ResourceName"
-    """<p>The name of the image resource that's created from the import.</p>"""
+    """<p>The name of the image resource that's created from the import. Image Builder generates the image ARN from a normalized form of the name, so names that differ only in case, spaces, or underscores count as the same name. If an image with the same name and semantic version already exists in your account in the same Amazon Web Services Region, the import creates a new build version for it.</p>"""
     semantic_version: "capo_imagebuilder.types.version_number.VersionNumber"
     """<p>The semantic version to attach to the image that's created during the import process. This version follows the semantic version syntax.</p>"""
     description: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
@@ -31,19 +31,19 @@ class ImportDiskImageRequest(TypedDict, closed=True):
     platform: "capo_imagebuilder.types.non_empty_string.NonEmptyString"
     """<p>The operating system platform for the imported image. Allowed values include the following: <code>Windows</code>.</p>"""
     os_version: "capo_imagebuilder.types.os_version.OsVersion"
-    """<p>The operating system version for the imported image. Allowed values include the following: <code>Microsoft Windows 11</code>.</p>"""
+    """<p>The operating system version for the imported image. The only supported value is <code>Microsoft Windows 11</code>.</p>"""
     execution_role: NotRequired[
         "capo_imagebuilder.types.role_name_or_arn.RoleNameOrArn"
     ]
-    """<p>The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image Builder access to perform workflow actions to import an image from a Microsoft ISO file.</p>"""
+    """<p>The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image Builder access to perform workflow actions to import an image from a Microsoft ISO file. If you don't provide a role, Image Builder uses the Image Builder service-linked role in your account, and creates it if it doesn't exist.</p>"""
     infrastructure_configuration_arn: "capo_imagebuilder.types.infrastructure_configuration_arn.InfrastructureConfigurationArn"
     """<p>The Amazon Resource Name (ARN) of the infrastructure configuration resource that's used for launching the EC2 instance on which the ISO image is built.</p>"""
     uri: "capo_imagebuilder.types.uri.Uri"
-    """<p>The <code>uri</code> of the ISO disk file that's stored in Amazon S3.</p>"""
+    """<p>The <code>uri</code> of the ISO disk file that's stored in Amazon S3, in <code>s3://bucket/key</code> format. The key must end with the <code>.iso</code>, <code>.ISO</code>, or <code>.Iso</code> extension, and the bucket must be owned by the account that makes the request.</p>"""
     logging_configuration: NotRequired[
         "capo_imagebuilder.types.image_logging_configuration.ImageLoggingConfiguration"
     ]
-    """<p>Define logging configuration for the image build process.</p>"""
+    """<p>The CloudWatch Logs log group where Image Builder sends the import logs. If you specify a log group name outside of the <code>/aws/imagebuilder/</code> namespace, you must also provide an <code>executionRole</code> that has permission to write to that log group.</p>"""
     tags: NotRequired["capo_imagebuilder.types.tag_map.TagMap"]
     """<p>Tags that are attached to image resources created from the import.</p>"""
     register_image_options: NotRequired[
@@ -55,7 +55,7 @@ class ImportDiskImageRequest(TypedDict, closed=True):
     ]
     """<p>Specifies Windows settings for ISO imports.</p>"""
     client_token: "capo_imagebuilder.types.client_token.ClientToken"
-    r"""<p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>"""
+    r"""<p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>"""
 
 
 # --- restJson1 ser/de ---

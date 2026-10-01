@@ -6,6 +6,7 @@ from typing import TYPE_CHECKING, Optional
 
 import capo_omics._auth._signers
 import capo_omics._auth._sigv4
+from capo_omics._body import Body, aclosing_bodies, closing_bodies
 from capo_omics._iter import ensure_async_iterator, ensure_sync_iterator
 from capo_omics._services._pipeline import (
     AsyncOperationRequest,
@@ -152,7 +153,7 @@ class SequenceStoreResource:
             capo_omics.errors.request_timeout_exception.RequestTimeoutException: <p>The request timed out.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -217,7 +218,7 @@ class SequenceStoreResource:
             capo_omics.errors.request_timeout_exception.RequestTimeoutException: <p>The request timed out.</p>
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -286,7 +287,7 @@ class SequenceStoreResource:
             capo_omics.errors.request_timeout_exception.RequestTimeoutException: <p>The request timed out.</p>
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -348,7 +349,7 @@ class SequenceStoreResource:
             capo_omics.errors.request_timeout_exception.RequestTimeoutException: <p>The request timed out.</p>
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -401,7 +402,7 @@ class SequenceStoreResource:
             capo_omics.errors.internal_server_exception.InternalServerException: <p>An unexpected error occurred. Try the request again.</p>
             capo_omics.errors.request_timeout_exception.RequestTimeoutException: <p>The request timed out.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -457,7 +458,7 @@ class SequenceStoreResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -512,7 +513,7 @@ class SequenceStoreResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -586,7 +587,7 @@ class SequenceStoreResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -650,7 +651,7 @@ class SequenceStoreResource:
             capo_omics.errors.request_timeout_exception.RequestTimeoutException: <p>The request timed out.</p>
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -703,7 +704,7 @@ class SequenceStoreResource:
             capo_omics.errors.request_timeout_exception.RequestTimeoutException: <p>The request timed out.</p>
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -756,7 +757,7 @@ class SequenceStoreResource:
             capo_omics.errors.request_timeout_exception.RequestTimeoutException: <p>The request timed out.</p>
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -811,7 +812,7 @@ class SequenceStoreResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -871,7 +872,7 @@ class SequenceStoreResource:
             capo_omics.errors.request_timeout_exception.RequestTimeoutException: <p>The request timed out.</p>
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -933,7 +934,7 @@ class SequenceStoreResource:
             capo_omics.errors.request_timeout_exception.RequestTimeoutException: <p>The request timed out.</p>
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -995,7 +996,7 @@ class SequenceStoreResource:
             capo_omics.errors.request_timeout_exception.RequestTimeoutException: <p>The request timed out.</p>
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1063,7 +1064,7 @@ class SequenceStoreResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1110,7 +1111,7 @@ class SequenceStoreResource:
         config_overrides: Optional[OmicsClientConfig] = None,
         client_token: Optional["capo_omics.types.client_token.ClientToken"] = None,
     ) -> "capo_omics.types.start_read_set_activation_job_response.StartReadSetActivationJobResponse":
-        r"""<p>Activates an archived read set and returns its metadata in a JSON formatted output. AWS HealthOmics automatically archives unused read sets after 30 days. To monitor the status of your read set activation job, use the <code>GetReadSetActivationJob</code> operation.</p> <p>To learn more, see <a href=\"https://docs.aws.amazon.com/omics/latest/dev/activating-read-sets.html\">Activating read sets</a> in the <i>Amazon Web Services HealthOmics User Guide</i>.</p>
+        r"""<p>Activates an archived read set and returns its metadata in a JSON formatted output. Amazon Web Services HealthOmics automatically archives unused read sets after 30 days. To monitor the status of your read set activation job, use the <code>GetReadSetActivationJob</code> operation.</p> <p>To learn more, see <a href=\"https://docs.aws.amazon.com/omics/latest/dev/activating-read-sets.html\">Activating read sets</a> in the <i>Amazon Web Services HealthOmics User Guide</i>.</p>
 
         Args:
             sequence_store_id: <p>The read set's sequence store ID.</p>
@@ -1124,7 +1125,7 @@ class SequenceStoreResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1184,7 +1185,7 @@ class SequenceStoreResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1244,7 +1245,7 @@ class SequenceStoreResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1285,7 +1286,7 @@ class SequenceStoreResource:
         upload_id: "capo_omics.types.upload_id.UploadId",
         part_source: "capo_omics.types.read_set_part_source.ReadSetPartSource",
         part_number: int,
-        payload: Iterator[bytes] | bytes,
+        payload: Body[Iterator[bytes]] | Iterator[bytes] | bytes,
         *,
         config_overrides: Optional[OmicsClientConfig] = None,
     ) -> "capo_omics.types.upload_read_set_part_response.UploadReadSetPartResponse":
@@ -1306,7 +1307,7 @@ class SequenceStoreResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1333,13 +1334,14 @@ class SequenceStoreResource:
             "payload": ensure_sync_iterator(payload),
         }
 
-        response = execute_pipeline(
-            OperationRequest(input=input_, options=options_),
-            handler=_handler,
-            interceptors=list(interceptors_),
-        )
-        response.response.close()
-        return response.output
+        with closing_bodies(input_):
+            response = execute_pipeline(
+                OperationRequest(input=input_, options=options_),
+                handler=_handler,
+                interceptors=list(interceptors_),
+            )
+            response.response.close()
+            return response.output
 
 
 class AsyncSequenceStoreResource:
@@ -1389,7 +1391,7 @@ class AsyncSequenceStoreResource:
             capo_omics.errors.request_timeout_exception.RequestTimeoutException: <p>The request timed out.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1455,7 +1457,7 @@ class AsyncSequenceStoreResource:
             capo_omics.errors.request_timeout_exception.RequestTimeoutException: <p>The request timed out.</p>
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1525,7 +1527,7 @@ class AsyncSequenceStoreResource:
             capo_omics.errors.request_timeout_exception.RequestTimeoutException: <p>The request timed out.</p>
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1588,7 +1590,7 @@ class AsyncSequenceStoreResource:
             capo_omics.errors.request_timeout_exception.RequestTimeoutException: <p>The request timed out.</p>
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1642,7 +1644,7 @@ class AsyncSequenceStoreResource:
             capo_omics.errors.internal_server_exception.InternalServerException: <p>An unexpected error occurred. Try the request again.</p>
             capo_omics.errors.request_timeout_exception.RequestTimeoutException: <p>The request timed out.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1699,7 +1701,7 @@ class AsyncSequenceStoreResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1755,7 +1757,7 @@ class AsyncSequenceStoreResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1830,7 +1832,7 @@ class AsyncSequenceStoreResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1895,7 +1897,7 @@ class AsyncSequenceStoreResource:
             capo_omics.errors.request_timeout_exception.RequestTimeoutException: <p>The request timed out.</p>
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1949,7 +1951,7 @@ class AsyncSequenceStoreResource:
             capo_omics.errors.request_timeout_exception.RequestTimeoutException: <p>The request timed out.</p>
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2003,7 +2005,7 @@ class AsyncSequenceStoreResource:
             capo_omics.errors.request_timeout_exception.RequestTimeoutException: <p>The request timed out.</p>
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2059,7 +2061,7 @@ class AsyncSequenceStoreResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2120,7 +2122,7 @@ class AsyncSequenceStoreResource:
             capo_omics.errors.request_timeout_exception.RequestTimeoutException: <p>The request timed out.</p>
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2183,7 +2185,7 @@ class AsyncSequenceStoreResource:
             capo_omics.errors.request_timeout_exception.RequestTimeoutException: <p>The request timed out.</p>
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2246,7 +2248,7 @@ class AsyncSequenceStoreResource:
             capo_omics.errors.request_timeout_exception.RequestTimeoutException: <p>The request timed out.</p>
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2315,7 +2317,7 @@ class AsyncSequenceStoreResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2363,7 +2365,7 @@ class AsyncSequenceStoreResource:
         config_overrides: Optional[AsyncOmicsClientConfig] = None,
         client_token: Optional["capo_omics.types.client_token.ClientToken"] = None,
     ) -> "capo_omics.types.start_read_set_activation_job_response.StartReadSetActivationJobResponse":
-        r"""<p>Activates an archived read set and returns its metadata in a JSON formatted output. AWS HealthOmics automatically archives unused read sets after 30 days. To monitor the status of your read set activation job, use the <code>GetReadSetActivationJob</code> operation.</p> <p>To learn more, see <a href=\"https://docs.aws.amazon.com/omics/latest/dev/activating-read-sets.html\">Activating read sets</a> in the <i>Amazon Web Services HealthOmics User Guide</i>.</p>
+        r"""<p>Activates an archived read set and returns its metadata in a JSON formatted output. Amazon Web Services HealthOmics automatically archives unused read sets after 30 days. To monitor the status of your read set activation job, use the <code>GetReadSetActivationJob</code> operation.</p> <p>To learn more, see <a href=\"https://docs.aws.amazon.com/omics/latest/dev/activating-read-sets.html\">Activating read sets</a> in the <i>Amazon Web Services HealthOmics User Guide</i>.</p>
 
         Args:
             sequence_store_id: <p>The read set's sequence store ID.</p>
@@ -2377,7 +2379,7 @@ class AsyncSequenceStoreResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2438,7 +2440,7 @@ class AsyncSequenceStoreResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2499,7 +2501,7 @@ class AsyncSequenceStoreResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2541,7 +2543,7 @@ class AsyncSequenceStoreResource:
         upload_id: "capo_omics.types.upload_id.UploadId",
         part_source: "capo_omics.types.read_set_part_source.ReadSetPartSource",
         part_number: int,
-        payload: AsyncIterator[bytes] | bytes,
+        payload: Body[AsyncIterator[bytes]] | AsyncIterator[bytes] | bytes,
         *,
         config_overrides: Optional[AsyncOmicsClientConfig] = None,
     ) -> "capo_omics.types.upload_read_set_part_response.UploadReadSetPartResponse":
@@ -2562,7 +2564,7 @@ class AsyncSequenceStoreResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2590,10 +2592,11 @@ class AsyncSequenceStoreResource:
             "payload": ensure_async_iterator(payload),
         }
 
-        response = await aexecute_pipeline(
-            AsyncOperationRequest(input=input_, options=options_),
-            handler=_handler,
-            interceptors=list(interceptors_),
-        )
-        await response.response.aclose()
-        return response.output
+        async with aclosing_bodies(input_):
+            response = await aexecute_pipeline(
+                AsyncOperationRequest(input=input_, options=options_),
+                handler=_handler,
+                interceptors=list(interceptors_),
+            )
+            await response.response.aclose()
+            return response.output

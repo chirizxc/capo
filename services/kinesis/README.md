@@ -29,8 +29,8 @@ from capo_kinesis import AsyncKinesisClient
 
 async def main():
     async with AsyncKinesisClient() as kinesis:
-        # Example: paginate over list_stream_consumers
-        async for item in kinesis.iter_list_stream_consumers():
+        # Example: paginate over list_channels
+        async for item in kinesis.iter_list_channels():
             print(item)
 ```
 

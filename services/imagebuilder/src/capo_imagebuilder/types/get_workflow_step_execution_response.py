@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     import capo_imagebuilder.types.workflow_build_version_arn
     import capo_imagebuilder.types.workflow_execution_id
     import capo_imagebuilder.types.workflow_step_action
+    import capo_imagebuilder.types.workflow_step_attempt_count
     import capo_imagebuilder.types.workflow_step_description
     import capo_imagebuilder.types.workflow_step_execution_id
     import capo_imagebuilder.types.workflow_step_execution_rollback_status
@@ -28,7 +29,7 @@ class GetWorkflowStepExecutionResponse(TypedDict, closed=True):
     step_execution_id: NotRequired[
         "capo_imagebuilder.types.workflow_step_execution_id.WorkflowStepExecutionId"
     ]
-    """<p>The unique identifier for the runtime version of the workflow step that you specified in the request.</p>"""
+    """<p>The unique identifier for the runtime instance of the workflow step that you specified in the request.</p>"""
     workflow_build_version_arn: NotRequired[
         "capo_imagebuilder.types.workflow_build_version_arn.WorkflowBuildVersionArn"
     ]
@@ -40,7 +41,7 @@ class GetWorkflowStepExecutionResponse(TypedDict, closed=True):
     image_build_version_arn: NotRequired[
         "capo_imagebuilder.types.image_build_version_arn.ImageBuildVersionArn"
     ]
-    """<p>The Amazon Resource Name (ARN) of the image resource build version that the specified runtime instance of the workflow step creates.</p>"""
+    """<p>The Amazon Resource Name (ARN) of the image build version that owns the specified runtime instance of the workflow step.</p>"""
     name: NotRequired["capo_imagebuilder.types.workflow_step_name.WorkflowStepName"]
     """<p>The name of the specified runtime instance of the workflow step.</p>"""
     description: NotRequired[
@@ -54,11 +55,11 @@ class GetWorkflowStepExecutionResponse(TypedDict, closed=True):
     status: NotRequired[
         "capo_imagebuilder.types.workflow_step_execution_status.WorkflowStepExecutionStatus"
     ]
-    """<p>The current status for the specified runtime version of the workflow step.</p>"""
+    """<p>The current status for the specified runtime instance of the workflow step.</p>"""
     rollback_status: NotRequired[
         "capo_imagebuilder.types.workflow_step_execution_rollback_status.WorkflowStepExecutionRollbackStatus"
     ]
-    """<p>Reports on the rollback status of the specified runtime version of the workflow step, if applicable.</p>"""
+    """<p>Reports on the rollback status of the specified runtime instance of the workflow step, if applicable. Rollback runs when the workflow execution fails, and undoes the work that completed steps performed.</p>"""
     message: NotRequired[
         "capo_imagebuilder.types.workflow_step_message.WorkflowStepMessage"
     ]
@@ -66,21 +67,29 @@ class GetWorkflowStepExecutionResponse(TypedDict, closed=True):
     inputs: NotRequired[
         "capo_imagebuilder.types.workflow_step_inputs.WorkflowStepInputs"
     ]
-    """<p>Input parameters that Image Builder provided for the specified runtime instance of the workflow step.</p>"""
+    """<p>Input parameters that Image Builder provided for the specified runtime instance of the workflow step, as a JSON-encoded string.</p>"""
     outputs: NotRequired[
         "capo_imagebuilder.types.workflow_step_outputs.WorkflowStepOutputs"
     ]
-    """<p>The file names that the specified runtime version of the workflow step created as output.</p>"""
+    """<p>The output values that the specified runtime instance of the workflow step produced, as a JSON-encoded string. For example, a step that launches an instance outputs the instance ID. If the step failed, this field contains the error message.</p>"""
     start_time: NotRequired["capo_imagebuilder.types.date_time.DateTime"]
-    """<p>The timestamp when the specified runtime version of the workflow step started.</p>"""
+    """<p>The timestamp when the specified runtime instance of the workflow step started.</p>"""
     end_time: NotRequired["capo_imagebuilder.types.date_time.DateTime"]
     """<p>The timestamp when the specified runtime instance of the workflow step finished.</p>"""
     on_failure: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
-    """<p>The action to perform if the workflow step fails.</p>"""
+    """<p>The action that the workflow takes if this step fails, as configured in the workflow document. <code>Abort</code> fails the workflow and rolls back completed steps. <code>Continue</code> proceeds to the next step. If the step doesn't set a value, it defaults to <code>Abort</code>.</p>"""
     timeout_seconds: NotRequired[
         "capo_imagebuilder.types.workflow_step_timeout_seconds_integer.WorkflowStepTimeoutSecondsInteger"
     ]
-    """<p>The maximum duration in seconds for this step to complete its action.</p>"""
+    """<p>The maximum duration in seconds for this step to complete its action. If the workflow document doesn't set a timeout for the step, Image Builder applies the default timeout for the step's action. This field returns that value.</p>"""
+    attempt_number: NotRequired[
+        "capo_imagebuilder.types.workflow_step_attempt_count.WorkflowStepAttemptCount"
+    ]
+    """<p>The current attempt number for the specified runtime instance of the workflow step. The first run is attempt one. The number increases by one for each retry.</p>"""
+    max_attempts: NotRequired[
+        "capo_imagebuilder.types.workflow_step_attempt_count.WorkflowStepAttemptCount"
+    ]
+    """<p>The maximum number of attempts allowed for the specified runtime instance of the workflow step, based on the retry configuration in the workflow document. If the step doesn't configure retries, the maximum is one attempt.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -132,6 +141,10 @@ def serialize_json(value: GetWorkflowStepExecutionResponse) -> dict:
         out["onFailure"] = value["on_failure"]
     if "timeout_seconds" in value:
         out["timeoutSeconds"] = value["timeout_seconds"]
+    if "attempt_number" in value:
+        out["attemptNumber"] = value["attempt_number"]
+    if "max_attempts" in value:
+        out["maxAttempts"] = value["max_attempts"]
     return out
 
 
@@ -183,4 +196,8 @@ def deserialize_json(data: dict) -> GetWorkflowStepExecutionResponse:
         out["on_failure"] = data["onFailure"]
     if data.get("timeoutSeconds") is not None:
         out["timeout_seconds"] = data["timeoutSeconds"]
+    if data.get("attemptNumber") is not None:
+        out["attempt_number"] = data["attemptNumber"]
+    if data.get("maxAttempts") is not None:
+        out["max_attempts"] = data["maxAttempts"]
     return out

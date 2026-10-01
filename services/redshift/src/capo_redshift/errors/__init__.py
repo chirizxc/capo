@@ -281,6 +281,12 @@ from .number_of_nodes_quota_exceeded_fault import (
     NumberOfNodesQuotaExceededFault as NumberOfNodesQuotaExceededFault,
 )
 from .partner_not_found_fault import PartnerNotFoundFault as PartnerNotFoundFault
+from .qev2_idc_application_already_exists_fault import (
+    Qev2IdcApplicationAlreadyExistsFault as Qev2IdcApplicationAlreadyExistsFault,
+)
+from .qev2_idc_application_not_exists_fault import (
+    Qev2IdcApplicationNotExistsFault as Qev2IdcApplicationNotExistsFault,
+)
 from .redshift_idc_application_already_exists_fault import (
     RedshiftIdcApplicationAlreadyExistsFault as RedshiftIdcApplicationAlreadyExistsFault,
 )

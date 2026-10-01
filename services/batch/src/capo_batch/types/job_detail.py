@@ -79,7 +79,7 @@ class JobDetail(TypedDict, closed=True):
     platform_capabilities: NotRequired[
         "capo_batch.types.platform_capability_list.PlatformCapabilityList"
     ]
-    """<p>The platform capabilities required by the job definition. If no value is specified, it defaults to <code>EC2</code>. Jobs run on Fargate resources specify <code>FARGATE</code>.</p>"""
+    """<p>The platform capabilities required by the job definition. If no value is specified, it defaults to <code>EC2</code>. Jobs run on Fargate resources specify <code>FARGATE</code>. Jobs run on Amazon ECS Managed Instances specify <code>MANAGED_INSTANCES</code>.</p>"""
     eks_properties: NotRequired[
         "capo_batch.types.eks_properties_detail.EksPropertiesDetail"
     ]
@@ -91,7 +91,7 @@ class JobDetail(TypedDict, closed=True):
     ]
     """<p>An object with properties that are specific to Amazon ECS-based jobs. </p>"""
     is_cancelled: NotRequired["capo_batch.types.boolean.Boolean"]
-    """<p>Indicates whether the job is canceled.</p>"""
+    """<p>Indicates whether the job is cancelled.</p>"""
     is_terminated: NotRequired["capo_batch.types.boolean.Boolean"]
     """<p>Indicates whether the job is terminated.</p>"""
     consumable_resource_properties: NotRequired[

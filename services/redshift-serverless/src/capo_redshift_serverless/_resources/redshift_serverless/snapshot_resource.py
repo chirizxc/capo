@@ -575,6 +575,7 @@ class SnapshotResource:
         admin_password_secret_kms_key_id: Optional[
             "capo_redshift_serverless.types.kms_key_id.KmsKeyId"
         ] = None,
+        maintain_integration: Optional[bool] = None,
     ) -> "capo_redshift_serverless.types.restore_from_snapshot_response.RestoreFromSnapshotResponse":
         """<p>Restores a namespace from a snapshot.</p>
 
@@ -586,6 +587,7 @@ class SnapshotResource:
             owner_account: <p>The Amazon Web Services account that owns the snapshot.</p>
             manage_admin_password: <p>If <code>true</code>, Amazon Redshift uses Secrets Manager to manage the restored snapshot's admin credentials. If <code>MmanageAdminPassword</code> is false or not set, Amazon Redshift uses the admin credentials that the namespace or cluster had at the time the snapshot was taken.</p>
             admin_password_secret_kms_key_id: <p>The ID of the Key Management Service (KMS) key used to encrypt and store the namespace's admin credentials secret.</p>
+            maintain_integration: <p>If <code>true</code>, maintain existing data sharing, zero-ETL and S3 event integrations when restoring. Otherwise, integrations will not be maintained after the restore operation. Integrations are only maintained when restored to the same serverless namespace.</p> <p>Default: true</p>
 
         Raises:
             capo_redshift_serverless.errors.conflict_exception.ConflictException: <p>The submitted action has conflicts.</p>
@@ -627,6 +629,8 @@ class SnapshotResource:
             input_["admin_password_secret_kms_key_id"] = (
                 admin_password_secret_kms_key_id
             )
+        if maintain_integration is not None:
+            input_["maintain_integration"] = maintain_integration
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -1346,6 +1350,7 @@ class AsyncSnapshotResource:
         admin_password_secret_kms_key_id: Optional[
             "capo_redshift_serverless.types.kms_key_id.KmsKeyId"
         ] = None,
+        maintain_integration: Optional[bool] = None,
     ) -> "capo_redshift_serverless.types.restore_from_snapshot_response.RestoreFromSnapshotResponse":
         """<p>Restores a namespace from a snapshot.</p>
 
@@ -1357,6 +1362,7 @@ class AsyncSnapshotResource:
             owner_account: <p>The Amazon Web Services account that owns the snapshot.</p>
             manage_admin_password: <p>If <code>true</code>, Amazon Redshift uses Secrets Manager to manage the restored snapshot's admin credentials. If <code>MmanageAdminPassword</code> is false or not set, Amazon Redshift uses the admin credentials that the namespace or cluster had at the time the snapshot was taken.</p>
             admin_password_secret_kms_key_id: <p>The ID of the Key Management Service (KMS) key used to encrypt and store the namespace's admin credentials secret.</p>
+            maintain_integration: <p>If <code>true</code>, maintain existing data sharing, zero-ETL and S3 event integrations when restoring. Otherwise, integrations will not be maintained after the restore operation. Integrations are only maintained when restored to the same serverless namespace.</p> <p>Default: true</p>
 
         Raises:
             capo_redshift_serverless.errors.conflict_exception.ConflictException: <p>The submitted action has conflicts.</p>
@@ -1399,6 +1405,8 @@ class AsyncSnapshotResource:
             input_["admin_password_secret_kms_key_id"] = (
                 admin_password_secret_kms_key_id
             )
+        if maintain_integration is not None:
+            input_["maintain_integration"] = maintain_integration
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

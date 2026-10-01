@@ -8,6 +8,7 @@ StepName: TypeAlias = Literal[
     "STATIC_ANALYSIS",
     "PENTEST",
     "FINALIZING",
+    "VALIDATION",
 ]
 
 

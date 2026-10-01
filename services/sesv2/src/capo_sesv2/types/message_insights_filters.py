@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_sesv2.types.isp_filter_list
     import capo_sesv2.types.last_delivery_event_list
     import capo_sesv2.types.last_engagement_event_list
+    import capo_sesv2.types.tenant_name_filter_list
 
 
 class MessageInsightsFilters(TypedDict, closed=True):
@@ -27,6 +28,10 @@ class MessageInsightsFilters(TypedDict, closed=True):
     """<p>The subject line of the message.</p>"""
     isp: NotRequired["capo_sesv2.types.isp_filter_list.IspFilterList"]
     """<p>The recipient's ISP (e.g., <code>Gmail</code>, <code>Yahoo</code>, etc.).</p>"""
+    tenant_name: NotRequired[
+        "capo_sesv2.types.tenant_name_filter_list.TenantNameFilterList"
+    ]
+    """<p>The name of the tenant used when sending the message.</p>"""
     last_delivery_event: NotRequired[
         "capo_sesv2.types.last_delivery_event_list.LastDeliveryEventList"
     ]
@@ -64,6 +69,12 @@ def serialize_json(value: MessageInsightsFilters) -> dict:
         import capo_sesv2.types.isp_filter_list
 
         out["Isp"] = capo_sesv2.types.isp_filter_list.serialize_json(value["isp"])
+    if "tenant_name" in value:
+        import capo_sesv2.types.tenant_name_filter_list
+
+        out["TenantName"] = capo_sesv2.types.tenant_name_filter_list.serialize_json(
+            value["tenant_name"]
+        )
     if "last_delivery_event" in value:
         import capo_sesv2.types.last_delivery_event_list
 
@@ -111,6 +122,12 @@ def deserialize_json(data: dict) -> MessageInsightsFilters:
         import capo_sesv2.types.isp_filter_list
 
         out["isp"] = capo_sesv2.types.isp_filter_list.deserialize_json(data["Isp"])
+    if data.get("TenantName") is not None:
+        import capo_sesv2.types.tenant_name_filter_list
+
+        out["tenant_name"] = capo_sesv2.types.tenant_name_filter_list.deserialize_json(
+            data["TenantName"]
+        )
     if data.get("LastDeliveryEvent") is not None:
         import capo_sesv2.types.last_delivery_event_list
 

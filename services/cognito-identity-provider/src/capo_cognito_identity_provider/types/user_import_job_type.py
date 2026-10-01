@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     import capo_cognito_identity_provider.types.completion_message_type
     import capo_cognito_identity_provider.types.date_type
     import capo_cognito_identity_provider.types.long_type
+    import capo_cognito_identity_provider.types.password_hashing_algorithm_type
     import capo_cognito_identity_provider.types.pre_signed_url_type
     import capo_cognito_identity_provider.types.user_import_job_id_type
     import capo_cognito_identity_provider.types.user_import_job_name_type
@@ -61,6 +62,10 @@ class UserImportJobType(TypedDict, closed=True):
         "capo_cognito_identity_provider.types.completion_message_type.CompletionMessageType"
     ]
     """<p>The message returned when the user import job is completed.</p>"""
+    password_hashing_algorithm: NotRequired[
+        "capo_cognito_identity_provider.types.password_hashing_algorithm_type.PasswordHashingAlgorithmType"
+    ]
+    """<p>The password hashing algorithm used to generate the hashes in the CSV file for this import job.</p> <p>Valid values: <code>BCRYPT</code> | <code>SCRYPT</code> | <code>ARGON2ID</code> | <code>PBKDF2_SHA256</code> </p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -113,6 +118,14 @@ def serialize_aws_json_1_1(value: UserImportJobType) -> dict:
     out["FailedUsers"] = value.get("failed_users", 0)
     if "completion_message" in value:
         out["CompletionMessage"] = value["completion_message"]
+    if "password_hashing_algorithm" in value:
+        import capo_cognito_identity_provider.types.password_hashing_algorithm_type
+
+        out["PasswordHashingAlgorithm"] = (
+            capo_cognito_identity_provider.types.password_hashing_algorithm_type.serialize_aws_json_1_1(
+                value["password_hashing_algorithm"]
+            )
+        )
     return out
 
 
@@ -174,4 +187,12 @@ def deserialize_aws_json_1_1(data: dict) -> UserImportJobType:
         out["failed_users"] = 0
     if data.get("CompletionMessage") is not None:
         out["completion_message"] = data["CompletionMessage"]
+    if data.get("PasswordHashingAlgorithm") is not None:
+        import capo_cognito_identity_provider.types.password_hashing_algorithm_type
+
+        out["password_hashing_algorithm"] = (
+            capo_cognito_identity_provider.types.password_hashing_algorithm_type.deserialize_aws_json_1_1(
+                data["PasswordHashingAlgorithm"]
+            )
+        )
     return out

@@ -32,5 +32,8 @@ from .resource_not_found_exception import (
 from .service_quota_exceeded_exception import (
     ServiceQuotaExceededException as ServiceQuotaExceededException,
 )
+from .stream_session_access_not_ready_exception import (
+    StreamSessionAccessNotReadyException as StreamSessionAccessNotReadyException,
+)
 from .throttling_exception import ThrottlingException as ThrottlingException
 from .validation_exception import ValidationException as ValidationException

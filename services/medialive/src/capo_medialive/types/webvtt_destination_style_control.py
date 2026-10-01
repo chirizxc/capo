@@ -6,6 +6,7 @@ from typing import Literal, TypeAlias, cast
 WebvttDestinationStyleControl: TypeAlias = Literal[
     "NO_STYLE_DATA",
     "PASSTHROUGH",
+    "MANUAL",
 ]
 
 

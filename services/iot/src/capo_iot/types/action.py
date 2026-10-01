@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     import capo_iot.types.elasticsearch_action
     import capo_iot.types.firehose_action
     import capo_iot.types.http_action
+    import capo_iot.types.influx_db_action
     import capo_iot.types.iot_analytics_action
     import capo_iot.types.iot_events_action
     import capo_iot.types.iot_site_wise_action
@@ -73,6 +74,7 @@ Action = TypedDict(
             "capo_iot.types.open_search_action.OpenSearchAction"
         ],
         "location": NotRequired["capo_iot.types.location_action.LocationAction"],
+        "influx_db": NotRequired["capo_iot.types.influx_db_action.InfluxDBAction"],
     },
     closed=True,
 )
@@ -207,6 +209,12 @@ def serialize_json(value: Action) -> dict:
         out["location"] = capo_iot.types.location_action.serialize_json(
             value["location"]
         )
+    if "influx_db" in value:
+        import capo_iot.types.influx_db_action
+
+        out["influxDB"] = capo_iot.types.influx_db_action.serialize_json(
+            value["influx_db"]
+        )
     return out
 
 
@@ -339,5 +347,11 @@ def deserialize_json(data: dict) -> Action:
 
         out["location"] = capo_iot.types.location_action.deserialize_json(
             data["location"]
+        )
+    if data.get("influxDB") is not None:
+        import capo_iot.types.influx_db_action
+
+        out["influx_db"] = capo_iot.types.influx_db_action.deserialize_json(
+            data["influxDB"]
         )
     return out

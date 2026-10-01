@@ -9,6 +9,7 @@ from capo_partnercentral_selling.errors import DeserializationError, Serializati
 if TYPE_CHECKING:
     import capo_partnercentral_selling.types.customer_projects_context
     import capo_partnercentral_selling.types.lead_context
+    import capo_partnercentral_selling.types.prospecting_result
 
 
 class _EngagementContextPayload_CustomerProject(TypedDict, closed=True):
@@ -19,8 +20,16 @@ class _EngagementContextPayload_Lead(TypedDict, closed=True):
     Lead: "capo_partnercentral_selling.types.lead_context.LeadContext"
 
 
+class _EngagementContextPayload_ProspectingResult(TypedDict, closed=True):
+    ProspectingResult: (
+        "capo_partnercentral_selling.types.prospecting_result.ProspectingResult"
+    )
+
+
 EngagementContextPayload: TypeAlias = (
-    _EngagementContextPayload_CustomerProject | _EngagementContextPayload_Lead
+    _EngagementContextPayload_CustomerProject
+    | _EngagementContextPayload_Lead
+    | _EngagementContextPayload_ProspectingResult
 )
 
 
@@ -42,6 +51,14 @@ def serialize_aws_json_1_0(value: EngagementContextPayload) -> dict:
                 value["Lead"]
             )
         }
+    elif "ProspectingResult" in value:
+        import capo_partnercentral_selling.types.prospecting_result
+
+        return {
+            "ProspectingResult": capo_partnercentral_selling.types.prospecting_result.serialize_aws_json_1_0(
+                value["ProspectingResult"]
+            )
+        }
     else:
         raise SerializationError("EngagementContextPayload: no variant present")
 
@@ -61,6 +78,14 @@ def deserialize_aws_json_1_0(data: dict) -> EngagementContextPayload:
         return {
             "Lead": capo_partnercentral_selling.types.lead_context.deserialize_aws_json_1_0(
                 data["Lead"]
+            )
+        }
+    elif data.get("ProspectingResult") is not None:
+        import capo_partnercentral_selling.types.prospecting_result
+
+        return {
+            "ProspectingResult": capo_partnercentral_selling.types.prospecting_result.deserialize_aws_json_1_0(
+                data["ProspectingResult"]
             )
         }
     else:

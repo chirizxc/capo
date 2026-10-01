@@ -14,6 +14,7 @@ import capo_cleanroomsml._auth._sigv4
 import capo_cleanroomsml._protocol.eventstream
 import capo_cleanroomsml.errors.access_denied_exception
 import capo_cleanroomsml.errors.resource_not_found_exception
+import capo_cleanroomsml.errors.throttling_exception
 import capo_cleanroomsml.errors.validation_exception
 import capo_cleanroomsml.types.audience_size_config
 import capo_cleanroomsml.types.configured_audience_model_output_config
@@ -42,6 +43,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "ResourceNotFoundException":
             raise capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException.from_json(
+                data, message
+            )
+        case "ThrottlingException":
+            raise capo_cleanroomsml.errors.throttling_exception.ThrottlingException.from_json(
                 data, message
             )
         case "ValidationException":

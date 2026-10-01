@@ -25,7 +25,7 @@ class RestoreTestingRecoveryPointSelection(TypedDict, closed=True):
     ]
     """<p>These are the types of recovery points.</p> <p>Include <code>SNAPSHOT</code> to restore only snapshot recovery points; include <code>CONTINUOUS</code> to restore continuous recovery points (point in time restore / PITR); use both to restore either a snapshot or a continuous recovery point. The recovery point will be determined by the value for <code>Algorithm</code>.</p>"""
     selection_window_days: "capo_backup.types.integer.integer"
-    """<p>Accepted values are integers from 1 to 365.</p>"""
+    """<p>Accepted values are integers from 1 to 365. If not included, the value defaults to 30. The selection window is calculated from the actual job execution time, not the plan's scheduled start time.</p>"""
 
 
 # --- restJson1 ser/de ---

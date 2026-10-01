@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import datetime
 
     import capo_marketplace_discovery.types.catalog
+    import capo_marketplace_discovery.types.locale
     import capo_marketplace_discovery.types.non_empty_string
     import capo_marketplace_discovery.types.nullable_string
     import capo_marketplace_discovery.types.offer_set_associated_entity_list
@@ -19,6 +20,8 @@ if TYPE_CHECKING:
 
 
 class GetOfferSetOutput(TypedDict, closed=True):
+    locale: NotRequired["capo_marketplace_discovery.types.locale.Locale"]
+    """<p>The locale of the returned content. Indicates whether the response contains content in the requested locale, or fell back to the default locale. See <code>Locale</code> for details.</p>"""
     offer_set_id: "capo_marketplace_discovery.types.offer_set_id.OfferSetId"
     """<p>The unique identifier of the offer set.</p>"""
     catalog: "capo_marketplace_discovery.types.catalog.Catalog"
@@ -48,6 +51,8 @@ class GetOfferSetOutput(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: GetOfferSetOutput) -> dict:
     out: dict = {}
+    if "locale" in value:
+        out["locale"] = value["locale"]
     out["offerSetId"] = value["offer_set_id"]
     out["catalog"] = value["catalog"]
     if "offer_set_name" in value:
@@ -96,6 +101,8 @@ def serialize_json(value: GetOfferSetOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetOfferSetOutput:
     out: GetOfferSetOutput = {}  # type: ignore[typeddict-item]
+    if data.get("locale") is not None:
+        out["locale"] = data["locale"]
     if data.get("offerSetId") is not None:
         out["offer_set_id"] = data["offerSetId"]
     else:

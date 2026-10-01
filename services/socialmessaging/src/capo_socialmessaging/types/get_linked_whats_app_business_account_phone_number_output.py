@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_socialmessaging.types.linked_whats_app_business_account_id
+    import capo_socialmessaging.types.whats_app_call_settings
     import capo_socialmessaging.types.whats_app_phone_number_detail
 
 
@@ -17,6 +18,10 @@ class GetLinkedWhatsAppBusinessAccountPhoneNumberOutput(TypedDict, closed=True):
         "capo_socialmessaging.types.linked_whats_app_business_account_id.LinkedWhatsAppBusinessAccountId"
     ]
     """<p>The WABA identifier linked to the phone number, formatted as <code>waba-01234567890123456789012345678901</code>.</p>"""
+    call_settings: NotRequired[
+        "capo_socialmessaging.types.whats_app_call_settings.WhatsAppCallSettings"
+    ]
+    """<p>The calling settings configured for the phone number. This value is absent when calling is not configured.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -34,6 +39,14 @@ def serialize_json(value: GetLinkedWhatsAppBusinessAccountPhoneNumberOutput) -> 
         out["linkedWhatsAppBusinessAccountId"] = value[
             "linked_whats_app_business_account_id"
         ]
+    if "call_settings" in value:
+        import capo_socialmessaging.types.whats_app_call_settings
+
+        out["callSettings"] = (
+            capo_socialmessaging.types.whats_app_call_settings.serialize_json(
+                value["call_settings"]
+            )
+        )
     return out
 
 
@@ -51,4 +64,12 @@ def deserialize_json(data: dict) -> GetLinkedWhatsAppBusinessAccountPhoneNumberO
         out["linked_whats_app_business_account_id"] = data[
             "linkedWhatsAppBusinessAccountId"
         ]
+    if data.get("callSettings") is not None:
+        import capo_socialmessaging.types.whats_app_call_settings
+
+        out["call_settings"] = (
+            capo_socialmessaging.types.whats_app_call_settings.deserialize_json(
+                data["callSettings"]
+            )
+        )
     return out

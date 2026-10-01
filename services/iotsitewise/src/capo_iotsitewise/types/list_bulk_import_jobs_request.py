@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     import capo_iotsitewise.types.list_bulk_import_jobs_filter
     import capo_iotsitewise.types.max_results
     import capo_iotsitewise.types.next_token
+    import capo_iotsitewise.types.workspace_name
 
 
 class ListBulkImportJobsRequest(TypedDict, closed=True):
@@ -19,6 +20,8 @@ class ListBulkImportJobsRequest(TypedDict, closed=True):
         "capo_iotsitewise.types.list_bulk_import_jobs_filter.ListBulkImportJobsFilter"
     ]
     """<p>You can use a filter to select the bulk import jobs that you want to retrieve.</p>"""
+    workspace_name: NotRequired["capo_iotsitewise.types.workspace_name.WorkspaceName"]
+    """<p>The name of the workspace.</p>"""
 
 
 # --- restJson1 ser/de ---

@@ -18,13 +18,13 @@ class LifecyclePolicyDetailExclusionRulesAmis(TypedDict, closed=True):
     regions: NotRequired["capo_imagebuilder.types.string_list.StringList"]
     """<p>Configures Amazon Web Services Regions that are excluded from the lifecycle action.</p>"""
     shared_accounts: NotRequired["capo_imagebuilder.types.account_list.AccountList"]
-    """<p>Specifies Amazon Web Services accounts whose resources are excluded from the lifecycle action.</p>"""
+    """<p>The lifecycle action doesn't apply to AMIs that are shared with any of the specified Amazon Web Services accounts.</p>"""
     last_launched: NotRequired[
         "capo_imagebuilder.types.lifecycle_policy_detail_exclusion_rules_amis_last_launched.LifecyclePolicyDetailExclusionRulesAmisLastLaunched"
     ]
-    """<p>Specifies configuration details for Image Builder to exclude the most recent resources from lifecycle actions.</p>"""
+    """<p>Configures Image Builder to exclude AMIs that were launched within the specified time period from lifecycle actions. AMIs with no recorded last-launched time aren't excluded by this rule.</p>"""
     tag_map: NotRequired["capo_imagebuilder.types.tag_map.TagMap"]
-    """<p>Lists tags that should be excluded from lifecycle actions for the AMIs that have them.</p>"""
+    """<p>Lifecycle actions don't apply to AMIs that have any of these tags. Both the key and the value must match.</p>"""
 
 
 # --- restJson1 ser/de ---

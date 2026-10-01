@@ -1,0 +1,70 @@
+"""Generated from Smithy shape ``com.amazonaws.resiliencehubv2#SuccessCriteriaAlarmSummary``."""
+
+from typing import TYPE_CHECKING
+
+from typing_extensions import NotRequired, TypedDict
+
+from capo_resiliencehubv2.errors import DeserializationError
+
+if TYPE_CHECKING:
+    import datetime
+
+    import capo_resiliencehubv2.types.cloud_watch_alarm_arn
+
+
+class SuccessCriteriaAlarmSummary(TypedDict, closed=True):
+    alarm_arn: "capo_resiliencehubv2.types.cloud_watch_alarm_arn.CloudWatchAlarmArn"
+    """<p>The ARN of the CloudWatch alarm.</p>"""
+    alarm_name: "str"
+    """<p>The name of the CloudWatch alarm.</p>"""
+    region: "str"
+    """<p>The Region of the CloudWatch alarm.</p>"""
+    account_id: "str"
+    """<p>The account ID that owns the CloudWatch alarm.</p>"""
+    created_at: NotRequired["datetime.datetime"]
+    """<p>The timestamp when the source was configured.</p>"""
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: SuccessCriteriaAlarmSummary) -> dict:
+    out: dict = {}
+    out["alarmArn"] = value["alarm_arn"]
+    out["alarmName"] = value["alarm_name"]
+    out["region"] = value["region"]
+    out["accountId"] = value["account_id"]
+    if "created_at" in value:
+        import capo_resiliencehubv2.types._prelude.timestamp
+
+        out["createdAt"] = capo_resiliencehubv2.types._prelude.timestamp.serialize_json(
+            value["created_at"]
+        )
+    return out
+
+
+def deserialize_json(data: dict) -> SuccessCriteriaAlarmSummary:
+    out: SuccessCriteriaAlarmSummary = {}  # type: ignore[typeddict-item]
+    if data.get("alarmArn") is not None:
+        out["alarm_arn"] = data["alarmArn"]
+    else:
+        raise DeserializationError("SuccessCriteriaAlarmSummary.alarm_arn required")
+    if data.get("alarmName") is not None:
+        out["alarm_name"] = data["alarmName"]
+    else:
+        raise DeserializationError("SuccessCriteriaAlarmSummary.alarm_name required")
+    if data.get("region") is not None:
+        out["region"] = data["region"]
+    else:
+        raise DeserializationError("SuccessCriteriaAlarmSummary.region required")
+    if data.get("accountId") is not None:
+        out["account_id"] = data["accountId"]
+    else:
+        raise DeserializationError("SuccessCriteriaAlarmSummary.account_id required")
+    if data.get("createdAt") is not None:
+        import capo_resiliencehubv2.types._prelude.timestamp
+
+        out["created_at"] = (
+            capo_resiliencehubv2.types._prelude.timestamp.deserialize_json(
+                data["createdAt"]
+            )
+        )
+    return out

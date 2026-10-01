@@ -38,7 +38,7 @@ class GetResourceConfigurationResponse(TypedDict, closed=True):
     resource_gateway_id: NotRequired[
         "capo_vpc_lattice.types.resource_gateway_id.ResourceGatewayId"
     ]
-    """<p>The ID of the resource gateway used to connect to the resource configuration in a given VPC. You can specify the resource gateway identifier only for resource configurations with type SINGLE, GROUP, or ARN.</p>"""
+    """<p>The ID of the resource gateway used to connect to the resource configuration in a given VPC. You can specify the resource gateway identifier only for resource configurations with type SINGLE, GROUP, ARN, or CIDR.</p>"""
     resource_configuration_group_id: NotRequired[
         "capo_vpc_lattice.types.resource_configuration_id.ResourceConfigurationId"
     ]
@@ -46,7 +46,7 @@ class GetResourceConfigurationResponse(TypedDict, closed=True):
     type: NotRequired[
         "capo_vpc_lattice.types.resource_configuration_type.ResourceConfigurationType"
     ]
-    """<p>The type of resource configuration.</p> <ul> <li> <p> <code>SINGLE</code> - A single resource.</p> </li> <li> <p> <code>GROUP</code> - A group of resources.</p> </li> <li> <p> <code>CHILD</code> - A single resource that is part of a group resource configuration.</p> </li> <li> <p> <code>ARN</code> - An Amazon Web Services resource.</p> </li> </ul>"""
+    """<p>The type of resource configuration.</p> <ul> <li> <p> <code>SINGLE</code> - A single resource.</p> </li> <li> <p> <code>GROUP</code> - A group of resources.</p> </li> <li> <p> <code>CHILD</code> - A single resource that is part of a group resource configuration.</p> </li> <li> <p> <code>ARN</code> - An Amazon Web Services resource.</p> </li> <li> <p> <code>CIDR</code> - A network segment (a range of IP addresses) accessed through a <code>Tunnel</code> VPC endpoint.</p> </li> </ul>"""
     allow_association_to_shareable_service_network: NotRequired[
         "capo_vpc_lattice.types.boolean.Boolean"
     ]
@@ -119,7 +119,11 @@ def serialize_json(value: GetResourceConfigurationResponse) -> dict:
             value["port_ranges"]
         )
     if "protocol" in value:
-        out["protocol"] = value["protocol"]
+        import capo_vpc_lattice.types.protocol_type
+
+        out["protocol"] = capo_vpc_lattice.types.protocol_type.serialize_json(
+            value["protocol"]
+        )
     if "custom_domain_name" in value:
         out["customDomainName"] = value["custom_domain_name"]
     if "status" in value:
@@ -190,7 +194,11 @@ def deserialize_json(data: dict) -> GetResourceConfigurationResponse:
             data["portRanges"]
         )
     if data.get("protocol") is not None:
-        out["protocol"] = data["protocol"]
+        import capo_vpc_lattice.types.protocol_type
+
+        out["protocol"] = capo_vpc_lattice.types.protocol_type.deserialize_json(
+            data["protocol"]
+        )
     if data.get("customDomainName") is not None:
         out["custom_domain_name"] = data["customDomainName"]
     if data.get("status") is not None:

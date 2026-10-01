@@ -30,6 +30,8 @@ class TaskSummary(TypedDict, closed=True):
         "capo_securityagent.types.task_execution_status.TaskExecutionStatus"
     ]
     """<p>The current execution status of the task.</p>"""
+    task_hours: NotRequired["float"]
+    """<p>The number of active work hours consumed by the task during execution.</p>"""
     created_at: NotRequired["datetime.datetime"]
     """<p>The date and time the task was created, in UTC format.</p>"""
     updated_at: NotRequired["datetime.datetime"]
@@ -61,6 +63,16 @@ def serialize_json(value: TaskSummary) -> dict:
             capo_securityagent.types.task_execution_status.serialize_json(
                 value["execution_status"]
             )
+        )
+    if "task_hours" in value:
+        out["taskHours"] = (
+            "NaN"
+            if value["task_hours"] != value["task_hours"]
+            else "Infinity"
+            if value["task_hours"] == float("inf")
+            else "-Infinity"
+            if value["task_hours"] == float("-inf")
+            else value["task_hours"]
         )
     if "created_at" in value:
         import capo_securityagent._protocol.serialize
@@ -105,6 +117,8 @@ def deserialize_json(data: dict) -> TaskSummary:
                 data["executionStatus"]
             )
         )
+    if data.get("taskHours") is not None:
+        out["task_hours"] = float(data["taskHours"])
     if data.get("createdAt") is not None:
         import datetime
 

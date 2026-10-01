@@ -9,6 +9,7 @@ from capo_bedrock_agentcore_control.errors import DeserializationError
 if TYPE_CHECKING:
     import datetime
 
+    import capo_bedrock_agentcore_control.types.arn
     import capo_bedrock_agentcore_control.types.memory_arn
     import capo_bedrock_agentcore_control.types.memory_id
     import capo_bedrock_agentcore_control.types.memory_status
@@ -27,6 +28,8 @@ class MemorySummary(TypedDict, closed=True):
     """<p>The timestamp when the memory was created.</p>"""
     updated_at: "datetime.datetime"
     """<p>The timestamp when the memory was last updated.</p>"""
+    managed_by_resource_arn: NotRequired["capo_bedrock_agentcore_control.types.arn.Arn"]
+    """<p>ARN of the resource managing this memory (e.g. a harness). Null if not managed.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -58,6 +61,8 @@ def serialize_json(value: MemorySummary) -> dict:
             value["updated_at"]
         )
     )
+    if "managed_by_resource_arn" in value:
+        out["managedByResourceArn"] = value["managed_by_resource_arn"]
     return out
 
 
@@ -95,4 +100,6 @@ def deserialize_json(data: dict) -> MemorySummary:
         )
     else:
         raise DeserializationError("MemorySummary.updated_at required")
+    if data.get("managedByResourceArn") is not None:
+        out["managed_by_resource_arn"] = data["managedByResourceArn"]
     return out

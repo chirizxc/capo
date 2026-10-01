@@ -7,12 +7,15 @@ from typing_extensions import NotRequired, TypedDict
 from capo_auto_scaling._protocol.xml import Element
 
 if TYPE_CHECKING:
+    import capo_auto_scaling.types.activities
     import capo_auto_scaling.types.activity
 
 
 class ActivityType(TypedDict, closed=True):
     activity: NotRequired["capo_auto_scaling.types.activity.Activity"]
     """<p>A scaling activity.</p>"""
+    activities: NotRequired["capo_auto_scaling.types.activities.Activities"]
+    """<p>The scaling activities related to terminating the instances from the Auto Scaling group.</p>"""
 
 
 # --- awsQuery ser/de ---
@@ -26,6 +29,12 @@ def serialize_query(
         capo_auto_scaling.types.activity.serialize_query(
             value["activity"], pairs, f"{key_prefix}Activity"
         )
+    if "activities" in value:
+        import capo_auto_scaling.types.activities
+
+        capo_auto_scaling.types.activities.serialize_query(
+            value["activities"], pairs, f"{key_prefix}Activities"
+        )
 
 
 def deserialize_query(el: Element) -> ActivityType:
@@ -36,5 +45,12 @@ def deserialize_query(el: Element) -> ActivityType:
 
         out["activity"] = capo_auto_scaling.types.activity.deserialize_query(
             child_activity
+        )
+    child_activities = el.find("Activities")
+    if child_activities is not None:
+        import capo_auto_scaling.types.activities
+
+        out["activities"] = capo_auto_scaling.types.activities.deserialize_query(
+            child_activities
         )
     return out

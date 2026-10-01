@@ -15,6 +15,7 @@ import capo_gamelift.errors.internal_service_exception
 import capo_gamelift.errors.invalid_request_exception
 import capo_gamelift.errors.not_found_exception
 import capo_gamelift.errors.unauthorized_exception
+import capo_gamelift.errors.unsupported_region_exception
 import capo_gamelift.types.deregister_compute_input
 import capo_gamelift.types.deregister_compute_output
 from capo_gamelift._protocol.errors import parse_error_metadata_json
@@ -41,6 +42,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "UnauthorizedException":
             raise capo_gamelift.errors.unauthorized_exception.UnauthorizedException.from_aws_json_1_1(
+                data, message
+            )
+        case "UnsupportedRegionException":
+            raise capo_gamelift.errors.unsupported_region_exception.UnsupportedRegionException.from_aws_json_1_1(
                 data, message
             )
         case _:

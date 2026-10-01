@@ -13,9 +13,11 @@ import capo_auto_scaling._auth._sigv4
 import capo_auto_scaling._protocol.eventstream
 import capo_auto_scaling.errors.resource_contention_fault
 import capo_auto_scaling.errors.scaling_activity_in_progress_fault
+import capo_auto_scaling.types.activities
 import capo_auto_scaling.types.activity
 import capo_auto_scaling.types.activity_type
 import capo_auto_scaling.types.terminate_instance_in_auto_scaling_group_type
+import capo_auto_scaling.types.termination_instance_ids
 from capo_auto_scaling._protocol.errors import find_error_element, parse_error_metadata
 from capo_auto_scaling._protocol.xml import fromstring
 from capo_auto_scaling._rule_engine._endpoint_rule_set import EndpointParams, resolve

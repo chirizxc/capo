@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 class ListProductSubscriptionsRequest(TypedDict, closed=True):
     product: NotRequired["str"]
-    """<p>The name of the user-based subscription product.</p> <p>Valid values: <code>VISUAL_STUDIO_ENTERPRISE</code> | <code>VISUAL_STUDIO_PROFESSIONAL</code> | <code>OFFICE_PROFESSIONAL_PLUS</code> | <code>REMOTE_DESKTOP_SERVICES</code> </p>"""
+    """<p>The name of the user-based subscription product.</p> <p>Valid values: <code>VISUAL_STUDIO_ENTERPRISE</code> | <code>VISUAL_STUDIO_PROFESSIONAL</code> | <code>OFFICE_PROFESSIONAL_PLUS</code> | <code>OFFICE_STANDARD</code> | <code>REMOTE_DESKTOP_SERVICES</code> </p>"""
     identity_provider: "capo_license_manager_user_subscriptions.types.identity_provider.IdentityProvider"
     """<p>An object that specifies details for the identity provider.</p>"""
     max_results: NotRequired[

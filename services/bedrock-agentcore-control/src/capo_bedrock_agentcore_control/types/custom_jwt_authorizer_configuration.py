@@ -7,9 +7,11 @@ from typing_extensions import NotRequired, TypedDict
 from capo_bedrock_agentcore_control.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_bedrock_agentcore_control.types.advertised_scope_mapping_type
     import capo_bedrock_agentcore_control.types.allowed_audience_list
     import capo_bedrock_agentcore_control.types.allowed_clients_list
     import capo_bedrock_agentcore_control.types.allowed_scopes_type
+    import capo_bedrock_agentcore_control.types.allowed_workload_configuration
     import capo_bedrock_agentcore_control.types.custom_claim_validations_type
     import capo_bedrock_agentcore_control.types.discovery_url
     import capo_bedrock_agentcore_control.types.private_endpoint
@@ -31,6 +33,10 @@ class CustomJWTAuthorizerConfiguration(TypedDict, closed=True):
         "capo_bedrock_agentcore_control.types.allowed_scopes_type.AllowedScopesType"
     ]
     """<p>An array of scopes that are allowed to access the token.</p>"""
+    advertised_scope_mapping: NotRequired[
+        "capo_bedrock_agentcore_control.types.advertised_scope_mapping_type.AdvertisedScopeMappingType"
+    ]
+    """<p>A map that associates each scope in <code>allowedScopes</code> with a corresponding advertised scope value. The advertised scope appears in OAuth protected resource metadata and <code>WWW-Authenticate</code> response headers. Use this parameter when the scope that clients request from your identity provider differs from the scope in the validated token. Each key is a scope from <code>allowedScopes</code> that the service uses for token validation. Each value is the corresponding scope that the service advertises to clients. Scopes without a mapping entry appear unchanged to clients.</p>"""
     custom_claims: NotRequired[
         "capo_bedrock_agentcore_control.types.custom_claim_validations_type.CustomClaimValidationsType"
     ]
@@ -42,6 +48,10 @@ class CustomJWTAuthorizerConfiguration(TypedDict, closed=True):
         "capo_bedrock_agentcore_control.types.private_endpoint_overrides.PrivateEndpointOverrides"
     ]
     """<p>The private endpoint overrides for the custom JWT authorizer configuration.</p>"""
+    allowed_workload_configuration: NotRequired[
+        "capo_bedrock_agentcore_control.types.allowed_workload_configuration.AllowedWorkloadConfiguration"
+    ]
+    """<p>The configuration that restricts which workloads in the request's identity chain are allowed to invoke the target, identified by their hosting environments and workload identities. At launch, this is supported only for AgentCore Runtime targets, and the allowed workloads are AgentCore Gateways.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -72,6 +82,14 @@ def serialize_json(value: CustomJWTAuthorizerConfiguration) -> dict:
                 value["allowed_scopes"]
             )
         )
+    if "advertised_scope_mapping" in value:
+        import capo_bedrock_agentcore_control.types.advertised_scope_mapping_type
+
+        out["advertisedScopeMapping"] = (
+            capo_bedrock_agentcore_control.types.advertised_scope_mapping_type.serialize_json(
+                value["advertised_scope_mapping"]
+            )
+        )
     if "custom_claims" in value:
         import capo_bedrock_agentcore_control.types.custom_claim_validations_type
 
@@ -94,6 +112,14 @@ def serialize_json(value: CustomJWTAuthorizerConfiguration) -> dict:
         out["privateEndpointOverrides"] = (
             capo_bedrock_agentcore_control.types.private_endpoint_overrides.serialize_json(
                 value["private_endpoint_overrides"]
+            )
+        )
+    if "allowed_workload_configuration" in value:
+        import capo_bedrock_agentcore_control.types.allowed_workload_configuration
+
+        out["allowedWorkloadConfiguration"] = (
+            capo_bedrock_agentcore_control.types.allowed_workload_configuration.serialize_json(
+                value["allowed_workload_configuration"]
             )
         )
     return out
@@ -131,6 +157,14 @@ def deserialize_json(data: dict) -> CustomJWTAuthorizerConfiguration:
                 data["allowedScopes"]
             )
         )
+    if data.get("advertisedScopeMapping") is not None:
+        import capo_bedrock_agentcore_control.types.advertised_scope_mapping_type
+
+        out["advertised_scope_mapping"] = (
+            capo_bedrock_agentcore_control.types.advertised_scope_mapping_type.deserialize_json(
+                data["advertisedScopeMapping"]
+            )
+        )
     if data.get("customClaims") is not None:
         import capo_bedrock_agentcore_control.types.custom_claim_validations_type
 
@@ -153,6 +187,14 @@ def deserialize_json(data: dict) -> CustomJWTAuthorizerConfiguration:
         out["private_endpoint_overrides"] = (
             capo_bedrock_agentcore_control.types.private_endpoint_overrides.deserialize_json(
                 data["privateEndpointOverrides"]
+            )
+        )
+    if data.get("allowedWorkloadConfiguration") is not None:
+        import capo_bedrock_agentcore_control.types.allowed_workload_configuration
+
+        out["allowed_workload_configuration"] = (
+            capo_bedrock_agentcore_control.types.allowed_workload_configuration.deserialize_json(
+                data["allowedWorkloadConfiguration"]
             )
         )
     return out

@@ -13,7 +13,7 @@ class StringCriteriaCondition(TypedDict, closed=True):
     comparison: NotRequired[
         "capo_compute_optimizer_automation.types.comparison_operator.ComparisonOperator"
     ]
-    """<p>The comparison operator used to evaluate the string criteria, such as equals, not equals, or contains.</p>"""
+    """<p>The comparison operator used to evaluate the attribute against the specified values.</p>"""
     values: NotRequired[
         "capo_compute_optimizer_automation.types.string_criteria_values.StringCriteriaValues"
     ]

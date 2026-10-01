@@ -15,15 +15,15 @@ class ListImageBuildVersionsRequest(TypedDict, closed=True):
     image_version_arn: NotRequired[
         "capo_imagebuilder.types.image_version_arn.ImageVersionArn"
     ]
-    """<p>The Amazon Resource Name (ARN) of the image whose build versions you want to retrieve.</p>"""
+    """<p>The Amazon Resource Name (ARN) of the image version whose build versions you want to retrieve. The ARN must specify an exact version (<code><major>.<minor>.<patch></code>) - wildcards aren't allowed. This parameter is optional. If you don't specify it, Image Builder returns build versions for all of the images in your account.</p>"""
     filters: NotRequired["capo_imagebuilder.types.filter_list.FilterList"]
     """<p>Use the following filters to streamline results:</p> <ul> <li> <p> <code>name</code> </p> </li> <li> <p> <code>osVersion</code> </p> </li> <li> <p> <code>platform</code> </p> </li> <li> <p> <code>type</code> </p> </li> <li> <p> <code>version</code> </p> </li> </ul>"""
     max_results: NotRequired[
         "capo_imagebuilder.types.restricted_integer.RestrictedInteger"
     ]
-    """<p>Specify the maximum number of items to return in a request.</p>"""
+    """<p>The maximum number of items to return in a single request.</p>"""
     next_token: NotRequired["capo_imagebuilder.types.pagination_token.PaginationToken"]
-    """<p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>"""
+    """<p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>"""
 
 
 # --- restJson1 ser/de ---

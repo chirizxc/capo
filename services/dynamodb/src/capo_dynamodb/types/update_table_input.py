@@ -21,6 +21,7 @@ if TYPE_CHECKING:
     import capo_dynamodb.types.stream_specification
     import capo_dynamodb.types.table_arn
     import capo_dynamodb.types.table_class
+    import capo_dynamodb.types.vector_index_update_list
     import capo_dynamodb.types.warm_throughput
 
 
@@ -77,6 +78,10 @@ class UpdateTableInput(TypedDict, closed=True):
         "capo_dynamodb.types.global_table_settings_replication_mode.GlobalTableSettingsReplicationMode"
     ]
     """<p>Controls the settings replication mode for a global table replica. This attribute can be defined using UpdateTable operation only on a regional table with values:</p> <ul> <li> <p> <code>ENABLED</code>: Defines settings replication on a regional table to be used as a source table for creating Multi-Account Global Table.</p> </li> <li> <p> <code>DISABLED</code>: Remove settings replication on a regional table. Settings replication needs to be defined to ENABLED again in order to create a Multi-Account Global Table using this table. </p> </li> </ul>"""
+    vector_index_updates: NotRequired[
+        "capo_dynamodb.types.vector_index_update_list.VectorIndexUpdateList"
+    ]
+    """<p>A list of vector indexes to be added to or removed from the table. You can add or remove one vector index for each <code>UpdateTable</code> operation.</p> <p>To add a vector index, specify <code>IndexName</code>, <code>VectorAttribute</code>, <code>Dimensions</code>, <code>DistanceFunction</code>, and <code>Projection</code>. To remove a vector index, specify only the <code>IndexName</code>.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -183,6 +188,14 @@ def serialize_aws_json_1_0(value: UpdateTableInput) -> dict:
         out["GlobalTableSettingsReplicationMode"] = (
             capo_dynamodb.types.global_table_settings_replication_mode.serialize_aws_json_1_0(
                 value["global_table_settings_replication_mode"]
+            )
+        )
+    if "vector_index_updates" in value:
+        import capo_dynamodb.types.vector_index_update_list
+
+        out["VectorIndexUpdates"] = (
+            capo_dynamodb.types.vector_index_update_list.serialize_aws_json_1_0(
+                value["vector_index_updates"]
             )
         )
     return out
@@ -294,6 +307,14 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateTableInput:
         out["global_table_settings_replication_mode"] = (
             capo_dynamodb.types.global_table_settings_replication_mode.deserialize_aws_json_1_0(
                 data["GlobalTableSettingsReplicationMode"]
+            )
+        )
+    if data.get("VectorIndexUpdates") is not None:
+        import capo_dynamodb.types.vector_index_update_list
+
+        out["vector_index_updates"] = (
+            capo_dynamodb.types.vector_index_update_list.deserialize_aws_json_1_0(
+                data["VectorIndexUpdates"]
             )
         )
     return out

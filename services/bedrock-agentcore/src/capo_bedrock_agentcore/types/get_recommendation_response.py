@@ -9,6 +9,7 @@ from capo_bedrock_agentcore.errors import DeserializationError
 if TYPE_CHECKING:
     import datetime
 
+    import capo_bedrock_agentcore.types.kms_key_arn
     import capo_bedrock_agentcore.types.recommendation_arn
     import capo_bedrock_agentcore.types.recommendation_config
     import capo_bedrock_agentcore.types.recommendation_description
@@ -48,6 +49,8 @@ class GetRecommendationResponse(TypedDict, closed=True):
         "capo_bedrock_agentcore.types.recommendation_result.RecommendationResult"
     ]
     """<p>The result of the recommendation, containing the optimized system prompt or tool descriptions. Only present when the recommendation status is <code>COMPLETED</code>.</p>"""
+    kms_key_arn: NotRequired["capo_bedrock_agentcore.types.kms_key_arn.KmsKeyArn"]
+    """<p>The ARN of the KMS key used to encrypt recommendation data.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -93,6 +96,8 @@ def serialize_json(value: GetRecommendationResponse) -> dict:
                 value["recommendation_result"]
             )
         )
+    if "kms_key_arn" in value:
+        out["kmsKeyArn"] = value["kms_key_arn"]
     return out
 
 
@@ -170,4 +175,6 @@ def deserialize_json(data: dict) -> GetRecommendationResponse:
                 data["recommendationResult"]
             )
         )
+    if data.get("kmsKeyArn") is not None:
+        out["kms_key_arn"] = data["kmsKeyArn"]
     return out

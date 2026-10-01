@@ -167,6 +167,18 @@ AppInstanceType: TypeAlias = Literal[
     "ml.r6id.24xlarge",
     "ml.r6id.32xlarge",
     "ml.p5.4xlarge",
+    "ml.g7.2xlarge",
+    "ml.g7.4xlarge",
+    "ml.g7.8xlarge",
+    "ml.g7.12xlarge",
+    "ml.g7.24xlarge",
+    "ml.g7.48xlarge",
+    "ml.g7e.2xlarge",
+    "ml.g7e.4xlarge",
+    "ml.g7e.8xlarge",
+    "ml.g7e.12xlarge",
+    "ml.g7e.24xlarge",
+    "ml.g7e.48xlarge",
 ]
 
 

@@ -32,7 +32,7 @@ class SearchNearbyRequest(TypedDict, closed=True):
     ]
     """<p>A list of optional additional parameters, such as time zone, that can be requested for each result.</p>"""
     language: NotRequired["capo_geo_places.types.language_tag.LanguageTag"]
-    r"""<p>A list of <a href=\"https://en.wikipedia.org/wiki/IETF_language_tag\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry.</p>"""
+    r"""<p>A list of <a href=\"https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry.</p>"""
     political_view: NotRequired["capo_geo_places.types.country_code.CountryCode"]
     """<p>The alpha-2 or alpha-3 character code for the political view of a country. The political view applies to the results of the request to represent unresolved territorial claims through the point of view of the specified country.</p>"""
     intended_use: NotRequired[
@@ -76,7 +76,13 @@ def serialize_json(value: SearchNearbyRequest) -> dict:
     if "political_view" in value:
         out["PoliticalView"] = value["political_view"]
     if "intended_use" in value:
-        out["IntendedUse"] = value["intended_use"]
+        import capo_geo_places.types.search_nearby_intended_use
+
+        out["IntendedUse"] = (
+            capo_geo_places.types.search_nearby_intended_use.serialize_json(
+                value["intended_use"]
+            )
+        )
     if "next_token" in value:
         out["NextToken"] = value["next_token"]
     return out
@@ -115,7 +121,13 @@ def deserialize_json(data: dict) -> SearchNearbyRequest:
     if data.get("PoliticalView") is not None:
         out["political_view"] = data["PoliticalView"]
     if data.get("IntendedUse") is not None:
-        out["intended_use"] = data["IntendedUse"]
+        import capo_geo_places.types.search_nearby_intended_use
+
+        out["intended_use"] = (
+            capo_geo_places.types.search_nearby_intended_use.deserialize_json(
+                data["IntendedUse"]
+            )
+        )
     if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

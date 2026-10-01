@@ -19,6 +19,7 @@ import capo_ecs.errors.server_exception
 import capo_ecs.errors.service_not_active_exception
 import capo_ecs.errors.service_not_found_exception
 import capo_ecs.errors.unsupported_feature_exception
+import capo_ecs.types.express_cpu_architecture
 import capo_ecs.types.express_gateway_container
 import capo_ecs.types.express_gateway_scaling_target
 import capo_ecs.types.express_gateway_service_network_configuration

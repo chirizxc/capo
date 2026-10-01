@@ -9,10 +9,12 @@ from capo_bedrock_agentcore_control.errors import DeserializationError
 if TYPE_CHECKING:
     import datetime
 
+    import capo_bedrock_agentcore_control.types.clustering_config
     import capo_bedrock_agentcore_control.types.data_source_config
     import capo_bedrock_agentcore_control.types.evaluation_config_description
     import capo_bedrock_agentcore_control.types.evaluation_config_name
     import capo_bedrock_agentcore_control.types.evaluator_list
+    import capo_bedrock_agentcore_control.types.insight_list
     import capo_bedrock_agentcore_control.types.online_evaluation_config_arn
     import capo_bedrock_agentcore_control.types.online_evaluation_config_id
     import capo_bedrock_agentcore_control.types.online_evaluation_config_status
@@ -41,6 +43,14 @@ class GetOnlineEvaluationConfigResponse(TypedDict, closed=True):
     """<p> The data source configuration specifying CloudWatch log groups and service names to monitor. </p>"""
     evaluators: "capo_bedrock_agentcore_control.types.evaluator_list.EvaluatorList"
     """<p> The list of evaluators applied during online evaluation. </p>"""
+    insights: NotRequired[
+        "capo_bedrock_agentcore_control.types.insight_list.InsightList"
+    ]
+    """<p>The list of insight types configured for this evaluation.</p>"""
+    clustering_config: NotRequired[
+        "capo_bedrock_agentcore_control.types.clustering_config.ClusteringConfig"
+    ]
+    """<p>The clustering configuration for periodic batch evaluation.</p>"""
     output_config: NotRequired[
         "capo_bedrock_agentcore_control.types.output_config.OutputConfig"
     ]
@@ -85,9 +95,25 @@ def serialize_json(value: GetOnlineEvaluationConfigResponse) -> dict:
 
     out["evaluators"] = (
         capo_bedrock_agentcore_control.types.evaluator_list.serialize_json(
-            value["evaluators"]
+            value.get("evaluators", [])
         )
     )
+    if "insights" in value:
+        import capo_bedrock_agentcore_control.types.insight_list
+
+        out["insights"] = (
+            capo_bedrock_agentcore_control.types.insight_list.serialize_json(
+                value["insights"]
+            )
+        )
+    if "clustering_config" in value:
+        import capo_bedrock_agentcore_control.types.clustering_config
+
+        out["clusteringConfig"] = (
+            capo_bedrock_agentcore_control.types.clustering_config.serialize_json(
+                value["clustering_config"]
+            )
+        )
     if "output_config" in value:
         import capo_bedrock_agentcore_control.types.output_config
 
@@ -182,8 +208,22 @@ def deserialize_json(data: dict) -> GetOnlineEvaluationConfigResponse:
             )
         )
     else:
-        raise DeserializationError(
-            "GetOnlineEvaluationConfigResponse.evaluators required"
+        out["evaluators"] = []
+    if data.get("insights") is not None:
+        import capo_bedrock_agentcore_control.types.insight_list
+
+        out["insights"] = (
+            capo_bedrock_agentcore_control.types.insight_list.deserialize_json(
+                data["insights"]
+            )
+        )
+    if data.get("clusteringConfig") is not None:
+        import capo_bedrock_agentcore_control.types.clustering_config
+
+        out["clustering_config"] = (
+            capo_bedrock_agentcore_control.types.clustering_config.deserialize_json(
+                data["clusteringConfig"]
+            )
         )
     if data.get("outputConfig") is not None:
         import capo_bedrock_agentcore_control.types.output_config

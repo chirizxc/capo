@@ -51,6 +51,8 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.get_batch_evaluation_response
     import capo_bedrock_agentcore.types.get_recommendation_request
     import capo_bedrock_agentcore.types.get_recommendation_response
+    import capo_bedrock_agentcore.types.insight_list
+    import capo_bedrock_agentcore.types.kms_key_arn
     import capo_bedrock_agentcore.types.list_ab_tests_request
     import capo_bedrock_agentcore.types.list_ab_tests_response
     import capo_bedrock_agentcore.types.list_batch_evaluations_request
@@ -58,6 +60,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.list_recommendations_request
     import capo_bedrock_agentcore.types.list_recommendations_response
     import capo_bedrock_agentcore.types.next_token
+    import capo_bedrock_agentcore.types.output_config
     import capo_bedrock_agentcore.types.recommendation_config
     import capo_bedrock_agentcore.types.recommendation_description
     import capo_bedrock_agentcore.types.recommendation_id
@@ -72,6 +75,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.start_recommendation_response
     import capo_bedrock_agentcore.types.stop_batch_evaluation_request
     import capo_bedrock_agentcore.types.stop_batch_evaluation_response
+    import capo_bedrock_agentcore.types.tags_map
     import capo_bedrock_agentcore.types.update_ab_test_request
     import capo_bedrock_agentcore.types.update_ab_test_response
     import capo_bedrock_agentcore.types.variant_list
@@ -108,6 +112,7 @@ class EvaluationResource:
         client_token: Optional[
             "capo_bedrock_agentcore.types.client_token.ClientToken"
         ] = None,
+        tags: Optional["capo_bedrock_agentcore.types.tags_map.TagsMap"] = None,
     ) -> "capo_bedrock_agentcore.types.create_ab_test_response.CreateABTestResponse":
         """<p>Creates an A/B test for comparing agent configurations. A/B tests split traffic between a control variant and a treatment variant through a gateway, then evaluate performance using online evaluation configurations to determine which variant performs better.</p>
 
@@ -121,6 +126,7 @@ class EvaluationResource:
             role_arn: <p>The IAM role ARN that grants permissions for the A/B test to access gateway and evaluation resources.</p>
             enable_on_create: <p>Whether to enable the A/B test immediately upon creation. If true, traffic splitting begins automatically.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, the service ignores the request, but does not return an error.</p>
+            tags: <p>A map of tag keys and values to associate with the A/B test.</p>
 
         Raises:
             capo_bedrock_agentcore.errors.access_denied_exception.AccessDeniedException: <p>The exception that occurs when you do not have sufficient permissions to perform an action. Verify that your IAM policy includes the necessary permissions for the operation you are trying to perform.</p>
@@ -164,6 +170,8 @@ class EvaluationResource:
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
+        if tags is not None:
+            input_["tags"] = tags
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -697,14 +705,24 @@ class EvaluationResource:
         evaluators: Optional[
             "capo_bedrock_agentcore.types.evaluator_list.EvaluatorList"
         ] = None,
+        insights: Optional[
+            "capo_bedrock_agentcore.types.insight_list.InsightList"
+        ] = None,
         client_token: Optional[
             "capo_bedrock_agentcore.types.client_token.ClientToken"
         ] = None,
         evaluation_metadata: Optional[
             "capo_bedrock_agentcore.types.evaluation_metadata.EvaluationMetadata"
         ] = None,
+        tags: Optional["capo_bedrock_agentcore.types.tags_map.TagsMap"] = None,
+        kms_key_arn: Optional[
+            "capo_bedrock_agentcore.types.kms_key_arn.KmsKeyArn"
+        ] = None,
         description: Optional[
             "capo_bedrock_agentcore.types.batch_evaluation_description.BatchEvaluationDescription"
+        ] = None,
+        output_config: Optional[
+            "capo_bedrock_agentcore.types.output_config.OutputConfig"
         ] = None,
     ) -> "capo_bedrock_agentcore.types.start_batch_evaluation_response.StartBatchEvaluationResponse":
         """<p>Starts a batch evaluation job that evaluates agent performance across multiple sessions. Batch evaluations pull agent traces from CloudWatch Logs or an existing online evaluation configuration and run specified evaluators and insights against them.</p>
@@ -712,9 +730,12 @@ class EvaluationResource:
         Args:
             batch_evaluation_name: <p>The name of the batch evaluation. Must be unique within your account.</p>
             evaluators: <p>The list of evaluators to apply during the batch evaluation. Can include both built-in evaluators and custom evaluators. Maximum of 10 evaluators.</p>
+            insights: <p>The list of insight analyses to run against sessions during the batch evaluation. Maximum of 10 insights.</p>
             data_source_config: <p>The data source configuration that specifies where to pull agent session traces from for evaluation.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, the service ignores the request, but does not return an error.</p>
             evaluation_metadata: <p>Optional metadata for the evaluation, including session-specific ground truth data and test scenario identifiers.</p>
+            tags: <p>A map of tag keys and values to associate with the batch evaluation.</p>
+            kms_key_arn: <p>The ARN of the KMS key used to encrypt evaluation data. If provided, customer data is encrypted at rest with the specified key.</p>
             description: <p>The description of the batch evaluation.</p>
 
         Raises:
@@ -749,13 +770,21 @@ class EvaluationResource:
         }
         if evaluators is not None:
             input_["evaluators"] = evaluators
+        if insights is not None:
+            input_["insights"] = insights
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
         if evaluation_metadata is not None:
             input_["evaluation_metadata"] = evaluation_metadata
+        if tags is not None:
+            input_["tags"] = tags
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
         if description is not None:
             input_["description"] = description
+        if output_config is not None:
+            input_["output_config"] = output_config
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -775,9 +804,13 @@ class EvaluationResource:
         description: Optional[
             "capo_bedrock_agentcore.types.recommendation_description.RecommendationDescription"
         ] = None,
+        kms_key_arn: Optional[
+            "capo_bedrock_agentcore.types.kms_key_arn.KmsKeyArn"
+        ] = None,
         client_token: Optional[
             "capo_bedrock_agentcore.types.client_token.ClientToken"
         ] = None,
+        tags: Optional["capo_bedrock_agentcore.types.tags_map.TagsMap"] = None,
     ) -> "capo_bedrock_agentcore.types.start_recommendation_response.StartRecommendationResponse":
         """<p>Starts a recommendation job that analyzes agent traces and generates optimization suggestions for system prompts or tool descriptions to improve agent performance.</p>
 
@@ -786,7 +819,9 @@ class EvaluationResource:
             description: <p>The description of the recommendation.</p>
             type: <p>The type of recommendation to generate. Valid values are <code>SYSTEM_PROMPT_RECOMMENDATION</code> for system prompt optimization or <code>TOOL_DESCRIPTION_RECOMMENDATION</code> for tool description optimization.</p>
             recommendation_config: <p>The configuration for the recommendation, including the input to optimize, agent traces to analyze, and evaluation settings.</p>
+            kms_key_arn: <p>The ARN of the KMS key used to encrypt recommendation data. If provided, customer data is encrypted at rest with the specified key.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, the service ignores the request, but does not return an error.</p>
+            tags: <p>A map of tag keys and values to associate with the recommendation.</p>
 
         Raises:
             capo_bedrock_agentcore.errors.access_denied_exception.AccessDeniedException: <p>The exception that occurs when you do not have sufficient permissions to perform an action. Verify that your IAM policy includes the necessary permissions for the operation you are trying to perform.</p>
@@ -820,9 +855,13 @@ class EvaluationResource:
         }
         if description is not None:
             input_["description"] = description
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
+        if tags is not None:
+            input_["tags"] = tags
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -1000,6 +1039,7 @@ class AsyncEvaluationResource:
         client_token: Optional[
             "capo_bedrock_agentcore.types.client_token.ClientToken"
         ] = None,
+        tags: Optional["capo_bedrock_agentcore.types.tags_map.TagsMap"] = None,
     ) -> "capo_bedrock_agentcore.types.create_ab_test_response.CreateABTestResponse":
         """<p>Creates an A/B test for comparing agent configurations. A/B tests split traffic between a control variant and a treatment variant through a gateway, then evaluate performance using online evaluation configurations to determine which variant performs better.</p>
 
@@ -1013,6 +1053,7 @@ class AsyncEvaluationResource:
             role_arn: <p>The IAM role ARN that grants permissions for the A/B test to access gateway and evaluation resources.</p>
             enable_on_create: <p>Whether to enable the A/B test immediately upon creation. If true, traffic splitting begins automatically.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, the service ignores the request, but does not return an error.</p>
+            tags: <p>A map of tag keys and values to associate with the A/B test.</p>
 
         Raises:
             capo_bedrock_agentcore.errors.access_denied_exception.AccessDeniedException: <p>The exception that occurs when you do not have sufficient permissions to perform an action. Verify that your IAM policy includes the necessary permissions for the operation you are trying to perform.</p>
@@ -1057,6 +1098,8 @@ class AsyncEvaluationResource:
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
+        if tags is not None:
+            input_["tags"] = tags
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1600,14 +1643,24 @@ class AsyncEvaluationResource:
         evaluators: Optional[
             "capo_bedrock_agentcore.types.evaluator_list.EvaluatorList"
         ] = None,
+        insights: Optional[
+            "capo_bedrock_agentcore.types.insight_list.InsightList"
+        ] = None,
         client_token: Optional[
             "capo_bedrock_agentcore.types.client_token.ClientToken"
         ] = None,
         evaluation_metadata: Optional[
             "capo_bedrock_agentcore.types.evaluation_metadata.EvaluationMetadata"
         ] = None,
+        tags: Optional["capo_bedrock_agentcore.types.tags_map.TagsMap"] = None,
+        kms_key_arn: Optional[
+            "capo_bedrock_agentcore.types.kms_key_arn.KmsKeyArn"
+        ] = None,
         description: Optional[
             "capo_bedrock_agentcore.types.batch_evaluation_description.BatchEvaluationDescription"
+        ] = None,
+        output_config: Optional[
+            "capo_bedrock_agentcore.types.output_config.OutputConfig"
         ] = None,
     ) -> "capo_bedrock_agentcore.types.start_batch_evaluation_response.StartBatchEvaluationResponse":
         """<p>Starts a batch evaluation job that evaluates agent performance across multiple sessions. Batch evaluations pull agent traces from CloudWatch Logs or an existing online evaluation configuration and run specified evaluators and insights against them.</p>
@@ -1615,9 +1668,12 @@ class AsyncEvaluationResource:
         Args:
             batch_evaluation_name: <p>The name of the batch evaluation. Must be unique within your account.</p>
             evaluators: <p>The list of evaluators to apply during the batch evaluation. Can include both built-in evaluators and custom evaluators. Maximum of 10 evaluators.</p>
+            insights: <p>The list of insight analyses to run against sessions during the batch evaluation. Maximum of 10 insights.</p>
             data_source_config: <p>The data source configuration that specifies where to pull agent session traces from for evaluation.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, the service ignores the request, but does not return an error.</p>
             evaluation_metadata: <p>Optional metadata for the evaluation, including session-specific ground truth data and test scenario identifiers.</p>
+            tags: <p>A map of tag keys and values to associate with the batch evaluation.</p>
+            kms_key_arn: <p>The ARN of the KMS key used to encrypt evaluation data. If provided, customer data is encrypted at rest with the specified key.</p>
             description: <p>The description of the batch evaluation.</p>
 
         Raises:
@@ -1653,13 +1709,21 @@ class AsyncEvaluationResource:
         }
         if evaluators is not None:
             input_["evaluators"] = evaluators
+        if insights is not None:
+            input_["insights"] = insights
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
         if evaluation_metadata is not None:
             input_["evaluation_metadata"] = evaluation_metadata
+        if tags is not None:
+            input_["tags"] = tags
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
         if description is not None:
             input_["description"] = description
+        if output_config is not None:
+            input_["output_config"] = output_config
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1679,9 +1743,13 @@ class AsyncEvaluationResource:
         description: Optional[
             "capo_bedrock_agentcore.types.recommendation_description.RecommendationDescription"
         ] = None,
+        kms_key_arn: Optional[
+            "capo_bedrock_agentcore.types.kms_key_arn.KmsKeyArn"
+        ] = None,
         client_token: Optional[
             "capo_bedrock_agentcore.types.client_token.ClientToken"
         ] = None,
+        tags: Optional["capo_bedrock_agentcore.types.tags_map.TagsMap"] = None,
     ) -> "capo_bedrock_agentcore.types.start_recommendation_response.StartRecommendationResponse":
         """<p>Starts a recommendation job that analyzes agent traces and generates optimization suggestions for system prompts or tool descriptions to improve agent performance.</p>
 
@@ -1690,7 +1758,9 @@ class AsyncEvaluationResource:
             description: <p>The description of the recommendation.</p>
             type: <p>The type of recommendation to generate. Valid values are <code>SYSTEM_PROMPT_RECOMMENDATION</code> for system prompt optimization or <code>TOOL_DESCRIPTION_RECOMMENDATION</code> for tool description optimization.</p>
             recommendation_config: <p>The configuration for the recommendation, including the input to optimize, agent traces to analyze, and evaluation settings.</p>
+            kms_key_arn: <p>The ARN of the KMS key used to encrypt recommendation data. If provided, customer data is encrypted at rest with the specified key.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, the service ignores the request, but does not return an error.</p>
+            tags: <p>A map of tag keys and values to associate with the recommendation.</p>
 
         Raises:
             capo_bedrock_agentcore.errors.access_denied_exception.AccessDeniedException: <p>The exception that occurs when you do not have sufficient permissions to perform an action. Verify that your IAM policy includes the necessary permissions for the operation you are trying to perform.</p>
@@ -1725,9 +1795,13 @@ class AsyncEvaluationResource:
         }
         if description is not None:
             input_["description"] = description
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
+        if tags is not None:
+            input_["tags"] = tags
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

@@ -12,6 +12,7 @@ import capo_cloudformation._auth._signers
 import capo_cloudformation._auth._sigv4
 import capo_cloudformation._protocol.eventstream
 import capo_cloudformation.errors.token_already_exists_exception
+import capo_cloudformation.types.deployment_config
 import capo_cloudformation.types.rollback_stack_input
 import capo_cloudformation.types.rollback_stack_output
 from capo_cloudformation._protocol.errors import (

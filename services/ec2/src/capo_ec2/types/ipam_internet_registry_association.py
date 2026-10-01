@@ -41,6 +41,8 @@ class IpamInternetRegistryAssociation(TypedDict, closed=True):
         "capo_ec2.types.ipam_internet_registry_association_state.IpamInternetRegistryAssociationState"
     ]
     """<p>The state of the internet registry association. Valid values: <code>pending-activation</code> | <code>pending-enable</code> | <code>create-in-progress</code> | <code>create-failed</code> | <code>enable-in-progress</code> | <code>enable-complete</code> | <code>enable-failed</code> | <code>delete-in-progress</code> | <code>delete-complete</code> | <code>delete-failed</code>.</p>"""
+    state_message: NotRequired["capo_ec2.types.string.String"]
+    """<p>A message describing the current state of the internet registry association, including additional details such as the reason for a failure.</p>"""
     child_request_xml: NotRequired["capo_ec2.types.string.String"]
     """<p>The XML content for the child request to be submitted to the internet registry to complete the BPKI setup.</p>"""
     tags: NotRequired["capo_ec2.types.tag_list.TagList"]
@@ -88,6 +90,8 @@ def serialize_ec2_query(
         capo_ec2.types.ipam_internet_registry_association_state.serialize_ec2_query(
             value["state"], pairs, f"{key_prefix}State"
         )
+    if "state_message" in value:
+        pairs.append((f"{key_prefix}StateMessage", str(value["state_message"])))
     if "child_request_xml" in value:
         pairs.append((f"{key_prefix}ChildRequestXml", str(value["child_request_xml"])))
     if "tags" in value:
@@ -143,6 +147,9 @@ def deserialize_ec2_query(el: Element) -> IpamInternetRegistryAssociation:
                 child_state
             )
         )
+    child_state_message = el.find("stateMessage")
+    if child_state_message is not None:
+        out["state_message"] = str(child_state_message.text or "")
     child_child_request_xml = el.find("childRequestXml")
     if child_child_request_xml is not None:
         out["child_request_xml"] = str(child_child_request_xml.text or "")

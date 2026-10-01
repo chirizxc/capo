@@ -15,7 +15,7 @@ class GetPatchBaselineForPatchGroupRequest(TypedDict, closed=True):
     patch_group: "capo_ssm.types.patch_group.PatchGroup"
     """<p>The name of the patch group whose patch baseline should be retrieved.</p>"""
     operating_system: NotRequired["capo_ssm.types.operating_system.OperatingSystem"]
-    """<p>Returns the operating system rule specified for patch groups using the patch baseline.</p>"""
+    """<p>Returns the operating system rule specified for patch groups using the patch baseline. The default value is <code>WINDOWS</code>. </p>"""
 
 
 # --- awsJson1_1 ser/de ---

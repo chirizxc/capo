@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 from capo_bedrock_agent_runtime.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_bedrock_agent_runtime.types.document_id
     import capo_bedrock_agent_runtime.types.retrieval_result_content
     import capo_bedrock_agent_runtime.types.retrieval_result_location
     import capo_bedrock_agent_runtime.types.retrieval_result_metadata
@@ -25,6 +26,8 @@ class KnowledgeBaseRetrievalResult(TypedDict, closed=True):
         "capo_bedrock_agent_runtime.types.retrieval_result_metadata.RetrievalResultMetadata"
     ]
     r"""<p>Contains metadata attributes and their values for the file in the data source. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-ds.html#kb-ds-metadata\">Metadata and filtering</a>.</p>"""
+    document_id: NotRequired["capo_bedrock_agent_runtime.types.document_id.DocumentId"]
+    """<p>The unique identifier of the document. Use with <code>GetDocumentContent</code> to retrieve the full document.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -63,6 +66,8 @@ def serialize_json(value: KnowledgeBaseRetrievalResult) -> dict:
                 value["metadata"]
             )
         )
+    if "document_id" in value:
+        out["documentId"] = value["document_id"]
     return out
 
 
@@ -96,4 +101,6 @@ def deserialize_json(data: dict) -> KnowledgeBaseRetrievalResult:
                 data["metadata"]
             )
         )
+    if data.get("documentId") is not None:
+        out["document_id"] = data["documentId"]
     return out

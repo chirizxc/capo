@@ -11,6 +11,7 @@ from capo_bedrock_agentcore_control.errors import (
 
 if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.http_target_configuration
+    import capo_bedrock_agentcore_control.types.inference_target_configuration
     import capo_bedrock_agentcore_control.types.mcp_target_configuration
 
 
@@ -22,7 +23,15 @@ class _TargetConfiguration_http(TypedDict, closed=True):
     http: "capo_bedrock_agentcore_control.types.http_target_configuration.HttpTargetConfiguration"
 
 
-TargetConfiguration: TypeAlias = _TargetConfiguration_mcp | _TargetConfiguration_http
+class _TargetConfiguration_inference(TypedDict, closed=True):
+    inference: "capo_bedrock_agentcore_control.types.inference_target_configuration.InferenceTargetConfiguration"
+
+
+TargetConfiguration: TypeAlias = (
+    _TargetConfiguration_mcp
+    | _TargetConfiguration_http
+    | _TargetConfiguration_inference
+)
 
 
 # --- restJson1 ser/de ---
@@ -41,6 +50,14 @@ def serialize_json(value: TargetConfiguration) -> dict:
         return {
             "http": capo_bedrock_agentcore_control.types.http_target_configuration.serialize_json(
                 value["http"]
+            )
+        }
+    elif "inference" in value:
+        import capo_bedrock_agentcore_control.types.inference_target_configuration
+
+        return {
+            "inference": capo_bedrock_agentcore_control.types.inference_target_configuration.serialize_json(
+                value["inference"]
             )
         }
     else:
@@ -62,6 +79,14 @@ def deserialize_json(data: dict) -> TargetConfiguration:
         return {
             "http": capo_bedrock_agentcore_control.types.http_target_configuration.deserialize_json(
                 data["http"]
+            )
+        }
+    elif data.get("inference") is not None:
+        import capo_bedrock_agentcore_control.types.inference_target_configuration
+
+        return {
+            "inference": capo_bedrock_agentcore_control.types.inference_target_configuration.deserialize_json(
+                data["inference"]
             )
         }
     else:

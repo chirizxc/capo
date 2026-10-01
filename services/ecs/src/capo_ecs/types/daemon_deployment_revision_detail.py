@@ -21,6 +21,10 @@ class DaemonDeploymentRevisionDetail(TypedDict, closed=True):
         "capo_ecs.types.boxed_integer.BoxedInteger"
     ]
     """<p>The total number of instances running daemon tasks for this revision.</p>"""
+    total_without_daemon_instance_count: NotRequired[
+        "capo_ecs.types.boxed_integer.BoxedInteger"
+    ]
+    """<p>The total number of instances running without the daemon task for this revision, across all capacity providers. These instances aren't included in <code>totalRunningInstanceCount</code>.</p>"""
     total_draining_instance_count: NotRequired[
         "capo_ecs.types.boxed_integer.BoxedInteger"
     ]
@@ -42,6 +46,10 @@ def serialize_aws_json_1_1(value: DaemonDeploymentRevisionDetail) -> dict:
         )
     if "total_running_instance_count" in value:
         out["totalRunningInstanceCount"] = value["total_running_instance_count"]
+    if "total_without_daemon_instance_count" in value:
+        out["totalWithoutDaemonInstanceCount"] = value[
+            "total_without_daemon_instance_count"
+        ]
     if "total_draining_instance_count" in value:
         out["totalDrainingInstanceCount"] = value["total_draining_instance_count"]
     return out
@@ -61,6 +69,10 @@ def deserialize_aws_json_1_1(data: dict) -> DaemonDeploymentRevisionDetail:
         )
     if data.get("totalRunningInstanceCount") is not None:
         out["total_running_instance_count"] = data["totalRunningInstanceCount"]
+    if data.get("totalWithoutDaemonInstanceCount") is not None:
+        out["total_without_daemon_instance_count"] = data[
+            "totalWithoutDaemonInstanceCount"
+        ]
     if data.get("totalDrainingInstanceCount") is not None:
         out["total_draining_instance_count"] = data["totalDrainingInstanceCount"]
     return out

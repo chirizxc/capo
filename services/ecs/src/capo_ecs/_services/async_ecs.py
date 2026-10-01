@@ -175,6 +175,7 @@ if TYPE_CHECKING:
     import capo_ecs.types.ephemeral_storage
     import capo_ecs.types.execute_command_request
     import capo_ecs.types.execute_command_response
+    import capo_ecs.types.express_cpu_architecture
     import capo_ecs.types.express_gateway_container
     import capo_ecs.types.express_gateway_scaling_target
     import capo_ecs.types.express_gateway_service_include_list
@@ -3210,6 +3211,7 @@ class AsyncECSClient:
         enable_ecs_managed_tags: Optional["capo_ecs.types.boolean.Boolean"] = None,
         enable_execute_command: Optional["capo_ecs.types.boolean.Boolean"] = None,
         client_token: Optional["capo_ecs.types.string.String"] = None,
+        critical: Optional["capo_ecs.types.boxed_boolean.BoxedBoolean"] = None,
     ) -> "capo_ecs.types.create_daemon_response.CreateDaemonResponse":
         r"""<p>Creates a new daemon in the specified cluster and capacity providers. A daemon deploys cross-cutting software agents such as security monitoring, telemetry, and logging independently across your Amazon ECS infrastructure.</p> <p>Amazon ECS deploys exactly one daemon task on each container instance of the specified capacity providers. When a container instance registers with the cluster, Amazon ECS automatically starts daemon tasks. Amazon ECS starts a daemon task before scheduling other tasks.</p> <p>Daemons are essential for instance health - if a daemon task stops, Amazon ECS automatically drains and replaces that container instance.</p> <note> <p>ECS Managed Daemons is only supported for Amazon ECS Managed Instances Capacity Providers.</p> </note>
 
@@ -3224,6 +3226,7 @@ class AsyncECSClient:
             enable_ecs_managed_tags: <p>Specifies whether to turn on Amazon ECS managed tags for the tasks in the daemon. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html\">Tagging your Amazon ECS resources</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p>
             enable_execute_command: <p>Determines whether the execute command functionality is turned on for the daemon. If <code>true</code>, the execute command functionality is turned on for all tasks in the daemon.</p>
             client_token: <p>An identifier that you provide to ensure the idempotency of the request. It must be unique and is case sensitive. Up to 36 ASCII characters in the range of 33-126 (inclusive) are allowed.</p>
+            critical: <p>If the <code>critical</code> parameter of a daemon is <code>true</code>, and the daemon task fails, stops, or becomes unhealthy, Amazon ECS drains the container instance and stops the other tasks running on it. If the <code>critical</code> parameter is <code>false</code>, the daemon task failure doesn't affect the other tasks on the instance. The default value is <code>true</code>.</p> <p>A non-critical daemon doesn't block instance registration. The container instance becomes active and continues to run your other tasks, whether the daemon task fails during scale-out or during a deployment.</p> <p>Amazon ECS emits an EventBridge event when a daemon task fails to start, for both critical and non-critical daemons.</p> <p>Daemon task launch failures during a deployment are still counted by the deployment circuit breaker. The circuit breaker can roll back an unstable target revision.</p>
 
         Raises:
             capo_ecs.errors.access_denied_exception.AccessDeniedException: <p>You don't have authorization to perform the requested action.</p>
@@ -3277,6 +3280,8 @@ class AsyncECSClient:
             input_["enable_execute_command"] = enable_execute_command
         if client_token is not None:
             input_["client_token"] = client_token
+        if critical is not None:
+            input_["critical"] = critical
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -3558,6 +3563,7 @@ class AsyncECSClient:
         ] = None,
         enable_ecs_managed_tags: Optional["capo_ecs.types.boolean.Boolean"] = None,
         enable_execute_command: Optional["capo_ecs.types.boolean.Boolean"] = None,
+        critical: Optional["capo_ecs.types.boxed_boolean.BoxedBoolean"] = None,
     ) -> "capo_ecs.types.update_daemon_response.UpdateDaemonResponse":
         r"""<p>Updates the specified daemon. When you update a daemon, a new deployment is triggered that progressively rolls out the changes to the container instances associated with the daemon's capacity providers. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/daemon-deployments.html\">Daemon deployments</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p> <p>Amazon ECS drains existing container instances and provisions new instances with the updated daemon. Amazon ECS automatically launches replacement tasks for your services.</p> <important> <p>Updating a daemon triggers a rolling deployment that drains and replaces container instances. Plan updates during maintenance windows to minimize impact on running services.</p> </important> <note> <p>ECS Managed Daemons is only supported for Amazon ECS Managed Instances Capacity Providers.</p> </note>
 
@@ -3569,6 +3575,7 @@ class AsyncECSClient:
             propagate_tags: <p>Specifies whether to propagate the tags from the daemon to the daemon tasks. If you don't specify a value, the tags aren't propagated. You can only propagate tags to daemon tasks during task creation.</p>
             enable_ecs_managed_tags: <p>Specifies whether to turn on Amazon ECS managed tags for the tasks in the daemon. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html\">Tagging your Amazon ECS resources</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p>
             enable_execute_command: <p>If <code>true</code>, the execute command functionality is turned on for all tasks in the daemon. If <code>false</code>, the execute command functionality is turned off.</p>
+            critical: <p>If the <code>critical</code> parameter of a daemon is <code>true</code>, and the daemon task fails, stops, or becomes unhealthy, Amazon ECS drains the container instance and stops the other tasks running on it. If the <code>critical</code> parameter is <code>false</code>, the daemon task failure doesn't affect the other tasks on the instance. The default value is <code>true</code>.</p> <p>A non-critical daemon doesn't block instance registration. The container instance becomes active and continues to run your other tasks, whether the daemon task fails during scale-out or during a deployment.</p> <p>Amazon ECS emits an EventBridge event when a daemon task fails to start, for both critical and non-critical daemons.</p> <p>Daemon task launch failures during a deployment are still counted by the deployment circuit breaker. The circuit breaker can roll back an unstable target revision.</p>
 
         Raises:
             capo_ecs.errors.access_denied_exception.AccessDeniedException: <p>You don't have authorization to perform the requested action.</p>
@@ -3618,6 +3625,8 @@ class AsyncECSClient:
             input_["enable_ecs_managed_tags"] = enable_ecs_managed_tags
         if enable_execute_command is not None:
             input_["enable_execute_command"] = enable_execute_command
+        if critical is not None:
+            input_["critical"] = critical
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -4100,6 +4109,9 @@ class AsyncECSClient:
         ] = None,
         cpu: Optional["capo_ecs.types.string.String"] = None,
         memory: Optional["capo_ecs.types.string.String"] = None,
+        cpu_architecture: Optional[
+            "capo_ecs.types.express_cpu_architecture.ExpressCpuArchitecture"
+        ] = None,
         scaling_target: Optional[
             "capo_ecs.types.express_gateway_scaling_target.ExpressGatewayScalingTarget"
         ] = None,
@@ -4119,9 +4131,10 @@ class AsyncECSClient:
             network_configuration: <p>The network configuration for the Express service tasks. This specifies the VPC subnets and security groups for the tasks.</p> <p>For Express services, you can specify custom security groups and subnets. If not provided, Amazon ECS will use the default VPC configuration and create appropriate security groups automatically. The network configuration determines how your service integrates with your VPC and what network access it has.</p>
             cpu: <p>The number of CPU units used by the task. This parameter determines the CPU allocation for each task in the Express service. The default value for an Express service is 256 (.25 vCPU).</p>
             memory: <p>The amount of memory (in MiB) used by the task. This parameter determines the memory allocation for each task in the Express service. The default value for an express service is 512 MiB.</p>
+            cpu_architecture: <p>The CPU architecture that the tasks in the Express service run on. Amazon ECS applies this value to the task definition revision that it registers for the service. If you don't specify a value, the default is <code>X86_64</code>.</p> <p>Valid values:</p> <ul> <li> <p> <code>X86_64</code> - The x86 64-bit architecture.</p> </li> <li> <p> <code>ARM64</code> - The 64-bit ARM architecture.</p> </li> </ul> <p>Make sure that the container image that you specify supports the architecture that you choose. The operating system family for an Express service is always <code>LINUX</code>.</p> <p>You can't specify <code>cpuArchitecture</code> when you also specify <code>taskDefinitionArn</code>, because this value applies only to a task definition that Amazon ECS registers on your behalf.</p>
             scaling_target: <p>The auto-scaling configuration for the Express service. This defines how the service automatically adjusts the number of running tasks based on demand.</p> <p>You can specify the minimum and maximum number of tasks, the scaling metric (CPU utilization, memory utilization, or request count per target), and the target value for the metric. If not specified, the default target value for an Express service is 60.</p>
             tags: <p>The metadata that you apply to the Express service to help categorize and organize it. Each tag consists of a key and an optional value. You can apply up to 50 tags to a service.</p>
-            task_definition_arn: <p>The Amazon Resource Name (ARN) of a task definition to use to create the Express Gateway service. This allows you to manage your own task definition, giving you more control over the service configuration such as adding sidecar containers.</p> <p>The task definition must have a container named <code>Main</code> with a single TCP port mapping that includes a container port and port name. The task definition must also have <code>FARGATE</code> compatibility.</p> <p>If you provide a task definition ARN, you cannot also specify <code>primaryContainer</code>, <code>executionRoleArn</code>, <code>taskRoleArn</code>, <code>cpu</code>, or <code>memory</code>.</p>
+            task_definition_arn: <p>The Amazon Resource Name (ARN) of a task definition to use to create the Express Gateway service. This allows you to manage your own task definition, giving you more control over the service configuration such as adding sidecar containers.</p> <p>The task definition must have a container named <code>Main</code> with a single TCP port mapping that includes a container port and port name. The task definition must also have <code>FARGATE</code> compatibility.</p> <p>If you provide a task definition ARN, you cannot also specify <code>primaryContainer</code>, <code>executionRoleArn</code>, <code>taskRoleArn</code>, <code>cpu</code>, <code>memory</code>, or <code>cpuArchitecture</code>.</p>
 
         Raises:
             capo_ecs.errors.access_denied_exception.AccessDeniedException: <p>You don't have authorization to perform the requested action.</p>
@@ -4172,6 +4185,8 @@ class AsyncECSClient:
             input_["cpu"] = cpu
         if memory is not None:
             input_["memory"] = memory
+        if cpu_architecture is not None:
+            input_["cpu_architecture"] = cpu_architecture
         if scaling_target is not None:
             input_["scaling_target"] = scaling_target
         if tags is not None:
@@ -4896,6 +4911,9 @@ class AsyncECSClient:
         ] = None,
         cpu: Optional["capo_ecs.types.string.String"] = None,
         memory: Optional["capo_ecs.types.string.String"] = None,
+        cpu_architecture: Optional[
+            "capo_ecs.types.express_cpu_architecture.ExpressCpuArchitecture"
+        ] = None,
         scaling_target: Optional[
             "capo_ecs.types.express_gateway_scaling_target.ExpressGatewayScalingTarget"
         ] = None,
@@ -4912,8 +4930,9 @@ class AsyncECSClient:
             network_configuration: <p>The network configuration for the Express service tasks. By default, the network configuration for an Express service uses the default VPC.</p>
             cpu: <p>The number of CPU units used by the task.</p>
             memory: <p>The amount of memory (in MiB) used by the task.</p>
+            cpu_architecture: <p>The CPU architecture that the tasks in the Express service run on. Amazon ECS applies this value to the task definition revision that it registers for the service. If you don't specify a value, the service keeps the architecture that it currently runs on.</p> <p>Valid values:</p> <ul> <li> <p> <code>X86_64</code> - The x86 64-bit architecture.</p> </li> <li> <p> <code>ARM64</code> - The 64-bit ARM architecture.</p> </li> </ul> <p>Changing the architecture starts a new deployment that replaces the running tasks. Make sure that the container image that the service uses supports the architecture that you choose. The operating system family for an Express service is always <code>LINUX</code>.</p> <p>You can't specify <code>cpuArchitecture</code> when you also specify <code>taskDefinitionArn</code>, because this value applies only to a task definition that Amazon ECS registers on your behalf.</p>
             scaling_target: <p>The auto-scaling configuration for the Express service.</p>
-            task_definition_arn: <p>The Amazon Resource Name (ARN) of a task definition to use to update the Express Gateway service. This allows you to manage your own task definition, giving you more control over the service configuration such as adding sidecar containers.</p> <p>The task definition must have a container named <code>Main</code> with a single TCP port mapping that includes a container port and port name. The task definition must also have <code>FARGATE</code> compatibility.</p> <p>If you provide a task definition ARN, you cannot also specify <code>primaryContainer</code>, <code>executionRoleArn</code>, <code>taskRoleArn</code>, <code>cpu</code>, or <code>memory</code>.</p>
+            task_definition_arn: <p>The Amazon Resource Name (ARN) of a task definition to use to update the Express Gateway service. This allows you to manage your own task definition, giving you more control over the service configuration such as adding sidecar containers.</p> <p>The task definition must have a container named <code>Main</code> with a single TCP port mapping that includes a container port and port name. The task definition must also have <code>FARGATE</code> compatibility.</p> <p>If you provide a task definition ARN, you cannot also specify <code>primaryContainer</code>, <code>executionRoleArn</code>, <code>taskRoleArn</code>, <code>cpu</code>, <code>memory</code>, or <code>cpuArchitecture</code>.</p>
 
         Raises:
             capo_ecs.errors.access_denied_exception.AccessDeniedException: <p>You don't have authorization to perform the requested action.</p>
@@ -4960,6 +4979,8 @@ class AsyncECSClient:
             input_["cpu"] = cpu
         if memory is not None:
             input_["memory"] = memory
+        if cpu_architecture is not None:
+            input_["cpu_architecture"] = cpu_architecture
         if scaling_target is not None:
             input_["scaling_target"] = scaling_target
         if task_definition_arn is not None:

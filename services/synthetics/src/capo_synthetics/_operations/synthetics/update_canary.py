@@ -18,12 +18,14 @@ import capo_synthetics.errors.internal_server_exception
 import capo_synthetics.errors.request_entity_too_large_exception
 import capo_synthetics.errors.resource_not_found_exception
 import capo_synthetics.errors.validation_exception
+import capo_synthetics.types.add_replica_locations
 import capo_synthetics.types.artifact_config_input
 import capo_synthetics.types.browser_configs
 import capo_synthetics.types.canary_code_input
 import capo_synthetics.types.canary_run_config_input
 import capo_synthetics.types.canary_schedule_input
 import capo_synthetics.types.provisioned_resource_cleanup_setting
+import capo_synthetics.types.remove_replica_locations
 import capo_synthetics.types.update_canary_request
 import capo_synthetics.types.update_canary_response
 import capo_synthetics.types.visual_reference_input

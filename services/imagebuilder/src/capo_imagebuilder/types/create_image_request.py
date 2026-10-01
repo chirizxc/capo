@@ -25,45 +25,45 @@ class CreateImageRequest(TypedDict, closed=True):
     image_recipe_arn: NotRequired[
         "capo_imagebuilder.types.image_recipe_arn.ImageRecipeArn"
     ]
-    """<p>The Amazon Resource Name (ARN) of the image recipe that defines how images are configured, tested, and assessed.</p>"""
+    """<p>The Amazon Resource Name (ARN) of the image recipe that defines how images are configured, tested, and assessed. You must specify either this property or <code>containerRecipeArn</code>, but not both.</p>"""
     container_recipe_arn: NotRequired[
         "capo_imagebuilder.types.container_recipe_arn.ContainerRecipeArn"
     ]
-    """<p>The Amazon Resource Name (ARN) of the container recipe that defines how images are configured and tested.</p>"""
+    """<p>The Amazon Resource Name (ARN) of the container recipe that defines how images are configured and tested. You must specify either this property or <code>imageRecipeArn</code>, but not both.</p>"""
     distribution_configuration_arn: NotRequired[
         "capo_imagebuilder.types.distribution_configuration_arn.DistributionConfigurationArn"
     ]
-    """<p>The Amazon Resource Name (ARN) of the distribution configuration that defines and configures the outputs of your pipeline.</p>"""
+    """<p>The Amazon Resource Name (ARN) of the distribution configuration that defines and configures the outputs of the image build. If you don't specify a distribution configuration, Image Builder creates the output image only in the account and Amazon Web Services Region where the build runs.</p>"""
     infrastructure_configuration_arn: "capo_imagebuilder.types.infrastructure_configuration_arn.InfrastructureConfigurationArn"
     """<p>The Amazon Resource Name (ARN) of the infrastructure configuration that defines the environment in which your image will be built and tested.</p>"""
     image_tests_configuration: NotRequired[
         "capo_imagebuilder.types.image_tests_configuration.ImageTestsConfiguration"
     ]
-    """<p>The image tests configuration of the image.</p>"""
+    """<p>Settings that determine whether Image Builder runs tests on the image after building it. Image tests are enabled by default.</p>"""
     enhanced_image_metadata_enabled: NotRequired[
         "capo_imagebuilder.types.nullable_boolean.NullableBoolean"
     ]
-    """<p>Collects additional information about the image being created, including the operating system (OS) version and package list. This information is used to enhance the overall experience of using EC2 Image Builder. Enabled by default.</p>"""
+    """<p>Specifies whether to collect additional information about the image being created, including the operating system (OS) version and package list. Defaults to <code>true</code>.</p>"""
     tags: NotRequired["capo_imagebuilder.types.tag_map.TagMap"]
     """<p>The tags of the image.</p>"""
     client_token: "capo_imagebuilder.types.client_token.ClientToken"
-    r"""<p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>"""
+    r"""<p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>"""
     image_scanning_configuration: NotRequired[
         "capo_imagebuilder.types.image_scanning_configuration.ImageScanningConfiguration"
     ]
-    """<p>Contains settings for vulnerability scans.</p>"""
+    """<p>Settings for vulnerability scans that Amazon Inspector runs during image creation. For AMI output, Amazon Inspector scans the test instance. For container output, Amazon Inspector scans the container image that Image Builder pushes to the Amazon ECR repository specified in <code>ecrConfiguration</code>.</p>"""
     workflows: NotRequired[
         "capo_imagebuilder.types.workflow_configuration_list.WorkflowConfigurationList"
     ]
-    """<p>Contains an array of workflow configuration objects.</p>"""
+    """<p>The array of workflow configuration objects for the build. If you specify workflows, they replace the default workflows that Image Builder otherwise runs for the build, and you must also provide an <code>executionRole</code>.</p>"""
     execution_role: NotRequired[
         "capo_imagebuilder.types.role_name_or_arn.RoleNameOrArn"
     ]
-    """<p>The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image Builder access to perform workflow actions.</p>"""
+    """<p>The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image Builder access to perform workflow actions. This property is required if you specify <code>workflows</code>. If you don't provide a role, Image Builder uses the Image Builder service-linked role in your account, and creates it if it doesn't exist.</p>"""
     logging_configuration: NotRequired[
         "capo_imagebuilder.types.image_logging_configuration.ImageLoggingConfiguration"
     ]
-    """<p>Define logging configuration for the image build process.</p>"""
+    """<p>The CloudWatch Logs log group where Image Builder sends the image build logs. If you specify a log group name outside of the <code>/aws/imagebuilder/</code> namespace, you must also provide an <code>executionRole</code> that has permission to write to that log group.</p>"""
 
 
 # --- restJson1 ser/de ---

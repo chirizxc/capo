@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     import capo_pinpoint_sms_voice_v2.types.iso_country_code
     import capo_pinpoint_sms_voice_v2.types.message_type
     import capo_pinpoint_sms_voice_v2.types.number_capability_list
+    import capo_pinpoint_sms_voice_v2.types.number_preference_list
     import capo_pinpoint_sms_voice_v2.types.opt_out_list_name_or_arn
     import capo_pinpoint_sms_voice_v2.types.pool_id_or_arn
     import capo_pinpoint_sms_voice_v2.types.registration_id_or_arn
@@ -41,6 +42,10 @@ class RequestPhoneNumberRequest(TypedDict, closed=True):
         "capo_pinpoint_sms_voice_v2.types.registration_id_or_arn.RegistrationIdOrArn"
     ]
     """<p>Use this field to attach your phone number for an external registration process.</p>"""
+    number_preference: NotRequired[
+        "capo_pinpoint_sms_voice_v2.types.number_preference_list.NumberPreferenceList"
+    ]
+    """<p>An optional selection preference used to request a specific phone number, such as a number that starts with, ends with, or contains a particular digit pattern. You can specify at most one preference. Number preferences apply only to <code>TEN_DLC</code> requests in the <code>US</code>.</p>"""
     international_sending_enabled: NotRequired["bool"]
     """<p>By default this is set to false. When set to true the international sending of phone number is Enabled. </p>"""
     deletion_protection_enabled: NotRequired["bool"]
@@ -72,6 +77,14 @@ def serialize_aws_json_1_0(value: RequestPhoneNumberRequest) -> dict:
         out["PoolId"] = value["pool_id"]
     if "registration_id" in value:
         out["RegistrationId"] = value["registration_id"]
+    if "number_preference" in value:
+        import capo_pinpoint_sms_voice_v2.types.number_preference_list
+
+        out["NumberPreference"] = (
+            capo_pinpoint_sms_voice_v2.types.number_preference_list.serialize_aws_json_1_0(
+                value["number_preference"]
+            )
+        )
     if "international_sending_enabled" in value:
         out["InternationalSendingEnabled"] = value["international_sending_enabled"]
     if "deletion_protection_enabled" in value:
@@ -121,6 +134,14 @@ def deserialize_aws_json_1_0(data: dict) -> RequestPhoneNumberRequest:
         out["pool_id"] = data["PoolId"]
     if data.get("RegistrationId") is not None:
         out["registration_id"] = data["RegistrationId"]
+    if data.get("NumberPreference") is not None:
+        import capo_pinpoint_sms_voice_v2.types.number_preference_list
+
+        out["number_preference"] = (
+            capo_pinpoint_sms_voice_v2.types.number_preference_list.deserialize_aws_json_1_0(
+                data["NumberPreference"]
+            )
+        )
     if data.get("InternationalSendingEnabled") is not None:
         out["international_sending_enabled"] = data["InternationalSendingEnabled"]
     if data.get("DeletionProtectionEnabled") is not None:

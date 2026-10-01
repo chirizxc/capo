@@ -2,13 +2,14 @@
 
 from typing import TYPE_CHECKING
 
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 from capo_inspector2.errors import DeserializationError
 
 if TYPE_CHECKING:
     import datetime
 
+    import capo_inspector2.types.cloud_provider
     import capo_inspector2.types.free_trial_status
     import capo_inspector2.types.free_trial_type
 
@@ -22,6 +23,8 @@ class FreeTrialInfo(TypedDict, closed=True):
     """<p>The date and time that the Amazon Inspector free trail ends for a given account.</p>"""
     status: "capo_inspector2.types.free_trial_status.FreeTrialStatus"
     """<p>The order to sort results by.</p>"""
+    cloud_provider: NotRequired["capo_inspector2.types.cloud_provider.CloudProvider"]
+    """<p>The cloud provider associated with the free trial information.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -37,6 +40,8 @@ def serialize_json(value: FreeTrialInfo) -> dict:
 
     out["end"] = capo_inspector2.types._prelude.timestamp.serialize_json(value["end"])
     out["status"] = value["status"]
+    if "cloud_provider" in value:
+        out["cloudProvider"] = value["cloud_provider"]
     return out
 
 
@@ -66,4 +71,6 @@ def deserialize_json(data: dict) -> FreeTrialInfo:
         out["status"] = data["status"]
     else:
         raise DeserializationError("FreeTrialInfo.status required")
+    if data.get("cloudProvider") is not None:
+        out["cloud_provider"] = data["cloudProvider"]
     return out

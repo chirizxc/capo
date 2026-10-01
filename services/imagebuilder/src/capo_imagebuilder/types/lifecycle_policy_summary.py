@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 
 class LifecyclePolicySummary(TypedDict, closed=True):
     arn: NotRequired["capo_imagebuilder.types.lifecycle_policy_arn.LifecyclePolicyArn"]
-    """<p>The Amazon Resource Name (ARN) of the lifecycle policy summary resource.</p>"""
+    """<p>The Amazon Resource Name (ARN) of the lifecycle policy.</p>"""
     name: NotRequired["capo_imagebuilder.types.resource_name.ResourceName"]
     """<p>The name of the lifecycle policy.</p>"""
     description: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]

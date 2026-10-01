@@ -38,7 +38,7 @@ class StartGameSessionPlacementInput(TypedDict, closed=True):
     player_latencies: NotRequired[
         "capo_gamelift.types.player_latency_list.PlayerLatencyList"
     ]
-    """<p>A set of values, expressed in milliseconds, that indicates the amount of latency that a player experiences when connected to Amazon Web Services Regions. This information is used to try to place the new game session where it can offer the best possible gameplay experience for the players. </p>"""
+    """<p>A set of values, expressed in milliseconds, that indicates the amount of latency that a player experiences when connected to a fleet location (Amazon Web Services Regions or custom locations for Amazon GameLift Servers Anywhere fleets). This information is used to try to place the new game session where it can offer the best possible gameplay experience for the players. </p>"""
     desired_player_sessions: NotRequired[
         "capo_gamelift.types.desired_player_session_list.DesiredPlayerSessionList"
     ]

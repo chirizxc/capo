@@ -22,7 +22,7 @@ class GetMarketplaceResourceRequest(TypedDict, closed=True):
     resource_location: NotRequired[
         "capo_imagebuilder.types.marketplace_resource_location.MarketplaceResourceLocation"
     ]
-    """<p>The bucket path that you can specify to download the resource from Amazon S3.</p>"""
+    """<p>The Amazon S3 location of the component artifact to retrieve, in <code>s3://bucket/key</code> form.</p>"""
 
 
 # --- restJson1 ser/de ---

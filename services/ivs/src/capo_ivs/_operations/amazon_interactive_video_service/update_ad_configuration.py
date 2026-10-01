@@ -21,6 +21,7 @@ import capo_ivs.errors.throttling_exception
 import capo_ivs.errors.validation_exception
 import capo_ivs.types.ad_configuration
 import capo_ivs.types.media_tailor_playback_configurations_list
+import capo_ivs.types.post_roll_configuration
 import capo_ivs.types.update_ad_configuration_request
 import capo_ivs.types.update_ad_configuration_response
 from capo_ivs._protocol.errors import parse_error_metadata_json

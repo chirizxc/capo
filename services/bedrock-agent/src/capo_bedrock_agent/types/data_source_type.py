@@ -10,6 +10,7 @@ DataSourceType: TypeAlias = Literal[
     "SHAREPOINT",
     "CUSTOM",
     "REDSHIFT_METADATA",
+    "MANAGED_KNOWLEDGE_BASE_CONNECTOR",
 ]
 
 

@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_emr_containers.types.authentication_configuration
     import capo_emr_containers.types.authorization_configuration
 
 
@@ -13,6 +14,10 @@ class SecurityConfigurationData(TypedDict, closed=True):
         "capo_emr_containers.types.authorization_configuration.AuthorizationConfiguration"
     ]
     """<p>Authorization-related configuration input for the security configuration.</p>"""
+    authentication_configuration: NotRequired[
+        "capo_emr_containers.types.authentication_configuration.AuthenticationConfiguration"
+    ]
+    """<p>Authentication-related configuration input for the security configuration.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -26,6 +31,14 @@ def serialize_json(value: SecurityConfigurationData) -> dict:
                 value["authorization_configuration"]
             )
         )
+    if "authentication_configuration" in value:
+        import capo_emr_containers.types.authentication_configuration
+
+        out["authenticationConfiguration"] = (
+            capo_emr_containers.types.authentication_configuration.serialize_json(
+                value["authentication_configuration"]
+            )
+        )
     return out
 
 
@@ -37,6 +50,14 @@ def deserialize_json(data: dict) -> SecurityConfigurationData:
         out["authorization_configuration"] = (
             capo_emr_containers.types.authorization_configuration.deserialize_json(
                 data["authorizationConfiguration"]
+            )
+        )
+    if data.get("authenticationConfiguration") is not None:
+        import capo_emr_containers.types.authentication_configuration
+
+        out["authentication_configuration"] = (
+            capo_emr_containers.types.authentication_configuration.deserialize_json(
+                data["authenticationConfiguration"]
             )
         )
     return out

@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     import capo_resiliencehubv2.types.max_results
     import capo_resiliencehubv2.types.next_token
     import capo_resiliencehubv2.types.report_type
+    import capo_resiliencehubv2.types.test_run_id
 
 
 class ListReportsRequest(TypedDict, closed=True):
@@ -16,6 +17,7 @@ class ListReportsRequest(TypedDict, closed=True):
     """<p>Optional. If not provided, lists all reports owned by the account.</p>"""
     report_type: NotRequired["capo_resiliencehubv2.types.report_type.ReportType"]
     """<p>Filter reports by type.</p>"""
+    test_run_id: NotRequired["capo_resiliencehubv2.types.test_run_id.TestRunId"]
     max_results: "capo_resiliencehubv2.types.max_results.MaxResults"
     next_token: NotRequired["capo_resiliencehubv2.types.next_token.NextToken"]
 

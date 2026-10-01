@@ -12,7 +12,7 @@ class LifeCycleLastTestFinalized(TypedDict, closed=True):
     api_call_date_time: NotRequired[
         "capo_mgn.types.iso8601_datetime_string.ISO8601DatetimeString"
     ]
-    """<p>Lifecycle Test failed API call date and time.</p>"""
+    """<p>Lifecycle Test finalized API call date and time.</p>"""
 
 
 # --- restJson1 ser/de ---

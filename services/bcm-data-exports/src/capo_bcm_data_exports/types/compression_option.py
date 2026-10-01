@@ -5,6 +5,7 @@ from typing import Literal, TypeAlias, cast
 CompressionOption: TypeAlias = Literal[
     "GZIP",
     "PARQUET",
+    "ZIP",
 ]
 
 

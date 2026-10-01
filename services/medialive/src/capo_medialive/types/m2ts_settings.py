@@ -154,7 +154,7 @@ class M2tsSettings(TypedDict, closed=True):
     scte35_control: NotRequired[
         "capo_medialive.types.m2ts_scte35_control.M2tsScte35Control"
     ]
-    """Optionally pass SCTE-35 signals from the input source to this output."""
+    r"""SCTE-35 control. Option \"none\" indicates that a SCTE-35 marker will not be inserted, nor will an IDR be inserted at the SCTE-35 cue point, nor will the segment be segmented. Option \"scte35WithoutIdr\" indicates that a SCTE-35 marker will be inserted to indicate the cue point, but MediaLive will not insert an IDR on that frame nor will it introduce a new segment boundary there if it wasn't already going to be one (this option is required for use with downstream multiview bitstream stitching workflows). Option \"passthrough\" indicates that a SCTE-35 marker will be inserted to indicate the cue point, and an IDR will be inserted on that frame, and MediaLive itself will introduce a new segment boundary there."""
     scte35_pid: NotRequired["capo_medialive.types.__string.__string"]
     """Packet Identifier (PID) of the SCTE-35 stream in the transport stream. Can be entered as a decimal or hexadecimal value. Valid values are 32 (or 0x20)..8182 (or 0x1ff6)."""
     segmentation_markers: NotRequired[

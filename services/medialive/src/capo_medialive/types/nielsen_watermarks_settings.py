@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_medialive.types.nielsen_cbet
     import capo_medialive.types.nielsen_naes_ii_nw
+    import capo_medialive.types.nielsen_nw_only
     import capo_medialive.types.nielsen_watermarks_distribution_types
 
 
@@ -21,6 +22,10 @@ class NielsenWatermarksSettings(TypedDict, closed=True):
         "capo_medialive.types.nielsen_naes_ii_nw.NielsenNaesIiNw"
     ]
     """Complete these fields only if you want to insert watermarks of type Nielsen NAES II (N2) and Nielsen NAES VI (NW)."""
+    nielsen_nw_only_settings: NotRequired[
+        "capo_medialive.types.nielsen_nw_only.NielsenNwOnly"
+    ]
+    """Complete these fields only if you want to insert watermarks of type Nielsen NAES VI (NW) only, without inserting NAES II (N2) watermarks."""
 
 
 # --- restJson1 ser/de ---
@@ -46,6 +51,14 @@ def serialize_json(value: NielsenWatermarksSettings) -> dict:
         out["nielsenNaesIiNwSettings"] = (
             capo_medialive.types.nielsen_naes_ii_nw.serialize_json(
                 value["nielsen_naes_ii_nw_settings"]
+            )
+        )
+    if "nielsen_nw_only_settings" in value:
+        import capo_medialive.types.nielsen_nw_only
+
+        out["nielsenNwOnlySettings"] = (
+            capo_medialive.types.nielsen_nw_only.serialize_json(
+                value["nielsen_nw_only_settings"]
             )
         )
     return out
@@ -75,6 +88,14 @@ def deserialize_json(data: dict) -> NielsenWatermarksSettings:
         out["nielsen_naes_ii_nw_settings"] = (
             capo_medialive.types.nielsen_naes_ii_nw.deserialize_json(
                 data["nielsenNaesIiNwSettings"]
+            )
+        )
+    if data.get("nielsenNwOnlySettings") is not None:
+        import capo_medialive.types.nielsen_nw_only
+
+        out["nielsen_nw_only_settings"] = (
+            capo_medialive.types.nielsen_nw_only.deserialize_json(
+                data["nielsenNwOnlySettings"]
             )
         )
     return out

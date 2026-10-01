@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 class ObjectLockRule(TypedDict, closed=True):
     default_retention: NotRequired["capo_s3.types.default_retention.DefaultRetention"]
-    """<p>The default Object Lock retention mode and period that you want to apply to new objects placed in the specified bucket. Bucket settings require both a mode and a period. The period can be either <code>Days</code> or <code>Years</code> but you must select one. You cannot specify <code>Days</code> and <code>Years</code> at the same time.</p>"""
+    """<p>The default Object Lock retention settings for new objects in this bucket. You can specify:</p> <ul> <li> <p>A default retention period, by using <code>Days</code> or <code>Years</code>.</p> </li> <li> <p>A default event hold duration, by using <code>DefaultEventHold</code>. This setting also uses days or years.</p> </li> </ul> <p>You can set one or both. You cannot use days and years in the same setting.</p>"""
 
 
 # --- restXml ser/de ---

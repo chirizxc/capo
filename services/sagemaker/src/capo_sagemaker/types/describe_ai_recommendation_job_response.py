@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_sagemaker.types.ai_adapter_source
     import capo_sagemaker.types.ai_entity_name
     import capo_sagemaker.types.ai_model_source
     import capo_sagemaker.types.ai_recommendation_allow_optimization
@@ -69,6 +70,10 @@ class DescribeAIRecommendationJobResponse(TypedDict, closed=True):
         "capo_sagemaker.types.ai_recommendation_compute_spec.AIRecommendationComputeSpec"
     ]
     """<p>The compute resource specification for the recommendation job.</p>"""
+    adapter_source: NotRequired[
+        "capo_sagemaker.types.ai_adapter_source.AIAdapterSource"
+    ]
+    """<p>The LoRA adapter source that you specified when you created the recommendation job. This field is absent when you created the job without LoRA adapters.</p>"""
     creation_time: NotRequired["capo_sagemaker.types.timestamp.Timestamp"]
     """<p>A timestamp that indicates when the recommendation job was created.</p>"""
     start_time: NotRequired["capo_sagemaker.types.timestamp.Timestamp"]
@@ -148,6 +153,14 @@ def serialize_aws_json_1_1(value: DescribeAIRecommendationJobResponse) -> dict:
         out["ComputeSpec"] = (
             capo_sagemaker.types.ai_recommendation_compute_spec.serialize_aws_json_1_1(
                 value["compute_spec"]
+            )
+        )
+    if "adapter_source" in value:
+        import capo_sagemaker.types.ai_adapter_source
+
+        out["AdapterSource"] = (
+            capo_sagemaker.types.ai_adapter_source.serialize_aws_json_1_1(
+                value["adapter_source"]
             )
         )
     if "creation_time" in value:
@@ -245,6 +258,14 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAIRecommendationJobResponse:
         out["compute_spec"] = (
             capo_sagemaker.types.ai_recommendation_compute_spec.deserialize_aws_json_1_1(
                 data["ComputeSpec"]
+            )
+        )
+    if data.get("AdapterSource") is not None:
+        import capo_sagemaker.types.ai_adapter_source
+
+        out["adapter_source"] = (
+            capo_sagemaker.types.ai_adapter_source.deserialize_aws_json_1_1(
+                data["AdapterSource"]
             )
         )
     if data.get("CreationTime") is not None:

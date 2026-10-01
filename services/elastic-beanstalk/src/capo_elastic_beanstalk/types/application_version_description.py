@@ -9,9 +9,12 @@ from capo_elastic_beanstalk._protocol.xml import Element
 if TYPE_CHECKING:
     import capo_elastic_beanstalk.types.application_name
     import capo_elastic_beanstalk.types.application_version_arn
+    import capo_elastic_beanstalk.types.application_version_proccess
     import capo_elastic_beanstalk.types.application_version_status
     import capo_elastic_beanstalk.types.creation_date
     import capo_elastic_beanstalk.types.description
+    import capo_elastic_beanstalk.types.image_build_configuration
+    import capo_elastic_beanstalk.types.image_source
     import capo_elastic_beanstalk.types.s3_location
     import capo_elastic_beanstalk.types.source_build_information
     import capo_elastic_beanstalk.types.string
@@ -37,11 +40,21 @@ class ApplicationVersionDescription(TypedDict, closed=True):
     source_build_information: NotRequired[
         "capo_elastic_beanstalk.types.source_build_information.SourceBuildInformation"
     ]
-    """<p>If the version's source code was retrieved from AWS CodeCommit, the location of the source code for the application version.</p>"""
+    """<p>If the version's source code was retrieved from CodeCommit, the location of the source code for the application version.</p>"""
     build_arn: NotRequired["capo_elastic_beanstalk.types.string.String"]
-    """<p>Reference to the artifact from the AWS CodeBuild build.</p>"""
+    """<p>Reference to the artifact from the CodeBuild build.</p>"""
     source_bundle: NotRequired["capo_elastic_beanstalk.types.s3_location.S3Location"]
     """<p>The storage location of the application version's source bundle in Amazon S3.</p>"""
+    image_source: NotRequired["capo_elastic_beanstalk.types.image_source.ImageSource"]
+    """<p>The location of the container image for the application version.</p> <p>For an application version created from an image you provide, this is that image. For one that Elastic Beanstalk builds from your source bundle, Elastic Beanstalk fills this in with the image it pushed after the build succeeds.</p>"""
+    image_build_configuration: NotRequired[
+        "capo_elastic_beanstalk.types.image_build_configuration.ImageBuildConfiguration"
+    ]
+    """<p>The settings that Elastic Beanstalk uses to build a container image from the source bundle of the application version. Not present for an application version created from an image you provide.</p>"""
+    process: NotRequired[
+        "capo_elastic_beanstalk.types.application_version_proccess.ApplicationVersionProccess"
+    ]
+    """<p>Indicates whether Elastic Beanstalk pre-processed and validated the environment manifest (<code>env.yaml</code>) and configuration files (<code>*.config</code> files in the <code>.ebextensions</code> folder) in the source bundle of the application version.</p>"""
     date_created: NotRequired["capo_elastic_beanstalk.types.creation_date.CreationDate"]
     """<p>The creation date of the application version.</p>"""
     date_updated: NotRequired["capo_elastic_beanstalk.types.update_date.UpdateDate"]
@@ -49,7 +62,7 @@ class ApplicationVersionDescription(TypedDict, closed=True):
     status: NotRequired[
         "capo_elastic_beanstalk.types.application_version_status.ApplicationVersionStatus"
     ]
-    """<p>The processing status of the application version. Reflects the state of the application version during its creation. Many of the values are only applicable if you specified <code>True</code> for the <code>Process</code> parameter of the <code>CreateApplicationVersion</code> action. The following list describes the possible values.</p> <ul> <li> <p> <code>Unprocessed</code> – Application version wasn't pre-processed or validated. Elastic Beanstalk will validate configuration files during deployment of the application version to an environment.</p> </li> <li> <p> <code>Processing</code> – Elastic Beanstalk is currently processing the application version.</p> </li> <li> <p> <code>Building</code> – Application version is currently undergoing an AWS CodeBuild build.</p> </li> <li> <p> <code>Processed</code> – Elastic Beanstalk was successfully pre-processed and validated.</p> </li> <li> <p> <code>Failed</code> – Either the AWS CodeBuild build failed or configuration files didn't pass validation. This application version isn't usable.</p> </li> </ul>"""
+    """<p>The processing status of the application version. Reflects the state of the application version during its creation. Many of the values are only applicable if you specified <code>True</code> for the <code>Process</code> parameter of the <code>CreateApplicationVersion</code> action. The following list describes the possible values.</p> <ul> <li> <p> <code>Unprocessed</code> – Application version wasn't pre-processed or validated. Elastic Beanstalk will validate configuration files during deployment of the application version to an environment.</p> </li> <li> <p> <code>Processing</code> – Elastic Beanstalk is currently processing the application version.</p> </li> <li> <p> <code>Building</code> – Application version is currently undergoing an CodeBuild build.</p> </li> <li> <p> <code>Processed</code> – Elastic Beanstalk was successfully pre-processed and validated.</p> </li> <li> <p> <code>Failed</code> – Either the CodeBuild build failed or configuration files didn't pass validation. This application version isn't usable.</p> </li> </ul>"""
 
 
 # --- awsQuery ser/de ---
@@ -86,6 +99,22 @@ def serialize_query(
         capo_elastic_beanstalk.types.s3_location.serialize_query(
             value["source_bundle"], pairs, f"{key_prefix}SourceBundle"
         )
+    if "image_source" in value:
+        import capo_elastic_beanstalk.types.image_source
+
+        capo_elastic_beanstalk.types.image_source.serialize_query(
+            value["image_source"], pairs, f"{key_prefix}ImageSource"
+        )
+    if "image_build_configuration" in value:
+        import capo_elastic_beanstalk.types.image_build_configuration
+
+        capo_elastic_beanstalk.types.image_build_configuration.serialize_query(
+            value["image_build_configuration"],
+            pairs,
+            f"{key_prefix}ImageBuildConfiguration",
+        )
+    if "process" in value:
+        pairs.append((f"{key_prefix}Process", "true" if value["process"] else "false"))
     if "date_created" in value:
         import capo_elastic_beanstalk.types.creation_date
 
@@ -141,6 +170,27 @@ def deserialize_query(el: Element) -> ApplicationVersionDescription:
                 child_source_bundle
             )
         )
+    child_image_source = el.find("ImageSource")
+    if child_image_source is not None:
+        import capo_elastic_beanstalk.types.image_source
+
+        out["image_source"] = (
+            capo_elastic_beanstalk.types.image_source.deserialize_query(
+                child_image_source
+            )
+        )
+    child_image_build_configuration = el.find("ImageBuildConfiguration")
+    if child_image_build_configuration is not None:
+        import capo_elastic_beanstalk.types.image_build_configuration
+
+        out["image_build_configuration"] = (
+            capo_elastic_beanstalk.types.image_build_configuration.deserialize_query(
+                child_image_build_configuration
+            )
+        )
+    child_process = el.find("Process")
+    if child_process is not None:
+        out["process"] = (child_process.text or "").lower() == "true"
     child_date_created = el.find("DateCreated")
     if child_date_created is not None:
         import capo_elastic_beanstalk.types.creation_date

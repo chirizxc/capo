@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_securityhub.types.connector_status
+    import capo_securityhub.types.enablement_status
     import capo_securityhub.types.non_empty_string
 
 
@@ -20,6 +21,10 @@ class CreateConnectorV2Response(TypedDict, closed=True):
         "capo_securityhub.types.connector_status.ConnectorStatus"
     ]
     """<p>The current status of the connectorV2.</p>"""
+    enablement_status: NotRequired[
+        "capo_securityhub.types.enablement_status.EnablementStatus"
+    ]
+    """<p>The enablement status of the connector after creation.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -36,6 +41,14 @@ def serialize_json(value: CreateConnectorV2Response) -> dict:
 
         out["ConnectorStatus"] = capo_securityhub.types.connector_status.serialize_json(
             value["connector_status"]
+        )
+    if "enablement_status" in value:
+        import capo_securityhub.types.enablement_status
+
+        out["EnablementStatus"] = (
+            capo_securityhub.types.enablement_status.serialize_json(
+                value["enablement_status"]
+            )
         )
     return out
 
@@ -54,6 +67,14 @@ def deserialize_json(data: dict) -> CreateConnectorV2Response:
         out["connector_status"] = (
             capo_securityhub.types.connector_status.deserialize_json(
                 data["ConnectorStatus"]
+            )
+        )
+    if data.get("EnablementStatus") is not None:
+        import capo_securityhub.types.enablement_status
+
+        out["enablement_status"] = (
+            capo_securityhub.types.enablement_status.deserialize_json(
+                data["EnablementStatus"]
             )
         )
     return out

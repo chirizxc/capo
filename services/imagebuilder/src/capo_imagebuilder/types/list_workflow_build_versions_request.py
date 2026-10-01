@@ -14,13 +14,13 @@ class ListWorkflowBuildVersionsRequest(TypedDict, closed=True):
     workflow_version_arn: NotRequired[
         "capo_imagebuilder.types.workflow_wildcard_version_arn.WorkflowWildcardVersionArn"
     ]
-    """<p>The Amazon Resource Name (ARN) of the workflow resource for which to get a list of build versions.</p>"""
+    """<p>The Amazon Resource Name (ARN) of the workflow resource for which to get a list of build versions. The version segments can contain wildcards (<code>x</code>) to match multiple versions of the workflow. If you don't specify an ARN, the response lists build versions for all of the workflows in your account.</p>"""
     max_results: NotRequired[
         "capo_imagebuilder.types.restricted_integer.RestrictedInteger"
     ]
-    """<p>Specify the maximum number of items to return in a request.</p>"""
+    """<p>The maximum number of items to return in a single request.</p>"""
     next_token: NotRequired["capo_imagebuilder.types.pagination_token.PaginationToken"]
-    """<p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>"""
+    """<p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>"""
 
 
 # --- restJson1 ser/de ---

@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     import capo_devops_agent.types.agent_space
     import capo_devops_agent.types.agent_space_id
     import capo_devops_agent.types.agent_space_name
+    import capo_devops_agent.types.agent_space_preferences
     import capo_devops_agent.types.auth_flow
     import capo_devops_agent.types.create_agent_space_input
     import capo_devops_agent.types.create_agent_space_output
@@ -68,6 +69,9 @@ class AgentSpaceResource:
         kms_key_arn: Optional["capo_devops_agent.types.kms_key_arn.KmsKeyArn"] = None,
         client_token: Optional[str] = None,
         tags: Optional["capo_devops_agent.types.tags.Tags"] = None,
+        preferences: Optional[
+            "capo_devops_agent.types.agent_space_preferences.AgentSpacePreferences"
+        ] = None,
     ) -> "capo_devops_agent.types.create_agent_space_output.CreateAgentSpaceOutput":
         """<p>Creates a new AgentSpace with the specified name and description. Duplicate space names are allowed.</p>
 
@@ -78,6 +82,7 @@ class AgentSpaceResource:
             kms_key_arn: <p>The ARN of the AWS Key Management Service (AWS KMS) customer managed key that's used to encrypt resources.</p>
             client_token: <p>Client-provided token to ensure request idempotency. When the same token is provided in subsequent calls, the same response is returned within a 8-hour window.</p>
             tags: <p>Tags to add to the AgentSpace at creation time.</p>
+            preferences: <p>The preferences to configure on the agent space. Preferences not provided take their default values.</p>
 
         Raises:
             capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
@@ -121,6 +126,8 @@ class AgentSpaceResource:
         input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
+        if preferences is not None:
+            input_["preferences"] = preferences
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -191,6 +198,9 @@ class AgentSpaceResource:
         ] = None,
         description: Optional["capo_devops_agent.types.description.Description"] = None,
         locale: Optional["capo_devops_agent.types.locale.Locale"] = None,
+        preferences: Optional[
+            "capo_devops_agent.types.agent_space_preferences.AgentSpacePreferences"
+        ] = None,
     ) -> "capo_devops_agent.types.update_agent_space_output.UpdateAgentSpaceOutput":
         """<p>Updates the information of an existing AgentSpace.</p>
 
@@ -199,6 +209,7 @@ class AgentSpaceResource:
             name: <p>The updated name of the AgentSpace.</p>
             description: <p>The updated description of the AgentSpace.</p>
             locale: <p>The updated locale for the AgentSpace, which determines the language used in agent responses.</p>
+            preferences: <p>The preferences to configure on the agent space. When provided, this replaces the full set of configured preferences; preferences not included revert to their default values. When omitted, the current preferences are left unchanged.</p>
 
         Raises:
             capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
@@ -237,6 +248,8 @@ class AgentSpaceResource:
             input_["description"] = description
         if locale is not None:
             input_["locale"] = locale
+        if preferences is not None:
+            input_["preferences"] = preferences
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -611,6 +624,9 @@ class AsyncAgentSpaceResource:
         kms_key_arn: Optional["capo_devops_agent.types.kms_key_arn.KmsKeyArn"] = None,
         client_token: Optional[str] = None,
         tags: Optional["capo_devops_agent.types.tags.Tags"] = None,
+        preferences: Optional[
+            "capo_devops_agent.types.agent_space_preferences.AgentSpacePreferences"
+        ] = None,
     ) -> "capo_devops_agent.types.create_agent_space_output.CreateAgentSpaceOutput":
         """<p>Creates a new AgentSpace with the specified name and description. Duplicate space names are allowed.</p>
 
@@ -621,6 +637,7 @@ class AsyncAgentSpaceResource:
             kms_key_arn: <p>The ARN of the AWS Key Management Service (AWS KMS) customer managed key that's used to encrypt resources.</p>
             client_token: <p>Client-provided token to ensure request idempotency. When the same token is provided in subsequent calls, the same response is returned within a 8-hour window.</p>
             tags: <p>Tags to add to the AgentSpace at creation time.</p>
+            preferences: <p>The preferences to configure on the agent space. Preferences not provided take their default values.</p>
 
         Raises:
             capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
@@ -665,6 +682,8 @@ class AsyncAgentSpaceResource:
         input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
+        if preferences is not None:
+            input_["preferences"] = preferences
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -736,6 +755,9 @@ class AsyncAgentSpaceResource:
         ] = None,
         description: Optional["capo_devops_agent.types.description.Description"] = None,
         locale: Optional["capo_devops_agent.types.locale.Locale"] = None,
+        preferences: Optional[
+            "capo_devops_agent.types.agent_space_preferences.AgentSpacePreferences"
+        ] = None,
     ) -> "capo_devops_agent.types.update_agent_space_output.UpdateAgentSpaceOutput":
         """<p>Updates the information of an existing AgentSpace.</p>
 
@@ -744,6 +766,7 @@ class AsyncAgentSpaceResource:
             name: <p>The updated name of the AgentSpace.</p>
             description: <p>The updated description of the AgentSpace.</p>
             locale: <p>The updated locale for the AgentSpace, which determines the language used in agent responses.</p>
+            preferences: <p>The preferences to configure on the agent space. When provided, this replaces the full set of configured preferences; preferences not included revert to their default values. When omitted, the current preferences are left unchanged.</p>
 
         Raises:
             capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
@@ -783,6 +806,8 @@ class AsyncAgentSpaceResource:
             input_["description"] = description
         if locale is not None:
             input_["locale"] = locale
+        if preferences is not None:
+            input_["preferences"] = preferences
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

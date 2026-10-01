@@ -20,6 +20,7 @@ import capo_lightsail.errors.unauthenticated_exception
 import capo_lightsail.types.cache_behavior
 import capo_lightsail.types.cache_behavior_list
 import capo_lightsail.types.cache_settings
+import capo_lightsail.types.distribution_custom_error_response_list
 import capo_lightsail.types.input_origin
 import capo_lightsail.types.operation
 import capo_lightsail.types.update_distribution_request

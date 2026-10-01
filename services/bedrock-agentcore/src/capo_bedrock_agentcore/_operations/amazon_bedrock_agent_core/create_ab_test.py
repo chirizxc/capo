@@ -24,6 +24,7 @@ import capo_bedrock_agentcore.types.ab_test_status
 import capo_bedrock_agentcore.types.create_ab_test_request
 import capo_bedrock_agentcore.types.create_ab_test_response
 import capo_bedrock_agentcore.types.gateway_filter
+import capo_bedrock_agentcore.types.tags_map
 import capo_bedrock_agentcore.types.variant_list
 from capo_bedrock_agentcore._protocol.errors import parse_error_metadata_json
 from capo_bedrock_agentcore._rule_engine._endpoint_rule_set import (

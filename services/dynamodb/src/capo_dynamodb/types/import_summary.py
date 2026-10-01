@@ -33,7 +33,7 @@ class ImportSummary(TypedDict, closed=True):
     start_time: NotRequired["capo_dynamodb.types.import_start_time.ImportStartTime"]
     """<p> The time at which this import task began. </p>"""
     end_time: NotRequired["capo_dynamodb.types.import_end_time.ImportEndTime"]
-    """<p> The time at which this import task ended. (Does this include the successful complete creation of the table it was imported to?) </p>"""
+    """<p> The time at which this import task ended. </p>"""
 
 
 # --- awsJson1_0 ser/de ---

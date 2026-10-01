@@ -21,6 +21,8 @@ if TYPE_CHECKING:
     import capo_devops_agent.types.mcp_server_sig_v4_configuration
     import capo_devops_agent.types.mcp_server_splunk_configuration
     import capo_devops_agent.types.pager_duty_configuration
+    import capo_devops_agent.types.remote_agent_configuration
+    import capo_devops_agent.types.remote_agent_sig_v4_configuration
     import capo_devops_agent.types.service_now_configuration
     import capo_devops_agent.types.slack_configuration
     import capo_devops_agent.types.source_aws_configuration
@@ -100,6 +102,16 @@ class _ServiceConfiguration_mcpserversigv4(TypedDict, closed=True):
     mcpserversigv4: "capo_devops_agent.types.mcp_server_sig_v4_configuration.MCPServerSigV4Configuration"
 
 
+class _ServiceConfiguration_remoteagent(TypedDict, closed=True):
+    remoteagent: (
+        "capo_devops_agent.types.remote_agent_configuration.RemoteAgentConfiguration"
+    )
+
+
+class _ServiceConfiguration_remoteagentsigv4(TypedDict, closed=True):
+    remoteagentsigv4: "capo_devops_agent.types.remote_agent_sig_v4_configuration.RemoteAgentSigV4Configuration"
+
+
 ServiceConfiguration: TypeAlias = (
     _ServiceConfiguration_sourceAws
     | _ServiceConfiguration_aws
@@ -118,6 +130,8 @@ ServiceConfiguration: TypeAlias = (
     | _ServiceConfiguration_mcpservergrafana
     | _ServiceConfiguration_pagerduty
     | _ServiceConfiguration_mcpserversigv4
+    | _ServiceConfiguration_remoteagent
+    | _ServiceConfiguration_remoteagentsigv4
 )
 
 
@@ -259,6 +273,22 @@ def serialize_json(value: ServiceConfiguration) -> dict:
                 value["mcpserversigv4"]
             )
         }
+    elif "remoteagent" in value:
+        import capo_devops_agent.types.remote_agent_configuration
+
+        return {
+            "remoteagent": capo_devops_agent.types.remote_agent_configuration.serialize_json(
+                value["remoteagent"]
+            )
+        }
+    elif "remoteagentsigv4" in value:
+        import capo_devops_agent.types.remote_agent_sig_v4_configuration
+
+        return {
+            "remoteagentsigv4": capo_devops_agent.types.remote_agent_sig_v4_configuration.serialize_json(
+                value["remoteagentsigv4"]
+            )
+        }
     else:
         raise SerializationError("ServiceConfiguration: no variant present")
 
@@ -398,6 +428,22 @@ def deserialize_json(data: dict) -> ServiceConfiguration:
         return {
             "mcpserversigv4": capo_devops_agent.types.mcp_server_sig_v4_configuration.deserialize_json(
                 data["mcpserversigv4"]
+            )
+        }
+    elif data.get("remoteagent") is not None:
+        import capo_devops_agent.types.remote_agent_configuration
+
+        return {
+            "remoteagent": capo_devops_agent.types.remote_agent_configuration.deserialize_json(
+                data["remoteagent"]
+            )
+        }
+    elif data.get("remoteagentsigv4") is not None:
+        import capo_devops_agent.types.remote_agent_sig_v4_configuration
+
+        return {
+            "remoteagentsigv4": capo_devops_agent.types.remote_agent_sig_v4_configuration.deserialize_json(
+                data["remoteagentsigv4"]
             )
         }
     else:

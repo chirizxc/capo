@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     import capo_quicksight.types.sheet_list
     import capo_quicksight.types.short_restrictive_resource_id
     import capo_quicksight.types.timestamp
+    import capo_quicksight.types.topic_arns_list
 
 
 class Analysis(TypedDict, closed=True):
@@ -32,6 +33,8 @@ class Analysis(TypedDict, closed=True):
         "capo_quicksight.types.data_set_arns_list.DataSetArnsList"
     ]
     """<p>The ARNs of the datasets of the analysis.</p>"""
+    topic_arns: NotRequired["capo_quicksight.types.topic_arns_list.TopicArnsList"]
+    """<p>The ARNs of the topics associated with the analysis.</p>"""
     theme_arn: NotRequired["capo_quicksight.types.arn.Arn"]
     """<p>The ARN of the theme of the analysis.</p>"""
     created_time: NotRequired["capo_quicksight.types.timestamp.Timestamp"]
@@ -68,6 +71,12 @@ def serialize_json(value: Analysis) -> dict:
 
         out["DataSetArns"] = capo_quicksight.types.data_set_arns_list.serialize_json(
             value["data_set_arns"]
+        )
+    if "topic_arns" in value:
+        import capo_quicksight.types.topic_arns_list
+
+        out["TopicArns"] = capo_quicksight.types.topic_arns_list.serialize_json(
+            value["topic_arns"]
         )
     if "theme_arn" in value:
         out["ThemeArn"] = value["theme_arn"]
@@ -117,6 +126,12 @@ def deserialize_json(data: dict) -> Analysis:
             capo_quicksight.types.data_set_arns_list.deserialize_json(
                 data["DataSetArns"]
             )
+        )
+    if data.get("TopicArns") is not None:
+        import capo_quicksight.types.topic_arns_list
+
+        out["topic_arns"] = capo_quicksight.types.topic_arns_list.deserialize_json(
+            data["TopicArns"]
         )
     if data.get("ThemeArn") is not None:
         out["theme_arn"] = data["ThemeArn"]

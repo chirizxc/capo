@@ -175,6 +175,7 @@ if TYPE_CHECKING:
     import capo_auto_scaling.types.mixed_instances_policy
     import capo_auto_scaling.types.notification_configuration
     import capo_auto_scaling.types.notification_target_resource_name
+    import capo_auto_scaling.types.operator
     import capo_auto_scaling.types.policies_type
     import capo_auto_scaling.types.policy_arn_type
     import capo_auto_scaling.types.policy_increment
@@ -226,6 +227,7 @@ if TYPE_CHECKING:
     import capo_auto_scaling.types.target_group_ar_ns
     import capo_auto_scaling.types.target_tracking_configuration
     import capo_auto_scaling.types.terminate_instance_in_auto_scaling_group_type
+    import capo_auto_scaling.types.termination_instance_ids
     import capo_auto_scaling.types.termination_policies
     import capo_auto_scaling.types.timestamp_type
     import capo_auto_scaling.types.traffic_sources
@@ -918,6 +920,7 @@ class AutoScalingClient:
         instance_lifecycle_policy: Optional[
             "capo_auto_scaling.types.instance_lifecycle_policy.InstanceLifecyclePolicy"
         ] = None,
+        operator: Optional["capo_auto_scaling.types.operator.Operator"] = None,
     ) -> None:
         r"""<p> <b>We strongly recommend using a launch template when calling this operation to ensure full functionality for Amazon EC2 Auto Scaling and Amazon EC2.</b> </p> <p>Creates an Auto Scaling group with the specified name and attributes. </p> <p>If you exceed your maximum limit of Auto Scaling groups, the call fails. To query this limit, call the <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeAccountLimits.html\">DescribeAccountLimits</a> API. For information about updating this limit, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-quotas.html\">Quotas for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p> <p>If you're new to Amazon EC2 Auto Scaling, see the introductory tutorials in <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/get-started-with-ec2-auto-scaling.html\">Get started with Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p> <p>Every Auto Scaling group has three size properties (<code>DesiredCapacity</code>, <code>MaxSize</code>, and <code>MinSize</code>). Usually, you set these sizes based on a specific number of instances. However, if you configure a mixed instances policy that defines weights for the instance types, you must specify these sizes with the same units that you use for weighting instances.</p>
 
@@ -925,7 +928,7 @@ class AutoScalingClient:
             auto_scaling_group_name: <p>The name of the Auto Scaling group. This name must be unique per Region per account.</p> <p>The name can contain any ASCII character 33 to 126 including most punctuation characters, digits, and upper and lowercased letters.</p> <note> <p>You cannot use a colon (:) in the name.</p> </note>
             launch_configuration_name: <p>The name of the launch configuration to use to launch instances. </p> <p>Conditional: You must specify either a launch template (<code>LaunchTemplate</code> or <code>MixedInstancesPolicy</code>) or a launch configuration (<code>LaunchConfigurationName</code> or <code>InstanceId</code>).</p>
             launch_template: <p>Information used to specify the launch template and version to use to launch instances. </p> <p>Conditional: You must specify either a launch template (<code>LaunchTemplate</code> or <code>MixedInstancesPolicy</code>) or a launch configuration (<code>LaunchConfigurationName</code> or <code>InstanceId</code>).</p> <note> <p>The launch template that is specified must be configured for use with an Auto Scaling group. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-launch-template.html\">Create a launch template for an Auto Scaling group</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p> </note>
-            mixed_instances_policy: <p>The mixed instances policy. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-mixed-instances-groups.html\">Auto Scaling groups with multiple instance types and purchase options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>
+            mixed_instances_policy: <p>The mixed instances policy. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-mixed-instances-groups.html\">Auto Scaling groups with multiple instance types and purchase options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>. To learn how to prioritize multiple capacity types, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/use-distribution-segments.html\">Use Distribution Segments to target multiple capacity types</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>
             instance_id: <p>The ID of the instance used to base the launch configuration on. If specified, Amazon EC2 Auto Scaling uses the configuration values from the specified instance to create a new launch configuration. To get the instance ID, use the Amazon EC2 <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html\">DescribeInstances</a> API operation. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-from-instance.html\">Create an Auto Scaling group using parameters from an existing instance</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>
             min_size: <p>The minimum size of the group.</p>
             max_size: <p>The maximum size of the group.</p> <note> <p>With a mixed instances policy that uses instance weighting, Amazon EC2 Auto Scaling may need to go above <code>MaxSize</code> to meet your capacity requirements. In this event, Amazon EC2 Auto Scaling will never go above <code>MaxSize</code> by more than your largest instance weight (weights that define how many units each instance contributes to the desired capacity of the group).</p> </note>
@@ -957,6 +960,7 @@ class AutoScalingClient:
             skip_zonal_shift_validation: <p> If you enable zonal shift with cross-zone disabled load balancers, capacity could become imbalanced across Availability Zones. To skip the validation, specify <code>true</code>. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-zonal-shift.html\">Auto Scaling group zonal shift</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>. </p>
             capacity_reservation_specification: <p> The capacity reservation specification for the Auto Scaling group. </p>
             instance_lifecycle_policy: <p> The instance lifecycle policy for the Auto Scaling group. This policy controls instance behavior when an instance transitions through its lifecycle states. Configure retention triggers to specify when instances should move to a <code>Retained</code> state instead of automatic termination. </p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/instance-lifecycle-policy.html\"> Control instance retention with instance lifecycle policies</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>. </p> <note> <p>Instances in a Retained state will continue to incur standard EC2 charges until terminated.</p> </note>
+            operator: <p>The entity that manages the Auto Scaling group. If you specify this parameter, Amazon EC2 Auto Scaling passes the operator identity to EC2 for instance launches and only allows the designated operator to make changes to the Auto Scaling group. All mutating API calls from non-operator callers are rejected with an <code>AccessDenied</code> exception.</p>
 
         Raises:
             capo_auto_scaling.errors.already_exists_fault.AlreadyExistsFault: <p>You already have an Auto Scaling group or launch configuration with this name.</p>
@@ -978,6 +982,10 @@ class AutoScalingClient:
             This example creates an Auto Scaling group using attribute-based instance type selection. It requires the instance types to have a minimum of four vCPUs and a maximum of eight vCPUs, a minimum of 16,384 MiB of memory, and an Intel manufactured CPU.
 
             >>> client.create_auto_scaling_group(auto_scaling_group_name='my-asg', mixed_instances_policy={'LaunchTemplate': {'LaunchTemplateSpecification': {'LaunchTemplateName': 'my-template-for-auto-scaling', 'Version': '$Default'}, 'Overrides': [{'InstanceRequirements': {'VCpuCount': {'Min': 4, 'Max': 8}, 'MemoryMiB': {'Min': 16384}, 'CpuManufacturers': ['intel']}}]}, 'InstancesDistribution': {'OnDemandPercentageAboveBaseCapacity': 50, 'SpotAllocationStrategy': 'price-capacity-optimized'}}, min_size=0, max_size=100, desired_capacity=4, desired_capacity_type='units', vpc_zone_identifier='subnet-057fa0918fEXAMPLE, subnet-610acd08EXAMPLE')
+            To create an Auto Scaling group using Distribution Segments
+            This example creates an Auto Scaling group that uses Distribution Segments to prioritize On-Demand Capacity Reservations, Capacity Blocks, interruptible Capacity Reservations, and then On-Demand capacity.
+
+            >>> client.create_auto_scaling_group(auto_scaling_group_name='my-asg', mixed_instances_policy={'LaunchTemplate': {'LaunchTemplateSpecification': {'LaunchTemplateName': 'my-template-for-auto-scaling', 'Version': '$Default'}, 'Overrides': [{'InstanceType': 'm5.24xlarge'}, {'InstanceType': 'p5.48xlarge'}]}, 'InstancesDistribution': {'OnDemandAllocationStrategy': 'prioritized', 'DistributionSegments': [{'TargetCapacityTypes': ['on-demand-capacity-reservation', 'capacity-block', 'interruptible-capacity-reservation', 'on-demand']}]}}, capacity_reservation_specification={'CapacityReservationTarget': {'CapacityReservationResourceGroupArns': ['arn:aws:resource-groups:us-east-1:123456789012:group/my-capacity-reservation-group']}}, min_size=0, max_size=10, desired_capacity=5, vpc_zone_identifier='subnet-057fa0918fEXAMPLE')
             To create an Auto Scaling group
             This example creates an Auto Scaling group.
 
@@ -1076,6 +1084,8 @@ class AutoScalingClient:
             )
         if instance_lifecycle_policy is not None:
             input_["instance_lifecycle_policy"] = instance_lifecycle_policy
+        if operator is not None:
+            input_["operator"] = operator
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -3903,6 +3913,7 @@ class AutoScalingClient:
             retry_strategy: <p> Specifies whether to retry asynchronously if the synchronous launch fails. Valid values are NONE (default, no async retry) and RETRY_WITH_GROUP_CONFIGURATION (increase desired capacity and retry with group configuration). </p>
 
         Raises:
+            capo_auto_scaling.errors.idempotent_call_in_progress_fault.IdempotentCallInProgressFault: <p> The service is currently processing another request with the same client token. Retry the request with the same client token—the in-flight operation will complete and return its result. </p>
             capo_auto_scaling.errors.idempotent_parameter_mismatch_error.IdempotentParameterMismatchError: <p> Indicates that the parameters in the current request do not match the parameters from a previous request with the same client token within the idempotency window. </p>
             capo_auto_scaling.errors.resource_contention_fault.ResourceContentionFault: <p>You already have a pending update to an Amazon EC2 Auto Scaling resource (for example, an Auto Scaling group, instance, or load balancer).</p>
             capo_auto_scaling.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -4912,14 +4923,22 @@ class AutoScalingClient:
         instance_id: Optional[
             "capo_auto_scaling.types.xml_string_max_len19.XmlStringMaxLen19"
         ] = None,
+        instance_ids: Optional[
+            "capo_auto_scaling.types.termination_instance_ids.TerminationInstanceIds"
+        ] = None,
+        auto_scaling_group_name: Optional[
+            "capo_auto_scaling.types.xml_string_max_len255.XmlStringMaxLen255"
+        ] = None,
         should_decrement_desired_capacity: Optional[
             "capo_auto_scaling.types.should_decrement_desired_capacity.ShouldDecrementDesiredCapacity"
         ] = None,
     ) -> "capo_auto_scaling.types.activity_type.ActivityType":
-        r"""<p>Terminates the specified instance and optionally adjusts the desired group size. This operation cannot be called on instances in a warm pool.</p> <p>This call simply makes a termination request. The instance is not terminated immediately. When an instance is terminated, the instance status changes to <code>terminated</code>. You can't connect to or start an instance after you've terminated it.</p> <p>If you do not specify the option to decrement the desired capacity, Amazon EC2 Auto Scaling launches instances to replace the ones that are terminated. </p> <p>By default, Amazon EC2 Auto Scaling balances instances across all Availability Zones. If you decrement the desired capacity, your Auto Scaling group can become unbalanced between Availability Zones. Amazon EC2 Auto Scaling tries to rebalance the group, and rebalancing might terminate instances in other zones. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-scaling-manually.html\">Manual scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>
+        r"""<p>Terminates the specified instance and optionally adjusts the desired group size. This operation cannot be called on instances in a warm pool.</p> <p>This call simply makes a termination request. The instances are not terminated immediately. When an instance is terminated, the instance status changes to <code>terminated</code>. You can't connect to or start an instance after you've terminated it.</p> <p>If you do not specify the option to decrement the desired capacity, Amazon EC2 Auto Scaling launches instances to replace the ones that are terminated. </p> <p>To terminate multiple instances in a single call, use the <code>InstanceIds</code> and <code>AutoScalingGroupName</code> parameters instead of <code>InstanceId</code>. When terminating multiple instances, the response populates <code>Activities</code> instead of <code>Activity</code>.</p> <p>By default, Amazon EC2 Auto Scaling balances instances across all Availability Zones. If you decrement the desired capacity, your Auto Scaling group can become unbalanced between Availability Zones. Amazon EC2 Auto Scaling tries to rebalance the group, and rebalancing might terminate instances in other zones. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-scaling-manually.html\">Manual scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>
 
         Args:
             instance_id: <p>The ID of the instance.</p>
+            instance_ids: <p>The IDs of the instances. You can specify up to 100 instances.</p> <p>This parameter requires that you also specify <code>AutoScalingGroupName</code>.</p>
+            auto_scaling_group_name: <p>The name of the Auto Scaling group. Required when using <code>InstanceIds</code>.</p>
             should_decrement_desired_capacity: <p>Indicates whether terminating the instance also decrements the size of the Auto Scaling group.</p>
 
         Raises:
@@ -4932,6 +4951,10 @@ class AutoScalingClient:
             This example terminates the specified instance from the specified Auto Scaling group without updating the size of the group. Auto Scaling launches a replacement instance after the specified instance terminates.
 
             >>> client.terminate_instance_in_auto_scaling_group(instance_id='i-93633f9b', should_decrement_desired_capacity=False)
+            To terminate multiple instances in an Auto Scaling group
+            This example terminates multiple instances from the specified Auto Scaling group without updating the size of the group. Auto Scaling launches replacement instances after the specified instances terminate.
+
+            >>> client.terminate_instance_in_auto_scaling_group(instance_ids=['i-93633f9b', 'i-ab4d5e6f7'], auto_scaling_group_name='my-asg', should_decrement_desired_capacity=False)
         """
 
         def _handler(
@@ -4950,6 +4973,10 @@ class AutoScalingClient:
         input_: capo_auto_scaling.types.terminate_instance_in_auto_scaling_group_type.TerminateInstanceInAutoScalingGroupType = {}
         if instance_id is not None:
             input_["instance_id"] = instance_id
+        if instance_ids is not None:
+            input_["instance_ids"] = instance_ids
+        if auto_scaling_group_name is not None:
+            input_["auto_scaling_group_name"] = auto_scaling_group_name
         if should_decrement_desired_capacity is not None:
             input_["should_decrement_desired_capacity"] = (
                 should_decrement_desired_capacity
@@ -5057,7 +5084,7 @@ class AutoScalingClient:
             auto_scaling_group_name: <p>The name of the Auto Scaling group.</p>
             launch_configuration_name: <p>The name of the launch configuration. If you specify <code>LaunchConfigurationName</code> in your update request, you can't specify <code>LaunchTemplate</code> or <code>MixedInstancesPolicy</code>.</p>
             launch_template: <p>The launch template and version to use to specify the updates. If you specify <code>LaunchTemplate</code> in your update request, you can't specify <code>LaunchConfigurationName</code> or <code>MixedInstancesPolicy</code>.</p>
-            mixed_instances_policy: <p>The mixed instances policy. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-mixed-instances-groups.html\">Auto Scaling groups with multiple instance types and purchase options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>
+            mixed_instances_policy: <p>The mixed instances policy. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-mixed-instances-groups.html\">Auto Scaling groups with multiple instance types and purchase options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p> <p>You can remove the Distribution Segments configuration by specifying <code>OnDemandBaseCapacity</code> or <code>OnDemandPercentageAboveBaseCapacity</code>. You can also remove it explicitly by specifying an empty list for <code>DistributionSegments</code>.</p>
             min_size: <p>The minimum size of the Auto Scaling group.</p>
             max_size: <p>The maximum size of the Auto Scaling group.</p> <note> <p>With a mixed instances policy that uses instance weighting, Amazon EC2 Auto Scaling may need to go above <code>MaxSize</code> to meet your capacity requirements. In this event, Amazon EC2 Auto Scaling will never go above <code>MaxSize</code> by more than your largest instance weight (weights that define how many units each instance contributes to the desired capacity of the group).</p> </note>
             desired_capacity: <p>The desired capacity is the initial capacity of the Auto Scaling group after this operation completes and the capacity it attempts to maintain. This number must be greater than or equal to the minimum size of the group and less than or equal to the maximum size of the group.</p>

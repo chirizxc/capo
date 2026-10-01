@@ -1,0 +1,35 @@
+"""Generated from Smithy shape ``com.amazonaws.bedrockagentruntime#DocumentAclGroupList``."""
+
+from typing import TYPE_CHECKING, TypeAlias
+
+if TYPE_CHECKING:
+    import capo_bedrock_agent_runtime.types.document_acl_group
+
+DocumentAclGroupList: TypeAlias = list[
+    "capo_bedrock_agent_runtime.types.document_acl_group.DocumentAclGroup"
+]
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: DocumentAclGroupList) -> list:
+    import capo_bedrock_agent_runtime.types.document_acl_group
+
+    out: list = []
+    for item in value:
+        out.append(
+            capo_bedrock_agent_runtime.types.document_acl_group.serialize_json(item)
+        )
+    return out
+
+
+def deserialize_json(data: list) -> DocumentAclGroupList:
+    import capo_bedrock_agent_runtime.types.document_acl_group
+
+    out: DocumentAclGroupList = []
+    for item in data:
+        if item is None:
+            continue
+        out.append(
+            capo_bedrock_agent_runtime.types.document_acl_group.deserialize_json(item)
+        )
+    return out

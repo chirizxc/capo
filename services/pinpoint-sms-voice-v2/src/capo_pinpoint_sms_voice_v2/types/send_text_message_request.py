@@ -28,7 +28,7 @@ class SendTextMessageRequest(TypedDict, closed=True):
     origination_identity: NotRequired[
         "capo_pinpoint_sms_voice_v2.types.text_message_origination_identity.TextMessageOriginationIdentity"
     ]
-    """<p>The origination identity of the message. This can be either the PhoneNumber, PhoneNumberId, PhoneNumberArn, SenderId, SenderIdArn, PoolId, or PoolArn.</p> <important> <p>If you are using a shared End User Messaging SMS resource then you must use the full Amazon Resource Name(ARN).</p> </important>"""
+    """<p>The origination identity of the message. This can be either the PhoneNumber, PhoneNumberId, PhoneNumberArn, RcsAgentId, RcsAgentArn, SenderId, SenderIdArn, PoolId, or PoolArn.</p> <important> <p>If you are using a shared End User Messaging SMS resource then you must use the full Amazon Resource Name(ARN).</p> </important>"""
     message_body: NotRequired[
         "capo_pinpoint_sms_voice_v2.types.text_message_body.TextMessageBody"
     ]

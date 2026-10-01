@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     import capo_medialive.types.cmaf_nielsen_id3_behavior
     import capo_medialive.types.cmaf_timed_metadata_id3_frame
     import capo_medialive.types.cmaf_timed_metadata_passthrough
+    import capo_medialive.types.media_package_v2_watermarking_settings
     import capo_medialive.types.scte35_type
 
 
@@ -32,7 +33,7 @@ class MediaPackageV2GroupSettings(TypedDict, closed=True):
     ]
     """If set to passthrough, Nielsen inaudible tones for media tracking will be detected in the input audio and an equivalent ID3 tag will be inserted in the output."""
     scte35_type: NotRequired["capo_medialive.types.scte35_type.Scte35Type"]
-    """Type of scte35 track to add. none or scte35WithoutSegmentation"""
+    r"""SCTE-35 insertion type. Option \"none\" indicates that a SCTE-35 marker will not be inserted, nor will an IDR be inserted at the SCTE-35 cue point, nor will the segment be segmented. Option \"scte35WithoutIdr\" indicates that a SCTE-35 marker will be inserted to indicate the cue point, but MediaLive will not insert an IDR on that frame nor will it introduce a new segment boundary there if it wasn't already going to be one (this option is required for use with downstream multiview bitstream stitching workflows). Option \"scte35WithoutSegmentation\" indicates that a SCTE-35 marker will be inserted to indicate the cue point, and an IDR will be inserted on that frame so that a downstream re-packager might split the segment there, but MediaLive itself will not introduce a new segment boundary there."""
     segment_length: NotRequired["capo_medialive.types.__integer_min1.__integerMin1"]
     """The nominal duration of segments. The units are specified in SegmentLengthUnits. The segments will end on the next keyframe after the specified duration, so the actual segment length might be longer, and it might be a fraction of the units."""
     segment_length_units: NotRequired[
@@ -55,6 +56,10 @@ class MediaPackageV2GroupSettings(TypedDict, closed=True):
         "capo_medialive.types.__list_of_media_package_additional_destinations.__listOfMediaPackageAdditionalDestinations"
     ]
     """Optional an array of additional destinational HTTP destinations for the OutputGroup outputs"""
+    watermarking_settings: NotRequired[
+        "capo_medialive.types.media_package_v2_watermarking_settings.MediaPackageV2WatermarkingSettings"
+    ]
+    """Specifies the type of watermarking technology to use."""
 
 
 # --- restJson1 ser/de ---
@@ -130,6 +135,14 @@ def serialize_json(value: MediaPackageV2GroupSettings) -> dict:
                 value["additional_destinations"]
             )
         )
+    if "watermarking_settings" in value:
+        import capo_medialive.types.media_package_v2_watermarking_settings
+
+        out["watermarkingSettings"] = (
+            capo_medialive.types.media_package_v2_watermarking_settings.serialize_json(
+                value["watermarking_settings"]
+            )
+        )
     return out
 
 
@@ -203,6 +216,14 @@ def deserialize_json(data: dict) -> MediaPackageV2GroupSettings:
         out["additional_destinations"] = (
             capo_medialive.types.__list_of_media_package_additional_destinations.deserialize_json(
                 data["additionalDestinations"]
+            )
+        )
+    if data.get("watermarkingSettings") is not None:
+        import capo_medialive.types.media_package_v2_watermarking_settings
+
+        out["watermarking_settings"] = (
+            capo_medialive.types.media_package_v2_watermarking_settings.deserialize_json(
+                data["watermarkingSettings"]
             )
         )
     return out

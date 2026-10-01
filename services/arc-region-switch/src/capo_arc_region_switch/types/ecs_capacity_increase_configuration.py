@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_arc_region_switch.types.ecs_capacity_monitoring_approach
     import capo_arc_region_switch.types.ecs_ungraceful
     import capo_arc_region_switch.types.service_list
+    import capo_arc_region_switch.types.wait_elb_target_group_healthy
 
 
 class EcsCapacityIncreaseConfiguration(TypedDict, closed=True):
@@ -23,6 +24,10 @@ class EcsCapacityIncreaseConfiguration(TypedDict, closed=True):
     """<p>The target percentage specified for the configuration. The default is 100.</p>"""
     capacity_monitoring_approach: "capo_arc_region_switch.types.ecs_capacity_monitoring_approach.EcsCapacityMonitoringApproach"
     """<p>The monitoring approach specified for the configuration, for example, <code>Most_Recent</code>.</p>"""
+    wait_elb_target_group_healthy: NotRequired[
+        "capo_arc_region_switch.types.wait_elb_target_group_healthy.WaitELBTargetGroupHealthy"
+    ]
+    """<p>If enabled, the step completes only after each attached ELB target group reports a healthy target count that matches the service's new desired task count calculated in the step.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -50,6 +55,14 @@ def serialize_aws_json_1_0(value: EcsCapacityIncreaseConfiguration) -> dict:
             value.get("capacity_monitoring_approach", "sampledMaxInLast24Hours")
         )
     )
+    if "wait_elb_target_group_healthy" in value:
+        import capo_arc_region_switch.types.wait_elb_target_group_healthy
+
+        out["waitELBTargetGroupHealthy"] = (
+            capo_arc_region_switch.types.wait_elb_target_group_healthy.serialize_aws_json_1_0(
+                value["wait_elb_target_group_healthy"]
+            )
+        )
     return out
 
 
@@ -91,4 +104,12 @@ def deserialize_aws_json_1_0(data: dict) -> EcsCapacityIncreaseConfiguration:
         )
     else:
         out["capacity_monitoring_approach"] = "sampledMaxInLast24Hours"
+    if data.get("waitELBTargetGroupHealthy") is not None:
+        import capo_arc_region_switch.types.wait_elb_target_group_healthy
+
+        out["wait_elb_target_group_healthy"] = (
+            capo_arc_region_switch.types.wait_elb_target_group_healthy.deserialize_aws_json_1_0(
+                data["waitELBTargetGroupHealthy"]
+            )
+        )
     return out

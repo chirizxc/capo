@@ -1,0 +1,35 @@
+"""Generated from Smithy shape ``com.amazonaws.marketplacecatalog#AssessmentSummaryList``."""
+
+from typing import TYPE_CHECKING, TypeAlias
+
+if TYPE_CHECKING:
+    import capo_marketplace_catalog.types.assessment_summary
+
+AssessmentSummaryList: TypeAlias = list[
+    "capo_marketplace_catalog.types.assessment_summary.AssessmentSummary"
+]
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: AssessmentSummaryList) -> list:
+    import capo_marketplace_catalog.types.assessment_summary
+
+    out: list = []
+    for item in value:
+        out.append(
+            capo_marketplace_catalog.types.assessment_summary.serialize_json(item)
+        )
+    return out
+
+
+def deserialize_json(data: list) -> AssessmentSummaryList:
+    import capo_marketplace_catalog.types.assessment_summary
+
+    out: AssessmentSummaryList = []
+    for item in data:
+        if item is None:
+            continue
+        out.append(
+            capo_marketplace_catalog.types.assessment_summary.deserialize_json(item)
+        )
+    return out

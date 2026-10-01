@@ -21,6 +21,7 @@ import capo_qconnect.errors.service_quota_exceeded_exception
 import capo_qconnect.errors.throttling_exception
 import capo_qconnect.errors.validation_exception
 import capo_qconnect.types.retrieval_configuration
+import capo_qconnect.types.retrieve_error_list
 import capo_qconnect.types.retrieve_request
 import capo_qconnect.types.retrieve_response
 import capo_qconnect.types.retrieve_result_list

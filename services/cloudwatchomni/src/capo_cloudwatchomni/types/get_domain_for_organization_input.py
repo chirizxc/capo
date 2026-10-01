@@ -1,0 +1,31 @@
+"""Generated from Smithy shape ``com.amazonaws.cloudwatchomni#GetDomainForOrganizationInput``."""
+
+from typing import TYPE_CHECKING
+
+from typing_extensions import TypedDict
+
+from capo_cloudwatchomni.errors import DeserializationError
+
+if TYPE_CHECKING:
+    import capo_cloudwatchomni.types.domain_id
+
+
+class GetDomainForOrganizationInput(TypedDict, closed=True):
+    domain_id: "capo_cloudwatchomni.types.domain_id.DomainId"
+    """The ID of the organization domain."""
+
+
+# --- rpcv2Cbor ser/de ---
+def serialize_cbor(value: GetDomainForOrganizationInput) -> dict:
+    out: dict = {}
+    out["domainId"] = value["domain_id"]
+    return out
+
+
+def deserialize_cbor(data: dict) -> GetDomainForOrganizationInput:
+    out: GetDomainForOrganizationInput = {}  # type: ignore[typeddict-item]
+    if data.get("domainId") is not None:
+        out["domain_id"] = data["domainId"]
+    else:
+        raise DeserializationError("GetDomainForOrganizationInput.domain_id required")
+    return out

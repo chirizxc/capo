@@ -125,12 +125,18 @@ class AsyncEKSAuthClient:
         token: "capo_eks_auth.types.jwt_token.JwtToken",
         *,
         config_overrides: Optional[AsyncEKSAuthClientConfig] = None,
+        eks_node_name: Optional[str] = None,
+        instance_id: Optional[str] = None,
+        zone: Optional[str] = None,
     ) -> "capo_eks_auth.types.assume_role_for_pod_identity_response.AssumeRoleForPodIdentityResponse":
         """<p>The Amazon EKS Auth API and the <code>AssumeRoleForPodIdentity</code> action are only used by the EKS Pod Identity Agent.</p> <p>We recommend that applications use the Amazon Web Services SDKs to connect to Amazon Web Services services; if credentials from an EKS Pod Identity association are available in the pod, the latest versions of the SDKs use them automatically.</p>
 
         Args:
             cluster_name: <p>The name of the cluster for the request.</p>
             token: <p>The token of the Kubernetes service account for the pod.</p>
+            eks_node_name: <p>The Kubernetes node name of the worker node where the pod is running.</p>
+            instance_id: <p>The Amazon EC2 instance ID of the worker node where the pod is running.</p>
+            zone: <p>The Availability Zone ID of the worker node where the pod is running.</p>
 
         Raises:
             capo_eks_auth.errors.access_denied_exception.AccessDeniedException: <p>You don't have permissions to perform the requested operation. The IAM principal making the request must have at least one IAM permissions policy attached that grants the required permissions. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html\">Access management</a> in the <i>IAM User Guide</i>. </p>
@@ -165,6 +171,12 @@ class AsyncEKSAuthClient:
             "cluster_name": cluster_name,
             "token": token,
         }
+        if eks_node_name is not None:
+            input_["eks_node_name"] = eks_node_name
+        if instance_id is not None:
+            input_["instance_id"] = instance_id
+        if zone is not None:
+            input_["zone"] = zone
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

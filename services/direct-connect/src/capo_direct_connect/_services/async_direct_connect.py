@@ -38,6 +38,8 @@ if TYPE_CHECKING:
     import capo_direct_connect.types.allocate_transit_virtual_interface_result
     import capo_direct_connect.types.asn
     import capo_direct_connect.types.associate_connection_with_lag_request
+    import capo_direct_connect.types.associate_connections_to_resiliency_group_request
+    import capo_direct_connect.types.associate_connections_to_resiliency_group_result
     import capo_direct_connect.types.associate_hosted_connection_request
     import capo_direct_connect.types.associate_mac_sec_key_request
     import capo_direct_connect.types.associate_mac_sec_key_response
@@ -60,6 +62,8 @@ if TYPE_CHECKING:
     import capo_direct_connect.types.confirm_transit_virtual_interface_response
     import capo_direct_connect.types.connection
     import capo_direct_connect.types.connection_id
+    import capo_direct_connect.types.connection_id_list
+    import capo_direct_connect.types.connection_identifier_list
     import capo_direct_connect.types.connection_name
     import capo_direct_connect.types.connections
     import capo_direct_connect.types.count
@@ -76,6 +80,8 @@ if TYPE_CHECKING:
     import capo_direct_connect.types.create_lag_request
     import capo_direct_connect.types.create_private_virtual_interface_request
     import capo_direct_connect.types.create_public_virtual_interface_request
+    import capo_direct_connect.types.create_resiliency_group_request
+    import capo_direct_connect.types.create_resiliency_group_result
     import capo_direct_connect.types.create_transit_virtual_interface_request
     import capo_direct_connect.types.create_transit_virtual_interface_result
     import capo_direct_connect.types.customer_address
@@ -91,6 +97,8 @@ if TYPE_CHECKING:
     import capo_direct_connect.types.delete_interconnect_request
     import capo_direct_connect.types.delete_interconnect_response
     import capo_direct_connect.types.delete_lag_request
+    import capo_direct_connect.types.delete_resiliency_group_request
+    import capo_direct_connect.types.delete_resiliency_group_result
     import capo_direct_connect.types.delete_virtual_interface_request
     import capo_direct_connect.types.delete_virtual_interface_response
     import capo_direct_connect.types.describe_connection_loa_request
@@ -122,12 +130,17 @@ if TYPE_CHECKING:
     import capo_direct_connect.types.direct_connect_gateway_id
     import capo_direct_connect.types.direct_connect_gateway_name
     import capo_direct_connect.types.disassociate_connection_from_lag_request
+    import capo_direct_connect.types.disassociate_connections_from_resiliency_group_request
+    import capo_direct_connect.types.disassociate_connections_from_resiliency_group_result
     import capo_direct_connect.types.disassociate_mac_sec_key_request
     import capo_direct_connect.types.disassociate_mac_sec_key_response
     import capo_direct_connect.types.enable_site_link
     import capo_direct_connect.types.encryption_mode
     import capo_direct_connect.types.failure_test_history_status
     import capo_direct_connect.types.gateway_id_to_associate
+    import capo_direct_connect.types.get_resiliency_group_request
+    import capo_direct_connect.types.get_resiliency_group_result
+    import capo_direct_connect.types.idempotency_token
     import capo_direct_connect.types.interconnect
     import capo_direct_connect.types.interconnect_id
     import capo_direct_connect.types.interconnect_name
@@ -136,6 +149,12 @@ if TYPE_CHECKING:
     import capo_direct_connect.types.lag_id
     import capo_direct_connect.types.lag_name
     import capo_direct_connect.types.lags
+    import capo_direct_connect.types.list_resiliency_group_associations_request
+    import capo_direct_connect.types.list_resiliency_group_associations_result
+    import capo_direct_connect.types.list_resiliency_groups_request
+    import capo_direct_connect.types.list_resiliency_groups_result
+    import capo_direct_connect.types.list_virtual_interface_routes_request
+    import capo_direct_connect.types.list_virtual_interface_routes_response
     import capo_direct_connect.types.list_virtual_interface_test_history_request
     import capo_direct_connect.types.list_virtual_interface_test_history_response
     import capo_direct_connect.types.loa
@@ -154,11 +173,18 @@ if TYPE_CHECKING:
     import capo_direct_connect.types.new_transit_virtual_interface_allocation
     import capo_direct_connect.types.owner_account
     import capo_direct_connect.types.pagination_token
+    import capo_direct_connect.types.prefix_pool_allocated_count
     import capo_direct_connect.types.provider_name
+    import capo_direct_connect.types.rate_limit
+    import capo_direct_connect.types.request_billing_mode
     import capo_direct_connect.types.request_mac_sec
+    import capo_direct_connect.types.resiliency_group_id
+    import capo_direct_connect.types.resiliency_group_name
+    import capo_direct_connect.types.resiliency_model
     import capo_direct_connect.types.resource_arn
     import capo_direct_connect.types.resource_arn_list
     import capo_direct_connect.types.route_filter_prefix_list
+    import capo_direct_connect.types.route_filters
     import capo_direct_connect.types.router_type_identifier
     import capo_direct_connect.types.secret_arn
     import capo_direct_connect.types.start_bgp_failover_test_request
@@ -174,11 +200,15 @@ if TYPE_CHECKING:
     import capo_direct_connect.types.untag_resource_request
     import capo_direct_connect.types.untag_resource_response
     import capo_direct_connect.types.update_connection_request
+    import capo_direct_connect.types.update_connections_billing_mode_request
+    import capo_direct_connect.types.update_connections_billing_mode_response
     import capo_direct_connect.types.update_direct_connect_gateway_association_request
     import capo_direct_connect.types.update_direct_connect_gateway_association_result
     import capo_direct_connect.types.update_direct_connect_gateway_request
     import capo_direct_connect.types.update_direct_connect_gateway_response
     import capo_direct_connect.types.update_lag_request
+    import capo_direct_connect.types.update_resiliency_group_request
+    import capo_direct_connect.types.update_resiliency_group_result
     import capo_direct_connect.types.update_virtual_interface_attributes_request
     import capo_direct_connect.types.virtual_gateway_id
     import capo_direct_connect.types.virtual_gateways
@@ -476,6 +506,7 @@ class AsyncDirectConnectClient:
             capo_direct_connect.errors.direct_connect_client_exception.DirectConnectClientException: <p>One or more parameters are not valid.</p>
             capo_direct_connect.errors.direct_connect_server_exception.DirectConnectServerException: <p>A server-side error occurred.</p>
             capo_direct_connect.errors.duplicate_tag_keys_exception.DuplicateTagKeysException: <p>A tag key was specified more than once.</p>
+            capo_direct_connect.errors.limit_exceeded_exception.LimitExceededException: <p>The rate limiter limit has been exceeded for the connection. You cannot add more rate limiters to virtual interfaces on this connection.</p>
             capo_direct_connect.errors.too_many_tags_exception.TooManyTagsException: <p>You have reached the limit on the number of tags that can be assigned.</p>
             capo_direct_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
@@ -529,6 +560,7 @@ class AsyncDirectConnectClient:
             capo_direct_connect.errors.direct_connect_client_exception.DirectConnectClientException: <p>One or more parameters are not valid.</p>
             capo_direct_connect.errors.direct_connect_server_exception.DirectConnectServerException: <p>A server-side error occurred.</p>
             capo_direct_connect.errors.duplicate_tag_keys_exception.DuplicateTagKeysException: <p>A tag key was specified more than once.</p>
+            capo_direct_connect.errors.limit_exceeded_exception.LimitExceededException: <p>The rate limiter limit has been exceeded for the connection. You cannot add more rate limiters to virtual interfaces on this connection.</p>
             capo_direct_connect.errors.too_many_tags_exception.TooManyTagsException: <p>You have reached the limit on the number of tags that can be assigned.</p>
             capo_direct_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
@@ -582,6 +614,7 @@ class AsyncDirectConnectClient:
             capo_direct_connect.errors.direct_connect_client_exception.DirectConnectClientException: <p>One or more parameters are not valid.</p>
             capo_direct_connect.errors.direct_connect_server_exception.DirectConnectServerException: <p>A server-side error occurred.</p>
             capo_direct_connect.errors.duplicate_tag_keys_exception.DuplicateTagKeysException: <p>A tag key was specified more than once.</p>
+            capo_direct_connect.errors.limit_exceeded_exception.LimitExceededException: <p>The rate limiter limit has been exceeded for the connection. You cannot add more rate limiters to virtual interfaces on this connection.</p>
             capo_direct_connect.errors.too_many_tags_exception.TooManyTagsException: <p>You have reached the limit on the number of tags that can be assigned.</p>
             capo_direct_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
@@ -616,6 +649,61 @@ class AsyncDirectConnectClient:
         await response.response.aclose()
         return response.output
 
+    async def associate_connections_to_resiliency_group(
+        self,
+        connection_identifiers: "capo_direct_connect.types.connection_identifier_list.ConnectionIdentifierList",
+        resiliency_group_id: "capo_direct_connect.types.resiliency_group_id.ResiliencyGroupId",
+        *,
+        config_overrides: Optional[AsyncDirectConnectClientConfig] = None,
+        client_token: Optional[
+            "capo_direct_connect.types.idempotency_token.IdempotencyToken"
+        ] = None,
+    ) -> "capo_direct_connect.types.associate_connections_to_resiliency_group_result.AssociateConnectionsToResiliencyGroupResult":
+        """<p>Associates one or more connections with the specified resiliency group. This operation is atomic: either all of the specified connections are associated, or the operation fails and no changes are made.</p>
+
+        Args:
+            connection_identifiers: <p>The IDs or ARNs of the connections to associate with the resiliency group.</p>
+            resiliency_group_id: <p>The ID of the resiliency group.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_direct_connect.errors.direct_connect_client_exception.DirectConnectClientException: <p>One or more parameters are not valid.</p>
+            capo_direct_connect.errors.direct_connect_server_exception.DirectConnectServerException: <p>A server-side error occurred.</p>
+            capo_direct_connect.errors.limit_exceeded_exception.LimitExceededException: <p>The rate limiter limit has been exceeded for the connection. You cannot add more rate limiters to virtual interfaces on this connection.</p>
+            capo_direct_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_direct_connect.types.associate_connections_to_resiliency_group_request.AssociateConnectionsToResiliencyGroupRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_direct_connect.types.associate_connections_to_resiliency_group_result.AssociateConnectionsToResiliencyGroupResult"
+        ]:
+            import capo_direct_connect._operations.overture_service.associate_connections_to_resiliency_group
+
+            (
+                output,
+                http_response,
+            ) = await capo_direct_connect._operations.overture_service.associate_connections_to_resiliency_group.async_associate_connections_to_resiliency_group(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_direct_connect.types.associate_connections_to_resiliency_group_request.AssociateConnectionsToResiliencyGroupRequest = {
+            "connection_identifiers": connection_identifiers,
+            "resiliency_group_id": resiliency_group_id,
+        }
+        if client_token is not None:
+            input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def associate_connection_with_lag(
         self,
         connection_id: "capo_direct_connect.types.connection_id.ConnectionId",
@@ -632,6 +720,7 @@ class AsyncDirectConnectClient:
         Raises:
             capo_direct_connect.errors.direct_connect_client_exception.DirectConnectClientException: <p>One or more parameters are not valid.</p>
             capo_direct_connect.errors.direct_connect_server_exception.DirectConnectServerException: <p>A server-side error occurred.</p>
+            capo_direct_connect.errors.limit_exceeded_exception.LimitExceededException: <p>The rate limiter limit has been exceeded for the connection. You cannot add more rate limiters to virtual interfaces on this connection.</p>
             capo_direct_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1123,6 +1212,9 @@ class AsyncDirectConnectClient:
         request_mac_sec: Optional[
             "capo_direct_connect.types.request_mac_sec.RequestMACSec"
         ] = None,
+        billing_mode: Optional[
+            "capo_direct_connect.types.request_billing_mode.RequestBillingMode"
+        ] = None,
     ) -> "capo_direct_connect.types.connection.Connection":
         r"""<p>Creates a connection between a customer network and a specific Direct Connect location.</p> <p>A connection links your internal network to an Direct Connect location over a standard Ethernet fiber-optic cable. One end of the cable is connected to your router, the other to an Direct Connect router.</p> <p>To find the locations for your Region, use <a>DescribeLocations</a>.</p> <p>You can automatically add the new connection to a link aggregation group (LAG) by specifying a LAG ID in the request. This ensures that the new connection is allocated on the same Direct Connect endpoint that hosts the specified LAG. If there are no available ports on the endpoint, the request fails and no connection is created.</p>
 
@@ -1134,6 +1226,7 @@ class AsyncDirectConnectClient:
             tags: <p>The tags to associate with the lag.</p>
             provider_name: <p>The name of the service provider associated with the requested connection.</p>
             request_mac_sec: <p>Indicates whether you want the connection to support MAC Security (MACsec).</p> <p>MAC Security (MACsec) is unavailable on hosted connections. For information about MAC Security (MACsec) prerequisites, see <a href=\"https://docs.aws.amazon.com/directconnect/latest/UserGuide/MACSec.html\">MAC Security in Direct Connect</a> in the <i>Direct Connect User Guide</i>.</p>
+            billing_mode: <p>The billing mode for the connection.</p>
 
         Raises:
             capo_direct_connect.errors.direct_connect_client_exception.DirectConnectClientException: <p>One or more parameters are not valid.</p>
@@ -1170,6 +1263,8 @@ class AsyncDirectConnectClient:
             input_["provider_name"] = provider_name
         if request_mac_sec is not None:
             input_["request_mac_sec"] = request_mac_sec
+        if billing_mode is not None:
+            input_["billing_mode"] = billing_mode
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1458,6 +1553,9 @@ class AsyncDirectConnectClient:
         request_mac_sec: Optional[
             "capo_direct_connect.types.request_mac_sec.RequestMACSec"
         ] = None,
+        billing_mode: Optional[
+            "capo_direct_connect.types.request_billing_mode.RequestBillingMode"
+        ] = None,
     ) -> "capo_direct_connect.types.lag.Lag":
         r"""<p>Creates a link aggregation group (LAG) with the specified number of bundled physical dedicated connections between the customer network and a specific Direct Connect location. A LAG is a logical interface that uses the Link Aggregation Control Protocol (LACP) to aggregate multiple interfaces, enabling you to treat them as a single interface.</p> <p>All connections in a LAG must use the same bandwidth (either 1Gbps, 10Gbps, 100Gbps, or 400Gbps) and must terminate at the same Direct Connect endpoint.</p> <p>You can have up to 10 dedicated connections per location. Regardless of this limit, if you request more connections for the LAG than Direct Connect can allocate on a single endpoint, no LAG is created..</p> <p>You can specify an existing physical dedicated connection or interconnect to include in the LAG (which counts towards the total number of connections). Doing so interrupts the current physical dedicated connection, and re-establishes them as a member of the LAG. The LAG will be created on the same Direct Connect endpoint to which the dedicated connection terminates. Any virtual interfaces associated with the dedicated connection are automatically disassociated and re-associated with the LAG. The connection ID does not change.</p> <p>If the Amazon Web Services account used to create a LAG is a registered Direct Connect Partner, the LAG is automatically enabled to host sub-connections. For a LAG owned by a partner, any associated virtual interfaces cannot be directly configured.</p>
 
@@ -1471,6 +1569,7 @@ class AsyncDirectConnectClient:
             child_connection_tags: <p>The tags to associate with the automtically created LAGs.</p>
             provider_name: <p>The name of the service provider associated with the LAG.</p>
             request_mac_sec: <p>Indicates whether the connection will support MAC Security (MACsec).</p> <note> <p>All connections in the LAG must be capable of supporting MAC Security (MACsec). For information about MAC Security (MACsec) prerequisties, see <a href=\"https://docs.aws.amazon.com/directconnect/latest/UserGuide/direct-connect-mac-sec-getting-started.html#mac-sec-prerequisites\">MACsec prerequisties</a> in the <i>Direct Connect User Guide</i>.</p> </note>
+            billing_mode: <p>The billing mode for the LAG.</p>
 
         Raises:
             capo_direct_connect.errors.direct_connect_client_exception.DirectConnectClientException: <p>One or more parameters are not valid.</p>
@@ -1510,6 +1609,8 @@ class AsyncDirectConnectClient:
             input_["provider_name"] = provider_name
         if request_mac_sec is not None:
             input_["request_mac_sec"] = request_mac_sec
+        if billing_mode is not None:
+            input_["billing_mode"] = billing_mode
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1536,6 +1637,7 @@ class AsyncDirectConnectClient:
             capo_direct_connect.errors.direct_connect_client_exception.DirectConnectClientException: <p>One or more parameters are not valid.</p>
             capo_direct_connect.errors.direct_connect_server_exception.DirectConnectServerException: <p>A server-side error occurred.</p>
             capo_direct_connect.errors.duplicate_tag_keys_exception.DuplicateTagKeysException: <p>A tag key was specified more than once.</p>
+            capo_direct_connect.errors.limit_exceeded_exception.LimitExceededException: <p>The rate limiter limit has been exceeded for the connection. You cannot add more rate limiters to virtual interfaces on this connection.</p>
             capo_direct_connect.errors.too_many_tags_exception.TooManyTagsException: <p>You have reached the limit on the number of tags that can be assigned.</p>
             capo_direct_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
@@ -1586,6 +1688,7 @@ class AsyncDirectConnectClient:
             capo_direct_connect.errors.direct_connect_client_exception.DirectConnectClientException: <p>One or more parameters are not valid.</p>
             capo_direct_connect.errors.direct_connect_server_exception.DirectConnectServerException: <p>A server-side error occurred.</p>
             capo_direct_connect.errors.duplicate_tag_keys_exception.DuplicateTagKeysException: <p>A tag key was specified more than once.</p>
+            capo_direct_connect.errors.limit_exceeded_exception.LimitExceededException: <p>The rate limiter limit has been exceeded for the connection. You cannot add more rate limiters to virtual interfaces on this connection.</p>
             capo_direct_connect.errors.too_many_tags_exception.TooManyTagsException: <p>You have reached the limit on the number of tags that can be assigned.</p>
             capo_direct_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
@@ -1619,6 +1722,67 @@ class AsyncDirectConnectClient:
         await response.response.aclose()
         return response.output
 
+    async def create_resiliency_group(
+        self,
+        resiliency_group_name: "capo_direct_connect.types.resiliency_group_name.ResiliencyGroupName",
+        intended_resiliency_model: "capo_direct_connect.types.resiliency_model.ResiliencyModel",
+        *,
+        config_overrides: Optional[AsyncDirectConnectClientConfig] = None,
+        client_token: Optional[
+            "capo_direct_connect.types.idempotency_token.IdempotencyToken"
+        ] = None,
+        tags: Optional["capo_direct_connect.types.tag_list.TagList"] = None,
+    ) -> "capo_direct_connect.types.create_resiliency_group_result.CreateResiliencyGroupResult":
+        """<p>Creates a resiliency group. A resiliency group lets you group Direct Connect connections together and manage them as a single unit to meet a target resiliency model.</p>
+
+        Args:
+            resiliency_group_name: <p>The name of the resiliency group.</p>
+            intended_resiliency_model: <p>The resiliency model that the resiliency group is intended to meet. The valid values are <code>maximum-resiliency</code>, <code>high-resiliency</code>, and <code>basic-resiliency</code>.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+            tags: <p>The tags to associate with the resiliency group.</p>
+
+        Raises:
+            capo_direct_connect.errors.direct_connect_client_exception.DirectConnectClientException: <p>One or more parameters are not valid.</p>
+            capo_direct_connect.errors.direct_connect_server_exception.DirectConnectServerException: <p>A server-side error occurred.</p>
+            capo_direct_connect.errors.duplicate_tag_keys_exception.DuplicateTagKeysException: <p>A tag key was specified more than once.</p>
+            capo_direct_connect.errors.limit_exceeded_exception.LimitExceededException: <p>The rate limiter limit has been exceeded for the connection. You cannot add more rate limiters to virtual interfaces on this connection.</p>
+            capo_direct_connect.errors.too_many_tags_exception.TooManyTagsException: <p>You have reached the limit on the number of tags that can be assigned.</p>
+            capo_direct_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_direct_connect.types.create_resiliency_group_request.CreateResiliencyGroupRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_direct_connect.types.create_resiliency_group_result.CreateResiliencyGroupResult"
+        ]:
+            import capo_direct_connect._operations.overture_service.create_resiliency_group
+
+            (
+                output,
+                http_response,
+            ) = await capo_direct_connect._operations.overture_service.create_resiliency_group.async_create_resiliency_group(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_direct_connect.types.create_resiliency_group_request.CreateResiliencyGroupRequest = {
+            "resiliency_group_name": resiliency_group_name,
+            "intended_resiliency_model": intended_resiliency_model,
+        }
+        if client_token is not None:
+            input_["client_token"] = client_token
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def create_transit_virtual_interface(
         self,
         connection_id: "capo_direct_connect.types.connection_id.ConnectionId",
@@ -1636,6 +1800,7 @@ class AsyncDirectConnectClient:
             capo_direct_connect.errors.direct_connect_client_exception.DirectConnectClientException: <p>One or more parameters are not valid.</p>
             capo_direct_connect.errors.direct_connect_server_exception.DirectConnectServerException: <p>A server-side error occurred.</p>
             capo_direct_connect.errors.duplicate_tag_keys_exception.DuplicateTagKeysException: <p>A tag key was specified more than once.</p>
+            capo_direct_connect.errors.limit_exceeded_exception.LimitExceededException: <p>The rate limiter limit has been exceeded for the connection. You cannot add more rate limiters to virtual interfaces on this connection.</p>
             capo_direct_connect.errors.too_many_tags_exception.TooManyTagsException: <p>You have reached the limit on the number of tags that can be assigned.</p>
             capo_direct_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
@@ -1687,8 +1852,8 @@ class AsyncDirectConnectClient:
 
         Args:
             virtual_interface_id: <p>The ID of the virtual interface.</p>
-            asn: <p>The autonomous system number (ASN). The valid range is from 1 to 2147483646 for Border Gateway Protocol (BGP) configuration. If you provide a number greater than the maximum, an error is returned. Use <code>asnLong</code> instead.</p> <note> <p>You can use <code>asnLong</code> or <code>asn</code>, but not both. We recommend using <code>asnLong</code> as it supports a greater pool of numbers. </p> <ul> <li> <p>The <code>asnLong</code> attribute accepts both ASN and long ASN ranges.</p> </li> <li> <p>If you provide a value in the same API call for both <code>asn</code> and <code>asnLong</code>, the API will only accept the value for <code>asnLong</code>.</p> </li> </ul> </note>
-            asn_long: <p>The long ASN for the BGP peer to be deleted from a Direct Connect virtual interface. The valid range is from 1 to 4294967294 for BGP configuration. </p> <note> <p>You can use <code>asnLong</code> or <code>asn</code>, but not both. We recommend using <code>asnLong</code> as it supports a greater pool of numbers. </p> <ul> <li> <p>The <code>asnLong</code> attribute accepts both ASN and long ASN ranges.</p> </li> <li> <p>If you provide a value in the same API call for both <code>asn</code> and <code>asnLong</code>, the API will only accept the value for <code>asnLong</code>.</p> </li> </ul> </note>
+            asn: <p>The autonomous system number (ASN). The valid range is from 1 to 2147483646 for Border Gateway Protocol (BGP) configuration. If you provide a number greater than the maximum, an error is returned. Use <code>asnLong</code> instead.</p> <ul> <li> <p>You can use <code>asnLong</code> or <code>asn</code>, but not both. We recommend using <code>asnLong</code> as it supports a greater pool of numbers. </p> </li> <li> <p>If you provide a value in the same API call for both <code>asn</code> and <code>asnLong</code>, the API will only accept the value for <code>asnLong</code>. </p> </li> <li> <p>If you enter a 4-byte ASN for the <code>asn</code> parameter, the API returns an error. </p> </li> <li> <p>If you are using a 2-byte ASN, the API response will include the 2-byte value for both the <code>asn</code> and <code>asnLong</code> fields.</p> </li> </ul>
+            asn_long: <p>The long ASN for the BGP peer to be deleted from a Direct Connect virtual interface. The valid range is from 1 to 4294967294 for BGP configuration. </p> <p>Note the following limitations when using <code>asnLong</code>:</p> <ul> <li> <p>You can use <code>asnLong</code> or <code>asn</code>, but not both. We recommend using <code>asnLong</code> as it supports a greater pool of numbers. </p> </li> <li> <p> <code>asnLong</code> accepts any valid ASN value, regardless if it's 2-byte or 4-byte. </p> </li> <li> <p>When using a 4-byte <code>asnLong</code>, the API response returns <code>0</code> for the legacy <code>asn</code> attribute since 4-byte ASN values exceed the maximum supported value of 2,147,483,647.</p> </li> <li> <p>If you are using a 2-byte ASN, the API response will include the 2-byte value for both the <code>asn</code> and <code>asnLong</code> fields.</p> </li> <li> <p>If you provide a value in the same API call for both <code>asn</code> and <code>asnLong</code>, the API will only accept the value for <code>asnLong</code>.</p> </li> </ul>
             customer_address: <p>The IP address assigned to the customer interface.</p>
             bgp_peer_id: <p>The ID of the BGP peer.</p>
 
@@ -2004,6 +2169,51 @@ class AsyncDirectConnectClient:
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_direct_connect.types.delete_lag_request.DeleteLagRequest = {
             "lag_id": lag_id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_resiliency_group(
+        self,
+        resiliency_group_id: "capo_direct_connect.types.resiliency_group_id.ResiliencyGroupId",
+        *,
+        config_overrides: Optional[AsyncDirectConnectClientConfig] = None,
+    ) -> "capo_direct_connect.types.delete_resiliency_group_result.DeleteResiliencyGroupResult":
+        """<p>Deletes the specified resiliency group. Deletion is asynchronous: the resiliency group transitions through the <code>deleting</code> state before it reaches the <code>deleted</code> state. The response returns the resiliency group so you can observe its current state without a subsequent <a>GetResiliencyGroup</a> call.</p>
+
+        Args:
+            resiliency_group_id: <p>The ID of the resiliency group.</p>
+
+        Raises:
+            capo_direct_connect.errors.direct_connect_client_exception.DirectConnectClientException: <p>One or more parameters are not valid.</p>
+            capo_direct_connect.errors.direct_connect_server_exception.DirectConnectServerException: <p>A server-side error occurred.</p>
+            capo_direct_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_direct_connect.types.delete_resiliency_group_request.DeleteResiliencyGroupRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_direct_connect.types.delete_resiliency_group_result.DeleteResiliencyGroupResult"
+        ]:
+            import capo_direct_connect._operations.overture_service.delete_resiliency_group
+
+            (
+                output,
+                http_response,
+            ) = await capo_direct_connect._operations.overture_service.delete_resiliency_group.async_delete_resiliency_group(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_direct_connect.types.delete_resiliency_group_request.DeleteResiliencyGroupRequest = {
+            "resiliency_group_id": resiliency_group_id
         }
 
         response = await aexecute_pipeline(
@@ -2994,7 +3204,7 @@ class AsyncDirectConnectClient:
             "capo_direct_connect.types.pagination_token.PaginationToken"
         ] = None,
     ) -> "capo_direct_connect.types.virtual_interfaces.VirtualInterfaces":
-        """<p>Displays all virtual interfaces for an Amazon Web Services account. Virtual interfaces deleted fewer than 15 minutes before you make the request are also returned. If you specify a connection ID, only the virtual interfaces associated with the connection are returned. If you specify a virtual interface ID, then only a single virtual interface is returned.</p> <p>A virtual interface (VLAN) transmits the traffic between the Direct Connect location and the customer network.</p> <ul> <li> <p>If you're using an <code>asn</code>, the response includes ASN value in both the <code>asn</code> and <code>asnLong</code> fields.</p> </li> <li> <p>If you're using <code>asnLong</code>, the response returns a value of <code>0</code> (zero) for the <code>asn</code> attribute because it exceeds the highest ASN value of 2,147,483,647 that it can support</p> </li> </ul>
+        """<p>Displays all virtual interfaces for an Amazon Web Services account. Virtual interfaces deleted fewer than 15 minutes before you make the request are also returned. If you specify a connection ID, only the virtual interfaces associated with the connection are returned. If you specify a virtual interface ID, then only a single virtual interface is returned.</p> <p>A virtual interface (VLAN) transmits the traffic between the Direct Connect location and the customer network.</p> <ul> <li> <p>If you're using an <code>asn</code>, the response includes the ASN value in both the <code>asn</code> and <code>asnLong</code> fields.</p> </li> <li> <p>If you're using <code>asnLong</code>, the response returns a value of <code>0</code> (zero) for the <code>asn</code> attribute because it exceeds the highest ASN value of 2,147,483,647 that it can support</p> </li> </ul>
 
         Args:
             connection_id: <p>The ID of the connection.</p>
@@ -3088,6 +3298,60 @@ class AsyncDirectConnectClient:
         await response.response.aclose()
         return response.output
 
+    async def disassociate_connections_from_resiliency_group(
+        self,
+        connection_identifiers: "capo_direct_connect.types.connection_identifier_list.ConnectionIdentifierList",
+        resiliency_group_id: "capo_direct_connect.types.resiliency_group_id.ResiliencyGroupId",
+        *,
+        config_overrides: Optional[AsyncDirectConnectClientConfig] = None,
+        client_token: Optional[
+            "capo_direct_connect.types.idempotency_token.IdempotencyToken"
+        ] = None,
+    ) -> "capo_direct_connect.types.disassociate_connections_from_resiliency_group_result.DisassociateConnectionsFromResiliencyGroupResult":
+        """<p>Disassociates one or more connections from the specified resiliency group. This operation is atomic: either all of the specified connections are disassociated, or the operation fails and no changes are made.</p>
+
+        Args:
+            connection_identifiers: <p>The IDs or ARNs of the connections to disassociate from the resiliency group.</p>
+            resiliency_group_id: <p>The ID of the resiliency group.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_direct_connect.errors.direct_connect_client_exception.DirectConnectClientException: <p>One or more parameters are not valid.</p>
+            capo_direct_connect.errors.direct_connect_server_exception.DirectConnectServerException: <p>A server-side error occurred.</p>
+            capo_direct_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_direct_connect.types.disassociate_connections_from_resiliency_group_request.DisassociateConnectionsFromResiliencyGroupRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_direct_connect.types.disassociate_connections_from_resiliency_group_result.DisassociateConnectionsFromResiliencyGroupResult"
+        ]:
+            import capo_direct_connect._operations.overture_service.disassociate_connections_from_resiliency_group
+
+            (
+                output,
+                http_response,
+            ) = await capo_direct_connect._operations.overture_service.disassociate_connections_from_resiliency_group.async_disassociate_connections_from_resiliency_group(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_direct_connect.types.disassociate_connections_from_resiliency_group_request.DisassociateConnectionsFromResiliencyGroupRequest = {
+            "connection_identifiers": connection_identifiers,
+            "resiliency_group_id": resiliency_group_id,
+        }
+        if client_token is not None:
+            input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def disassociate_mac_sec_key(
         self,
         connection_id: "capo_direct_connect.types.connection_id.ConnectionId",
@@ -3127,6 +3391,228 @@ class AsyncDirectConnectClient:
             "connection_id": connection_id,
             "secret_arn": secret_arn,
         }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_resiliency_group(
+        self,
+        resiliency_group_id: "capo_direct_connect.types.resiliency_group_id.ResiliencyGroupId",
+        *,
+        config_overrides: Optional[AsyncDirectConnectClientConfig] = None,
+    ) -> (
+        "capo_direct_connect.types.get_resiliency_group_result.GetResiliencyGroupResult"
+    ):
+        """<p>Gets information about the specified resiliency group.</p>
+
+        Args:
+            resiliency_group_id: <p>The ID of the resiliency group.</p>
+
+        Raises:
+            capo_direct_connect.errors.direct_connect_client_exception.DirectConnectClientException: <p>One or more parameters are not valid.</p>
+            capo_direct_connect.errors.direct_connect_server_exception.DirectConnectServerException: <p>A server-side error occurred.</p>
+            capo_direct_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_direct_connect.types.get_resiliency_group_request.GetResiliencyGroupRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_direct_connect.types.get_resiliency_group_result.GetResiliencyGroupResult"
+        ]:
+            import capo_direct_connect._operations.overture_service.get_resiliency_group
+
+            (
+                output,
+                http_response,
+            ) = await capo_direct_connect._operations.overture_service.get_resiliency_group.async_get_resiliency_group(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_direct_connect.types.get_resiliency_group_request.GetResiliencyGroupRequest = {
+            "resiliency_group_id": resiliency_group_id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_resiliency_group_associations(
+        self,
+        resiliency_group_id: "capo_direct_connect.types.resiliency_group_id.ResiliencyGroupId",
+        *,
+        config_overrides: Optional[AsyncDirectConnectClientConfig] = None,
+        max_results: Optional[
+            "capo_direct_connect.types.max_result_set_size.MaxResultSetSize"
+        ] = None,
+        next_token: Optional[
+            "capo_direct_connect.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "capo_direct_connect.types.list_resiliency_group_associations_result.ListResiliencyGroupAssociationsResult":
+        """<p>Lists the connection associations for the specified resiliency group.</p>
+
+        Args:
+            resiliency_group_id: <p>The ID of the resiliency group.</p>
+            max_results: <p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p> <p>If <code>MaxResults</code> is given a value larger than 100, only 100 results are returned.</p>
+            next_token: <p>The token for the next page of results.</p>
+
+        Raises:
+            capo_direct_connect.errors.direct_connect_client_exception.DirectConnectClientException: <p>One or more parameters are not valid.</p>
+            capo_direct_connect.errors.direct_connect_server_exception.DirectConnectServerException: <p>A server-side error occurred.</p>
+            capo_direct_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_direct_connect.types.list_resiliency_group_associations_request.ListResiliencyGroupAssociationsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_direct_connect.types.list_resiliency_group_associations_result.ListResiliencyGroupAssociationsResult"
+        ]:
+            import capo_direct_connect._operations.overture_service.list_resiliency_group_associations
+
+            (
+                output,
+                http_response,
+            ) = await capo_direct_connect._operations.overture_service.list_resiliency_group_associations.async_list_resiliency_group_associations(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_direct_connect.types.list_resiliency_group_associations_request.ListResiliencyGroupAssociationsRequest = {
+            "resiliency_group_id": resiliency_group_id
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_resiliency_groups(
+        self,
+        *,
+        config_overrides: Optional[AsyncDirectConnectClientConfig] = None,
+        max_results: Optional[
+            "capo_direct_connect.types.max_result_set_size.MaxResultSetSize"
+        ] = None,
+        next_token: Optional[
+            "capo_direct_connect.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "capo_direct_connect.types.list_resiliency_groups_result.ListResiliencyGroupsResult":
+        """<p>Lists the resiliency groups owned by your Amazon Web Services account in the current Amazon Web Services Region.</p>
+
+        Args:
+            max_results: <p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p> <p>If <code>MaxResults</code> is given a value larger than 100, only 100 results are returned.</p>
+            next_token: <p>The token for the next page of results.</p>
+
+        Raises:
+            capo_direct_connect.errors.direct_connect_client_exception.DirectConnectClientException: <p>One or more parameters are not valid.</p>
+            capo_direct_connect.errors.direct_connect_server_exception.DirectConnectServerException: <p>A server-side error occurred.</p>
+            capo_direct_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_direct_connect.types.list_resiliency_groups_request.ListResiliencyGroupsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_direct_connect.types.list_resiliency_groups_result.ListResiliencyGroupsResult"
+        ]:
+            import capo_direct_connect._operations.overture_service.list_resiliency_groups
+
+            (
+                output,
+                http_response,
+            ) = await capo_direct_connect._operations.overture_service.list_resiliency_groups.async_list_resiliency_groups(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_direct_connect.types.list_resiliency_groups_request.ListResiliencyGroupsRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_virtual_interface_routes(
+        self,
+        *,
+        config_overrides: Optional[AsyncDirectConnectClientConfig] = None,
+        virtual_interface_id: Optional[
+            "capo_direct_connect.types.virtual_interface_id.VirtualInterfaceId"
+        ] = None,
+        filters: Optional[
+            "capo_direct_connect.types.route_filters.RouteFilters"
+        ] = None,
+        max_results: Optional[
+            "capo_direct_connect.types.max_result_set_size.MaxResultSetSize"
+        ] = None,
+        next_token: Optional[
+            "capo_direct_connect.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "capo_direct_connect.types.list_virtual_interface_routes_response.ListVirtualInterfaceRoutesResponse":
+        """<p>Lists the routes for the specified virtual interface.</p> <p>Use the <code>routeDirection</code> filter to control which routes are returned:</p> <ul> <li> <p> <code>accepted</code>: routes received from the customer network over the virtual interface.</p> </li> <li> <p> <code>advertised</code>: routes advertised to the customer network over the virtual interface.</p> </li> </ul>
+
+        Args:
+            virtual_interface_id: <p>The ID of the virtual interface.</p>
+            filters: <p>The filters to apply to the routes returned.</p>
+            max_results: <p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p> <p>If <code>MaxResults</code> is given a value larger than 100, only 100 results are returned.</p>
+            next_token: <p>The token for the next page of results.</p>
+
+        Raises:
+            capo_direct_connect.errors.direct_connect_client_exception.DirectConnectClientException: <p>One or more parameters are not valid.</p>
+            capo_direct_connect.errors.direct_connect_server_exception.DirectConnectServerException: <p>A server-side error occurred.</p>
+            capo_direct_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_direct_connect.types.list_virtual_interface_routes_request.ListVirtualInterfaceRoutesRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_direct_connect.types.list_virtual_interface_routes_response.ListVirtualInterfaceRoutesResponse"
+        ]:
+            import capo_direct_connect._operations.overture_service.list_virtual_interface_routes
+
+            (
+                output,
+                http_response,
+            ) = await capo_direct_connect._operations.overture_service.list_virtual_interface_routes.async_list_virtual_interface_routes(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_direct_connect.types.list_virtual_interface_routes_request.ListVirtualInterfaceRoutesRequest = {}
+        if virtual_interface_id is not None:
+            input_["virtual_interface_id"] = virtual_interface_id
+        if filters is not None:
+            input_["filters"] = filters
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -3466,6 +3952,54 @@ class AsyncDirectConnectClient:
         await response.response.aclose()
         return response.output
 
+    async def update_connections_billing_mode(
+        self,
+        connection_ids: "capo_direct_connect.types.connection_id_list.ConnectionIdList",
+        billing_mode: "capo_direct_connect.types.request_billing_mode.RequestBillingMode",
+        *,
+        config_overrides: Optional[AsyncDirectConnectClientConfig] = None,
+    ) -> "capo_direct_connect.types.update_connections_billing_mode_response.UpdateConnectionsBillingModeResponse":
+        """<p>Updates the billing mode for the specified Direct Connect connections. You can update the billing mode for up to 200 connections in a single request.</p>
+
+        Args:
+            connection_ids: <p>The IDs of the connections to update. You can specify from 1 to 200 connections.</p>
+            billing_mode: <p>The billing mode to apply to the specified connections. The valid values are <code>PayAsYouGo</code>, <code>FlatRateTier1</code>, <code>FlatRateTier2</code>, <code>FlatRateTier3</code>, <code>FlatRateTier4</code>, and <code>FlatRateTier5</code>.</p>
+
+        Raises:
+            capo_direct_connect.errors.direct_connect_client_exception.DirectConnectClientException: <p>One or more parameters are not valid.</p>
+            capo_direct_connect.errors.direct_connect_server_exception.DirectConnectServerException: <p>A server-side error occurred.</p>
+            capo_direct_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_direct_connect.types.update_connections_billing_mode_request.UpdateConnectionsBillingModeRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_direct_connect.types.update_connections_billing_mode_response.UpdateConnectionsBillingModeResponse"
+        ]:
+            import capo_direct_connect._operations.overture_service.update_connections_billing_mode
+
+            (
+                output,
+                http_response,
+            ) = await capo_direct_connect._operations.overture_service.update_connections_billing_mode.async_update_connections_billing_mode(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_direct_connect.types.update_connections_billing_mode_request.UpdateConnectionsBillingModeRequest = {
+            "connection_ids": connection_ids,
+            "billing_mode": billing_mode,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def update_direct_connect_gateway(
         self,
         direct_connect_gateway_id: "capo_direct_connect.types.direct_connect_gateway_id.DirectConnectGatewayId",
@@ -3634,6 +4168,60 @@ class AsyncDirectConnectClient:
         await response.response.aclose()
         return response.output
 
+    async def update_resiliency_group(
+        self,
+        resiliency_group_id: "capo_direct_connect.types.resiliency_group_id.ResiliencyGroupId",
+        resiliency_group_name: "capo_direct_connect.types.resiliency_group_name.ResiliencyGroupName",
+        *,
+        config_overrides: Optional[AsyncDirectConnectClientConfig] = None,
+        client_token: Optional[
+            "capo_direct_connect.types.idempotency_token.IdempotencyToken"
+        ] = None,
+    ) -> "capo_direct_connect.types.update_resiliency_group_result.UpdateResiliencyGroupResult":
+        """<p>Updates the name of the specified resiliency group.</p>
+
+        Args:
+            resiliency_group_id: <p>The ID of the resiliency group.</p>
+            resiliency_group_name: <p>The new name of the resiliency group.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_direct_connect.errors.direct_connect_client_exception.DirectConnectClientException: <p>One or more parameters are not valid.</p>
+            capo_direct_connect.errors.direct_connect_server_exception.DirectConnectServerException: <p>A server-side error occurred.</p>
+            capo_direct_connect.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_direct_connect.types.update_resiliency_group_request.UpdateResiliencyGroupRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_direct_connect.types.update_resiliency_group_result.UpdateResiliencyGroupResult"
+        ]:
+            import capo_direct_connect._operations.overture_service.update_resiliency_group
+
+            (
+                output,
+                http_response,
+            ) = await capo_direct_connect._operations.overture_service.update_resiliency_group.async_update_resiliency_group(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_direct_connect.types.update_resiliency_group_request.UpdateResiliencyGroupRequest = {
+            "resiliency_group_id": resiliency_group_id,
+            "resiliency_group_name": resiliency_group_name,
+        }
+        if client_token is not None:
+            input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def update_virtual_interface_attributes(
         self,
         virtual_interface_id: "capo_direct_connect.types.virtual_interface_id.VirtualInterfaceId",
@@ -3646,6 +4234,13 @@ class AsyncDirectConnectClient:
         virtual_interface_name: Optional[
             "capo_direct_connect.types.virtual_interface_name.VirtualInterfaceName"
         ] = None,
+        prefix_pool_allocated_count_ipv4: Optional[
+            "capo_direct_connect.types.prefix_pool_allocated_count.PrefixPoolAllocatedCount"
+        ] = None,
+        prefix_pool_allocated_count_ipv6: Optional[
+            "capo_direct_connect.types.prefix_pool_allocated_count.PrefixPoolAllocatedCount"
+        ] = None,
+        rate_limit: Optional["capo_direct_connect.types.rate_limit.RateLimit"] = None,
     ) -> "capo_direct_connect.types.virtual_interface.VirtualInterface":
         """<p>Updates the specified attributes of the specified virtual private interface.</p> <p>Setting the MTU of a virtual interface to 8500 (jumbo frames) can cause an update to the underlying physical connection if it wasn't updated to support jumbo frames. Updating the connection disrupts network connectivity for all virtual interfaces associated with the connection for up to 30 seconds. To check whether your connection supports jumbo frames, call <a>DescribeConnections</a>. To check whether your virtual interface supports jumbo frames, call <a>DescribeVirtualInterfaces</a>.</p>
 
@@ -3654,6 +4249,9 @@ class AsyncDirectConnectClient:
             mtu: <p>The maximum transmission unit (MTU), in bytes. The supported values are 1500 and 8500. The default value is 1500.</p>
             enable_site_link: <p>Indicates whether to enable or disable SiteLink.</p>
             virtual_interface_name: <p>The name of the virtual private interface.</p>
+            prefix_pool_allocated_count_ipv4: <p>The number of inbound IPv4 route prefixes to allocate to the virtual interface. Not applicable to public virtual interfaces.</p>
+            prefix_pool_allocated_count_ipv6: <p>The number of inbound IPv6 route prefixes to allocate to the virtual interface. Not applicable to public virtual interfaces.</p>
+            rate_limit: <p>The rate limit (bandwidth allocation) to apply to the virtual interface. Use this to update the bandwidth allocation on an existing virtual interface.</p>
 
         Raises:
             capo_direct_connect.errors.direct_connect_client_exception.DirectConnectClientException: <p>One or more parameters are not valid.</p>
@@ -3686,6 +4284,16 @@ class AsyncDirectConnectClient:
             input_["enable_site_link"] = enable_site_link
         if virtual_interface_name is not None:
             input_["virtual_interface_name"] = virtual_interface_name
+        if prefix_pool_allocated_count_ipv4 is not None:
+            input_["prefix_pool_allocated_count_ipv4"] = (
+                prefix_pool_allocated_count_ipv4
+            )
+        if prefix_pool_allocated_count_ipv6 is not None:
+            input_["prefix_pool_allocated_count_ipv6"] = (
+                prefix_pool_allocated_count_ipv6
+            )
+        if rate_limit is not None:
+            input_["rate_limit"] = rate_limit
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

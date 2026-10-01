@@ -7,11 +7,14 @@ from typing_extensions import NotRequired, TypedDict
 from capo_marketplace_discovery.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_marketplace_discovery.types.locale
     import capo_marketplace_discovery.types.next_token
     import capo_marketplace_discovery.types.product_id
 
 
 class ListFulfillmentOptionsInput(TypedDict, closed=True):
+    locale: NotRequired["capo_marketplace_discovery.types.locale.Locale"]
+    """<p>A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See <code>Locale</code> for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.</p>"""
     product_id: "capo_marketplace_discovery.types.product_id.ProductId"
     """<p>The unique identifier of the product for which to list fulfillment options.</p>"""
     max_results: "int"
@@ -23,6 +26,8 @@ class ListFulfillmentOptionsInput(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: ListFulfillmentOptionsInput) -> dict:
     out: dict = {}
+    if "locale" in value:
+        out["locale"] = value["locale"]
     out["productId"] = value["product_id"]
     out["maxResults"] = value.get("max_results", 25)
     if "next_token" in value:
@@ -32,6 +37,8 @@ def serialize_json(value: ListFulfillmentOptionsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListFulfillmentOptionsInput:
     out: ListFulfillmentOptionsInput = {}  # type: ignore[typeddict-item]
+    if data.get("locale") is not None:
+        out["locale"] = data["locale"]
     if data.get("productId") is not None:
         out["product_id"] = data["productId"]
     else:

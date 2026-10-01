@@ -14,6 +14,7 @@ import capo_pcs._protocol.eventstream
 import capo_pcs.errors.access_denied_exception
 import capo_pcs.errors.internal_server_exception
 import capo_pcs.types.endpoints
+import capo_pcs.types.node_lifecycle_actions
 import capo_pcs.types.register_compute_node_group_instance_request
 import capo_pcs.types.register_compute_node_group_instance_response
 from capo_pcs._protocol.errors import parse_error_metadata_json

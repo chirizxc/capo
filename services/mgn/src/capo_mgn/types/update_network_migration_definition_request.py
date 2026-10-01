@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 from capo_mgn.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_mgn.types.cidr_mappings_list
     import capo_mgn.types.network_migration_definition_description
     import capo_mgn.types.network_migration_definition_id
     import capo_mgn.types.network_migration_definition_name
@@ -15,6 +16,7 @@ if TYPE_CHECKING:
     import capo_mgn.types.target_deployment
     import capo_mgn.types.target_network_update
     import capo_mgn.types.target_s3_configuration_update
+    import capo_mgn.types.vpc_provisioning_strategy
 
 
 class UpdateNetworkMigrationDefinitionRequest(TypedDict, closed=True):
@@ -44,6 +46,12 @@ class UpdateNetworkMigrationDefinitionRequest(TypedDict, closed=True):
     """<p>The updated target network configuration.</p>"""
     target_deployment: NotRequired["capo_mgn.types.target_deployment.TargetDeployment"]
     """<p>The updated target deployment configuration.</p>"""
+    vpc_provisioning_strategy: NotRequired[
+        "capo_mgn.types.vpc_provisioning_strategy.VpcProvisioningStrategy"
+    ]
+    """<p>Updates whether the migration creates new target VPCs or uses existing ones. Set to <code>USE_EXISTING</code> to migrate into existing VPCs in the target account, or to <code>CREATE_NEW</code> to provision new target VPCs.</p>"""
+    cidr_mappings: NotRequired["capo_mgn.types.cidr_mappings_list.CidrMappingsList"]
+    """<p>The updated list of CIDR mappings that map original source CIDR ranges to updated target CIDR ranges. CIDR mappings can be provided only when <code>vpcProvisioningStrategy</code> is set to <code>USE_EXISTING</code>.</p>"""
     scope_tags: NotRequired["capo_mgn.types.scope_tags_map.ScopeTagsMap"]
     """<p>The updated scope tags for the network migration definition.</p>"""
 
@@ -80,6 +88,14 @@ def serialize_json(value: UpdateNetworkMigrationDefinitionRequest) -> dict:
         )
     if "target_deployment" in value:
         out["targetDeployment"] = value["target_deployment"]
+    if "vpc_provisioning_strategy" in value:
+        out["vpcProvisioningStrategy"] = value["vpc_provisioning_strategy"]
+    if "cidr_mappings" in value:
+        import capo_mgn.types.cidr_mappings_list
+
+        out["cidrMappings"] = capo_mgn.types.cidr_mappings_list.serialize_json(
+            value["cidr_mappings"]
+        )
     if "scope_tags" in value:
         import capo_mgn.types.scope_tags_map
 
@@ -125,6 +141,14 @@ def deserialize_json(data: dict) -> UpdateNetworkMigrationDefinitionRequest:
         )
     if data.get("targetDeployment") is not None:
         out["target_deployment"] = data["targetDeployment"]
+    if data.get("vpcProvisioningStrategy") is not None:
+        out["vpc_provisioning_strategy"] = data["vpcProvisioningStrategy"]
+    if data.get("cidrMappings") is not None:
+        import capo_mgn.types.cidr_mappings_list
+
+        out["cidr_mappings"] = capo_mgn.types.cidr_mappings_list.deserialize_json(
+            data["cidrMappings"]
+        )
     if data.get("scopeTags") is not None:
         import capo_mgn.types.scope_tags_map
 

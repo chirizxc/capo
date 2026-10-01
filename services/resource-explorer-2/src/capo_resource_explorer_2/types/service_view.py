@@ -9,6 +9,7 @@ from capo_resource_explorer_2.errors import DeserializationError
 if TYPE_CHECKING:
     import capo_resource_explorer_2.types.included_property_list
     import capo_resource_explorer_2.types.search_filter
+    import capo_resource_explorer_2.types.service_linked_recorder_info
     import capo_resource_explorer_2.types.service_view_name
 
 
@@ -28,6 +29,10 @@ class ServiceView(TypedDict, closed=True):
     """<p>The Amazon Web Services service that has streaming access to this view's data.</p>"""
     scope_type: NotRequired["str"]
     """<p>The scope type of the service view, which determines what resources are included.</p>"""
+    service_linked_recorder: NotRequired[
+        "capo_resource_explorer_2.types.service_linked_recorder_info.ServiceLinkedRecorderInfo"
+    ]
+    """<p>Information about the service-linked recorder associated with this service view. When a service view is paired with a service-linked recorder, Resource Explorer uses the recorder's resource type list to filter search results and streaming data.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -54,6 +59,14 @@ def serialize_json(value: ServiceView) -> dict:
         out["StreamingAccessForService"] = value["streaming_access_for_service"]
     if "scope_type" in value:
         out["ScopeType"] = value["scope_type"]
+    if "service_linked_recorder" in value:
+        import capo_resource_explorer_2.types.service_linked_recorder_info
+
+        out["ServiceLinkedRecorder"] = (
+            capo_resource_explorer_2.types.service_linked_recorder_info.serialize_json(
+                value["service_linked_recorder"]
+            )
+        )
     return out
 
 
@@ -83,4 +96,12 @@ def deserialize_json(data: dict) -> ServiceView:
         out["streaming_access_for_service"] = data["StreamingAccessForService"]
     if data.get("ScopeType") is not None:
         out["scope_type"] = data["ScopeType"]
+    if data.get("ServiceLinkedRecorder") is not None:
+        import capo_resource_explorer_2.types.service_linked_recorder_info
+
+        out["service_linked_recorder"] = (
+            capo_resource_explorer_2.types.service_linked_recorder_info.deserialize_json(
+                data["ServiceLinkedRecorder"]
+            )
+        )
     return out

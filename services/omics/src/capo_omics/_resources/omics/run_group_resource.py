@@ -70,7 +70,7 @@ class RunGroupResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -132,7 +132,7 @@ class RunGroupResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -190,7 +190,7 @@ class RunGroupResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -248,7 +248,7 @@ class RunGroupResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -302,7 +302,7 @@ class RunGroupResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -373,7 +373,7 @@ class AsyncRunGroupResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -436,7 +436,7 @@ class AsyncRunGroupResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -495,7 +495,7 @@ class AsyncRunGroupResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -554,7 +554,7 @@ class AsyncRunGroupResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -609,7 +609,7 @@ class AsyncRunGroupResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 

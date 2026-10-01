@@ -39,6 +39,8 @@ if TYPE_CHECKING:
     import capo_omics.types.run_retention_mode
     import capo_omics.types.run_role_arn
     import capo_omics.types.run_status
+    import capo_omics.types.scratch_storage_mode
+    import capo_omics.types.session_policy
     import capo_omics.types.start_run_request
     import capo_omics.types.start_run_response
     import capo_omics.types.storage_type
@@ -92,8 +94,14 @@ class RunResource:
         networking_mode: Optional[
             "capo_omics.types.networking_mode.NetworkingMode"
         ] = None,
+        scratch_storage_mode: Optional[
+            "capo_omics.types.scratch_storage_mode.ScratchStorageMode"
+        ] = None,
         configuration_name: Optional[
             "capo_omics.types.configuration_name.ConfigurationName"
+        ] = None,
+        session_policy: Optional[
+            "capo_omics.types.session_policy.SessionPolicy"
         ] = None,
         engine_settings: Optional[
             "capo_omics.types.engine_settings.EngineSettings"
@@ -105,7 +113,7 @@ class RunResource:
             workflow_id: <p>The run's workflow ID. The <code>workflowId</code> is not the UUID.</p>
             workflow_type: <p>The run's workflow type. The <code>workflowType</code> must be specified if you are running a <code>READY2RUN</code> workflow. If you are running a <code>PRIVATE</code> workflow (default), you do not need to include the workflow type. </p>
             run_id: <p>The ID of a run to duplicate.</p>
-            role_arn: <p>A service role for the run. The <code>roleArn</code> requires access to Amazon Web Services HealthOmics, S3, Cloudwatch logs, and EC2. An example <code>roleArn</code> is <code>arn:aws:iam::123456789012:role/omics-service-role-serviceRole-W8O1XMPL7QZ</code>. In this example, the AWS account ID is <code>123456789012</code> and the role name is <code>omics-service-role-serviceRole-W8O1XMPL7QZ</code>.</p>
+            role_arn: <p>A service role for the run. The <code>roleArn</code> requires access to Amazon Web Services HealthOmics, S3, Cloudwatch logs, and EC2. An example <code>roleArn</code> is <code>arn:aws:iam::123456789012:role/omics-service-role-serviceRole-W8O1XMPL7QZ</code>. In this example, the Amazon Web Services account ID is <code>123456789012</code> and the role name is <code>omics-service-role-serviceRole-W8O1XMPL7QZ</code>.</p>
             name: <p>A name for the run. This is recommended to view and organize runs in the Amazon Web Services HealthOmics console and CloudWatch logs.</p>
             cache_id: <p>Identifier of the cache associated with this run. If you don't specify a cache ID, no task outputs are cached for this run.</p>
             cache_behavior: <p>The cache behavior for the run. You specify this value if you want to override the default behavior for the cache. You had set the default value when you created the cache. For more information, see <a href=\"https://docs.aws.amazon.com/omics/latest/dev/how-run-cache.html#run-cache-behavior\">Run cache behavior</a> in the <i>Amazon Web Services HealthOmics User Guide</i>.</p>
@@ -122,7 +130,9 @@ class RunResource:
             workflow_owner_id: <p>The 12-digit account ID of the workflow owner that is used for running a shared workflow. The workflow owner ID can be retrieved using the <code>GetShare</code> API operation. If you are the workflow owner, you do not need to include this ID.</p>
             workflow_version_name: <p>The name of the workflow version. Use workflow versions to track and organize changes to the workflow. If your workflow has multiple versions, the run uses the default version unless you specify a version name. To learn more, see <a href=\"https://docs.aws.amazon.com/omics/latest/dev/workflow-versions.html\">Workflow versioning</a> in the <i>Amazon Web Services HealthOmics User Guide</i>.</p>
             networking_mode: <p>Optional configuration for run networking behavior. If not specified, this will default to RESTRICTED.</p>
+            scratch_storage_mode: <p>Optional configuration for enabling scratch ephemeral storage mounted at /tmp. If not specified, this will default to SHARED. This configuration is applicable only for CPU tasks. For tasks using GPUs, scratch storage is always LOCAL.</p>
             configuration_name: <p>Optional configuration name to use for the workflow run.</p>
+            session_policy: Optional inline policy json for scoping down permissions via a session policy on the IAM role provided in the roleArn parameter.
             engine_settings: <p>Engine-specific settings for the workflow run. Use this field to specify configuration options that are specific to the workflow engine (for example, Nextflow profiles).</p>
 
         Raises:
@@ -133,7 +143,7 @@ class RunResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -187,8 +197,12 @@ class RunResource:
             input_["workflow_version_name"] = workflow_version_name
         if networking_mode is not None:
             input_["networking_mode"] = networking_mode
+        if scratch_storage_mode is not None:
+            input_["scratch_storage_mode"] = scratch_storage_mode
         if configuration_name is not None:
             input_["configuration_name"] = configuration_name
+        if session_policy is not None:
+            input_["session_policy"] = session_policy
         if engine_settings is not None:
             input_["engine_settings"] = engine_settings
 
@@ -221,7 +235,7 @@ class RunResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -267,7 +281,7 @@ class RunResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -321,7 +335,7 @@ class RunResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -377,7 +391,7 @@ class RunResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -441,8 +455,14 @@ class AsyncRunResource:
         networking_mode: Optional[
             "capo_omics.types.networking_mode.NetworkingMode"
         ] = None,
+        scratch_storage_mode: Optional[
+            "capo_omics.types.scratch_storage_mode.ScratchStorageMode"
+        ] = None,
         configuration_name: Optional[
             "capo_omics.types.configuration_name.ConfigurationName"
+        ] = None,
+        session_policy: Optional[
+            "capo_omics.types.session_policy.SessionPolicy"
         ] = None,
         engine_settings: Optional[
             "capo_omics.types.engine_settings.EngineSettings"
@@ -454,7 +474,7 @@ class AsyncRunResource:
             workflow_id: <p>The run's workflow ID. The <code>workflowId</code> is not the UUID.</p>
             workflow_type: <p>The run's workflow type. The <code>workflowType</code> must be specified if you are running a <code>READY2RUN</code> workflow. If you are running a <code>PRIVATE</code> workflow (default), you do not need to include the workflow type. </p>
             run_id: <p>The ID of a run to duplicate.</p>
-            role_arn: <p>A service role for the run. The <code>roleArn</code> requires access to Amazon Web Services HealthOmics, S3, Cloudwatch logs, and EC2. An example <code>roleArn</code> is <code>arn:aws:iam::123456789012:role/omics-service-role-serviceRole-W8O1XMPL7QZ</code>. In this example, the AWS account ID is <code>123456789012</code> and the role name is <code>omics-service-role-serviceRole-W8O1XMPL7QZ</code>.</p>
+            role_arn: <p>A service role for the run. The <code>roleArn</code> requires access to Amazon Web Services HealthOmics, S3, Cloudwatch logs, and EC2. An example <code>roleArn</code> is <code>arn:aws:iam::123456789012:role/omics-service-role-serviceRole-W8O1XMPL7QZ</code>. In this example, the Amazon Web Services account ID is <code>123456789012</code> and the role name is <code>omics-service-role-serviceRole-W8O1XMPL7QZ</code>.</p>
             name: <p>A name for the run. This is recommended to view and organize runs in the Amazon Web Services HealthOmics console and CloudWatch logs.</p>
             cache_id: <p>Identifier of the cache associated with this run. If you don't specify a cache ID, no task outputs are cached for this run.</p>
             cache_behavior: <p>The cache behavior for the run. You specify this value if you want to override the default behavior for the cache. You had set the default value when you created the cache. For more information, see <a href=\"https://docs.aws.amazon.com/omics/latest/dev/how-run-cache.html#run-cache-behavior\">Run cache behavior</a> in the <i>Amazon Web Services HealthOmics User Guide</i>.</p>
@@ -471,7 +491,9 @@ class AsyncRunResource:
             workflow_owner_id: <p>The 12-digit account ID of the workflow owner that is used for running a shared workflow. The workflow owner ID can be retrieved using the <code>GetShare</code> API operation. If you are the workflow owner, you do not need to include this ID.</p>
             workflow_version_name: <p>The name of the workflow version. Use workflow versions to track and organize changes to the workflow. If your workflow has multiple versions, the run uses the default version unless you specify a version name. To learn more, see <a href=\"https://docs.aws.amazon.com/omics/latest/dev/workflow-versions.html\">Workflow versioning</a> in the <i>Amazon Web Services HealthOmics User Guide</i>.</p>
             networking_mode: <p>Optional configuration for run networking behavior. If not specified, this will default to RESTRICTED.</p>
+            scratch_storage_mode: <p>Optional configuration for enabling scratch ephemeral storage mounted at /tmp. If not specified, this will default to SHARED. This configuration is applicable only for CPU tasks. For tasks using GPUs, scratch storage is always LOCAL.</p>
             configuration_name: <p>Optional configuration name to use for the workflow run.</p>
+            session_policy: Optional inline policy json for scoping down permissions via a session policy on the IAM role provided in the roleArn parameter.
             engine_settings: <p>Engine-specific settings for the workflow run. Use this field to specify configuration options that are specific to the workflow engine (for example, Nextflow profiles).</p>
 
         Raises:
@@ -482,7 +504,7 @@ class AsyncRunResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -541,8 +563,12 @@ class AsyncRunResource:
             input_["workflow_version_name"] = workflow_version_name
         if networking_mode is not None:
             input_["networking_mode"] = networking_mode
+        if scratch_storage_mode is not None:
+            input_["scratch_storage_mode"] = scratch_storage_mode
         if configuration_name is not None:
             input_["configuration_name"] = configuration_name
+        if session_policy is not None:
+            input_["session_policy"] = session_policy
         if engine_settings is not None:
             input_["engine_settings"] = engine_settings
 
@@ -575,7 +601,7 @@ class AsyncRunResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -624,7 +650,7 @@ class AsyncRunResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -681,7 +707,7 @@ class AsyncRunResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -742,7 +768,7 @@ class AsyncRunResource:
             capo_omics.errors.resource_not_found_exception.ResourceNotFoundException: <p>The target resource was not found in the current Region.</p>
             capo_omics.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeds a service quota.</p>
             capo_omics.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
-            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_omics.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_omics.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 

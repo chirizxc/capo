@@ -20,9 +20,11 @@ import capo_bedrock_agentcore_control.errors.validation_exception
 import capo_bedrock_agentcore_control.types.evaluator_config
 import capo_bedrock_agentcore_control.types.evaluator_level
 import capo_bedrock_agentcore_control.types.evaluator_status
+import capo_bedrock_agentcore_control.types.evaluator_type
 import capo_bedrock_agentcore_control.types.get_evaluator_request
 import capo_bedrock_agentcore_control.types.get_evaluator_response
 import capo_bedrock_agentcore_control.types.included_data
+import capo_bedrock_agentcore_control.types.provider
 from capo_bedrock_agentcore_control._protocol.errors import parse_error_metadata_json
 from capo_bedrock_agentcore_control._rule_engine._endpoint_rule_set import (
     EndpointParams,

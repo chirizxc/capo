@@ -28,6 +28,7 @@ if TYPE_CHECKING:
     import capo_securityagent.types.list_integrations_output
     import capo_securityagent.types.max_results
     import capo_securityagent.types.next_token
+    import capo_securityagent.types.private_connection_name
     import capo_securityagent.types.provider
     import capo_securityagent.types.provider_input
     import capo_securityagent.types.tag_map
@@ -54,6 +55,9 @@ class IntegrationResource:
         config_overrides: Optional[SecurityAgentClientConfig] = None,
         kms_key_id: Optional["capo_securityagent.types.kms_key_id.KmsKeyId"] = None,
         tags: Optional["capo_securityagent.types.tag_map.TagMap"] = None,
+        private_connection_name: Optional[
+            "capo_securityagent.types.private_connection_name.PrivateConnectionName"
+        ] = None,
     ) -> "capo_securityagent.types.create_integration_output.CreateIntegrationOutput":
         """<p>Creates a new integration with a third-party provider, such as GitHub, for code review and remediation.</p>
 
@@ -63,6 +67,7 @@ class IntegrationResource:
             integration_display_name: <p>The display name for the integration.</p>
             kms_key_id: <p>The identifier of the AWS KMS key to use for encrypting data associated with the integration.</p>
             tags: <p>The tags to associate with the integration.</p>
+            private_connection_name: <p>The name of an active private connection used to reach a self-hosted provider instance over private networking. Specify this when the instance is not publicly reachable.</p>
 
         Raises:
             capo_securityagent.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -98,6 +103,8 @@ class IntegrationResource:
             input_["kms_key_id"] = kms_key_id
         if tags is not None:
             input_["tags"] = tags
+        if private_connection_name is not None:
+            input_["private_connection_name"] = private_connection_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -273,6 +280,9 @@ class AsyncIntegrationResource:
         config_overrides: Optional[AsyncSecurityAgentClientConfig] = None,
         kms_key_id: Optional["capo_securityagent.types.kms_key_id.KmsKeyId"] = None,
         tags: Optional["capo_securityagent.types.tag_map.TagMap"] = None,
+        private_connection_name: Optional[
+            "capo_securityagent.types.private_connection_name.PrivateConnectionName"
+        ] = None,
     ) -> "capo_securityagent.types.create_integration_output.CreateIntegrationOutput":
         """<p>Creates a new integration with a third-party provider, such as GitHub, for code review and remediation.</p>
 
@@ -282,6 +292,7 @@ class AsyncIntegrationResource:
             integration_display_name: <p>The display name for the integration.</p>
             kms_key_id: <p>The identifier of the AWS KMS key to use for encrypting data associated with the integration.</p>
             tags: <p>The tags to associate with the integration.</p>
+            private_connection_name: <p>The name of an active private connection used to reach a self-hosted provider instance over private networking. Specify this when the instance is not publicly reachable.</p>
 
         Raises:
             capo_securityagent.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -318,6 +329,8 @@ class AsyncIntegrationResource:
             input_["kms_key_id"] = kms_key_id
         if tags is not None:
             input_["tags"] = tags
+        if private_connection_name is not None:
+            input_["private_connection_name"] = private_connection_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_bedrock_agentcore_control.types.enforcement_mode
     import capo_bedrock_agentcore_control.types.policy_definition
     import capo_bedrock_agentcore_control.types.policy_validation_mode
     import capo_bedrock_agentcore_control.types.resource_id
@@ -23,9 +24,13 @@ class UpdatePolicyRequest(TypedDict, closed=True):
     definition: NotRequired[
         "capo_bedrock_agentcore_control.types.policy_definition.PolicyDefinition"
     ]
-    """<p>The new Cedar policy statement that defines the access control rules. This replaces the existing policy definition with new logic while maintaining the policy's identity.</p>"""
+    """<p>The new Cedar or Dogwood policy statement that defines the access control rules. This replaces the existing policy definition with new logic while maintaining the policy's identity.</p>"""
     validation_mode: "capo_bedrock_agentcore_control.types.policy_validation_mode.PolicyValidationMode"
     """<p>The validation mode for the policy update. Determines how Cedar analyzer validation results are handled during policy updates. FAIL_ON_ANY_FINDINGS runs the Cedar analyzer and fails the update if validation issues are detected, ensuring the policy conforms to the Cedar schema and tool context. IGNORE_ALL_FINDINGS runs the Cedar analyzer but allows updates despite validation warnings. Use FAIL_ON_ANY_FINDINGS to ensure policy correctness during updates, especially when modifying policy logic or conditions.</p>"""
+    enforcement_mode: NotRequired[
+        "capo_bedrock_agentcore_control.types.enforcement_mode.EnforcementMode"
+    ]
+    """<p>The enforcement mode for the policy. Run this policy in <code>LOG_ONLY</code> mode to collect data on how it affects your application. Once you are satisfied with the data gathered, switch the policy to <code>ACTIVE</code>. If you omit this field, the policy's existing enforcement mode is unchanged.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -54,6 +59,14 @@ def serialize_json(value: UpdatePolicyRequest) -> dict:
             value.get("validation_mode", "FAIL_ON_ANY_FINDINGS")
         )
     )
+    if "enforcement_mode" in value:
+        import capo_bedrock_agentcore_control.types.enforcement_mode
+
+        out["enforcementMode"] = (
+            capo_bedrock_agentcore_control.types.enforcement_mode.serialize_json(
+                value["enforcement_mode"]
+            )
+        )
     return out
 
 
@@ -85,4 +98,12 @@ def deserialize_json(data: dict) -> UpdatePolicyRequest:
         )
     else:
         out["validation_mode"] = "FAIL_ON_ANY_FINDINGS"
+    if data.get("enforcementMode") is not None:
+        import capo_bedrock_agentcore_control.types.enforcement_mode
+
+        out["enforcement_mode"] = (
+            capo_bedrock_agentcore_control.types.enforcement_mode.deserialize_json(
+                data["enforcementMode"]
+            )
+        )
     return out

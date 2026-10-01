@@ -14,11 +14,11 @@ class InstanceHealthSummary(TypedDict, closed=True):
     no_data: NotRequired[
         "capo_elastic_beanstalk.types.nullable_integer.NullableInteger"
     ]
-    """<p> <b>Grey.</b> AWS Elastic Beanstalk and the health agent are reporting no data on an instance.</p>"""
+    """<p> <b>Grey.</b> Elastic Beanstalk and the health agent are reporting no data on an instance.</p>"""
     unknown: NotRequired[
         "capo_elastic_beanstalk.types.nullable_integer.NullableInteger"
     ]
-    """<p> <b>Grey.</b> AWS Elastic Beanstalk and the health agent are reporting an insufficient amount of data on an instance.</p>"""
+    """<p> <b>Grey.</b> Elastic Beanstalk and the health agent are reporting an insufficient amount of data on an instance.</p>"""
     pending: NotRequired[
         "capo_elastic_beanstalk.types.nullable_integer.NullableInteger"
     ]

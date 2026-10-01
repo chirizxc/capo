@@ -6,6 +6,7 @@ ClientAuthenticationMethodType: TypeAlias = Literal[
     "CLIENT_SECRET_BASIC",
     "CLIENT_SECRET_POST",
     "AWS_IAM_ID_TOKEN_JWT",
+    "PRIVATE_KEY_JWT",
 ]
 
 

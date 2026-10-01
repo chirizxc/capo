@@ -15,12 +15,15 @@ import capo_direct_connect.errors.direct_connect_client_exception
 import capo_direct_connect.errors.direct_connect_server_exception
 import capo_direct_connect.errors.duplicate_tag_keys_exception
 import capo_direct_connect.errors.too_many_tags_exception
+import capo_direct_connect.types.billing_mode
 import capo_direct_connect.types.connection
 import capo_direct_connect.types.connection_state
 import capo_direct_connect.types.create_connection_request
 import capo_direct_connect.types.has_logical_redundancy
 import capo_direct_connect.types.loa_issue_time
 import capo_direct_connect.types.mac_sec_key_list
+import capo_direct_connect.types.rate_limiter_status
+import capo_direct_connect.types.request_billing_mode
 import capo_direct_connect.types.tag_list
 from capo_direct_connect._protocol.errors import parse_error_metadata_json
 from capo_direct_connect._rule_engine._endpoint_rule_set import EndpointParams, resolve

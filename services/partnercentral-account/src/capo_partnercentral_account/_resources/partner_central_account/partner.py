@@ -35,6 +35,12 @@ if TYPE_CHECKING:
     import capo_partnercentral_account.types.get_profile_update_task_response
     import capo_partnercentral_account.types.get_profile_visibility_request
     import capo_partnercentral_account.types.get_profile_visibility_response
+    import capo_partnercentral_account.types.get_qualifications_association_details_request
+    import capo_partnercentral_account.types.get_qualifications_association_details_response
+    import capo_partnercentral_account.types.get_qualifications_association_task_request
+    import capo_partnercentral_account.types.get_qualifications_association_task_response
+    import capo_partnercentral_account.types.get_qualifications_disassociation_task_request
+    import capo_partnercentral_account.types.get_qualifications_disassociation_task_response
     import capo_partnercentral_account.types.list_partners_request
     import capo_partnercentral_account.types.list_partners_response
     import capo_partnercentral_account.types.next_token
@@ -47,9 +53,14 @@ if TYPE_CHECKING:
     import capo_partnercentral_account.types.put_alliance_lead_contact_response
     import capo_partnercentral_account.types.put_profile_visibility_request
     import capo_partnercentral_account.types.put_profile_visibility_response
+    import capo_partnercentral_account.types.qualifications_association_partner
     import capo_partnercentral_account.types.sensitive_unicode_string
     import capo_partnercentral_account.types.start_profile_update_task_request
     import capo_partnercentral_account.types.start_profile_update_task_response
+    import capo_partnercentral_account.types.start_qualifications_association_task_request
+    import capo_partnercentral_account.types.start_qualifications_association_task_response
+    import capo_partnercentral_account.types.start_qualifications_disassociation_task_request
+    import capo_partnercentral_account.types.start_qualifications_disassociation_task_response
     import capo_partnercentral_account.types.tag_list
     import capo_partnercentral_account.types.task_details
     from capo_partnercentral_account._services.async_partner_central_account import (
@@ -575,6 +586,156 @@ class Partner:
         response.response.close()
         return response.output
 
+    def get_qualifications_association_details(
+        self,
+        catalog: "capo_partnercentral_account.types.catalog.Catalog",
+        identifier: "capo_partnercentral_account.types.partner_identifier.PartnerIdentifier",
+        *,
+        config_overrides: Optional[PartnerCentralAccountClientConfig] = None,
+    ) -> "capo_partnercentral_account.types.get_qualifications_association_details_response.GetQualificationsAssociationDetailsResponse":
+        """<p>Returns your current qualifications association status, the primary partner, and the full list of partners associated under the primary partner.</p>
+
+        Args:
+            catalog: <p>The catalog in which to look up the qualifications association. Valid values: <code>AWS</code>, <code>Sandbox</code>.</p>
+            identifier: <p>Your partner identifier. You can provide either a partner ID (for example, <code>partner-abc123</code>) or a partner ARN. You must own this identifier.</p>
+
+        Raises:
+            capo_partnercentral_account.errors.access_denied_exception.AccessDeniedException: <p>The request was denied due to insufficient permissions. The caller does not have the required permissions to perform this operation.</p>
+            capo_partnercentral_account.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred while processing the request. This is typically a temporary condition and the request may be retried.</p>
+            capo_partnercentral_account.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource could not be found. This may occur when referencing a resource that does not exist or has been deleted.</p>
+            capo_partnercentral_account.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests being sent in a short period of time. The client should implement exponential backoff and retry the request.</p>
+            capo_partnercentral_account.errors.validation_exception.ValidationException: <p>The request failed validation. One or more input parameters are invalid, missing, or do not meet the required format or constraints.</p>
+            capo_partnercentral_account.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_partnercentral_account.types.get_qualifications_association_details_request.GetQualificationsAssociationDetailsRequest]",
+        ) -> OperationResponse[
+            "capo_partnercentral_account.types.get_qualifications_association_details_response.GetQualificationsAssociationDetailsResponse"
+        ]:
+            import capo_partnercentral_account._operations.partner_central_account.get_qualifications_association_details
+
+            output, http_response = (
+                capo_partnercentral_account._operations.partner_central_account.get_qualifications_association_details.get_qualifications_association_details(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_partnercentral_account.types.get_qualifications_association_details_request.GetQualificationsAssociationDetailsRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_qualifications_association_task(
+        self,
+        catalog: "capo_partnercentral_account.types.catalog.Catalog",
+        identifier: "capo_partnercentral_account.types.partner_identifier.PartnerIdentifier",
+        *,
+        config_overrides: Optional[PartnerCentralAccountClientConfig] = None,
+    ) -> "capo_partnercentral_account.types.get_qualifications_association_task_response.GetQualificationsAssociationTaskResponse":
+        """<p>Retrieves the status and details of the most recent qualifications association task for your partner account. Use this operation to poll the progress of an association task initiated by <code>StartQualificationsAssociationTask</code>.</p>
+
+        Args:
+            catalog: <p>The catalog in which to look up the qualifications association task. Valid values: <code>AWS</code>, <code>Sandbox</code>.</p>
+            identifier: <p>Your partner identifier. You can provide either a partner ID (for example, <code>partner-abc123</code>) or a partner ARN. You must own this identifier.</p>
+
+        Raises:
+            capo_partnercentral_account.errors.access_denied_exception.AccessDeniedException: <p>The request was denied due to insufficient permissions. The caller does not have the required permissions to perform this operation.</p>
+            capo_partnercentral_account.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred while processing the request. This is typically a temporary condition and the request may be retried.</p>
+            capo_partnercentral_account.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource could not be found. This may occur when referencing a resource that does not exist or has been deleted.</p>
+            capo_partnercentral_account.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests being sent in a short period of time. The client should implement exponential backoff and retry the request.</p>
+            capo_partnercentral_account.errors.validation_exception.ValidationException: <p>The request failed validation. One or more input parameters are invalid, missing, or do not meet the required format or constraints.</p>
+            capo_partnercentral_account.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_partnercentral_account.types.get_qualifications_association_task_request.GetQualificationsAssociationTaskRequest]",
+        ) -> OperationResponse[
+            "capo_partnercentral_account.types.get_qualifications_association_task_response.GetQualificationsAssociationTaskResponse"
+        ]:
+            import capo_partnercentral_account._operations.partner_central_account.get_qualifications_association_task
+
+            output, http_response = (
+                capo_partnercentral_account._operations.partner_central_account.get_qualifications_association_task.get_qualifications_association_task(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_partnercentral_account.types.get_qualifications_association_task_request.GetQualificationsAssociationTaskRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_qualifications_disassociation_task(
+        self,
+        catalog: "capo_partnercentral_account.types.catalog.Catalog",
+        identifier: "capo_partnercentral_account.types.partner_identifier.PartnerIdentifier",
+        *,
+        config_overrides: Optional[PartnerCentralAccountClientConfig] = None,
+    ) -> "capo_partnercentral_account.types.get_qualifications_disassociation_task_response.GetQualificationsDisassociationTaskResponse":
+        """<p>Retrieves the status and details of the most recent qualifications disassociation task for your partner account. Use this operation to poll the progress of a disassociation task initiated by <code>StartQualificationsDisassociationTask</code>.</p>
+
+        Args:
+            catalog: <p>The catalog in which to look up the qualifications disassociation task. Valid values: <code>AWS</code>, <code>Sandbox</code>.</p>
+            identifier: <p>Your partner identifier. You can provide either a partner ID (for example, <code>partner-abc123</code>) or a partner ARN. You must own this identifier.</p>
+
+        Raises:
+            capo_partnercentral_account.errors.access_denied_exception.AccessDeniedException: <p>The request was denied due to insufficient permissions. The caller does not have the required permissions to perform this operation.</p>
+            capo_partnercentral_account.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred while processing the request. This is typically a temporary condition and the request may be retried.</p>
+            capo_partnercentral_account.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource could not be found. This may occur when referencing a resource that does not exist or has been deleted.</p>
+            capo_partnercentral_account.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests being sent in a short period of time. The client should implement exponential backoff and retry the request.</p>
+            capo_partnercentral_account.errors.validation_exception.ValidationException: <p>The request failed validation. One or more input parameters are invalid, missing, or do not meet the required format or constraints.</p>
+            capo_partnercentral_account.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_partnercentral_account.types.get_qualifications_disassociation_task_request.GetQualificationsDisassociationTaskRequest]",
+        ) -> OperationResponse[
+            "capo_partnercentral_account.types.get_qualifications_disassociation_task_response.GetQualificationsDisassociationTaskResponse"
+        ]:
+            import capo_partnercentral_account._operations.partner_central_account.get_qualifications_disassociation_task
+
+            output, http_response = (
+                capo_partnercentral_account._operations.partner_central_account.get_qualifications_disassociation_task.get_qualifications_disassociation_task(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_partnercentral_account.types.get_qualifications_disassociation_task_request.GetQualificationsDisassociationTaskRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def put_alliance_lead_contact(
         self,
         catalog: "capo_partnercentral_account.types.catalog.Catalog",
@@ -737,6 +898,128 @@ class Partner:
             "catalog": catalog,
             "identifier": identifier,
             "task_details": task_details,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def start_qualifications_association_task(
+        self,
+        catalog: "capo_partnercentral_account.types.catalog.Catalog",
+        identifier: "capo_partnercentral_account.types.partner_identifier.PartnerIdentifier",
+        primary_partner: "capo_partnercentral_account.types.qualifications_association_partner.QualificationsAssociationPartner",
+        *,
+        config_overrides: Optional[PartnerCentralAccountClientConfig] = None,
+        client_token: Optional[
+            "capo_partnercentral_account.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_partnercentral_account.types.start_qualifications_association_task_response.StartQualificationsAssociationTaskResponse":
+        """<p>Initiates an asynchronous task to associate your partner qualifications with a primary account. You must be a subsidiary of the primary account with an active subsidiary connection. Use <code>GetQualificationsAssociationTask</code> to monitor task progress.</p>
+
+        Args:
+            catalog: <p>The catalog in which to perform the qualifications association. Valid values: <code>AWS</code>, <code>Sandbox</code>.</p>
+            identifier: <p>Your partner identifier. You can provide either a partner ID (for example, <code>partner-abc123</code>) or a partner ARN. You must own this identifier.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+            primary_partner: <p>The primary (acquiring) partner's profile and account identifier to associate qualifications with. You must provide at least one of <code>ProfileId</code> or <code>AccountId</code>. You cannot specify yourself as the primary partner.</p>
+
+        Raises:
+            capo_partnercentral_account.errors.access_denied_exception.AccessDeniedException: <p>The request was denied due to insufficient permissions. The caller does not have the required permissions to perform this operation.</p>
+            capo_partnercentral_account.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the resource. This typically occurs when trying to create a resource that already exists or modify a resource that has been changed by another process.</p>
+            capo_partnercentral_account.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred while processing the request. This is typically a temporary condition and the request may be retried.</p>
+            capo_partnercentral_account.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource could not be found. This may occur when referencing a resource that does not exist or has been deleted.</p>
+            capo_partnercentral_account.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests being sent in a short period of time. The client should implement exponential backoff and retry the request.</p>
+            capo_partnercentral_account.errors.validation_exception.ValidationException: <p>The request failed validation. One or more input parameters are invalid, missing, or do not meet the required format or constraints.</p>
+            capo_partnercentral_account.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_partnercentral_account.types.start_qualifications_association_task_request.StartQualificationsAssociationTaskRequest]",
+        ) -> OperationResponse[
+            "capo_partnercentral_account.types.start_qualifications_association_task_response.StartQualificationsAssociationTaskResponse"
+        ]:
+            import capo_partnercentral_account._operations.partner_central_account.start_qualifications_association_task
+
+            output, http_response = (
+                capo_partnercentral_account._operations.partner_central_account.start_qualifications_association_task.start_qualifications_association_task(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_partnercentral_account.types.start_qualifications_association_task_request.StartQualificationsAssociationTaskRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "primary_partner": primary_partner,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def start_qualifications_disassociation_task(
+        self,
+        catalog: "capo_partnercentral_account.types.catalog.Catalog",
+        identifier: "capo_partnercentral_account.types.partner_identifier.PartnerIdentifier",
+        associated_partner: "capo_partnercentral_account.types.qualifications_association_partner.QualificationsAssociationPartner",
+        *,
+        config_overrides: Optional[PartnerCentralAccountClientConfig] = None,
+        client_token: Optional[
+            "capo_partnercentral_account.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_partnercentral_account.types.start_qualifications_disassociation_task_response.StartQualificationsDisassociationTaskResponse":
+        """<p>Initiates an asynchronous task to disassociate your partner qualifications from a primary account. You must currently be associated and cannot disassociate if you are the primary partner. Use <code>GetQualificationsDisassociationTask</code> to monitor task progress.</p>
+
+        Args:
+            catalog: <p>The catalog in which to perform the qualifications disassociation. Valid values: <code>AWS</code>, <code>Sandbox</code>.</p>
+            identifier: <p>Your partner identifier. You can provide either a partner ID (for example, <code>partner-abc123</code>) or a partner ARN. You must own this identifier.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+            associated_partner: <p>The primary partner's profile and account identifier that you are currently associated with and will disassociate from. You must provide at least one of <code>ProfileId</code> or <code>AccountId</code>. The specified partner must match your current primary association.</p>
+
+        Raises:
+            capo_partnercentral_account.errors.access_denied_exception.AccessDeniedException: <p>The request was denied due to insufficient permissions. The caller does not have the required permissions to perform this operation.</p>
+            capo_partnercentral_account.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the resource. This typically occurs when trying to create a resource that already exists or modify a resource that has been changed by another process.</p>
+            capo_partnercentral_account.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred while processing the request. This is typically a temporary condition and the request may be retried.</p>
+            capo_partnercentral_account.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource could not be found. This may occur when referencing a resource that does not exist or has been deleted.</p>
+            capo_partnercentral_account.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests being sent in a short period of time. The client should implement exponential backoff and retry the request.</p>
+            capo_partnercentral_account.errors.validation_exception.ValidationException: <p>The request failed validation. One or more input parameters are invalid, missing, or do not meet the required format or constraints.</p>
+            capo_partnercentral_account.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_partnercentral_account.types.start_qualifications_disassociation_task_request.StartQualificationsDisassociationTaskRequest]",
+        ) -> OperationResponse[
+            "capo_partnercentral_account.types.start_qualifications_disassociation_task_response.StartQualificationsDisassociationTaskResponse"
+        ]:
+            import capo_partnercentral_account._operations.partner_central_account.start_qualifications_disassociation_task
+
+            output, http_response = (
+                capo_partnercentral_account._operations.partner_central_account.start_qualifications_disassociation_task.start_qualifications_disassociation_task(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_partnercentral_account.types.start_qualifications_disassociation_task_request.StartQualificationsDisassociationTaskRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "associated_partner": associated_partner,
         }
         if client_token is None:
             client_token = str(uuid.uuid4())
@@ -1273,6 +1556,159 @@ class AsyncPartner:
         await response.response.aclose()
         return response.output
 
+    async def get_qualifications_association_details(
+        self,
+        catalog: "capo_partnercentral_account.types.catalog.Catalog",
+        identifier: "capo_partnercentral_account.types.partner_identifier.PartnerIdentifier",
+        *,
+        config_overrides: Optional[AsyncPartnerCentralAccountClientConfig] = None,
+    ) -> "capo_partnercentral_account.types.get_qualifications_association_details_response.GetQualificationsAssociationDetailsResponse":
+        """<p>Returns your current qualifications association status, the primary partner, and the full list of partners associated under the primary partner.</p>
+
+        Args:
+            catalog: <p>The catalog in which to look up the qualifications association. Valid values: <code>AWS</code>, <code>Sandbox</code>.</p>
+            identifier: <p>Your partner identifier. You can provide either a partner ID (for example, <code>partner-abc123</code>) or a partner ARN. You must own this identifier.</p>
+
+        Raises:
+            capo_partnercentral_account.errors.access_denied_exception.AccessDeniedException: <p>The request was denied due to insufficient permissions. The caller does not have the required permissions to perform this operation.</p>
+            capo_partnercentral_account.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred while processing the request. This is typically a temporary condition and the request may be retried.</p>
+            capo_partnercentral_account.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource could not be found. This may occur when referencing a resource that does not exist or has been deleted.</p>
+            capo_partnercentral_account.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests being sent in a short period of time. The client should implement exponential backoff and retry the request.</p>
+            capo_partnercentral_account.errors.validation_exception.ValidationException: <p>The request failed validation. One or more input parameters are invalid, missing, or do not meet the required format or constraints.</p>
+            capo_partnercentral_account.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_partnercentral_account.types.get_qualifications_association_details_request.GetQualificationsAssociationDetailsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_partnercentral_account.types.get_qualifications_association_details_response.GetQualificationsAssociationDetailsResponse"
+        ]:
+            import capo_partnercentral_account._operations.partner_central_account.get_qualifications_association_details
+
+            (
+                output,
+                http_response,
+            ) = await capo_partnercentral_account._operations.partner_central_account.get_qualifications_association_details.async_get_qualifications_association_details(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_partnercentral_account.types.get_qualifications_association_details_request.GetQualificationsAssociationDetailsRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_qualifications_association_task(
+        self,
+        catalog: "capo_partnercentral_account.types.catalog.Catalog",
+        identifier: "capo_partnercentral_account.types.partner_identifier.PartnerIdentifier",
+        *,
+        config_overrides: Optional[AsyncPartnerCentralAccountClientConfig] = None,
+    ) -> "capo_partnercentral_account.types.get_qualifications_association_task_response.GetQualificationsAssociationTaskResponse":
+        """<p>Retrieves the status and details of the most recent qualifications association task for your partner account. Use this operation to poll the progress of an association task initiated by <code>StartQualificationsAssociationTask</code>.</p>
+
+        Args:
+            catalog: <p>The catalog in which to look up the qualifications association task. Valid values: <code>AWS</code>, <code>Sandbox</code>.</p>
+            identifier: <p>Your partner identifier. You can provide either a partner ID (for example, <code>partner-abc123</code>) or a partner ARN. You must own this identifier.</p>
+
+        Raises:
+            capo_partnercentral_account.errors.access_denied_exception.AccessDeniedException: <p>The request was denied due to insufficient permissions. The caller does not have the required permissions to perform this operation.</p>
+            capo_partnercentral_account.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred while processing the request. This is typically a temporary condition and the request may be retried.</p>
+            capo_partnercentral_account.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource could not be found. This may occur when referencing a resource that does not exist or has been deleted.</p>
+            capo_partnercentral_account.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests being sent in a short period of time. The client should implement exponential backoff and retry the request.</p>
+            capo_partnercentral_account.errors.validation_exception.ValidationException: <p>The request failed validation. One or more input parameters are invalid, missing, or do not meet the required format or constraints.</p>
+            capo_partnercentral_account.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_partnercentral_account.types.get_qualifications_association_task_request.GetQualificationsAssociationTaskRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_partnercentral_account.types.get_qualifications_association_task_response.GetQualificationsAssociationTaskResponse"
+        ]:
+            import capo_partnercentral_account._operations.partner_central_account.get_qualifications_association_task
+
+            (
+                output,
+                http_response,
+            ) = await capo_partnercentral_account._operations.partner_central_account.get_qualifications_association_task.async_get_qualifications_association_task(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_partnercentral_account.types.get_qualifications_association_task_request.GetQualificationsAssociationTaskRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_qualifications_disassociation_task(
+        self,
+        catalog: "capo_partnercentral_account.types.catalog.Catalog",
+        identifier: "capo_partnercentral_account.types.partner_identifier.PartnerIdentifier",
+        *,
+        config_overrides: Optional[AsyncPartnerCentralAccountClientConfig] = None,
+    ) -> "capo_partnercentral_account.types.get_qualifications_disassociation_task_response.GetQualificationsDisassociationTaskResponse":
+        """<p>Retrieves the status and details of the most recent qualifications disassociation task for your partner account. Use this operation to poll the progress of a disassociation task initiated by <code>StartQualificationsDisassociationTask</code>.</p>
+
+        Args:
+            catalog: <p>The catalog in which to look up the qualifications disassociation task. Valid values: <code>AWS</code>, <code>Sandbox</code>.</p>
+            identifier: <p>Your partner identifier. You can provide either a partner ID (for example, <code>partner-abc123</code>) or a partner ARN. You must own this identifier.</p>
+
+        Raises:
+            capo_partnercentral_account.errors.access_denied_exception.AccessDeniedException: <p>The request was denied due to insufficient permissions. The caller does not have the required permissions to perform this operation.</p>
+            capo_partnercentral_account.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred while processing the request. This is typically a temporary condition and the request may be retried.</p>
+            capo_partnercentral_account.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource could not be found. This may occur when referencing a resource that does not exist or has been deleted.</p>
+            capo_partnercentral_account.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests being sent in a short period of time. The client should implement exponential backoff and retry the request.</p>
+            capo_partnercentral_account.errors.validation_exception.ValidationException: <p>The request failed validation. One or more input parameters are invalid, missing, or do not meet the required format or constraints.</p>
+            capo_partnercentral_account.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_partnercentral_account.types.get_qualifications_disassociation_task_request.GetQualificationsDisassociationTaskRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_partnercentral_account.types.get_qualifications_disassociation_task_response.GetQualificationsDisassociationTaskResponse"
+        ]:
+            import capo_partnercentral_account._operations.partner_central_account.get_qualifications_disassociation_task
+
+            (
+                output,
+                http_response,
+            ) = await capo_partnercentral_account._operations.partner_central_account.get_qualifications_disassociation_task.async_get_qualifications_disassociation_task(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_partnercentral_account.types.get_qualifications_disassociation_task_request.GetQualificationsDisassociationTaskRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def put_alliance_lead_contact(
         self,
         catalog: "capo_partnercentral_account.types.catalog.Catalog",
@@ -1438,6 +1874,130 @@ class AsyncPartner:
             "catalog": catalog,
             "identifier": identifier,
             "task_details": task_details,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def start_qualifications_association_task(
+        self,
+        catalog: "capo_partnercentral_account.types.catalog.Catalog",
+        identifier: "capo_partnercentral_account.types.partner_identifier.PartnerIdentifier",
+        primary_partner: "capo_partnercentral_account.types.qualifications_association_partner.QualificationsAssociationPartner",
+        *,
+        config_overrides: Optional[AsyncPartnerCentralAccountClientConfig] = None,
+        client_token: Optional[
+            "capo_partnercentral_account.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_partnercentral_account.types.start_qualifications_association_task_response.StartQualificationsAssociationTaskResponse":
+        """<p>Initiates an asynchronous task to associate your partner qualifications with a primary account. You must be a subsidiary of the primary account with an active subsidiary connection. Use <code>GetQualificationsAssociationTask</code> to monitor task progress.</p>
+
+        Args:
+            catalog: <p>The catalog in which to perform the qualifications association. Valid values: <code>AWS</code>, <code>Sandbox</code>.</p>
+            identifier: <p>Your partner identifier. You can provide either a partner ID (for example, <code>partner-abc123</code>) or a partner ARN. You must own this identifier.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+            primary_partner: <p>The primary (acquiring) partner's profile and account identifier to associate qualifications with. You must provide at least one of <code>ProfileId</code> or <code>AccountId</code>. You cannot specify yourself as the primary partner.</p>
+
+        Raises:
+            capo_partnercentral_account.errors.access_denied_exception.AccessDeniedException: <p>The request was denied due to insufficient permissions. The caller does not have the required permissions to perform this operation.</p>
+            capo_partnercentral_account.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the resource. This typically occurs when trying to create a resource that already exists or modify a resource that has been changed by another process.</p>
+            capo_partnercentral_account.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred while processing the request. This is typically a temporary condition and the request may be retried.</p>
+            capo_partnercentral_account.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource could not be found. This may occur when referencing a resource that does not exist or has been deleted.</p>
+            capo_partnercentral_account.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests being sent in a short period of time. The client should implement exponential backoff and retry the request.</p>
+            capo_partnercentral_account.errors.validation_exception.ValidationException: <p>The request failed validation. One or more input parameters are invalid, missing, or do not meet the required format or constraints.</p>
+            capo_partnercentral_account.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_partnercentral_account.types.start_qualifications_association_task_request.StartQualificationsAssociationTaskRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_partnercentral_account.types.start_qualifications_association_task_response.StartQualificationsAssociationTaskResponse"
+        ]:
+            import capo_partnercentral_account._operations.partner_central_account.start_qualifications_association_task
+
+            (
+                output,
+                http_response,
+            ) = await capo_partnercentral_account._operations.partner_central_account.start_qualifications_association_task.async_start_qualifications_association_task(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_partnercentral_account.types.start_qualifications_association_task_request.StartQualificationsAssociationTaskRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "primary_partner": primary_partner,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def start_qualifications_disassociation_task(
+        self,
+        catalog: "capo_partnercentral_account.types.catalog.Catalog",
+        identifier: "capo_partnercentral_account.types.partner_identifier.PartnerIdentifier",
+        associated_partner: "capo_partnercentral_account.types.qualifications_association_partner.QualificationsAssociationPartner",
+        *,
+        config_overrides: Optional[AsyncPartnerCentralAccountClientConfig] = None,
+        client_token: Optional[
+            "capo_partnercentral_account.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_partnercentral_account.types.start_qualifications_disassociation_task_response.StartQualificationsDisassociationTaskResponse":
+        """<p>Initiates an asynchronous task to disassociate your partner qualifications from a primary account. You must currently be associated and cannot disassociate if you are the primary partner. Use <code>GetQualificationsDisassociationTask</code> to monitor task progress.</p>
+
+        Args:
+            catalog: <p>The catalog in which to perform the qualifications disassociation. Valid values: <code>AWS</code>, <code>Sandbox</code>.</p>
+            identifier: <p>Your partner identifier. You can provide either a partner ID (for example, <code>partner-abc123</code>) or a partner ARN. You must own this identifier.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+            associated_partner: <p>The primary partner's profile and account identifier that you are currently associated with and will disassociate from. You must provide at least one of <code>ProfileId</code> or <code>AccountId</code>. The specified partner must match your current primary association.</p>
+
+        Raises:
+            capo_partnercentral_account.errors.access_denied_exception.AccessDeniedException: <p>The request was denied due to insufficient permissions. The caller does not have the required permissions to perform this operation.</p>
+            capo_partnercentral_account.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the resource. This typically occurs when trying to create a resource that already exists or modify a resource that has been changed by another process.</p>
+            capo_partnercentral_account.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred while processing the request. This is typically a temporary condition and the request may be retried.</p>
+            capo_partnercentral_account.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource could not be found. This may occur when referencing a resource that does not exist or has been deleted.</p>
+            capo_partnercentral_account.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests being sent in a short period of time. The client should implement exponential backoff and retry the request.</p>
+            capo_partnercentral_account.errors.validation_exception.ValidationException: <p>The request failed validation. One or more input parameters are invalid, missing, or do not meet the required format or constraints.</p>
+            capo_partnercentral_account.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_partnercentral_account.types.start_qualifications_disassociation_task_request.StartQualificationsDisassociationTaskRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_partnercentral_account.types.start_qualifications_disassociation_task_response.StartQualificationsDisassociationTaskResponse"
+        ]:
+            import capo_partnercentral_account._operations.partner_central_account.start_qualifications_disassociation_task
+
+            (
+                output,
+                http_response,
+            ) = await capo_partnercentral_account._operations.partner_central_account.start_qualifications_disassociation_task.async_start_qualifications_disassociation_task(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_partnercentral_account.types.start_qualifications_disassociation_task_request.StartQualificationsDisassociationTaskRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "associated_partner": associated_partner,
         }
         if client_token is None:
             client_token = str(uuid.uuid4())

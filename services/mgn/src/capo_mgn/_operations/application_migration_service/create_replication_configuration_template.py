@@ -17,6 +17,7 @@ import capo_mgn.errors.validation_exception
 import capo_mgn.types.create_replication_configuration_template_request
 import capo_mgn.types.replication_configuration_template
 import capo_mgn.types.replication_servers_security_groups_i_ds
+import capo_mgn.types.storage_configuration
 import capo_mgn.types.tags_map
 from capo_mgn._protocol.errors import parse_error_metadata_json
 from capo_mgn._rule_engine._endpoint_rule_set import EndpointParams, resolve

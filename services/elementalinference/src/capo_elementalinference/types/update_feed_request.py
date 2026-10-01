@@ -2,12 +2,13 @@
 
 from typing import TYPE_CHECKING
 
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 from capo_elementalinference.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_elementalinference.types.feed_id
+    import capo_elementalinference.types.iam_role_arn
     import capo_elementalinference.types.resource_name
     import capo_elementalinference.types.update_output_list
 
@@ -15,6 +16,10 @@ if TYPE_CHECKING:
 class UpdateFeedRequest(TypedDict, closed=True):
     name: "capo_elementalinference.types.resource_name.ResourceName"
     """<p>Required. You can specify the existing name (to leave it unchanged) or a new name. </p>"""
+    access_role_arn: NotRequired[
+        "capo_elementalinference.types.iam_role_arn.IamRoleArn"
+    ]
+    """<p>The ARN of an IAM role that Elemental Inference assumes to access resources in your account on your behalf. You can specify the existing role (to leave it unchanged) or a new role. You specify one access role for each feed. </p>"""
     id: "capo_elementalinference.types.feed_id.FeedId"
     """<p>The ID of the feed to update.</p>"""
     outputs: "capo_elementalinference.types.update_output_list.UpdateOutputList"
@@ -25,6 +30,8 @@ class UpdateFeedRequest(TypedDict, closed=True):
 def serialize_json(value: UpdateFeedRequest) -> dict:
     out: dict = {}
     out["name"] = value["name"]
+    if "access_role_arn" in value:
+        out["accessRoleArn"] = value["access_role_arn"]
     import capo_elementalinference.types.update_output_list
 
     out["outputs"] = capo_elementalinference.types.update_output_list.serialize_json(
@@ -39,6 +46,8 @@ def deserialize_json(data: dict) -> UpdateFeedRequest:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UpdateFeedRequest.name required")
+    if data.get("accessRoleArn") is not None:
+        out["access_role_arn"] = data["accessRoleArn"]
     if data.get("outputs") is not None:
         import capo_elementalinference.types.update_output_list
 

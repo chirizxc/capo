@@ -87,6 +87,7 @@ if TYPE_CHECKING:
     import capo_cloudformation.types.delete_stack_set_input
     import capo_cloudformation.types.delete_stack_set_output
     import capo_cloudformation.types.deletion_mode
+    import capo_cloudformation.types.deployment_config
     import capo_cloudformation.types.deployment_mode
     import capo_cloudformation.types.deployment_targets
     import capo_cloudformation.types.deprecated_status
@@ -140,6 +141,7 @@ if TYPE_CHECKING:
     import capo_cloudformation.types.detect_stack_set_drift_input
     import capo_cloudformation.types.detect_stack_set_drift_output
     import capo_cloudformation.types.disable_rollback
+    import capo_cloudformation.types.disable_validation
     import capo_cloudformation.types.enable_stack_creation
     import capo_cloudformation.types.enable_termination_protection
     import capo_cloudformation.types.estimate_template_cost_input
@@ -805,6 +807,12 @@ class AsyncCloudFormationClient:
         deployment_mode: Optional[
             "capo_cloudformation.types.deployment_mode.DeploymentMode"
         ] = None,
+        deployment_config: Optional[
+            "capo_cloudformation.types.deployment_config.DeploymentConfig"
+        ] = None,
+        disable_validation: Optional[
+            "capo_cloudformation.types.disable_validation.DisableValidation"
+        ] = None,
     ) -> "capo_cloudformation.types.create_change_set_output.CreateChangeSetOutput":
         r"""<p>Creates a list of changes that will be applied to a stack so that you can review the changes before executing them. You can create a change set for a stack that doesn't exist or an existing stack. If you create a change set for a stack that doesn't exist, the change set shows all of the resources that CloudFormation will create. If you create a change set for an existing stack, CloudFormation compares the stack's information with the information that you submit in the change set and lists the differences. Use change sets to understand which resources CloudFormation will create or change, and how it will change resources in an existing stack, before you create or update a stack.</p> <p>To create a change set for a stack that doesn't exist, for the <code>ChangeSetType</code> parameter, specify <code>CREATE</code>. To create a change set for an existing stack, specify <code>UPDATE</code> for the <code>ChangeSetType</code> parameter. To create a change set for an import operation, specify <code>IMPORT</code> for the <code>ChangeSetType</code> parameter. After the <code>CreateChangeSet</code> call successfully completes, CloudFormation starts creating the change set. To check the status of the change set or to review it, use the <a>DescribeChangeSet</a> action.</p> <p>When you are satisfied with the changes the change set will make, execute the change set by using the <a>ExecuteChangeSet</a> action. CloudFormation doesn't make changes until you execute the change set.</p> <p>To create a change set for the entire stack hierarchy, set <code>IncludeNestedStacks</code> to <code>True</code>.</p>
 
@@ -829,6 +837,8 @@ class AsyncCloudFormationClient:
             on_stack_failure: <p>Determines what action will be taken if stack creation fails. If this parameter is specified, the <code>DisableRollback</code> parameter to the <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ExecuteChangeSet.html\">ExecuteChangeSet</a> API operation must not be specified. This must be one of these values:</p> <ul> <li> <p> <code>DELETE</code> - Deletes the change set if the stack creation fails. This is only valid when the <code>ChangeSetType</code> parameter is set to <code>CREATE</code>. If the deletion of the stack fails, the status of the stack is <code>DELETE_FAILED</code>.</p> </li> <li> <p> <code>DO_NOTHING</code> - if the stack creation fails, do nothing. This is equivalent to specifying <code>true</code> for the <code>DisableRollback</code> parameter to the <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ExecuteChangeSet.html\">ExecuteChangeSet</a> API operation.</p> </li> <li> <p> <code>ROLLBACK</code> - if the stack creation fails, roll back the stack. This is equivalent to specifying <code>false</code> for the <code>DisableRollback</code> parameter to the <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ExecuteChangeSet.html\">ExecuteChangeSet</a> API operation.</p> </li> </ul> <p>For nested stacks, when the <code>OnStackFailure</code> parameter is set to <code>DELETE</code> for the change set for the parent stack, any failure in a child stack will cause the parent stack creation to fail and all stacks to be deleted.</p>
             import_existing_resources: <p>Indicates if the change set auto-imports resources that already exist. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/import-resources-automatically.html\">Import Amazon Web Services resources into a CloudFormation stack automatically</a> in the <i>CloudFormation User Guide</i>.</p> <note> <p>This parameter can only import resources that have custom names in templates. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-properties-name.html\">name type</a> in the <i>CloudFormation User Guide</i>. To import resources that do not accept custom names, such as EC2 instances, use the <code>ResourcesToImport</code> parameter instead.</p> </note>
             deployment_mode: <p>Determines how CloudFormation handles configuration drift during deployment.</p> <ul> <li> <p> <code>REVERT_DRIFT</code> – Creates a drift-aware change set that brings actual resource states in line with template definitions. Provides a three-way comparison between actual state, previous deployment state, and desired state.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/drift-aware-change-sets.html\">Using drift-aware change sets</a> in the <i>CloudFormation User Guide</i>.</p>
+            deployment_config: <p>The deployment configuration for this stack operation, including the deployment mode.</p>
+            disable_validation: <p> Set to <code>true</code> to disable pre-deployment validations in changeset or stack operations. </p> <p> Default: <code>false</code> </p>
 
         Raises:
             capo_cloudformation.errors.already_exists_exception.AlreadyExistsException: <p>The resource with the name requested already exists.</p>
@@ -894,6 +904,10 @@ class AsyncCloudFormationClient:
             input_["import_existing_resources"] = import_existing_resources
         if deployment_mode is not None:
             input_["deployment_mode"] = deployment_mode
+        if deployment_config is not None:
+            input_["deployment_config"] = deployment_config
+        if disable_validation is not None:
+            input_["disable_validation"] = disable_validation
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1021,6 +1035,12 @@ class AsyncCloudFormationClient:
         retain_except_on_create: Optional[
             "capo_cloudformation.types.retain_except_on_create.RetainExceptOnCreate"
         ] = None,
+        deployment_config: Optional[
+            "capo_cloudformation.types.deployment_config.DeploymentConfig"
+        ] = None,
+        disable_validation: Optional[
+            "capo_cloudformation.types.disable_validation.DisableValidation"
+        ] = None,
     ) -> "capo_cloudformation.types.create_stack_output.CreateStackOutput":
         r"""<p>Creates a stack as specified in the template. After the call completes successfully, the stack creation starts. You can check the status of the stack through the <a>DescribeStacks</a> operation.</p> <p>For more information about creating a stack and monitoring stack progress, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html\">Managing Amazon Web Services resources as a single unit with CloudFormation stacks</a> in the <i>CloudFormation User Guide</i>.</p>
 
@@ -1043,6 +1063,8 @@ class AsyncCloudFormationClient:
             client_request_token: <p>A unique identifier for this <code>CreateStack</code> request. Specify this token if you plan to retry requests so that CloudFormation knows that you're not attempting to create a stack with the same name. You might retry <code>CreateStack</code> requests to ensure that CloudFormation successfully received them.</p> <p>All events initiated by a given stack operation are assigned the same client request token, which you can use to track operations. For example, if you execute a <code>CreateStack</code> operation with the token <code>token1</code>, then all the <code>StackEvents</code> generated by that operation will have <code>ClientRequestToken</code> set as <code>token1</code>.</p> <p>In the console, stack operations display the client request token on the Events tab. Stack operations that are initiated from the console use the token format <i>Console-StackOperation-ID</i>, which helps you easily identify the stack operation . For example, if you create a stack using the console, each stack event would be assigned the same token in the following format: <code>Console-CreateStack-7f59c3cf-00d2-40c7-b2ff-e75db0987002</code>.</p>
             enable_termination_protection: <p>Whether to enable termination protection on the specified stack. If a user attempts to delete a stack with termination protection enabled, the operation fails and the stack remains unchanged. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-protect-stacks.html\">Protect CloudFormation stacks from being deleted</a> in the <i>CloudFormation User Guide</i>. Termination protection is deactivated on stacks by default.</p> <p>For <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html\">nested stacks</a>, termination protection is set on the root stack and can't be changed directly on the nested stack.</p>
             retain_except_on_create: <p>When set to <code>true</code>, newly created resources are deleted when the operation rolls back. This includes newly created resources marked with a deletion policy of <code>Retain</code>.</p> <p>Default: <code>false</code> </p>
+            deployment_config: <p>The deployment configuration for this stack operation, including the deployment mode.</p>
+            disable_validation: <p> Set to <code>true</code> to disable pre-deployment validations in changeset or stack operations. </p> <p> Default: <code>false</code> </p>
 
         Raises:
             capo_cloudformation.errors.already_exists_exception.AlreadyExistsException: <p>The resource with the name requested already exists.</p>
@@ -1105,6 +1127,10 @@ class AsyncCloudFormationClient:
             input_["enable_termination_protection"] = enable_termination_protection
         if retain_except_on_create is not None:
             input_["retain_except_on_create"] = retain_except_on_create
+        if deployment_config is not None:
+            input_["deployment_config"] = deployment_config
+        if disable_validation is not None:
+            input_["disable_validation"] = disable_validation
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1602,6 +1628,9 @@ class AsyncCloudFormationClient:
         deletion_mode: Optional[
             "capo_cloudformation.types.deletion_mode.DeletionMode"
         ] = None,
+        deployment_config: Optional[
+            "capo_cloudformation.types.deployment_config.DeploymentConfig"
+        ] = None,
     ) -> None:
         r"""<p>Deletes a specified stack. Once the call completes successfully, stack deletion starts. Deleted stacks don't show up in the <a>DescribeStacks</a> operation if the deletion has been completed successfully.</p> <p>For more information about deleting a stack, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-delete-stack.html\">Delete a stack from the CloudFormation console</a> in the <i>CloudFormation User Guide</i>.</p>
 
@@ -1611,6 +1640,7 @@ class AsyncCloudFormationClient:
             role_arn: <p>The Amazon Resource Name (ARN) of an IAM role that CloudFormation assumes to delete the stack. CloudFormation uses the role's credentials to make calls on your behalf.</p> <p>If you don't specify a value, CloudFormation uses the role that was previously associated with the stack. If no role is available, CloudFormation uses a temporary session that's generated from your user credentials.</p>
             client_request_token: <p>A unique identifier for this <code>DeleteStack</code> request. Specify this token if you plan to retry requests so that CloudFormation knows that you're not attempting to delete a stack with the same name. You might retry <code>DeleteStack</code> requests to ensure that CloudFormation successfully received them.</p> <p>All events initiated by a given stack operation are assigned the same client request token, which you can use to track operations. For example, if you execute a <code>CreateStack</code> operation with the token <code>token1</code>, then all the <code>StackEvents</code> generated by that operation will have <code>ClientRequestToken</code> set as <code>token1</code>.</p> <p>In the console, stack operations display the client request token on the Events tab. Stack operations that are initiated from the console use the token format <i>Console-StackOperation-ID</i>, which helps you easily identify the stack operation . For example, if you create a stack using the console, each stack event would be assigned the same token in the following format: <code>Console-CreateStack-7f59c3cf-00d2-40c7-b2ff-e75db0987002</code>.</p>
             deletion_mode: <p>Specifies the deletion mode for the stack. Possible values are:</p> <ul> <li> <p> <code>STANDARD</code> - Use the standard behavior. Specifying this value is the same as not specifying this parameter.</p> </li> <li> <p> <code>FORCE_DELETE_STACK</code> - Delete the stack if it's stuck in a <code>DELETE_FAILED</code> state due to resource deletion failure.</p> </li> </ul>
+            deployment_config: <p>The deployment configuration for this stack operation, including the deployment mode.</p>
 
         Raises:
             capo_cloudformation.errors.token_already_exists_exception.TokenAlreadyExistsException: <p>A client request token already exists.</p>
@@ -1642,6 +1672,8 @@ class AsyncCloudFormationClient:
             input_["client_request_token"] = client_request_token
         if deletion_mode is not None:
             input_["deletion_mode"] = deletion_mode
+        if deployment_config is not None:
+            input_["deployment_config"] = deployment_config
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -2086,7 +2118,7 @@ class AsyncCloudFormationClient:
         """<p>Returns CloudFormation events based on flexible query criteria. Groups events by operation ID, enabling you to focus on individual stack operations during deployment.</p> <p>An operation is any action performed on a stack, including stack lifecycle actions (Create, Update, Delete, Rollback), change set creation, nested stack creation, and automatic rollbacks triggered by failures. Each operation has a unique identifier (Operation ID) and represents a discrete change attempt on the stack.</p> <p>Returns different types of events including:</p> <ul> <li> <p> <b>Progress events</b> - Status updates during stack operation execution.</p> </li> <li> <p> <b>Validation errors</b> - Failures from CloudFormation Early Validations.</p> </li> <li> <p> <b>Provisioning errors</b> - Resource creation and update failures.</p> </li> <li> <p> <b>Hook invocation errors</b> - Failures from CloudFormation Hook during stack operations.</p> </li> </ul> <note> <p>One of <code>ChangeSetName</code>, <code>OperationId</code> or <code>StackName</code> must be specified as input.</p> </note>
 
         Args:
-            stack_name: <p>The name or unique stack ID for which you want to retrieve events.</p>
+            stack_name: <p>The name or unique stack ID for which you want to retrieve events. If you specified the name of a change set, specify the stack name or ID (ARN) of the change set you want to describe.</p>
             change_set_name: <p>The name or Amazon Resource Name (ARN) of the change set for which you want to retrieve events.</p>
             operation_id: <p>The unique identifier of the operation for which you want to retrieve events.</p>
             filters: <p>Filters to apply when retrieving events.</p>
@@ -5931,6 +5963,9 @@ class AsyncCloudFormationClient:
         retain_except_on_create: Optional[
             "capo_cloudformation.types.retain_except_on_create.RetainExceptOnCreate"
         ] = None,
+        deployment_config: Optional[
+            "capo_cloudformation.types.deployment_config.DeploymentConfig"
+        ] = None,
     ) -> "capo_cloudformation.types.rollback_stack_output.RollbackStackOutput":
         """<p>When specifying <code>RollbackStack</code>, you preserve the state of previously provisioned resources when an operation fails. You can check the status of the stack through the <a>DescribeStacks</a> operation.</p> <p>Rolls back the specified stack to the last known stable state from <code>CREATE_FAILED</code> or <code>UPDATE_FAILED</code> stack statuses.</p> <p>This operation will delete a stack if it doesn't contain a last known stable state. A last known stable state includes any status in a <code>*_COMPLETE</code>. This includes the following stack statuses.</p> <ul> <li> <p> <code>CREATE_COMPLETE</code> </p> </li> <li> <p> <code>UPDATE_COMPLETE</code> </p> </li> <li> <p> <code>UPDATE_ROLLBACK_COMPLETE</code> </p> </li> <li> <p> <code>IMPORT_COMPLETE</code> </p> </li> <li> <p> <code>IMPORT_ROLLBACK_COMPLETE</code> </p> </li> </ul>
 
@@ -5939,6 +5974,7 @@ class AsyncCloudFormationClient:
             role_arn: <p>The Amazon Resource Name (ARN) of an IAM role that CloudFormation assumes to rollback the stack.</p>
             client_request_token: <p>A unique identifier for this <code>RollbackStack</code> request.</p>
             retain_except_on_create: <p>When set to <code>true</code>, newly created resources are deleted when the operation rolls back. This includes newly created resources marked with a deletion policy of <code>Retain</code>.</p> <p>Default: <code>false</code> </p>
+            deployment_config: <p>The deployment configuration for this stack operation, including the deployment mode.</p>
 
         Raises:
             capo_cloudformation.errors.token_already_exists_exception.TokenAlreadyExistsException: <p>A client request token already exists.</p>
@@ -5970,6 +6006,8 @@ class AsyncCloudFormationClient:
             input_["client_request_token"] = client_request_token
         if retain_except_on_create is not None:
             input_["retain_except_on_create"] = retain_except_on_create
+        if deployment_config is not None:
+            input_["deployment_config"] = deployment_config
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -6547,6 +6585,12 @@ class AsyncCloudFormationClient:
         retain_except_on_create: Optional[
             "capo_cloudformation.types.retain_except_on_create.RetainExceptOnCreate"
         ] = None,
+        deployment_config: Optional[
+            "capo_cloudformation.types.deployment_config.DeploymentConfig"
+        ] = None,
+        disable_validation: Optional[
+            "capo_cloudformation.types.disable_validation.DisableValidation"
+        ] = None,
     ) -> "capo_cloudformation.types.update_stack_output.UpdateStackOutput":
         r"""<p>Updates a stack as specified in the template. After the call completes successfully, the stack update starts. You can check the status of the stack through the <a>DescribeStacks</a> action.</p> <p>To get a copy of the template for an existing stack, you can use the <a>GetTemplate</a> action.</p> <p>For more information about updating a stack and monitoring the progress of the update, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html\">Managing Amazon Web Services resources as a single unit with CloudFormation stacks</a> in the <i>CloudFormation User Guide</i>.</p>
 
@@ -6569,6 +6613,8 @@ class AsyncCloudFormationClient:
             disable_rollback: <p>Preserve the state of previously provisioned resources when an operation fails.</p> <p>Default: <code>False</code> </p>
             client_request_token: <p>A unique identifier for this <code>UpdateStack</code> request. Specify this token if you plan to retry requests so that CloudFormation knows that you're not attempting to update a stack with the same name. You might retry <code>UpdateStack</code> requests to ensure that CloudFormation successfully received them.</p> <p>All events triggered by a given stack operation are assigned the same client request token, which you can use to track operations. For example, if you execute a <code>CreateStack</code> operation with the token <code>token1</code>, then all the <code>StackEvents</code> generated by that operation will have <code>ClientRequestToken</code> set as <code>token1</code>.</p> <p>In the console, stack operations display the client request token on the Events tab. Stack operations that are initiated from the console use the token format <i>Console-StackOperation-ID</i>, which helps you easily identify the stack operation . For example, if you create a stack using the console, each stack event would be assigned the same token in the following format: <code>Console-CreateStack-7f59c3cf-00d2-40c7-b2ff-e75db0987002</code>.</p>
             retain_except_on_create: <p>When set to <code>true</code>, newly created resources are deleted when the operation rolls back. This includes newly created resources marked with a deletion policy of <code>Retain</code>.</p> <p>Default: <code>false</code> </p>
+            deployment_config: <p>The deployment configuration for this stack operation, including the deployment mode.</p>
+            disable_validation: <p> Set to <code>true</code> to disable pre-deployment validations in changeset or stack operations. </p> <p> Default: <code>false</code> </p>
 
         Raises:
             capo_cloudformation.errors.insufficient_capabilities_exception.InsufficientCapabilitiesException: <p>The template contains resources with capabilities that weren't specified in the Capabilities parameter.</p>
@@ -6629,6 +6675,10 @@ class AsyncCloudFormationClient:
             input_["client_request_token"] = client_request_token
         if retain_except_on_create is not None:
             input_["retain_except_on_create"] = retain_except_on_create
+        if deployment_config is not None:
+            input_["deployment_config"] = deployment_config
+        if disable_validation is not None:
+            input_["disable_validation"] = disable_validation
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

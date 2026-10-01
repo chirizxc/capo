@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_securityhub.types.enablement_status
     import capo_securityhub.types.health_check
     import capo_securityhub.types.non_empty_string
     import capo_securityhub.types.provider_detail
@@ -32,6 +33,14 @@ class GetConnectorV2Response(TypedDict, closed=True):
         "capo_securityhub.types.provider_detail.ProviderDetail"
     ]
     """<p>The third-party provider detail for a service configuration.</p>"""
+    enablement_status: NotRequired[
+        "capo_securityhub.types.enablement_status.EnablementStatus"
+    ]
+    """<p>The enablement status of the connector.</p>"""
+    enablement_status_reason: NotRequired[
+        "capo_securityhub.types.non_empty_string.NonEmptyString"
+    ]
+    """<p>The reason for the current enablement status. Provides additional context when the connector is in a failed state.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -71,6 +80,16 @@ def serialize_json(value: GetConnectorV2Response) -> dict:
         out["ProviderDetail"] = capo_securityhub.types.provider_detail.serialize_json(
             value["provider_detail"]
         )
+    if "enablement_status" in value:
+        import capo_securityhub.types.enablement_status
+
+        out["EnablementStatus"] = (
+            capo_securityhub.types.enablement_status.serialize_json(
+                value["enablement_status"]
+            )
+        )
+    if "enablement_status_reason" in value:
+        out["EnablementStatusReason"] = value["enablement_status_reason"]
     return out
 
 
@@ -112,4 +131,14 @@ def deserialize_json(data: dict) -> GetConnectorV2Response:
                 data["ProviderDetail"]
             )
         )
+    if data.get("EnablementStatus") is not None:
+        import capo_securityhub.types.enablement_status
+
+        out["enablement_status"] = (
+            capo_securityhub.types.enablement_status.deserialize_json(
+                data["EnablementStatus"]
+            )
+        )
+    if data.get("EnablementStatusReason") is not None:
+        out["enablement_status_reason"] = data["EnablementStatusReason"]
     return out

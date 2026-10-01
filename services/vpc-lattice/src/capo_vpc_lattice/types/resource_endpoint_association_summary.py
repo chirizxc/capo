@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_vpc_lattice.types.account_id
+    import capo_vpc_lattice.types.payer_responsibility_list
     import capo_vpc_lattice.types.resource_configuration_arn
     import capo_vpc_lattice.types.resource_configuration_id
     import capo_vpc_lattice.types.resource_configuration_name
@@ -47,6 +48,10 @@ class ResourceEndpointAssociationSummary(TypedDict, closed=True):
     """<p>The account that created the association.</p>"""
     created_at: NotRequired["capo_vpc_lattice.types.timestamp.Timestamp"]
     """<p>The date and time that the VPC endpoint association was created, in ISO-8601 format.</p>"""
+    payer_responsibility: NotRequired[
+        "capo_vpc_lattice.types.payer_responsibility_list.PayerResponsibilityList"
+    ]
+    """<p>Who pays for each category of charges on the VPC endpoint association.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -74,6 +79,14 @@ def serialize_json(value: ResourceEndpointAssociationSummary) -> dict:
         out["createdAt"] = capo_vpc_lattice.types.timestamp.serialize_json(
             value["created_at"]
         )
+    if "payer_responsibility" in value:
+        import capo_vpc_lattice.types.payer_responsibility_list
+
+        out["payerResponsibility"] = (
+            capo_vpc_lattice.types.payer_responsibility_list.serialize_json(
+                value["payer_responsibility"]
+            )
+        )
     return out
 
 
@@ -100,5 +113,13 @@ def deserialize_json(data: dict) -> ResourceEndpointAssociationSummary:
 
         out["created_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(
             data["createdAt"]
+        )
+    if data.get("payerResponsibility") is not None:
+        import capo_vpc_lattice.types.payer_responsibility_list
+
+        out["payer_responsibility"] = (
+            capo_vpc_lattice.types.payer_responsibility_list.deserialize_json(
+                data["payerResponsibility"]
+            )
         )
     return out

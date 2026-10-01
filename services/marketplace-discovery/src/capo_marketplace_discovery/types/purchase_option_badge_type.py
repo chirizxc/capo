@@ -6,6 +6,7 @@ PurchaseOptionBadgeType: TypeAlias = Literal[
     "PRIVATE_PRICING",
     "FUTURE_DATED",
     "REPLACEMENT_OFFER",
+    "AUTO_RENEW",
 ]
 
 

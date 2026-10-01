@@ -53,10 +53,10 @@ class ExportResource:
             s3_bucket: <p>Start export request s3 bucket.</p>
             s3_key: <p>Start export request s3key.</p>
             s3_bucket_owner: <p>Start export request s3 bucket owner.</p>
-            tags: <p>Start import request tags.</p>
+            tags: <p>Start export request tags.</p>
 
         Raises:
-            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because its exceeded the service quota.</p>
+            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because it exceeded the service quota.</p>
             capo_mgn.errors.uninitialized_account_exception.UninitializedAccountException: <p>Uninitialized account exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -218,10 +218,10 @@ class AsyncExportResource:
             s3_bucket: <p>Start export request s3 bucket.</p>
             s3_key: <p>Start export request s3key.</p>
             s3_bucket_owner: <p>Start export request s3 bucket owner.</p>
-            tags: <p>Start import request tags.</p>
+            tags: <p>Start export request tags.</p>
 
         Raises:
-            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because its exceeded the service quota.</p>
+            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because it exceeded the service quota.</p>
             capo_mgn.errors.uninitialized_account_exception.UninitializedAccountException: <p>Uninitialized account exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.

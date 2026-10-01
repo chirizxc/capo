@@ -32,6 +32,8 @@ class ProductUserSummary(TypedDict, closed=True):
     """<p>The start date of a subscription.</p>"""
     subscription_end_date: NotRequired["str"]
     """<p>The end date of a subscription.</p>"""
+    license_expiration_date: NotRequired["str"]
+    """<p>The expiration date of the license associated with this subscription, in ISO 8601 UTC format (for example, <code>2025-03-15T00:00:00Z</code>).</p> <p>This field applies only to subscriptions that use license server endpoints, such as Remote Desktop Services (RDS) Subscriber Access License (SAL). It returns <code>null</code> for products that don't use license-based subscriptions.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -57,6 +59,8 @@ def serialize_json(value: ProductUserSummary) -> dict:
         out["SubscriptionStartDate"] = value["subscription_start_date"]
     if "subscription_end_date" in value:
         out["SubscriptionEndDate"] = value["subscription_end_date"]
+    if "license_expiration_date" in value:
+        out["LicenseExpirationDate"] = value["license_expiration_date"]
     return out
 
 
@@ -94,4 +98,6 @@ def deserialize_json(data: dict) -> ProductUserSummary:
         out["subscription_start_date"] = data["SubscriptionStartDate"]
     if data.get("SubscriptionEndDate") is not None:
         out["subscription_end_date"] = data["SubscriptionEndDate"]
+    if data.get("LicenseExpirationDate") is not None:
+        out["license_expiration_date"] = data["LicenseExpirationDate"]
     return out

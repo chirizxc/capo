@@ -13,6 +13,7 @@ import capo_acm._auth._sigv4
 import capo_acm._protocol.eventstream
 import capo_acm.errors.invalid_arn_exception
 import capo_acm.errors.resource_not_found_exception
+import capo_acm.errors.validation_exception
 import capo_acm.types.certificate_detail
 import capo_acm.types.describe_certificate_request
 import capo_acm.types.describe_certificate_response
@@ -32,6 +33,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "ResourceNotFoundException":
             raise capo_acm.errors.resource_not_found_exception.ResourceNotFoundException.from_aws_json_1_1(
+                data, message
+            )
+        case "ValidationException":
+            raise capo_acm.errors.validation_exception.ValidationException.from_aws_json_1_1(
                 data, message
             )
         case _:
@@ -95,9 +100,10 @@ def build_request(
     endpoint = resolve(
         EndpointParams(
             Region=options.region,
-            UseDualStack=options.use_dual_stack,
-            UseFIPS=options.use_fips,
             Endpoint=options.endpoint,
+            UseFIPS=options.use_fips,
+            UseDualStack=options.use_dual_stack,
+            ServiceType="ACM",
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + ""

@@ -13,12 +13,15 @@ import capo_direct_connect._auth._sigv4
 import capo_direct_connect._protocol.eventstream
 import capo_direct_connect.errors.direct_connect_client_exception
 import capo_direct_connect.errors.direct_connect_server_exception
+import capo_direct_connect.errors.limit_exceeded_exception
 import capo_direct_connect.types.associate_connection_with_lag_request
+import capo_direct_connect.types.billing_mode
 import capo_direct_connect.types.connection
 import capo_direct_connect.types.connection_state
 import capo_direct_connect.types.has_logical_redundancy
 import capo_direct_connect.types.loa_issue_time
 import capo_direct_connect.types.mac_sec_key_list
+import capo_direct_connect.types.rate_limiter_status
 import capo_direct_connect.types.tag_list
 from capo_direct_connect._protocol.errors import parse_error_metadata_json
 from capo_direct_connect._rule_engine._endpoint_rule_set import EndpointParams, resolve
@@ -39,6 +42,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "DirectConnectServerException":
             raise capo_direct_connect.errors.direct_connect_server_exception.DirectConnectServerException.from_aws_json_1_1(
+                data, message
+            )
+        case "LimitExceededException":
+            raise capo_direct_connect.errors.limit_exceeded_exception.LimitExceededException.from_aws_json_1_1(
                 data, message
             )
         case _:

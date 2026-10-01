@@ -12,8 +12,24 @@ AutocompleteAdditionalFeatureList: TypeAlias = list[
 
 # --- restJson1 ser/de ---
 def serialize_json(value: AutocompleteAdditionalFeatureList) -> list:
-    return list(value)
+    import capo_geo_places.types.autocomplete_additional_feature
+
+    out: list = []
+    for item in value:
+        out.append(
+            capo_geo_places.types.autocomplete_additional_feature.serialize_json(item)
+        )
+    return out
 
 
 def deserialize_json(data: list) -> AutocompleteAdditionalFeatureList:
-    return [item for item in data if item is not None]
+    import capo_geo_places.types.autocomplete_additional_feature
+
+    out: AutocompleteAdditionalFeatureList = []
+    for item in data:
+        if item is None:
+            continue
+        out.append(
+            capo_geo_places.types.autocomplete_additional_feature.deserialize_json(item)
+        )
+    return out

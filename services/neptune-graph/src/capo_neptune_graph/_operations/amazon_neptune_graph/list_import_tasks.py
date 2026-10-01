@@ -116,6 +116,8 @@ def build_request(
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + "/importtasks"
     params: list[tuple[str, str]] = []
+    if "graph_identifier" in input_:
+        params.append(("graphIdentifier", input_["graph_identifier"]))
     if "next_token" in input_:
         params.append(("nextToken", input_["next_token"]))
     if "max_results" in input_:

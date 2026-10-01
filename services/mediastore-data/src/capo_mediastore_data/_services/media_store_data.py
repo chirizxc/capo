@@ -18,6 +18,7 @@ from capo_mediastore_data._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_mediastore_data._auth._zapros_handler import AuthMiddleware
+from capo_mediastore_data._body import Body, closing_bodies
 from capo_mediastore_data._iter import ensure_sync_iterator
 from capo_mediastore_data._pagination import resolve_path as _resolve_path
 from capo_mediastore_data._services._aws_config import aws_config
@@ -372,7 +373,7 @@ class MediaStoreDataClient:
 
     def put_object(
         self,
-        body: Iterator[bytes] | bytes,
+        body: Body[Iterator[bytes]] | Iterator[bytes] | bytes,
         path: "capo_mediastore_data.types.path_naming.PathNaming",
         *,
         config_overrides: Optional[MediaStoreDataClientConfig] = None,
@@ -433,13 +434,14 @@ class MediaStoreDataClient:
         if upload_availability is not None:
             input_["upload_availability"] = upload_availability
 
-        response = execute_pipeline(
-            OperationRequest(input=input_, options=options_),
-            handler=_handler,
-            interceptors=list(interceptors_),
-        )
-        response.response.close()
-        return response.output
+        with closing_bodies(input_):
+            response = execute_pipeline(
+                OperationRequest(input=input_, options=options_),
+                handler=_handler,
+                interceptors=list(interceptors_),
+            )
+            response.response.close()
+            return response.output
 
     def __enter__(self) -> Self:
         return self

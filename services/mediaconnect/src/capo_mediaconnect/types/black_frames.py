@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 class BlackFrames(TypedDict, closed=True):
     state: NotRequired["capo_mediaconnect.types.state.State"]
-    """<p> Indicates whether the <code>BlackFrames</code> metric is enabled or disabled..</p>"""
+    """<p> Indicates whether the <code>BlackFrames</code> metric is enabled or disabled.</p>"""
     threshold_seconds: NotRequired["int"]
     """<p> Specifies the number of consecutive seconds of black frames that triggers an event or alert.</p>"""
 

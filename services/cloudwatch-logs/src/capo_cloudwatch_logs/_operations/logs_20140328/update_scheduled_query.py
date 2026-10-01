@@ -12,6 +12,7 @@ import capo_cloudwatch_logs._auth._signers
 import capo_cloudwatch_logs._auth._sigv4
 import capo_cloudwatch_logs._protocol.eventstream
 import capo_cloudwatch_logs.errors.access_denied_exception
+import capo_cloudwatch_logs.errors.conflict_exception
 import capo_cloudwatch_logs.errors.internal_server_exception
 import capo_cloudwatch_logs.errors.resource_not_found_exception
 import capo_cloudwatch_logs.errors.throttling_exception
@@ -19,6 +20,7 @@ import capo_cloudwatch_logs.errors.validation_exception
 import capo_cloudwatch_logs.types.destination_configuration
 import capo_cloudwatch_logs.types.execution_status
 import capo_cloudwatch_logs.types.query_language
+import capo_cloudwatch_logs.types.schedule_type
 import capo_cloudwatch_logs.types.scheduled_query_log_group_identifiers
 import capo_cloudwatch_logs.types.scheduled_query_state
 import capo_cloudwatch_logs.types.update_scheduled_query_request
@@ -38,6 +40,10 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "AccessDeniedException":
             raise capo_cloudwatch_logs.errors.access_denied_exception.AccessDeniedException.from_aws_json_1_1(
+                data, message
+            )
+        case "ConflictException":
+            raise capo_cloudwatch_logs.errors.conflict_exception.ConflictException.from_aws_json_1_1(
                 data, message
             )
         case "InternalServerException":

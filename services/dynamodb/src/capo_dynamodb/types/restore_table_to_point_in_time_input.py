@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     import capo_dynamodb.types.sse_specification
     import capo_dynamodb.types.table_arn
     import capo_dynamodb.types.table_name
+    import capo_dynamodb.types.vector_index_list
 
 
 class RestoreTableToPointInTimeInput(TypedDict, closed=True):
@@ -37,7 +38,7 @@ class RestoreTableToPointInTimeInput(TypedDict, closed=True):
     global_secondary_index_override: NotRequired[
         "capo_dynamodb.types.global_secondary_index_list.GlobalSecondaryIndexList"
     ]
-    """<p>List of global secondary indexes for the restored table. The indexes provided should match existing secondary indexes. You can choose to exclude some or all of the indexes at the time of restore.</p>"""
+    """<p>List of global secondary indexes for the restored table. The indexes provided should match existing secondary indexes. You can choose to exclude some or all of the indexes at the time of restore.</p> <p>The <code>WarmThroughput</code> setting is not supported on global secondary indexes when you use <code>RestoreTableToPointInTime</code>. Although <code>WarmThroughput</code> appears in the shared index definition, including it in a <code>GlobalSecondaryIndexOverride</code> entry causes the request to fail with a validation error.</p>"""
     local_secondary_index_override: NotRequired[
         "capo_dynamodb.types.local_secondary_index_list.LocalSecondaryIndexList"
     ]
@@ -53,6 +54,10 @@ class RestoreTableToPointInTimeInput(TypedDict, closed=True):
         "capo_dynamodb.types.sse_specification.SSESpecification"
     ]
     """<p>The new server-side encryption settings for the restored table.</p>"""
+    vector_index_override: NotRequired[
+        "capo_dynamodb.types.vector_index_list.VectorIndexList"
+    ]
+    """<p>The vector indexes for the restored table. If not specified, all vector indexes from the source table are restored. The indexes provided must match existing vector indexes from the source table. You can choose to exclude some or all of the vector indexes at the time of restore.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -117,6 +122,14 @@ def serialize_aws_json_1_0(value: RestoreTableToPointInTimeInput) -> dict:
         out["SSESpecificationOverride"] = (
             capo_dynamodb.types.sse_specification.serialize_aws_json_1_0(
                 value["sse_specification_override"]
+            )
+        )
+    if "vector_index_override" in value:
+        import capo_dynamodb.types.vector_index_list
+
+        out["VectorIndexOverride"] = (
+            capo_dynamodb.types.vector_index_list.serialize_aws_json_1_0(
+                value["vector_index_override"]
             )
         )
     return out
@@ -188,6 +201,14 @@ def deserialize_aws_json_1_0(data: dict) -> RestoreTableToPointInTimeInput:
         out["sse_specification_override"] = (
             capo_dynamodb.types.sse_specification.deserialize_aws_json_1_0(
                 data["SSESpecificationOverride"]
+            )
+        )
+    if data.get("VectorIndexOverride") is not None:
+        import capo_dynamodb.types.vector_index_list
+
+        out["vector_index_override"] = (
+            capo_dynamodb.types.vector_index_list.deserialize_aws_json_1_0(
+                data["VectorIndexOverride"]
             )
         )
     return out

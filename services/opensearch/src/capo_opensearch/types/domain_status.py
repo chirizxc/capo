@@ -22,9 +22,11 @@ if TYPE_CHECKING:
     import capo_opensearch.types.domain_id
     import capo_opensearch.types.domain_name
     import capo_opensearch.types.domain_processing_status_type
+    import capo_opensearch.types.domain_use_case
     import capo_opensearch.types.ebs_options
     import capo_opensearch.types.encryption_at_rest_options
     import capo_opensearch.types.endpoints_map
+    import capo_opensearch.types.engine_mode
     import capo_opensearch.types.hosted_zone_id
     import capo_opensearch.types.identity_center_options
     import capo_opensearch.types.ip_address_type
@@ -152,6 +154,10 @@ class DomainStatus(TypedDict, closed=True):
         "capo_opensearch.types.automated_snapshot_pause_options.AutomatedSnapshotPauseOptions"
     ]
     """<p>The current status of the domain's automated snapshot pause options.</p>"""
+    use_case: NotRequired["capo_opensearch.types.domain_use_case.DomainUseCase"]
+    """<p>The primary use case for the domain.</p>"""
+    engine_mode: NotRequired["capo_opensearch.types.engine_mode.EngineMode"]
+    """<p>The engine mode for the domain.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -350,6 +356,18 @@ def serialize_json(value: DomainStatus) -> dict:
             capo_opensearch.types.automated_snapshot_pause_options.serialize_json(
                 value["automated_snapshot_pause_options"]
             )
+        )
+    if "use_case" in value:
+        import capo_opensearch.types.domain_use_case
+
+        out["UseCase"] = capo_opensearch.types.domain_use_case.serialize_json(
+            value["use_case"]
+        )
+    if "engine_mode" in value:
+        import capo_opensearch.types.engine_mode
+
+        out["EngineMode"] = capo_opensearch.types.engine_mode.serialize_json(
+            value["engine_mode"]
         )
     return out
 
@@ -567,5 +585,17 @@ def deserialize_json(data: dict) -> DomainStatus:
             capo_opensearch.types.automated_snapshot_pause_options.deserialize_json(
                 data["AutomatedSnapshotPauseOptions"]
             )
+        )
+    if data.get("UseCase") is not None:
+        import capo_opensearch.types.domain_use_case
+
+        out["use_case"] = capo_opensearch.types.domain_use_case.deserialize_json(
+            data["UseCase"]
+        )
+    if data.get("EngineMode") is not None:
+        import capo_opensearch.types.engine_mode
+
+        out["engine_mode"] = capo_opensearch.types.engine_mode.deserialize_json(
+            data["EngineMode"]
         )
     return out

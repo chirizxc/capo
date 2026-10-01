@@ -3,7 +3,10 @@
 from typing import Literal, TypeAlias, cast
 
 """<p>Type of resource.</p>"""
-ResourceType: TypeAlias = Literal["CODE_REPOSITORY",]
+ResourceType: TypeAlias = Literal[
+    "CODE_REPOSITORY",
+    "DOCUMENT",
+]
 
 
 # --- restJson1 ser/de ---

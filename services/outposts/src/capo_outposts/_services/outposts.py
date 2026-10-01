@@ -64,6 +64,8 @@ if TYPE_CHECKING:
     import capo_outposts.types.create_order_output
     import capo_outposts.types.create_outpost_input
     import capo_outposts.types.create_outpost_output
+    import capo_outposts.types.create_private_connectivity_config_input
+    import capo_outposts.types.create_private_connectivity_config_output
     import capo_outposts.types.create_quote_input
     import capo_outposts.types.create_quote_output
     import capo_outposts.types.create_renewal_input
@@ -97,6 +99,8 @@ if TYPE_CHECKING:
     import capo_outposts.types.get_outpost_output
     import capo_outposts.types.get_outpost_supported_instance_types_input
     import capo_outposts.types.get_outpost_supported_instance_types_output
+    import capo_outposts.types.get_private_connectivity_config_input
+    import capo_outposts.types.get_private_connectivity_config_output
     import capo_outposts.types.get_quote_input
     import capo_outposts.types.get_quote_output
     import capo_outposts.types.get_renewal_pricing_input
@@ -158,6 +162,7 @@ if TYPE_CHECKING:
     import capo_outposts.types.quote_constraint_list
     import capo_outposts.types.quote_description
     import capo_outposts.types.quote_identifier
+    import capo_outposts.types.quote_option_identifier
     import capo_outposts.types.quote_summary
     import capo_outposts.types.rack_physical_properties
     import capo_outposts.types.requested_instance_pools
@@ -199,6 +204,7 @@ if TYPE_CHECKING:
     import capo_outposts.types.uplink_count
     import capo_outposts.types.uplink_gbps
     import capo_outposts.types.validate_only
+    import capo_outposts.types.vpc_information_list
     import capo_outposts.types.wire_guard_public_key
 
 
@@ -398,6 +404,12 @@ class OutpostsClient:
         payment_option: "capo_outposts.types.payment_option.PaymentOption",
         *,
         config_overrides: Optional[OutpostsClientConfig] = None,
+        quote_identifier: Optional[
+            "capo_outposts.types.quote_identifier.QuoteIdentifier"
+        ] = None,
+        quote_option_identifier: Optional[
+            "capo_outposts.types.quote_option_identifier.QuoteOptionIdentifier"
+        ] = None,
         line_items: Optional[
             "capo_outposts.types.line_item_request_list_definition.LineItemRequestListDefinition"
         ] = None,
@@ -407,6 +419,8 @@ class OutpostsClient:
 
         Args:
             outpost_identifier: <p> The ID or the Amazon Resource Name (ARN) of the Outpost. </p>
+            quote_identifier: <p>The ID of the quote to use for the order.</p>
+            quote_option_identifier: <p>The ID of the quote option to use for the order.</p>
             line_items: <p>The line items that make up the order.</p>
             payment_option: <p>The payment option.</p>
             payment_term: <p>The payment terms.</p>
@@ -440,6 +454,10 @@ class OutpostsClient:
             "outpost_identifier": outpost_identifier,
             "payment_option": payment_option,
         }
+        if quote_identifier is not None:
+            input_["quote_identifier"] = quote_identifier
+        if quote_option_identifier is not None:
+            input_["quote_option_identifier"] = quote_option_identifier
         if line_items is not None:
             input_["line_items"] = line_items
         if payment_term is not None:
@@ -519,6 +537,56 @@ class OutpostsClient:
             input_["tags"] = tags
         if supported_hardware_type is not None:
             input_["supported_hardware_type"] = supported_hardware_type
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def create_private_connectivity_config(
+        self,
+        outpost_id: "capo_outposts.types.outpost_id.OutpostId",
+        vpc_information_list: "capo_outposts.types.vpc_information_list.VpcInformationList",
+        *,
+        config_overrides: Optional[OutpostsClientConfig] = None,
+    ) -> "capo_outposts.types.create_private_connectivity_config_output.CreatePrivateConnectivityConfigOutput":
+        """<p>Creates the private connectivity configuration for the specified Outpost. Private connectivity establishes a service link VPN connection between the Outpost and its home Amazon Web Services Region using a VPC and subnet that you specify, which allows the service link traffic to flow through your VPC and minimizes public internet exposure.</p>
+
+        Args:
+            outpost_id: <p>The ID or ARN of the Outpost.</p>
+            vpc_information_list: <p>Information about the VPC used for private connectivity, including the VPC, its subnets, and an associated VPC endpoint. You can specify at most one entry.</p>
+
+        Raises:
+            capo_outposts.errors.access_denied_exception.AccessDeniedException: <p>You do not have permission to perform this operation.</p>
+            capo_outposts.errors.conflict_exception.ConflictException: <p>Updating or deleting this resource can cause an inconsistent state.</p>
+            capo_outposts.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_outposts.errors.not_found_exception.NotFoundException: <p>The specified request is not valid.</p>
+            capo_outposts.errors.validation_exception.ValidationException: <p>A parameter is not valid.</p>
+            capo_outposts.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_outposts.types.create_private_connectivity_config_input.CreatePrivateConnectivityConfigInput]",
+        ) -> OperationResponse[
+            "capo_outposts.types.create_private_connectivity_config_output.CreatePrivateConnectivityConfigOutput"
+        ]:
+            import capo_outposts._operations.outposts_olaf_service.create_private_connectivity_config
+
+            output, http_response = (
+                capo_outposts._operations.outposts_olaf_service.create_private_connectivity_config.create_private_connectivity_config(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_outposts.types.create_private_connectivity_config_input.CreatePrivateConnectivityConfigInput = {
+            "outpost_id": outpost_id,
+            "vpc_information_list": vpc_information_list,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -793,7 +861,7 @@ class OutpostsClient:
         """<p>Deletes the specified quote.</p>
 
         Args:
-            quote_identifier: <p>The ID or ARN of the quote.</p>
+            quote_identifier: <p>The ID of the quote.</p>
 
         Raises:
             capo_outposts.errors.access_denied_exception.AccessDeniedException: <p>You do not have permission to perform this operation.</p>
@@ -1355,6 +1423,52 @@ class OutpostsClient:
             if not _token:
                 break
 
+    def get_private_connectivity_config(
+        self,
+        outpost_id: "capo_outposts.types.outpost_id.OutpostId",
+        *,
+        config_overrides: Optional[OutpostsClientConfig] = None,
+    ) -> "capo_outposts.types.get_private_connectivity_config_output.GetPrivateConnectivityConfigOutput":
+        """<p>Gets the private connectivity configuration for the specified Outpost.</p>
+
+        Args:
+            outpost_id: <p>The ID or ARN of the Outpost.</p>
+
+        Raises:
+            capo_outposts.errors.access_denied_exception.AccessDeniedException: <p>You do not have permission to perform this operation.</p>
+            capo_outposts.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_outposts.errors.not_found_exception.NotFoundException: <p>The specified request is not valid.</p>
+            capo_outposts.errors.validation_exception.ValidationException: <p>A parameter is not valid.</p>
+            capo_outposts.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_outposts.types.get_private_connectivity_config_input.GetPrivateConnectivityConfigInput]",
+        ) -> OperationResponse[
+            "capo_outposts.types.get_private_connectivity_config_output.GetPrivateConnectivityConfigOutput"
+        ]:
+            import capo_outposts._operations.outposts_olaf_service.get_private_connectivity_config
+
+            output, http_response = (
+                capo_outposts._operations.outposts_olaf_service.get_private_connectivity_config.get_private_connectivity_config(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_outposts.types.get_private_connectivity_config_input.GetPrivateConnectivityConfigInput = {
+            "outpost_id": outpost_id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def get_quote(
         self,
         quote_identifier: "capo_outposts.types.quote_identifier.QuoteIdentifier",
@@ -1364,7 +1478,7 @@ class OutpostsClient:
         """<p>Gets information about the specified quote.</p>
 
         Args:
-            quote_identifier: <p>The ID or ARN of the quote.</p>
+            quote_identifier: <p>The ID of the quote.</p>
 
         Raises:
             capo_outposts.errors.access_denied_exception.AccessDeniedException: <p>You do not have permission to perform this operation.</p>
@@ -2900,7 +3014,7 @@ class OutpostsClient:
         """<p>Updates the specified quote. You can modify the requested capacities, constraints, payment options, payment terms, or Outpost association.</p>
 
         Args:
-            quote_identifier: <p>The ID or ARN of the quote.</p>
+            quote_identifier: <p>The ID of the quote.</p>
             outpost_identifier: <p>The ID or ARN of the Outpost to associate with the quote. Specify an empty string to remove the Outpost association.</p>
             country_code: <p>The country code for the Outpost site location.</p>
             requested_capacities: <p>The updated capacity requirements for the quote.</p>

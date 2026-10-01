@@ -6,11 +6,14 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.client_token
+    import capo_bedrock_agentcore_control.types.clustering_config
     import capo_bedrock_agentcore_control.types.data_source_config
     import capo_bedrock_agentcore_control.types.evaluation_config_description
     import capo_bedrock_agentcore_control.types.evaluator_list
+    import capo_bedrock_agentcore_control.types.insight_list
     import capo_bedrock_agentcore_control.types.online_evaluation_config_id
     import capo_bedrock_agentcore_control.types.online_evaluation_execution_status
+    import capo_bedrock_agentcore_control.types.output_config
     import capo_bedrock_agentcore_control.types.role_arn
     import capo_bedrock_agentcore_control.types.rule
 
@@ -36,6 +39,17 @@ class UpdateOnlineEvaluationConfigRequest(TypedDict, closed=True):
         "capo_bedrock_agentcore_control.types.evaluator_list.EvaluatorList"
     ]
     """<p> The updated list of evaluators to apply during online evaluation. </p>"""
+    insights: NotRequired[
+        "capo_bedrock_agentcore_control.types.insight_list.InsightList"
+    ]
+    """<p>The updated list of insight types to run against agent sessions.</p>"""
+    clustering_config: NotRequired[
+        "capo_bedrock_agentcore_control.types.clustering_config.ClusteringConfig"
+    ]
+    """<p>The updated clustering configuration for periodic batch evaluation.</p>"""
+    output_config: NotRequired[
+        "capo_bedrock_agentcore_control.types.output_config.OutputConfig"
+    ]
     evaluation_execution_role_arn: NotRequired[
         "capo_bedrock_agentcore_control.types.role_arn.RoleArn"
     ]
@@ -73,6 +87,30 @@ def serialize_json(value: UpdateOnlineEvaluationConfigRequest) -> dict:
         out["evaluators"] = (
             capo_bedrock_agentcore_control.types.evaluator_list.serialize_json(
                 value["evaluators"]
+            )
+        )
+    if "insights" in value:
+        import capo_bedrock_agentcore_control.types.insight_list
+
+        out["insights"] = (
+            capo_bedrock_agentcore_control.types.insight_list.serialize_json(
+                value["insights"]
+            )
+        )
+    if "clustering_config" in value:
+        import capo_bedrock_agentcore_control.types.clustering_config
+
+        out["clusteringConfig"] = (
+            capo_bedrock_agentcore_control.types.clustering_config.serialize_json(
+                value["clustering_config"]
+            )
+        )
+    if "output_config" in value:
+        import capo_bedrock_agentcore_control.types.output_config
+
+        out["outputConfig"] = (
+            capo_bedrock_agentcore_control.types.output_config.serialize_json(
+                value["output_config"]
             )
         )
     if "evaluation_execution_role_arn" in value:
@@ -114,6 +152,30 @@ def deserialize_json(data: dict) -> UpdateOnlineEvaluationConfigRequest:
         out["evaluators"] = (
             capo_bedrock_agentcore_control.types.evaluator_list.deserialize_json(
                 data["evaluators"]
+            )
+        )
+    if data.get("insights") is not None:
+        import capo_bedrock_agentcore_control.types.insight_list
+
+        out["insights"] = (
+            capo_bedrock_agentcore_control.types.insight_list.deserialize_json(
+                data["insights"]
+            )
+        )
+    if data.get("clusteringConfig") is not None:
+        import capo_bedrock_agentcore_control.types.clustering_config
+
+        out["clustering_config"] = (
+            capo_bedrock_agentcore_control.types.clustering_config.deserialize_json(
+                data["clusteringConfig"]
+            )
+        )
+    if data.get("outputConfig") is not None:
+        import capo_bedrock_agentcore_control.types.output_config
+
+        out["output_config"] = (
+            capo_bedrock_agentcore_control.types.output_config.deserialize_json(
+                data["outputConfig"]
             )
         )
     if data.get("evaluationExecutionRoleArn") is not None:

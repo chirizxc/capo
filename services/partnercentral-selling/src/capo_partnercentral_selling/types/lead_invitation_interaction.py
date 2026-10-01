@@ -32,9 +32,9 @@ class LeadInvitationInteraction(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: LeadInvitationInteraction) -> dict:
     out: dict = {}
-    out["SourceType"] = value["source_type"]
-    out["SourceId"] = value["source_id"]
-    out["SourceName"] = value["source_name"]
+    out["SourceType"] = value.get("source_type", "")
+    out["SourceId"] = value.get("source_id", "")
+    out["SourceName"] = value.get("source_name", "")
     if "usecase" in value:
         out["Usecase"] = value["usecase"]
     out["ContactBusinessTitle"] = value["contact_business_title"]
@@ -46,15 +46,15 @@ def deserialize_aws_json_1_0(data: dict) -> LeadInvitationInteraction:
     if data.get("SourceType") is not None:
         out["source_type"] = data["SourceType"]
     else:
-        raise DeserializationError("LeadInvitationInteraction.source_type required")
+        out["source_type"] = ""
     if data.get("SourceId") is not None:
         out["source_id"] = data["SourceId"]
     else:
-        raise DeserializationError("LeadInvitationInteraction.source_id required")
+        out["source_id"] = ""
     if data.get("SourceName") is not None:
         out["source_name"] = data["SourceName"]
     else:
-        raise DeserializationError("LeadInvitationInteraction.source_name required")
+        out["source_name"] = ""
     if data.get("Usecase") is not None:
         out["usecase"] = data["Usecase"]
     if data.get("ContactBusinessTitle") is not None:

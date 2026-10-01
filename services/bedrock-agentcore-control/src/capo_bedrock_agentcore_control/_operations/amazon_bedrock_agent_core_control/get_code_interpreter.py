@@ -23,6 +23,7 @@ import capo_bedrock_agentcore_control.types.code_interpreter_status
 import capo_bedrock_agentcore_control.types.date_timestamp
 import capo_bedrock_agentcore_control.types.get_code_interpreter_request
 import capo_bedrock_agentcore_control.types.get_code_interpreter_response
+import capo_bedrock_agentcore_control.types.tools_file_system_configurations
 from capo_bedrock_agentcore_control._protocol.errors import parse_error_metadata_json
 from capo_bedrock_agentcore_control._rule_engine._endpoint_rule_set import (
     EndpointParams,

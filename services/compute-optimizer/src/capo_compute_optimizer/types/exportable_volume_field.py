@@ -10,6 +10,8 @@ ExportableVolumeField: TypeAlias = Literal[
     "UtilizationMetricsVolumeWriteOpsPerSecondMaximum",
     "UtilizationMetricsVolumeReadBytesPerSecondMaximum",
     "UtilizationMetricsVolumeWriteBytesPerSecondMaximum",
+    "UtilizationMetricsVolumeIOPSExceededMaximum",
+    "UtilizationMetricsVolumeThroughputExceededMaximum",
     "LookbackPeriodInDays",
     "CurrentConfigurationVolumeType",
     "CurrentConfigurationVolumeBaselineIOPS",

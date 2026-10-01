@@ -29,6 +29,7 @@ from capo_sagemaker_runtime._services._pipeline import (
 )
 
 if TYPE_CHECKING:
+    import capo_sagemaker_runtime.types.async_body_blob
     import capo_sagemaker_runtime.types.body_blob
     import capo_sagemaker_runtime.types.custom_attributes_header
     import capo_sagemaker_runtime.types.enable_explanations_header
@@ -45,6 +46,7 @@ if TYPE_CHECKING:
     import capo_sagemaker_runtime.types.invoke_endpoint_output
     import capo_sagemaker_runtime.types.invoke_endpoint_with_response_stream_input
     import capo_sagemaker_runtime.types.invoke_endpoint_with_response_stream_output
+    import capo_sagemaker_runtime.types.prefix_aware_id_header
     import capo_sagemaker_runtime.types.request_ttl_seconds_header
     import capo_sagemaker_runtime.types.s3_output_path_extension_header
     import capo_sagemaker_runtime.types.session_id_header
@@ -179,6 +181,9 @@ class AsyncSageMakerRuntimeClient:
         session_id: Optional[
             "capo_sagemaker_runtime.types.session_id_or_new_session_constant_header.SessionIdOrNewSessionConstantHeader"
         ] = None,
+        prefix_aware_id: Optional[
+            "capo_sagemaker_runtime.types.prefix_aware_id_header.PrefixAwareIdHeader"
+        ] = None,
     ) -> "capo_sagemaker_runtime.types.invoke_endpoint_output.InvokeEndpointOutput":
         r"""<p>After you deploy a model into production using Amazon SageMaker AI hosting services, your client applications use this API to get inferences from the model hosted at the specified endpoint. </p> <p>For an overview of Amazon SageMaker AI, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/how-it-works.html\">How It Works</a>. </p> <p>Amazon SageMaker AI strips all POST headers except those supported by the API. Amazon SageMaker AI might add additional headers. You should not rely on the behavior of headers outside those enumerated in the request syntax. </p> <p>Calls to <code>InvokeEndpoint</code> are authenticated by using Amazon Web Services Signature Version 4. For information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html\">Authenticating Requests (Amazon Web Services Signature Version 4)</a> in the <i>Amazon S3 API Reference</i>.</p> <p>A customer's model containers must respond to requests within 60 seconds. The model itself can have a maximum processing time of 60 seconds before responding to invocations. If your model is going to take 50-60 seconds of processing time, the SDK socket timeout should be set to be 70 seconds.</p> <note> <p>Endpoints are scoped to an individual account, and are not public. The URL does not contain the account ID, but Amazon SageMaker AI determines the account ID from the authentication token that is supplied by the caller.</p> </note>
 
@@ -195,6 +200,7 @@ class AsyncSageMakerRuntimeClient:
             enable_explanations: <p>An optional JMESPath expression used to override the <code>EnableExplanations</code> parameter of the <code>ClarifyExplainerConfig</code> API. See the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-create-endpoint.html#clarify-online-explainability-create-endpoint-enable\">EnableExplanations</a> section in the developer guide for more information. </p>
             inference_component_name: <p>If the endpoint hosts one or more inference components, this parameter specifies the name of inference component to invoke.</p>
             session_id: <p>Creates a stateful session or identifies an existing one. You can do one of the following:</p> <ul> <li> <p>Create a stateful session by specifying the value <code>NEW_SESSION</code>.</p> </li> <li> <p>Send your request to an existing stateful session by specifying the ID of that session.</p> </li> </ul> <p>With a stateful session, you can send multiple requests to a stateful model. When you create a session with a stateful model, the model must create the session ID and set the expiration time. The model must also provide that information in the response to your request. You can get the ID and timestamp from the <code>NewSessionId</code> response parameter. For any subsequent request where you specify that session ID, SageMaker AI routes the request to the same instance that supports the session.</p>
+            prefix_aware_id: <p>An optional, stable identifier that serves as a routing hint for prefix-aware routing. The service routes requests with the same prefix and the same identifier to the same instance. If requests from different applications might have the same prompt prefix, set a different identifier for each application to differentiate their routing decisions.</p> <p>Applies only to endpoints configured with a <code>RoutingStrategy</code> of <code>PREFIX_AWARE</code>.</p>
 
         Raises:
             capo_sagemaker_runtime.errors.internal_dependency_exception.InternalDependencyException: <p>Your request caused an exception with an internal dependency. Contact customer support. </p>
@@ -247,6 +253,8 @@ class AsyncSageMakerRuntimeClient:
             input_["inference_component_name"] = inference_component_name
         if session_id is not None:
             input_["session_id"] = session_id
+        if prefix_aware_id is not None:
+            input_["prefix_aware_id"] = prefix_aware_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -284,6 +292,9 @@ class AsyncSageMakerRuntimeClient:
         invocation_timeout_seconds: Optional[
             "capo_sagemaker_runtime.types.invocation_timeout_seconds_header.InvocationTimeoutSecondsHeader"
         ] = None,
+        body: Optional[
+            "capo_sagemaker_runtime.types.async_body_blob.AsyncBodyBlob"
+        ] = None,
     ) -> "capo_sagemaker_runtime.types.invoke_endpoint_async_output.InvokeEndpointAsyncOutput":
         r"""<p>After you deploy a model into production using Amazon SageMaker AI hosting services, your client applications use this API to get inferences from the model hosted at the specified endpoint in an asynchronous manner.</p> <p>Inference requests sent to this API are enqueued for asynchronous processing. The processing of the inference request may or may not complete before you receive a response from this API. The response from this API will not contain the result of the inference request but contain information about where you can locate it.</p> <p>Amazon SageMaker AI strips all POST headers except those supported by the API. Amazon SageMaker AI might add additional headers. You should not rely on the behavior of headers outside those enumerated in the request syntax. </p> <p>Calls to <code>InvokeEndpointAsync</code> are authenticated by using Amazon Web Services Signature Version 4. For information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html\">Authenticating Requests (Amazon Web Services Signature Version 4)</a> in the <i>Amazon S3 API Reference</i>.</p>
 
@@ -298,6 +309,7 @@ class AsyncSageMakerRuntimeClient:
             filename: <p>The filename for the inference response payload stored in Amazon S3. If not specified, Amazon SageMaker AI generates a filename based on the inference ID.</p>
             request_ttl_seconds: <p>Maximum age in seconds a request can be in the queue before it is marked as expired. The default is 6 hours, or 21,600 seconds.</p>
             invocation_timeout_seconds: <p>Maximum amount of time in seconds a request can be processed before it is marked as expired. The default is 15 minutes, or 900 seconds.</p>
+            body: <p>Provides inline input data for the inference request, in the format specified in the <code>ContentType</code> request header. Use this parameter to send the request payload directly in the API call instead of uploading it to Amazon S3 and referencing it with <code>InputLocation</code>. The inline payload can be up to 128,000 bytes.</p> <p> <code>Body</code> and <code>InputLocation</code> are mutually exclusive. Provide exactly one of them.</p> <p>For information about the format of the request body, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/cdf-inference.html\">Common Data Formats-Inference</a>.</p>
 
         Raises:
             capo_sagemaker_runtime.errors.internal_failure.InternalFailure: <p> An internal failure occurred. </p>
@@ -343,6 +355,8 @@ class AsyncSageMakerRuntimeClient:
             input_["request_ttl_seconds"] = request_ttl_seconds
         if invocation_timeout_seconds is not None:
             input_["invocation_timeout_seconds"] = invocation_timeout_seconds
+        if body is not None:
+            input_["body"] = body
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -379,6 +393,9 @@ class AsyncSageMakerRuntimeClient:
         session_id: Optional[
             "capo_sagemaker_runtime.types.session_id_header.SessionIdHeader"
         ] = None,
+        prefix_aware_id: Optional[
+            "capo_sagemaker_runtime.types.prefix_aware_id_header.PrefixAwareIdHeader"
+        ] = None,
     ) -> "AsyncGenerator[capo_sagemaker_runtime.types.invoke_endpoint_with_response_stream_output.InvokeEndpointWithResponseStreamOutput]":
         r"""<p>Invokes a model at the specified endpoint to return the inference response as a stream. The inference stream provides the response payload incrementally as a series of parts. Before you can get an inference stream, you must have access to a model that's deployed using Amazon SageMaker AI hosting services, and the container for that model must support inference streaming.</p> <p>For more information that can help you use this API, see the following sections in the <i>Amazon SageMaker AI Developer Guide</i>:</p> <ul> <li> <p>For information about how to add streaming support to a model, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-inference-code.html#your-algorithms-inference-code-how-containe-serves-requests\">How Containers Serve Requests</a>.</p> </li> <li> <p>For information about how to process the streaming response, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints-test-endpoints.html\">Invoke real-time endpoints</a>.</p> </li> </ul> <p>Before you can use this operation, your IAM permissions must allow the <code>sagemaker:InvokeEndpoint</code> action. For more information about Amazon SageMaker AI actions for IAM policies, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonsagemaker.html\">Actions, resources, and condition keys for Amazon SageMaker AI</a> in the <i>IAM Service Authorization Reference</i>.</p> <p>Amazon SageMaker AI strips all POST headers except those supported by the API. Amazon SageMaker AI might add additional headers. You should not rely on the behavior of headers outside those enumerated in the request syntax. </p> <p>Calls to <code>InvokeEndpointWithResponseStream</code> are authenticated by using Amazon Web Services Signature Version 4. For information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html\">Authenticating Requests (Amazon Web Services Signature Version 4)</a> in the <i>Amazon S3 API Reference</i>.</p>
 
@@ -393,6 +410,7 @@ class AsyncSageMakerRuntimeClient:
             inference_id: <p>An identifier that you assign to your request.</p>
             inference_component_name: <p>If the endpoint hosts one or more inference components, this parameter specifies the name of inference component to invoke for a streaming response.</p>
             session_id: <p>The ID of a stateful session to handle your request.</p> <p>You can't create a stateful session by using the <code>InvokeEndpointWithResponseStream</code> action. Instead, you can create one by using the <code> <a>InvokeEndpoint</a> </code> action. In your request, you specify <code>NEW_SESSION</code> for the <code>SessionId</code> request parameter. The response to that request provides the session ID for the <code>NewSessionId</code> response parameter.</p>
+            prefix_aware_id: <p>An optional, stable identifier that serves as a routing hint for prefix-aware routing. The service routes requests with the same prefix and the same identifier to the same instance. If requests from different applications might have the same prompt prefix, set a different identifier for each application to differentiate their routing decisions.</p> <p>Applies only to endpoints configured with a <code>RoutingStrategy</code> of <code>PREFIX_AWARE</code>.</p>
 
         Raises:
             capo_sagemaker_runtime.errors.internal_failure.InternalFailure: <p> An internal failure occurred. </p>
@@ -441,6 +459,8 @@ class AsyncSageMakerRuntimeClient:
             input_["inference_component_name"] = inference_component_name
         if session_id is not None:
             input_["session_id"] = session_id
+        if prefix_aware_id is not None:
+            input_["prefix_aware_id"] = prefix_aware_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

@@ -6,6 +6,8 @@ from typing import Literal, TypeAlias, cast
 TaskType: TypeAlias = Literal[
     "INVESTIGATION",
     "EVALUATION",
+    "RELEASE_READINESS_REVIEW",
+    "RELEASE_TESTING",
 ]
 
 

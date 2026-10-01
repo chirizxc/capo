@@ -22,6 +22,7 @@ import capo_lightsail.types.cache_behavior_list
 import capo_lightsail.types.cache_settings
 import capo_lightsail.types.create_distribution_request
 import capo_lightsail.types.create_distribution_result
+import capo_lightsail.types.distribution_custom_error_response_list
 import capo_lightsail.types.input_origin
 import capo_lightsail.types.ip_address_type
 import capo_lightsail.types.lightsail_distribution

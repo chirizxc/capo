@@ -12,7 +12,7 @@ class SqsParameters(TypedDict, closed=True):
     message_group_id: NotRequired[
         "capo_eventbridge.types.message_group_id.MessageGroupId"
     ]
-    """<p>The FIFO message group ID to use as the target.</p>"""
+    """<p>The ID of the message group to use as the target.</p>"""
 
 
 # --- awsJson1_1 ser/de ---

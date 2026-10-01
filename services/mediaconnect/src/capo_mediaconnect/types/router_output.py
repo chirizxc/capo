@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import datetime
 
     import capo_mediaconnect.types.__map_of_string
+    import capo_mediaconnect.types.fabric_configuration
     import capo_mediaconnect.types.maintenance_configuration
     import capo_mediaconnect.types.maintenance_schedule
     import capo_mediaconnect.types.maintenance_schedule_type
@@ -85,6 +86,10 @@ class RouterOutput(TypedDict, closed=True):
         "capo_mediaconnect.types.maintenance_schedule.MaintenanceSchedule"
     ]
     """<p>The current maintenance schedule details for this router output.</p>"""
+    fabric_configuration: NotRequired[
+        "capo_mediaconnect.types.fabric_configuration.FabricConfiguration"
+    ]
+    """<p>The fabric configuration settings for the router output.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -185,6 +190,14 @@ def serialize_json(value: RouterOutput) -> dict:
         out["maintenanceSchedule"] = (
             capo_mediaconnect.types.maintenance_schedule.serialize_json(
                 value["maintenance_schedule"]
+            )
+        )
+    if "fabric_configuration" in value:
+        import capo_mediaconnect.types.fabric_configuration
+
+        out["fabricConfiguration"] = (
+            capo_mediaconnect.types.fabric_configuration.serialize_json(
+                value["fabric_configuration"]
             )
         )
     return out
@@ -352,6 +365,14 @@ def deserialize_json(data: dict) -> RouterOutput:
         out["maintenance_schedule"] = (
             capo_mediaconnect.types.maintenance_schedule.deserialize_json(
                 data["maintenanceSchedule"]
+            )
+        )
+    if data.get("fabricConfiguration") is not None:
+        import capo_mediaconnect.types.fabric_configuration
+
+        out["fabric_configuration"] = (
+            capo_mediaconnect.types.fabric_configuration.deserialize_json(
+                data["fabricConfiguration"]
             )
         )
     return out

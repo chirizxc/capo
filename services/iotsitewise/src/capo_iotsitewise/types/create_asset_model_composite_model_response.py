@@ -2,7 +2,7 @@
 
 from typing import TYPE_CHECKING
 
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 from capo_iotsitewise.errors import DeserializationError
 
@@ -18,6 +18,8 @@ class CreateAssetModelCompositeModelResponse(TypedDict, closed=True):
     asset_model_composite_model_path: "capo_iotsitewise.types.asset_model_composite_model_path.AssetModelCompositeModelPath"
     """<p>The path to the composite model listing the parent composite models.</p>"""
     asset_model_status: "capo_iotsitewise.types.asset_model_status.AssetModelStatus"
+    asset_model_id: NotRequired["capo_iotsitewise.types.id.ID"]
+    """<p>The ID of the asset model.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -36,6 +38,8 @@ def serialize_json(value: CreateAssetModelCompositeModelResponse) -> dict:
     out["assetModelStatus"] = capo_iotsitewise.types.asset_model_status.serialize_json(
         value["asset_model_status"]
     )
+    if "asset_model_id" in value:
+        out["assetModelId"] = value["asset_model_id"]
     return out
 
 
@@ -71,4 +75,6 @@ def deserialize_json(data: dict) -> CreateAssetModelCompositeModelResponse:
         raise DeserializationError(
             "CreateAssetModelCompositeModelResponse.asset_model_status required"
         )
+    if data.get("assetModelId") is not None:
+        out["asset_model_id"] = data["assetModelId"]
     return out

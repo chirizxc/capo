@@ -59,6 +59,9 @@ if TYPE_CHECKING:
     import capo_sso_admin.types.attach_managed_policy_to_permission_set_request
     import capo_sso_admin.types.attach_managed_policy_to_permission_set_response
     import capo_sso_admin.types.attached_managed_policy
+    import capo_sso_admin.types.authentication_method
+    import capo_sso_admin.types.authentication_method_item
+    import capo_sso_admin.types.authentication_method_type
     import capo_sso_admin.types.client_token
     import capo_sso_admin.types.create_account_assignment_request
     import capo_sso_admin.types.create_account_assignment_response
@@ -77,8 +80,11 @@ if TYPE_CHECKING:
     import capo_sso_admin.types.customer_managed_policy_reference
     import capo_sso_admin.types.delete_account_assignment_request
     import capo_sso_admin.types.delete_account_assignment_response
+    import capo_sso_admin.types.delete_application_access_scope_request
     import capo_sso_admin.types.delete_application_assignment_request
     import capo_sso_admin.types.delete_application_assignment_response
+    import capo_sso_admin.types.delete_application_authentication_method_request
+    import capo_sso_admin.types.delete_application_grant_request
     import capo_sso_admin.types.delete_application_request
     import capo_sso_admin.types.delete_application_response
     import capo_sso_admin.types.delete_inline_policy_from_permission_set_request
@@ -122,14 +128,23 @@ if TYPE_CHECKING:
     import capo_sso_admin.types.detach_managed_policy_from_permission_set_response
     import capo_sso_admin.types.duration
     import capo_sso_admin.types.encryption_configuration
+    import capo_sso_admin.types.get_application_access_scope_request
+    import capo_sso_admin.types.get_application_access_scope_response
     import capo_sso_admin.types.get_application_assignment_configuration_request
     import capo_sso_admin.types.get_application_assignment_configuration_response
+    import capo_sso_admin.types.get_application_authentication_method_request
+    import capo_sso_admin.types.get_application_authentication_method_response
+    import capo_sso_admin.types.get_application_grant_request
+    import capo_sso_admin.types.get_application_grant_response
     import capo_sso_admin.types.get_application_session_configuration_request
     import capo_sso_admin.types.get_application_session_configuration_response
     import capo_sso_admin.types.get_inline_policy_for_permission_set_request
     import capo_sso_admin.types.get_inline_policy_for_permission_set_response
     import capo_sso_admin.types.get_permissions_boundary_for_permission_set_request
     import capo_sso_admin.types.get_permissions_boundary_for_permission_set_response
+    import capo_sso_admin.types.grant
+    import capo_sso_admin.types.grant_item
+    import capo_sso_admin.types.grant_type
     import capo_sso_admin.types.instance_access_control_attribute_configuration
     import capo_sso_admin.types.instance_arn
     import capo_sso_admin.types.instance_metadata
@@ -144,11 +159,17 @@ if TYPE_CHECKING:
     import capo_sso_admin.types.list_account_assignments_response
     import capo_sso_admin.types.list_accounts_for_provisioned_permission_set_request
     import capo_sso_admin.types.list_accounts_for_provisioned_permission_set_response
+    import capo_sso_admin.types.list_application_access_scopes_request
+    import capo_sso_admin.types.list_application_access_scopes_response
     import capo_sso_admin.types.list_application_assignments_filter
     import capo_sso_admin.types.list_application_assignments_for_principal_request
     import capo_sso_admin.types.list_application_assignments_for_principal_response
     import capo_sso_admin.types.list_application_assignments_request
     import capo_sso_admin.types.list_application_assignments_response
+    import capo_sso_admin.types.list_application_authentication_methods_request
+    import capo_sso_admin.types.list_application_authentication_methods_response
+    import capo_sso_admin.types.list_application_grants_request
+    import capo_sso_admin.types.list_application_grants_response
     import capo_sso_admin.types.list_application_providers_request
     import capo_sso_admin.types.list_application_providers_response
     import capo_sso_admin.types.list_applications_filter
@@ -189,8 +210,11 @@ if TYPE_CHECKING:
     import capo_sso_admin.types.provision_permission_set_response
     import capo_sso_admin.types.provision_target_type
     import capo_sso_admin.types.provisioning_status
+    import capo_sso_admin.types.put_application_access_scope_request
     import capo_sso_admin.types.put_application_assignment_configuration_request
     import capo_sso_admin.types.put_application_assignment_configuration_response
+    import capo_sso_admin.types.put_application_authentication_method_request
+    import capo_sso_admin.types.put_application_grant_request
     import capo_sso_admin.types.put_application_session_configuration_request
     import capo_sso_admin.types.put_application_session_configuration_response
     import capo_sso_admin.types.put_inline_policy_to_permission_set_request
@@ -202,6 +226,9 @@ if TYPE_CHECKING:
     import capo_sso_admin.types.relay_state
     import capo_sso_admin.types.remove_region_request
     import capo_sso_admin.types.remove_region_response
+    import capo_sso_admin.types.scope
+    import capo_sso_admin.types.scope_details
+    import capo_sso_admin.types.scope_targets
     import capo_sso_admin.types.tag
     import capo_sso_admin.types.tag_key_list
     import capo_sso_admin.types.tag_list
@@ -4341,13 +4368,15 @@ class AsyncSSOAdminClient:
         encryption_configuration: Optional[
             "capo_sso_admin.types.encryption_configuration.EncryptionConfiguration"
         ] = None,
+        permission_sets_enabled: Optional[bool] = None,
     ) -> "capo_sso_admin.types.update_instance_response.UpdateInstanceResponse":
-        r"""<p>Update the details for the instance of IAM Identity Center that is owned by the Amazon Web Services account.</p>
+        r"""<p>Update the details for the instance of IAM Identity Center that is owned by the Amazon Web Services account.</p> <p>In a single <code>UpdateInstance</code> request, you can perform only one of the following operations:</p> <ul> <li> <p>Update the encryption configuration of the instance by specifying <code>EncryptionConfiguration</code>.</p> </li> <li> <p>Enable permission sets for the instance by specifying <code>PermissionSetsEnabled</code>.</p> </li> </ul> <p>A request that specifies both <code>EncryptionConfiguration</code> and <code>PermissionSetsEnabled</code> returns a <code>ValidationException</code>. To perform both operations, call <code>UpdateInstance</code> separately for each. The two calls can be made in parallel.</p>
 
         Args:
             name: <p>Updates the instance name.</p>
             instance_arn: <p>The ARN of the instance of IAM Identity Center under which the operation will run. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>
             encryption_configuration: <p>Specifies the encryption configuration for your IAM Identity Center instance. You can use this to configure customer managed KMS keys or Amazon Web Services owned KMS keys for encrypting your instance data.</p>
+            permission_sets_enabled: <p>Enables permission sets for this Identity Center instance. The only accepted value is <code>true </code>. After permission sets are enabled, they cannot be disabled.</p> <note> <p>You can't set <code>EncryptionConfiguration</code> and <code>PermissionSetsEnabled</code> in the same request. To configure both, make two separate <code>UpdateInstance</code> calls. These calls can be made in parallel.</p> </note>
 
         Raises:
             capo_sso_admin.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -4382,6 +4411,8 @@ class AsyncSSOAdminClient:
             input_["name"] = name
         if encryption_configuration is not None:
             input_["encryption_configuration"] = encryption_configuration
+        if permission_sets_enabled is not None:
+            input_["permission_sets_enabled"] = permission_sets_enabled
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -4571,6 +4602,696 @@ class AsyncSSOAdminClient:
         )
         await response.response.aclose()
         return response.output
+
+    async def put_application_access_scope(
+        self,
+        scope: "capo_sso_admin.types.scope.Scope",
+        application_arn: "capo_sso_admin.types.application_arn.ApplicationArn",
+        *,
+        config_overrides: Optional[AsyncSSOAdminClientConfig] = None,
+        authorized_targets: Optional[
+            "capo_sso_admin.types.scope_targets.ScopeTargets"
+        ] = None,
+    ) -> None:
+        """<p>Adds or updates the list of authorized targets for an IAM Identity Center access scope for an application.</p>
+
+        Args:
+            scope: <p>Specifies the name of the access scope to be associated with the specified targets.</p>
+            authorized_targets: <p>Specifies an array list of ARNs that represent the authorized targets for this access scope.</p>
+            application_arn: <p>Specifies the ARN of the application with the access scope with the targets to add or update.</p>
+
+        Raises:
+            capo_sso_admin.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_sso_admin.errors.conflict_exception.ConflictException: <p>Occurs when a conflict with a previous successful write is detected. This generally occurs when the previous write did not have time to propagate to the host serving the current request. A retry (with appropriate backoff logic) is the recommended response to this exception.</p>
+            capo_sso_admin.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure with an internal server.</p>
+            capo_sso_admin.errors.resource_not_found_exception.ResourceNotFoundException: <p>Indicates that a requested resource is not found.</p>
+            capo_sso_admin.errors.throttling_exception.ThrottlingException: <p>Indicates that the principal has crossed the throttling limits of the API operations.</p>
+            capo_sso_admin.errors.validation_exception.ValidationException: <p>The request failed because it contains a syntax error.</p>
+            capo_sso_admin.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_sso_admin.types.put_application_access_scope_request.PutApplicationAccessScopeRequest]",
+        ) -> AsyncOperationResponse[None]:
+            import capo_sso_admin._operations.swb_external_service.put_application_access_scope
+
+            (
+                output,
+                http_response,
+            ) = await capo_sso_admin._operations.swb_external_service.put_application_access_scope.async_put_application_access_scope(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_sso_admin.types.put_application_access_scope_request.PutApplicationAccessScopeRequest = {
+            "scope": scope,
+            "application_arn": application_arn,
+        }
+        if authorized_targets is not None:
+            input_["authorized_targets"] = authorized_targets
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_application_access_scope(
+        self,
+        application_arn: "capo_sso_admin.types.application_arn.ApplicationArn",
+        scope: "capo_sso_admin.types.scope.Scope",
+        *,
+        config_overrides: Optional[AsyncSSOAdminClientConfig] = None,
+    ) -> "capo_sso_admin.types.get_application_access_scope_response.GetApplicationAccessScopeResponse":
+        """<p>Retrieves the authorized targets for an IAM Identity Center access scope for an application.</p>
+
+        Args:
+            application_arn: <p>Specifies the ARN of the application with the access scope that you want to retrieve.</p>
+            scope: <p>Specifies the name of the access scope for which you want the authorized targets.</p>
+
+        Raises:
+            capo_sso_admin.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_sso_admin.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure with an internal server.</p>
+            capo_sso_admin.errors.resource_not_found_exception.ResourceNotFoundException: <p>Indicates that a requested resource is not found.</p>
+            capo_sso_admin.errors.throttling_exception.ThrottlingException: <p>Indicates that the principal has crossed the throttling limits of the API operations.</p>
+            capo_sso_admin.errors.validation_exception.ValidationException: <p>The request failed because it contains a syntax error.</p>
+            capo_sso_admin.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_sso_admin.types.get_application_access_scope_request.GetApplicationAccessScopeRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_sso_admin.types.get_application_access_scope_response.GetApplicationAccessScopeResponse"
+        ]:
+            import capo_sso_admin._operations.swb_external_service.get_application_access_scope
+
+            (
+                output,
+                http_response,
+            ) = await capo_sso_admin._operations.swb_external_service.get_application_access_scope.async_get_application_access_scope(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_sso_admin.types.get_application_access_scope_request.GetApplicationAccessScopeRequest = {
+            "application_arn": application_arn,
+            "scope": scope,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_application_access_scope(
+        self,
+        application_arn: "capo_sso_admin.types.application_arn.ApplicationArn",
+        scope: "capo_sso_admin.types.scope.Scope",
+        *,
+        config_overrides: Optional[AsyncSSOAdminClientConfig] = None,
+    ) -> None:
+        """<p>Deletes an IAM Identity Center access scope from an application.</p>
+
+        Args:
+            application_arn: <p>Specifies the ARN of the application with the access scope to delete.</p>
+            scope: <p>Specifies the name of the access scope to remove from the application.</p>
+
+        Raises:
+            capo_sso_admin.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_sso_admin.errors.conflict_exception.ConflictException: <p>Occurs when a conflict with a previous successful write is detected. This generally occurs when the previous write did not have time to propagate to the host serving the current request. A retry (with appropriate backoff logic) is the recommended response to this exception.</p>
+            capo_sso_admin.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure with an internal server.</p>
+            capo_sso_admin.errors.resource_not_found_exception.ResourceNotFoundException: <p>Indicates that a requested resource is not found.</p>
+            capo_sso_admin.errors.throttling_exception.ThrottlingException: <p>Indicates that the principal has crossed the throttling limits of the API operations.</p>
+            capo_sso_admin.errors.validation_exception.ValidationException: <p>The request failed because it contains a syntax error.</p>
+            capo_sso_admin.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_sso_admin.types.delete_application_access_scope_request.DeleteApplicationAccessScopeRequest]",
+        ) -> AsyncOperationResponse[None]:
+            import capo_sso_admin._operations.swb_external_service.delete_application_access_scope
+
+            (
+                output,
+                http_response,
+            ) = await capo_sso_admin._operations.swb_external_service.delete_application_access_scope.async_delete_application_access_scope(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_sso_admin.types.delete_application_access_scope_request.DeleteApplicationAccessScopeRequest = {
+            "application_arn": application_arn,
+            "scope": scope,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_application_access_scopes(
+        self,
+        application_arn: "capo_sso_admin.types.application_arn.ApplicationArn",
+        *,
+        config_overrides: Optional[AsyncSSOAdminClientConfig] = None,
+        max_results: Optional["capo_sso_admin.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_sso_admin.types.token.Token"] = None,
+    ) -> "capo_sso_admin.types.list_application_access_scopes_response.ListApplicationAccessScopesResponse":
+        """<p>Lists the access scopes and authorized targets associated with an application.</p>
+
+        Args:
+            application_arn: <p>Specifies the ARN of the application.</p>
+            max_results: <p>Specifies the total number of results that you want included in each response. If additional items exist beyond the number you specify, the <code>NextToken</code> response element is returned with a value (not null). Include the specified value as the <code>NextToken</code> request parameter in the next call to the operation to get the next set of results. Note that the service might return fewer results than the maximum even when there are more results available. You should check <code>NextToken</code> after every operation to ensure that you receive all of the results.</p>
+            next_token: <p>Specifies that you want to receive the next page of results. Valid only if you received a <code>NextToken</code> response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's <code>NextToken</code> response to request the next page of results.</p>
+
+        Raises:
+            capo_sso_admin.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_sso_admin.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure with an internal server.</p>
+            capo_sso_admin.errors.resource_not_found_exception.ResourceNotFoundException: <p>Indicates that a requested resource is not found.</p>
+            capo_sso_admin.errors.throttling_exception.ThrottlingException: <p>Indicates that the principal has crossed the throttling limits of the API operations.</p>
+            capo_sso_admin.errors.validation_exception.ValidationException: <p>The request failed because it contains a syntax error.</p>
+            capo_sso_admin.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_sso_admin.types.list_application_access_scopes_request.ListApplicationAccessScopesRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_sso_admin.types.list_application_access_scopes_response.ListApplicationAccessScopesResponse"
+        ]:
+            import capo_sso_admin._operations.swb_external_service.list_application_access_scopes
+
+            (
+                output,
+                http_response,
+            ) = await capo_sso_admin._operations.swb_external_service.list_application_access_scopes.async_list_application_access_scopes(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_sso_admin.types.list_application_access_scopes_request.ListApplicationAccessScopesRequest = {
+            "application_arn": application_arn
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_application_access_scopes(
+        self,
+        application_arn: "capo_sso_admin.types.application_arn.ApplicationArn",
+        *,
+        config_overrides: Optional[AsyncSSOAdminClientConfig] = None,
+        max_results: Optional["capo_sso_admin.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_sso_admin.types.token.Token"] = None,
+    ) -> "AsyncIterator[capo_sso_admin.types.scope_details.ScopeDetails]":
+        _token = next_token
+        while True:
+            _response = await self.list_application_access_scopes(
+                application_arn,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("scopes",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def put_application_authentication_method(
+        self,
+        application_arn: "capo_sso_admin.types.application_arn.ApplicationArn",
+        authentication_method_type: "capo_sso_admin.types.authentication_method_type.AuthenticationMethodType",
+        authentication_method: "capo_sso_admin.types.authentication_method.AuthenticationMethod",
+        *,
+        config_overrides: Optional[AsyncSSOAdminClientConfig] = None,
+    ) -> None:
+        """<p>Adds or updates an authentication method for an application.</p>
+
+        Args:
+            application_arn: <p>Specifies the ARN of the application with the authentication method to add or update.</p>
+            authentication_method_type: <p>Specifies the type of the authentication method that you want to add or update.</p>
+            authentication_method: <p>Specifies a structure that describes the authentication method to add or update. The structure type you provide is determined by the <code>AuthenticationMethodType</code> parameter.</p>
+
+        Raises:
+            capo_sso_admin.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_sso_admin.errors.conflict_exception.ConflictException: <p>Occurs when a conflict with a previous successful write is detected. This generally occurs when the previous write did not have time to propagate to the host serving the current request. A retry (with appropriate backoff logic) is the recommended response to this exception.</p>
+            capo_sso_admin.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure with an internal server.</p>
+            capo_sso_admin.errors.resource_not_found_exception.ResourceNotFoundException: <p>Indicates that a requested resource is not found.</p>
+            capo_sso_admin.errors.throttling_exception.ThrottlingException: <p>Indicates that the principal has crossed the throttling limits of the API operations.</p>
+            capo_sso_admin.errors.validation_exception.ValidationException: <p>The request failed because it contains a syntax error.</p>
+            capo_sso_admin.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_sso_admin.types.put_application_authentication_method_request.PutApplicationAuthenticationMethodRequest]",
+        ) -> AsyncOperationResponse[None]:
+            import capo_sso_admin._operations.swb_external_service.put_application_authentication_method
+
+            (
+                output,
+                http_response,
+            ) = await capo_sso_admin._operations.swb_external_service.put_application_authentication_method.async_put_application_authentication_method(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_sso_admin.types.put_application_authentication_method_request.PutApplicationAuthenticationMethodRequest = {
+            "application_arn": application_arn,
+            "authentication_method_type": authentication_method_type,
+            "authentication_method": authentication_method,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_application_authentication_method(
+        self,
+        application_arn: "capo_sso_admin.types.application_arn.ApplicationArn",
+        authentication_method_type: "capo_sso_admin.types.authentication_method_type.AuthenticationMethodType",
+        *,
+        config_overrides: Optional[AsyncSSOAdminClientConfig] = None,
+    ) -> "capo_sso_admin.types.get_application_authentication_method_response.GetApplicationAuthenticationMethodResponse":
+        """<p>Retrieves details about an authentication method used by an application.</p>
+
+        Args:
+            application_arn: <p>Specifies the ARN of the application.</p>
+            authentication_method_type: <p>Specifies the type of authentication method for which you want details.</p>
+
+        Raises:
+            capo_sso_admin.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_sso_admin.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure with an internal server.</p>
+            capo_sso_admin.errors.resource_not_found_exception.ResourceNotFoundException: <p>Indicates that a requested resource is not found.</p>
+            capo_sso_admin.errors.throttling_exception.ThrottlingException: <p>Indicates that the principal has crossed the throttling limits of the API operations.</p>
+            capo_sso_admin.errors.validation_exception.ValidationException: <p>The request failed because it contains a syntax error.</p>
+            capo_sso_admin.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_sso_admin.types.get_application_authentication_method_request.GetApplicationAuthenticationMethodRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_sso_admin.types.get_application_authentication_method_response.GetApplicationAuthenticationMethodResponse"
+        ]:
+            import capo_sso_admin._operations.swb_external_service.get_application_authentication_method
+
+            (
+                output,
+                http_response,
+            ) = await capo_sso_admin._operations.swb_external_service.get_application_authentication_method.async_get_application_authentication_method(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_sso_admin.types.get_application_authentication_method_request.GetApplicationAuthenticationMethodRequest = {
+            "application_arn": application_arn,
+            "authentication_method_type": authentication_method_type,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_application_authentication_method(
+        self,
+        application_arn: "capo_sso_admin.types.application_arn.ApplicationArn",
+        authentication_method_type: "capo_sso_admin.types.authentication_method_type.AuthenticationMethodType",
+        *,
+        config_overrides: Optional[AsyncSSOAdminClientConfig] = None,
+    ) -> None:
+        """<p>Deletes an authentication method from an application.</p>
+
+        Args:
+            application_arn: <p>Specifies the ARN of the application with the authentication method to delete.</p>
+            authentication_method_type: <p>Specifies the authentication method type to delete from the application.</p>
+
+        Raises:
+            capo_sso_admin.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_sso_admin.errors.conflict_exception.ConflictException: <p>Occurs when a conflict with a previous successful write is detected. This generally occurs when the previous write did not have time to propagate to the host serving the current request. A retry (with appropriate backoff logic) is the recommended response to this exception.</p>
+            capo_sso_admin.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure with an internal server.</p>
+            capo_sso_admin.errors.resource_not_found_exception.ResourceNotFoundException: <p>Indicates that a requested resource is not found.</p>
+            capo_sso_admin.errors.throttling_exception.ThrottlingException: <p>Indicates that the principal has crossed the throttling limits of the API operations.</p>
+            capo_sso_admin.errors.validation_exception.ValidationException: <p>The request failed because it contains a syntax error.</p>
+            capo_sso_admin.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_sso_admin.types.delete_application_authentication_method_request.DeleteApplicationAuthenticationMethodRequest]",
+        ) -> AsyncOperationResponse[None]:
+            import capo_sso_admin._operations.swb_external_service.delete_application_authentication_method
+
+            (
+                output,
+                http_response,
+            ) = await capo_sso_admin._operations.swb_external_service.delete_application_authentication_method.async_delete_application_authentication_method(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_sso_admin.types.delete_application_authentication_method_request.DeleteApplicationAuthenticationMethodRequest = {
+            "application_arn": application_arn,
+            "authentication_method_type": authentication_method_type,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_application_authentication_methods(
+        self,
+        application_arn: "capo_sso_admin.types.application_arn.ApplicationArn",
+        *,
+        config_overrides: Optional[AsyncSSOAdminClientConfig] = None,
+        next_token: Optional["capo_sso_admin.types.token.Token"] = None,
+    ) -> "capo_sso_admin.types.list_application_authentication_methods_response.ListApplicationAuthenticationMethodsResponse":
+        """<p>Lists all of the authentication methods supported by the specified application.</p>
+
+        Args:
+            application_arn: <p>Specifies the ARN of the application with the authentication methods you want to list.</p>
+            next_token: <p>Specifies that you want to receive the next page of results. Valid only if you received a <code>NextToken</code> response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's <code>NextToken</code> response to request the next page of results.</p>
+
+        Raises:
+            capo_sso_admin.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_sso_admin.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure with an internal server.</p>
+            capo_sso_admin.errors.resource_not_found_exception.ResourceNotFoundException: <p>Indicates that a requested resource is not found.</p>
+            capo_sso_admin.errors.throttling_exception.ThrottlingException: <p>Indicates that the principal has crossed the throttling limits of the API operations.</p>
+            capo_sso_admin.errors.validation_exception.ValidationException: <p>The request failed because it contains a syntax error.</p>
+            capo_sso_admin.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_sso_admin.types.list_application_authentication_methods_request.ListApplicationAuthenticationMethodsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_sso_admin.types.list_application_authentication_methods_response.ListApplicationAuthenticationMethodsResponse"
+        ]:
+            import capo_sso_admin._operations.swb_external_service.list_application_authentication_methods
+
+            (
+                output,
+                http_response,
+            ) = await capo_sso_admin._operations.swb_external_service.list_application_authentication_methods.async_list_application_authentication_methods(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_sso_admin.types.list_application_authentication_methods_request.ListApplicationAuthenticationMethodsRequest = {
+            "application_arn": application_arn
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_application_authentication_methods(
+        self,
+        application_arn: "capo_sso_admin.types.application_arn.ApplicationArn",
+        *,
+        config_overrides: Optional[AsyncSSOAdminClientConfig] = None,
+        next_token: Optional["capo_sso_admin.types.token.Token"] = None,
+    ) -> "AsyncIterator[capo_sso_admin.types.authentication_method_item.AuthenticationMethodItem]":
+        _token = next_token
+        while True:
+            _response = await self.list_application_authentication_methods(
+                application_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("authentication_methods",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def put_application_grant(
+        self,
+        application_arn: "capo_sso_admin.types.application_arn.ApplicationArn",
+        grant_type: "capo_sso_admin.types.grant_type.GrantType",
+        grant: "capo_sso_admin.types.grant.Grant",
+        *,
+        config_overrides: Optional[AsyncSSOAdminClientConfig] = None,
+    ) -> None:
+        r"""<p>Creates a configuration for an application to use grants. Conceptually grants are authorization to request actions related to tokens. This configuration will be used when parties are requesting and receiving tokens during the trusted identity propagation process. For more information on the IAM Identity Center supported grant workflows, see <a href=\"https://docs.aws.amazon.com/singlesignon/latest/userguide/customermanagedapps-saml2-oauth2.html\">SAML 2.0 and OAuth 2.0</a>.</p> <p>A grant is created between your applications and Identity Center instance which enables an application to use specified mechanisms to obtain tokens. These tokens are used by your applications to gain access to Amazon Web Services resources on behalf of users. The following elements are within these exchanges:</p> <ul> <li> <p> <b>Requester</b> - The application requesting access to Amazon Web Services resources.</p> </li> <li> <p> <b>Subject</b> - Typically the user that is requesting access to Amazon Web Services resources.</p> </li> <li> <p> <b>Grant</b> - Conceptually, a grant is authorization to access Amazon Web Services resources. These grants authorize token generation for authenticating access to the requester and for the request to make requests on behalf of the subjects. There are four types of grants:</p> <ul> <li> <p> <b>AuthorizationCode</b> - Allows an application to request authorization through a series of user-agent redirects.</p> </li> <li> <p> <b>JWT bearer </b> - Authorizes an application to exchange a JSON Web Token that came from an external identity provider. To learn more, see <a href=\"https://datatracker.ietf.org/doc/html/rfc6749\">RFC 6479</a>.</p> </li> <li> <p> <b>Refresh token</b> - Enables application to request new access tokens to replace expiring or expired access tokens.</p> </li> <li> <p> <b>Exchange token</b> - A grant that requests tokens from the authorization server by providing a ‘subject’ token with access scope authorizing trusted identity propagation to this application. To learn more, see <a href=\"https://datatracker.ietf.org/doc/html/rfc8693\">RFC 8693</a>.</p> </li> </ul> </li> <li> <p> <b>Authorization server</b> - IAM Identity Center requests tokens.</p> </li> </ul> <p>User credentials are never shared directly within these exchanges. Instead, applications use grants to request access tokens from IAM Identity Center. For more information, see <a href=\"https://datatracker.ietf.org/doc/html/rfc6749\">RFC 6479</a>.</p> <p class=\"title\"> <b>Use cases</b> </p> <ul> <li> <p>Connecting to custom applications.</p> </li> <li> <p>Configuring an Amazon Web Services service to make calls to another Amazon Web Services services using JWT tokens.</p> </li> </ul>
+
+        Args:
+            application_arn: <p>Specifies the ARN of the application to update.</p>
+            grant_type: <p>Specifies the type of grant to update.</p>
+            grant: <p>Specifies a structure that describes the grant to update.</p>
+
+        Raises:
+            capo_sso_admin.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_sso_admin.errors.conflict_exception.ConflictException: <p>Occurs when a conflict with a previous successful write is detected. This generally occurs when the previous write did not have time to propagate to the host serving the current request. A retry (with appropriate backoff logic) is the recommended response to this exception.</p>
+            capo_sso_admin.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure with an internal server.</p>
+            capo_sso_admin.errors.resource_not_found_exception.ResourceNotFoundException: <p>Indicates that a requested resource is not found.</p>
+            capo_sso_admin.errors.throttling_exception.ThrottlingException: <p>Indicates that the principal has crossed the throttling limits of the API operations.</p>
+            capo_sso_admin.errors.validation_exception.ValidationException: <p>The request failed because it contains a syntax error.</p>
+            capo_sso_admin.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_sso_admin.types.put_application_grant_request.PutApplicationGrantRequest]",
+        ) -> AsyncOperationResponse[None]:
+            import capo_sso_admin._operations.swb_external_service.put_application_grant
+
+            (
+                output,
+                http_response,
+            ) = await capo_sso_admin._operations.swb_external_service.put_application_grant.async_put_application_grant(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_sso_admin.types.put_application_grant_request.PutApplicationGrantRequest = {
+            "application_arn": application_arn,
+            "grant_type": grant_type,
+            "grant": grant,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_application_grant(
+        self,
+        application_arn: "capo_sso_admin.types.application_arn.ApplicationArn",
+        grant_type: "capo_sso_admin.types.grant_type.GrantType",
+        *,
+        config_overrides: Optional[AsyncSSOAdminClientConfig] = None,
+    ) -> "capo_sso_admin.types.get_application_grant_response.GetApplicationGrantResponse":
+        """<p>Retrieves details about an application grant.</p>
+
+        Args:
+            application_arn: <p>Specifies the ARN of the application that contains the grant.</p>
+            grant_type: <p>Specifies the type of grant.</p>
+
+        Raises:
+            capo_sso_admin.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_sso_admin.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure with an internal server.</p>
+            capo_sso_admin.errors.resource_not_found_exception.ResourceNotFoundException: <p>Indicates that a requested resource is not found.</p>
+            capo_sso_admin.errors.throttling_exception.ThrottlingException: <p>Indicates that the principal has crossed the throttling limits of the API operations.</p>
+            capo_sso_admin.errors.validation_exception.ValidationException: <p>The request failed because it contains a syntax error.</p>
+            capo_sso_admin.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_sso_admin.types.get_application_grant_request.GetApplicationGrantRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_sso_admin.types.get_application_grant_response.GetApplicationGrantResponse"
+        ]:
+            import capo_sso_admin._operations.swb_external_service.get_application_grant
+
+            (
+                output,
+                http_response,
+            ) = await capo_sso_admin._operations.swb_external_service.get_application_grant.async_get_application_grant(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_sso_admin.types.get_application_grant_request.GetApplicationGrantRequest = {
+            "application_arn": application_arn,
+            "grant_type": grant_type,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_application_grant(
+        self,
+        application_arn: "capo_sso_admin.types.application_arn.ApplicationArn",
+        grant_type: "capo_sso_admin.types.grant_type.GrantType",
+        *,
+        config_overrides: Optional[AsyncSSOAdminClientConfig] = None,
+    ) -> None:
+        """<p>Deletes a grant from an application.</p>
+
+        Args:
+            application_arn: <p>Specifies the ARN of the application with the grant to delete.</p>
+            grant_type: <p>Specifies the type of grant to delete from the application.</p>
+
+        Raises:
+            capo_sso_admin.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_sso_admin.errors.conflict_exception.ConflictException: <p>Occurs when a conflict with a previous successful write is detected. This generally occurs when the previous write did not have time to propagate to the host serving the current request. A retry (with appropriate backoff logic) is the recommended response to this exception.</p>
+            capo_sso_admin.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure with an internal server.</p>
+            capo_sso_admin.errors.resource_not_found_exception.ResourceNotFoundException: <p>Indicates that a requested resource is not found.</p>
+            capo_sso_admin.errors.throttling_exception.ThrottlingException: <p>Indicates that the principal has crossed the throttling limits of the API operations.</p>
+            capo_sso_admin.errors.validation_exception.ValidationException: <p>The request failed because it contains a syntax error.</p>
+            capo_sso_admin.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_sso_admin.types.delete_application_grant_request.DeleteApplicationGrantRequest]",
+        ) -> AsyncOperationResponse[None]:
+            import capo_sso_admin._operations.swb_external_service.delete_application_grant
+
+            (
+                output,
+                http_response,
+            ) = await capo_sso_admin._operations.swb_external_service.delete_application_grant.async_delete_application_grant(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_sso_admin.types.delete_application_grant_request.DeleteApplicationGrantRequest = {
+            "application_arn": application_arn,
+            "grant_type": grant_type,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_application_grants(
+        self,
+        application_arn: "capo_sso_admin.types.application_arn.ApplicationArn",
+        *,
+        config_overrides: Optional[AsyncSSOAdminClientConfig] = None,
+        next_token: Optional["capo_sso_admin.types.token.Token"] = None,
+    ) -> "capo_sso_admin.types.list_application_grants_response.ListApplicationGrantsResponse":
+        """<p>List the grants associated with an application.</p>
+
+        Args:
+            application_arn: <p>Specifies the ARN of the application whose grants you want to list.</p>
+            next_token: <p>Specifies that you want to receive the next page of results. Valid only if you received a <code>NextToken</code> response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's <code>NextToken</code> response to request the next page of results.</p>
+
+        Raises:
+            capo_sso_admin.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_sso_admin.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure with an internal server.</p>
+            capo_sso_admin.errors.resource_not_found_exception.ResourceNotFoundException: <p>Indicates that a requested resource is not found.</p>
+            capo_sso_admin.errors.throttling_exception.ThrottlingException: <p>Indicates that the principal has crossed the throttling limits of the API operations.</p>
+            capo_sso_admin.errors.validation_exception.ValidationException: <p>The request failed because it contains a syntax error.</p>
+            capo_sso_admin.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_sso_admin.types.list_application_grants_request.ListApplicationGrantsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_sso_admin.types.list_application_grants_response.ListApplicationGrantsResponse"
+        ]:
+            import capo_sso_admin._operations.swb_external_service.list_application_grants
+
+            (
+                output,
+                http_response,
+            ) = await capo_sso_admin._operations.swb_external_service.list_application_grants.async_list_application_grants(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_sso_admin.types.list_application_grants_request.ListApplicationGrantsRequest = {
+            "application_arn": application_arn
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_application_grants(
+        self,
+        application_arn: "capo_sso_admin.types.application_arn.ApplicationArn",
+        *,
+        config_overrides: Optional[AsyncSSOAdminClientConfig] = None,
+        next_token: Optional["capo_sso_admin.types.token.Token"] = None,
+    ) -> "AsyncIterator[capo_sso_admin.types.grant_item.GrantItem]":
+        _token = next_token
+        while True:
+            _response = await self.list_application_grants(
+                application_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("grants",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def __aenter__(self) -> Self:
         return self

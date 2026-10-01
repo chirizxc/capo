@@ -19,6 +19,8 @@ class TargetTableConfig(TypedDict, closed=True):
     """<p>Determines the file layout on the target.</p>"""
     target_table_name: NotRequired["capo_glue.types.string128.String128"]
     """<p>The optional name of a target table.</p>"""
+    integration_arn: NotRequired["capo_glue.types.string128.String128"]
+    """<p>The ARN of the integration that owns this target table configuration.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -40,6 +42,8 @@ def serialize_aws_json_1_1(value: TargetTableConfig) -> dict:
         )
     if "target_table_name" in value:
         out["TargetTableName"] = value["target_table_name"]
+    if "integration_arn" in value:
+        out["IntegrationArn"] = value["integration_arn"]
     return out
 
 
@@ -61,4 +65,6 @@ def deserialize_aws_json_1_1(data: dict) -> TargetTableConfig:
         )
     if data.get("TargetTableName") is not None:
         out["target_table_name"] = data["TargetTableName"]
+    if data.get("IntegrationArn") is not None:
+        out["integration_arn"] = data["IntegrationArn"]
     return out

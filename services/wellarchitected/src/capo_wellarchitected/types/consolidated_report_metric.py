@@ -5,11 +5,12 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import datetime
+
     import capo_wellarchitected.types.lens_metrics
     import capo_wellarchitected.types.lenses_applied_count
     import capo_wellarchitected.types.metric_type
     import capo_wellarchitected.types.risk_counts
-    import capo_wellarchitected.types.timestamp
     import capo_wellarchitected.types.workload_arn
     import capo_wellarchitected.types.workload_id
     import capo_wellarchitected.types.workload_name
@@ -22,7 +23,8 @@ class ConsolidatedReportMetric(TypedDict, closed=True):
     workload_id: NotRequired["capo_wellarchitected.types.workload_id.WorkloadId"]
     workload_name: NotRequired["capo_wellarchitected.types.workload_name.WorkloadName"]
     workload_arn: NotRequired["capo_wellarchitected.types.workload_arn.WorkloadArn"]
-    updated_at: NotRequired["capo_wellarchitected.types.timestamp.Timestamp"]
+    updated_at: NotRequired["datetime.datetime"]
+    """<p>The date and time when the consolidated report metric was last updated.</p>"""
     lenses: NotRequired["capo_wellarchitected.types.lens_metrics.LensMetrics"]
     """<p>The metrics for the lenses in the workload.</p>"""
     lenses_applied_count: NotRequired[
@@ -53,9 +55,9 @@ def serialize_json(value: ConsolidatedReportMetric) -> dict:
     if "workload_arn" in value:
         out["WorkloadArn"] = value["workload_arn"]
     if "updated_at" in value:
-        import capo_wellarchitected.types.timestamp
+        import capo_wellarchitected.types._prelude.timestamp
 
-        out["UpdatedAt"] = capo_wellarchitected.types.timestamp.serialize_json(
+        out["UpdatedAt"] = capo_wellarchitected.types._prelude.timestamp.serialize_json(
             value["updated_at"]
         )
     if "lenses" in value:
@@ -90,10 +92,12 @@ def deserialize_json(data: dict) -> ConsolidatedReportMetric:
     if data.get("WorkloadArn") is not None:
         out["workload_arn"] = data["WorkloadArn"]
     if data.get("UpdatedAt") is not None:
-        import capo_wellarchitected.types.timestamp
+        import capo_wellarchitected.types._prelude.timestamp
 
-        out["updated_at"] = capo_wellarchitected.types.timestamp.deserialize_json(
-            data["UpdatedAt"]
+        out["updated_at"] = (
+            capo_wellarchitected.types._prelude.timestamp.deserialize_json(
+                data["UpdatedAt"]
+            )
         )
     if data.get("Lenses") is not None:
         import capo_wellarchitected.types.lens_metrics

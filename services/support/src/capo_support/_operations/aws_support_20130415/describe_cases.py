@@ -12,6 +12,7 @@ import capo_support._auth._signers
 import capo_support._auth._sigv4
 import capo_support._protocol.eventstream
 import capo_support.errors.case_id_not_found
+import capo_support.errors.dry_run_operation_exception
 import capo_support.errors.internal_server_error
 import capo_support.types.case_id_list
 import capo_support.types.case_list
@@ -29,6 +30,10 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "CaseIdNotFound":
             raise capo_support.errors.case_id_not_found.CaseIdNotFound.from_aws_json_1_1(
+                data, message
+            )
+        case "DryRunOperationException":
+            raise capo_support.errors.dry_run_operation_exception.DryRunOperationException.from_aws_json_1_1(
                 data, message
             )
         case "InternalServerError":

@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_ssm.types.activation_id
     import capo_ssm.types.architecture
+    import capo_ssm.types.availability_zone
     import capo_ssm.types.computer_name
     import capo_ssm.types.date_time
     import capo_ssm.types.iam_role
@@ -23,6 +24,7 @@ if TYPE_CHECKING:
     import capo_ssm.types.platform_type
     import capo_ssm.types.platform_version
     import capo_ssm.types.source_id
+    import capo_ssm.types.source_location
     import capo_ssm.types.source_type
     import capo_ssm.types.status_name
     import capo_ssm.types.string
@@ -84,7 +86,11 @@ class InstanceProperty(TypedDict, closed=True):
     source_id: NotRequired["capo_ssm.types.source_id.SourceId"]
     """<p>The ID of the source resource.</p>"""
     source_type: NotRequired["capo_ssm.types.source_type.SourceType"]
-    """<p>The type of the source resource.</p>"""
+    """<p>The type of the source resource. Valid values: <code>AWS::EC2::Instance</code> | <code>AWS::SSM::ManagedInstance</code> | <code>AWS::IoT::Thing</code> | <code>Microsoft.Compute/virtualMachines</code>.</p>"""
+    source_location: NotRequired["capo_ssm.types.source_location.SourceLocation"]
+    """<p>The location of the source resource in the third-party cloud environment.</p>"""
+    availability_zone: NotRequired["capo_ssm.types.availability_zone.AvailabilityZone"]
+    """<p>The Availability Zone where the managed node is located.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -184,6 +190,10 @@ def serialize_aws_json_1_1(value: InstanceProperty) -> dict:
         out["SourceType"] = capo_ssm.types.source_type.serialize_aws_json_1_1(
             value["source_type"]
         )
+    if "source_location" in value:
+        out["SourceLocation"] = value["source_location"]
+    if "availability_zone" in value:
+        out["AvailabilityZone"] = value["availability_zone"]
     return out
 
 
@@ -283,4 +293,8 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceProperty:
         out["source_type"] = capo_ssm.types.source_type.deserialize_aws_json_1_1(
             data["SourceType"]
         )
+    if data.get("SourceLocation") is not None:
+        out["source_location"] = data["SourceLocation"]
+    if data.get("AvailabilityZone") is not None:
+        out["availability_zone"] = data["AvailabilityZone"]
     return out

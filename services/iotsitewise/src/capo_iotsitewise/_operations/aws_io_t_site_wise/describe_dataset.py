@@ -16,10 +16,14 @@ import capo_iotsitewise.errors.internal_failure_exception
 import capo_iotsitewise.errors.invalid_request_exception
 import capo_iotsitewise.errors.resource_not_found_exception
 import capo_iotsitewise.errors.throttling_exception
+import capo_iotsitewise.types.dataset_config
+import capo_iotsitewise.types.dataset_enrichment
 import capo_iotsitewise.types.dataset_source
 import capo_iotsitewise.types.dataset_status
+import capo_iotsitewise.types.dataset_type_enum
 import capo_iotsitewise.types.describe_dataset_request
 import capo_iotsitewise.types.describe_dataset_response
+import capo_iotsitewise.types.metadata
 import capo_iotsitewise.types.timestamp
 from capo_iotsitewise._protocol.errors import parse_error_metadata_json
 from capo_iotsitewise._rule_engine._endpoint_rule_set import EndpointParams, resolve
@@ -116,6 +120,10 @@ def build_request(
     url = endpoint.url.rstrip("/") + "/datasets/{datasetId}"
     url = url.replace("{datasetId}", quote(input_["dataset_id"], safe=""))
     params: list[tuple[str, str]] = []
+    if "workspace_name" in input_:
+        params.append(("workspaceName", input_["workspace_name"]))
+    if "dataset_version" in input_:
+        params.append(("datasetVersion", input_["dataset_version"]))
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))

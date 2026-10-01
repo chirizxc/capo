@@ -51,7 +51,7 @@ class InstanceStatus(TypedDict, closed=True):
     application_status: NotRequired[
         "capo_ec2.types.application_status_summary.ApplicationStatusSummary"
     ]
-    """<p>Reports impaired functionality that stems from issues with applications running on the instance.</p>"""
+    """<p>Reports the application-level health status for the instance.</p>"""
 
 
 # --- ec2Query ser/de ---

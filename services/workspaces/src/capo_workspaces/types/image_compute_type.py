@@ -6,6 +6,7 @@ ImageComputeType: TypeAlias = Literal[
     "BASE",
     "GRAPHICS_G4DN",
     "GRAPHICS_G6",
+    "GRAPHICS_G7",
 ]
 
 

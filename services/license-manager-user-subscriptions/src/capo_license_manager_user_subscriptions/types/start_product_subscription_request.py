@@ -17,7 +17,7 @@ class StartProductSubscriptionRequest(TypedDict, closed=True):
     identity_provider: "capo_license_manager_user_subscriptions.types.identity_provider.IdentityProvider"
     """<p>An object that specifies details for the identity provider.</p>"""
     product: "str"
-    """<p>The name of the user-based subscription product.</p> <p>Valid values: <code>VISUAL_STUDIO_ENTERPRISE</code> | <code>VISUAL_STUDIO_PROFESSIONAL</code> | <code>OFFICE_PROFESSIONAL_PLUS</code> | <code>REMOTE_DESKTOP_SERVICES</code> </p>"""
+    """<p>The name of the user-based subscription product.</p> <p>Valid values: <code>VISUAL_STUDIO_ENTERPRISE</code> | <code>VISUAL_STUDIO_PROFESSIONAL</code> | <code>OFFICE_PROFESSIONAL_PLUS</code> | <code>OFFICE_STANDARD</code> | <code>REMOTE_DESKTOP_SERVICES</code> </p>"""
     domain: NotRequired["str"]
     """<p>The domain name of the Active Directory that contains the user for whom to start the product subscription.</p>"""
     tags: NotRequired["capo_license_manager_user_subscriptions.types.tags.Tags"]

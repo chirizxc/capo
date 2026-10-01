@@ -11,6 +11,7 @@ from typing_extensions import Never
 import capo_securityagent._auth._signers
 import capo_securityagent._auth._sigv4
 import capo_securityagent._protocol.eventstream
+import capo_securityagent.types.diff_source
 import capo_securityagent.types.job_status
 import capo_securityagent.types.start_code_review_job_input
 import capo_securityagent.types.start_code_review_job_output

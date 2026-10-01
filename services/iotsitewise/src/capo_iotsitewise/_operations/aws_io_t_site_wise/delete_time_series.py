@@ -99,6 +99,8 @@ def build_request(
         params.append(("assetId", input_["asset_id"]))
     if "property_id" in input_:
         params.append(("propertyId", input_["property_id"]))
+    if "workspace_name" in input_:
+        params.append(("workspaceName", input_["workspace_name"]))
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = json.dumps(
         capo_iotsitewise.types.delete_time_series_request.serialize_json(input_),

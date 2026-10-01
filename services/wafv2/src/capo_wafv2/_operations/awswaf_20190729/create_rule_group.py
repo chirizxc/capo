@@ -25,6 +25,7 @@ import capo_wafv2.errors.waf_unavailable_entity_exception
 import capo_wafv2.types.create_rule_group_request
 import capo_wafv2.types.create_rule_group_response
 import capo_wafv2.types.custom_response_bodies
+import capo_wafv2.types.monetization_config
 import capo_wafv2.types.rule_group_summary
 import capo_wafv2.types.rules
 import capo_wafv2.types.scope

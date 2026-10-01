@@ -22,6 +22,7 @@ import capo_bedrock_agentcore.types.recommendation_status
 import capo_bedrock_agentcore.types.recommendation_type
 import capo_bedrock_agentcore.types.start_recommendation_request
 import capo_bedrock_agentcore.types.start_recommendation_response
+import capo_bedrock_agentcore.types.tags_map
 from capo_bedrock_agentcore._protocol.errors import parse_error_metadata_json
 from capo_bedrock_agentcore._rule_engine._endpoint_rule_set import (
     EndpointParams,

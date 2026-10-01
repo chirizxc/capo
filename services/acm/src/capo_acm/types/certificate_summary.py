@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_acm.types.arn
     import capo_acm.types.certificate_export
+    import capo_acm.types.certificate_key_pair_origin
     import capo_acm.types.certificate_managed_by
     import capo_acm.types.certificate_status
     import capo_acm.types.certificate_type
@@ -50,7 +51,7 @@ class CertificateSummary(TypedDict, closed=True):
     in_use: NotRequired["capo_acm.types.nullable_boolean.NullableBoolean"]
     """<p>Indicates whether the certificate is currently in use by any Amazon Web Services resources.</p>"""
     exported: NotRequired["capo_acm.types.nullable_boolean.NullableBoolean"]
-    """<p>Indicates whether the certificate has been exported. This value exists only when the certificate type is <code>PRIVATE</code>.</p>"""
+    """<p>Indicates whether the certificate has been exported.</p>"""
     renewal_eligibility: NotRequired[
         "capo_acm.types.renewal_eligibility.RenewalEligibility"
     ]
@@ -71,6 +72,10 @@ class CertificateSummary(TypedDict, closed=True):
         "capo_acm.types.certificate_managed_by.CertificateManagedBy"
     ]
     """<p>Identifies the Amazon Web Services service that manages the certificate issued by ACM.</p>"""
+    certificate_key_pair_origin: NotRequired[
+        "capo_acm.types.certificate_key_pair_origin.CertificateKeyPairOrigin"
+    ]
+    """<p>The origin of the certificate's key pair.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -183,6 +188,14 @@ def serialize_aws_json_1_1(value: CertificateSummary) -> dict:
 
         out["ManagedBy"] = capo_acm.types.certificate_managed_by.serialize_aws_json_1_1(
             value["managed_by"]
+        )
+    if "certificate_key_pair_origin" in value:
+        import capo_acm.types.certificate_key_pair_origin
+
+        out["CertificateKeyPairOrigin"] = (
+            capo_acm.types.certificate_key_pair_origin.serialize_aws_json_1_1(
+                value["certificate_key_pair_origin"]
+            )
         )
     return out
 
@@ -299,6 +312,14 @@ def deserialize_aws_json_1_1(data: dict) -> CertificateSummary:
         out["managed_by"] = (
             capo_acm.types.certificate_managed_by.deserialize_aws_json_1_1(
                 data["ManagedBy"]
+            )
+        )
+    if data.get("CertificateKeyPairOrigin") is not None:
+        import capo_acm.types.certificate_key_pair_origin
+
+        out["certificate_key_pair_origin"] = (
+            capo_acm.types.certificate_key_pair_origin.deserialize_aws_json_1_1(
+                data["CertificateKeyPairOrigin"]
             )
         )
     return out

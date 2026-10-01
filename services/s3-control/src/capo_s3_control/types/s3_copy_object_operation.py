@@ -11,10 +11,13 @@ if TYPE_CHECKING:
     import capo_s3_control.types.kms_key_arn_string
     import capo_s3_control.types.non_empty_max_length1024_string
     import capo_s3_control.types.non_empty_max_length2048_string
+    import capo_s3_control.types.s3_annotation_directive
     import capo_s3_control.types.s3_canned_access_control_list
     import capo_s3_control.types.s3_checksum_algorithm
     import capo_s3_control.types.s3_grant_list
     import capo_s3_control.types.s3_metadata_directive
+    import capo_s3_control.types.s3_object_lock_event_hold
+    import capo_s3_control.types.s3_object_lock_event_hold_duration
     import capo_s3_control.types.s3_object_lock_legal_hold_status
     import capo_s3_control.types.s3_object_lock_mode
     import capo_s3_control.types.s3_object_metadata
@@ -41,6 +44,10 @@ class S3CopyObjectOperation(TypedDict, closed=True):
         "capo_s3_control.types.s3_metadata_directive.S3MetadataDirective"
     ]
     """<p></p>"""
+    annotation_directive: NotRequired[
+        "capo_s3_control.types.s3_annotation_directive.S3AnnotationDirective"
+    ]
+    """<p>Specifies whether the Batch Operations copy job copies object annotations from the source object or skips them. If this property isn't specified, <code>COPY</code> is the default behavior.</p> <p>Valid Values: <code>COPY | EXCLUDE</code> </p> <note> <p>This functionality is not supported by directory buckets.</p> </note>"""
     modified_since_constraint: NotRequired["capo_s3_control.types.time_stamp.TimeStamp"]
     """<p></p>"""
     new_object_metadata: NotRequired[
@@ -87,6 +94,14 @@ class S3CopyObjectOperation(TypedDict, closed=True):
         "capo_s3_control.types.s3_checksum_algorithm.S3ChecksumAlgorithm"
     ]
     r"""<p>Indicates the algorithm that you want Amazon S3 to use to create the checksum. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\"> Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.</p>"""
+    object_lock_event_hold: NotRequired[
+        "capo_s3_control.types.s3_object_lock_event_hold.S3ObjectLockEventHold"
+    ]
+    """<p>The event hold status to be applied to all objects in the Batch Operations copy job. Set to <code>ON</code> to enable an event hold or <code>OFF</code> to disable it.</p> <note> <p>This functionality is not supported by directory buckets.</p> </note>"""
+    object_lock_event_hold_duration: NotRequired[
+        "capo_s3_control.types.s3_object_lock_event_hold_duration.S3ObjectLockEventHoldDuration"
+    ]
+    """<p>The event hold duration to be applied to all objects in the Batch Operations copy job. The duration specifies how long the object remains protected after the event hold is released.</p> <note> <p>This functionality is not supported by directory buckets.</p> </note>"""
 
 
 # --- restXml ser/de ---
@@ -111,6 +126,12 @@ def serialize_xml(value: S3CopyObjectOperation, parent: Element, tag: str) -> No
 
         capo_s3_control.types.s3_metadata_directive.serialize_xml(
             value["metadata_directive"], el, "MetadataDirective"
+        )
+    if "annotation_directive" in value:
+        import capo_s3_control.types.s3_annotation_directive
+
+        capo_s3_control.types.s3_annotation_directive.serialize_xml(
+            value["annotation_directive"], el, "AnnotationDirective"
         )
     if "modified_since_constraint" in value:
         import capo_s3_control.types.time_stamp
@@ -178,6 +199,18 @@ def serialize_xml(value: S3CopyObjectOperation, parent: Element, tag: str) -> No
         capo_s3_control.types.s3_checksum_algorithm.serialize_xml(
             value["checksum_algorithm"], el, "ChecksumAlgorithm"
         )
+    if "object_lock_event_hold" in value:
+        import capo_s3_control.types.s3_object_lock_event_hold
+
+        capo_s3_control.types.s3_object_lock_event_hold.serialize_xml(
+            value["object_lock_event_hold"], el, "ObjectLockEventHold"
+        )
+    if "object_lock_event_hold_duration" in value:
+        import capo_s3_control.types.s3_object_lock_event_hold_duration
+
+        capo_s3_control.types.s3_object_lock_event_hold_duration.serialize_xml(
+            value["object_lock_event_hold_duration"], el, "ObjectLockEventHoldDuration"
+        )
 
 
 def deserialize_xml(el: Element) -> S3CopyObjectOperation:
@@ -210,6 +243,15 @@ def deserialize_xml(el: Element) -> S3CopyObjectOperation:
         out["metadata_directive"] = (
             capo_s3_control.types.s3_metadata_directive.deserialize_xml(
                 child_metadata_directive
+            )
+        )
+    child_annotation_directive = el.find("AnnotationDirective")
+    if child_annotation_directive is not None:
+        import capo_s3_control.types.s3_annotation_directive
+
+        out["annotation_directive"] = (
+            capo_s3_control.types.s3_annotation_directive.deserialize_xml(
+                child_annotation_directive
             )
         )
     child_modified_since_constraint = el.find("ModifiedSinceConstraint")
@@ -308,6 +350,24 @@ def deserialize_xml(el: Element) -> S3CopyObjectOperation:
         out["checksum_algorithm"] = (
             capo_s3_control.types.s3_checksum_algorithm.deserialize_xml(
                 child_checksum_algorithm
+            )
+        )
+    child_object_lock_event_hold = el.find("ObjectLockEventHold")
+    if child_object_lock_event_hold is not None:
+        import capo_s3_control.types.s3_object_lock_event_hold
+
+        out["object_lock_event_hold"] = (
+            capo_s3_control.types.s3_object_lock_event_hold.deserialize_xml(
+                child_object_lock_event_hold
+            )
+        )
+    child_object_lock_event_hold_duration = el.find("ObjectLockEventHoldDuration")
+    if child_object_lock_event_hold_duration is not None:
+        import capo_s3_control.types.s3_object_lock_event_hold_duration
+
+        out["object_lock_event_hold_duration"] = (
+            capo_s3_control.types.s3_object_lock_event_hold_duration.deserialize_xml(
+                child_object_lock_event_hold_duration
             )
         )
     return out

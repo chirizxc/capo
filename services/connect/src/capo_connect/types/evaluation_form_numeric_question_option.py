@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     import capo_connect.types.boolean
     import capo_connect.types.evaluation_form_question_answer_score
     import capo_connect.types.integer
+    import capo_connect.types.question_option_points_configuration
 
 
 class EvaluationFormNumericQuestionOption(TypedDict, closed=True):
@@ -24,6 +25,10 @@ class EvaluationFormNumericQuestionOption(TypedDict, closed=True):
         "capo_connect.types.automatic_fail_configuration.AutomaticFailConfiguration"
     ]
     """<p>A configuration for automatic fail.</p>"""
+    points_configuration: NotRequired[
+        "capo_connect.types.question_option_points_configuration.QuestionOptionPointsConfiguration"
+    ]
+    """<p>The points configuration for point-based scoring.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -39,6 +44,14 @@ def serialize_json(value: EvaluationFormNumericQuestionOption) -> dict:
         out["AutomaticFailConfiguration"] = (
             capo_connect.types.automatic_fail_configuration.serialize_json(
                 value["automatic_fail_configuration"]
+            )
+        )
+    if "points_configuration" in value:
+        import capo_connect.types.question_option_points_configuration
+
+        out["PointsConfiguration"] = (
+            capo_connect.types.question_option_points_configuration.serialize_json(
+                value["points_configuration"]
             )
         )
     return out
@@ -68,6 +81,14 @@ def deserialize_json(data: dict) -> EvaluationFormNumericQuestionOption:
         out["automatic_fail_configuration"] = (
             capo_connect.types.automatic_fail_configuration.deserialize_json(
                 data["AutomaticFailConfiguration"]
+            )
+        )
+    if data.get("PointsConfiguration") is not None:
+        import capo_connect.types.question_option_points_configuration
+
+        out["points_configuration"] = (
+            capo_connect.types.question_option_points_configuration.deserialize_json(
+                data["PointsConfiguration"]
             )
         )
     return out

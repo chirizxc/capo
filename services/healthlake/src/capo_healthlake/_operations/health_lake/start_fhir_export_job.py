@@ -12,6 +12,7 @@ import capo_healthlake._auth._signers
 import capo_healthlake._auth._sigv4
 import capo_healthlake._protocol.eventstream
 import capo_healthlake.errors.access_denied_exception
+import capo_healthlake.errors.failed_dependency_exception
 import capo_healthlake.errors.internal_server_exception
 import capo_healthlake.errors.resource_not_found_exception
 import capo_healthlake.errors.throttling_exception
@@ -32,6 +33,10 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "AccessDeniedException":
             raise capo_healthlake.errors.access_denied_exception.AccessDeniedException.from_aws_json_1_0(
+                data, message
+            )
+        case "FailedDependencyException":
+            raise capo_healthlake.errors.failed_dependency_exception.FailedDependencyException.from_aws_json_1_0(
                 data, message
             )
         case "InternalServerException":

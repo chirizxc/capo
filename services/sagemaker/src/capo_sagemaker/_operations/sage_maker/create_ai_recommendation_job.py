@@ -14,6 +14,7 @@ import capo_sagemaker._protocol.eventstream
 import capo_sagemaker.errors.resource_in_use
 import capo_sagemaker.errors.resource_limit_exceeded
 import capo_sagemaker.errors.resource_not_found
+import capo_sagemaker.types.ai_adapter_source
 import capo_sagemaker.types.ai_model_source
 import capo_sagemaker.types.ai_recommendation_compute_spec
 import capo_sagemaker.types.ai_recommendation_inference_specification

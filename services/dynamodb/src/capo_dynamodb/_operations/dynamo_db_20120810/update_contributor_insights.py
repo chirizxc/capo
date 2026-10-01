@@ -100,6 +100,7 @@ def build_request(
             AccountIdEndpointMode=options.account_id_endpoint_mode,
             ResourceArn=input_.get("table_name"),
             ResourceArnList=options.resource_arn_list,
+            IsSearchOperation=options.is_search_operation,
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + ""

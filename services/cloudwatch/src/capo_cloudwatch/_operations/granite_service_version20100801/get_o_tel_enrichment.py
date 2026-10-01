@@ -14,7 +14,9 @@ import capo_cloudwatch._auth._sigv4
 import capo_cloudwatch._protocol.eventstream
 import capo_cloudwatch.types.get_o_tel_enrichment_input
 import capo_cloudwatch.types.get_o_tel_enrichment_output
+import capo_cloudwatch.types.o_tel_enrichment_metric_selector_list
 import capo_cloudwatch.types.o_tel_enrichment_status
+import capo_cloudwatch.types.timestamp
 from capo_cloudwatch._protocol.errors import parse_error_metadata_json
 from capo_cloudwatch._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_cloudwatch._services._pipeline import AsyncOperationOptions, OperationOptions

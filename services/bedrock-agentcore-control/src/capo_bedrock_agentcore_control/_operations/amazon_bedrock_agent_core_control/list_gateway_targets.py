@@ -14,6 +14,7 @@ import capo_bedrock_agentcore_control._auth._sigv4
 import capo_bedrock_agentcore_control._protocol.eventstream
 import capo_bedrock_agentcore_control.errors.access_denied_exception
 import capo_bedrock_agentcore_control.errors.internal_server_exception
+import capo_bedrock_agentcore_control.errors.resource_not_found_exception
 import capo_bedrock_agentcore_control.errors.throttling_exception
 import capo_bedrock_agentcore_control.errors.validation_exception
 import capo_bedrock_agentcore_control.types.list_gateway_targets_request
@@ -41,6 +42,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "InternalServerException":
             raise capo_bedrock_agentcore_control.errors.internal_server_exception.InternalServerException.from_json(
+                data, message
+            )
+        case "ResourceNotFoundException":
+            raise capo_bedrock_agentcore_control.errors.resource_not_found_exception.ResourceNotFoundException.from_json(
                 data, message
             )
         case "ThrottlingException":

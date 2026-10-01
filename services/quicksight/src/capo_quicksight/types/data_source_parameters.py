@@ -18,10 +18,13 @@ if TYPE_CHECKING:
     import capo_quicksight.types.custom_connection_parameters
     import capo_quicksight.types.databricks_parameters
     import capo_quicksight.types.exasol_parameters
+    import capo_quicksight.types.fmkb_parameters
+    import capo_quicksight.types.google_drive_parameters
     import capo_quicksight.types.impala_parameters
     import capo_quicksight.types.jira_parameters
     import capo_quicksight.types.maria_db_parameters
     import capo_quicksight.types.my_sql_parameters
+    import capo_quicksight.types.one_drive_parameters
     import capo_quicksight.types.oracle_parameters
     import capo_quicksight.types.postgre_sql_parameters
     import capo_quicksight.types.presto_parameters
@@ -32,6 +35,7 @@ if TYPE_CHECKING:
     import capo_quicksight.types.s3_parameters
     import capo_quicksight.types.s3_tables_parameters
     import capo_quicksight.types.service_now_parameters
+    import capo_quicksight.types.share_point_parameters
     import capo_quicksight.types.snowflake_parameters
     import capo_quicksight.types.spark_parameters
     import capo_quicksight.types.sql_server_parameters
@@ -202,6 +206,26 @@ class _DataSourceParameters_QBusinessParameters(TypedDict, closed=True):
     )
 
 
+class _DataSourceParameters_SharePointParameters(TypedDict, closed=True):
+    SharePointParameters: (
+        "capo_quicksight.types.share_point_parameters.SharePointParameters"
+    )
+
+
+class _DataSourceParameters_GoogleDriveParameters(TypedDict, closed=True):
+    GoogleDriveParameters: (
+        "capo_quicksight.types.google_drive_parameters.GoogleDriveParameters"
+    )
+
+
+class _DataSourceParameters_OneDriveParameters(TypedDict, closed=True):
+    OneDriveParameters: "capo_quicksight.types.one_drive_parameters.OneDriveParameters"
+
+
+class _DataSourceParameters_FMKBParameters(TypedDict, closed=True):
+    FMKBParameters: "capo_quicksight.types.fmkb_parameters.FMKBParameters"
+
+
 DataSourceParameters: TypeAlias = (
     _DataSourceParameters_AmazonElasticsearchParameters
     | _DataSourceParameters_AthenaParameters
@@ -236,6 +260,10 @@ DataSourceParameters: TypeAlias = (
     | _DataSourceParameters_WebCrawlerParameters
     | _DataSourceParameters_ConfluenceParameters
     | _DataSourceParameters_QBusinessParameters
+    | _DataSourceParameters_SharePointParameters
+    | _DataSourceParameters_GoogleDriveParameters
+    | _DataSourceParameters_OneDriveParameters
+    | _DataSourceParameters_FMKBParameters
 )
 
 
@@ -505,6 +533,38 @@ def serialize_json(value: DataSourceParameters) -> dict:
                 value["QBusinessParameters"]
             )
         }
+    elif "SharePointParameters" in value:
+        import capo_quicksight.types.share_point_parameters
+
+        return {
+            "SharePointParameters": capo_quicksight.types.share_point_parameters.serialize_json(
+                value["SharePointParameters"]
+            )
+        }
+    elif "GoogleDriveParameters" in value:
+        import capo_quicksight.types.google_drive_parameters
+
+        return {
+            "GoogleDriveParameters": capo_quicksight.types.google_drive_parameters.serialize_json(
+                value["GoogleDriveParameters"]
+            )
+        }
+    elif "OneDriveParameters" in value:
+        import capo_quicksight.types.one_drive_parameters
+
+        return {
+            "OneDriveParameters": capo_quicksight.types.one_drive_parameters.serialize_json(
+                value["OneDriveParameters"]
+            )
+        }
+    elif "FMKBParameters" in value:
+        import capo_quicksight.types.fmkb_parameters
+
+        return {
+            "FMKBParameters": capo_quicksight.types.fmkb_parameters.serialize_json(
+                value["FMKBParameters"]
+            )
+        }
     else:
         raise SerializationError("DataSourceParameters: no variant present")
 
@@ -772,6 +832,38 @@ def deserialize_json(data: dict) -> DataSourceParameters:
         return {
             "QBusinessParameters": capo_quicksight.types.q_business_parameters.deserialize_json(
                 data["QBusinessParameters"]
+            )
+        }
+    elif data.get("SharePointParameters") is not None:
+        import capo_quicksight.types.share_point_parameters
+
+        return {
+            "SharePointParameters": capo_quicksight.types.share_point_parameters.deserialize_json(
+                data["SharePointParameters"]
+            )
+        }
+    elif data.get("GoogleDriveParameters") is not None:
+        import capo_quicksight.types.google_drive_parameters
+
+        return {
+            "GoogleDriveParameters": capo_quicksight.types.google_drive_parameters.deserialize_json(
+                data["GoogleDriveParameters"]
+            )
+        }
+    elif data.get("OneDriveParameters") is not None:
+        import capo_quicksight.types.one_drive_parameters
+
+        return {
+            "OneDriveParameters": capo_quicksight.types.one_drive_parameters.deserialize_json(
+                data["OneDriveParameters"]
+            )
+        }
+    elif data.get("FMKBParameters") is not None:
+        import capo_quicksight.types.fmkb_parameters
+
+        return {
+            "FMKBParameters": capo_quicksight.types.fmkb_parameters.deserialize_json(
+                data["FMKBParameters"]
             )
         }
     else:

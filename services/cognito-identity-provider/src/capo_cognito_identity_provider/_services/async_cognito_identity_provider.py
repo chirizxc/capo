@@ -42,6 +42,8 @@ if TYPE_CHECKING:
     import capo_cognito_identity_provider.types.admin_create_user_config_type
     import capo_cognito_identity_provider.types.admin_create_user_request
     import capo_cognito_identity_provider.types.admin_create_user_response
+    import capo_cognito_identity_provider.types.admin_delete_software_token_request
+    import capo_cognito_identity_provider.types.admin_delete_software_token_response
     import capo_cognito_identity_provider.types.admin_delete_user_attributes_request
     import capo_cognito_identity_provider.types.admin_delete_user_attributes_response
     import capo_cognito_identity_provider.types.admin_delete_user_request
@@ -54,6 +56,8 @@ if TYPE_CHECKING:
     import capo_cognito_identity_provider.types.admin_forget_device_request
     import capo_cognito_identity_provider.types.admin_get_device_request
     import capo_cognito_identity_provider.types.admin_get_device_response
+    import capo_cognito_identity_provider.types.admin_get_user_auth_factors_request
+    import capo_cognito_identity_provider.types.admin_get_user_auth_factors_response
     import capo_cognito_identity_provider.types.admin_get_user_request
     import capo_cognito_identity_provider.types.admin_get_user_response
     import capo_cognito_identity_provider.types.admin_initiate_auth_request
@@ -176,6 +180,8 @@ if TYPE_CHECKING:
     import capo_cognito_identity_provider.types.describe_resource_server_response
     import capo_cognito_identity_provider.types.describe_risk_configuration_request
     import capo_cognito_identity_provider.types.describe_risk_configuration_response
+    import capo_cognito_identity_provider.types.describe_terms_by_client_request
+    import capo_cognito_identity_provider.types.describe_terms_by_client_response
     import capo_cognito_identity_provider.types.describe_terms_request
     import capo_cognito_identity_provider.types.describe_terms_response
     import capo_cognito_identity_provider.types.describe_user_import_job_request
@@ -207,6 +213,8 @@ if TYPE_CHECKING:
     import capo_cognito_identity_provider.types.forgot_password_request
     import capo_cognito_identity_provider.types.forgot_password_response
     import capo_cognito_identity_provider.types.generate_secret
+    import capo_cognito_identity_provider.types.get_client_token_request
+    import capo_cognito_identity_provider.types.get_client_token_response
     import capo_cognito_identity_provider.types.get_csv_header_request
     import capo_cognito_identity_provider.types.get_csv_header_response
     import capo_cognito_identity_provider.types.get_device_request
@@ -217,6 +225,8 @@ if TYPE_CHECKING:
     import capo_cognito_identity_provider.types.get_identity_provider_by_identifier_response
     import capo_cognito_identity_provider.types.get_log_delivery_configuration_request
     import capo_cognito_identity_provider.types.get_log_delivery_configuration_response
+    import capo_cognito_identity_provider.types.get_provisioned_limit_request
+    import capo_cognito_identity_provider.types.get_provisioned_limit_response
     import capo_cognito_identity_provider.types.get_signing_certificate_request
     import capo_cognito_identity_provider.types.get_signing_certificate_response
     import capo_cognito_identity_provider.types.get_tokens_from_refresh_token_request
@@ -242,9 +252,11 @@ if TYPE_CHECKING:
     import capo_cognito_identity_provider.types.image_file_type
     import capo_cognito_identity_provider.types.initiate_auth_request
     import capo_cognito_identity_provider.types.initiate_auth_response
+    import capo_cognito_identity_provider.types.integer_type
     import capo_cognito_identity_provider.types.issuer_configuration_type
     import capo_cognito_identity_provider.types.key_configuration_type
     import capo_cognito_identity_provider.types.lambda_config_type
+    import capo_cognito_identity_provider.types.limit_definition_type
     import capo_cognito_identity_provider.types.links_type
     import capo_cognito_identity_provider.types.list_devices_request
     import capo_cognito_identity_provider.types.list_devices_response
@@ -285,6 +297,7 @@ if TYPE_CHECKING:
     import capo_cognito_identity_provider.types.o_auth_flows_type
     import capo_cognito_identity_provider.types.pagination_key
     import capo_cognito_identity_provider.types.pagination_key_type
+    import capo_cognito_identity_provider.types.password_hashing_algorithm_type
     import capo_cognito_identity_provider.types.password_type
     import capo_cognito_identity_provider.types.pool_query_limit_type
     import capo_cognito_identity_provider.types.precedence_type
@@ -367,6 +380,8 @@ if TYPE_CHECKING:
     import capo_cognito_identity_provider.types.update_identity_provider_response
     import capo_cognito_identity_provider.types.update_managed_login_branding_request
     import capo_cognito_identity_provider.types.update_managed_login_branding_response
+    import capo_cognito_identity_provider.types.update_provisioned_limit_request
+    import capo_cognito_identity_provider.types.update_provisioned_limit_response
     import capo_cognito_identity_provider.types.update_replica_status_type
     import capo_cognito_identity_provider.types.update_resource_server_request
     import capo_cognito_identity_provider.types.update_resource_server_response
@@ -848,6 +863,60 @@ class AsyncCognitoIdentityProviderClient:
         await response.response.aclose()
         return response.output
 
+    async def admin_delete_software_token(
+        self,
+        user_pool_id: "capo_cognito_identity_provider.types.user_pool_id_type.UserPoolIdType",
+        username: "capo_cognito_identity_provider.types.username_type.UsernameType",
+        *,
+        config_overrides: Optional[AsyncCognitoIdentityProviderClientConfig] = None,
+    ) -> "capo_cognito_identity_provider.types.admin_delete_software_token_response.AdminDeleteSoftwareTokenResponse":
+        r"""<p>Deletes a user's registered time-based one-time password (TOTP) multi-factor authentication (MFA) factor, also known as a software token. After this operation, the user can no longer sign in with TOTP MFA, and can register a new TOTP factor with <code>AssociateSoftwareToken</code>. Use this operation when a user loses access to their TOTP-generating device, for example, a lost or reset phone, and needs to register a new one.</p> <note> <p>Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding IAM permission in a policy.</p> <p class=\"title\"> <b>Learn more</b> </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html\">Signing Amazon Web Services API Requests</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html\">Using the Amazon Cognito user pools API and user pool endpoints</a> </p> </li> </ul> </note>
+
+        Args:
+            user_pool_id: <p>The ID of the user pool where you want to delete the user's software token.</p>
+            username: <p>The name of the user that you want to query or modify. The value of this parameter is typically your user's username, but it can be any of their alias attributes. If <code>username</code> isn't an alias attribute in your user pool, this value must be the <code>sub</code> of a local user or the username of a user from a third-party IdP.</p>
+
+        Raises:
+            capo_cognito_identity_provider.errors.internal_error_exception.InternalErrorException: <p>This exception is thrown when Amazon Cognito encounters an internal error.</p>
+            capo_cognito_identity_provider.errors.invalid_parameter_exception.InvalidParameterException: <p>This exception is thrown when the Amazon Cognito service encounters an invalid parameter.</p>
+            capo_cognito_identity_provider.errors.not_authorized_exception.NotAuthorizedException: <p>This exception is thrown when a user isn't authorized.</p>
+            capo_cognito_identity_provider.errors.operation_not_enabled_exception.OperationNotEnabledException: <p>This exception is thrown when an operation is not available in the current region or for the current user pool configuration. This can occur when attempting to perform operations that are not supported in secondary replica regions.</p>
+            capo_cognito_identity_provider.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when the Amazon Cognito service can't find the requested resource.</p>
+            capo_cognito_identity_provider.errors.too_many_requests_exception.TooManyRequestsException: <p>This exception is thrown when the user has made too many requests for a given operation.</p>
+            capo_cognito_identity_provider.errors.user_not_confirmed_exception.UserNotConfirmedException: <p>This exception is thrown when a user isn't confirmed successfully.</p>
+            capo_cognito_identity_provider.errors.user_not_found_exception.UserNotFoundException: <p>This exception is thrown when a user isn't found.</p>
+            capo_cognito_identity_provider.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_cognito_identity_provider.types.admin_delete_software_token_request.AdminDeleteSoftwareTokenRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_cognito_identity_provider.types.admin_delete_software_token_response.AdminDeleteSoftwareTokenResponse"
+        ]:
+            import capo_cognito_identity_provider._operations.aws_cognito_identity_provider_service.admin_delete_software_token
+
+            (
+                output,
+                http_response,
+            ) = await capo_cognito_identity_provider._operations.aws_cognito_identity_provider_service.admin_delete_software_token.async_admin_delete_software_token(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cognito_identity_provider.types.admin_delete_software_token_request.AdminDeleteSoftwareTokenRequest = {
+            "user_pool_id": user_pool_id,
+            "username": username,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def admin_delete_user(
         self,
         user_pool_id: "capo_cognito_identity_provider.types.user_pool_id_type.UserPoolIdType",
@@ -1279,6 +1348,59 @@ class AsyncCognitoIdentityProviderClient:
         await response.response.aclose()
         return response.output
 
+    async def admin_get_user_auth_factors(
+        self,
+        user_pool_id: "capo_cognito_identity_provider.types.user_pool_id_type.UserPoolIdType",
+        username: "capo_cognito_identity_provider.types.username_type.UsernameType",
+        *,
+        config_overrides: Optional[AsyncCognitoIdentityProviderClientConfig] = None,
+    ) -> "capo_cognito_identity_provider.types.admin_get_user_auth_factors_response.AdminGetUserAuthFactorsResponse":
+        r"""<p>Lists the authentication options for a user in a user pool. Returns the following:</p> <ol> <li> <p>The user's multi-factor authentication (MFA) preferences.</p> </li> <li> <p>The user's options for choice-based authentication with the <code>USER_AUTH</code> flow.</p> </li> </ol> <note> <p>Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding IAM permission in a policy.</p> <p class=\"title\"> <b>Learn more</b> </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html\">Signing Amazon Web Services API Requests</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html\">Using the Amazon Cognito user pools API and user pool endpoints</a> </p> </li> </ul> </note>
+
+        Args:
+            user_pool_id: <p>The ID of the user pool where you want to get information about the user's authentication factors.</p>
+            username: <p>The name of the user that you want to query or modify. The value of this parameter is typically your user's username, but it can be any of their alias attributes. If <code>username</code> isn't an alias attribute in your user pool, this value must be the <code>sub</code> of a local user or the username of a user from a third-party IdP.</p>
+
+        Raises:
+            capo_cognito_identity_provider.errors.internal_error_exception.InternalErrorException: <p>This exception is thrown when Amazon Cognito encounters an internal error.</p>
+            capo_cognito_identity_provider.errors.invalid_parameter_exception.InvalidParameterException: <p>This exception is thrown when the Amazon Cognito service encounters an invalid parameter.</p>
+            capo_cognito_identity_provider.errors.not_authorized_exception.NotAuthorizedException: <p>This exception is thrown when a user isn't authorized.</p>
+            capo_cognito_identity_provider.errors.operation_not_enabled_exception.OperationNotEnabledException: <p>This exception is thrown when an operation is not available in the current region or for the current user pool configuration. This can occur when attempting to perform operations that are not supported in secondary replica regions.</p>
+            capo_cognito_identity_provider.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when the Amazon Cognito service can't find the requested resource.</p>
+            capo_cognito_identity_provider.errors.too_many_requests_exception.TooManyRequestsException: <p>This exception is thrown when the user has made too many requests for a given operation.</p>
+            capo_cognito_identity_provider.errors.user_not_found_exception.UserNotFoundException: <p>This exception is thrown when a user isn't found.</p>
+            capo_cognito_identity_provider.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_cognito_identity_provider.types.admin_get_user_auth_factors_request.AdminGetUserAuthFactorsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_cognito_identity_provider.types.admin_get_user_auth_factors_response.AdminGetUserAuthFactorsResponse"
+        ]:
+            import capo_cognito_identity_provider._operations.aws_cognito_identity_provider_service.admin_get_user_auth_factors
+
+            (
+                output,
+                http_response,
+            ) = await capo_cognito_identity_provider._operations.aws_cognito_identity_provider_service.admin_get_user_auth_factors.async_admin_get_user_auth_factors(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cognito_identity_provider.types.admin_get_user_auth_factors_request.AdminGetUserAuthFactorsRequest = {
+            "user_pool_id": user_pool_id,
+            "username": username,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def admin_initiate_auth(
         self,
         user_pool_id: "capo_cognito_identity_provider.types.user_pool_id_type.UserPoolIdType",
@@ -1388,7 +1510,7 @@ class AsyncCognitoIdentityProviderClient:
 
         Args:
             user_pool_id: <p>The ID of the user pool where you want to link a federated identity.</p>
-            destination_user: <p>The existing user in the user pool that you want to assign to the external IdP user account. This user can be a local (Username + Password) Amazon Cognito user pools user or a federated user (for example, a SAML or Facebook user). If the user doesn't exist, Amazon Cognito generates an exception. Amazon Cognito returns this user when the new user (with the linked IdP attribute) signs in.</p> <p>For a native username + password user, the <code>ProviderAttributeValue</code> for the <code>DestinationUser</code> should be the username in the user pool. For a federated user, it should be the provider-specific <code>user_id</code>.</p> <p>The <code>ProviderAttributeName</code> of the <code>DestinationUser</code> is ignored.</p> <p>The <code>ProviderName</code> should be set to <code>Cognito</code> for users in Cognito user pools.</p> <important> <p>All attributes in the DestinationUser profile must be mutable. If you have assigned the user any immutable custom attributes, the operation won't succeed.</p> </important>
+            destination_user: <p>The existing user in the user pool that you want to assign to the external IdP user account. This user can be a local (Username + Password) Amazon Cognito user pools user or a federated user (for example, a SAML or Facebook user). If the user doesn't exist, Amazon Cognito generates an exception. Amazon Cognito returns this user when the new user (with the linked IdP attribute) signs in.</p> <p>For a native username + password user, the <code>ProviderAttributeValue</code> for the <code>DestinationUser</code> should be the username in the user pool. For a federated user, it should be the provider-specific <code>user_id</code>.</p> <p>The <code>ProviderAttributeName</code> of the <code>DestinationUser</code> is ignored.</p> <p>The <code>ProviderName</code> should be set to <code>Cognito</code> for users in Cognito user pools.</p>
             source_user: <p>An external IdP account for a user who doesn't exist yet in the user pool. This user must be a federated user (for example, a SAML or Facebook user), not another native user.</p> <p>If the <code>SourceUser</code> is using a federated social IdP, such as Facebook, Google, or Login with Amazon, you must set the <code>ProviderAttributeName</code> to <code>Cognito_Subject</code>. For social IdPs, the <code>ProviderName</code> will be <code>Facebook</code>, <code>Google</code>, or <code>LoginWithAmazon</code>, and Amazon Cognito will automatically parse the Facebook, Google, and Login with Amazon tokens for <code>id</code>, <code>sub</code>, and <code>user_id</code>, respectively. The <code>ProviderAttributeValue</code> for the user must be the same value as the <code>id</code>, <code>sub</code>, or <code>user_id</code> value found in the social IdP token.</p> <p>For OIDC, the <code>ProviderAttributeName</code> can be any mapped value from a claim in the ID token, or that your app retrieves from the <code>userInfo</code> endpoint. For SAML, the <code>ProviderAttributeName</code> can be any mapped value from a claim in the SAML assertion.</p> <p>The following additional considerations apply to <code>SourceUser</code> for OIDC and SAML providers.</p> <ul> <li> <p>You must map the claim to a user pool attribute in your IdP configuration, and set the user pool attribute name as the value of <code>ProviderAttributeName</code> in your <code>AdminLinkProviderForUser</code> request. For example, <code>email</code>.</p> </li> <li> <p>When you set <code>ProviderAttributeName</code> to <code>Cognito_Subject</code>, Amazon Cognito will automatically parse the default unique identifier found in the subject from the IdP token.</p> </li> </ul>
 
         Raises:
@@ -3163,6 +3285,9 @@ class AsyncCognitoIdentityProviderClient:
         cloud_watch_logs_role_arn: "capo_cognito_identity_provider.types.arn_type.ArnType",
         *,
         config_overrides: Optional[AsyncCognitoIdentityProviderClientConfig] = None,
+        password_hashing_algorithm: Optional[
+            "capo_cognito_identity_provider.types.password_hashing_algorithm_type.PasswordHashingAlgorithmType"
+        ] = None,
     ) -> "capo_cognito_identity_provider.types.create_user_import_job_response.CreateUserImportJobResponse":
         r"""<p>Creates a user import job. You can import users into user pools from a comma-separated values (CSV) file without adding Amazon Cognito MAU costs to your Amazon Web Services bill.</p> <note> <p>Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding IAM permission in a policy.</p> <p class=\"title\"> <b>Learn more</b> </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html\">Signing Amazon Web Services API Requests</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html\">Using the Amazon Cognito user pools API and user pool endpoints</a> </p> </li> </ul> </note>
 
@@ -3170,6 +3295,7 @@ class AsyncCognitoIdentityProviderClient:
             job_name: <p>A friendly name for the user import job.</p>
             user_pool_id: <p>The ID of the user pool that you want to import users into.</p>
             cloud_watch_logs_role_arn: <p>You must specify an IAM role that has permission to log import-job results to Amazon CloudWatch Logs. This parameter is the ARN of that role.</p>
+            password_hashing_algorithm: <p>The password hashing algorithm used to generate the hashes in the CSV file for this import job.</p> <p>Valid values: <code>BCRYPT</code> | <code>SCRYPT</code> | <code>ARGON2ID</code> | <code>PBKDF2_SHA256</code> </p>
 
         Raises:
             capo_cognito_identity_provider.errors.internal_error_exception.InternalErrorException: <p>This exception is thrown when Amazon Cognito encounters an internal error.</p>
@@ -3204,6 +3330,8 @@ class AsyncCognitoIdentityProviderClient:
             "user_pool_id": user_pool_id,
             "cloud_watch_logs_role_arn": cloud_watch_logs_role_arn,
         }
+        if password_hashing_algorithm is not None:
+            input_["password_hashing_algorithm"] = password_hashing_algorithm
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -3309,7 +3437,7 @@ class AsyncCognitoIdentityProviderClient:
             email_verification_subject: <p>This parameter is no longer used.</p>
             verification_message_template: <p>The template for the verification message that your user pool delivers to users who set an email address or phone number attribute.</p> <p>Set the email message type that corresponds to your <code>DefaultEmailOption</code> selection. For <code>CONFIRM_WITH_LINK</code>, specify an <code>EmailMessageByLink</code> and leave <code>EmailMessage</code> blank. For <code>CONFIRM_WITH_CODE</code>, specify an <code>EmailMessage</code> and leave <code>EmailMessageByLink</code> blank. When you supply both parameters with either choice, Amazon Cognito returns an error.</p>
             sms_authentication_message: <p>The contents of the SMS message that your user pool sends to users in SMS OTP and MFA authentication.</p>
-            mfa_configuration: <p>Sets multi-factor authentication (MFA) to be on, off, or optional. When <code>ON</code>, all users must set up MFA before they can sign in. When <code>OPTIONAL</code>, your application must make a client-side determination of whether a user wants to register an MFA device. For user pools with adaptive authentication with threat protection, choose <code>OPTIONAL</code>.</p> <p>When <code>MfaConfiguration</code> is <code>OPTIONAL</code>, managed login doesn't automatically prompt users to set up MFA. Amazon Cognito generates MFA prompts in API responses and in managed login for users who have chosen and configured a preferred MFA factor.</p>
+            mfa_configuration: <p>Sets multi-factor authentication (MFA) to be on, off, or optional. When <code>ON</code>, all users must set up MFA before they can sign in. When <code>OPTIONAL</code>, your application must make a client-side determination of whether a user wants to register an MFA device. For user pools with adaptive authentication with threat protection, choose <code>OPTIONAL</code>.</p> <p>When <code>MfaConfiguration</code> is <code>OPTIONAL</code>, managed login doesn't automatically prompt users to set up MFA. Amazon Cognito generates MFA prompts in API responses and in managed login for users who have chosen and configured a preferred MFA factor.</p> <p>The <code>CreateUserPool</code> operation supports only SMS MFA configuration. If you set <code>MfaConfiguration</code> to either of these values, include an <code>SmsConfiguration</code> in the same request:</p> <ul> <li> <p> <code>ON</code> – Requires MFA for all users</p> </li> <li> <p> <code>OPTIONAL</code> – Makes MFA optional for each user</p> </li> </ul> <p>If you omit <code>SmsConfiguration</code>, the operation returns an <code>InvalidParameterException</code>. To configure TOTP or email MFA, use the <a href=\"https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SetUserPoolMfaConfig.html\">SetUserPoolMfaConfig</a> operation. You can also use <code>SetUserPoolMfaConfig</code> to add MFA factors later.</p>
             user_attribute_update_settings: <p>The settings for updates to user attributes. These settings include the property <code>AttributesRequireVerificationBeforeUpdate</code>, a user-pool setting that tells Amazon Cognito how to handle changes to the value of your users' email address and phone number attributes. For more information, see <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates\"> Verifying updates to email addresses and phone numbers</a>.</p>
             device_configuration: <p>The device-remembering configuration for a user pool. Device remembering or device tracking is a \"Remember me on this device\" option for user pools that perform authentication with the device key of a trusted device in the back end, instead of a user-provided MFA code. For more information about device authentication, see <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html\">Working with user devices in your user pool</a>. A null value indicates that you have deactivated device remembering in your user pool.</p> <note> <p>When you provide a value for any <code>DeviceConfiguration</code> field, you activate the Amazon Cognito device-remembering feature. For more information, see <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html\">Working with devices</a>.</p> </note>
             email_configuration: <p>The email configuration of your user pool. The email configuration type sets your preferred sending method, Amazon Web Services Region, and sender for messages from your user pool.</p>
@@ -3642,7 +3770,7 @@ class AsyncCognitoIdentityProviderClient:
         Args:
             domain: <p>The domain string. For custom domains, this is the fully-qualified domain name, such as <code>auth.example.com</code>. For prefix domains, this is the prefix alone, such as <code>myprefix</code>. A prefix value of <code>myprefix</code> for a user pool in the <code>us-east-1</code> Region results in a domain of <code>myprefix.auth.us-east-1.amazoncognito.com</code>.</p>
             user_pool_id: <p>The ID of the user pool where you want to add a domain.</p>
-            managed_login_version: <p>The version of managed login branding that you want to apply to your domain. A value of <code>1</code> indicates hosted UI (classic) and a version of <code>2</code> indicates managed login.</p> <p>Managed login requires that your user pool be configured for any <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-sign-in-feature-plans.html\">feature plan</a> other than <code>Lite</code>.</p>
+            managed_login_version: <p>The version of managed login branding that you want to apply to your domain. A value of <code>1</code> indicates hosted UI (classic) and a version of <code>2</code> indicates managed login.</p> <p>Managed login requires that your user pool be configured for any <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-sign-in-feature-plans.html\">feature plan</a> other than <code>Lite</code>.</p> <p>A <code>ManagedLoginVersion</code> value of <code>2</code> does not activate managed login pages for your app client. When you create an app client programmatically, your app client has no branding style. To use managed login, create a branding style using the <a href=\"https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateManagedLoginBranding.html\">CreateManagedLoginBranding</a> operation. When you use the console, Amazon Cognito assigns a default branding style automatically. When you use the API or an SDK, you must create a branding style yourself.</p>
             custom_domain_config: <p>The configuration for a custom domain. Configures your domain with an Certificate Manager certificate in the <code>us-east-1</code> Region.</p> <p>Provide this parameter only if you want to use a <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-add-custom-domain.html\">custom domain</a> for your user pool. Otherwise, you can omit this parameter and use a <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-assign-domain-prefix.html\">prefix domain</a> instead.</p> <p>When you create a custom domain, the passkey RP ID defaults to the custom domain. If you had a prefix domain active, this will cause passkey integration for your prefix domain to stop working due to a mismatch in RP ID. To keep the prefix domain passkey integration working, you can explicitly set RP ID to the prefix domain.</p>
             routing: <p>The configuration of routing for requests to the domain for replicas of a replicated user pool. The routing configuration is currently only supported for custom domains.</p>
 
@@ -4765,6 +4893,61 @@ class AsyncCognitoIdentityProviderClient:
         await response.response.aclose()
         return response.output
 
+    async def describe_terms_by_client(
+        self,
+        client_id: "capo_cognito_identity_provider.types.client_id_type.ClientIdType",
+        user_pool_id: "capo_cognito_identity_provider.types.user_pool_id_type.UserPoolIdType",
+        terms_name: "capo_cognito_identity_provider.types.terms_name_type.TermsNameType",
+        *,
+        config_overrides: Optional[AsyncCognitoIdentityProviderClientConfig] = None,
+    ) -> "capo_cognito_identity_provider.types.describe_terms_by_client_response.DescribeTermsByClientResponse":
+        r"""<p>Returns details for the terms documents that are associated with an app client, identified by the app client ID, user pool ID, and terms name. For more information, see <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-managed-login.html#managed-login-terms-documents\">Terms documents</a>.</p> <p>To call <code>DescribeTermsByClient</code>, you must have the <code>cognito-idp:DescribeTermsByClient</code> Identity and Access Management (IAM) permission. This operation additionally validates your permission for <code>cognito-idp:DescribeTerms</code>, the action for . As a result, an IAM policy that denies <code>cognito-idp:DescribeTerms</code> also denies requests to <code>DescribeTermsByClient</code>.</p> <note> <p>Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding IAM permission in a policy.</p> <p class=\"title\"> <b>Learn more</b> </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html\">Signing Amazon Web Services API Requests</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html\">Using the Amazon Cognito user pools API and user pool endpoints</a> </p> </li> </ul> </note>
+
+        Args:
+            client_id: <p>The ID of the app client that the terms documents are associated with.</p>
+            user_pool_id: <p>The ID of the user pool that contains the terms documents that you want to describe.</p>
+            terms_name: <p>The name of the terms documents that you want to describe.</p>
+
+        Raises:
+            capo_cognito_identity_provider.errors.internal_error_exception.InternalErrorException: <p>This exception is thrown when Amazon Cognito encounters an internal error.</p>
+            capo_cognito_identity_provider.errors.invalid_parameter_exception.InvalidParameterException: <p>This exception is thrown when the Amazon Cognito service encounters an invalid parameter.</p>
+            capo_cognito_identity_provider.errors.not_authorized_exception.NotAuthorizedException: <p>This exception is thrown when a user isn't authorized.</p>
+            capo_cognito_identity_provider.errors.operation_not_enabled_exception.OperationNotEnabledException: <p>This exception is thrown when an operation is not available in the current region or for the current user pool configuration. This can occur when attempting to perform operations that are not supported in secondary replica regions.</p>
+            capo_cognito_identity_provider.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when the Amazon Cognito service can't find the requested resource.</p>
+            capo_cognito_identity_provider.errors.too_many_requests_exception.TooManyRequestsException: <p>This exception is thrown when the user has made too many requests for a given operation.</p>
+            capo_cognito_identity_provider.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_cognito_identity_provider.types.describe_terms_by_client_request.DescribeTermsByClientRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_cognito_identity_provider.types.describe_terms_by_client_response.DescribeTermsByClientResponse"
+        ]:
+            import capo_cognito_identity_provider._operations.aws_cognito_identity_provider_service.describe_terms_by_client
+
+            (
+                output,
+                http_response,
+            ) = await capo_cognito_identity_provider._operations.aws_cognito_identity_provider_service.describe_terms_by_client.async_describe_terms_by_client(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cognito_identity_provider.types.describe_terms_by_client_request.DescribeTermsByClientRequest = {
+            "client_id": client_id,
+            "user_pool_id": user_pool_id,
+            "terms_name": terms_name,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def describe_user_import_job(
         self,
         user_pool_id: "capo_cognito_identity_provider.types.user_pool_id_type.UserPoolIdType",
@@ -4925,7 +5108,7 @@ class AsyncCognitoIdentityProviderClient:
         *,
         config_overrides: Optional[AsyncCognitoIdentityProviderClientConfig] = None,
     ) -> "capo_cognito_identity_provider.types.describe_user_pool_domain_response.DescribeUserPoolDomainResponse":
-        r"""<p>Given a user pool domain name, returns information about the domain configuration.</p> <note> <p>Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding IAM permission in a policy.</p> <p class=\"title\"> <b>Learn more</b> </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html\">Signing Amazon Web Services API Requests</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html\">Using the Amazon Cognito user pools API and user pool endpoints</a> </p> </li> </ul> </note>
+        r"""<p>Given a user pool domain name, returns information about the domain configuration.</p> <note> <p>This operation doesn't return results when you query a prefix domain in a secondary Region. Prefix domains are Region-specific and can only be described in the Region where they were created. To describe a prefix domain for a replica user pool, make the request to the primary Region's endpoint.</p> </note> <note> <p>Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding IAM permission in a policy.</p> <p class=\"title\"> <b>Learn more</b> </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html\">Signing Amazon Web Services API Requests</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html\">Using the Amazon Cognito user pools API and user pool endpoints</a> </p> </li> </ul> </note>
 
         Args:
             domain: <p>The domain that you want to describe. For custom domains, this is the fully-qualified domain name, such as <code>auth.example.com</code>. For Amazon Cognito prefix domains, this is the prefix alone, such as <code>auth</code>.</p>
@@ -5100,6 +5283,77 @@ class AsyncCognitoIdentityProviderClient:
             input_["user_context_data"] = user_context_data
         if analytics_metadata is not None:
             input_["analytics_metadata"] = analytics_metadata
+        if client_metadata is not None:
+            input_["client_metadata"] = client_metadata
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_client_token(
+        self,
+        client_id: "capo_cognito_identity_provider.types.client_id_type.ClientIdType",
+        secret: "capo_cognito_identity_provider.types.client_secret_type.ClientSecretType",
+        *,
+        config_overrides: Optional[AsyncCognitoIdentityProviderClientConfig] = None,
+        scopes: Optional[
+            "capo_cognito_identity_provider.types.scope_list_type.ScopeListType"
+        ] = None,
+        client_metadata: Optional[
+            "capo_cognito_identity_provider.types.client_metadata_type.ClientMetadataType"
+        ] = None,
+    ) -> "capo_cognito_identity_provider.types.get_client_token_response.GetClientTokenResponse":
+        r"""<p>Issues an access token for machine-to-machine (M2M) authorization. Your app client provides its client ID and secret, and receives an access token that authorizes requests to your resource servers. <code>GetClientToken</code> provides the same functionality as the OAuth2 client-credentials grant; both authorize an application rather than a user.</p> <p>To use this operation, you must configure the app client with a client secret and enable the <code>ALLOW_CLIENT_TOKEN_AUTH</code> authentication flow. The <code>ALLOW_CLIENT_TOKEN_AUTH</code> flow is mutually exclusive with user authentication flows. It must be the only authentication flow that you configure for the app client. For more information, see <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-define-resource-servers.html\">Scopes, M2M, and resource servers</a>.</p> <note> <p>Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies in requests for this API operation. For this operation, you can't use IAM credentials to authorize requests, and you can't grant IAM permissions in policies. For more information about authorization models in Amazon Cognito, see <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html\">Using the Amazon Cognito user pools API and user pool endpoints</a>.</p> </note>
+
+        Args:
+            client_id: <p>The ID of the app client that requests the access token. The app client must have a client secret and the <code>ALLOW_CLIENT_TOKEN_AUTH</code> authentication flow.</p>
+            secret: <p>An active secret for the app client.</p>
+            scopes: <p>The custom scopes to authorize in the access token, in the format <code>resource-server-identifier/scope-name</code>. Each scope must belong to a resource server in your user pool. If you don't specify any scopes, Amazon Cognito authorizes the scopes that are configured for the app client.</p>
+            client_metadata: <p>A map of custom key-value pairs that you can provide as input for any custom workflows that this action triggers. You create custom workflows by assigning Lambda functions to user pool triggers.</p> <p>When Amazon Cognito invokes any of these functions, it passes a JSON payload, which the function receives as input. This payload contains a <code>clientMetadata</code> attribute that provides the data that you assigned to the ClientMetadata parameter in your request. In your function code, you can process the <code>clientMetadata</code> value to enhance your workflow for your specific needs.</p> <p>To review the Lambda trigger types that Amazon Cognito invokes at runtime with API requests, see <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-working-with-lambda-triggers.html#lambda-triggers-by-event\"> Connecting API actions to Lambda triggers</a> in the <i>Amazon Cognito Developer Guide</i>.</p> <note> <p>When you use the <code>ClientMetadata</code> parameter, note that Amazon Cognito won't do the following:</p> <ul> <li> <p>Store the <code>ClientMetadata</code> value. This data is available only to Lambda triggers that are assigned to a user pool to support custom workflows. If your user pool configuration doesn't include triggers, the <code>ClientMetadata</code> parameter serves no purpose.</p> </li> <li> <p>Validate the <code>ClientMetadata</code> value.</p> </li> <li> <p>Encrypt the <code>ClientMetadata</code> value. Don't send sensitive information in this parameter.</p> </li> </ul> </note>
+
+        Raises:
+            capo_cognito_identity_provider.errors.forbidden_exception.ForbiddenException: <p>This exception is thrown when WAF doesn't allow your request based on a web ACL that's associated with your user pool.</p>
+            capo_cognito_identity_provider.errors.internal_error_exception.InternalErrorException: <p>This exception is thrown when Amazon Cognito encounters an internal error.</p>
+            capo_cognito_identity_provider.errors.invalid_parameter_exception.InvalidParameterException: <p>This exception is thrown when the Amazon Cognito service encounters an invalid parameter.</p>
+            capo_cognito_identity_provider.errors.not_authorized_exception.NotAuthorizedException: <p>This exception is thrown when a user isn't authorized.</p>
+            capo_cognito_identity_provider.errors.operation_not_enabled_exception.OperationNotEnabledException: <p>This exception is thrown when an operation is not available in the current region or for the current user pool configuration. This can occur when attempting to perform operations that are not supported in secondary replica regions.</p>
+            capo_cognito_identity_provider.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when the Amazon Cognito service can't find the requested resource.</p>
+            capo_cognito_identity_provider.errors.too_many_requests_exception.TooManyRequestsException: <p>This exception is thrown when the user has made too many requests for a given operation.</p>
+            capo_cognito_identity_provider.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Example – Get an access token for machine-to-machine authorization
+            The following example gets an access token for the app client 1example23456789 with the custom scope solar-system-data/asteroids.add.
+
+            >>> await client.get_client_token(client_id='1example23456789', secret='exampleClientSecret123EXAMPLE', scopes=['solar-system-data/asteroids.add'])
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_cognito_identity_provider.types.get_client_token_request.GetClientTokenRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_cognito_identity_provider.types.get_client_token_response.GetClientTokenResponse"
+        ]:
+            import capo_cognito_identity_provider._operations.aws_cognito_identity_provider_service.get_client_token
+
+            (
+                output,
+                http_response,
+            ) = await capo_cognito_identity_provider._operations.aws_cognito_identity_provider_service.get_client_token.async_get_client_token(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cognito_identity_provider.types.get_client_token_request.GetClientTokenRequest = {
+            "client_id": client_id,
+            "secret": secret,
+        }
+        if scopes is not None:
+            input_["scopes"] = scopes
         if client_metadata is not None:
             input_["client_metadata"] = client_metadata
 
@@ -5361,6 +5615,60 @@ class AsyncCognitoIdentityProviderClient:
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_cognito_identity_provider.types.get_log_delivery_configuration_request.GetLogDeliveryConfigurationRequest = {
             "user_pool_id": user_pool_id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_provisioned_limit(
+        self,
+        limit_definition: "capo_cognito_identity_provider.types.limit_definition_type.LimitDefinitionType",
+        *,
+        config_overrides: Optional[AsyncCognitoIdentityProviderClientConfig] = None,
+    ) -> "capo_cognito_identity_provider.types.get_provisioned_limit_response.GetProvisionedLimitResponse":
+        r"""<p>Returns the current provisioned limit for a specific API category.</p> <note> <p>Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding IAM permission in a policy.</p> <p class=\"title\"> <b>Learn more</b> </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html\">Signing Amazon Web Services API Requests</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html\">Using the Amazon Cognito user pools API and user pool endpoints</a> </p> </li> </ul> </note>
+
+        Args:
+            limit_definition: <p>The limit to retrieve. Specify the limit class and the attributes that identify the limit.</p>
+
+        Raises:
+            capo_cognito_identity_provider.errors.internal_error_exception.InternalErrorException: <p>This exception is thrown when Amazon Cognito encounters an internal error.</p>
+            capo_cognito_identity_provider.errors.invalid_parameter_exception.InvalidParameterException: <p>This exception is thrown when the Amazon Cognito service encounters an invalid parameter.</p>
+            capo_cognito_identity_provider.errors.not_authorized_exception.NotAuthorizedException: <p>This exception is thrown when a user isn't authorized.</p>
+            capo_cognito_identity_provider.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when the Amazon Cognito service can't find the requested resource.</p>
+            capo_cognito_identity_provider.errors.too_many_requests_exception.TooManyRequestsException: <p>This exception is thrown when the user has made too many requests for a given operation.</p>
+            capo_cognito_identity_provider.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Example get a provisioned limit
+            The following example returns the provisioned limit for the UserAuthentication API category.
+
+            >>> await client.get_provisioned_limit(limit_definition={'LimitClass': 'API_CATEGORY', 'Attributes': {'Category': 'UserAuthentication'}})
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_cognito_identity_provider.types.get_provisioned_limit_request.GetProvisionedLimitRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_cognito_identity_provider.types.get_provisioned_limit_response.GetProvisionedLimitResponse"
+        ]:
+            import capo_cognito_identity_provider._operations.aws_cognito_identity_provider_service.get_provisioned_limit
+
+            (
+                output,
+                http_response,
+            ) = await capo_cognito_identity_provider._operations.aws_cognito_identity_provider_service.get_provisioned_limit.async_get_provisioned_limit(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cognito_identity_provider.types.get_provisioned_limit_request.GetProvisionedLimitRequest = {
+            "limit_definition": limit_definition
         }
 
         response = await aexecute_pipeline(
@@ -8343,6 +8651,64 @@ class AsyncCognitoIdentityProviderClient:
             input_["settings"] = settings
         if assets is not None:
             input_["assets"] = assets
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_provisioned_limit(
+        self,
+        limit_definition: "capo_cognito_identity_provider.types.limit_definition_type.LimitDefinitionType",
+        requested_limit_value: "capo_cognito_identity_provider.types.integer_type.IntegerType",
+        *,
+        config_overrides: Optional[AsyncCognitoIdentityProviderClientConfig] = None,
+    ) -> "capo_cognito_identity_provider.types.update_provisioned_limit_response.UpdateProvisionedLimitResponse":
+        r"""<p>Sets the provisioned limit for a specific API category. The value must be between the default limit and your account-level maximum limit in Service Quotas.</p> <p>Managed login user pools don't support adjustments to the <code>UserAuthentication</code> or <code>UserFederation</code> categories. To increase these limits, submit a Service Quotas increase request.</p> <note> <p>Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests for this API operation. For this operation, you must use IAM credentials to authorize requests, and you must grant yourself the corresponding IAM permission in a policy.</p> <p class=\"title\"> <b>Learn more</b> </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html\">Signing Amazon Web Services API Requests</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html\">Using the Amazon Cognito user pools API and user pool endpoints</a> </p> </li> </ul> </note>
+
+        Args:
+            limit_definition: <p>The limit to update. Specify the limit class and the attributes that identify the limit.</p>
+            requested_limit_value: <p>The provisioned rate to set, in requests per second (RPS).</p>
+
+        Raises:
+            capo_cognito_identity_provider.errors.internal_error_exception.InternalErrorException: <p>This exception is thrown when Amazon Cognito encounters an internal error.</p>
+            capo_cognito_identity_provider.errors.invalid_parameter_exception.InvalidParameterException: <p>This exception is thrown when the Amazon Cognito service encounters an invalid parameter.</p>
+            capo_cognito_identity_provider.errors.not_authorized_exception.NotAuthorizedException: <p>This exception is thrown when a user isn't authorized.</p>
+            capo_cognito_identity_provider.errors.resource_not_found_exception.ResourceNotFoundException: <p>This exception is thrown when the Amazon Cognito service can't find the requested resource.</p>
+            capo_cognito_identity_provider.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request exceeded your account's service quota. To increase your limit, use or submit a Service Quotas increase request.</p>
+            capo_cognito_identity_provider.errors.too_many_requests_exception.TooManyRequestsException: <p>This exception is thrown when the user has made too many requests for a given operation.</p>
+            capo_cognito_identity_provider.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Example update a provisioned limit
+            The following example sets the provisioned limit for the UserAuthentication API category to 300 RPS.
+
+            >>> await client.update_provisioned_limit(limit_definition={'LimitClass': 'API_CATEGORY', 'Attributes': {'Category': 'UserAuthentication'}}, requested_limit_value=300)
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_cognito_identity_provider.types.update_provisioned_limit_request.UpdateProvisionedLimitRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_cognito_identity_provider.types.update_provisioned_limit_response.UpdateProvisionedLimitResponse"
+        ]:
+            import capo_cognito_identity_provider._operations.aws_cognito_identity_provider_service.update_provisioned_limit
+
+            (
+                output,
+                http_response,
+            ) = await capo_cognito_identity_provider._operations.aws_cognito_identity_provider_service.update_provisioned_limit.async_update_provisioned_limit(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cognito_identity_provider.types.update_provisioned_limit_request.UpdateProvisionedLimitRequest = {
+            "limit_definition": limit_definition,
+            "requested_limit_value": requested_limit_value,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

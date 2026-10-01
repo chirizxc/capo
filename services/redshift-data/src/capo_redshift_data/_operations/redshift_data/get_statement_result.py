@@ -11,6 +11,7 @@ from typing_extensions import Never
 import capo_redshift_data._auth._signers
 import capo_redshift_data._auth._sigv4
 import capo_redshift_data._protocol.eventstream
+import capo_redshift_data.errors.active_waiting_requests_exceeded_exception
 import capo_redshift_data.errors.internal_server_exception
 import capo_redshift_data.errors.resource_not_found_exception
 import capo_redshift_data.errors.validation_exception
@@ -31,6 +32,10 @@ def handle_error(response: zapros.Response) -> Never:
     data = json.loads(response.read())
     code, message = parse_error_metadata_json(response, data)
     match code:
+        case "ActiveWaitingRequestsExceededException":
+            raise capo_redshift_data.errors.active_waiting_requests_exceeded_exception.ActiveWaitingRequestsExceededException.from_aws_json_1_1(
+                data, message
+            )
         case "InternalServerException":
             raise capo_redshift_data.errors.internal_server_exception.InternalServerException.from_aws_json_1_1(
                 data, message

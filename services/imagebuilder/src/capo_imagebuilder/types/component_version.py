@@ -23,7 +23,7 @@ class ComponentVersion(TypedDict, closed=True):
     name: NotRequired["capo_imagebuilder.types.resource_name.ResourceName"]
     """<p>The name of the component.</p>"""
     version: NotRequired["capo_imagebuilder.types.version_number.VersionNumber"]
-    """<p>The semantic version of the component.</p> <note> <p>The semantic version has four nodes: <major>.<minor>.<patch>/<build>. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>"""
+    """<p>The semantic version of the component.</p> <note> <p>The semantic version has four nodes: <major>.<minor>.<patch>/<build>. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes, you can assign any positive integer value, including zero. The upper limit is 2^30-1, or 1073741823, for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> <p> <b>Filtering:</b> You can use wildcards (x) to specify the most recent versions or nodes when selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>"""
     description: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
     """<p>The description of the component.</p>"""
     platform: NotRequired["capo_imagebuilder.types.platform.Platform"]
@@ -31,11 +31,11 @@ class ComponentVersion(TypedDict, closed=True):
     supported_os_versions: NotRequired[
         "capo_imagebuilder.types.os_version_list.OsVersionList"
     ]
-    """<p>he operating system (OS) version supported by the component. If the OS information is available, a prefix match is performed against the base image OS version during image recipe creation.</p>"""
+    """<p>The operating system (OS) version supported by the component. If OS information is available, Image Builder performs a prefix match against the base image OS version during image recipe creation.</p>"""
     type: NotRequired["capo_imagebuilder.types.component_type.ComponentType"]
     """<p>The type of the component denotes whether the component is used to build the image or only to test it.</p>"""
     owner: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
-    """<p>The owner of the component.</p>"""
+    """<p>The owner of the component. The value is your account ID for components that you own, the sharing account's ID for shared components, or <code>Amazon</code>, <code>ThirdParty</code>, or <code>AWSMarketplace</code>.</p>"""
     date_created: NotRequired["capo_imagebuilder.types.date_time.DateTime"]
     """<p>The date that the component was created.</p>"""
     status: NotRequired["capo_imagebuilder.types.component_status.ComponentStatus"]

@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_opensearch.types.app_configs
     import capo_opensearch.types.data_sources
+    import capo_opensearch.types.iam_identity_center_options_input
     import capo_opensearch.types.id
 
 
@@ -17,6 +18,10 @@ class UpdateApplicationRequest(TypedDict, closed=True):
     """<p>The data sources to associate with the OpenSearch application.</p>"""
     app_configs: NotRequired["capo_opensearch.types.app_configs.AppConfigs"]
     """<p>The configuration settings to modify for the OpenSearch application.</p>"""
+    iam_identity_center_options: NotRequired[
+        "capo_opensearch.types.iam_identity_center_options_input.IamIdentityCenterOptionsInput"
+    ]
+    """<p>Configuration settings for integrating IAM Identity Center with the OpenSearch application.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -34,6 +39,14 @@ def serialize_json(value: UpdateApplicationRequest) -> dict:
         out["appConfigs"] = capo_opensearch.types.app_configs.serialize_json(
             value["app_configs"]
         )
+    if "iam_identity_center_options" in value:
+        import capo_opensearch.types.iam_identity_center_options_input
+
+        out["iamIdentityCenterOptions"] = (
+            capo_opensearch.types.iam_identity_center_options_input.serialize_json(
+                value["iam_identity_center_options"]
+            )
+        )
     return out
 
 
@@ -50,5 +63,13 @@ def deserialize_json(data: dict) -> UpdateApplicationRequest:
 
         out["app_configs"] = capo_opensearch.types.app_configs.deserialize_json(
             data["appConfigs"]
+        )
+    if data.get("iamIdentityCenterOptions") is not None:
+        import capo_opensearch.types.iam_identity_center_options_input
+
+        out["iam_identity_center_options"] = (
+            capo_opensearch.types.iam_identity_center_options_input.deserialize_json(
+                data["iamIdentityCenterOptions"]
+            )
         )
     return out

@@ -1,0 +1,48 @@
+"""Generated from Smithy shape ``com.amazonaws.cleanrooms#IntermediateTableAnalysisRulePolicy``."""
+
+from typing import TYPE_CHECKING, TypeAlias
+
+from typing_extensions import TypedDict
+
+from capo_cleanrooms.errors import DeserializationError, SerializationError
+
+if TYPE_CHECKING:
+    import capo_cleanrooms.types.intermediate_table_analysis_rule_policy_v1
+
+
+class _IntermediateTableAnalysisRulePolicy_v1(TypedDict, closed=True):
+    v1: "capo_cleanrooms.types.intermediate_table_analysis_rule_policy_v1.IntermediateTableAnalysisRulePolicyV1"
+
+
+IntermediateTableAnalysisRulePolicy: TypeAlias = _IntermediateTableAnalysisRulePolicy_v1
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: IntermediateTableAnalysisRulePolicy) -> dict:
+    if "v1" in value:
+        import capo_cleanrooms.types.intermediate_table_analysis_rule_policy_v1
+
+        return {
+            "v1": capo_cleanrooms.types.intermediate_table_analysis_rule_policy_v1.serialize_json(
+                value["v1"]
+            )
+        }
+    else:
+        raise SerializationError(
+            "IntermediateTableAnalysisRulePolicy: no variant present"
+        )
+
+
+def deserialize_json(data: dict) -> IntermediateTableAnalysisRulePolicy:
+    if data.get("v1") is not None:
+        import capo_cleanrooms.types.intermediate_table_analysis_rule_policy_v1
+
+        return {
+            "v1": capo_cleanrooms.types.intermediate_table_analysis_rule_policy_v1.deserialize_json(
+                data["v1"]
+            )
+        }
+    else:
+        raise DeserializationError(
+            "IntermediateTableAnalysisRulePolicy: no recognized variant key"
+        )

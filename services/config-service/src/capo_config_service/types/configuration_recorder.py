@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_config_service.types.recording_group
     import capo_config_service.types.recording_mode
     import capo_config_service.types.recording_scope
+    import capo_config_service.types.scope_configuration
     import capo_config_service.types.service_principal
     import capo_config_service.types.string
 
@@ -39,6 +40,14 @@ class ConfigurationRecorder(TypedDict, closed=True):
         "capo_config_service.types.service_principal.ServicePrincipal"
     ]
     """<p>For service-linked configuration recorders, specifies the linked Amazon Web Services service for the configuration recorder.</p>"""
+    connector_arn: NotRequired[
+        "capo_config_service.types.amazon_resource_name.AmazonResourceName"
+    ]
+    """<p>The Amazon Resource Name (ARN) of the connector that specifies the connection between a third-party cloud service provider and Config.</p>"""
+    scope_configuration: NotRequired[
+        "capo_config_service.types.scope_configuration.ScopeConfiguration"
+    ]
+    """<p>Specifies the scope of resources to record from the third-party cloud service provider connected through the connector.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -76,6 +85,16 @@ def serialize_aws_json_1_1(value: ConfigurationRecorder) -> dict:
         )
     if "service_principal" in value:
         out["servicePrincipal"] = value["service_principal"]
+    if "connector_arn" in value:
+        out["connectorArn"] = value["connector_arn"]
+    if "scope_configuration" in value:
+        import capo_config_service.types.scope_configuration
+
+        out["scopeConfiguration"] = (
+            capo_config_service.types.scope_configuration.serialize_aws_json_1_1(
+                value["scope_configuration"]
+            )
+        )
     return out
 
 
@@ -113,4 +132,14 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigurationRecorder:
         )
     if data.get("servicePrincipal") is not None:
         out["service_principal"] = data["servicePrincipal"]
+    if data.get("connectorArn") is not None:
+        out["connector_arn"] = data["connectorArn"]
+    if data.get("scopeConfiguration") is not None:
+        import capo_config_service.types.scope_configuration
+
+        out["scope_configuration"] = (
+            capo_config_service.types.scope_configuration.deserialize_aws_json_1_1(
+                data["scopeConfiguration"]
+            )
+        )
     return out

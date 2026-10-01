@@ -35,6 +35,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.role_arn
     import capo_bedrock_agentcore_control.types.sandbox_name
     import capo_bedrock_agentcore_control.types.tags_map
+    import capo_bedrock_agentcore_control.types.tools_file_system_configurations
     from capo_bedrock_agentcore_control._services.async_bedrock_agent_core_control import (
         AsyncBedrockAgentCoreControlClient,
         AsyncBedrockAgentCoreControlClientConfig,
@@ -64,6 +65,9 @@ class CodeInterpreterResource:
         certificates: Optional[
             "capo_bedrock_agentcore_control.types.certificates.Certificates"
         ] = None,
+        filesystem_configurations: Optional[
+            "capo_bedrock_agentcore_control.types.tools_file_system_configurations.ToolsFileSystemConfigurations"
+        ] = None,
         client_token: Optional[
             "capo_bedrock_agentcore_control.types.client_token.ClientToken"
         ] = None,
@@ -77,6 +81,7 @@ class CodeInterpreterResource:
             execution_role_arn: <p>The Amazon Resource Name (ARN) of the IAM role that provides permissions for the code interpreter to access Amazon Web Services services.</p>
             network_configuration: <p>The network configuration for the code interpreter. This configuration specifies the network mode for the code interpreter.</p>
             certificates: <p>A list of certificates to install in the code interpreter.</p>
+            filesystem_configurations: <p>The file system configurations to mount into the code interpreter. Use these configurations to mount your own Amazon Simple Storage Service (Amazon S3) Files or Amazon Elastic File System (Amazon EFS) access points. Your sessions can then access your data. If you don't specify this field, no file systems are mounted.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, Amazon Bedrock AgentCore ignores the request but does not return an error.</p>
             tags: <p>A map of tag keys and values to assign to the code interpreter. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.</p>
 
@@ -115,6 +120,8 @@ class CodeInterpreterResource:
             input_["execution_role_arn"] = execution_role_arn
         if certificates is not None:
             input_["certificates"] = certificates
+        if filesystem_configurations is not None:
+            input_["filesystem_configurations"] = filesystem_configurations
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -312,6 +319,9 @@ class AsyncCodeInterpreterResource:
         certificates: Optional[
             "capo_bedrock_agentcore_control.types.certificates.Certificates"
         ] = None,
+        filesystem_configurations: Optional[
+            "capo_bedrock_agentcore_control.types.tools_file_system_configurations.ToolsFileSystemConfigurations"
+        ] = None,
         client_token: Optional[
             "capo_bedrock_agentcore_control.types.client_token.ClientToken"
         ] = None,
@@ -325,6 +335,7 @@ class AsyncCodeInterpreterResource:
             execution_role_arn: <p>The Amazon Resource Name (ARN) of the IAM role that provides permissions for the code interpreter to access Amazon Web Services services.</p>
             network_configuration: <p>The network configuration for the code interpreter. This configuration specifies the network mode for the code interpreter.</p>
             certificates: <p>A list of certificates to install in the code interpreter.</p>
+            filesystem_configurations: <p>The file system configurations to mount into the code interpreter. Use these configurations to mount your own Amazon Simple Storage Service (Amazon S3) Files or Amazon Elastic File System (Amazon EFS) access points. Your sessions can then access your data. If you don't specify this field, no file systems are mounted.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, Amazon Bedrock AgentCore ignores the request but does not return an error.</p>
             tags: <p>A map of tag keys and values to assign to the code interpreter. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.</p>
 
@@ -364,6 +375,8 @@ class AsyncCodeInterpreterResource:
             input_["execution_role_arn"] = execution_role_arn
         if certificates is not None:
             input_["certificates"] = certificates
+        if filesystem_configurations is not None:
+            input_["filesystem_configurations"] = filesystem_configurations
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token

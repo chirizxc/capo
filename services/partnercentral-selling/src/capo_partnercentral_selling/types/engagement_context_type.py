@@ -5,6 +5,7 @@ from typing import Literal, TypeAlias, cast
 EngagementContextType: TypeAlias = Literal[
     "CustomerProject",
     "Lead",
+    "ProspectingResult",
 ]
 
 

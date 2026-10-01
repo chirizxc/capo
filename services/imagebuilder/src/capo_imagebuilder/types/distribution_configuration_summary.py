@@ -27,7 +27,7 @@ class DistributionConfigurationSummary(TypedDict, closed=True):
     tags: NotRequired["capo_imagebuilder.types.tag_map.TagMap"]
     """<p>The tags associated with the distribution configuration.</p>"""
     regions: NotRequired["capo_imagebuilder.types.region_list.RegionList"]
-    """<p>A list of Regions where the container image is distributed to.</p>"""
+    """<p>A list of the Regions that the distribution configuration distributes images to.</p>"""
 
 
 # --- restJson1 ser/de ---

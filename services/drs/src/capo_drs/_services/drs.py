@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.drs#ElasticDisasterRecoveryService``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -30,6 +31,9 @@ from capo_drs._resources.elastic_disaster_recovery_service.launch_configuration_
 from capo_drs._resources.elastic_disaster_recovery_service.recovery_instance_resource import (
     RecoveryInstanceResource,
 )
+from capo_drs._resources.elastic_disaster_recovery_service.recovery_plan_resource import (
+    RecoveryPlanResource,
+)
 from capo_drs._resources.elastic_disaster_recovery_service.replication_configuration_template_resource import (
     ReplicationConfigurationTemplateResource,
 )
@@ -57,11 +61,18 @@ if TYPE_CHECKING:
     import capo_drs.types.associate_source_network_stack_response
     import capo_drs.types.aws_region
     import capo_drs.types.bounded_string
+    import capo_drs.types.cancel_recovery_plan_execution_request
+    import capo_drs.types.cancel_recovery_plan_execution_response
     import capo_drs.types.cfn_stack_name
+    import capo_drs.types.client_idempotency_token
     import capo_drs.types.create_extended_source_server_request
     import capo_drs.types.create_extended_source_server_response
     import capo_drs.types.create_launch_configuration_template_request
     import capo_drs.types.create_launch_configuration_template_response
+    import capo_drs.types.create_recovery_plan_request
+    import capo_drs.types.create_recovery_plan_response
+    import capo_drs.types.create_recovery_plan_step_request
+    import capo_drs.types.create_recovery_plan_step_response
     import capo_drs.types.create_replication_configuration_template_request
     import capo_drs.types.create_source_network_request
     import capo_drs.types.create_source_network_response
@@ -72,6 +83,12 @@ if TYPE_CHECKING:
     import capo_drs.types.delete_launch_configuration_template_request
     import capo_drs.types.delete_launch_configuration_template_response
     import capo_drs.types.delete_recovery_instance_request
+    import capo_drs.types.delete_recovery_plan_execution_request
+    import capo_drs.types.delete_recovery_plan_execution_response
+    import capo_drs.types.delete_recovery_plan_request
+    import capo_drs.types.delete_recovery_plan_response
+    import capo_drs.types.delete_recovery_plan_step_request
+    import capo_drs.types.delete_recovery_plan_step_response
     import capo_drs.types.delete_replication_configuration_template_request
     import capo_drs.types.delete_replication_configuration_template_response
     import capo_drs.types.delete_source_network_request
@@ -107,6 +124,14 @@ if TYPE_CHECKING:
     import capo_drs.types.get_failback_replication_configuration_request
     import capo_drs.types.get_failback_replication_configuration_response
     import capo_drs.types.get_launch_configuration_request
+    import capo_drs.types.get_recovery_plan_execution_request
+    import capo_drs.types.get_recovery_plan_execution_response
+    import capo_drs.types.get_recovery_plan_execution_step_request
+    import capo_drs.types.get_recovery_plan_execution_step_response
+    import capo_drs.types.get_recovery_plan_request
+    import capo_drs.types.get_recovery_plan_response
+    import capo_drs.types.get_recovery_plan_step_request
+    import capo_drs.types.get_recovery_plan_step_response
     import capo_drs.types.get_replication_configuration_request
     import capo_drs.types.initialize_service_request
     import capo_drs.types.initialize_service_response
@@ -135,6 +160,15 @@ if TYPE_CHECKING:
     import capo_drs.types.list_extensible_source_servers_response
     import capo_drs.types.list_launch_actions_request
     import capo_drs.types.list_launch_actions_response
+    import capo_drs.types.list_recovery_plan_execution_steps_filter
+    import capo_drs.types.list_recovery_plan_execution_steps_request
+    import capo_drs.types.list_recovery_plan_execution_steps_response
+    import capo_drs.types.list_recovery_plan_executions_request
+    import capo_drs.types.list_recovery_plan_executions_response
+    import capo_drs.types.list_recovery_plan_steps_request
+    import capo_drs.types.list_recovery_plan_steps_response
+    import capo_drs.types.list_recovery_plans_request
+    import capo_drs.types.list_recovery_plans_response
     import capo_drs.types.list_staging_accounts_request
     import capo_drs.types.list_staging_accounts_response
     import capo_drs.types.list_tags_for_resource_request
@@ -149,8 +183,26 @@ if TYPE_CHECKING:
     import capo_drs.types.recovery_instance
     import capo_drs.types.recovery_instance_id
     import capo_drs.types.recovery_instances_for_termination_request
+    import capo_drs.types.recovery_mode
+    import capo_drs.types.recovery_plan_description
+    import capo_drs.types.recovery_plan_execution_mode
+    import capo_drs.types.recovery_plan_execution_source_server_list
+    import capo_drs.types.recovery_plan_execution_status
+    import capo_drs.types.recovery_plan_execution_step_status
+    import capo_drs.types.recovery_plan_execution_step_summary
+    import capo_drs.types.recovery_plan_execution_summary
+    import capo_drs.types.recovery_plan_name
+    import capo_drs.types.recovery_plan_servers
+    import capo_drs.types.recovery_plan_step
+    import capo_drs.types.recovery_plan_step_arn_list
+    import capo_drs.types.recovery_plan_step_configuration
+    import capo_drs.types.recovery_plan_step_name
+    import capo_drs.types.recovery_plan_step_order
+    import capo_drs.types.recovery_plan_summary
     import capo_drs.types.recovery_snapshot
     import capo_drs.types.recovery_snapshots_order
+    import capo_drs.types.reorder_recovery_plan_steps_request
+    import capo_drs.types.reorder_recovery_plan_steps_response
     import capo_drs.types.replication_configuration
     import capo_drs.types.replication_configuration_data_plane_routing
     import capo_drs.types.replication_configuration_default_large_staging_disk_type
@@ -161,6 +213,8 @@ if TYPE_CHECKING:
     import capo_drs.types.replication_configuration_template_id
     import capo_drs.types.replication_servers_security_groups_i_ds
     import capo_drs.types.retry_data_replication_request
+    import capo_drs.types.retry_recovery_plan_execution_step_request
+    import capo_drs.types.retry_recovery_plan_execution_step_response
     import capo_drs.types.reverse_replication_request
     import capo_drs.types.reverse_replication_response
     import capo_drs.types.small_bounded_string
@@ -174,6 +228,8 @@ if TYPE_CHECKING:
     import capo_drs.types.start_failback_launch_request
     import capo_drs.types.start_failback_launch_response
     import capo_drs.types.start_failback_request_recovery_instance_i_ds
+    import capo_drs.types.start_recovery_plan_execution_request
+    import capo_drs.types.start_recovery_plan_execution_response
     import capo_drs.types.start_recovery_request
     import capo_drs.types.start_recovery_request_source_servers
     import capo_drs.types.start_recovery_response
@@ -189,6 +245,7 @@ if TYPE_CHECKING:
     import capo_drs.types.stop_replication_response
     import capo_drs.types.stop_source_network_replication_request
     import capo_drs.types.stop_source_network_replication_response
+    import capo_drs.types.strict_drsarn
     import capo_drs.types.strictly_positive_integer
     import capo_drs.types.subnet_id
     import capo_drs.types.tag_keys
@@ -202,9 +259,16 @@ if TYPE_CHECKING:
     import capo_drs.types.update_launch_configuration_request
     import capo_drs.types.update_launch_configuration_template_request
     import capo_drs.types.update_launch_configuration_template_response
+    import capo_drs.types.update_recovery_plan_execution_step_request
+    import capo_drs.types.update_recovery_plan_execution_step_response
+    import capo_drs.types.update_recovery_plan_request
+    import capo_drs.types.update_recovery_plan_response
+    import capo_drs.types.update_recovery_plan_step_request
+    import capo_drs.types.update_recovery_plan_step_response
     import capo_drs.types.update_replication_configuration_request
     import capo_drs.types.update_replication_configuration_template_request
     import capo_drs.types.vpc_id
+    import capo_drs.types.wait_duration_minutes
 
 
 class drsClientConfig(TypedDict, total=False, closed=True):
@@ -279,6 +343,7 @@ class drsClient:
             LaunchConfigurationTemplateResource(self)
         )
         self.recovery_instance_resource = RecoveryInstanceResource(self)
+        self.recovery_plan_resource = RecoveryPlanResource(self)
         self.replication_configuration_template_resource = (
             ReplicationConfigurationTemplateResource(self)
         )
@@ -312,6 +377,55 @@ class drsClient:
             ),
         )
         return interceptors_, options_
+
+    def cancel_recovery_plan_execution(
+        self,
+        recovery_plan_execution_arn: "capo_drs.types.strict_drsarn.StrictDRSARN",
+        *,
+        config_overrides: Optional[drsClientConfig] = None,
+    ) -> "capo_drs.types.cancel_recovery_plan_execution_response.CancelRecoveryPlanExecutionResponse":
+        """<p>Cancels an in-progress Recovery Plan execution. Remaining steps are skipped.</p>
+
+        Args:
+            recovery_plan_execution_arn: <p>The ARN of the Recovery Plan execution to cancel.</p>
+
+        Raises:
+            capo_drs.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_drs.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
+            capo_drs.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception or failure.</p>
+            capo_drs.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource for this operation was not found.</p>
+            capo_drs.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_drs.errors.uninitialized_account_exception.UninitializedAccountException: <p>The account performing the request has not been initialized.</p>
+            capo_drs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the AWS service.</p>
+            capo_drs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_drs.types.cancel_recovery_plan_execution_request.CancelRecoveryPlanExecutionRequest]",
+        ) -> OperationResponse[
+            "capo_drs.types.cancel_recovery_plan_execution_response.CancelRecoveryPlanExecutionResponse"
+        ]:
+            import capo_drs._operations.elastic_disaster_recovery_service.cancel_recovery_plan_execution
+
+            output, http_response = (
+                capo_drs._operations.elastic_disaster_recovery_service.cancel_recovery_plan_execution.cancel_recovery_plan_execution(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_drs.types.cancel_recovery_plan_execution_request.CancelRecoveryPlanExecutionRequest = {
+            "recovery_plan_execution_arn": recovery_plan_execution_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
 
     def create_extended_source_server(
         self,
@@ -366,6 +480,72 @@ class drsClient:
         response.response.close()
         return response.output
 
+    def create_recovery_plan_step(
+        self,
+        recovery_plan_arn: "capo_drs.types.strict_drsarn.StrictDRSARN",
+        step_name: "capo_drs.types.recovery_plan_step_name.RecoveryPlanStepName",
+        configuration: "capo_drs.types.recovery_plan_step_configuration.RecoveryPlanStepConfiguration",
+        *,
+        config_overrides: Optional[drsClientConfig] = None,
+        step_order: Optional[
+            "capo_drs.types.recovery_plan_step_order.RecoveryPlanStepOrder"
+        ] = None,
+        client_token: Optional[
+            "capo_drs.types.client_idempotency_token.ClientIdempotencyToken"
+        ] = None,
+    ) -> "capo_drs.types.create_recovery_plan_step_response.CreateRecoveryPlanStepResponse":
+        """<p>Creates a step in a Recovery Plan. A step is either <code>SERVER</code> type (servers to recover in parallel) or <code>WAIT</code> type (timed pause between steps).</p>
+
+        Args:
+            recovery_plan_arn: <p>The ARN of the Recovery Plan to add the step to.</p>
+            client_token: <p>A unique string provided to ensure request idempotency.</p>
+
+        Raises:
+            capo_drs.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_drs.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
+            capo_drs.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception or failure.</p>
+            capo_drs.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource for this operation was not found.</p>
+            capo_drs.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because its exceeded the service quota.</p>
+            capo_drs.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_drs.errors.uninitialized_account_exception.UninitializedAccountException: <p>The account performing the request has not been initialized.</p>
+            capo_drs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the AWS service.</p>
+            capo_drs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_drs.types.create_recovery_plan_step_request.CreateRecoveryPlanStepRequest]",
+        ) -> OperationResponse[
+            "capo_drs.types.create_recovery_plan_step_response.CreateRecoveryPlanStepResponse"
+        ]:
+            import capo_drs._operations.elastic_disaster_recovery_service.create_recovery_plan_step
+
+            output, http_response = (
+                capo_drs._operations.elastic_disaster_recovery_service.create_recovery_plan_step.create_recovery_plan_step(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_drs.types.create_recovery_plan_step_request.CreateRecoveryPlanStepRequest = {
+            "recovery_plan_arn": recovery_plan_arn,
+            "step_name": step_name,
+            "configuration": configuration,
+        }
+        if step_order is not None:
+            input_["step_order"] = step_order
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def delete_launch_action(
         self,
         resource_id: "capo_drs.types.launch_action_resource_id.LaunchActionResourceId",
@@ -402,6 +582,345 @@ class drsClient:
         input_: capo_drs.types.delete_launch_action_request.DeleteLaunchActionRequest = {
             "resource_id": resource_id,
             "action_id": action_id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_recovery_plan(
+        self,
+        recovery_plan_arn: "capo_drs.types.strict_drsarn.StrictDRSARN",
+        *,
+        config_overrides: Optional[drsClientConfig] = None,
+    ) -> "capo_drs.types.delete_recovery_plan_response.DeleteRecoveryPlanResponse":
+        """<p>Deletes a Recovery Plan. Cannot delete a plan that has an execution in a non-terminal status (<code>CREATED</code>, <code>IN_PROGRESS</code>).</p>
+
+        Args:
+            recovery_plan_arn: <p>The ARN of the Recovery Plan to delete.</p>
+
+        Raises:
+            capo_drs.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_drs.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
+            capo_drs.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception or failure.</p>
+            capo_drs.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource for this operation was not found.</p>
+            capo_drs.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_drs.errors.uninitialized_account_exception.UninitializedAccountException: <p>The account performing the request has not been initialized.</p>
+            capo_drs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the AWS service.</p>
+            capo_drs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_drs.types.delete_recovery_plan_request.DeleteRecoveryPlanRequest]",
+        ) -> OperationResponse[
+            "capo_drs.types.delete_recovery_plan_response.DeleteRecoveryPlanResponse"
+        ]:
+            import capo_drs._operations.elastic_disaster_recovery_service.delete_recovery_plan
+
+            output, http_response = (
+                capo_drs._operations.elastic_disaster_recovery_service.delete_recovery_plan.delete_recovery_plan(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_drs.types.delete_recovery_plan_request.DeleteRecoveryPlanRequest = {
+            "recovery_plan_arn": recovery_plan_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_recovery_plan_execution(
+        self,
+        recovery_plan_execution_arn: "capo_drs.types.strict_drsarn.StrictDRSARN",
+        *,
+        config_overrides: Optional[drsClientConfig] = None,
+    ) -> "capo_drs.types.delete_recovery_plan_execution_response.DeleteRecoveryPlanExecutionResponse":
+        """<p>Deletes a Recovery Plan execution record. Must be in a terminal status.</p>
+
+        Args:
+            recovery_plan_execution_arn: <p>The ARN of the Recovery Plan execution to delete.</p>
+
+        Raises:
+            capo_drs.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_drs.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
+            capo_drs.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception or failure.</p>
+            capo_drs.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource for this operation was not found.</p>
+            capo_drs.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_drs.errors.uninitialized_account_exception.UninitializedAccountException: <p>The account performing the request has not been initialized.</p>
+            capo_drs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the AWS service.</p>
+            capo_drs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_drs.types.delete_recovery_plan_execution_request.DeleteRecoveryPlanExecutionRequest]",
+        ) -> OperationResponse[
+            "capo_drs.types.delete_recovery_plan_execution_response.DeleteRecoveryPlanExecutionResponse"
+        ]:
+            import capo_drs._operations.elastic_disaster_recovery_service.delete_recovery_plan_execution
+
+            output, http_response = (
+                capo_drs._operations.elastic_disaster_recovery_service.delete_recovery_plan_execution.delete_recovery_plan_execution(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_drs.types.delete_recovery_plan_execution_request.DeleteRecoveryPlanExecutionRequest = {
+            "recovery_plan_execution_arn": recovery_plan_execution_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_recovery_plan_step(
+        self,
+        recovery_plan_step_arn: "capo_drs.types.strict_drsarn.StrictDRSARN",
+        *,
+        config_overrides: Optional[drsClientConfig] = None,
+    ) -> "capo_drs.types.delete_recovery_plan_step_response.DeleteRecoveryPlanStepResponse":
+        """<p>Deletes a step from a Recovery Plan.</p>
+
+        Args:
+            recovery_plan_step_arn: <p>The ARN of the Recovery Plan step to delete.</p>
+
+        Raises:
+            capo_drs.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_drs.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
+            capo_drs.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception or failure.</p>
+            capo_drs.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource for this operation was not found.</p>
+            capo_drs.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_drs.errors.uninitialized_account_exception.UninitializedAccountException: <p>The account performing the request has not been initialized.</p>
+            capo_drs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the AWS service.</p>
+            capo_drs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_drs.types.delete_recovery_plan_step_request.DeleteRecoveryPlanStepRequest]",
+        ) -> OperationResponse[
+            "capo_drs.types.delete_recovery_plan_step_response.DeleteRecoveryPlanStepResponse"
+        ]:
+            import capo_drs._operations.elastic_disaster_recovery_service.delete_recovery_plan_step
+
+            output, http_response = (
+                capo_drs._operations.elastic_disaster_recovery_service.delete_recovery_plan_step.delete_recovery_plan_step(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_drs.types.delete_recovery_plan_step_request.DeleteRecoveryPlanStepRequest = {
+            "recovery_plan_step_arn": recovery_plan_step_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_recovery_plan(
+        self,
+        recovery_plan_arn: "capo_drs.types.strict_drsarn.StrictDRSARN",
+        *,
+        config_overrides: Optional[drsClientConfig] = None,
+    ) -> "capo_drs.types.get_recovery_plan_response.GetRecoveryPlanResponse":
+        """<p>Gets a Recovery Plan by ARN.</p>
+
+        Args:
+            recovery_plan_arn: <p>The ARN of the Recovery Plan to retrieve.</p>
+
+        Raises:
+            capo_drs.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_drs.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception or failure.</p>
+            capo_drs.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource for this operation was not found.</p>
+            capo_drs.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_drs.errors.uninitialized_account_exception.UninitializedAccountException: <p>The account performing the request has not been initialized.</p>
+            capo_drs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the AWS service.</p>
+            capo_drs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_drs.types.get_recovery_plan_request.GetRecoveryPlanRequest]",
+        ) -> OperationResponse[
+            "capo_drs.types.get_recovery_plan_response.GetRecoveryPlanResponse"
+        ]:
+            import capo_drs._operations.elastic_disaster_recovery_service.get_recovery_plan
+
+            output, http_response = (
+                capo_drs._operations.elastic_disaster_recovery_service.get_recovery_plan.get_recovery_plan(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_drs.types.get_recovery_plan_request.GetRecoveryPlanRequest = {
+            "recovery_plan_arn": recovery_plan_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_recovery_plan_execution(
+        self,
+        recovery_plan_execution_arn: "capo_drs.types.strict_drsarn.StrictDRSARN",
+        *,
+        config_overrides: Optional[drsClientConfig] = None,
+    ) -> "capo_drs.types.get_recovery_plan_execution_response.GetRecoveryPlanExecutionResponse":
+        """<p>Gets the details of a Recovery Plan execution.</p>
+
+        Args:
+            recovery_plan_execution_arn: <p>The ARN of the Recovery Plan execution.</p>
+
+        Raises:
+            capo_drs.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_drs.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception or failure.</p>
+            capo_drs.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource for this operation was not found.</p>
+            capo_drs.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_drs.errors.uninitialized_account_exception.UninitializedAccountException: <p>The account performing the request has not been initialized.</p>
+            capo_drs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the AWS service.</p>
+            capo_drs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_drs.types.get_recovery_plan_execution_request.GetRecoveryPlanExecutionRequest]",
+        ) -> OperationResponse[
+            "capo_drs.types.get_recovery_plan_execution_response.GetRecoveryPlanExecutionResponse"
+        ]:
+            import capo_drs._operations.elastic_disaster_recovery_service.get_recovery_plan_execution
+
+            output, http_response = (
+                capo_drs._operations.elastic_disaster_recovery_service.get_recovery_plan_execution.get_recovery_plan_execution(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_drs.types.get_recovery_plan_execution_request.GetRecoveryPlanExecutionRequest = {
+            "recovery_plan_execution_arn": recovery_plan_execution_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_recovery_plan_execution_step(
+        self,
+        recovery_plan_execution_step_arn: "capo_drs.types.strict_drsarn.StrictDRSARN",
+        *,
+        config_overrides: Optional[drsClientConfig] = None,
+    ) -> "capo_drs.types.get_recovery_plan_execution_step_response.GetRecoveryPlanExecutionStepResponse":
+        """<p>Gets the details of a step within a Recovery Plan execution.</p>
+
+        Args:
+            recovery_plan_execution_step_arn: <p>The ARN of the execution step.</p>
+
+        Raises:
+            capo_drs.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_drs.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception or failure.</p>
+            capo_drs.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource for this operation was not found.</p>
+            capo_drs.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_drs.errors.uninitialized_account_exception.UninitializedAccountException: <p>The account performing the request has not been initialized.</p>
+            capo_drs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the AWS service.</p>
+            capo_drs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_drs.types.get_recovery_plan_execution_step_request.GetRecoveryPlanExecutionStepRequest]",
+        ) -> OperationResponse[
+            "capo_drs.types.get_recovery_plan_execution_step_response.GetRecoveryPlanExecutionStepResponse"
+        ]:
+            import capo_drs._operations.elastic_disaster_recovery_service.get_recovery_plan_execution_step
+
+            output, http_response = (
+                capo_drs._operations.elastic_disaster_recovery_service.get_recovery_plan_execution_step.get_recovery_plan_execution_step(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_drs.types.get_recovery_plan_execution_step_request.GetRecoveryPlanExecutionStepRequest = {
+            "recovery_plan_execution_step_arn": recovery_plan_execution_step_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_recovery_plan_step(
+        self,
+        recovery_plan_step_arn: "capo_drs.types.strict_drsarn.StrictDRSARN",
+        *,
+        config_overrides: Optional[drsClientConfig] = None,
+    ) -> "capo_drs.types.get_recovery_plan_step_response.GetRecoveryPlanStepResponse":
+        """<p>Gets a Recovery Plan step by ARN.</p>
+
+        Args:
+            recovery_plan_step_arn: <p>The ARN of the Recovery Plan step to retrieve.</p>
+
+        Raises:
+            capo_drs.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_drs.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception or failure.</p>
+            capo_drs.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource for this operation was not found.</p>
+            capo_drs.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_drs.errors.uninitialized_account_exception.UninitializedAccountException: <p>The account performing the request has not been initialized.</p>
+            capo_drs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the AWS service.</p>
+            capo_drs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_drs.types.get_recovery_plan_step_request.GetRecoveryPlanStepRequest]",
+        ) -> OperationResponse[
+            "capo_drs.types.get_recovery_plan_step_response.GetRecoveryPlanStepResponse"
+        ]:
+            import capo_drs._operations.elastic_disaster_recovery_service.get_recovery_plan_step
+
+            output, http_response = (
+                capo_drs._operations.elastic_disaster_recovery_service.get_recovery_plan_step.get_recovery_plan_step(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_drs.types.get_recovery_plan_step_request.GetRecoveryPlanStepRequest = {
+            "recovery_plan_step_arn": recovery_plan_step_arn
         }
 
         response = execute_pipeline(
@@ -619,6 +1138,336 @@ class drsClient:
             if not _token:
                 break
 
+    def list_recovery_plan_executions(
+        self,
+        *,
+        config_overrides: Optional[drsClientConfig] = None,
+        recovery_plan_arn: Optional["capo_drs.types.strict_drsarn.StrictDRSARN"] = None,
+        status: Optional[
+            "capo_drs.types.recovery_plan_execution_status.RecoveryPlanExecutionStatus"
+        ] = None,
+        max_results: Optional["capo_drs.types.max_results_type.MaxResultsType"] = None,
+        next_token: Optional["capo_drs.types.pagination_token.PaginationToken"] = None,
+    ) -> "capo_drs.types.list_recovery_plan_executions_response.ListRecoveryPlanExecutionsResponse":
+        """<p>Lists executions of Recovery Plans, optionally filtered by plan or status.</p>
+
+        Args:
+            recovery_plan_arn: <p>Filter executions by Recovery Plan ARN.</p>
+            status: <p>Filter executions by status.</p>
+            max_results: <p>Maximum number of results to return.</p>
+            next_token: <p>The token for the next page of results.</p>
+
+        Raises:
+            capo_drs.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_drs.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception or failure.</p>
+            capo_drs.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_drs.errors.uninitialized_account_exception.UninitializedAccountException: <p>The account performing the request has not been initialized.</p>
+            capo_drs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the AWS service.</p>
+            capo_drs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_drs.types.list_recovery_plan_executions_request.ListRecoveryPlanExecutionsRequest]",
+        ) -> OperationResponse[
+            "capo_drs.types.list_recovery_plan_executions_response.ListRecoveryPlanExecutionsResponse"
+        ]:
+            import capo_drs._operations.elastic_disaster_recovery_service.list_recovery_plan_executions
+
+            output, http_response = (
+                capo_drs._operations.elastic_disaster_recovery_service.list_recovery_plan_executions.list_recovery_plan_executions(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_drs.types.list_recovery_plan_executions_request.ListRecoveryPlanExecutionsRequest = {}
+        if recovery_plan_arn is not None:
+            input_["recovery_plan_arn"] = recovery_plan_arn
+        if status is not None:
+            input_["status"] = status
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_recovery_plan_executions(
+        self,
+        *,
+        config_overrides: Optional[drsClientConfig] = None,
+        recovery_plan_arn: Optional["capo_drs.types.strict_drsarn.StrictDRSARN"] = None,
+        status: Optional[
+            "capo_drs.types.recovery_plan_execution_status.RecoveryPlanExecutionStatus"
+        ] = None,
+        max_results: Optional["capo_drs.types.max_results_type.MaxResultsType"] = None,
+        next_token: Optional["capo_drs.types.pagination_token.PaginationToken"] = None,
+    ) -> "Iterator[capo_drs.types.recovery_plan_execution_summary.RecoveryPlanExecutionSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_recovery_plan_executions(
+                config_overrides=config_overrides,
+                recovery_plan_arn=recovery_plan_arn,
+                status=status,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("recovery_plan_executions",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_recovery_plan_execution_steps(
+        self,
+        recovery_plan_execution_arn: "capo_drs.types.strict_drsarn.StrictDRSARN",
+        *,
+        config_overrides: Optional[drsClientConfig] = None,
+        filter: Optional[
+            "capo_drs.types.list_recovery_plan_execution_steps_filter.ListRecoveryPlanExecutionStepsFilter"
+        ] = None,
+        max_results: Optional["capo_drs.types.max_results_type.MaxResultsType"] = None,
+        next_token: Optional["capo_drs.types.pagination_token.PaginationToken"] = None,
+    ) -> "capo_drs.types.list_recovery_plan_execution_steps_response.ListRecoveryPlanExecutionStepsResponse":
+        """<p>Lists all steps within a Recovery Plan execution.</p>
+
+        Args:
+            recovery_plan_execution_arn: <p>The ARN of the Recovery Plan execution.</p>
+            filter: <p>Filters for listing execution steps.</p>
+            max_results: <p>Maximum number of results to return.</p>
+            next_token: <p>The token for the next page of results.</p>
+
+        Raises:
+            capo_drs.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_drs.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception or failure.</p>
+            capo_drs.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource for this operation was not found.</p>
+            capo_drs.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_drs.errors.uninitialized_account_exception.UninitializedAccountException: <p>The account performing the request has not been initialized.</p>
+            capo_drs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the AWS service.</p>
+            capo_drs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_drs.types.list_recovery_plan_execution_steps_request.ListRecoveryPlanExecutionStepsRequest]",
+        ) -> OperationResponse[
+            "capo_drs.types.list_recovery_plan_execution_steps_response.ListRecoveryPlanExecutionStepsResponse"
+        ]:
+            import capo_drs._operations.elastic_disaster_recovery_service.list_recovery_plan_execution_steps
+
+            output, http_response = (
+                capo_drs._operations.elastic_disaster_recovery_service.list_recovery_plan_execution_steps.list_recovery_plan_execution_steps(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_drs.types.list_recovery_plan_execution_steps_request.ListRecoveryPlanExecutionStepsRequest = {
+            "recovery_plan_execution_arn": recovery_plan_execution_arn
+        }
+        if filter is not None:
+            input_["filter"] = filter
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_recovery_plan_execution_steps(
+        self,
+        recovery_plan_execution_arn: "capo_drs.types.strict_drsarn.StrictDRSARN",
+        *,
+        config_overrides: Optional[drsClientConfig] = None,
+        filter: Optional[
+            "capo_drs.types.list_recovery_plan_execution_steps_filter.ListRecoveryPlanExecutionStepsFilter"
+        ] = None,
+        max_results: Optional["capo_drs.types.max_results_type.MaxResultsType"] = None,
+        next_token: Optional["capo_drs.types.pagination_token.PaginationToken"] = None,
+    ) -> "Iterator[capo_drs.types.recovery_plan_execution_step_summary.RecoveryPlanExecutionStepSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_recovery_plan_execution_steps(
+                recovery_plan_execution_arn,
+                config_overrides=config_overrides,
+                filter=filter,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("recovery_plan_execution_steps",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_recovery_plans(
+        self,
+        *,
+        config_overrides: Optional[drsClientConfig] = None,
+        max_results: Optional["capo_drs.types.max_results_type.MaxResultsType"] = None,
+        next_token: Optional["capo_drs.types.pagination_token.PaginationToken"] = None,
+    ) -> "capo_drs.types.list_recovery_plans_response.ListRecoveryPlansResponse":
+        """<p>Lists all Recovery Plans in the account.</p>
+
+        Args:
+            max_results: <p>Maximum number of results to return.</p>
+            next_token: <p>The token for the next page of results.</p>
+
+        Raises:
+            capo_drs.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_drs.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception or failure.</p>
+            capo_drs.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_drs.errors.uninitialized_account_exception.UninitializedAccountException: <p>The account performing the request has not been initialized.</p>
+            capo_drs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the AWS service.</p>
+            capo_drs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_drs.types.list_recovery_plans_request.ListRecoveryPlansRequest]",
+        ) -> OperationResponse[
+            "capo_drs.types.list_recovery_plans_response.ListRecoveryPlansResponse"
+        ]:
+            import capo_drs._operations.elastic_disaster_recovery_service.list_recovery_plans
+
+            output, http_response = (
+                capo_drs._operations.elastic_disaster_recovery_service.list_recovery_plans.list_recovery_plans(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_drs.types.list_recovery_plans_request.ListRecoveryPlansRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_recovery_plans(
+        self,
+        *,
+        config_overrides: Optional[drsClientConfig] = None,
+        max_results: Optional["capo_drs.types.max_results_type.MaxResultsType"] = None,
+        next_token: Optional["capo_drs.types.pagination_token.PaginationToken"] = None,
+    ) -> "Iterator[capo_drs.types.recovery_plan_summary.RecoveryPlanSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_recovery_plans(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("recovery_plans",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_recovery_plan_steps(
+        self,
+        recovery_plan_arn: "capo_drs.types.strict_drsarn.StrictDRSARN",
+        *,
+        config_overrides: Optional[drsClientConfig] = None,
+        max_results: Optional["capo_drs.types.max_results_type.MaxResultsType"] = None,
+        next_token: Optional["capo_drs.types.pagination_token.PaginationToken"] = None,
+    ) -> (
+        "capo_drs.types.list_recovery_plan_steps_response.ListRecoveryPlanStepsResponse"
+    ):
+        """<p>Lists all steps in a Recovery Plan.</p>
+
+        Args:
+            recovery_plan_arn: <p>The ARN of the Recovery Plan.</p>
+            max_results: <p>Maximum number of results to return.</p>
+            next_token: <p>The token for the next page of results.</p>
+
+        Raises:
+            capo_drs.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_drs.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception or failure.</p>
+            capo_drs.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource for this operation was not found.</p>
+            capo_drs.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_drs.errors.uninitialized_account_exception.UninitializedAccountException: <p>The account performing the request has not been initialized.</p>
+            capo_drs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the AWS service.</p>
+            capo_drs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_drs.types.list_recovery_plan_steps_request.ListRecoveryPlanStepsRequest]",
+        ) -> OperationResponse[
+            "capo_drs.types.list_recovery_plan_steps_response.ListRecoveryPlanStepsResponse"
+        ]:
+            import capo_drs._operations.elastic_disaster_recovery_service.list_recovery_plan_steps
+
+            output, http_response = (
+                capo_drs._operations.elastic_disaster_recovery_service.list_recovery_plan_steps.list_recovery_plan_steps(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_drs.types.list_recovery_plan_steps_request.ListRecoveryPlanStepsRequest = {
+            "recovery_plan_arn": recovery_plan_arn
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_recovery_plan_steps(
+        self,
+        recovery_plan_arn: "capo_drs.types.strict_drsarn.StrictDRSARN",
+        *,
+        config_overrides: Optional[drsClientConfig] = None,
+        max_results: Optional["capo_drs.types.max_results_type.MaxResultsType"] = None,
+        next_token: Optional["capo_drs.types.pagination_token.PaginationToken"] = None,
+    ) -> "Iterator[capo_drs.types.recovery_plan_step.RecoveryPlanStep]":
+        _token = next_token
+        while True:
+            _response = self.list_recovery_plan_steps(
+                recovery_plan_arn,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("recovery_plan_steps",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     def list_staging_accounts(
         self,
         *,
@@ -811,6 +1660,107 @@ class drsClient:
         response.response.close()
         return response.output
 
+    def reorder_recovery_plan_steps(
+        self,
+        recovery_plan_arn: "capo_drs.types.strict_drsarn.StrictDRSARN",
+        ordered_step_arns: "capo_drs.types.recovery_plan_step_arn_list.RecoveryPlanStepArnList",
+        *,
+        config_overrides: Optional[drsClientConfig] = None,
+    ) -> "capo_drs.types.reorder_recovery_plan_steps_response.ReorderRecoveryPlanStepsResponse":
+        """<p>Reorders steps in a Recovery Plan. Accepts a complete ordered list of step ARNs.</p>
+
+        Args:
+            recovery_plan_arn: <p>The ARN of the Recovery Plan.</p>
+            ordered_step_arns: <p>Ordered list of all step ARNs representing the desired sequence.</p>
+
+        Raises:
+            capo_drs.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_drs.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
+            capo_drs.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception or failure.</p>
+            capo_drs.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource for this operation was not found.</p>
+            capo_drs.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_drs.errors.uninitialized_account_exception.UninitializedAccountException: <p>The account performing the request has not been initialized.</p>
+            capo_drs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the AWS service.</p>
+            capo_drs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_drs.types.reorder_recovery_plan_steps_request.ReorderRecoveryPlanStepsRequest]",
+        ) -> OperationResponse[
+            "capo_drs.types.reorder_recovery_plan_steps_response.ReorderRecoveryPlanStepsResponse"
+        ]:
+            import capo_drs._operations.elastic_disaster_recovery_service.reorder_recovery_plan_steps
+
+            output, http_response = (
+                capo_drs._operations.elastic_disaster_recovery_service.reorder_recovery_plan_steps.reorder_recovery_plan_steps(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_drs.types.reorder_recovery_plan_steps_request.ReorderRecoveryPlanStepsRequest = {
+            "recovery_plan_arn": recovery_plan_arn,
+            "ordered_step_arns": ordered_step_arns,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def retry_recovery_plan_execution_step(
+        self,
+        recovery_plan_execution_step_arn: "capo_drs.types.strict_drsarn.StrictDRSARN",
+        *,
+        config_overrides: Optional[drsClientConfig] = None,
+    ) -> "capo_drs.types.retry_recovery_plan_execution_step_response.RetryRecoveryPlanExecutionStepResponse":
+        """<p>Retries a failed <code>SERVER</code> type execution step.</p>
+
+        Args:
+            recovery_plan_execution_step_arn: <p>The ARN of the execution step to retry.</p>
+
+        Raises:
+            capo_drs.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_drs.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
+            capo_drs.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception or failure.</p>
+            capo_drs.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource for this operation was not found.</p>
+            capo_drs.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_drs.errors.uninitialized_account_exception.UninitializedAccountException: <p>The account performing the request has not been initialized.</p>
+            capo_drs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the AWS service.</p>
+            capo_drs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_drs.types.retry_recovery_plan_execution_step_request.RetryRecoveryPlanExecutionStepRequest]",
+        ) -> OperationResponse[
+            "capo_drs.types.retry_recovery_plan_execution_step_response.RetryRecoveryPlanExecutionStepResponse"
+        ]:
+            import capo_drs._operations.elastic_disaster_recovery_service.retry_recovery_plan_execution_step
+
+            output, http_response = (
+                capo_drs._operations.elastic_disaster_recovery_service.retry_recovery_plan_execution_step.retry_recovery_plan_execution_step(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_drs.types.retry_recovery_plan_execution_step_request.RetryRecoveryPlanExecutionStepRequest = {
+            "recovery_plan_execution_step_arn": recovery_plan_execution_step_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def tag_resource(
         self,
         resource_arn: "capo_drs.types.arn.ARN",
@@ -898,6 +1848,189 @@ class drsClient:
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
         }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_recovery_plan(
+        self,
+        recovery_plan_arn: "capo_drs.types.strict_drsarn.StrictDRSARN",
+        *,
+        config_overrides: Optional[drsClientConfig] = None,
+        name: Optional["capo_drs.types.recovery_plan_name.RecoveryPlanName"] = None,
+        description: Optional[
+            "capo_drs.types.recovery_plan_description.RecoveryPlanDescription"
+        ] = None,
+    ) -> "capo_drs.types.update_recovery_plan_response.UpdateRecoveryPlanResponse":
+        """<p>Updates a Recovery Plan's name or description.</p>
+
+        Args:
+            recovery_plan_arn: <p>The ARN of the Recovery Plan to update.</p>
+
+        Raises:
+            capo_drs.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_drs.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
+            capo_drs.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception or failure.</p>
+            capo_drs.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource for this operation was not found.</p>
+            capo_drs.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_drs.errors.uninitialized_account_exception.UninitializedAccountException: <p>The account performing the request has not been initialized.</p>
+            capo_drs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the AWS service.</p>
+            capo_drs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_drs.types.update_recovery_plan_request.UpdateRecoveryPlanRequest]",
+        ) -> OperationResponse[
+            "capo_drs.types.update_recovery_plan_response.UpdateRecoveryPlanResponse"
+        ]:
+            import capo_drs._operations.elastic_disaster_recovery_service.update_recovery_plan
+
+            output, http_response = (
+                capo_drs._operations.elastic_disaster_recovery_service.update_recovery_plan.update_recovery_plan(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_drs.types.update_recovery_plan_request.UpdateRecoveryPlanRequest = {
+            "recovery_plan_arn": recovery_plan_arn
+        }
+        if name is not None:
+            input_["name"] = name
+        if description is not None:
+            input_["description"] = description
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_recovery_plan_execution_step(
+        self,
+        recovery_plan_execution_step_arn: "capo_drs.types.strict_drsarn.StrictDRSARN",
+        *,
+        config_overrides: Optional[drsClientConfig] = None,
+        status: Optional[
+            "capo_drs.types.recovery_plan_execution_step_status.RecoveryPlanExecutionStepStatus"
+        ] = None,
+        servers: Optional[
+            "capo_drs.types.recovery_plan_servers.RecoveryPlanServers"
+        ] = None,
+        wait_duration_minutes: Optional[
+            "capo_drs.types.wait_duration_minutes.WaitDurationMinutes"
+        ] = None,
+    ) -> "capo_drs.types.update_recovery_plan_execution_step_response.UpdateRecoveryPlanExecutionStepResponse":
+        """<p>Updates an execution step. Supports two actions: (1) skip a step that is in <code>NOT_STARTED</code> or <code>FAILED</code> status; (2) update the wait duration of a <code>WAIT</code> type step that is in <code>NOT_STARTED</code> status.</p>
+
+        Args:
+            recovery_plan_execution_step_arn: <p>The ARN of the execution step to update.</p>
+            status: Only SKIPPED is accepted. Step must be in NOT_STARTED or FAILED status.
+            servers: Full replacement of the server list. Only allowed when the step is in NOT_STARTED status (Server type steps only).
+            wait_duration_minutes: Updated wait duration. Only allowed when the step is in NOT_STARTED status (Wait type steps only).
+
+        Raises:
+            capo_drs.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_drs.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
+            capo_drs.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception or failure.</p>
+            capo_drs.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource for this operation was not found.</p>
+            capo_drs.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_drs.errors.uninitialized_account_exception.UninitializedAccountException: <p>The account performing the request has not been initialized.</p>
+            capo_drs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the AWS service.</p>
+            capo_drs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_drs.types.update_recovery_plan_execution_step_request.UpdateRecoveryPlanExecutionStepRequest]",
+        ) -> OperationResponse[
+            "capo_drs.types.update_recovery_plan_execution_step_response.UpdateRecoveryPlanExecutionStepResponse"
+        ]:
+            import capo_drs._operations.elastic_disaster_recovery_service.update_recovery_plan_execution_step
+
+            output, http_response = (
+                capo_drs._operations.elastic_disaster_recovery_service.update_recovery_plan_execution_step.update_recovery_plan_execution_step(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_drs.types.update_recovery_plan_execution_step_request.UpdateRecoveryPlanExecutionStepRequest = {
+            "recovery_plan_execution_step_arn": recovery_plan_execution_step_arn
+        }
+        if status is not None:
+            input_["status"] = status
+        if servers is not None:
+            input_["servers"] = servers
+        if wait_duration_minutes is not None:
+            input_["wait_duration_minutes"] = wait_duration_minutes
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_recovery_plan_step(
+        self,
+        recovery_plan_step_arn: "capo_drs.types.strict_drsarn.StrictDRSARN",
+        *,
+        config_overrides: Optional[drsClientConfig] = None,
+        step_name: Optional[
+            "capo_drs.types.recovery_plan_step_name.RecoveryPlanStepName"
+        ] = None,
+        configuration: Optional[
+            "capo_drs.types.recovery_plan_step_configuration.RecoveryPlanStepConfiguration"
+        ] = None,
+    ) -> "capo_drs.types.update_recovery_plan_step_response.UpdateRecoveryPlanStepResponse":
+        """<p>Updates a Recovery Plan step's name or configuration. Step type is immutable.</p>
+
+        Args:
+            recovery_plan_step_arn: <p>The ARN of the Recovery Plan step to update.</p>
+
+        Raises:
+            capo_drs.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_drs.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
+            capo_drs.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception or failure.</p>
+            capo_drs.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource for this operation was not found.</p>
+            capo_drs.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_drs.errors.uninitialized_account_exception.UninitializedAccountException: <p>The account performing the request has not been initialized.</p>
+            capo_drs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the AWS service.</p>
+            capo_drs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_drs.types.update_recovery_plan_step_request.UpdateRecoveryPlanStepRequest]",
+        ) -> OperationResponse[
+            "capo_drs.types.update_recovery_plan_step_response.UpdateRecoveryPlanStepResponse"
+        ]:
+            import capo_drs._operations.elastic_disaster_recovery_service.update_recovery_plan_step
+
+            output, http_response = (
+                capo_drs._operations.elastic_disaster_recovery_service.update_recovery_plan_step.update_recovery_plan_step(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_drs.types.update_recovery_plan_step_request.UpdateRecoveryPlanStepRequest = {
+            "recovery_plan_step_arn": recovery_plan_step_arn
+        }
+        if step_name is not None:
+            input_["step_name"] = step_name
+        if configuration is not None:
+            input_["configuration"] = configuration
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -1133,6 +2266,7 @@ class drsClient:
         export_bucket_arn: Optional["capo_drs.types.arn.ARN"] = None,
         post_launch_enabled: Optional[bool] = None,
         launch_into_source_instance: Optional[bool] = None,
+        recovery_mode: Optional["capo_drs.types.recovery_mode.RecoveryMode"] = None,
     ) -> "capo_drs.types.create_launch_configuration_template_response.CreateLaunchConfigurationTemplateResponse":
         """<p>Creates a new Launch Configuration Template.</p>
 
@@ -1146,6 +2280,7 @@ class drsClient:
             export_bucket_arn: <p>S3 bucket ARN to export Source Network templates.</p>
             post_launch_enabled: <p>Whether we want to activate post-launch actions.</p>
             launch_into_source_instance: <p>DRS will set the 'launch into instance ID' of any source server when performing a drill, recovery or failback to the previous region or availability zone, using the instance ID of the source instance.</p>
+            recovery_mode: <p>Recovery mode.</p>
 
         Raises:
             capo_drs.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -1193,6 +2328,8 @@ class drsClient:
             input_["post_launch_enabled"] = post_launch_enabled
         if launch_into_source_instance is not None:
             input_["launch_into_source_instance"] = launch_into_source_instance
+        if recovery_mode is not None:
+            input_["recovery_mode"] = recovery_mode
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -1219,6 +2356,7 @@ class drsClient:
         export_bucket_arn: Optional["capo_drs.types.arn.ARN"] = None,
         post_launch_enabled: Optional[bool] = None,
         launch_into_source_instance: Optional[bool] = None,
+        recovery_mode: Optional["capo_drs.types.recovery_mode.RecoveryMode"] = None,
     ) -> "capo_drs.types.update_launch_configuration_template_response.UpdateLaunchConfigurationTemplateResponse":
         """<p>Updates an existing Launch Configuration Template by ID.</p>
 
@@ -1232,6 +2370,7 @@ class drsClient:
             export_bucket_arn: <p>S3 bucket ARN to export Source Network templates.</p>
             post_launch_enabled: <p>Whether we want to activate post-launch actions.</p>
             launch_into_source_instance: <p>DRS will set the 'launch into instance ID' of any source server when performing a drill, recovery or failback to the previous region or availability zone, using the instance ID of the source instance.</p>
+            recovery_mode: <p>Recovery mode.</p>
 
         Raises:
             capo_drs.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -1279,6 +2418,8 @@ class drsClient:
             input_["post_launch_enabled"] = post_launch_enabled
         if launch_into_source_instance is not None:
             input_["launch_into_source_instance"] = launch_into_source_instance
+        if recovery_mode is not None:
+            input_["recovery_mode"] = recovery_mode
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -1889,6 +3030,140 @@ class drsClient:
         input_: capo_drs.types.terminate_recovery_instances_request.TerminateRecoveryInstancesRequest = {
             "recovery_instance_i_ds": recovery_instance_i_ds
         }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def create_recovery_plan(
+        self,
+        name: "capo_drs.types.recovery_plan_name.RecoveryPlanName",
+        *,
+        config_overrides: Optional[drsClientConfig] = None,
+        description: Optional[
+            "capo_drs.types.recovery_plan_description.RecoveryPlanDescription"
+        ] = None,
+        client_token: Optional[
+            "capo_drs.types.client_idempotency_token.ClientIdempotencyToken"
+        ] = None,
+        tags: Optional["capo_drs.types.tags_map.TagsMap"] = None,
+    ) -> "capo_drs.types.create_recovery_plan_response.CreateRecoveryPlanResponse":
+        """<p>Creates a Recovery Plan to orchestrate multi-server disaster recovery.</p>
+
+        Args:
+            client_token: <p>A unique string provided to ensure request idempotency.</p>
+            tags: <p>The tags to apply to the Recovery Plan.</p>
+
+        Raises:
+            capo_drs.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_drs.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
+            capo_drs.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception or failure.</p>
+            capo_drs.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because its exceeded the service quota.</p>
+            capo_drs.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_drs.errors.uninitialized_account_exception.UninitializedAccountException: <p>The account performing the request has not been initialized.</p>
+            capo_drs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the AWS service.</p>
+            capo_drs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_drs.types.create_recovery_plan_request.CreateRecoveryPlanRequest]",
+        ) -> OperationResponse[
+            "capo_drs.types.create_recovery_plan_response.CreateRecoveryPlanResponse"
+        ]:
+            import capo_drs._operations.elastic_disaster_recovery_service.create_recovery_plan
+
+            output, http_response = (
+                capo_drs._operations.elastic_disaster_recovery_service.create_recovery_plan.create_recovery_plan(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_drs.types.create_recovery_plan_request.CreateRecoveryPlanRequest = {
+            "name": name
+        }
+        if description is not None:
+            input_["description"] = description
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def start_recovery_plan_execution(
+        self,
+        recovery_plan_arn: "capo_drs.types.strict_drsarn.StrictDRSARN",
+        mode: "capo_drs.types.recovery_plan_execution_mode.RecoveryPlanExecutionMode",
+        *,
+        config_overrides: Optional[drsClientConfig] = None,
+        client_token: Optional[
+            "capo_drs.types.client_idempotency_token.ClientIdempotencyToken"
+        ] = None,
+        source_servers: Optional[
+            "capo_drs.types.recovery_plan_execution_source_server_list.RecoveryPlanExecutionSourceServerList"
+        ] = None,
+        tags: Optional["capo_drs.types.tags_map.TagsMap"] = None,
+    ) -> "capo_drs.types.start_recovery_plan_execution_response.StartRecoveryPlanExecutionResponse":
+        """<p>Starts executing a Recovery Plan in <code>DRILL</code> or <code>RECOVERY</code> mode. A plan cannot have more than one execution in a non-terminal status at a time.</p>
+
+        Args:
+            recovery_plan_arn: <p>The ARN of the Recovery Plan to execute.</p>
+            mode: <p>The execution mode (<code>DRILL</code> or <code>RECOVERY</code>).</p>
+            client_token: <p>A unique string provided to ensure request idempotency.</p>
+            source_servers: <p>Optional list of source servers with specific recovery snapshots. If not provided, the latest snapshot is used for each server.</p>
+            tags: <p>The tags to apply to the Recovery Plan execution.</p>
+
+        Raises:
+            capo_drs.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_drs.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
+            capo_drs.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception or failure.</p>
+            capo_drs.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource for this operation was not found.</p>
+            capo_drs.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because its exceeded the service quota.</p>
+            capo_drs.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_drs.errors.uninitialized_account_exception.UninitializedAccountException: <p>The account performing the request has not been initialized.</p>
+            capo_drs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the AWS service.</p>
+            capo_drs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_drs.types.start_recovery_plan_execution_request.StartRecoveryPlanExecutionRequest]",
+        ) -> OperationResponse[
+            "capo_drs.types.start_recovery_plan_execution_response.StartRecoveryPlanExecutionResponse"
+        ]:
+            import capo_drs._operations.elastic_disaster_recovery_service.start_recovery_plan_execution
+
+            output, http_response = (
+                capo_drs._operations.elastic_disaster_recovery_service.start_recovery_plan_execution.start_recovery_plan_execution(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_drs.types.start_recovery_plan_execution_request.StartRecoveryPlanExecutionRequest = {
+            "recovery_plan_arn": recovery_plan_arn,
+            "mode": mode,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if source_servers is not None:
+            input_["source_servers"] = source_servers
+        if tags is not None:
+            input_["tags"] = tags
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -3258,6 +4533,7 @@ class drsClient:
         launch_into_instance_properties: Optional[
             "capo_drs.types.launch_into_instance_properties.LaunchIntoInstanceProperties"
         ] = None,
+        recovery_mode: Optional["capo_drs.types.recovery_mode.RecoveryMode"] = None,
     ) -> "capo_drs.types.launch_configuration.LaunchConfiguration":
         """<p>Updates a LaunchConfiguration by Source Server ID.</p>
 
@@ -3271,6 +4547,7 @@ class drsClient:
             licensing: <p>The licensing configuration to be used for this launch configuration.</p>
             post_launch_enabled: <p>Whether we want to enable post-launch actions for the Source Server.</p>
             launch_into_instance_properties: <p>Launch into existing instance properties.</p>
+            recovery_mode: <p>Recovery mode.</p>
 
         Raises:
             capo_drs.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
@@ -3318,6 +4595,8 @@ class drsClient:
             input_["post_launch_enabled"] = post_launch_enabled
         if launch_into_instance_properties is not None:
             input_["launch_into_instance_properties"] = launch_into_instance_properties
+        if recovery_mode is not None:
+            input_["recovery_mode"] = recovery_mode
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),

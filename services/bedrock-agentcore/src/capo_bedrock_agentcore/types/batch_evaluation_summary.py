@@ -17,6 +17,8 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.error_details_list
     import capo_bedrock_agentcore.types.evaluation_job_results
     import capo_bedrock_agentcore.types.evaluator_list
+    import capo_bedrock_agentcore.types.insight_list
+    import capo_bedrock_agentcore.types.kms_key_arn
 
 
 class BatchEvaluationSummary(TypedDict, closed=True):
@@ -42,6 +44,8 @@ class BatchEvaluationSummary(TypedDict, closed=True):
     """<p>The description of the batch evaluation.</p>"""
     evaluators: NotRequired["capo_bedrock_agentcore.types.evaluator_list.EvaluatorList"]
     """<p>The list of evaluators applied during the batch evaluation.</p>"""
+    insights: NotRequired["capo_bedrock_agentcore.types.insight_list.InsightList"]
+    """<p>The list of insight analyses applied during the batch evaluation.</p>"""
     evaluation_results: NotRequired[
         "capo_bedrock_agentcore.types.evaluation_job_results.EvaluationJobResults"
     ]
@@ -50,6 +54,8 @@ class BatchEvaluationSummary(TypedDict, closed=True):
         "capo_bedrock_agentcore.types.error_details_list.ErrorDetailsList"
     ]
     """<p>The error details if the batch evaluation encountered failures.</p>"""
+    kms_key_arn: NotRequired["capo_bedrock_agentcore.types.kms_key_arn.KmsKeyArn"]
+    """<p>The ARN of the KMS key used to encrypt evaluation data.</p>"""
     updated_at: NotRequired["datetime.datetime"]
     """<p>The timestamp when the batch evaluation was last updated.</p>"""
 
@@ -78,6 +84,12 @@ def serialize_json(value: BatchEvaluationSummary) -> dict:
         out["evaluators"] = capo_bedrock_agentcore.types.evaluator_list.serialize_json(
             value["evaluators"]
         )
+    if "insights" in value:
+        import capo_bedrock_agentcore.types.insight_list
+
+        out["insights"] = capo_bedrock_agentcore.types.insight_list.serialize_json(
+            value["insights"]
+        )
     if "evaluation_results" in value:
         import capo_bedrock_agentcore.types.evaluation_job_results
 
@@ -94,6 +106,8 @@ def serialize_json(value: BatchEvaluationSummary) -> dict:
                 value["error_details"]
             )
         )
+    if "kms_key_arn" in value:
+        out["kmsKeyArn"] = value["kms_key_arn"]
     if "updated_at" in value:
         import capo_bedrock_agentcore._protocol.serialize
 
@@ -151,6 +165,12 @@ def deserialize_json(data: dict) -> BatchEvaluationSummary:
                 data["evaluators"]
             )
         )
+    if data.get("insights") is not None:
+        import capo_bedrock_agentcore.types.insight_list
+
+        out["insights"] = capo_bedrock_agentcore.types.insight_list.deserialize_json(
+            data["insights"]
+        )
     if data.get("evaluationResults") is not None:
         import capo_bedrock_agentcore.types.evaluation_job_results
 
@@ -167,6 +187,8 @@ def deserialize_json(data: dict) -> BatchEvaluationSummary:
                 data["errorDetails"]
             )
         )
+    if data.get("kmsKeyArn") is not None:
+        out["kms_key_arn"] = data["kmsKeyArn"]
     if data.get("updatedAt") is not None:
         import datetime
 

@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     import capo_quicksight.types.asset_bundle_import_job_data_source_override_permissions_list
     import capo_quicksight.types.asset_bundle_import_job_folder_override_permissions_list
     import capo_quicksight.types.asset_bundle_import_job_theme_override_permissions_list
+    import capo_quicksight.types.asset_bundle_import_job_topic_v2_override_permissions_list
 
 
 class AssetBundleImportJobOverridePermissions(TypedDict, closed=True):
@@ -38,6 +39,10 @@ class AssetBundleImportJobOverridePermissions(TypedDict, closed=True):
         "capo_quicksight.types.asset_bundle_import_job_folder_override_permissions_list.AssetBundleImportJobFolderOverridePermissionsList"
     ]
     """<p>A list of permissions for the folders that you want to apply overrides to.</p>"""
+    topics_v2: NotRequired[
+        "capo_quicksight.types.asset_bundle_import_job_topic_v2_override_permissions_list.AssetBundleImportJobTopicV2OverridePermissionsList"
+    ]
+    """<p>A list of permissions for the topics that you want to apply overrides to.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -91,6 +96,14 @@ def serialize_json(value: AssetBundleImportJobOverridePermissions) -> dict:
                 value["folders"]
             )
         )
+    if "topics_v2" in value:
+        import capo_quicksight.types.asset_bundle_import_job_topic_v2_override_permissions_list
+
+        out["TopicsV2"] = (
+            capo_quicksight.types.asset_bundle_import_job_topic_v2_override_permissions_list.serialize_json(
+                value["topics_v2"]
+            )
+        )
     return out
 
 
@@ -142,6 +155,14 @@ def deserialize_json(data: dict) -> AssetBundleImportJobOverridePermissions:
         out["folders"] = (
             capo_quicksight.types.asset_bundle_import_job_folder_override_permissions_list.deserialize_json(
                 data["Folders"]
+            )
+        )
+    if data.get("TopicsV2") is not None:
+        import capo_quicksight.types.asset_bundle_import_job_topic_v2_override_permissions_list
+
+        out["topics_v2"] = (
+            capo_quicksight.types.asset_bundle_import_job_topic_v2_override_permissions_list.deserialize_json(
+                data["TopicsV2"]
             )
         )
     return out

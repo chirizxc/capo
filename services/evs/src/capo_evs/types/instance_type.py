@@ -5,6 +5,7 @@ from typing import Literal, TypeAlias, cast
 InstanceType: TypeAlias = Literal[
     "i4i.metal",
     "i7i.metal-24xl",
+    "i7i.metal-48xl",
 ]
 
 

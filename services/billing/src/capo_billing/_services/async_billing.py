@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.billing#AWSBilling``."""
 
+import datetime
 import uuid
 import warnings
 from collections.abc import AsyncIterator
@@ -34,33 +35,59 @@ if TYPE_CHECKING:
     import capo_billing.types.active_time_range
     import capo_billing.types.associate_source_views_request
     import capo_billing.types.associate_source_views_response
+    import capo_billing.types.billing_feature
+    import capo_billing.types.billing_feature_filters
+    import capo_billing.types.billing_features
+    import capo_billing.types.billing_preferences_per_key
     import capo_billing.types.billing_view_arn
     import capo_billing.types.billing_view_arn_list
     import capo_billing.types.billing_view_description
     import capo_billing.types.billing_view_list_element
     import capo_billing.types.billing_view_name
+    import capo_billing.types.billing_view_segment_time_range
+    import capo_billing.types.billing_view_segments_list_element
     import capo_billing.types.billing_view_source_views_list
     import capo_billing.types.billing_view_type_list
     import capo_billing.types.billing_views_max_results
     import capo_billing.types.client_token
     import capo_billing.types.create_billing_view_request
     import capo_billing.types.create_billing_view_response
+    import capo_billing.types.credit_allocation_history_entry
     import capo_billing.types.delete_billing_view_request
     import capo_billing.types.delete_billing_view_response
     import capo_billing.types.disassociate_source_views_request
     import capo_billing.types.disassociate_source_views_response
+    import capo_billing.types.enterprise_support_billing_month
     import capo_billing.types.expression
+    import capo_billing.types.get_billing_preferences_request
+    import capo_billing.types.get_billing_preferences_response
     import capo_billing.types.get_billing_view_request
     import capo_billing.types.get_billing_view_response
+    import capo_billing.types.get_credit_allocation_history_request
+    import capo_billing.types.get_credit_allocation_history_response
+    import capo_billing.types.get_credits_request
+    import capo_billing.types.get_credits_response
+    import capo_billing.types.get_enterprise_support_charge_summary_request
+    import capo_billing.types.get_enterprise_support_charge_summary_response
+    import capo_billing.types.get_enterprise_support_contract_details_request
+    import capo_billing.types.get_enterprise_support_contract_details_response
     import capo_billing.types.get_resource_policy_request
     import capo_billing.types.get_resource_policy_response
+    import capo_billing.types.linked_account_charge
+    import capo_billing.types.list_billing_view_segments_request
+    import capo_billing.types.list_billing_view_segments_response
     import capo_billing.types.list_billing_views_request
     import capo_billing.types.list_billing_views_response
+    import capo_billing.types.list_enterprise_support_linked_account_charges_request
+    import capo_billing.types.list_enterprise_support_linked_account_charges_response
     import capo_billing.types.list_source_views_for_billing_view_request
     import capo_billing.types.list_source_views_for_billing_view_response
     import capo_billing.types.list_tags_for_resource_request
     import capo_billing.types.list_tags_for_resource_response
     import capo_billing.types.page_token
+    import capo_billing.types.promo_code
+    import capo_billing.types.redeem_credits_request
+    import capo_billing.types.redeem_credits_response
     import capo_billing.types.resource_arn
     import capo_billing.types.resource_tag_key_list
     import capo_billing.types.resource_tag_list
@@ -69,6 +96,8 @@ if TYPE_CHECKING:
     import capo_billing.types.tag_resource_response
     import capo_billing.types.untag_resource_request
     import capo_billing.types.untag_resource_response
+    import capo_billing.types.update_billing_preferences_request
+    import capo_billing.types.update_billing_preferences_response
     import capo_billing.types.update_billing_view_request
     import capo_billing.types.update_billing_view_response
 
@@ -422,6 +451,67 @@ class AsyncBillingClient:
         await response.response.aclose()
         return response.output
 
+    async def get_billing_preferences(
+        self,
+        features: "capo_billing.types.billing_features.BillingFeatures",
+        *,
+        config_overrides: Optional[AsyncBillingClientConfig] = None,
+        next_token: Optional["capo_billing.types.page_token.PageToken"] = None,
+        max_results: Optional[int] = None,
+        filters: Optional[
+            "capo_billing.types.billing_feature_filters.BillingFeatureFilters"
+        ] = None,
+    ) -> "capo_billing.types.get_billing_preferences_response.GetBillingPreferencesResponse":
+        """<p>Retrieves billing preferences for the specified feature. Each feature controls a distinct billing capability: which accounts can share Reserved Instances or credits, whether billing alerts are enabled, the historical record of sharing changes, and per-credit options.</p>
+
+        Args:
+            next_token: <p>Pagination token from a previous response. Pass the value returned in <code>nextToken</code> to retrieve the next page of results.</p>
+            max_results: <p>The maximum number of records to return per page. Range: 1 to 50. Default: 50.</p>
+            features: <p>The feature to retrieve. Specify exactly one value. Valid values: <code>BILLING_ALERTS</code>, <code>RI_SHARING</code>, <code>RI_SHARING_HISTORY</code>, <code>CREDIT_SHARING</code>, <code>CREDIT_SHARING_HISTORY</code>, <code>CREDIT_LEVEL_SHARING</code>, <code>CREDIT_PREFERENCE_OPTIONS</code>.</p>
+            filters: <p>Filters to narrow results. Specify exactly one filter when supplied. The supported filter name is <code>PREFERENCE_KEY</code>, which accepts 1 to 10 values to match preference keys.</p>
+
+        Raises:
+            capo_billing.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
+            capo_billing.errors.internal_server_exception.InternalServerException: <p>The request processing failed because of an unknown error, exception, or failure. </p>
+            capo_billing.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling. </p>
+            capo_billing.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service. </p>
+            capo_billing.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_billing.types.get_billing_preferences_request.GetBillingPreferencesRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_billing.types.get_billing_preferences_response.GetBillingPreferencesResponse"
+        ]:
+            import capo_billing._operations.aws_billing.get_billing_preferences
+
+            (
+                output,
+                http_response,
+            ) = await capo_billing._operations.aws_billing.get_billing_preferences.async_get_billing_preferences(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_billing.types.get_billing_preferences_request.GetBillingPreferencesRequest = {
+            "features": features
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if filters is not None:
+            input_["filters"] = filters
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def get_billing_view(
         self,
         arn: "capo_billing.types.billing_view_arn.BillingViewArn",
@@ -465,6 +555,254 @@ class AsyncBillingClient:
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_billing.types.get_billing_view_request.GetBillingViewRequest = {
             "arn": arn
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_credit_allocation_history(
+        self,
+        account_id: "capo_billing.types.account_id.AccountId",
+        start_date: datetime.datetime,
+        end_date: datetime.datetime,
+        *,
+        config_overrides: Optional[AsyncBillingClientConfig] = None,
+        credit_id: Optional[int] = None,
+        next_token: Optional["capo_billing.types.page_token.PageToken"] = None,
+        max_results: Optional[int] = None,
+    ) -> "capo_billing.types.get_credit_allocation_history_response.GetCreditAllocationHistoryResponse":
+        """<p>Returns the per-billing-month allocation history for credits applied to an Amazon Web Services account's bills. Traverses the consolidated billing family to capture cross-account credit applications. Supports pagination and optional filtering to a single credit.</p>
+
+        Args:
+            account_id: <p>The Amazon Web Services account ID whose allocation history to retrieve. Must be a 12-digit numeric string.</p>
+            credit_id: <p>Filters the result to a single credit. When omitted, returns allocation entries for all credits.</p>
+            start_date: <p>Inclusive start date as Unix epoch seconds. Must be on or before <code>endDate</code>. The range from <code>startDate</code> to <code>endDate</code> cannot exceed 24 billing months.</p>
+            end_date: <p>Inclusive end date as Unix epoch seconds.</p>
+            next_token: <p>Pagination token from a previous response. Pass the value returned in <code>nextToken</code> to retrieve the next page of results.</p>
+            max_results: <p>The maximum number of records to return per page. Range: 1 to 1000. Default: 100.</p>
+
+        Raises:
+            capo_billing.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
+            capo_billing.errors.internal_server_exception.InternalServerException: <p>The request processing failed because of an unknown error, exception, or failure. </p>
+            capo_billing.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling. </p>
+            capo_billing.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service. </p>
+            capo_billing.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_billing.types.get_credit_allocation_history_request.GetCreditAllocationHistoryRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_billing.types.get_credit_allocation_history_response.GetCreditAllocationHistoryResponse"
+        ]:
+            import capo_billing._operations.aws_billing.get_credit_allocation_history
+
+            (
+                output,
+                http_response,
+            ) = await capo_billing._operations.aws_billing.get_credit_allocation_history.async_get_credit_allocation_history(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_billing.types.get_credit_allocation_history_request.GetCreditAllocationHistoryRequest = {
+            "account_id": account_id,
+            "start_date": start_date,
+            "end_date": end_date,
+        }
+        if credit_id is not None:
+            input_["credit_id"] = credit_id
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_get_credit_allocation_history(
+        self,
+        account_id: "capo_billing.types.account_id.AccountId",
+        start_date: datetime.datetime,
+        end_date: datetime.datetime,
+        *,
+        config_overrides: Optional[AsyncBillingClientConfig] = None,
+        credit_id: Optional[int] = None,
+        next_token: Optional["capo_billing.types.page_token.PageToken"] = None,
+        max_results: Optional[int] = None,
+    ) -> "AsyncIterator[capo_billing.types.credit_allocation_history_entry.CreditAllocationHistoryEntry]":
+        _token = next_token
+        while True:
+            _response = await self.get_credit_allocation_history(
+                account_id,
+                start_date,
+                end_date,
+                config_overrides=config_overrides,
+                credit_id=credit_id,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("credit_allocation_history_list",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def get_credits(
+        self,
+        account_id: str,
+        start_date: datetime.datetime,
+        *,
+        config_overrides: Optional[AsyncBillingClientConfig] = None,
+        end_date: Optional[datetime.datetime] = None,
+        payer_account_flag: Optional[bool] = None,
+    ) -> "capo_billing.types.get_credits_response.GetCreditsResponse":
+        """<p>Returns the list of Amazon Web Services account credits for the specified account. Each credit includes its identifier, type, monetary amounts, applicable products, expiration, sharing configuration, and current enabled status.</p> <p>When the caller is the management account of a consolidated billing family and <code>payerAccountFlag</code> is <code>true</code>, the response aggregates credits across the entire family. Otherwise, the response includes only credits owned by the account specified in <code>accountId</code>.</p>
+
+        Args:
+            account_id: <p>The Amazon Web Services account ID. Must be a 12-digit numeric string.</p>
+            start_date: <p>The start date for the credit period as Unix epoch seconds. Must be a past date that is not more than one year before the current date.</p>
+            end_date: <p>The end date for the credit period as Unix epoch seconds. Must not be a future date and must be on or after <code>startDate</code>. Defaults to the current date when omitted.</p>
+            payer_account_flag: <p>When <code>true</code> and the caller is the management account, the response aggregates credits across the entire consolidated billing family. When <code>false</code> or omitted, returns only credits for the specified <code>accountId</code>.</p>
+
+        Raises:
+            capo_billing.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
+            capo_billing.errors.internal_server_exception.InternalServerException: <p>The request processing failed because of an unknown error, exception, or failure. </p>
+            capo_billing.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling. </p>
+            capo_billing.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service. </p>
+            capo_billing.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_billing.types.get_credits_request.GetCreditsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_billing.types.get_credits_response.GetCreditsResponse"
+        ]:
+            import capo_billing._operations.aws_billing.get_credits
+
+            (
+                output,
+                http_response,
+            ) = await capo_billing._operations.aws_billing.get_credits.async_get_credits(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_billing.types.get_credits_request.GetCreditsRequest = {
+            "account_id": account_id,
+            "start_date": start_date,
+        }
+        if end_date is not None:
+            input_["end_date"] = end_date
+        if payer_account_flag is not None:
+            input_["payer_account_flag"] = payer_account_flag
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_enterprise_support_charge_summary(
+        self,
+        billing_month: "capo_billing.types.enterprise_support_billing_month.EnterpriseSupportBillingMonth",
+        *,
+        config_overrides: Optional[AsyncBillingClientConfig] = None,
+    ) -> "capo_billing.types.get_enterprise_support_charge_summary_response.GetEnterpriseSupportChargeSummaryResponse":
+        """<p>Returns a summary of Enterprise Support data aggregated across all accounts in the Enterprise Support profile.</p>
+
+        Args:
+            billing_month: <p>The billing month in YYYY-MM format. This must be a month in the past.</p>
+
+        Raises:
+            capo_billing.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
+            capo_billing.errors.internal_server_exception.InternalServerException: <p>The request processing failed because of an unknown error, exception, or failure. </p>
+            capo_billing.errors.resource_not_found_exception.ResourceNotFoundException: <p> The specified ARN in the request doesn't exist. </p>
+            capo_billing.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling. </p>
+            capo_billing.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service. </p>
+            capo_billing.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_billing.types.get_enterprise_support_charge_summary_request.GetEnterpriseSupportChargeSummaryRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_billing.types.get_enterprise_support_charge_summary_response.GetEnterpriseSupportChargeSummaryResponse"
+        ]:
+            import capo_billing._operations.aws_billing.get_enterprise_support_charge_summary
+
+            (
+                output,
+                http_response,
+            ) = await capo_billing._operations.aws_billing.get_enterprise_support_charge_summary.async_get_enterprise_support_charge_summary(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_billing.types.get_enterprise_support_charge_summary_request.GetEnterpriseSupportChargeSummaryRequest = {
+            "billing_month": billing_month
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_enterprise_support_contract_details(
+        self,
+        billing_month: "capo_billing.types.enterprise_support_billing_month.EnterpriseSupportBillingMonth",
+        *,
+        config_overrides: Optional[AsyncBillingClientConfig] = None,
+    ) -> "capo_billing.types.get_enterprise_support_contract_details_response.GetEnterpriseSupportContractDetailsResponse":
+        """<p>Returns Enterprise Support contract details.</p>
+
+        Args:
+            billing_month: <p>The billing month in YYYY-MM format. This must be a month in the past.</p>
+
+        Raises:
+            capo_billing.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
+            capo_billing.errors.internal_server_exception.InternalServerException: <p>The request processing failed because of an unknown error, exception, or failure. </p>
+            capo_billing.errors.resource_not_found_exception.ResourceNotFoundException: <p> The specified ARN in the request doesn't exist. </p>
+            capo_billing.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling. </p>
+            capo_billing.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service. </p>
+            capo_billing.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_billing.types.get_enterprise_support_contract_details_request.GetEnterpriseSupportContractDetailsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_billing.types.get_enterprise_support_contract_details_response.GetEnterpriseSupportContractDetailsResponse"
+        ]:
+            import capo_billing._operations.aws_billing.get_enterprise_support_contract_details
+
+            (
+                output,
+                http_response,
+            ) = await capo_billing._operations.aws_billing.get_enterprise_support_contract_details.async_get_enterprise_support_contract_details(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_billing.types.get_enterprise_support_contract_details_request.GetEnterpriseSupportContractDetailsRequest = {
+            "billing_month": billing_month
         }
 
         response = await aexecute_pipeline(
@@ -660,6 +998,193 @@ class AsyncBillingClient:
             if not _token:
                 break
 
+    async def list_billing_view_segments(
+        self,
+        *,
+        config_overrides: Optional[AsyncBillingClientConfig] = None,
+        time_range: Optional[
+            "capo_billing.types.billing_view_segment_time_range.BillingViewSegmentTimeRange"
+        ] = None,
+        arn: Optional["capo_billing.types.billing_view_arn.BillingViewArn"] = None,
+        max_results: Optional[
+            "capo_billing.types.billing_views_max_results.BillingViewsMaxResults"
+        ] = None,
+        next_token: Optional["capo_billing.types.page_token.PageToken"] = None,
+    ) -> "capo_billing.types.list_billing_view_segments_response.ListBillingViewSegmentsResponse":
+        """<p>Lists the segments of a billing view over a given time period. Each segment identifies the billing domain (<code>PRO_FORMA</code> or <code>BILLABLE</code>) and the account relationships that apply during its time range.</p> <p>If you don't provide an <code>arn</code>, the response includes segments for the caller's <code>PRIMARY</code> billing view.</p> <p>If a mid-period change occurs, the response includes multiple segments, each with its own time range. The response omits hidden segments, so the segments it returns might not cover the entire requested time period.</p>
+
+        Args:
+            time_range: <p> The billing period to query. If you don't provide a time range, the current billing period, which is the calendar month in UTC, is used. </p>
+            arn: <p> The Amazon Resource Name (ARN) that uniquely identifies the billing view to query. If you don't provide an ARN, the caller's <code>PRIMARY</code> billing view is used. The ARN must reference a primary billing view. Custom billing views aren't supported. </p>
+            max_results: <p> The number of entries a paginated response contains. Valid values range from 1 to 100. The default is 100. </p>
+            next_token: <p> The pagination token that is used on subsequent calls to list billing view segments. </p>
+
+        Raises:
+            capo_billing.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
+            capo_billing.errors.billing_view_health_status_exception.BillingViewHealthStatusException: <p> Exception thrown when a billing view's health status prevents an operation from being performed. This may occur if the billing view is in a state other than <code>HEALTHY</code>.</p>
+            capo_billing.errors.internal_server_exception.InternalServerException: <p>The request processing failed because of an unknown error, exception, or failure. </p>
+            capo_billing.errors.resource_not_found_exception.ResourceNotFoundException: <p> The specified ARN in the request doesn't exist. </p>
+            capo_billing.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling. </p>
+            capo_billing.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service. </p>
+            capo_billing.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Invoke ListBillingViewSegments
+
+            >>> await client.list_billing_view_segments(time_range={'beginDateInclusive': 1719792000, 'endDateExclusive': 1722470400})
+            Error example for ListBillingViewSegments
+
+            >>> await client.list_billing_view_segments(time_range={'beginDateInclusive': 1722470400, 'endDateExclusive': 1719792000})
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_billing.types.list_billing_view_segments_request.ListBillingViewSegmentsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_billing.types.list_billing_view_segments_response.ListBillingViewSegmentsResponse"
+        ]:
+            import capo_billing._operations.aws_billing.list_billing_view_segments
+
+            (
+                output,
+                http_response,
+            ) = await capo_billing._operations.aws_billing.list_billing_view_segments.async_list_billing_view_segments(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_billing.types.list_billing_view_segments_request.ListBillingViewSegmentsRequest = {}
+        if time_range is not None:
+            input_["time_range"] = time_range
+        if arn is not None:
+            input_["arn"] = arn
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_billing_view_segments(
+        self,
+        *,
+        config_overrides: Optional[AsyncBillingClientConfig] = None,
+        time_range: Optional[
+            "capo_billing.types.billing_view_segment_time_range.BillingViewSegmentTimeRange"
+        ] = None,
+        arn: Optional["capo_billing.types.billing_view_arn.BillingViewArn"] = None,
+        max_results: Optional[
+            "capo_billing.types.billing_views_max_results.BillingViewsMaxResults"
+        ] = None,
+        next_token: Optional["capo_billing.types.page_token.PageToken"] = None,
+    ) -> "AsyncIterator[capo_billing.types.billing_view_segments_list_element.BillingViewSegmentsListElement]":
+        _token = next_token
+        while True:
+            _response = await self.list_billing_view_segments(
+                config_overrides=config_overrides,
+                time_range=time_range,
+                arn=arn,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def list_enterprise_support_linked_account_charges(
+        self,
+        billing_month: "capo_billing.types.enterprise_support_billing_month.EnterpriseSupportBillingMonth",
+        *,
+        config_overrides: Optional[AsyncBillingClientConfig] = None,
+        account_id: Optional["capo_billing.types.account_id.AccountId"] = None,
+        max_results: Optional[int] = None,
+        next_token: Optional["capo_billing.types.page_token.PageToken"] = None,
+    ) -> "capo_billing.types.list_enterprise_support_linked_account_charges_response.ListEnterpriseSupportLinkedAccountChargesResponse":
+        """<p>Returns Support-eligible spend broken down at linked account level.</p>
+
+        Args:
+            billing_month: <p>The billing month in YYYY-MM format. This must be a month in the past.</p>
+            account_id: <p>An optional linked account ID to filter results to a specific account.</p>
+            max_results: <p>The maximum number of results to return per page.</p>
+            next_token: <p>The pagination token for the next page of results.</p>
+
+        Raises:
+            capo_billing.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
+            capo_billing.errors.internal_server_exception.InternalServerException: <p>The request processing failed because of an unknown error, exception, or failure. </p>
+            capo_billing.errors.resource_not_found_exception.ResourceNotFoundException: <p> The specified ARN in the request doesn't exist. </p>
+            capo_billing.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling. </p>
+            capo_billing.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service. </p>
+            capo_billing.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_billing.types.list_enterprise_support_linked_account_charges_request.ListEnterpriseSupportLinkedAccountChargesRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_billing.types.list_enterprise_support_linked_account_charges_response.ListEnterpriseSupportLinkedAccountChargesResponse"
+        ]:
+            import capo_billing._operations.aws_billing.list_enterprise_support_linked_account_charges
+
+            (
+                output,
+                http_response,
+            ) = await capo_billing._operations.aws_billing.list_enterprise_support_linked_account_charges.async_list_enterprise_support_linked_account_charges(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_billing.types.list_enterprise_support_linked_account_charges_request.ListEnterpriseSupportLinkedAccountChargesRequest = {
+            "billing_month": billing_month
+        }
+        if account_id is not None:
+            input_["account_id"] = account_id
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_enterprise_support_linked_account_charges(
+        self,
+        billing_month: "capo_billing.types.enterprise_support_billing_month.EnterpriseSupportBillingMonth",
+        *,
+        config_overrides: Optional[AsyncBillingClientConfig] = None,
+        account_id: Optional["capo_billing.types.account_id.AccountId"] = None,
+        max_results: Optional[int] = None,
+        next_token: Optional["capo_billing.types.page_token.PageToken"] = None,
+    ) -> "AsyncIterator[capo_billing.types.linked_account_charge.LinkedAccountCharge]":
+        _token = next_token
+        while True:
+            _response = await self.list_enterprise_support_linked_account_charges(
+                billing_month,
+                config_overrides=config_overrides,
+                account_id=account_id,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("linked_account",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     async def list_source_views_for_billing_view(
         self,
         arn: "capo_billing.types.billing_view_arn.BillingViewArn",
@@ -803,6 +1328,53 @@ class AsyncBillingClient:
         await response.response.aclose()
         return response.output
 
+    async def redeem_credits(
+        self,
+        promo_code: "capo_billing.types.promo_code.PromoCode",
+        *,
+        config_overrides: Optional[AsyncBillingClientConfig] = None,
+    ) -> "capo_billing.types.redeem_credits_response.RedeemCreditsResponse":
+        """<p>Redeems an Amazon Web Services promotional credit code on behalf of the calling account. On success, a new credit is added to the account's credit ledger with the amount, validity period, and applicable products defined by the promotion. The credit is then automatically applied to subsequent bills according to the standard credit application order.</p>
+
+        Args:
+            promo_code: <p>The promotional credit code to redeem.</p>
+
+        Raises:
+            capo_billing.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
+            capo_billing.errors.internal_server_exception.InternalServerException: <p>The request processing failed because of an unknown error, exception, or failure. </p>
+            capo_billing.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling. </p>
+            capo_billing.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service. </p>
+            capo_billing.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_billing.types.redeem_credits_request.RedeemCreditsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_billing.types.redeem_credits_response.RedeemCreditsResponse"
+        ]:
+            import capo_billing._operations.aws_billing.redeem_credits
+
+            (
+                output,
+                http_response,
+            ) = await capo_billing._operations.aws_billing.redeem_credits.async_redeem_credits(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_billing.types.redeem_credits_request.RedeemCreditsRequest = {
+            "promo_code": promo_code
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def tag_resource(
         self,
         resource_arn: "capo_billing.types.resource_arn.ResourceArn",
@@ -905,6 +1477,56 @@ class AsyncBillingClient:
         input_: capo_billing.types.untag_resource_request.UntagResourceRequest = {
             "resource_arn": resource_arn,
             "resource_tag_keys": resource_tag_keys,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_billing_preferences(
+        self,
+        feature: "capo_billing.types.billing_feature.BillingFeature",
+        billing_preferences_per_key: "capo_billing.types.billing_preferences_per_key.BillingPreferencesPerKey",
+        *,
+        config_overrides: Optional[AsyncBillingClientConfig] = None,
+    ) -> "capo_billing.types.update_billing_preferences_response.UpdateBillingPreferencesResponse":
+        """<p>Updates billing preferences for the specified feature. Each feature targets a distinct billing capability and has its own set of supported keys. The action sets the value for each provided key; keys not present in the request are unchanged.</p> <p>Sharing keys (<code>RI_SHARING</code>, <code>CREDIT_SHARING</code>, <code>CREDIT_LEVEL_SHARING</code>, and sharing keys under <code>CREDIT_PREFERENCE_OPTIONS</code>) may only be set by the management account of a consolidated billing family. The <code>credit/{creditId}/status</code> key may be set by member accounts for credits they own, or by the management account for any credit in the family.</p>
+
+        Args:
+            feature: <p>The feature to update. Valid values: <code>BILLING_ALERTS</code>, <code>RI_SHARING</code>, <code>CREDIT_SHARING</code>, <code>CREDIT_LEVEL_SHARING</code>, <code>CREDIT_PREFERENCE_OPTIONS</code>. The history features (<code>RI_SHARING_HISTORY</code> and <code>CREDIT_SHARING_HISTORY</code>) are read-only and cannot be updated.</p>
+            billing_preferences_per_key: <p>Key/value pairs to apply. All keys in a single request must be valid for the specified <code>feature</code> and must not be duplicated. For <code>CREDIT_PREFERENCE_OPTIONS</code>, all keys must reference the same <code>creditId</code>.</p>
+
+        Raises:
+            capo_billing.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient access to perform this action.</p>
+            capo_billing.errors.internal_server_exception.InternalServerException: <p>The request processing failed because of an unknown error, exception, or failure. </p>
+            capo_billing.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling. </p>
+            capo_billing.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service. </p>
+            capo_billing.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_billing.types.update_billing_preferences_request.UpdateBillingPreferencesRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_billing.types.update_billing_preferences_response.UpdateBillingPreferencesResponse"
+        ]:
+            import capo_billing._operations.aws_billing.update_billing_preferences
+
+            (
+                output,
+                http_response,
+            ) = await capo_billing._operations.aws_billing.update_billing_preferences.async_update_billing_preferences(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_billing.types.update_billing_preferences_request.UpdateBillingPreferencesRequest = {
+            "feature": feature,
+            "billing_preferences_per_key": billing_preferences_per_key,
         }
 
         response = await aexecute_pipeline(

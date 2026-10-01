@@ -19,6 +19,8 @@ if TYPE_CHECKING:
     import capo_mediatailor.types.__string
     import capo_mediatailor.types.ad_conditioning_configuration
     import capo_mediatailor.types.ad_decision_server_configuration
+    import capo_mediatailor.types.ads_personalization_concurrency
+    import capo_mediatailor.types.ads_personalization_timeouts
     import capo_mediatailor.types.avail_suppression
     import capo_mediatailor.types.bumper
     import capo_mediatailor.types.cdn_configuration
@@ -38,6 +40,7 @@ if TYPE_CHECKING:
     import capo_mediatailor.types.playback_configuration
     import capo_mediatailor.types.put_playback_configuration_request
     import capo_mediatailor.types.put_playback_configuration_response
+    import capo_mediatailor.types.yield_optimization_configuration
     from capo_mediatailor._services.async_media_tailor import (
         AsyncMediaTailorClient,
         AsyncMediaTailorClientConfig,
@@ -101,8 +104,17 @@ class PlaybackConfigurationResource:
         ad_decision_server_configuration: Optional[
             "capo_mediatailor.types.ad_decision_server_configuration.AdDecisionServerConfiguration"
         ] = None,
+        yield_optimization_configuration: Optional[
+            "capo_mediatailor.types.yield_optimization_configuration.YieldOptimizationConfiguration"
+        ] = None,
         function_mapping: Optional[
             "capo_mediatailor.types.function_mapping.FunctionMapping"
+        ] = None,
+        ads_personalization_timeouts: Optional[
+            "capo_mediatailor.types.ads_personalization_timeouts.AdsPersonalizationTimeouts"
+        ] = None,
+        ads_personalization_concurrency: Optional[
+            "capo_mediatailor.types.ads_personalization_concurrency.AdsPersonalizationConcurrency"
         ] = None,
     ) -> "capo_mediatailor.types.put_playback_configuration_response.PutPlaybackConfigurationResponse":
         r"""<p>Creates a playback configuration. For information about MediaTailor configurations, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/configurations.html\">Working with configurations in AWS Elemental MediaTailor</a>.</p>
@@ -125,7 +137,10 @@ class PlaybackConfigurationResource:
             video_content_source_url: <p>The URL prefix for the parent manifest for the stream, minus the asset ID. The maximum length is 512 characters.</p>
             ad_conditioning_configuration: <p>The setting that indicates what conditioning MediaTailor will perform on ads that the ad decision server (ADS) returns, and what priority MediaTailor uses when inserting ads. </p>
             ad_decision_server_configuration: <p>The configuration for customizing HTTP requests to the ad decision server (ADS). This includes settings for request method, headers, body content, and compression options.</p>
-            function_mapping: <p>A map of lifecycle hook event names to function identifiers. The function mapping specifies which function MediaTailor executes at each lifecycle hook during ad insertion. Valid keys are <code>PRE_SESSION_INITIALIZATION</code> and <code>PRE_ADS_REQUEST</code>. For more information, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/monetization-functions-hooks.html\">Functions lifecycle hooks</a> in the <i>MediaTailor User Guide</i>.</p>
+            yield_optimization_configuration: <p>Configuration for Yield Optimization, which fills unsold ad inventory in ad breaks with programmatic ads from Amazon Publisher Services (APS).</p>
+            function_mapping: <p>A map of lifecycle hook event names to function identifiers. The function mapping specifies which function MediaTailor executes at each lifecycle hook during ad insertion. Valid keys are <code>PRE_SESSION_INITIALIZATION</code>, <code>PRE_ADS_REQUEST</code>, <code>POST_ADS_RESPONSE</code>, and <code>PRE_MANIFEST_INSERTION</code>. For more information, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/monetization-functions-hooks.html\">Functions lifecycle hooks</a> in the <i>MediaTailor User Guide</i>.</p>
+            ads_personalization_timeouts: <p>The timeout settings for ad decision server interactions. These settings control how long MediaTailor waits for ADS responses and the total time budget for ad personalization across live, VOD, and prefetch workflows.</p>
+            ads_personalization_concurrency: <p>The concurrency settings for ad decision server interactions. These settings control how many simultaneous ADS requests MediaTailor makes per manifest request.</p>
 
         Raises:
             capo_mediatailor.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -185,8 +200,16 @@ class PlaybackConfigurationResource:
             input_["ad_decision_server_configuration"] = (
                 ad_decision_server_configuration
             )
+        if yield_optimization_configuration is not None:
+            input_["yield_optimization_configuration"] = (
+                yield_optimization_configuration
+            )
         if function_mapping is not None:
             input_["function_mapping"] = function_mapping
+        if ads_personalization_timeouts is not None:
+            input_["ads_personalization_timeouts"] = ads_personalization_timeouts
+        if ads_personalization_concurrency is not None:
+            input_["ads_personalization_concurrency"] = ads_personalization_concurrency
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -380,8 +403,17 @@ class AsyncPlaybackConfigurationResource:
         ad_decision_server_configuration: Optional[
             "capo_mediatailor.types.ad_decision_server_configuration.AdDecisionServerConfiguration"
         ] = None,
+        yield_optimization_configuration: Optional[
+            "capo_mediatailor.types.yield_optimization_configuration.YieldOptimizationConfiguration"
+        ] = None,
         function_mapping: Optional[
             "capo_mediatailor.types.function_mapping.FunctionMapping"
+        ] = None,
+        ads_personalization_timeouts: Optional[
+            "capo_mediatailor.types.ads_personalization_timeouts.AdsPersonalizationTimeouts"
+        ] = None,
+        ads_personalization_concurrency: Optional[
+            "capo_mediatailor.types.ads_personalization_concurrency.AdsPersonalizationConcurrency"
         ] = None,
     ) -> "capo_mediatailor.types.put_playback_configuration_response.PutPlaybackConfigurationResponse":
         r"""<p>Creates a playback configuration. For information about MediaTailor configurations, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/configurations.html\">Working with configurations in AWS Elemental MediaTailor</a>.</p>
@@ -404,7 +436,10 @@ class AsyncPlaybackConfigurationResource:
             video_content_source_url: <p>The URL prefix for the parent manifest for the stream, minus the asset ID. The maximum length is 512 characters.</p>
             ad_conditioning_configuration: <p>The setting that indicates what conditioning MediaTailor will perform on ads that the ad decision server (ADS) returns, and what priority MediaTailor uses when inserting ads. </p>
             ad_decision_server_configuration: <p>The configuration for customizing HTTP requests to the ad decision server (ADS). This includes settings for request method, headers, body content, and compression options.</p>
-            function_mapping: <p>A map of lifecycle hook event names to function identifiers. The function mapping specifies which function MediaTailor executes at each lifecycle hook during ad insertion. Valid keys are <code>PRE_SESSION_INITIALIZATION</code> and <code>PRE_ADS_REQUEST</code>. For more information, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/monetization-functions-hooks.html\">Functions lifecycle hooks</a> in the <i>MediaTailor User Guide</i>.</p>
+            yield_optimization_configuration: <p>Configuration for Yield Optimization, which fills unsold ad inventory in ad breaks with programmatic ads from Amazon Publisher Services (APS).</p>
+            function_mapping: <p>A map of lifecycle hook event names to function identifiers. The function mapping specifies which function MediaTailor executes at each lifecycle hook during ad insertion. Valid keys are <code>PRE_SESSION_INITIALIZATION</code>, <code>PRE_ADS_REQUEST</code>, <code>POST_ADS_RESPONSE</code>, and <code>PRE_MANIFEST_INSERTION</code>. For more information, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/monetization-functions-hooks.html\">Functions lifecycle hooks</a> in the <i>MediaTailor User Guide</i>.</p>
+            ads_personalization_timeouts: <p>The timeout settings for ad decision server interactions. These settings control how long MediaTailor waits for ADS responses and the total time budget for ad personalization across live, VOD, and prefetch workflows.</p>
+            ads_personalization_concurrency: <p>The concurrency settings for ad decision server interactions. These settings control how many simultaneous ADS requests MediaTailor makes per manifest request.</p>
 
         Raises:
             capo_mediatailor.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -465,8 +500,16 @@ class AsyncPlaybackConfigurationResource:
             input_["ad_decision_server_configuration"] = (
                 ad_decision_server_configuration
             )
+        if yield_optimization_configuration is not None:
+            input_["yield_optimization_configuration"] = (
+                yield_optimization_configuration
+            )
         if function_mapping is not None:
             input_["function_mapping"] = function_mapping
+        if ads_personalization_timeouts is not None:
+            input_["ads_personalization_timeouts"] = ads_personalization_timeouts
+        if ads_personalization_concurrency is not None:
+            input_["ads_personalization_concurrency"] = ads_personalization_concurrency
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

@@ -19,6 +19,21 @@ async def main():
         print(response["tags"])
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_migrationhuborchestrator import AsyncMigrationHubOrchestratorClient
+
+
+async def main():
+    async with AsyncMigrationHubOrchestratorClient() as migration_hub_orchestrator:
+        # Example: paginate over list_workflows
+        async for item in migration_hub_orchestrator.iter_list_workflows():
+            print(item)
+```
+
 ## Error Handling
 
 The SDK raises exceptions for errors returned by the API. Catch them to handle failures gracefully.

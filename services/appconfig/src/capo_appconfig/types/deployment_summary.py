@@ -6,7 +6,9 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_appconfig.types.deployment_state
+    import capo_appconfig.types.deployment_type
     import capo_appconfig.types.growth_type
+    import capo_appconfig.types.id
     import capo_appconfig.types.integer
     import capo_appconfig.types.iso8601_date_time
     import capo_appconfig.types.minutes_between0_and24_hours
@@ -19,6 +21,8 @@ if TYPE_CHECKING:
 class DeploymentSummary(TypedDict, closed=True):
     deployment_number: "capo_appconfig.types.integer.Integer"
     """<p>The sequence number of the deployment.</p>"""
+    configuration_profile_id: NotRequired["capo_appconfig.types.id.Id"]
+    """<p>The ID of the configuration profile that was deployed.</p>"""
     configuration_name: NotRequired["capo_appconfig.types.name.Name"]
     """<p>The name of the configuration.</p>"""
     configuration_version: NotRequired["capo_appconfig.types.version.Version"]
@@ -45,12 +49,16 @@ class DeploymentSummary(TypedDict, closed=True):
     """<p>Time the deployment completed.</p>"""
     version_label: NotRequired["capo_appconfig.types.version_label.VersionLabel"]
     """<p>A user-defined label for an AppConfig hosted configuration version.</p>"""
+    type: NotRequired["capo_appconfig.types.deployment_type.DeploymentType"]
+    """<p>The type of deployment.</p>"""
 
 
 # --- restJson1 ser/de ---
 def serialize_json(value: DeploymentSummary) -> dict:
     out: dict = {}
     out["DeploymentNumber"] = value.get("deployment_number", 0)
+    if "configuration_profile_id" in value:
+        out["ConfigurationProfileId"] = value["configuration_profile_id"]
     if "configuration_name" in value:
         out["ConfigurationName"] = value["configuration_name"]
     if "configuration_version" in value:
@@ -103,6 +111,10 @@ def serialize_json(value: DeploymentSummary) -> dict:
         )
     if "version_label" in value:
         out["VersionLabel"] = value["version_label"]
+    if "type" in value:
+        import capo_appconfig.types.deployment_type
+
+        out["Type"] = capo_appconfig.types.deployment_type.serialize_json(value["type"])
     return out
 
 
@@ -112,6 +124,8 @@ def deserialize_json(data: dict) -> DeploymentSummary:
         out["deployment_number"] = data["DeploymentNumber"]
     else:
         out["deployment_number"] = 0
+    if data.get("ConfigurationProfileId") is not None:
+        out["configuration_profile_id"] = data["ConfigurationProfileId"]
     if data.get("ConfigurationName") is not None:
         out["configuration_name"] = data["ConfigurationName"]
     if data.get("ConfigurationVersion") is not None:
@@ -154,4 +168,10 @@ def deserialize_json(data: dict) -> DeploymentSummary:
         )
     if data.get("VersionLabel") is not None:
         out["version_label"] = data["VersionLabel"]
+    if data.get("Type") is not None:
+        import capo_appconfig.types.deployment_type
+
+        out["type"] = capo_appconfig.types.deployment_type.deserialize_json(
+            data["Type"]
+        )
     return out

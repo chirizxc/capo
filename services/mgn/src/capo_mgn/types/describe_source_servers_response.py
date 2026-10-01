@@ -11,9 +11,9 @@ if TYPE_CHECKING:
 
 class DescribeSourceServersResponse(TypedDict, closed=True):
     items: NotRequired["capo_mgn.types.source_servers_list.SourceServersList"]
-    """<p>Request to filter Source Servers list by item.</p>"""
+    """<p>The list of returned Source Servers.</p>"""
     next_token: NotRequired["capo_mgn.types.pagination_token.PaginationToken"]
-    """<p>Request to filter Source Servers next token.</p>"""
+    """<p>The token of the next Source Server to retrieve.</p>"""
 
 
 # --- restJson1 ser/de ---

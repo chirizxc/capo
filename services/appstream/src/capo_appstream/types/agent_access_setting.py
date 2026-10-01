@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 
 class AgentAccessSetting(TypedDict, closed=True):
     agent_action: NotRequired["capo_appstream.types.agent_action.AgentAction"]
-    """<p>The agent action to configure. Valid values are COMPUTER_VISION and COMPUTER_INPUT. If you enable COMPUTER_INPUT, you must also enable COMPUTER_VISION.</p>"""
+    """<p>The agent action to configure. Valid values are COMPUTER_VISION, COMPUTER_INPUT, and FORWARD_MCP_TOOLS. If you enable COMPUTER_INPUT, you must also enable COMPUTER_VISION.</p>"""
     permission: NotRequired["capo_appstream.types.permission.Permission"]
     """<p>Whether the agent action is enabled or disabled.</p>"""
 

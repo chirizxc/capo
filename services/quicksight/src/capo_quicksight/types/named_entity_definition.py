@@ -7,6 +7,8 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_quicksight.types.limited_string
     import capo_quicksight.types.named_entity_definition_metric
+    import capo_quicksight.types.nullable_boolean
+    import capo_quicksight.types.nullable_integer
     import capo_quicksight.types.property_role
     import capo_quicksight.types.property_usage
 
@@ -24,6 +26,14 @@ class NamedEntityDefinition(TypedDict, closed=True):
         "capo_quicksight.types.named_entity_definition_metric.NamedEntityDefinitionMetric"
     ]
     """<p>The definition of a metric.</p>"""
+    rank_order: NotRequired["capo_quicksight.types.nullable_integer.NullableInteger"]
+    """<p>The rank order of the named entity definition.</p>"""
+    presentation_order: NotRequired[
+        "capo_quicksight.types.nullable_integer.NullableInteger"
+    ]
+    """<p>The presentation order of the named entity definition.</p>"""
+    is_hidden: NotRequired["capo_quicksight.types.nullable_boolean.NullableBoolean"]
+    """<p>A Boolean value that indicates whether the named entity definition is hidden.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -53,6 +63,12 @@ def serialize_json(value: NamedEntityDefinition) -> dict:
                 value["metric"]
             )
         )
+    if "rank_order" in value:
+        out["RankOrder"] = value["rank_order"]
+    if "presentation_order" in value:
+        out["PresentationOrder"] = value["presentation_order"]
+    if "is_hidden" in value:
+        out["IsHidden"] = value["is_hidden"]
     return out
 
 
@@ -82,4 +98,10 @@ def deserialize_json(data: dict) -> NamedEntityDefinition:
                 data["Metric"]
             )
         )
+    if data.get("RankOrder") is not None:
+        out["rank_order"] = data["RankOrder"]
+    if data.get("PresentationOrder") is not None:
+        out["presentation_order"] = data["PresentationOrder"]
+    if data.get("IsHidden") is not None:
+        out["is_hidden"] = data["IsHidden"]
     return out

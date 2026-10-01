@@ -15,7 +15,7 @@ class InstanceConfiguration(TypedDict, closed=True):
     block_device_mappings: NotRequired[
         "capo_imagebuilder.types.instance_block_device_mappings.InstanceBlockDeviceMappings"
     ]
-    """<p>Defines the block devices to attach for building an instance from this Image Builder AMI.</p>"""
+    """<p>Defines the block device mappings for the EC2 instance that Image Builder launches to build and test your container image.</p>"""
 
 
 # --- restJson1 ser/de ---

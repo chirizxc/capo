@@ -12,6 +12,15 @@ Format: TypeAlias = Literal[
     "avi",
     "mpegts",
     "mpegps",
+    "mp3",
+    "flac",
+    "asf",
+    "ogg",
+    "three_gp",
+    "three_g2",
+    "aac",
+    "ac3",
+    "eac3",
 ]
 
 

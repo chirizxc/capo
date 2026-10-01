@@ -18,6 +18,8 @@ AttributeDimensionType: TypeAlias = Literal[
     "GREATER_THAN_OR_EQUAL",
     "LESS_THAN_OR_EQUAL",
     "EQUAL",
+    "LIST_CONTAINS",
+    "LIST_CONTAINS_ALL",
 ]
 
 

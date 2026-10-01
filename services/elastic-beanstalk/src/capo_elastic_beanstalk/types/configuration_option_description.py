@@ -24,7 +24,7 @@ class ConfigurationOptionDescription(TypedDict, closed=True):
     namespace: NotRequired[
         "capo_elastic_beanstalk.types.option_namespace.OptionNamespace"
     ]
-    """<p>A unique namespace identifying the option's associated AWS resource.</p>"""
+    """<p>A unique namespace identifying the option's associated Amazon Web Services resource.</p>"""
     name: NotRequired[
         "capo_elastic_beanstalk.types.configuration_option_name.ConfigurationOptionName"
     ]
@@ -36,7 +36,7 @@ class ConfigurationOptionDescription(TypedDict, closed=True):
     change_severity: NotRequired[
         "capo_elastic_beanstalk.types.configuration_option_severity.ConfigurationOptionSeverity"
     ]
-    """<p>An indication of which action is required if the value for this configuration option changes:</p> <ul> <li> <p> <code>NoInterruption</code> : There is no interruption to the environment or application availability.</p> </li> <li> <p> <code>RestartEnvironment</code> : The environment is entirely restarted, all AWS resources are deleted and recreated, and the environment is unavailable during the process.</p> </li> <li> <p> <code>RestartApplicationServer</code> : The environment is available the entire time. However, a short application outage occurs when the application servers on the running Amazon EC2 instances are restarted.</p> </li> </ul>"""
+    """<p>An indication of which action is required if the value for this configuration option changes:</p> <ul> <li> <p> <code>NoInterruption</code> : There is no interruption to the environment or application availability.</p> </li> <li> <p> <code>RestartEnvironment</code> : The environment is entirely restarted, all A resources are deleted and recreated, and the environment is unavailable during the process.</p> </li> <li> <p> <code>RestartApplicationServer</code> : The environment is available the entire time. However, a short application outage occurs when the application servers on the running Amazon EC2 instances are restarted.</p> </li> </ul>"""
     user_defined: NotRequired[
         "capo_elastic_beanstalk.types.user_defined_option.UserDefinedOption"
     ]

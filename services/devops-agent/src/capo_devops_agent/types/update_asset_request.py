@@ -5,20 +5,22 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
-    import capo_devops_agent.types.agent_space_id
+    import capo_devops_agent.types.agent_space_identifier
     import capo_devops_agent.types.asset_content
     import capo_devops_agent.types.resource_id
 
 
 class UpdateAssetRequest(TypedDict, closed=True):
-    agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId"
+    agent_space_id: (
+        "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier"
+    )
     """<p>The unique identifier for the agent space containing the asset</p>"""
     asset_id: "capo_devops_agent.types.resource_id.ResourceId"
     """<p>The unique identifier of the asset to update</p>"""
     metadata: NotRequired["object"]
     """<p>Metadata fields to update. Only the fields present in this document are updated. Omitted fields retain their current values.</p>"""
     content: NotRequired["capo_devops_agent.types.asset_content.AssetContent"]
-    """<p>Optional content to set or replace. A single file adds or replaces one file; a zip replaces all files.</p>"""
+    """<p>Optional content update. A single file adds or replaces one file; a zip replaces all files; a sourceUrl re-syncs from the original source.</p>"""
     client_token: NotRequired["str"]
     """<p>A unique, case-sensitive identifier used for idempotent asset update</p>"""
 

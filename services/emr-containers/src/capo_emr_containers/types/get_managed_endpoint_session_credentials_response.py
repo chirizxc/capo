@@ -15,6 +15,10 @@ class GetManagedEndpointSessionCredentialsResponse(TypedDict, closed=True):
     """<p>The identifier of the session token returned.</p>"""
     credentials: NotRequired["capo_emr_containers.types.credentials.Credentials"]
     """<p>The structure containing the session credentials.</p>"""
+    endpoint_credentials: NotRequired[
+        "capo_emr_containers.types.credentials.Credentials"
+    ]
+    """<p>The session credentials that the operation returns.</p>"""
     expires_at: NotRequired["capo_emr_containers.types.date.Date"]
     """<p>The date and time when the session token will expire.</p>"""
 
@@ -29,6 +33,14 @@ def serialize_json(value: GetManagedEndpointSessionCredentialsResponse) -> dict:
 
         out["credentials"] = capo_emr_containers.types.credentials.serialize_json(
             value["credentials"]
+        )
+    if "endpoint_credentials" in value:
+        import capo_emr_containers.types.credentials
+
+        out["endpointCredentials"] = (
+            capo_emr_containers.types.credentials.serialize_json(
+                value["endpoint_credentials"]
+            )
         )
     if "expires_at" in value:
         import capo_emr_containers.types.date
@@ -48,6 +60,14 @@ def deserialize_json(data: dict) -> GetManagedEndpointSessionCredentialsResponse
 
         out["credentials"] = capo_emr_containers.types.credentials.deserialize_json(
             data["credentials"]
+        )
+    if data.get("endpointCredentials") is not None:
+        import capo_emr_containers.types.credentials
+
+        out["endpoint_credentials"] = (
+            capo_emr_containers.types.credentials.deserialize_json(
+                data["endpointCredentials"]
+            )
         )
     if data.get("expiresAt") is not None:
         import capo_emr_containers.types.date

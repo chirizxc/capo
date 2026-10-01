@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_sagemaker.types.cluster_auto_patch_config
     import capo_sagemaker.types.cluster_capacity_requirements
     import capo_sagemaker.types.cluster_instance_count
     import capo_sagemaker.types.cluster_instance_group_name
@@ -17,6 +18,7 @@ if TYPE_CHECKING:
     import capo_sagemaker.types.cluster_slurm_config
     import capo_sagemaker.types.cluster_threads_per_core
     import capo_sagemaker.types.image_id
+    import capo_sagemaker.types.image_release_version
     import capo_sagemaker.types.on_start_deep_health_checks
     import capo_sagemaker.types.role_arn
     import capo_sagemaker.types.scheduled_update_config
@@ -74,7 +76,15 @@ class ClusterInstanceGroupSpecification(TypedDict, closed=True):
     ]
     """<p>The configuration object of the schedule that SageMaker uses to update the AMI.</p>"""
     image_id: NotRequired["capo_sagemaker.types.image_id.ImageId"]
-    """<p>When configuring your HyperPod cluster, you can specify an image ID using one of the following options:</p> <ul> <li> <p> <code>HyperPodPublicAmiId</code>: Use a HyperPod public AMI</p> </li> <li> <p> <code>CustomAmiId</code>: Use your custom AMI</p> </li> <li> <p> <code>default</code>: Use the default latest system image</p> </li> </ul> <p>If you choose to use a custom AMI (<code>CustomAmiId</code>), ensure it meets the following requirements:</p> <ul> <li> <p>Encryption: The custom AMI must be unencrypted.</p> </li> <li> <p>Ownership: The custom AMI must be owned by the same Amazon Web Services account that is creating the HyperPod cluster.</p> </li> <li> <p>Volume support: Only the primary AMI snapshot volume is supported; additional AMI volumes are not supported.</p> </li> </ul> <p>When updating the instance group's AMI through the <code>UpdateClusterSoftware</code> operation, if an instance group uses a custom AMI, you must provide an <code>ImageId</code> or use the default as input. Note that if you don't specify an instance group in your <code>UpdateClusterSoftware</code> request, then all of the instance groups are patched with the specified image.</p>"""
+    """<p>When configuring your HyperPod cluster, you can specify an image ID using one of the following options:</p> <ul> <li> <p> <code>HyperPodPublicAmiId</code>: Use a HyperPod public AMI</p> </li> <li> <p> <code>CustomAmiId</code>: Use your custom AMI</p> </li> <li> <p> <code>default</code>: Use the default latest system image. For clusters with continuous scaling node provisioning mode, new instance groups inherit the AMI from the earliest existing instance group</p> </li> </ul> <p>If you choose to use a custom AMI (<code>CustomAmiId</code>), ensure it meets the following requirements:</p> <ul> <li> <p>Encryption: The custom AMI must be unencrypted.</p> </li> <li> <p>Ownership: The custom AMI must be owned by the same Amazon Web Services account that is creating the HyperPod cluster.</p> </li> <li> <p>Volume support: Only the primary AMI snapshot volume is supported; additional AMI volumes are not supported.</p> </li> </ul> <p>When updating the instance group's AMI through the <code>UpdateClusterSoftware</code> operation, if an instance group uses a custom AMI, you must provide an <code>ImageId</code> or use the default as input. Note that if you don't specify an instance group in your <code>UpdateClusterSoftware</code> request, then all of the instance groups are patched with the specified image.</p>"""
+    auto_patch_config: NotRequired[
+        "capo_sagemaker.types.cluster_auto_patch_config.ClusterAutoPatchConfig"
+    ]
+    """<p>The configuration for automatic OS security patching. If present, the system automatically applies PATCH AMI updates to this instance group.</p>"""
+    image_release_version: NotRequired[
+        "capo_sagemaker.types.image_release_version.ImageReleaseVersion"
+    ]
+    """<p>The version of the HyperPod-managed AMI to use for the instance group. Uses semantic versioning in the format <code>MAJOR.MINOR.PATCH</code> (for example, <code>1.2.3</code>). If omitted, the latest available version is used.</p>"""
     kubernetes_config: NotRequired[
         "capo_sagemaker.types.cluster_kubernetes_config.ClusterKubernetesConfig"
     ]
@@ -166,6 +176,16 @@ def serialize_aws_json_1_1(value: ClusterInstanceGroupSpecification) -> dict:
         )
     if "image_id" in value:
         out["ImageId"] = value["image_id"]
+    if "auto_patch_config" in value:
+        import capo_sagemaker.types.cluster_auto_patch_config
+
+        out["AutoPatchConfig"] = (
+            capo_sagemaker.types.cluster_auto_patch_config.serialize_aws_json_1_1(
+                value["auto_patch_config"]
+            )
+        )
+    if "image_release_version" in value:
+        out["ImageReleaseVersion"] = value["image_release_version"]
     if "kubernetes_config" in value:
         import capo_sagemaker.types.cluster_kubernetes_config
 
@@ -273,6 +293,16 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterInstanceGroupSpecification:
         )
     if data.get("ImageId") is not None:
         out["image_id"] = data["ImageId"]
+    if data.get("AutoPatchConfig") is not None:
+        import capo_sagemaker.types.cluster_auto_patch_config
+
+        out["auto_patch_config"] = (
+            capo_sagemaker.types.cluster_auto_patch_config.deserialize_aws_json_1_1(
+                data["AutoPatchConfig"]
+            )
+        )
+    if data.get("ImageReleaseVersion") is not None:
+        out["image_release_version"] = data["ImageReleaseVersion"]
     if data.get("KubernetesConfig") is not None:
         import capo_sagemaker.types.cluster_kubernetes_config
 

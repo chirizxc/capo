@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     import capo_connect.types.create_case_action_definition
     import capo_connect.types.end_associated_tasks_action_definition
     import capo_connect.types.event_bridge_action_definition
+    import capo_connect.types.extract_information_action_definition
     import capo_connect.types.send_notification_action_definition
     import capo_connect.types.submit_auto_evaluation_action_definition
     import capo_connect.types.task_action_definition
@@ -58,6 +59,10 @@ class RuleAction(TypedDict, closed=True):
         "capo_connect.types.submit_auto_evaluation_action_definition.SubmitAutoEvaluationActionDefinition"
     ]
     """<p>Information about the submit automated evaluation action.</p>"""
+    extract_information_action: NotRequired[
+        "capo_connect.types.extract_information_action_definition.ExtractInformationActionDefinition"
+    ]
+    """<p>Information about the extract information action.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -136,6 +141,14 @@ def serialize_json(value: RuleAction) -> dict:
         out["SubmitAutoEvaluationAction"] = (
             capo_connect.types.submit_auto_evaluation_action_definition.serialize_json(
                 value["submit_auto_evaluation_action"]
+            )
+        )
+    if "extract_information_action" in value:
+        import capo_connect.types.extract_information_action_definition
+
+        out["ExtractInformationAction"] = (
+            capo_connect.types.extract_information_action_definition.serialize_json(
+                value["extract_information_action"]
             )
         )
     return out
@@ -219,6 +232,14 @@ def deserialize_json(data: dict) -> RuleAction:
         out["submit_auto_evaluation_action"] = (
             capo_connect.types.submit_auto_evaluation_action_definition.deserialize_json(
                 data["SubmitAutoEvaluationAction"]
+            )
+        )
+    if data.get("ExtractInformationAction") is not None:
+        import capo_connect.types.extract_information_action_definition
+
+        out["extract_information_action"] = (
+            capo_connect.types.extract_information_action_definition.deserialize_json(
+                data["ExtractInformationAction"]
             )
         )
     return out

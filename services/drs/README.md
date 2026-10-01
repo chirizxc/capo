@@ -14,9 +14,9 @@ from capo_drs import AsyncdrsClient
 
 async def main():
     async with AsyncdrsClient() as drs:
-        # Example: call the create_extended_source_server operation
-        response = await drs.create_extended_source_server()
-        print(response["source_server"])
+        # Example: call the cancel_recovery_plan_execution operation
+        response = await drs.cancel_recovery_plan_execution()
+        print(response["recovery_plan_execution"])
 ```
 
 ## Pagination
@@ -46,7 +46,7 @@ from capo_drs.error import AccessDeniedException
 async def main():
     async with AsyncdrsClient() as drs:
         try:
-            await drs.create_extended_source_server()
+            await drs.cancel_recovery_plan_execution()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -65,11 +65,11 @@ from capo_drs import AsyncdrsClient
 async def main():
     async with AsyncdrsClient() as drs:
         # Default: 3 attempts for every operation
-        response = await drs.create_extended_source_server()
+        response = await drs.cancel_recovery_plan_execution()
 
         # Override per operation
-        response = await drs.create_extended_source_server(config_overrides={"retry_max_attempts": 5})
+        response = await drs.cancel_recovery_plan_execution(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await drs.create_extended_source_server(config_overrides={"retry_max_attempts": 1})
+        response = await drs.cancel_recovery_plan_execution(config_overrides={"retry_max_attempts": 1})
 ```

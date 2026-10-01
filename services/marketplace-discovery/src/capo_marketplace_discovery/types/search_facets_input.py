@@ -6,12 +6,15 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_marketplace_discovery.types.facet_type_list
+    import capo_marketplace_discovery.types.locale
     import capo_marketplace_discovery.types.next_token
     import capo_marketplace_discovery.types.search_filter_list
     import capo_marketplace_discovery.types.search_text
 
 
 class SearchFacetsInput(TypedDict, closed=True):
+    locale: NotRequired["capo_marketplace_discovery.types.locale.Locale"]
+    """<p>A BCP 47 language tag or comma-separated priority list specifying the preferred locale for response content. See <code>Locale</code> for supported values, constraints, fallback behavior, and the default locale. If omitted, the service returns content in the default locale.</p>"""
     search_text: NotRequired["capo_marketplace_discovery.types.search_text.SearchText"]
     """<p>The search query text to filter listings before retrieving facets.</p>"""
     filters: NotRequired[
@@ -29,6 +32,8 @@ class SearchFacetsInput(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: SearchFacetsInput) -> dict:
     out: dict = {}
+    if "locale" in value:
+        out["locale"] = value["locale"]
     if "search_text" in value:
         out["searchText"] = value["search_text"]
     if "filters" in value:
@@ -54,6 +59,8 @@ def serialize_json(value: SearchFacetsInput) -> dict:
 
 def deserialize_json(data: dict) -> SearchFacetsInput:
     out: SearchFacetsInput = {}  # type: ignore[typeddict-item]
+    if data.get("locale") is not None:
+        out["locale"] = data["locale"]
     if data.get("searchText") is not None:
         out["search_text"] = data["searchText"]
     if data.get("filters") is not None:

@@ -1160,6 +1160,7 @@ class AsyncLicenseManagerClient:
             "capo_license_manager.types.metadata_list.MetadataList"
         ] = None,
         source_version: Optional["capo_license_manager.types.string.String"] = None,
+        reset_usage: Optional["capo_license_manager.types.boolean.Boolean"] = None,
     ) -> "capo_license_manager.types.create_license_version_response.CreateLicenseVersionResponse":
         """<p>Creates a new version of the specified license.</p>
 
@@ -1176,6 +1177,7 @@ class AsyncLicenseManagerClient:
             status: <p>License status.</p>
             client_token: <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
             source_version: <p>Current version of the license.</p>
+            reset_usage: <p>Specifies whether to reset the license usage for the new license version. If you don't specify a value, the license usage is not reset.</p>
 
         Raises:
             capo_license_manager.errors.access_denied_exception.AccessDeniedException: <p>Access to resource denied.</p>
@@ -1221,6 +1223,8 @@ class AsyncLicenseManagerClient:
             input_["license_metadata"] = license_metadata
         if source_version is not None:
             input_["source_version"] = source_version
+        if reset_usage is not None:
+            input_["reset_usage"] = reset_usage
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

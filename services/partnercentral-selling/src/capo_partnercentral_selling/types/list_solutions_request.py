@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 from capo_partnercentral_selling.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_partnercentral_selling.types.aws_marketplace_solution_arn_list
     import capo_partnercentral_selling.types.catalog_identifier
     import capo_partnercentral_selling.types.filter_status
     import capo_partnercentral_selling.types.page_size
@@ -32,6 +33,10 @@ class ListSolutionsRequest(TypedDict, closed=True):
     """<p>Filters the solutions based on their unique identifier. Use this filter to retrieve specific solutions by providing the solution's identifier for accurate results.</p>"""
     category: NotRequired["capo_partnercentral_selling.types.string_list.StringList"]
     """<p>Filters the solutions based on the category to which they belong. This allows partners to search for solutions within specific categories, such as <code>Software</code>, <code>Consulting</code>, or <code>Managed Services</code>.</p>"""
+    aws_marketplace_solution_arn: NotRequired[
+        "capo_partnercentral_selling.types.aws_marketplace_solution_arn_list.AwsMarketplaceSolutionArnList"
+    ]
+    """<p>Filters results by AWS Marketplace solution ARN. You can provide up to 10 ARNs.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -72,6 +77,14 @@ def serialize_aws_json_1_0(value: ListSolutionsRequest) -> dict:
         out["Category"] = (
             capo_partnercentral_selling.types.string_list.serialize_aws_json_1_0(
                 value["category"]
+            )
+        )
+    if "aws_marketplace_solution_arn" in value:
+        import capo_partnercentral_selling.types.aws_marketplace_solution_arn_list
+
+        out["AwsMarketplaceSolutionArn"] = (
+            capo_partnercentral_selling.types.aws_marketplace_solution_arn_list.serialize_aws_json_1_0(
+                value["aws_marketplace_solution_arn"]
             )
         )
     return out
@@ -117,6 +130,14 @@ def deserialize_aws_json_1_0(data: dict) -> ListSolutionsRequest:
         out["category"] = (
             capo_partnercentral_selling.types.string_list.deserialize_aws_json_1_0(
                 data["Category"]
+            )
+        )
+    if data.get("AwsMarketplaceSolutionArn") is not None:
+        import capo_partnercentral_selling.types.aws_marketplace_solution_arn_list
+
+        out["aws_marketplace_solution_arn"] = (
+            capo_partnercentral_selling.types.aws_marketplace_solution_arn_list.deserialize_aws_json_1_0(
+                data["AwsMarketplaceSolutionArn"]
             )
         )
     return out

@@ -19,6 +19,21 @@ async def main():
         print(response["tags"])
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_timestream_influxdb import AsyncTimestreamInfluxDBClient
+
+
+async def main():
+    async with AsyncTimestreamInfluxDBClient() as timestream_influx_db:
+        # Example: paginate over list_db_backups
+        async for item in timestream_influx_db.iter_list_db_backups():
+            print(item)
+```
+
 ## Error Handling
 
 The SDK raises exceptions for errors returned by the API. Catch them to handle failures gracefully.

@@ -12,6 +12,7 @@ ActionType: TypeAlias = Literal[
     "ASSIGN_SLA",
     "END_ASSOCIATED_TASKS",
     "SUBMIT_AUTO_EVALUATION",
+    "EXTRACT_INFORMATION",
 ]
 
 

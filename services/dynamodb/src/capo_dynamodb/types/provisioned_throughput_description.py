@@ -22,11 +22,11 @@ class ProvisionedThroughputDescription(TypedDict, closed=True):
     read_capacity_units: NotRequired[
         "capo_dynamodb.types.non_negative_long_object.NonNegativeLongObject"
     ]
-    """<p>The maximum number of strongly consistent reads consumed per second before DynamoDB returns a <code>ThrottlingException</code>. Eventually consistent reads require less effort than strongly consistent reads, so a setting of 50 <code>ReadCapacityUnits</code> per second provides 100 eventually consistent <code>ReadCapacityUnits</code> per second.</p>"""
+    """<p>The maximum number of strongly consistent reads consumed per second before DynamoDB returns a <code>ThrottlingException</code>. Eventually consistent reads require less effort than strongly consistent reads, so a setting of 50 <code>ReadCapacityUnits</code> per second provides 100 eventually consistent <code>ReadCapacityUnits</code> per second.</p> <p>For a table or global secondary index that uses on-demand capacity mode (<code>PAY_PER_REQUEST</code>), this value is <code>0</code>, because on-demand mode does not use provisioned throughput.</p>"""
     write_capacity_units: NotRequired[
         "capo_dynamodb.types.non_negative_long_object.NonNegativeLongObject"
     ]
-    """<p>The maximum number of writes consumed per second before DynamoDB returns a <code>ThrottlingException</code>.</p>"""
+    """<p>The maximum number of writes consumed per second before DynamoDB returns a <code>ThrottlingException</code>.</p> <p>For a table or global secondary index that uses on-demand capacity mode (<code>PAY_PER_REQUEST</code>), this value is <code>0</code>, because on-demand mode does not use provisioned throughput.</p>"""
 
 
 # --- awsJson1_0 ser/de ---

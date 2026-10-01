@@ -32,6 +32,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.memory_view
     import capo_bedrock_agentcore_control.types.modify_memory_strategies
     import capo_bedrock_agentcore_control.types.name
+    import capo_bedrock_agentcore_control.types.namespace_keys_list
     import capo_bedrock_agentcore_control.types.non_empty_string
     import capo_bedrock_agentcore_control.types.stream_delivery_resources
     import capo_bedrock_agentcore_control.types.tags_map
@@ -75,6 +76,9 @@ class MemoryResource:
         indexed_keys: Optional[
             "capo_bedrock_agentcore_control.types.indexed_keys_list.IndexedKeysList"
         ] = None,
+        namespace_keys: Optional[
+            "capo_bedrock_agentcore_control.types.namespace_keys_list.NamespaceKeysList"
+        ] = None,
         stream_delivery_resources: Optional[
             "capo_bedrock_agentcore_control.types.stream_delivery_resources.StreamDeliveryResources"
         ] = None,
@@ -91,6 +95,7 @@ class MemoryResource:
             event_expiry_duration: <p>The duration after which memory events expire. Specified as an ISO 8601 duration.</p>
             memory_strategies: <p>The memory strategies to use for this memory. Strategies define how information is extracted, processed, and consolidated.</p>
             indexed_keys: <p>Metadata keys to index for filtering. Once declared, indexed keys cannot be removed.</p>
+            namespace_keys: <p>The namespace variable key definitions with optional validation rules. Use these <code>namespaceKeys</code> in <code>namespaceTemplates</code> to control namespace hierarchy.</p>
             stream_delivery_resources: <p>Configuration for streaming memory record data to external resources.</p>
             tags: <p>A map of tag keys and values to assign to an AgentCore Memory. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.</p>
 
@@ -137,6 +142,8 @@ class MemoryResource:
             input_["memory_strategies"] = memory_strategies
         if indexed_keys is not None:
             input_["indexed_keys"] = indexed_keys
+        if namespace_keys is not None:
+            input_["namespace_keys"] = namespace_keys
         if stream_delivery_resources is not None:
             input_["stream_delivery_resources"] = stream_delivery_resources
         if tags is not None:
@@ -224,6 +231,9 @@ class MemoryResource:
         add_indexed_keys: Optional[
             "capo_bedrock_agentcore_control.types.indexed_keys_list.IndexedKeysList"
         ] = None,
+        namespace_keys: Optional[
+            "capo_bedrock_agentcore_control.types.namespace_keys_list.NamespaceKeysList"
+        ] = None,
         stream_delivery_resources: Optional[
             "capo_bedrock_agentcore_control.types.stream_delivery_resources.StreamDeliveryResources"
         ] = None,
@@ -238,6 +248,7 @@ class MemoryResource:
             memory_execution_role_arn: <p>The ARN of the IAM role that provides permissions for the AgentCore Memory resource.</p>
             memory_strategies: <p>The memory strategies to add, modify, or delete.</p>
             add_indexed_keys: <p>Additional metadata keys to index. Previously indexed keys cannot be removed.</p>
+            namespace_keys: <p>The namespace variable key definitions with validation rules for this memory. This value fully replaces the existing set — any key you omit is removed. Any referenced <code>namespaceKey</code> omission will throw ValidationException.</p>
             stream_delivery_resources: <p>Configuration for streaming memory record data to external resources.</p>
 
         Raises:
@@ -282,6 +293,8 @@ class MemoryResource:
             input_["memory_strategies"] = memory_strategies
         if add_indexed_keys is not None:
             input_["add_indexed_keys"] = add_indexed_keys
+        if namespace_keys is not None:
+            input_["namespace_keys"] = namespace_keys
         if stream_delivery_resources is not None:
             input_["stream_delivery_resources"] = stream_delivery_resources
 
@@ -302,7 +315,7 @@ class MemoryResource:
             "capo_bedrock_agentcore_control.types.non_empty_string.NonEmptyString"
         ] = None,
     ) -> "capo_bedrock_agentcore_control.types.delete_memory_output.DeleteMemoryOutput":
-        """<p>Deletes an Amazon Bedrock AgentCore Memory resource.</p>
+        """<p>Deletes an Amazon Bedrock AgentCore Memory resource. When you delete a memory resource, it is permanently removed.</p>
 
         Args:
             client_token: <p>A client token is used for keeping track of idempotent requests. It can contain a session id which can be around 250 chars, combined with a unique AWS identifier.</p>
@@ -428,6 +441,9 @@ class AsyncMemoryResource:
         indexed_keys: Optional[
             "capo_bedrock_agentcore_control.types.indexed_keys_list.IndexedKeysList"
         ] = None,
+        namespace_keys: Optional[
+            "capo_bedrock_agentcore_control.types.namespace_keys_list.NamespaceKeysList"
+        ] = None,
         stream_delivery_resources: Optional[
             "capo_bedrock_agentcore_control.types.stream_delivery_resources.StreamDeliveryResources"
         ] = None,
@@ -444,6 +460,7 @@ class AsyncMemoryResource:
             event_expiry_duration: <p>The duration after which memory events expire. Specified as an ISO 8601 duration.</p>
             memory_strategies: <p>The memory strategies to use for this memory. Strategies define how information is extracted, processed, and consolidated.</p>
             indexed_keys: <p>Metadata keys to index for filtering. Once declared, indexed keys cannot be removed.</p>
+            namespace_keys: <p>The namespace variable key definitions with optional validation rules. Use these <code>namespaceKeys</code> in <code>namespaceTemplates</code> to control namespace hierarchy.</p>
             stream_delivery_resources: <p>Configuration for streaming memory record data to external resources.</p>
             tags: <p>A map of tag keys and values to assign to an AgentCore Memory. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.</p>
 
@@ -491,6 +508,8 @@ class AsyncMemoryResource:
             input_["memory_strategies"] = memory_strategies
         if indexed_keys is not None:
             input_["indexed_keys"] = indexed_keys
+        if namespace_keys is not None:
+            input_["namespace_keys"] = namespace_keys
         if stream_delivery_resources is not None:
             input_["stream_delivery_resources"] = stream_delivery_resources
         if tags is not None:
@@ -579,6 +598,9 @@ class AsyncMemoryResource:
         add_indexed_keys: Optional[
             "capo_bedrock_agentcore_control.types.indexed_keys_list.IndexedKeysList"
         ] = None,
+        namespace_keys: Optional[
+            "capo_bedrock_agentcore_control.types.namespace_keys_list.NamespaceKeysList"
+        ] = None,
         stream_delivery_resources: Optional[
             "capo_bedrock_agentcore_control.types.stream_delivery_resources.StreamDeliveryResources"
         ] = None,
@@ -593,6 +615,7 @@ class AsyncMemoryResource:
             memory_execution_role_arn: <p>The ARN of the IAM role that provides permissions for the AgentCore Memory resource.</p>
             memory_strategies: <p>The memory strategies to add, modify, or delete.</p>
             add_indexed_keys: <p>Additional metadata keys to index. Previously indexed keys cannot be removed.</p>
+            namespace_keys: <p>The namespace variable key definitions with validation rules for this memory. This value fully replaces the existing set — any key you omit is removed. Any referenced <code>namespaceKey</code> omission will throw ValidationException.</p>
             stream_delivery_resources: <p>Configuration for streaming memory record data to external resources.</p>
 
         Raises:
@@ -638,6 +661,8 @@ class AsyncMemoryResource:
             input_["memory_strategies"] = memory_strategies
         if add_indexed_keys is not None:
             input_["add_indexed_keys"] = add_indexed_keys
+        if namespace_keys is not None:
+            input_["namespace_keys"] = namespace_keys
         if stream_delivery_resources is not None:
             input_["stream_delivery_resources"] = stream_delivery_resources
 
@@ -658,7 +683,7 @@ class AsyncMemoryResource:
             "capo_bedrock_agentcore_control.types.non_empty_string.NonEmptyString"
         ] = None,
     ) -> "capo_bedrock_agentcore_control.types.delete_memory_output.DeleteMemoryOutput":
-        """<p>Deletes an Amazon Bedrock AgentCore Memory resource.</p>
+        """<p>Deletes an Amazon Bedrock AgentCore Memory resource. When you delete a memory resource, it is permanently removed.</p>
 
         Args:
             client_token: <p>A client token is used for keeping track of idempotent requests. It can contain a session id which can be around 250 chars, combined with a unique AWS identifier.</p>

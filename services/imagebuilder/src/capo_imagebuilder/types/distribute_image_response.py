@@ -15,7 +15,7 @@ class DistributeImageResponse(TypedDict, closed=True):
     image_build_version_arn: NotRequired[
         "capo_imagebuilder.types.image_build_version_arn.ImageBuildVersionArn"
     ]
-    """<p>The Amazon Resource Name (ARN) of the image to be distributed.</p>"""
+    """<p>The Amazon Resource Name (ARN) of the new Image Builder image resource that this operation creates to track the distribution. Use this ARN with <a>GetImage</a> to monitor distribution progress.</p>"""
 
 
 # --- restJson1 ser/de ---

@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     import capo_qconnect.types.intent_detected_data_details
     import capo_qconnect.types.notes_chunk_data_details
     import capo_qconnect.types.notes_data_details
+    import capo_qconnect.types.proactive_recommendation_data_details
     import capo_qconnect.types.source_content_data_details
     import capo_qconnect.types.suggested_message_data_details
 
@@ -77,6 +78,10 @@ class _DataDetails_notesChunkData(TypedDict, closed=True):
     notesChunkData: "capo_qconnect.types.notes_chunk_data_details.NotesChunkDataDetails"
 
 
+class _DataDetails_proactiveRecommendationData(TypedDict, closed=True):
+    proactiveRecommendationData: "capo_qconnect.types.proactive_recommendation_data_details.ProactiveRecommendationDataDetails"
+
+
 DataDetails: TypeAlias = (
     _DataDetails_contentData
     | _DataDetails_generativeData
@@ -90,6 +95,7 @@ DataDetails: TypeAlias = (
     | _DataDetails_suggestedMessageData
     | _DataDetails_notesData
     | _DataDetails_notesChunkData
+    | _DataDetails_proactiveRecommendationData
 )
 
 
@@ -191,6 +197,14 @@ def serialize_json(value: DataDetails) -> dict:
                 value["notesChunkData"]
             )
         }
+    elif "proactiveRecommendationData" in value:
+        import capo_qconnect.types.proactive_recommendation_data_details
+
+        return {
+            "proactiveRecommendationData": capo_qconnect.types.proactive_recommendation_data_details.serialize_json(
+                value["proactiveRecommendationData"]
+            )
+        }
     else:
         raise SerializationError("DataDetails: no variant present")
 
@@ -290,6 +304,14 @@ def deserialize_json(data: dict) -> DataDetails:
         return {
             "notesChunkData": capo_qconnect.types.notes_chunk_data_details.deserialize_json(
                 data["notesChunkData"]
+            )
+        }
+    elif data.get("proactiveRecommendationData") is not None:
+        import capo_qconnect.types.proactive_recommendation_data_details
+
+        return {
+            "proactiveRecommendationData": capo_qconnect.types.proactive_recommendation_data_details.deserialize_json(
+                data["proactiveRecommendationData"]
             )
         }
     else:

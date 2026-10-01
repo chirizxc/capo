@@ -21,7 +21,7 @@ class Player(TypedDict, closed=True):
     team: NotRequired["capo_gamelift.types.non_zero_and_max_string.NonZeroAndMaxString"]
     """<p>Name of the team that the player is assigned to in a match. Team names are defined in a matchmaking rule set.</p>"""
     latency_in_ms: NotRequired["capo_gamelift.types.latency_map.LatencyMap"]
-    """<p>A set of values, expressed in milliseconds, that indicates the amount of latency that a player experiences when connected to Amazon Web Services Regions. If this property is present, FlexMatch considers placing the match only in Regions for which latency is reported. </p> <p>If a matchmaker has a rule that evaluates player latency, players must report latency in order to be matched. If no latency is reported in this scenario, FlexMatch assumes that no Regions are available to the player and the ticket is not matchable. </p>"""
+    """<p>A set of values, expressed in milliseconds, that indicates the amount of latency that a player experiences when connected to a fleet location (Amazon Web Services Regions or custom locations for Amazon GameLift Servers Anywhere fleets). If this property is present, FlexMatch considers placing the match only in Regions for which latency is reported. </p> <p>If a matchmaker has a rule that evaluates player latency, players must report latency in order to be matched. If no latency is reported in this scenario, FlexMatch assumes that no Regions are available to the player and the ticket is not matchable. </p>"""
 
 
 # --- awsJson1_1 ser/de ---

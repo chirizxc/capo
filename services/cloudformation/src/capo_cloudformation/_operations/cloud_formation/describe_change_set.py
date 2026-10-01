@@ -16,6 +16,7 @@ import capo_cloudformation.types.capabilities
 import capo_cloudformation.types.change_set_status
 import capo_cloudformation.types.changes
 import capo_cloudformation.types.creation_time
+import capo_cloudformation.types.deployment_config
 import capo_cloudformation.types.deployment_mode
 import capo_cloudformation.types.describe_change_set_input
 import capo_cloudformation.types.describe_change_set_output

@@ -8,6 +8,7 @@ from capo_elementalinference.errors import DeserializationError, SerializationEr
 
 if TYPE_CHECKING:
     import capo_elementalinference.types.clipping_config
+    import capo_elementalinference.types.contextual_metadata_config
     import capo_elementalinference.types.cropping_config
     import capo_elementalinference.types.subtitling_config
 
@@ -24,8 +25,15 @@ class _OutputConfig_subtitling(TypedDict, closed=True):
     subtitling: "capo_elementalinference.types.subtitling_config.SubtitlingConfig"
 
 
+class _OutputConfig_contextualMetadata(TypedDict, closed=True):
+    contextualMetadata: "capo_elementalinference.types.contextual_metadata_config.ContextualMetadataConfig"
+
+
 OutputConfig: TypeAlias = (
-    _OutputConfig_cropping | _OutputConfig_clipping | _OutputConfig_subtitling
+    _OutputConfig_cropping
+    | _OutputConfig_clipping
+    | _OutputConfig_subtitling
+    | _OutputConfig_contextualMetadata
 )
 
 
@@ -55,6 +63,14 @@ def serialize_json(value: OutputConfig) -> dict:
                 value["subtitling"]
             )
         }
+    elif "contextualMetadata" in value:
+        import capo_elementalinference.types.contextual_metadata_config
+
+        return {
+            "contextualMetadata": capo_elementalinference.types.contextual_metadata_config.serialize_json(
+                value["contextualMetadata"]
+            )
+        }
     else:
         raise SerializationError("OutputConfig: no variant present")
 
@@ -82,6 +98,14 @@ def deserialize_json(data: dict) -> OutputConfig:
         return {
             "subtitling": capo_elementalinference.types.subtitling_config.deserialize_json(
                 data["subtitling"]
+            )
+        }
+    elif data.get("contextualMetadata") is not None:
+        import capo_elementalinference.types.contextual_metadata_config
+
+        return {
+            "contextualMetadata": capo_elementalinference.types.contextual_metadata_config.deserialize_json(
+                data["contextualMetadata"]
             )
         }
     else:

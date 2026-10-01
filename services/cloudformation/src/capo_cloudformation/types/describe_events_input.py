@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 
 class DescribeEventsInput(TypedDict, closed=True):
     stack_name: NotRequired["capo_cloudformation.types.stack_name_or_id.StackNameOrId"]
-    """<p>The name or unique stack ID for which you want to retrieve events.</p>"""
+    """<p>The name or unique stack ID for which you want to retrieve events. If you specified the name of a change set, specify the stack name or ID (ARN) of the change set you want to describe.</p>"""
     change_set_name: NotRequired[
         "capo_cloudformation.types.change_set_name_or_id.ChangeSetNameOrId"
     ]

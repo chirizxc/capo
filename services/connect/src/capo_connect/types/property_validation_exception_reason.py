@@ -9,6 +9,7 @@ PropertyValidationExceptionReason: TypeAlias = Literal[
     "RESOURCE_NAME_ALREADY_EXISTS",
     "REQUIRED_PROPERTY_MISSING",
     "NOT_SUPPORTED",
+    "TYPE_MISMATCH",
 ]
 
 

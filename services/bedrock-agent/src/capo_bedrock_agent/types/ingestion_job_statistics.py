@@ -18,6 +18,8 @@ class IngestionJobStatistics(TypedDict, closed=True):
     """<p>The number of source documents that were deleted.</p>"""
     number_of_documents_failed: "int"
     """<p>The number of source documents that failed to be ingested.</p>"""
+    number_of_documents_skipped: "int"
+    """<p>The number of source documents that were skipped during ingestion.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -36,6 +38,7 @@ def serialize_json(value: IngestionJobStatistics) -> dict:
     )
     out["numberOfDocumentsDeleted"] = value.get("number_of_documents_deleted", 0)
     out["numberOfDocumentsFailed"] = value.get("number_of_documents_failed", 0)
+    out["numberOfDocumentsSkipped"] = value.get("number_of_documents_skipped", 0)
     return out
 
 
@@ -75,4 +78,8 @@ def deserialize_json(data: dict) -> IngestionJobStatistics:
         out["number_of_documents_failed"] = data["numberOfDocumentsFailed"]
     else:
         out["number_of_documents_failed"] = 0
+    if data.get("numberOfDocumentsSkipped") is not None:
+        out["number_of_documents_skipped"] = data["numberOfDocumentsSkipped"]
+    else:
+        out["number_of_documents_skipped"] = 0
     return out

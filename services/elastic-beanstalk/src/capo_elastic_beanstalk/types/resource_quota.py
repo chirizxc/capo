@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 class ResourceQuota(TypedDict, closed=True):
     maximum: NotRequired["capo_elastic_beanstalk.types.boxed_int.BoxedInt"]
-    """<p>The maximum number of instances of this Elastic Beanstalk resource type that an AWS account can use.</p>"""
+    """<p>The maximum number of instances of this Elastic Beanstalk resource type that an Amazon Web Services account can use.</p>"""
 
 
 # --- awsQuery ser/de ---

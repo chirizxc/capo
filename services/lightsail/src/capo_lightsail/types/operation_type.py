@@ -86,6 +86,7 @@ OperationType: TypeAlias = Literal[
     "StartGUISession",
     "StopGUISession",
     "SetupInstanceHttps",
+    "GetProfile",
 ]
 
 

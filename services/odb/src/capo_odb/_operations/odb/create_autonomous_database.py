@@ -18,6 +18,8 @@ import capo_odb.errors.resource_not_found_exception
 import capo_odb.errors.service_quota_exceeded_exception
 import capo_odb.errors.throttling_exception
 import capo_odb.errors.validation_exception
+import capo_odb.types.admin_password_source
+import capo_odb.types.admin_password_source_configuration_input
 import capo_odb.types.autonomous_database_resource_status
 import capo_odb.types.autonomous_maintenance_schedule_type
 import capo_odb.types.create_autonomous_database_input

@@ -16,6 +16,8 @@ from capo_mediatailor._services._pipeline import (
 if TYPE_CHECKING:
     import capo_mediatailor.types.__map_of__string
     import capo_mediatailor.types.__string
+    import capo_mediatailor.types.aws_service_request_configuration
+    import capo_mediatailor.types.concurrent_executor_configuration
     import capo_mediatailor.types.custom_output_configuration
     import capo_mediatailor.types.delete_function_request
     import capo_mediatailor.types.delete_function_response
@@ -30,6 +32,7 @@ if TYPE_CHECKING:
     import capo_mediatailor.types.put_function_request
     import capo_mediatailor.types.put_function_response
     import capo_mediatailor.types.sequential_executor_configuration
+    import capo_mediatailor.types.vast_request_configuration
     from capo_mediatailor._services.async_media_tailor import (
         AsyncMediaTailorClient,
         AsyncMediaTailorClientConfig,
@@ -54,11 +57,20 @@ class FunctionResource:
         http_request_configuration: Optional[
             "capo_mediatailor.types.http_request_configuration.HttpRequestConfiguration"
         ] = None,
+        aws_service_request_configuration: Optional[
+            "capo_mediatailor.types.aws_service_request_configuration.AwsServiceRequestConfiguration"
+        ] = None,
         custom_output_configuration: Optional[
             "capo_mediatailor.types.custom_output_configuration.CustomOutputConfiguration"
         ] = None,
+        concurrent_executor_configuration: Optional[
+            "capo_mediatailor.types.concurrent_executor_configuration.ConcurrentExecutorConfiguration"
+        ] = None,
         sequential_executor_configuration: Optional[
             "capo_mediatailor.types.sequential_executor_configuration.SequentialExecutorConfiguration"
+        ] = None,
+        vast_request_configuration: Optional[
+            "capo_mediatailor.types.vast_request_configuration.VastRequestConfiguration"
         ] = None,
         tags: Optional[
             "capo_mediatailor.types.__map_of__string.__mapOf__string"
@@ -68,11 +80,14 @@ class FunctionResource:
 
         Args:
             function_id: <p>The identifier of the function. The identifier must be unique within your account.</p>
-            function_type: <p>The type of the function. The function type determines what the function can do at runtime. Valid values: <code>CUSTOM_OUTPUT</code> evaluates expressions and produces output bindings with no external calls. <code>HTTP_REQUEST</code> makes an HTTP call to an external service and evaluates output expressions that can reference the response. <code>SEQUENTIAL_EXECUTOR</code> runs a sequence of child functions in order, passing data between steps through temporary data. For more information, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/monetization-functions-types.html\">Function types and composition</a> in the <i>MediaTailor User Guide</i>.</p>
+            function_type: <p>The type of the function, which determines what the function can do at runtime. Valid values:</p> <ul> <li> <p> <code>CUSTOM_OUTPUT</code> – Evaluates expressions and produces output bindings with no external calls.</p> </li> <li> <p> <code>HTTP_REQUEST</code> – Makes an HTTP call to an external service and evaluates output expressions that can reference the response.</p> </li> <li> <p> <code>AWS_SERVICE_REQUEST</code> – Makes an authenticated request to a supported AWS service API and evaluates output expressions that can reference the response.</p> </li> <li> <p> <code>VAST_REQUEST</code> – Calls a VAST endpoint, parses the response as VAST, and makes the parsed ads available to output expressions.</p> </li> <li> <p> <code>SEQUENTIAL_EXECUTOR</code> – Runs a sequence of child functions in order, passing data between steps through temporary data.</p> </li> <li> <p> <code>CONCURRENT_EXECUTOR</code> – Runs a set of child functions in parallel, up to a maximum concurrency, and combines their output when all functions complete.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/monetization-functions-types.html\">Function types and composition</a> in the <i>MediaTailor User Guide</i>.</p>
             description: <p>A description of the function.</p>
             http_request_configuration: <p>The configuration for an <code>HTTP_REQUEST</code> function. Specifies the HTTP method, URL, headers, body, timeout, and output expressions. Required when <code>FunctionType</code> is <code>HTTP_REQUEST</code>.</p>
+            aws_service_request_configuration: <p>The configuration for an <code>AWS_SERVICE_REQUEST</code> function. You must specify this parameter when <code>FunctionType</code> is <code>AWS_SERVICE_REQUEST</code>.</p>
             custom_output_configuration: <p>The configuration for a <code>CUSTOM_OUTPUT</code> function. Specifies the runtime and output expressions. Required when <code>FunctionType</code> is <code>CUSTOM_OUTPUT</code>.</p>
+            concurrent_executor_configuration: <p>The configuration for a <code>CONCURRENT_EXECUTOR</code> function. Specifies the list of child functions to run in parallel, the maximum concurrency, an optional output block, and a timeout. Required when <code>FunctionType</code> is <code>CONCURRENT_EXECUTOR</code>.</p>
             sequential_executor_configuration: <p>The configuration for a <code>SEQUENTIAL_EXECUTOR</code> function. Specifies the ordered list of child functions to execute, an optional output block, and a timeout. Required when <code>FunctionType</code> is <code>SEQUENTIAL_EXECUTOR</code>.</p>
+            vast_request_configuration: <p>The configuration for a <code>VAST_REQUEST</code> function. Specifies the HTTP method, URL, headers, body, timeout, and output expressions. Required when <code>FunctionType</code> is <code>VAST_REQUEST</code>.</p>
             tags: <p>The tags to assign to the function. Tags are key-value pairs that you can associate with Amazon resources to help with organization, access control, and cost tracking. For more information, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html\">Tagging AWS Elemental MediaTailor Resources</a>.</p>
 
         Raises:
@@ -102,12 +117,22 @@ class FunctionResource:
             input_["description"] = description
         if http_request_configuration is not None:
             input_["http_request_configuration"] = http_request_configuration
+        if aws_service_request_configuration is not None:
+            input_["aws_service_request_configuration"] = (
+                aws_service_request_configuration
+            )
         if custom_output_configuration is not None:
             input_["custom_output_configuration"] = custom_output_configuration
+        if concurrent_executor_configuration is not None:
+            input_["concurrent_executor_configuration"] = (
+                concurrent_executor_configuration
+            )
         if sequential_executor_configuration is not None:
             input_["sequential_executor_configuration"] = (
                 sequential_executor_configuration
             )
+        if vast_request_configuration is not None:
+            input_["vast_request_configuration"] = vast_request_configuration
         if tags is not None:
             input_["tags"] = tags
 
@@ -264,11 +289,20 @@ class AsyncFunctionResource:
         http_request_configuration: Optional[
             "capo_mediatailor.types.http_request_configuration.HttpRequestConfiguration"
         ] = None,
+        aws_service_request_configuration: Optional[
+            "capo_mediatailor.types.aws_service_request_configuration.AwsServiceRequestConfiguration"
+        ] = None,
         custom_output_configuration: Optional[
             "capo_mediatailor.types.custom_output_configuration.CustomOutputConfiguration"
         ] = None,
+        concurrent_executor_configuration: Optional[
+            "capo_mediatailor.types.concurrent_executor_configuration.ConcurrentExecutorConfiguration"
+        ] = None,
         sequential_executor_configuration: Optional[
             "capo_mediatailor.types.sequential_executor_configuration.SequentialExecutorConfiguration"
+        ] = None,
+        vast_request_configuration: Optional[
+            "capo_mediatailor.types.vast_request_configuration.VastRequestConfiguration"
         ] = None,
         tags: Optional[
             "capo_mediatailor.types.__map_of__string.__mapOf__string"
@@ -278,11 +312,14 @@ class AsyncFunctionResource:
 
         Args:
             function_id: <p>The identifier of the function. The identifier must be unique within your account.</p>
-            function_type: <p>The type of the function. The function type determines what the function can do at runtime. Valid values: <code>CUSTOM_OUTPUT</code> evaluates expressions and produces output bindings with no external calls. <code>HTTP_REQUEST</code> makes an HTTP call to an external service and evaluates output expressions that can reference the response. <code>SEQUENTIAL_EXECUTOR</code> runs a sequence of child functions in order, passing data between steps through temporary data. For more information, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/monetization-functions-types.html\">Function types and composition</a> in the <i>MediaTailor User Guide</i>.</p>
+            function_type: <p>The type of the function, which determines what the function can do at runtime. Valid values:</p> <ul> <li> <p> <code>CUSTOM_OUTPUT</code> – Evaluates expressions and produces output bindings with no external calls.</p> </li> <li> <p> <code>HTTP_REQUEST</code> – Makes an HTTP call to an external service and evaluates output expressions that can reference the response.</p> </li> <li> <p> <code>AWS_SERVICE_REQUEST</code> – Makes an authenticated request to a supported AWS service API and evaluates output expressions that can reference the response.</p> </li> <li> <p> <code>VAST_REQUEST</code> – Calls a VAST endpoint, parses the response as VAST, and makes the parsed ads available to output expressions.</p> </li> <li> <p> <code>SEQUENTIAL_EXECUTOR</code> – Runs a sequence of child functions in order, passing data between steps through temporary data.</p> </li> <li> <p> <code>CONCURRENT_EXECUTOR</code> – Runs a set of child functions in parallel, up to a maximum concurrency, and combines their output when all functions complete.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/monetization-functions-types.html\">Function types and composition</a> in the <i>MediaTailor User Guide</i>.</p>
             description: <p>A description of the function.</p>
             http_request_configuration: <p>The configuration for an <code>HTTP_REQUEST</code> function. Specifies the HTTP method, URL, headers, body, timeout, and output expressions. Required when <code>FunctionType</code> is <code>HTTP_REQUEST</code>.</p>
+            aws_service_request_configuration: <p>The configuration for an <code>AWS_SERVICE_REQUEST</code> function. You must specify this parameter when <code>FunctionType</code> is <code>AWS_SERVICE_REQUEST</code>.</p>
             custom_output_configuration: <p>The configuration for a <code>CUSTOM_OUTPUT</code> function. Specifies the runtime and output expressions. Required when <code>FunctionType</code> is <code>CUSTOM_OUTPUT</code>.</p>
+            concurrent_executor_configuration: <p>The configuration for a <code>CONCURRENT_EXECUTOR</code> function. Specifies the list of child functions to run in parallel, the maximum concurrency, an optional output block, and a timeout. Required when <code>FunctionType</code> is <code>CONCURRENT_EXECUTOR</code>.</p>
             sequential_executor_configuration: <p>The configuration for a <code>SEQUENTIAL_EXECUTOR</code> function. Specifies the ordered list of child functions to execute, an optional output block, and a timeout. Required when <code>FunctionType</code> is <code>SEQUENTIAL_EXECUTOR</code>.</p>
+            vast_request_configuration: <p>The configuration for a <code>VAST_REQUEST</code> function. Specifies the HTTP method, URL, headers, body, timeout, and output expressions. Required when <code>FunctionType</code> is <code>VAST_REQUEST</code>.</p>
             tags: <p>The tags to assign to the function. Tags are key-value pairs that you can associate with Amazon resources to help with organization, access control, and cost tracking. For more information, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html\">Tagging AWS Elemental MediaTailor Resources</a>.</p>
 
         Raises:
@@ -313,12 +350,22 @@ class AsyncFunctionResource:
             input_["description"] = description
         if http_request_configuration is not None:
             input_["http_request_configuration"] = http_request_configuration
+        if aws_service_request_configuration is not None:
+            input_["aws_service_request_configuration"] = (
+                aws_service_request_configuration
+            )
         if custom_output_configuration is not None:
             input_["custom_output_configuration"] = custom_output_configuration
+        if concurrent_executor_configuration is not None:
+            input_["concurrent_executor_configuration"] = (
+                concurrent_executor_configuration
+            )
         if sequential_executor_configuration is not None:
             input_["sequential_executor_configuration"] = (
                 sequential_executor_configuration
             )
+        if vast_request_configuration is not None:
+            input_["vast_request_configuration"] = vast_request_configuration
         if tags is not None:
             input_["tags"] = tags
 

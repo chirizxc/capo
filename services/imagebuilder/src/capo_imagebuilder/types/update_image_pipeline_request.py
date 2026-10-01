@@ -33,49 +33,49 @@ class UpdateImagePipelineRequest(TypedDict, closed=True):
     image_recipe_arn: NotRequired[
         "capo_imagebuilder.types.image_recipe_arn.ImageRecipeArn"
     ]
-    """<p>The Amazon Resource Name (ARN) of the image recipe that will be used to configure images updated by this image pipeline.</p>"""
+    """<p>The Amazon Resource Name (ARN) of the image recipe that configures images created by this image pipeline. You must specify either this property or <code>containerRecipeArn</code>, but not both.</p>"""
     container_recipe_arn: NotRequired[
         "capo_imagebuilder.types.container_recipe_arn.ContainerRecipeArn"
     ]
-    """<p>The Amazon Resource Name (ARN) of the container pipeline to update.</p>"""
+    """<p>The Amazon Resource Name (ARN) of the container recipe that is used to configure images created by this container pipeline. You must specify either this property or <code>imageRecipeArn</code>, but not both.</p>"""
     infrastructure_configuration_arn: "capo_imagebuilder.types.infrastructure_configuration_arn.InfrastructureConfigurationArn"
-    """<p>The Amazon Resource Name (ARN) of the infrastructure configuration that Image Builder uses to build images that this image pipeline has updated.</p>"""
+    """<p>The Amazon Resource Name (ARN) of the infrastructure configuration that Image Builder uses to build images created by this image pipeline.</p>"""
     distribution_configuration_arn: NotRequired[
         "capo_imagebuilder.types.distribution_configuration_arn.DistributionConfigurationArn"
     ]
-    """<p>The Amazon Resource Name (ARN) of the distribution configuration that Image Builder uses to configure and distribute images that this image pipeline has updated.</p>"""
+    """<p>The Amazon Resource Name (ARN) of the distribution configuration that Image Builder uses to configure and distribute images created by this image pipeline.</p>"""
     image_tests_configuration: NotRequired[
         "capo_imagebuilder.types.image_tests_configuration.ImageTestsConfiguration"
     ]
-    """<p>The image test configuration of the image pipeline.</p>"""
+    """<p>Specifies the test settings that Image Builder applies to images that this pipeline creates. If you don't provide test settings, Image Builder stores a default configuration with image tests enabled.</p>"""
     enhanced_image_metadata_enabled: NotRequired[
         "capo_imagebuilder.types.nullable_boolean.NullableBoolean"
     ]
-    """<p>Collects additional information about the image being created, including the operating system (OS) version and package list. This information is used to enhance the overall experience of using EC2 Image Builder. Enabled by default.</p>"""
+    """<p>Specifies whether to collect additional information about the image being created, including the operating system (OS) version and package list. Defaults to <code>true</code>.</p>"""
     schedule: NotRequired["capo_imagebuilder.types.schedule.Schedule"]
-    """<p>The schedule of the image pipeline.</p>"""
+    """<p>The schedule of the image pipeline. Because the update replaces the entire configuration, omitting this property removes any existing schedule. The pipeline then runs only when you call <a>StartImagePipelineExecution</a>.</p>"""
     status: NotRequired["capo_imagebuilder.types.pipeline_status.PipelineStatus"]
-    """<p>The status of the image pipeline.</p>"""
+    """<p>The status of the image pipeline. Defaults to <code>ENABLED</code> when omitted. To keep a pipeline disabled, include this property set to <code>DISABLED</code> in your update request.</p>"""
     client_token: "capo_imagebuilder.types.client_token.ClientToken"
-    r"""<p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>"""
+    r"""<p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>"""
     image_scanning_configuration: NotRequired[
         "capo_imagebuilder.types.image_scanning_configuration.ImageScanningConfiguration"
     ]
-    """<p>Contains settings for vulnerability scans.</p>"""
+    """<p>Contains settings for vulnerability scans that Amazon Inspector runs against the test instance during image creation.</p>"""
     workflows: NotRequired[
         "capo_imagebuilder.types.workflow_configuration_list.WorkflowConfigurationList"
     ]
-    """<p>Contains the workflows to run for the pipeline.</p>"""
+    """<p>The array of workflow configuration objects for builds that this pipeline starts. You must also specify <code>executionRole</code> when you provide workflows.</p>"""
     logging_configuration: NotRequired[
         "capo_imagebuilder.types.pipeline_logging_configuration.PipelineLoggingConfiguration"
     ]
-    """<p>Update logging configuration for the output image that's created when the pipeline runs.</p>"""
+    """<p>Specifies the logging configuration for the image pipeline. Use this to define custom CloudWatch Logs log groups for your pipeline execution logs and image build logs. The service manages log groups with names starting with <code>/aws/imagebuilder/</code> using the service-linked role. For custom log group names outside of this prefix, you must also provide an <code>executionRole</code>.</p>"""
     execution_role: NotRequired[
         "capo_imagebuilder.types.role_name_or_arn.RoleNameOrArn"
     ]
-    """<p>The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image Builder access to perform workflow actions.</p>"""
+    """<p>The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image Builder access to perform workflow actions. If you omit this property, the pipeline reverts to the Image Builder service-linked role.</p>"""
     image_tags: NotRequired["capo_imagebuilder.types.tag_map.TagMap"]
-    """<p>The tags to be applied to the images produced by this pipeline.</p>"""
+    """<p>The tags that Image Builder applies to the Image Builder image resource that this pipeline's scheduled executions create. These tags don't apply to the output AMI. To tag output AMIs, use <code>amiTags</code> in the pipeline's distribution configuration.</p>"""
 
 
 # --- restJson1 ser/de ---

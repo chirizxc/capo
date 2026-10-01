@@ -8,6 +8,7 @@ from capo_elastic_beanstalk._protocol.xml import Element
 
 if TYPE_CHECKING:
     import capo_elastic_beanstalk.types.auto_scaling_group_list
+    import capo_elastic_beanstalk.types.cluster
     import capo_elastic_beanstalk.types.environment_name
     import capo_elastic_beanstalk.types.instance_list
     import capo_elastic_beanstalk.types.launch_configuration_list
@@ -26,6 +27,8 @@ class EnvironmentResourceDescription(TypedDict, closed=True):
         "capo_elastic_beanstalk.types.auto_scaling_group_list.AutoScalingGroupList"
     ]
     """<p> The <code>AutoScalingGroups</code> used by this environment. </p>"""
+    cluster: NotRequired["capo_elastic_beanstalk.types.cluster.Cluster"]
+    """<p>The Amazon EKS cluster that this environment runs on. This member is present only for environments in the <i>Cluster</i> tier.</p>"""
     instances: NotRequired["capo_elastic_beanstalk.types.instance_list.InstanceList"]
     """<p>The Amazon EC2 instances used by this environment.</p>"""
     launch_configurations: NotRequired[
@@ -58,6 +61,12 @@ def serialize_query(
 
         capo_elastic_beanstalk.types.auto_scaling_group_list.serialize_query(
             value["auto_scaling_groups"], pairs, f"{key_prefix}AutoScalingGroups"
+        )
+    if "cluster" in value:
+        import capo_elastic_beanstalk.types.cluster
+
+        capo_elastic_beanstalk.types.cluster.serialize_query(
+            value["cluster"], pairs, f"{key_prefix}Cluster"
         )
     if "instances" in value:
         import capo_elastic_beanstalk.types.instance_list
@@ -110,6 +119,13 @@ def deserialize_query(el: Element) -> EnvironmentResourceDescription:
             capo_elastic_beanstalk.types.auto_scaling_group_list.deserialize_query(
                 child_auto_scaling_groups
             )
+        )
+    child_cluster = el.find("Cluster")
+    if child_cluster is not None:
+        import capo_elastic_beanstalk.types.cluster
+
+        out["cluster"] = capo_elastic_beanstalk.types.cluster.deserialize_query(
+            child_cluster
         )
     child_instances = el.find("Instances")
     if child_instances is not None:

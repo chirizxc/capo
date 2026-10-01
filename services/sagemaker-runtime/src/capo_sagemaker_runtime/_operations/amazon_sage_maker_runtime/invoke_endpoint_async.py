@@ -15,6 +15,7 @@ import capo_sagemaker_runtime._protocol.eventstream
 import capo_sagemaker_runtime.errors.internal_failure
 import capo_sagemaker_runtime.errors.service_unavailable
 import capo_sagemaker_runtime.errors.validation_error
+import capo_sagemaker_runtime.types.async_body_blob
 import capo_sagemaker_runtime.types.invoke_endpoint_async_input
 import capo_sagemaker_runtime.types.invoke_endpoint_async_output
 from capo_sagemaker_runtime._protocol.errors import parse_error_metadata_json
@@ -147,7 +148,11 @@ def build_request(
         headers["X-Amzn-SageMaker-InvocationTimeoutSeconds"] = str(
             input_["invocation_timeout_seconds"]
         )
-    body: bytes | None = b""
+    if "body" in input_:
+        body: bytes | None = input_["body"]
+        headers["content-type"] = "application/octet-stream"
+    else:
+        body = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
     for k, v in params:

@@ -18,6 +18,7 @@ import capo_vpc_lattice.errors.internal_server_exception
 import capo_vpc_lattice.errors.resource_not_found_exception
 import capo_vpc_lattice.errors.throttling_exception
 import capo_vpc_lattice.errors.validation_exception
+import capo_vpc_lattice.types.dns_options
 import capo_vpc_lattice.types.security_group_list
 import capo_vpc_lattice.types.update_service_network_vpc_association_request
 import capo_vpc_lattice.types.update_service_network_vpc_association_response

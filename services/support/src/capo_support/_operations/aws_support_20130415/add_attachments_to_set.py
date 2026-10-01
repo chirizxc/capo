@@ -15,6 +15,7 @@ import capo_support.errors.attachment_limit_exceeded
 import capo_support.errors.attachment_set_expired
 import capo_support.errors.attachment_set_id_not_found
 import capo_support.errors.attachment_set_size_limit_exceeded
+import capo_support.errors.dry_run_operation_exception
 import capo_support.errors.internal_server_error
 import capo_support.types.add_attachments_to_set_request
 import capo_support.types.add_attachments_to_set_response
@@ -43,6 +44,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "AttachmentSetSizeLimitExceeded":
             raise capo_support.errors.attachment_set_size_limit_exceeded.AttachmentSetSizeLimitExceeded.from_aws_json_1_1(
+                data, message
+            )
+        case "DryRunOperationException":
+            raise capo_support.errors.dry_run_operation_exception.DryRunOperationException.from_aws_json_1_1(
                 data, message
             )
         case "InternalServerError":

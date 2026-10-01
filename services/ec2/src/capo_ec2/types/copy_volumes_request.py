@@ -9,6 +9,7 @@ from capo_ec2._protocol.xml import Element
 if TYPE_CHECKING:
     import capo_ec2.types.boolean
     import capo_ec2.types.integer
+    import capo_ec2.types.kms_key_id
     import capo_ec2.types.string
     import capo_ec2.types.tag_specification_list
     import capo_ec2.types.volume_id
@@ -36,6 +37,10 @@ class CopyVolumesRequest(TypedDict, closed=True):
     """<p>The throughput to provision for the volume copy, in MiB/s. Supported for <code>gp3</code> volumes only. Omit for all other volume types. Full provisioned throughput performance can be achieved only once the volume copy is fully initialized.</p> <p>Valid Range: <code>125 - 2000</code> MiB/s</p> <p></p>"""
     client_token: NotRequired["capo_ec2.types.string.String"]
     r"""<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html\"> Ensure Idempotency</a>.</p>"""
+    encrypted: NotRequired["capo_ec2.types.boolean.Boolean"]
+    """<p>Indicates whether to encrypt the volume copy. If the source volume is encrypted, the service always encrypts the copy regardless of this value. Set to <code>true</code> to encrypt a copy of an unencrypted source volume during the copy operation. If you set <code>Encrypted</code> to <code>true</code> but do not specify <code>KmsKeyId</code>, the service uses the default KMS key for EBS encryption in your account.</p>"""
+    kms_key_id: NotRequired["capo_ec2.types.kms_key_id.KmsKeyId"]
+    """<p>The identifier of the KMS key to use for encryption of the volume copy. Specify a symmetric encryption KMS key. You can specify a KMS key using the key ID, key ARN, alias name, or alias ARN. If you set <code>Encrypted</code> to <code>true</code> but do not specify this parameter, the service uses the default KMS key for EBS encryption in your account. For cross-account volume copies, this must be a KMS key in the calling account.</p>"""
 
 
 # --- ec2Query ser/de ---
@@ -74,6 +79,12 @@ def serialize_ec2_query(
         pairs.append((f"{key_prefix}Throughput", str(value["throughput"])))
     if "client_token" in value:
         pairs.append((f"{key_prefix}ClientToken", str(value["client_token"])))
+    if "encrypted" in value:
+        pairs.append(
+            (f"{key_prefix}Encrypted", "true" if value["encrypted"] else "false")
+        )
+    if "kms_key_id" in value:
+        pairs.append((f"{key_prefix}KmsKeyId", str(value["kms_key_id"])))
 
 
 def deserialize_ec2_query(el: Element) -> CopyVolumesRequest:
@@ -117,4 +128,10 @@ def deserialize_ec2_query(el: Element) -> CopyVolumesRequest:
     child_client_token = el.find("ClientToken")
     if child_client_token is not None:
         out["client_token"] = str(child_client_token.text or "")
+    child_encrypted = el.find("Encrypted")
+    if child_encrypted is not None:
+        out["encrypted"] = (child_encrypted.text or "").lower() == "true"
+    child_kms_key_id = el.find("KmsKeyId")
+    if child_kms_key_id is not None:
+        out["kms_key_id"] = str(child_kms_key_id.text or "")
     return out

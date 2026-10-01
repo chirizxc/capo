@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     import capo_iot_wireless.types.cell_towers
     import capo_iot_wireless.types.creation_date
     import capo_iot_wireless.types.gnss
+    import capo_iot_wireless.types.gnss_multi_frame
     import capo_iot_wireless.types.ip
     import capo_iot_wireless.types.wi_fi_access_points
 
@@ -23,13 +24,17 @@ class GetPositionEstimateRequest(TypedDict, closed=True):
     ip: NotRequired["capo_iot_wireless.types.ip.Ip"]
     """<p>Retrieves an estimated device position by resolving the IP address information from the device. The position is resolved using MaxMind's IP-based solver.</p>"""
     gnss: NotRequired["capo_iot_wireless.types.gnss.Gnss"]
-    """<p>Retrieves an estimated device position by resolving the global navigation satellite system (GNSS) scan data. The position is resolved using the GNSS solver powered by LoRa Cloud.</p>"""
+    """<p>Retrieves an estimated device position by resolving the global navigation satellite system (GNSS) scan data. The position is resolved using the GNSS solver powered by LoRa Cloud. This field is mutually exclusive with the GnssMultiFrame field.</p>"""
+    gnss_multi_frame: NotRequired[
+        "capo_iot_wireless.types.gnss_multi_frame.GnssMultiFrame"
+    ]
+    """<p>Retrieves an estimated device position by resolving multiple global navigation satellite system (GNSS) scan captures. The position is resolved using the multi-frame GNSS solver powered by LoRa Cloud. This field is mutually exclusive with the Gnss field.</p>"""
     timestamp: NotRequired["capo_iot_wireless.types.creation_date.CreationDate"]
     """<p>Optional information that specifies the time when the position information will be resolved. It uses the Unix timestamp format. If not specified, the time at which the request was received will be used.</p>"""
     advanced_configuration: NotRequired[
         "capo_iot_wireless.types.advanced_configuration.AdvancedConfiguration"
     ]
-    """Optional configuration to customize position estimates. If not provided, defaults are applied."""
+    """<p>Optional configuration for customizing position measurement data.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -57,6 +62,12 @@ def serialize_json(value: GetPositionEstimateRequest) -> dict:
         import capo_iot_wireless.types.gnss
 
         out["Gnss"] = capo_iot_wireless.types.gnss.serialize_json(value["gnss"])
+    if "gnss_multi_frame" in value:
+        import capo_iot_wireless.types.gnss_multi_frame
+
+        out["GnssMultiFrame"] = capo_iot_wireless.types.gnss_multi_frame.serialize_json(
+            value["gnss_multi_frame"]
+        )
     if "timestamp" in value:
         import capo_iot_wireless.types.creation_date
 
@@ -98,6 +109,14 @@ def deserialize_json(data: dict) -> GetPositionEstimateRequest:
         import capo_iot_wireless.types.gnss
 
         out["gnss"] = capo_iot_wireless.types.gnss.deserialize_json(data["Gnss"])
+    if data.get("GnssMultiFrame") is not None:
+        import capo_iot_wireless.types.gnss_multi_frame
+
+        out["gnss_multi_frame"] = (
+            capo_iot_wireless.types.gnss_multi_frame.deserialize_json(
+                data["GnssMultiFrame"]
+            )
+        )
     if data.get("Timestamp") is not None:
         import capo_iot_wireless.types.creation_date
 

@@ -97,6 +97,8 @@ if TYPE_CHECKING:
     import capo_redshift.types.create_hsm_configuration_message
     import capo_redshift.types.create_hsm_configuration_result
     import capo_redshift.types.create_integration_message
+    import capo_redshift.types.create_qev2_idc_application_message
+    import capo_redshift.types.create_qev2_idc_application_result
     import capo_redshift.types.create_redshift_idc_application_message
     import capo_redshift.types.create_redshift_idc_application_result
     import capo_redshift.types.create_scheduled_action_message
@@ -130,6 +132,7 @@ if TYPE_CHECKING:
     import capo_redshift.types.delete_hsm_client_certificate_message
     import capo_redshift.types.delete_hsm_configuration_message
     import capo_redshift.types.delete_integration_message
+    import capo_redshift.types.delete_qev2_idc_application_message
     import capo_redshift.types.delete_redshift_idc_application_message
     import capo_redshift.types.delete_resource_policy_message
     import capo_redshift.types.delete_scheduled_action_message
@@ -175,6 +178,8 @@ if TYPE_CHECKING:
     import capo_redshift.types.describe_orderable_cluster_options_message
     import capo_redshift.types.describe_partners_input_message
     import capo_redshift.types.describe_partners_output_message
+    import capo_redshift.types.describe_qev2_idc_applications_message
+    import capo_redshift.types.describe_qev2_idc_applications_result
     import capo_redshift.types.describe_redshift_idc_applications_message
     import capo_redshift.types.describe_redshift_idc_applications_result
     import capo_redshift.types.describe_reserved_node_exchange_status_input_message
@@ -272,6 +277,8 @@ if TYPE_CHECKING:
     import capo_redshift.types.modify_event_subscription_result
     import capo_redshift.types.modify_integration_message
     import capo_redshift.types.modify_lakehouse_configuration_message
+    import capo_redshift.types.modify_qev2_idc_application_message
+    import capo_redshift.types.modify_qev2_idc_application_result
     import capo_redshift.types.modify_redshift_idc_application_message
     import capo_redshift.types.modify_redshift_idc_application_result
     import capo_redshift.types.modify_scheduled_action_message
@@ -301,6 +308,8 @@ if TYPE_CHECKING:
     import capo_redshift.types.purchase_reserved_node_offering_result
     import capo_redshift.types.put_resource_policy_message
     import capo_redshift.types.put_resource_policy_result
+    import capo_redshift.types.qev2_idc_application
+    import capo_redshift.types.qev2_idc_application_name
     import capo_redshift.types.reboot_cluster_message
     import capo_redshift.types.reboot_cluster_result
     import capo_redshift.types.recommendation
@@ -1263,7 +1272,7 @@ class RedshiftClient:
             db_name: <p>The name of the first database to be created when the cluster is created.</p> <p>To create additional databases after the cluster is created, connect to the cluster with a SQL client and use SQL commands to create a database. For more information, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/t_creating_database.html\">Create a Database</a> in the Amazon Redshift Database Developer Guide. </p> <p>Default: <code>dev</code> </p> <p>Constraints:</p> <ul> <li> <p>Must contain 1 to 64 alphanumeric characters.</p> </li> <li> <p>Must contain only lowercase letters.</p> </li> <li> <p>Cannot be a word that is reserved by the service. A list of reserved words can be found in <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/r_pg_keywords.html\">Reserved Words</a> in the Amazon Redshift Database Developer Guide. </p> </li> </ul>
             cluster_identifier: <p>A unique identifier for the cluster. You use this identifier to refer to the cluster for any subsequent cluster operations such as deleting or modifying. The identifier also appears in the Amazon Redshift console.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63 alphanumeric characters or hyphens.</p> </li> <li> <p>Alphabetic characters must be lowercase.</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p> </li> <li> <p>Must be unique for all clusters within an Amazon Web Services account.</p> </li> </ul> <p>Example: <code>myexamplecluster</code> </p>
             cluster_type: <p>The type of the cluster. When cluster type is specified as</p> <ul> <li> <p> <code>single-node</code>, the <b>NumberOfNodes</b> parameter is not required.</p> </li> <li> <p> <code>multi-node</code>, the <b>NumberOfNodes</b> parameter is required.</p> </li> </ul> <p>Valid Values: <code>multi-node</code> | <code>single-node</code> </p> <p>Default: <code>multi-node</code> </p>
-            node_type: <p>The node type to be provisioned for the cluster. For information about node types, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#how-many-nodes\"> Working with Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p> <p>Valid Values: <code>dc2.large</code> | <code>dc2.8xlarge</code>| <code>rg.xlarge</code> | <code>rg.4xlarge</code> | <code>ra3.large</code> | <code>ra3.xlplus</code> | <code>ra3.4xlarge</code> | <code>ra3.16xlarge</code> </p>
+            node_type: <p>The node type to be provisioned for the cluster. For information about node types, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#how-many-nodes\"> Working with Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p> <p>Valid Values: <code>dc2.large</code> | <code>dc2.8xlarge</code> | <code>rg.large</code> | <code>rg.xlarge</code> | <code>rg.4xlarge</code> | <code>rg.12xlarge</code> | <code>ra3.large</code> | <code>ra3.xlplus</code> | <code>ra3.4xlarge</code> | <code>ra3.16xlarge</code> </p>
             master_username: <p>The user name associated with the admin user account for the cluster that is being created.</p> <p>Constraints:</p> <ul> <li> <p>Must be 1 - 128 alphanumeric characters or hyphens. The user name can't be <code>PUBLIC</code>.</p> </li> <li> <p>Must contain only lowercase letters, numbers, underscore, plus sign, period (dot), at symbol (@), or hyphen.</p> </li> <li> <p>The first character must be a letter.</p> </li> <li> <p>Must not contain a colon (:) or a slash (/).</p> </li> <li> <p>Cannot be a reserved word. A list of reserved words can be found in <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/r_pg_keywords.html\">Reserved Words</a> in the Amazon Redshift Database Developer Guide. </p> </li> </ul>
             master_user_password: <p>The password associated with the admin user account for the cluster that is being created.</p> <p>You can't use <code>MasterUserPassword</code> if <code>ManageMasterPassword</code> is <code>true</code>.</p> <p>Constraints:</p> <ul> <li> <p>Must be between 8 and 64 characters in length.</p> </li> <li> <p>Must contain at least one uppercase letter.</p> </li> <li> <p>Must contain at least one lowercase letter.</p> </li> <li> <p>Must contain one number.</p> </li> <li> <p>Can be any printable ASCII character (ASCII code 33-126) except <code>'</code> (single quote), <code>\"</code> (double quote), <code>\</code>, <code>/</code>, or <code>@</code>.</p> </li> </ul>
             cluster_security_groups: <p>A list of security groups to be associated with this cluster.</p> <p>Default: The default cluster security group for Amazon Redshift.</p>
@@ -2105,6 +2114,68 @@ class RedshiftClient:
             input_["additional_encryption_context"] = additional_encryption_context
         if description is not None:
             input_["description"] = description
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def create_qev2_idc_application(
+        self,
+        *,
+        config_overrides: Optional[RedshiftClientConfig] = None,
+        idc_instance_arn: Optional["capo_redshift.types.string.String"] = None,
+        qev2_idc_application_name: Optional[
+            "capo_redshift.types.qev2_idc_application_name.Qev2IdcApplicationName"
+        ] = None,
+        idc_display_name: Optional[
+            "capo_redshift.types.idc_display_name_string.IdcDisplayNameString"
+        ] = None,
+        tags: Optional["capo_redshift.types.tag_list.TagList"] = None,
+    ) -> "capo_redshift.types.create_qev2_idc_application_result.CreateQev2IdcApplicationResult":
+        """<p>Creates an Amazon Redshift Query Editor (QEV2) IAM Identity Center application.</p>
+
+        Args:
+            idc_instance_arn: <p>The Amazon Resource Name (ARN) of the IAM Identity Center instance used to create the Amazon Redshift Query Editor (QEV2) managed application.</p>
+            qev2_idc_application_name: <p>The name of the Amazon Redshift Query Editor (QEV2) application in IAM Identity Center.</p>
+            idc_display_name: <p>The display name for the Amazon Redshift Query Editor (QEV2) IAM Identity Center application. It appears in the console.</p>
+            tags: <p>A list of tags to associate with the application. Tags are key-value pairs that you can use to organize and identify your resources.</p>
+
+        Raises:
+            capo_redshift.errors.dependent_service_access_denied_fault.DependentServiceAccessDeniedFault: <p>A dependent service denied access for the integration.</p>
+            capo_redshift.errors.dependent_service_unavailable_fault.DependentServiceUnavailableFault: <p>Your request cannot be completed because a dependent internal service is temporarily unavailable. Wait 30 to 60 seconds and try again.</p>
+            capo_redshift.errors.qev2_idc_application_already_exists_fault.Qev2IdcApplicationAlreadyExistsFault: <p>The Amazon Redshift Query Editor (QEV2) IAM Identity Center application already exists. Use a different application name or describe existing applications to find the ARN.</p>
+            capo_redshift.errors.unsupported_operation_fault.UnsupportedOperationFault: <p>The requested operation isn't supported.</p>
+            capo_redshift.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_redshift.types.create_qev2_idc_application_message.CreateQev2IdcApplicationMessage]",
+        ) -> OperationResponse[
+            "capo_redshift.types.create_qev2_idc_application_result.CreateQev2IdcApplicationResult"
+        ]:
+            import capo_redshift._operations.redshift_service_version20121201.create_qev2_idc_application
+
+            output, http_response = (
+                capo_redshift._operations.redshift_service_version20121201.create_qev2_idc_application.create_qev2_idc_application(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_redshift.types.create_qev2_idc_application_message.CreateQev2IdcApplicationMessage = {}
+        if idc_instance_arn is not None:
+            input_["idc_instance_arn"] = idc_instance_arn
+        if qev2_idc_application_name is not None:
+            input_["qev2_idc_application_name"] = qev2_idc_application_name
+        if idc_display_name is not None:
+            input_["idc_display_name"] = idc_display_name
+        if tags is not None:
+            input_["tags"] = tags
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -3219,6 +3290,50 @@ class RedshiftClient:
             input_["database_name"] = database_name
         if partner_name is not None:
             input_["partner_name"] = partner_name
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_qev2_idc_application(
+        self,
+        *,
+        config_overrides: Optional[RedshiftClientConfig] = None,
+        qev2_idc_application_arn: Optional["capo_redshift.types.string.String"] = None,
+    ) -> None:
+        """<p>Deletes an Amazon Redshift Query Editor (QEV2) IAM Identity Center application.</p>
+
+        Args:
+            qev2_idc_application_arn: <p>The Amazon Resource Name (ARN) for the Amazon Redshift Query Editor (QEV2) IAM Identity Center application to delete.</p>
+
+        Raises:
+            capo_redshift.errors.dependent_service_access_denied_fault.DependentServiceAccessDeniedFault: <p>A dependent service denied access for the integration.</p>
+            capo_redshift.errors.dependent_service_unavailable_fault.DependentServiceUnavailableFault: <p>Your request cannot be completed because a dependent internal service is temporarily unavailable. Wait 30 to 60 seconds and try again.</p>
+            capo_redshift.errors.qev2_idc_application_not_exists_fault.Qev2IdcApplicationNotExistsFault: <p>The specified Amazon Redshift Query Editor (QEV2) IAM Identity Center application doesn't exist. Verify that the application ARN is correct and that the application exists in this Region.</p>
+            capo_redshift.errors.unsupported_operation_fault.UnsupportedOperationFault: <p>The requested operation isn't supported.</p>
+            capo_redshift.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_redshift.types.delete_qev2_idc_application_message.DeleteQev2IdcApplicationMessage]",
+        ) -> OperationResponse[None]:
+            import capo_redshift._operations.redshift_service_version20121201.delete_qev2_idc_application
+
+            output, http_response = (
+                capo_redshift._operations.redshift_service_version20121201.delete_qev2_idc_application.delete_qev2_idc_application(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_redshift.types.delete_qev2_idc_application_message.DeleteQev2IdcApplicationMessage = {}
+        if qev2_idc_application_arn is not None:
+            input_["qev2_idc_application_arn"] = qev2_idc_application_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -6057,6 +6172,87 @@ class RedshiftClient:
         response.response.close()
         return response.output
 
+    def describe_qev2_idc_applications(
+        self,
+        *,
+        config_overrides: Optional[RedshiftClientConfig] = None,
+        qev2_idc_application_arn: Optional["capo_redshift.types.string.String"] = None,
+        max_records: Optional[
+            "capo_redshift.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_redshift.types.string.String"] = None,
+    ) -> "capo_redshift.types.describe_qev2_idc_applications_result.DescribeQev2IdcApplicationsResult":
+        """<p>Lists the Amazon Redshift Query Editor (QEV2) IAM Identity Center applications. To retrieve additional results, use the MaxRecords and Marker parameters.</p>
+
+        Args:
+            qev2_idc_application_arn: <p>The Amazon Resource Name (ARN) for the Amazon Redshift Query Editor (QEV2) application that integrates with IAM Identity Center.</p>
+            max_records: <p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified MaxRecords value, a value is returned in a marker field of the response. You can retrieve the next set of records by retrying the command with the returned marker value.</p>
+            marker: <p>A value that indicates the starting point for the next set of response records in a subsequent request. If a value is returned in a response, you can retrieve the next set of records by providing this returned marker value in the Marker parameter and retrying the command. If the Marker field is empty, all response records have been retrieved for the request. </p>
+
+        Raises:
+            capo_redshift.errors.dependent_service_access_denied_fault.DependentServiceAccessDeniedFault: <p>A dependent service denied access for the integration.</p>
+            capo_redshift.errors.dependent_service_unavailable_fault.DependentServiceUnavailableFault: <p>Your request cannot be completed because a dependent internal service is temporarily unavailable. Wait 30 to 60 seconds and try again.</p>
+            capo_redshift.errors.qev2_idc_application_not_exists_fault.Qev2IdcApplicationNotExistsFault: <p>The specified Amazon Redshift Query Editor (QEV2) IAM Identity Center application doesn't exist. Verify that the application ARN is correct and that the application exists in this Region.</p>
+            capo_redshift.errors.unsupported_operation_fault.UnsupportedOperationFault: <p>The requested operation isn't supported.</p>
+            capo_redshift.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_redshift.types.describe_qev2_idc_applications_message.DescribeQev2IdcApplicationsMessage]",
+        ) -> OperationResponse[
+            "capo_redshift.types.describe_qev2_idc_applications_result.DescribeQev2IdcApplicationsResult"
+        ]:
+            import capo_redshift._operations.redshift_service_version20121201.describe_qev2_idc_applications
+
+            output, http_response = (
+                capo_redshift._operations.redshift_service_version20121201.describe_qev2_idc_applications.describe_qev2_idc_applications(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_redshift.types.describe_qev2_idc_applications_message.DescribeQev2IdcApplicationsMessage = {}
+        if qev2_idc_application_arn is not None:
+            input_["qev2_idc_application_arn"] = qev2_idc_application_arn
+        if max_records is not None:
+            input_["max_records"] = max_records
+        if marker is not None:
+            input_["marker"] = marker
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_describe_qev2_idc_applications(
+        self,
+        *,
+        config_overrides: Optional[RedshiftClientConfig] = None,
+        qev2_idc_application_arn: Optional["capo_redshift.types.string.String"] = None,
+        max_records: Optional[
+            "capo_redshift.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_redshift.types.string.String"] = None,
+    ) -> "Iterator[capo_redshift.types.qev2_idc_application.Qev2IdcApplication]":
+        _token = marker
+        while True:
+            _response = self.describe_qev2_idc_applications(
+                config_overrides=config_overrides,
+                qev2_idc_application_arn=qev2_idc_application_arn,
+                max_records=max_records,
+                marker=_token,
+            )
+            _page = _resolve_path(_response, ("qev2_idc_applications",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
+
     def describe_redshift_idc_applications(
         self,
         *,
@@ -7068,11 +7264,17 @@ class RedshiftClient:
         *,
         config_overrides: Optional[RedshiftClientConfig] = None,
         cluster_identifier: Optional["capo_redshift.types.string.String"] = None,
+        log_destination_type: Optional[
+            "capo_redshift.types.log_destination_type.LogDestinationType"
+        ] = None,
+        log_exports: Optional["capo_redshift.types.log_type_list.LogTypeList"] = None,
     ) -> "capo_redshift.types.logging_status.LoggingStatus":
         """<p>Stops logging information, such as queries and connection attempts, for the specified Amazon Redshift cluster.</p>
 
         Args:
             cluster_identifier: <p>The identifier of the cluster on which logging is to be stopped.</p> <p>Example: <code>examplecluster</code> </p>
+            log_destination_type: <p>The log destination type. An enum with possible values of <code>s3</code>, <code>cloudwatch</code>, and <code>s3table</code>. When set to <code>s3table</code>, stops system table publishing. When omitted, the operation disables audit logging.</p>
+            log_exports: <p>The collection of log types to stop exporting. When <code>LogDestinationType</code> is <code>s3table</code>, the values are the names of the system tables to stop publishing. Omitting this parameter or passing <code>all</code> stops publishing all system tables.</p>
 
         Raises:
             capo_redshift.errors.cluster_not_found_fault.ClusterNotFoundFault: <p>The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster. </p>
@@ -7097,6 +7299,10 @@ class RedshiftClient:
         input_: capo_redshift.types.disable_logging_message.DisableLoggingMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
+        if log_destination_type is not None:
+            input_["log_destination_type"] = log_destination_type
+        if log_exports is not None:
+            input_["log_exports"] = log_exports
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -7222,6 +7428,8 @@ class RedshiftClient:
             "capo_redshift.types.log_destination_type.LogDestinationType"
         ] = None,
         log_exports: Optional["capo_redshift.types.log_type_list.LogTypeList"] = None,
+        s3_table_kms_key_id: Optional["capo_redshift.types.string.String"] = None,
+        s3_table_granularity: Optional["capo_redshift.types.string.String"] = None,
     ) -> "capo_redshift.types.logging_status.LoggingStatus":
         r"""<p>Starts logging information, such as queries and connection attempts, for the specified Amazon Redshift cluster.</p>
 
@@ -7229,8 +7437,10 @@ class RedshiftClient:
             cluster_identifier: <p>The identifier of the cluster on which logging is to be started.</p> <p>Example: <code>examplecluster</code> </p>
             bucket_name: <p>The name of an existing S3 bucket where the log files are to be stored.</p> <p>Constraints:</p> <ul> <li> <p>Must be in the same region as the cluster</p> </li> <li> <p>The cluster must have read bucket and put object permissions</p> </li> </ul>
             s3_key_prefix: <p>The prefix applied to the log file names.</p> <p>Valid characters are any letter from any language, any whitespace character, any numeric character, and the following characters: underscore (<code>_</code>), period (<code>.</code>), colon (<code>:</code>), slash (<code>/</code>), equal (<code>=</code>), plus (<code>+</code>), backslash (<code>\</code>), hyphen (<code>-</code>), at symbol (<code>@</code>).</p>
-            log_destination_type: <p>The log destination type. An enum with possible values of <code>s3</code> and <code>cloudwatch</code>.</p>
-            log_exports: <p>The collection of exported log types. Possible values are <code>connectionlog</code>, <code>useractivitylog</code>, and <code>userlog</code>.</p>
+            log_destination_type: <p>The log destination type. An enum with possible values of <code>s3</code>, <code>cloudwatch</code>, and <code>s3table</code>.</p>
+            log_exports: <p>The collection of exported log types. When <code>LogDestinationType</code> is <code>s3</code> or <code>cloudwatch</code>, possible values are <code>connectionlog</code>, <code>useractivitylog</code>, and <code>userlog</code>. When <code>LogDestinationType</code> is <code>s3table</code>, the values are the names of the system tables to publish. Omitting this parameter, passing an empty list, or including the value <code>all</code> publishes all current and future system tables.</p>
+            s3_table_kms_key_id: <p>The identifier of a customer managed KMS key used to encrypt the S3 tables. This parameter is valid only when <code>LogDestinationType</code> is <code>s3table</code>.</p>
+            s3_table_granularity: <p>The scope of system table publishing. Valid values are <code>cluster</code> and <code>account</code>. A value of <code>cluster</code> scopes publishing to the individual cluster. A value of <code>account</code> scopes publishing to the Amazon Web Services account. This parameter is valid only when <code>LogDestinationType</code> is <code>s3table</code>.</p>
 
         Raises:
             capo_redshift.errors.bucket_not_found_fault.BucketNotFoundFault: <p>Could not find the specified S3 bucket.</p>
@@ -7267,6 +7477,10 @@ class RedshiftClient:
             input_["log_destination_type"] = log_destination_type
         if log_exports is not None:
             input_["log_exports"] = log_exports
+        if s3_table_kms_key_id is not None:
+            input_["s3_table_kms_key_id"] = s3_table_kms_key_id
+        if s3_table_granularity is not None:
+            input_["s3_table_granularity"] = s3_table_granularity
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -8073,7 +8287,7 @@ class RedshiftClient:
         Args:
             cluster_identifier: <p>The unique identifier of the cluster to be modified.</p> <p>Example: <code>examplecluster</code> </p>
             cluster_type: <p>The new cluster type.</p> <p>When you submit your cluster resize request, your existing cluster goes into a read-only mode. After Amazon Redshift provisions a new cluster based on your resize requirements, there will be outage for a period while the old cluster is deleted and your connection is switched to the new cluster. You can use <a>DescribeResize</a> to track the progress of the resize request. </p> <p>Valid Values: <code> multi-node | single-node </code> </p>
-            node_type: <p>The new node type of the cluster. If you specify a new node type, you must also specify the number of nodes parameter.</p> <p> For more information about resizing clusters, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/rs-resize-tutorial.html\">Resizing Clusters in Amazon Redshift</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p> <p>Valid Values: <code>dc2.large</code> | <code>dc2.8xlarge</code>| <code>rg.xlarge</code> | <code>rg.4xlarge</code> | <code>ra3.large</code> | <code>ra3.xlplus</code> | <code>ra3.4xlarge</code> | <code>ra3.16xlarge</code> </p>
+            node_type: <p>The new node type of the cluster. If you specify a new node type, you must also specify the number of nodes parameter.</p> <p> For more information about resizing clusters, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/rs-resize-tutorial.html\">Resizing Clusters in Amazon Redshift</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p> <p>Valid Values: <code>dc2.large</code> | <code>dc2.8xlarge</code> | <code>rg.large</code> | <code>rg.xlarge</code> | <code>rg.4xlarge</code> | <code>rg.12xlarge</code> | <code>ra3.large</code> | <code>ra3.xlplus</code> | <code>ra3.4xlarge</code> | <code>ra3.16xlarge</code> </p>
             number_of_nodes: <p>The new number of nodes of the cluster. If you specify a new number of nodes, you must also specify the node type parameter.</p> <p> For more information about resizing clusters, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/rs-resize-tutorial.html\">Resizing Clusters in Amazon Redshift</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p> <p>Valid Values: Integer greater than <code>0</code>.</p>
             cluster_security_groups: <p>A list of cluster security groups to be authorized on this cluster. This change is asynchronously applied as soon as possible.</p> <p>Security groups currently associated with the cluster, and not in the list of groups to apply, will be revoked from the cluster.</p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> </ul>
             vpc_security_group_ids: <p>A list of virtual private cloud (VPC) security groups to be associated with the cluster. This change is asynchronously applied as soon as possible.</p>
@@ -8956,6 +9170,58 @@ class RedshiftClient:
         response.response.close()
         return response.output
 
+    def modify_qev2_idc_application(
+        self,
+        *,
+        config_overrides: Optional[RedshiftClientConfig] = None,
+        qev2_idc_application_arn: Optional["capo_redshift.types.string.String"] = None,
+        idc_display_name: Optional[
+            "capo_redshift.types.idc_display_name_string.IdcDisplayNameString"
+        ] = None,
+    ) -> "capo_redshift.types.modify_qev2_idc_application_result.ModifyQev2IdcApplicationResult":
+        """<p>Modifies an Amazon Redshift Query Editor (QEV2) IAM Identity Center application.</p>
+
+        Args:
+            qev2_idc_application_arn: <p>The Amazon Resource Name (ARN) for the Amazon Redshift Query Editor (QEV2) application that integrates with IAM Identity Center.</p>
+            idc_display_name: <p>The display name for the Amazon Redshift Query Editor (QEV2) IAM Identity Center application. It appears in the console.</p>
+
+        Raises:
+            capo_redshift.errors.dependent_service_access_denied_fault.DependentServiceAccessDeniedFault: <p>A dependent service denied access for the integration.</p>
+            capo_redshift.errors.dependent_service_unavailable_fault.DependentServiceUnavailableFault: <p>Your request cannot be completed because a dependent internal service is temporarily unavailable. Wait 30 to 60 seconds and try again.</p>
+            capo_redshift.errors.qev2_idc_application_not_exists_fault.Qev2IdcApplicationNotExistsFault: <p>The specified Amazon Redshift Query Editor (QEV2) IAM Identity Center application doesn't exist. Verify that the application ARN is correct and that the application exists in this Region.</p>
+            capo_redshift.errors.unsupported_operation_fault.UnsupportedOperationFault: <p>The requested operation isn't supported.</p>
+            capo_redshift.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_redshift.types.modify_qev2_idc_application_message.ModifyQev2IdcApplicationMessage]",
+        ) -> OperationResponse[
+            "capo_redshift.types.modify_qev2_idc_application_result.ModifyQev2IdcApplicationResult"
+        ]:
+            import capo_redshift._operations.redshift_service_version20121201.modify_qev2_idc_application
+
+            output, http_response = (
+                capo_redshift._operations.redshift_service_version20121201.modify_qev2_idc_application.modify_qev2_idc_application(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_redshift.types.modify_qev2_idc_application_message.ModifyQev2IdcApplicationMessage = {}
+        if qev2_idc_application_arn is not None:
+            input_["qev2_idc_application_arn"] = qev2_idc_application_arn
+        if idc_display_name is not None:
+            input_["idc_display_name"] = idc_display_name
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def modify_redshift_idc_application(
         self,
         *,
@@ -9627,7 +9893,7 @@ class RedshiftClient:
             "capo_redshift.types.string.String"
         ] = None,
     ) -> "capo_redshift.types.resize_cluster_result.ResizeClusterResult":
-        """<p>Changes the size of the cluster. You can change the cluster's type, or change the number or type of nodes. The default behavior is to use the elastic resize method. With an elastic resize, your cluster is available for read and write operations more quickly than with the classic resize method. </p> <p>Elastic resize operations have the following restrictions:</p> <ul> <li> <p>You can only resize clusters of the following types:</p> <ul> <li> <p>dc2.large</p> </li> <li> <p>dc2.8xlarge</p> </li> <li> <p>rg.xlarge</p> </li> <li> <p>rg.4xlarge</p> </li> <li> <p>ra3.large</p> </li> <li> <p>ra3.xlplus</p> </li> <li> <p>ra3.4xlarge</p> </li> <li> <p>ra3.16xlarge</p> </li> </ul> </li> <li> <p>The type of nodes that you add must match the node type for the cluster.</p> </li> </ul>
+        """<p>Changes the size of the cluster. You can change the cluster's type, or change the number or type of nodes. The default behavior is to use the elastic resize method. With an elastic resize, your cluster is available for read and write operations more quickly than with the classic resize method. </p> <p>Elastic resize operations have the following restrictions:</p> <ul> <li> <p>You can only resize clusters of the following types:</p> <ul> <li> <p>dc2.large</p> </li> <li> <p>dc2.8xlarge</p> </li> <li> <p>rg.large</p> </li> <li> <p>rg.xlarge</p> </li> <li> <p>rg.4xlarge</p> </li> <li> <p>rg.12xlarge</p> </li> <li> <p>ra3.large</p> </li> <li> <p>ra3.xlplus</p> </li> <li> <p>ra3.4xlarge</p> </li> <li> <p>ra3.16xlarge</p> </li> </ul> </li> <li> <p>The type of nodes that you add must match the node type for the cluster.</p> </li> </ul>
 
         Args:
             cluster_identifier: <p>The unique identifier for the cluster to resize.</p>

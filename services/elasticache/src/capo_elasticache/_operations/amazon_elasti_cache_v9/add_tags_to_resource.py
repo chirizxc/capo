@@ -15,7 +15,9 @@ import capo_elasticache.errors.cache_cluster_not_found_fault
 import capo_elasticache.errors.cache_parameter_group_not_found_fault
 import capo_elasticache.errors.cache_security_group_not_found_fault
 import capo_elasticache.errors.cache_subnet_group_not_found_fault
+import capo_elasticache.errors.global_replication_group_not_found_fault
 import capo_elasticache.errors.invalid_arn_fault
+import capo_elasticache.errors.invalid_parameter_value_exception
 import capo_elasticache.errors.invalid_replication_group_state_fault
 import capo_elasticache.errors.invalid_serverless_cache_snapshot_state_fault
 import capo_elasticache.errors.invalid_serverless_cache_state_fault
@@ -58,8 +60,16 @@ def handle_error(response: zapros.Response) -> Never:
             raise capo_elasticache.errors.cache_subnet_group_not_found_fault.CacheSubnetGroupNotFoundFault.from_query(
                 error_el, message
             )
+        case "GlobalReplicationGroupNotFoundFault":
+            raise capo_elasticache.errors.global_replication_group_not_found_fault.GlobalReplicationGroupNotFoundFault.from_query(
+                error_el, message
+            )
         case "InvalidARN":
             raise capo_elasticache.errors.invalid_arn_fault.InvalidARNFault.from_query(
+                error_el, message
+            )
+        case "InvalidParameterValue":
+            raise capo_elasticache.errors.invalid_parameter_value_exception.InvalidParameterValueException.from_query(
                 error_el, message
             )
         case "InvalidReplicationGroupState":

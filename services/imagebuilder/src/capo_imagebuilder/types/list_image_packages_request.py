@@ -16,13 +16,13 @@ class ListImagePackagesRequest(TypedDict, closed=True):
     image_build_version_arn: (
         "capo_imagebuilder.types.image_build_version_arn.ImageBuildVersionArn"
     )
-    """<p>Filter results for the ListImagePackages request by the Image Build Version ARN</p>"""
+    """<p>The Amazon Resource Name (ARN) of the image build version whose packages you want to list. The value must be a full build version ARN.</p>"""
     max_results: NotRequired[
         "capo_imagebuilder.types.restricted_integer.RestrictedInteger"
     ]
-    """<p>Specify the maximum number of items to return in a request.</p>"""
+    """<p>The maximum number of items to return in a single request.</p>"""
     next_token: NotRequired["capo_imagebuilder.types.pagination_token.PaginationToken"]
-    """<p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>"""
+    """<p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>"""
 
 
 # --- restJson1 ser/de ---

@@ -2,12 +2,13 @@
 
 from typing import TYPE_CHECKING
 
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 from capo_pcs.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_pcs.types.endpoints
+    import capo_pcs.types.node_lifecycle_actions
     import capo_pcs.types.shared_secret
 
 
@@ -18,6 +19,16 @@ class RegisterComputeNodeGroupInstanceResponse(TypedDict, closed=True):
     """<p>For the Slurm scheduler, this is the shared Munge key the scheduler uses to authenticate compute node group instances.</p>"""
     endpoints: "capo_pcs.types.endpoints.Endpoints"
     """<p>The list of endpoints available for interaction with the scheduler.</p>"""
+    cluster_name: NotRequired["str"]
+    """<p>The name of the cluster that the compute node registered into.</p>"""
+    compute_node_group_id: NotRequired["str"]
+    """<p>The ID of the compute node group that the compute node registered into.</p>"""
+    compute_node_group_name: NotRequired["str"]
+    """<p>The name of the compute node group that the compute node registered into.</p>"""
+    node_lifecycle_actions: NotRequired[
+        "capo_pcs.types.node_lifecycle_actions.NodeLifecycleActions"
+    ]
+    """<p>The node lifecycle actions configured for the node group, including scripts to run when a compute node finishes bootstrapping or becomes ready to accept jobs.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -30,6 +41,20 @@ def serialize_aws_json_1_0(value: RegisterComputeNodeGroupInstanceResponse) -> d
     out["endpoints"] = capo_pcs.types.endpoints.serialize_aws_json_1_0(
         value["endpoints"]
     )
+    if "cluster_name" in value:
+        out["clusterName"] = value["cluster_name"]
+    if "compute_node_group_id" in value:
+        out["computeNodeGroupId"] = value["compute_node_group_id"]
+    if "compute_node_group_name" in value:
+        out["computeNodeGroupName"] = value["compute_node_group_name"]
+    if "node_lifecycle_actions" in value:
+        import capo_pcs.types.node_lifecycle_actions
+
+        out["nodeLifecycleActions"] = (
+            capo_pcs.types.node_lifecycle_actions.serialize_aws_json_1_0(
+                value["node_lifecycle_actions"]
+            )
+        )
     return out
 
 
@@ -56,5 +81,19 @@ def deserialize_aws_json_1_0(data: dict) -> RegisterComputeNodeGroupInstanceResp
     else:
         raise DeserializationError(
             "RegisterComputeNodeGroupInstanceResponse.endpoints required"
+        )
+    if data.get("clusterName") is not None:
+        out["cluster_name"] = data["clusterName"]
+    if data.get("computeNodeGroupId") is not None:
+        out["compute_node_group_id"] = data["computeNodeGroupId"]
+    if data.get("computeNodeGroupName") is not None:
+        out["compute_node_group_name"] = data["computeNodeGroupName"]
+    if data.get("nodeLifecycleActions") is not None:
+        import capo_pcs.types.node_lifecycle_actions
+
+        out["node_lifecycle_actions"] = (
+            capo_pcs.types.node_lifecycle_actions.deserialize_aws_json_1_0(
+                data["nodeLifecycleActions"]
+            )
         )
     return out

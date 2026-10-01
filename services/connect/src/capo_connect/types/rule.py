@@ -8,7 +8,9 @@ from capo_connect.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_connect.types.arn
+    import capo_connect.types.pre_evaluation_filters
     import capo_connect.types.rule_actions
+    import capo_connect.types.rule_capability_tiers
     import capo_connect.types.rule_function
     import capo_connect.types.rule_id
     import capo_connect.types.rule_name
@@ -29,12 +31,20 @@ class Rule(TypedDict, closed=True):
         "capo_connect.types.rule_trigger_event_source.RuleTriggerEventSource"
     )
     """<p>The event source to trigger the rule.</p>"""
+    rule_capability_tiers: NotRequired[
+        "capo_connect.types.rule_capability_tiers.RuleCapabilityTiers"
+    ]
+    """<p>The list of capability tiers associated with the rule. Used for categorizing rules by capability (for example, <code>GenerativeAI</code>).</p>"""
     function: "capo_connect.types.rule_function.RuleFunction"
     """<p>The conditions of the rule.</p>"""
     actions: "capo_connect.types.rule_actions.RuleActions"
     """<p>A list of actions to be run when the rule is triggered.</p>"""
     publish_status: "capo_connect.types.rule_publish_status.RulePublishStatus"
     """<p>The publish status of the rule.</p>"""
+    pre_evaluation_filters: NotRequired[
+        "capo_connect.types.pre_evaluation_filters.PreEvaluationFilters"
+    ]
+    """<p>The pre-evaluation filters for the rule, that restrict the rule to be applied to only certain resources based on the resource's attributes, such as tags assigned to a contact. The pre-evaluation filters are applied even before rule conditions are evaluated and are used to enforce tag-based-access-control while applying rules.</p>"""
     created_time: "capo_connect.types.timestamp.Timestamp"
     """<p>The timestamp for when the rule was created.</p>"""
     last_updated_time: "capo_connect.types.timestamp.Timestamp"
@@ -58,6 +68,14 @@ def serialize_json(value: Rule) -> dict:
             value["trigger_event_source"]
         )
     )
+    if "rule_capability_tiers" in value:
+        import capo_connect.types.rule_capability_tiers
+
+        out["RuleCapabilityTiers"] = (
+            capo_connect.types.rule_capability_tiers.serialize_json(
+                value["rule_capability_tiers"]
+            )
+        )
     out["Function"] = value["function"]
     import capo_connect.types.rule_actions
 
@@ -67,6 +85,14 @@ def serialize_json(value: Rule) -> dict:
     out["PublishStatus"] = capo_connect.types.rule_publish_status.serialize_json(
         value["publish_status"]
     )
+    if "pre_evaluation_filters" in value:
+        import capo_connect.types.pre_evaluation_filters
+
+        out["PreEvaluationFilters"] = (
+            capo_connect.types.pre_evaluation_filters.serialize_json(
+                value["pre_evaluation_filters"]
+            )
+        )
     import capo_connect.types.timestamp
 
     out["CreatedTime"] = capo_connect.types.timestamp.serialize_json(
@@ -109,6 +135,14 @@ def deserialize_json(data: dict) -> Rule:
         )
     else:
         raise DeserializationError("Rule.trigger_event_source required")
+    if data.get("RuleCapabilityTiers") is not None:
+        import capo_connect.types.rule_capability_tiers
+
+        out["rule_capability_tiers"] = (
+            capo_connect.types.rule_capability_tiers.deserialize_json(
+                data["RuleCapabilityTiers"]
+            )
+        )
     if data.get("Function") is not None:
         out["function"] = data["Function"]
     else:
@@ -129,6 +163,14 @@ def deserialize_json(data: dict) -> Rule:
         )
     else:
         raise DeserializationError("Rule.publish_status required")
+    if data.get("PreEvaluationFilters") is not None:
+        import capo_connect.types.pre_evaluation_filters
+
+        out["pre_evaluation_filters"] = (
+            capo_connect.types.pre_evaluation_filters.deserialize_json(
+                data["PreEvaluationFilters"]
+            )
+        )
     if data.get("CreatedTime") is not None:
         import capo_connect.types.timestamp
 

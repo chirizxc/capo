@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_eks.types.cancellation
     import capo_eks.types.error_details
     import capo_eks.types.string
     import capo_eks.types.timestamp
@@ -26,6 +27,8 @@ class Update(TypedDict, closed=True):
     """<p>The Unix epoch timestamp at object creation.</p>"""
     errors: NotRequired["capo_eks.types.error_details.ErrorDetails"]
     """<p>Any errors associated with a <code>Failed</code> update.</p>"""
+    cancellation: NotRequired["capo_eks.types.cancellation.Cancellation"]
+    """<p>The latest cancellation information for the update. This field is present only if any cancellation is attempted for the update.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -53,6 +56,12 @@ def serialize_json(value: Update) -> dict:
         import capo_eks.types.error_details
 
         out["errors"] = capo_eks.types.error_details.serialize_json(value["errors"])
+    if "cancellation" in value:
+        import capo_eks.types.cancellation
+
+        out["cancellation"] = capo_eks.types.cancellation.serialize_json(
+            value["cancellation"]
+        )
     return out
 
 
@@ -80,4 +89,10 @@ def deserialize_json(data: dict) -> Update:
         import capo_eks.types.error_details
 
         out["errors"] = capo_eks.types.error_details.deserialize_json(data["errors"])
+    if data.get("cancellation") is not None:
+        import capo_eks.types.cancellation
+
+        out["cancellation"] = capo_eks.types.cancellation.deserialize_json(
+            data["cancellation"]
+        )
     return out

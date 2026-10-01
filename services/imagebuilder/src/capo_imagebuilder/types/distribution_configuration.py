@@ -28,7 +28,7 @@ class DistributionConfiguration(TypedDict, closed=True):
     ]
     """<p>The distribution objects that apply Region-specific settings for the deployment of the image to targeted Regions.</p>"""
     timeout_minutes: "capo_imagebuilder.types.distribution_timeout_minutes.DistributionTimeoutMinutes"
-    """<p>The maximum duration in minutes for this distribution configuration.</p>"""
+    """<p>A property that Image Builder doesn't use. You can't set this property when you create or update a distribution configuration, and it has no effect on distribution behavior.</p>"""
     date_created: NotRequired["capo_imagebuilder.types.date_time.DateTime"]
     """<p>The date on which this distribution configuration was created.</p>"""
     date_updated: NotRequired["capo_imagebuilder.types.date_time.DateTime"]

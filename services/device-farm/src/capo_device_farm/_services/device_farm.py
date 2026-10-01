@@ -2162,7 +2162,7 @@ class DeviceFarmClient:
             "capo_device_farm.types.device_farm_arn.DeviceFarmArn"
         ] = None,
     ) -> "capo_device_farm.types.get_test_grid_session_result.GetTestGridSessionResult":
-        """<p>A session is an instance of a browser created through a <code>RemoteWebDriver</code> with the URL from <a>CreateTestGridUrlResult$url</a>. You can use the following to look up sessions:</p> <ul> <li> <p>The session ARN (<a>GetTestGridSessionRequest$sessionArn</a>).</p> </li> <li> <p>The project ARN and a session ID (<a>GetTestGridSessionRequest$projectArn</a> and <a>GetTestGridSessionRequest$sessionId</a>).</p> </li> </ul> <p></p>
+        """<p>A session is an instance of a browser created through a <code>RemoteWebDriver</code> with the URL from <code> CreateTestGridUrlResult</code>. You can use the following to look up sessions:</p> <ul> <li> <p>The session ARN.</p> </li> <li> <p>The project ARN and a session ID.</p> </li> </ul> <p></p>
 
         Args:
             project_arn: <p>The ARN for the project that this session belongs to. See <a>CreateTestGridProject</a> and <a>ListTestGridProjects</a>.</p>
@@ -3282,7 +3282,7 @@ class DeviceFarmClient:
             "capo_device_farm.types.pagination_token.PaginationToken"
         ] = None,
     ) -> "capo_device_farm.types.list_samples_result.ListSamplesResult":
-        """<p>Gets information about samples, given an AWS Device Farm job ARN.</p>
+        """<p>Gets information about samples, given an AWS Device Farm job ARN.</p> <important> <p>Device Farm does not support performance data samples during test executions.</p> </important>
 
         Args:
             arn: <p>The Amazon Resource Name (ARN) of the job used to list samples.</p>

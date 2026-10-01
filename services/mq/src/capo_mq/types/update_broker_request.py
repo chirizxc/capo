@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_mq.types.__boolean
+    import capo_mq.types.__integer
     import capo_mq.types.__list_of__string
     import capo_mq.types.__string
     import capo_mq.types.authentication_strategy
@@ -41,8 +42,12 @@ class UpdateBrokerRequest(TypedDict, closed=True):
         "capo_mq.types.weekly_start_time.WeeklyStartTime"
     ]
     """<p>The parameters that determine the WeeklyStartTime.</p>"""
+    resource_share_arns: NotRequired["capo_mq.types.__list_of__string.__listOf__string"]
+    """<p>The list of resource shares to update on the broker</p>"""
     security_groups: NotRequired["capo_mq.types.__list_of__string.__listOf__string"]
     """<p>The list of security groups (1 minimum, 5 maximum) that authorizes connections to brokers.</p>"""
+    storage_size: NotRequired["capo_mq.types.__integer.__integer"]
+    """<p>The broker's storage size in GB.</p>"""
     data_replication_mode: NotRequired[
         "capo_mq.types.data_replication_mode.DataReplicationMode"
     ]
@@ -92,12 +97,20 @@ def serialize_json(value: UpdateBrokerRequest) -> dict:
                 value["maintenance_window_start_time"]
             )
         )
+    if "resource_share_arns" in value:
+        import capo_mq.types.__list_of__string
+
+        out["resourceShareArns"] = capo_mq.types.__list_of__string.serialize_json(
+            value["resource_share_arns"]
+        )
     if "security_groups" in value:
         import capo_mq.types.__list_of__string
 
         out["securityGroups"] = capo_mq.types.__list_of__string.serialize_json(
             value["security_groups"]
         )
+    if "storage_size" in value:
+        out["storageSize"] = value["storage_size"]
     if "data_replication_mode" in value:
         import capo_mq.types.data_replication_mode
 
@@ -149,12 +162,20 @@ def deserialize_json(data: dict) -> UpdateBrokerRequest:
                 data["maintenanceWindowStartTime"]
             )
         )
+    if data.get("resourceShareArns") is not None:
+        import capo_mq.types.__list_of__string
+
+        out["resource_share_arns"] = capo_mq.types.__list_of__string.deserialize_json(
+            data["resourceShareArns"]
+        )
     if data.get("securityGroups") is not None:
         import capo_mq.types.__list_of__string
 
         out["security_groups"] = capo_mq.types.__list_of__string.deserialize_json(
             data["securityGroups"]
         )
+    if data.get("storageSize") is not None:
+        out["storage_size"] = data["storageSize"]
     if data.get("dataReplicationMode") is not None:
         import capo_mq.types.data_replication_mode
 

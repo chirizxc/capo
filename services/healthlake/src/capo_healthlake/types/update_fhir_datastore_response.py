@@ -14,7 +14,7 @@ class UpdateFHIRDatastoreResponse(TypedDict, closed=True):
     datastore_properties: (
         "capo_healthlake.types.datastore_properties.DatastoreProperties"
     )
-    """<para>The data store properties.</para>"""
+    """<p>The data store properties.</p>"""
 
 
 # --- awsJson1_0 ser/de ---

@@ -19,6 +19,7 @@ import capo_mediaconnect.errors.internal_server_error_exception
 import capo_mediaconnect.errors.not_found_exception
 import capo_mediaconnect.errors.service_unavailable_exception
 import capo_mediaconnect.errors.too_many_requests_exception
+import capo_mediaconnect.types.fabric_configuration
 import capo_mediaconnect.types.maintenance_configuration
 import capo_mediaconnect.types.router_output
 import capo_mediaconnect.types.router_output_configuration

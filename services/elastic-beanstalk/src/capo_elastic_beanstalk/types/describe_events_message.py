@@ -25,35 +25,35 @@ class DescribeEventsMessage(TypedDict, closed=True):
     application_name: NotRequired[
         "capo_elastic_beanstalk.types.application_name.ApplicationName"
     ]
-    """<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those associated with this application.</p>"""
+    """<p>If specified, Elastic Beanstalk restricts the returned descriptions to include only those associated with this application.</p>"""
     version_label: NotRequired[
         "capo_elastic_beanstalk.types.version_label.VersionLabel"
     ]
-    """<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this application version.</p>"""
+    """<p>If specified, Elastic Beanstalk restricts the returned descriptions to those associated with this application version.</p>"""
     template_name: NotRequired[
         "capo_elastic_beanstalk.types.configuration_template_name.ConfigurationTemplateName"
     ]
-    """<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to those that are associated with this environment configuration.</p>"""
+    """<p>If specified, Elastic Beanstalk restricts the returned descriptions to those that are associated with this environment configuration.</p>"""
     environment_id: NotRequired[
         "capo_elastic_beanstalk.types.environment_id.EnvironmentId"
     ]
-    """<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this environment.</p>"""
+    """<p>If specified, Elastic Beanstalk restricts the returned descriptions to those associated with this environment.</p>"""
     environment_name: NotRequired[
         "capo_elastic_beanstalk.types.environment_name.EnvironmentName"
     ]
-    """<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this environment.</p>"""
+    """<p>If specified, Elastic Beanstalk restricts the returned descriptions to those associated with this environment.</p>"""
     platform_arn: NotRequired["capo_elastic_beanstalk.types.platform_arn.PlatformArn"]
-    """<p>The ARN of a custom platform version. If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this custom platform version.</p>"""
+    """<p>The ARN of a custom platform version. If specified, Elastic Beanstalk restricts the returned descriptions to those associated with this custom platform version.</p>"""
     request_id: NotRequired["capo_elastic_beanstalk.types.request_id.RequestId"]
-    """<p>If specified, AWS Elastic Beanstalk restricts the described events to include only those associated with this request ID.</p>"""
+    """<p>If specified, Elastic Beanstalk restricts the described events to include only those associated with this request ID.</p>"""
     severity: NotRequired["capo_elastic_beanstalk.types.event_severity.EventSeverity"]
     """<p>If specified, limits the events returned from this call to include only those with the specified severity or higher.</p>"""
     start_time: NotRequired[
         "capo_elastic_beanstalk.types.time_filter_start.TimeFilterStart"
     ]
-    """<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to those that occur on or after this time.</p>"""
+    """<p>If specified, Elastic Beanstalk restricts the returned descriptions to those that occur on or after this time.</p>"""
     end_time: NotRequired["capo_elastic_beanstalk.types.time_filter_end.TimeFilterEnd"]
-    """<p> If specified, AWS Elastic Beanstalk restricts the returned descriptions to those that occur up to, but not including, the <code>EndTime</code>. </p>"""
+    """<p> If specified, Elastic Beanstalk restricts the returned descriptions to those that occur up to, but not including, the <code>EndTime</code>. </p>"""
     max_records: NotRequired["capo_elastic_beanstalk.types.max_records.MaxRecords"]
     """<p>Specifies the maximum number of events that can be returned, beginning with the most recent event.</p>"""
     next_token: NotRequired["capo_elastic_beanstalk.types.token.Token"]

@@ -10,23 +10,12 @@ from __future__ import annotations
 import base64
 import hashlib
 import os
-import time
 from collections.abc import Iterator
-from pathlib import Path
 
-import anyio
 import pytest
-from capo_ebs import AsyncEBSClient, Body, EBSClient
-from capo_ec2 import AsyncEC2Client, EC2Client
-from capo_iam import (
-    AsyncIAMClient,
-    ChainedProvider,
-    Credentials,
-    EnvCredentialsProvider,
-    IAMClient,
-    ProfileCredentialsProvider,
-    SsoCredentialsProvider,
-)
+from capo_ebs import EBSClient
+from capo_ec2 import EC2Client
+from capo_iam import AsyncIAMClient, Credentials, IAMClient, SsoCredentialsProvider
 from capo_sts import AsyncSTSClient, STSClient
 from capo_sts.errors import UnknownServiceError
 from zapros import AsyncClient, Client
@@ -40,28 +29,6 @@ BLOCK_1 = os.urandom(BLOCK)
 
 def sha256_b64(data: bytes) -> str:
     return base64.b64encode(hashlib.sha256(data).digest()).decode()
-
-
-@pytest.fixture(scope="session")
-def aws_credentials() -> Credentials:
-    """Credentials of the active profile, or a skip when there are none."""
-    chain = ChainedProvider(EnvCredentialsProvider(), SsoCredentialsProvider(Client()), ProfileCredentialsProvider())
-    try:
-        return chain.resolve_identity()
-    except Exception as exc:  # each provider raises its own error type
-        pytest.skip(f"no AWS credentials: {exc}")
-
-
-@pytest.fixture
-async def async_aws_credentials() -> Credentials:
-    """Async twin of :func:`aws_credentials` (function-scoped: anyio_backend is)."""
-    chain = ChainedProvider(
-        EnvCredentialsProvider(), SsoCredentialsProvider(AsyncClient()), ProfileCredentialsProvider()
-    )
-    try:
-        return await chain.aresolve_identity()
-    except Exception as exc:  # each provider raises its own error type
-        pytest.skip(f"no AWS credentials: {exc}")
 
 
 @pytest.fixture

@@ -21,9 +21,11 @@ import capo_connect.errors.service_quota_exceeded_exception
 import capo_connect.errors.throttling_exception
 import capo_connect.types.create_rule_request
 import capo_connect.types.create_rule_response
+import capo_connect.types.pre_evaluation_filters
 import capo_connect.types.rule_actions
 import capo_connect.types.rule_publish_status
 import capo_connect.types.rule_trigger_event_source
+import capo_connect.types.tag_map
 from capo_connect._protocol.errors import parse_error_metadata_json
 from capo_connect._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_connect._services._pipeline import AsyncOperationOptions, OperationOptions

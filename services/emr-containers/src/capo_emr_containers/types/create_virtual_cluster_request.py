@@ -7,10 +7,12 @@ from typing_extensions import NotRequired, TypedDict
 from capo_emr_containers.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_emr_containers.types.boolean
     import capo_emr_containers.types.client_token
     import capo_emr_containers.types.container_provider
     import capo_emr_containers.types.resource_id_string
     import capo_emr_containers.types.resource_name_string
+    import capo_emr_containers.types.scheduler_configuration
     import capo_emr_containers.types.tag_map
 
 
@@ -27,6 +29,12 @@ class CreateVirtualClusterRequest(TypedDict, closed=True):
         "capo_emr_containers.types.resource_id_string.ResourceIdString"
     ]
     """<p>The ID of the security configuration.</p>"""
+    session_enabled: NotRequired["capo_emr_containers.types.boolean.Boolean"]
+    """<p>Indicates whether the virtual cluster has session support enabled.</p>"""
+    scheduler_configuration: NotRequired[
+        "capo_emr_containers.types.scheduler_configuration.SchedulerConfiguration"
+    ]
+    """<p>The scheduler configuration (concurrency and queue limits) to apply to the virtual cluster at creation time. When omitted, no limits are applied.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -47,6 +55,16 @@ def serialize_json(value: CreateVirtualClusterRequest) -> dict:
         out["tags"] = capo_emr_containers.types.tag_map.serialize_json(value["tags"])
     if "security_configuration_id" in value:
         out["securityConfigurationId"] = value["security_configuration_id"]
+    if "session_enabled" in value:
+        out["sessionEnabled"] = value["session_enabled"]
+    if "scheduler_configuration" in value:
+        import capo_emr_containers.types.scheduler_configuration
+
+        out["schedulerConfiguration"] = (
+            capo_emr_containers.types.scheduler_configuration.serialize_json(
+                value["scheduler_configuration"]
+            )
+        )
     return out
 
 
@@ -78,4 +96,14 @@ def deserialize_json(data: dict) -> CreateVirtualClusterRequest:
         out["tags"] = capo_emr_containers.types.tag_map.deserialize_json(data["tags"])
     if data.get("securityConfigurationId") is not None:
         out["security_configuration_id"] = data["securityConfigurationId"]
+    if data.get("sessionEnabled") is not None:
+        out["session_enabled"] = data["sessionEnabled"]
+    if data.get("schedulerConfiguration") is not None:
+        import capo_emr_containers.types.scheduler_configuration
+
+        out["scheduler_configuration"] = (
+            capo_emr_containers.types.scheduler_configuration.deserialize_json(
+                data["schedulerConfiguration"]
+            )
+        )
     return out

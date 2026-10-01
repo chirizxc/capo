@@ -20,7 +20,7 @@ if TYPE_CHECKING:
     import capo_imagebuilder.types.platform
     import capo_imagebuilder.types.resource_name
     import capo_imagebuilder.types.tag_map
-    import capo_imagebuilder.types.version_number
+    import capo_imagebuilder.types.version_number_with_build
 
 
 class ImageSummary(TypedDict, closed=True):
@@ -30,7 +30,9 @@ class ImageSummary(TypedDict, closed=True):
     """<p>The name of the image.</p>"""
     type: NotRequired["capo_imagebuilder.types.image_type.ImageType"]
     """<p>Specifies whether this image produces an AMI or a container image.</p>"""
-    version: NotRequired["capo_imagebuilder.types.version_number.VersionNumber"]
+    version: NotRequired[
+        "capo_imagebuilder.types.version_number_with_build.VersionNumberWithBuild"
+    ]
     """<p>The version of the image.</p>"""
     platform: NotRequired["capo_imagebuilder.types.platform.Platform"]
     """<p>The image operating system platform, such as Linux or Windows.</p>"""

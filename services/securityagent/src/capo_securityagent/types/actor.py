@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_securityagent.types.authentication
+    import capo_securityagent.types.sensitive_email_address
     import capo_securityagent.types.uri_list
 
 
@@ -20,6 +21,12 @@ class Actor(TypedDict, closed=True):
     """<p>The authentication configuration for the actor.</p>"""
     description: NotRequired["str"]
     """<p>A description of the actor.</p>"""
+    enable_email_mfa: NotRequired["bool"]
+    """<p>Whether email-based MFA is enabled for this actor.</p>"""
+    mfa_forwarding_address: NotRequired[
+        "capo_securityagent.types.sensitive_email_address.SensitiveEmailAddress"
+    ]
+    """<p>Server-generated email forwarding address for receiving MFA codes.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -39,6 +46,10 @@ def serialize_json(value: Actor) -> dict:
         )
     if "description" in value:
         out["description"] = value["description"]
+    if "enable_email_mfa" in value:
+        out["enableEmailMfa"] = value["enable_email_mfa"]
+    if "mfa_forwarding_address" in value:
+        out["mfaForwardingAddress"] = value["mfa_forwarding_address"]
     return out
 
 
@@ -60,4 +71,8 @@ def deserialize_json(data: dict) -> Actor:
         )
     if data.get("description") is not None:
         out["description"] = data["description"]
+    if data.get("enableEmailMfa") is not None:
+        out["enable_email_mfa"] = data["enableEmailMfa"]
+    if data.get("mfaForwardingAddress") is not None:
+        out["mfa_forwarding_address"] = data["mfaForwardingAddress"]
     return out

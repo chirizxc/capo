@@ -23,6 +23,7 @@ import capo_ivs.types.ad_configuration
 import capo_ivs.types.create_ad_configuration_request
 import capo_ivs.types.create_ad_configuration_response
 import capo_ivs.types.media_tailor_playback_configurations_list
+import capo_ivs.types.post_roll_configuration
 import capo_ivs.types.tags
 from capo_ivs._protocol.errors import parse_error_metadata_json
 from capo_ivs._rule_engine._endpoint_rule_set import EndpointParams, resolve

@@ -32,6 +32,8 @@ MetricType: TypeAlias = Literal[
     "WorkSpacesAverageUserSessionsCapacityUtilization",
     "SageMakerInferenceComponentConcurrentRequestsPerCopyHighResolution",
     "SageMakerVariantConcurrentRequestsPerModelHighResolution",
+    "ECSServiceAverageCPUUtilizationHighResolution",
+    "ECSServiceAverageMemoryUtilizationHighResolution",
 ]
 
 

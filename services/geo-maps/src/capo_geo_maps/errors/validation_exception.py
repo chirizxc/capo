@@ -23,7 +23,11 @@ class ValidationException_(TypedDict, closed=True):
 def serialize_json(value: ValidationException_) -> dict:
     out: dict = {}
     out["message"] = value["message"]
-    out["reason"] = value["reason"]
+    import capo_geo_maps.types.validation_exception_reason
+
+    out["reason"] = capo_geo_maps.types.validation_exception_reason.serialize_json(
+        value["reason"]
+    )
     import capo_geo_maps.types.validation_exception_field_list
 
     out["fieldList"] = (
@@ -41,7 +45,13 @@ def deserialize_json(data: dict) -> ValidationException_:
     else:
         raise DeserializationError("ValidationException_.message required")
     if data.get("reason") is not None:
-        out["reason"] = data["reason"]
+        import capo_geo_maps.types.validation_exception_reason
+
+        out["reason"] = (
+            capo_geo_maps.types.validation_exception_reason.deserialize_json(
+                data["reason"]
+            )
+        )
     else:
         raise DeserializationError("ValidationException_.reason required")
     if data.get("fieldList") is not None:

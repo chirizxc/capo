@@ -14,7 +14,7 @@ class ImportVmImageResponse(TypedDict, closed=True):
     request_id: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
     """<p>The request ID that uniquely identifies this request.</p>"""
     image_arn: NotRequired["capo_imagebuilder.types.arn.Arn"]
-    """<p>The Amazon Resource Name (ARN) of the AMI that was created during the VM import process. This AMI is used as the base image for the recipe that imported the VM.</p>"""
+    """<p>The Amazon Resource Name (ARN) of the Image Builder image resource that this request created. Image Builder records the AMI from the VM import task in the image's output resources after the task completes.</p>"""
     client_token: NotRequired["capo_imagebuilder.types.client_token.ClientToken"]
     """<p>The client token that uniquely identifies the request.</p>"""
 

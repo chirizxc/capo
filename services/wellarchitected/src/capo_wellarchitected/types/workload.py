@@ -5,13 +5,14 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import datetime
+
     import capo_wellarchitected.types.aws_account_id
     import capo_wellarchitected.types.is_review_owner_update_acknowledged
     import capo_wellarchitected.types.notes
     import capo_wellarchitected.types.risk_counts
     import capo_wellarchitected.types.share_invitation_id
     import capo_wellarchitected.types.tag_map
-    import capo_wellarchitected.types.timestamp
     import capo_wellarchitected.types.workload_account_ids
     import capo_wellarchitected.types.workload_applications
     import capo_wellarchitected.types.workload_architectural_design
@@ -43,7 +44,8 @@ class Workload(TypedDict, closed=True):
     environment: NotRequired[
         "capo_wellarchitected.types.workload_environment.WorkloadEnvironment"
     ]
-    updated_at: NotRequired["capo_wellarchitected.types.timestamp.Timestamp"]
+    updated_at: NotRequired["datetime.datetime"]
+    """<p>The date and time when the workload was last updated.</p>"""
     account_ids: NotRequired[
         "capo_wellarchitected.types.workload_account_ids.WorkloadAccountIds"
     ]
@@ -59,9 +61,8 @@ class Workload(TypedDict, closed=True):
     review_owner: NotRequired[
         "capo_wellarchitected.types.workload_review_owner.WorkloadReviewOwner"
     ]
-    review_restriction_date: NotRequired[
-        "capo_wellarchitected.types.timestamp.Timestamp"
-    ]
+    review_restriction_date: NotRequired["datetime.datetime"]
+    """<p>The review restriction date for the workload.</p>"""
     is_review_owner_update_acknowledged: NotRequired[
         "capo_wellarchitected.types.is_review_owner_update_acknowledged.IsReviewOwnerUpdateAcknowledged"
     ]
@@ -129,9 +130,9 @@ def serialize_json(value: Workload) -> dict:
             )
         )
     if "updated_at" in value:
-        import capo_wellarchitected.types.timestamp
+        import capo_wellarchitected.types._prelude.timestamp
 
-        out["UpdatedAt"] = capo_wellarchitected.types.timestamp.serialize_json(
+        out["UpdatedAt"] = capo_wellarchitected.types._prelude.timestamp.serialize_json(
             value["updated_at"]
         )
     if "account_ids" in value:
@@ -163,10 +164,10 @@ def serialize_json(value: Workload) -> dict:
     if "review_owner" in value:
         out["ReviewOwner"] = value["review_owner"]
     if "review_restriction_date" in value:
-        import capo_wellarchitected.types.timestamp
+        import capo_wellarchitected.types._prelude.timestamp
 
         out["ReviewRestrictionDate"] = (
-            capo_wellarchitected.types.timestamp.serialize_json(
+            capo_wellarchitected.types._prelude.timestamp.serialize_json(
                 value["review_restriction_date"]
             )
         )
@@ -276,10 +277,12 @@ def deserialize_json(data: dict) -> Workload:
             )
         )
     if data.get("UpdatedAt") is not None:
-        import capo_wellarchitected.types.timestamp
+        import capo_wellarchitected.types._prelude.timestamp
 
-        out["updated_at"] = capo_wellarchitected.types.timestamp.deserialize_json(
-            data["UpdatedAt"]
+        out["updated_at"] = (
+            capo_wellarchitected.types._prelude.timestamp.deserialize_json(
+                data["UpdatedAt"]
+            )
         )
     if data.get("AccountIds") is not None:
         import capo_wellarchitected.types.workload_account_ids
@@ -310,10 +313,10 @@ def deserialize_json(data: dict) -> Workload:
     if data.get("ReviewOwner") is not None:
         out["review_owner"] = data["ReviewOwner"]
     if data.get("ReviewRestrictionDate") is not None:
-        import capo_wellarchitected.types.timestamp
+        import capo_wellarchitected.types._prelude.timestamp
 
         out["review_restriction_date"] = (
-            capo_wellarchitected.types.timestamp.deserialize_json(
+            capo_wellarchitected.types._prelude.timestamp.deserialize_json(
                 data["ReviewRestrictionDate"]
             )
         )

@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.description
     import capo_bedrock_agentcore_control.types.role_arn
     import capo_bedrock_agentcore_control.types.sandbox_name
+    import capo_bedrock_agentcore_control.types.tools_file_system_configurations
 
 
 class GetCodeInterpreterResponse(TypedDict, closed=True):
@@ -44,6 +45,10 @@ class GetCodeInterpreterResponse(TypedDict, closed=True):
         "capo_bedrock_agentcore_control.types.certificates.Certificates"
     ]
     """<p>The list of certificates configured for the code interpreter.</p>"""
+    filesystem_configurations: NotRequired[
+        "capo_bedrock_agentcore_control.types.tools_file_system_configurations.ToolsFileSystemConfigurations"
+    ]
+    """<p>The file system configurations mounted into the code interpreter. Each entry describes an access point and its mount path.</p>"""
     failure_reason: NotRequired["str"]
     """<p>The reason for failure if the code interpreter is in a failed state.</p>"""
     created_at: "capo_bedrock_agentcore_control.types.date_timestamp.DateTimestamp"
@@ -82,6 +87,14 @@ def serialize_json(value: GetCodeInterpreterResponse) -> dict:
         out["certificates"] = (
             capo_bedrock_agentcore_control.types.certificates.serialize_json(
                 value["certificates"]
+            )
+        )
+    if "filesystem_configurations" in value:
+        import capo_bedrock_agentcore_control.types.tools_file_system_configurations
+
+        out["filesystemConfigurations"] = (
+            capo_bedrock_agentcore_control.types.tools_file_system_configurations.serialize_json(
+                value["filesystem_configurations"]
             )
         )
     if "failure_reason" in value:
@@ -153,6 +166,14 @@ def deserialize_json(data: dict) -> GetCodeInterpreterResponse:
         out["certificates"] = (
             capo_bedrock_agentcore_control.types.certificates.deserialize_json(
                 data["certificates"]
+            )
+        )
+    if data.get("filesystemConfigurations") is not None:
+        import capo_bedrock_agentcore_control.types.tools_file_system_configurations
+
+        out["filesystem_configurations"] = (
+            capo_bedrock_agentcore_control.types.tools_file_system_configurations.deserialize_json(
+                data["filesystemConfigurations"]
             )
         )
     if data.get("failureReason") is not None:

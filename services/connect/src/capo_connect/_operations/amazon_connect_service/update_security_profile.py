@@ -18,6 +18,7 @@ import capo_connect.errors.invalid_request_exception
 import capo_connect.errors.resource_not_found_exception
 import capo_connect.errors.throttling_exception
 import capo_connect.types.allowed_access_control_tags
+import capo_connect.types.allowed_ai_agents
 import capo_connect.types.allowed_flow_modules
 import capo_connect.types.applications
 import capo_connect.types.granular_access_control_configuration

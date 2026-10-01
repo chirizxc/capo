@@ -19,6 +19,7 @@ import capo_guardduty.types.finding_criteria
 import capo_guardduty.types.get_filter_request
 import capo_guardduty.types.get_filter_response
 import capo_guardduty.types.tag_map
+import capo_guardduty.types.timestamp
 from capo_guardduty._protocol.errors import parse_error_metadata_json
 from capo_guardduty._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_guardduty._services._pipeline import AsyncOperationOptions, OperationOptions

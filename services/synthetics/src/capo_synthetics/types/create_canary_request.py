@@ -7,12 +7,14 @@ from typing_extensions import NotRequired, TypedDict
 from capo_synthetics.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_synthetics.types.add_replica_locations
     import capo_synthetics.types.artifact_config_input
     import capo_synthetics.types.browser_configs
     import capo_synthetics.types.canary_code_input
     import capo_synthetics.types.canary_name
     import capo_synthetics.types.canary_run_config_input
     import capo_synthetics.types.canary_schedule_input
+    import capo_synthetics.types.kms_key_arn
     import capo_synthetics.types.max_size1024
     import capo_synthetics.types.provisioned_resource_cleanup_setting
     import capo_synthetics.types.resource_list
@@ -59,12 +61,18 @@ class CreateCanaryRequest(TypedDict, closed=True):
     r"""<p>Specifies whether to also delete the Lambda functions and layers used by this canary when the canary is deleted. If you omit this parameter, the default of <code>AUTOMATIC</code> is used, which means that the Lambda functions and layers will be deleted when the canary is deleted.</p> <p>If the value of this parameter is <code>OFF</code>, then the value of the <code>DeleteLambda</code> parameter of the <a href=\"https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_DeleteCanary.html\">DeleteCanary</a> operation determines whether the Lambda functions and layers will be deleted.</p>"""
     browser_configs: NotRequired["capo_synthetics.types.browser_configs.BrowserConfigs"]
     """<p>CloudWatch Synthetics now supports multibrowser canaries for <code>syn-nodejs-puppeteer-11.0</code> and <code>syn-nodejs-playwright-3.0</code> runtimes. This feature allows you to run your canaries on both Firefox and Chrome browsers. To create a multibrowser canary, you need to specify the BrowserConfigs with a list of browsers you want to use.</p> <note> <p>If not specified, <code>browserConfigs</code> defaults to Chrome.</p> </note>"""
+    add_replica_locations: NotRequired[
+        "capo_synthetics.types.add_replica_locations.AddReplicaLocations"
+    ]
+    """<p>A list of locations (Amazon Web Services Regions) to add as replicas for the canary. Each location specifies a Region and optional VPC configuration for the replica. You can add up to 50 replica locations.</p>"""
     tags: NotRequired["capo_synthetics.types.tag_map.TagMap"]
     """<p>A list of key-value pairs to associate with the canary. You can associate as many as 50 tags with a canary.</p> <p>Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only the resources that have certain tag values.</p> <p>To have the tags that you apply to this canary also be applied to the Lambda function that the canary uses, specify this parameter with the value <code>lambda-function</code>.</p>"""
     artifact_config: NotRequired[
         "capo_synthetics.types.artifact_config_input.ArtifactConfigInput"
     ]
     """<p>A structure that contains the configuration for canary artifacts, including the encryption-at-rest settings for artifacts that the canary uploads to Amazon S3.</p>"""
+    kms_key_arn: NotRequired["capo_synthetics.types.kms_key_arn.KmsKeyArn"]
+    """<p>The Amazon Resource Name (ARN) of the customer-managed AWS Key Management Service (AWS KMS) key used to encrypt the canary's AWS Lambda function environment variables at rest. If you don't specify a value, the service uses an AWS-managed key.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -120,6 +128,14 @@ def serialize_json(value: CreateCanaryRequest) -> dict:
         out["BrowserConfigs"] = capo_synthetics.types.browser_configs.serialize_json(
             value["browser_configs"]
         )
+    if "add_replica_locations" in value:
+        import capo_synthetics.types.add_replica_locations
+
+        out["AddReplicaLocations"] = (
+            capo_synthetics.types.add_replica_locations.serialize_json(
+                value["add_replica_locations"]
+            )
+        )
     if "tags" in value:
         import capo_synthetics.types.tag_map
 
@@ -132,6 +148,8 @@ def serialize_json(value: CreateCanaryRequest) -> dict:
                 value["artifact_config"]
             )
         )
+    if "kms_key_arn" in value:
+        out["KmsKeyArn"] = value["kms_key_arn"]
     return out
 
 
@@ -209,6 +227,14 @@ def deserialize_json(data: dict) -> CreateCanaryRequest:
         out["browser_configs"] = capo_synthetics.types.browser_configs.deserialize_json(
             data["BrowserConfigs"]
         )
+    if data.get("AddReplicaLocations") is not None:
+        import capo_synthetics.types.add_replica_locations
+
+        out["add_replica_locations"] = (
+            capo_synthetics.types.add_replica_locations.deserialize_json(
+                data["AddReplicaLocations"]
+            )
+        )
     if data.get("Tags") is not None:
         import capo_synthetics.types.tag_map
 
@@ -221,4 +247,6 @@ def deserialize_json(data: dict) -> CreateCanaryRequest:
                 data["ArtifactConfig"]
             )
         )
+    if data.get("KmsKeyArn") is not None:
+        out["kms_key_arn"] = data["KmsKeyArn"]
     return out

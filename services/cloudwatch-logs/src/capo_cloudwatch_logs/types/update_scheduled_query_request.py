@@ -8,6 +8,7 @@ from capo_cloudwatch_logs.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_cloudwatch_logs.types.destination_configuration
+    import capo_cloudwatch_logs.types.end_time_offset
     import capo_cloudwatch_logs.types.query_language
     import capo_cloudwatch_logs.types.query_string
     import capo_cloudwatch_logs.types.role_arn
@@ -50,6 +51,10 @@ class UpdateScheduledQueryRequest(TypedDict, closed=True):
         "capo_cloudwatch_logs.types.start_time_offset.StartTimeOffset"
     ]
     """<p>The updated time offset in seconds that defines the lookback period for the query.</p>"""
+    end_time_offset: NotRequired[
+        "capo_cloudwatch_logs.types.end_time_offset.EndTimeOffset"
+    ]
+    """<p>The updated time offset in seconds that defines the end of the lookback period for the query.</p>"""
     destination_configuration: NotRequired[
         "capo_cloudwatch_logs.types.destination_configuration.DestinationConfiguration"
     ]
@@ -93,6 +98,8 @@ def serialize_aws_json_1_1(value: UpdateScheduledQueryRequest) -> dict:
         out["timezone"] = value["timezone"]
     if "start_time_offset" in value:
         out["startTimeOffset"] = value["start_time_offset"]
+    if "end_time_offset" in value:
+        out["endTimeOffset"] = value["end_time_offset"]
     if "destination_configuration" in value:
         import capo_cloudwatch_logs.types.destination_configuration
 
@@ -159,6 +166,8 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateScheduledQueryRequest:
         out["timezone"] = data["timezone"]
     if data.get("startTimeOffset") is not None:
         out["start_time_offset"] = data["startTimeOffset"]
+    if data.get("endTimeOffset") is not None:
+        out["end_time_offset"] = data["endTimeOffset"]
     if data.get("destinationConfiguration") is not None:
         import capo_cloudwatch_logs.types.destination_configuration
 

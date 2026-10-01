@@ -14,9 +14,9 @@ from capo_glue import AsyncGlueClient
 
 async def main():
     async with AsyncGlueClient() as glue:
-        # Example: call the batch_create_partition operation
-        response = await glue.batch_create_partition()
-        print(response["errors"])
+        # Example: call the associate_glossary_terms operation
+        response = await glue.associate_glossary_terms()
+        print(response["asset_identifier"])
 ```
 
 ## Pagination
@@ -40,14 +40,14 @@ The SDK raises exceptions for errors returned by the API. Catch them to handle f
 
 ```python
 from capo_glue import AsyncGlueClient
-from capo_glue.error import AlreadyExistsException
+from capo_glue.error import AccessDeniedException
 
 
 async def main():
     async with AsyncGlueClient() as glue:
         try:
-            await glue.batch_create_partition()
-        except AlreadyExistsException as e:
+            await glue.associate_glossary_terms()
+        except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
 ```
@@ -65,11 +65,11 @@ from capo_glue import AsyncGlueClient
 async def main():
     async with AsyncGlueClient() as glue:
         # Default: 3 attempts for every operation
-        response = await glue.batch_create_partition()
+        response = await glue.associate_glossary_terms()
 
         # Override per operation
-        response = await glue.batch_create_partition(config_overrides={"retry_max_attempts": 5})
+        response = await glue.associate_glossary_terms(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await glue.batch_create_partition(config_overrides={"retry_max_attempts": 1})
+        response = await glue.associate_glossary_terms(config_overrides={"retry_max_attempts": 1})
 ```

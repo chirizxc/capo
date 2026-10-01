@@ -14,9 +14,9 @@ from capo_healthlake import AsyncHealthLakeClient
 
 async def main():
     async with AsyncHealthLakeClient() as health_lake:
-        # Example: call the create_fhir_datastore operation
-        response = await health_lake.create_fhir_datastore()
-        print(response["datastore_id"])
+        # Example: call the create_data_transformation_profile operation
+        response = await health_lake.create_data_transformation_profile()
+        print(response["profile_id"])
 ```
 
 ## Pagination
@@ -29,8 +29,8 @@ from capo_healthlake import AsyncHealthLakeClient
 
 async def main():
     async with AsyncHealthLakeClient() as health_lake:
-        # Example: paginate over list_fhir_datastores
-        async for item in health_lake.iter_list_fhir_datastores():
+        # Example: paginate over list_data_transformation_jobs
+        async for item in health_lake.iter_list_data_transformation_jobs():
             print(item)
 ```
 
@@ -46,7 +46,7 @@ from capo_healthlake.error import AccessDeniedException
 async def main():
     async with AsyncHealthLakeClient() as health_lake:
         try:
-            await health_lake.create_fhir_datastore()
+            await health_lake.create_data_transformation_profile()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -65,11 +65,11 @@ from capo_healthlake import AsyncHealthLakeClient
 async def main():
     async with AsyncHealthLakeClient() as health_lake:
         # Default: 3 attempts for every operation
-        response = await health_lake.create_fhir_datastore()
+        response = await health_lake.create_data_transformation_profile()
 
         # Override per operation
-        response = await health_lake.create_fhir_datastore(config_overrides={"retry_max_attempts": 5})
+        response = await health_lake.create_data_transformation_profile(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await health_lake.create_fhir_datastore(config_overrides={"retry_max_attempts": 1})
+        response = await health_lake.create_data_transformation_profile(config_overrides={"retry_max_attempts": 1})
 ```

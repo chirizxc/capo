@@ -98,7 +98,7 @@ def build_request(
             Region=options.region,
         )
     )  # noqa: F841
-    url = endpoint.url.rstrip("/") + "/glyphs/{FontStack}/{FontUnicodeRange}"
+    url = endpoint.url.rstrip("/") + "/v2/glyphs/{FontStack}/{FontUnicodeRange}"
     url = url.replace("{FontStack}", quote(input_["font_stack"], safe=""))
     url = url.replace(
         "{FontUnicodeRange}", quote(input_["font_unicode_range"], safe="")

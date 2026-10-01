@@ -8,6 +8,9 @@ PropertyDataType: TypeAlias = Literal[
     "DOUBLE",
     "BOOLEAN",
     "STRUCT",
+    "VIDEO",
+    "ANNOTATION",
+    "JSON",
 ]
 
 

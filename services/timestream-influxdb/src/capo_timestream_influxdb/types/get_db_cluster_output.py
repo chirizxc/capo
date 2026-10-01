@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     import capo_timestream_influxdb.types.cluster_configuration
     import capo_timestream_influxdb.types.cluster_deployment_type
     import capo_timestream_influxdb.types.cluster_status
+    import capo_timestream_influxdb.types.db_backup_configuration_output_list
     import capo_timestream_influxdb.types.db_cluster_id
     import capo_timestream_influxdb.types.db_cluster_name
     import capo_timestream_influxdb.types.db_instance_type
@@ -21,6 +22,7 @@ if TYPE_CHECKING:
     import capo_timestream_influxdb.types.db_storage_type
     import capo_timestream_influxdb.types.engine_type
     import capo_timestream_influxdb.types.failover_mode
+    import capo_timestream_influxdb.types.kms_key_id
     import capo_timestream_influxdb.types.log_delivery_configuration
     import capo_timestream_influxdb.types.maintenance_schedule
     import capo_timestream_influxdb.types.network_type
@@ -70,6 +72,10 @@ class GetDbClusterOutput(TypedDict, closed=True):
         "capo_timestream_influxdb.types.db_parameter_group_identifier.DbParameterGroupIdentifier"
     ]
     """<p>The ID of the DB parameter group assigned to your DB cluster.</p>"""
+    effective_db_parameter_group_identifier: NotRequired[
+        "capo_timestream_influxdb.types.db_parameter_group_identifier.DbParameterGroupIdentifier"
+    ]
+    """<p>The ID of the DB parameter group actually applied to your DB cluster. When the service applies optimized defaults, it creates a service-managed DB parameter group and this field reflects that group, while dbParameterGroupIdentifier reflects the customer-provided DB parameter group. When no service-managed DB parameter group is applied, this value matches dbParameterGroupIdentifier.</p>"""
     log_delivery_configuration: NotRequired[
         "capo_timestream_influxdb.types.log_delivery_configuration.LogDeliveryConfiguration"
     ]
@@ -100,6 +106,12 @@ class GetDbClusterOutput(TypedDict, closed=True):
         "capo_timestream_influxdb.types.cluster_configuration.ClusterConfiguration"
     ]
     """<p>Configuration for node modes in the DbCluster.</p>"""
+    db_backup_configurations: NotRequired[
+        "capo_timestream_influxdb.types.db_backup_configuration_output_list.DbBackupConfigurationOutputList"
+    ]
+    """<p>The backup configurations for the DB cluster.</p>"""
+    kms_key_id: NotRequired["capo_timestream_influxdb.types.kms_key_id.KmsKeyId"]
+    """<p>The Amazon Web Services KMS key ARN used for encryption of the DB cluster.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -168,6 +180,10 @@ def serialize_aws_json_1_0(value: GetDbClusterOutput) -> dict:
         out["publiclyAccessible"] = value["publicly_accessible"]
     if "db_parameter_group_identifier" in value:
         out["dbParameterGroupIdentifier"] = value["db_parameter_group_identifier"]
+    if "effective_db_parameter_group_identifier" in value:
+        out["effectiveDbParameterGroupIdentifier"] = value[
+            "effective_db_parameter_group_identifier"
+        ]
     if "log_delivery_configuration" in value:
         import capo_timestream_influxdb.types.log_delivery_configuration
 
@@ -236,6 +252,16 @@ def serialize_aws_json_1_0(value: GetDbClusterOutput) -> dict:
                 value["cluster_configuration"]
             )
         )
+    if "db_backup_configurations" in value:
+        import capo_timestream_influxdb.types.db_backup_configuration_output_list
+
+        out["dbBackupConfigurations"] = (
+            capo_timestream_influxdb.types.db_backup_configuration_output_list.serialize_aws_json_1_0(
+                value["db_backup_configurations"]
+            )
+        )
+    if "kms_key_id" in value:
+        out["kmsKeyId"] = value["kms_key_id"]
     return out
 
 
@@ -313,6 +339,10 @@ def deserialize_aws_json_1_0(data: dict) -> GetDbClusterOutput:
         out["publicly_accessible"] = data["publiclyAccessible"]
     if data.get("dbParameterGroupIdentifier") is not None:
         out["db_parameter_group_identifier"] = data["dbParameterGroupIdentifier"]
+    if data.get("effectiveDbParameterGroupIdentifier") is not None:
+        out["effective_db_parameter_group_identifier"] = data[
+            "effectiveDbParameterGroupIdentifier"
+        ]
     if data.get("logDeliveryConfiguration") is not None:
         import capo_timestream_influxdb.types.log_delivery_configuration
 
@@ -375,4 +405,14 @@ def deserialize_aws_json_1_0(data: dict) -> GetDbClusterOutput:
                 data["clusterConfiguration"]
             )
         )
+    if data.get("dbBackupConfigurations") is not None:
+        import capo_timestream_influxdb.types.db_backup_configuration_output_list
+
+        out["db_backup_configurations"] = (
+            capo_timestream_influxdb.types.db_backup_configuration_output_list.deserialize_aws_json_1_0(
+                data["dbBackupConfigurations"]
+            )
+        )
+    if data.get("kmsKeyId") is not None:
+        out["kms_key_id"] = data["kmsKeyId"]
     return out

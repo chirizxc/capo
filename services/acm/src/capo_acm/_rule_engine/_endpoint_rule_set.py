@@ -16,14 +16,16 @@ class EndpointParams:
     def __init__(
         self,
         *,
-        UseDualStack: bool | None = None,
-        UseFIPS: bool | None = None,
         Region: str | None = None,
+        ServiceType: str | None = None,
+        UseFIPS: bool | None = None,
+        UseDualStack: bool | None = None,
         Endpoint: str | None = None,
     ):
-        self.UseDualStack = UseDualStack if UseDualStack is not None else False
+        self.Region = Region
+        self.ServiceType = ServiceType
         self.UseFIPS = UseFIPS if UseFIPS is not None else False
-        self.Region = Region if Region is not None else None
+        self.UseDualStack = UseDualStack if UseDualStack is not None else False
         self.Endpoint = Endpoint if Endpoint is not None else None
 
 
@@ -31,120 +33,92 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
     """Resolve endpoint from parameters using generated ruleset."""
     _locals: dict[str, Any] = {}
     if p.Endpoint is not None:
-        if p.UseFIPS is True:
-            raise EndpointError(
-                interpolate(
-                    "Invalid Configuration: FIPS and custom endpoint are not supported",
-                    p,
-                    _locals,
-                )
-            )
-        if p.UseDualStack is True:
-            raise EndpointError(
-                interpolate(
-                    "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                    p,
-                    _locals,
-                )
-            )
-        return Endpoint(url=p.Endpoint, properties={}, headers={})
+        return Endpoint(
+            url=interpolate("{Endpoint}", p, _locals), properties={}, headers={}
+        )
     _locals: dict[str, Any] = {}
-    if p.Region is not None:
-        _locals["PartitionResult"] = aws_partition(p.Region)
-        if _locals["PartitionResult"] is not None:
-            if p.UseFIPS is True:
-                if p.UseDualStack is True:
-                    if True is get_attr(
-                        _locals["PartitionResult"],
-                        interpolate("supportsFIPS", p, _locals),
-                    ):
-                        if True is get_attr(
-                            _locals["PartitionResult"],
-                            interpolate("supportsDualStack", p, _locals),
-                        ):
-                            return Endpoint(
-                                url=interpolate(
-                                    "https://acm-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                    p,
-                                    _locals,
-                                ),
-                                properties={},
-                                headers={},
-                            )
+    _locals["PartitionResult"] = aws_partition(p.Region)
+    if _locals["PartitionResult"] is not None:
+        if string_equals(p.ServiceType, interpolate("ACM-ACME", p, _locals)):
+            if p.Endpoint is not None:
+                return Endpoint(
+                    url=interpolate("{Endpoint}", p, _locals), properties={}, headers={}
+                )
+            if string_equals(
+                get_attr(_locals["PartitionResult"], interpolate("name", p, _locals)),
+                interpolate("aws", p, _locals),
+            ):
+                if p.UseFIPS is True:
                     raise EndpointError(
                         interpolate(
-                            "FIPS and DualStack are enabled, but this partition does not support one or both",
+                            "FIPS endpoints are not available for ACME operations",
                             p,
                             _locals,
                         )
                     )
-            if p.UseFIPS is True:
-                if (
-                    get_attr(
-                        _locals["PartitionResult"],
-                        interpolate("supportsFIPS", p, _locals),
-                    )
-                    is True
-                ):
-                    if string_equals(
-                        get_attr(
-                            _locals["PartitionResult"], interpolate("name", p, _locals)
-                        ),
-                        interpolate("aws-us-gov", p, _locals),
-                    ):
-                        return Endpoint(
-                            url=interpolate(
-                                "https://acm.{Region}.amazonaws.com", p, _locals
-                            ),
-                            properties={},
-                            headers={},
-                        )
-                    return Endpoint(
-                        url=interpolate(
-                            "https://acm-fips.{Region}.{PartitionResult#dnsSuffix}",
-                            p,
-                            _locals,
-                        ),
-                        properties={},
-                        headers={},
-                    )
-                raise EndpointError(
-                    interpolate(
-                        "FIPS is enabled but this partition does not support FIPS",
+                return Endpoint(
+                    url=interpolate(
+                        "https://acm-acme.{Region}.{PartitionResult#dualStackDnsSuffix}",
                         p,
                         _locals,
-                    )
+                    ),
+                    properties={},
+                    headers={},
                 )
+            raise EndpointError(
+                interpolate(
+                    "ACME operations are only available in commercial AWS partitions",
+                    p,
+                    _locals,
+                )
+            )
+        if p.UseFIPS is True:
             if p.UseDualStack is True:
-                if True is get_attr(
-                    _locals["PartitionResult"],
-                    interpolate("supportsDualStack", p, _locals),
-                ):
-                    return Endpoint(
-                        url=interpolate(
-                            "https://acm.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                            p,
-                            _locals,
-                        ),
-                        properties={},
-                        headers={},
-                    )
-                raise EndpointError(
-                    interpolate(
-                        "DualStack is enabled but this partition does not support DualStack",
+                return Endpoint(
+                    url=interpolate(
+                        "https://acm-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                         p,
                         _locals,
-                    )
+                    ),
+                    properties={},
+                    headers={},
+                )
+        if p.UseFIPS is True:
+            if string_equals(
+                get_attr(_locals["PartitionResult"], interpolate("name", p, _locals)),
+                interpolate("aws-us-gov", p, _locals),
+            ):
+                return Endpoint(
+                    url=interpolate("https://acm.{Region}.amazonaws.com", p, _locals),
+                    properties={},
+                    headers={},
                 )
             return Endpoint(
                 url=interpolate(
-                    "https://acm.{Region}.{PartitionResult#dnsSuffix}", p, _locals
+                    "https://acm-fips.{Region}.{PartitionResult#dnsSuffix}", p, _locals
                 ),
                 properties={},
                 headers={},
             )
+        if p.UseDualStack is True:
+            return Endpoint(
+                url=interpolate(
+                    "https://acm.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                    p,
+                    _locals,
+                ),
+                properties={},
+                headers={},
+            )
+        return Endpoint(
+            url=interpolate(
+                "https://acm.{Region}.{PartitionResult#dnsSuffix}", p, _locals
+            ),
+            properties={},
+            headers={},
+        )
     _locals: dict[str, Any] = {}
     raise EndpointError(
-        interpolate("Invalid Configuration: Missing Region", p, _locals)
+        interpolate("Region must be set to resolve an endpoint.", p, _locals)
     )
     raise EndpointError("No endpoint rules matched")

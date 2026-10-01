@@ -7,8 +7,8 @@ from typing_extensions import NotRequired, TypedDict
 from capo_ec2._protocol.xml import Element
 
 if TYPE_CHECKING:
-    import capo_ec2.types.blob
     import capo_ec2.types.s3_storage_upload_policy_signature
+    import capo_ec2.types.secure_blob
     import capo_ec2.types.string
 
 
@@ -19,7 +19,7 @@ class S3Storage(TypedDict, closed=True):
     """<p>The bucket in which to store the AMI. You can specify a bucket that you already own or a new bucket that Amazon EC2 creates on your behalf. If you specify a bucket that belongs to someone else, Amazon EC2 returns an error.</p>"""
     prefix: NotRequired["capo_ec2.types.string.String"]
     """<p>The beginning of the file name of the AMI.</p>"""
-    upload_policy: NotRequired["capo_ec2.types.blob.Blob"]
+    upload_policy: NotRequired["capo_ec2.types.secure_blob.SecureBlob"]
     """<p>An Amazon S3 upload policy that gives Amazon EC2 permission to upload items into Amazon S3 on your behalf.</p>"""
     upload_policy_signature: NotRequired[
         "capo_ec2.types.s3_storage_upload_policy_signature.S3StorageUploadPolicySignature"
@@ -39,9 +39,9 @@ def serialize_ec2_query(
     if "prefix" in value:
         pairs.append((f"{key_prefix}Prefix", str(value["prefix"])))
     if "upload_policy" in value:
-        import capo_ec2.types.blob
+        import capo_ec2.types.secure_blob
 
-        capo_ec2.types.blob.serialize_ec2_query(
+        capo_ec2.types.secure_blob.serialize_ec2_query(
             value["upload_policy"], pairs, f"{key_prefix}UploadPolicy"
         )
     if "upload_policy_signature" in value:
@@ -66,9 +66,9 @@ def deserialize_ec2_query(el: Element) -> S3Storage:
         out["prefix"] = str(child_prefix.text or "")
     child_upload_policy = el.find("uploadPolicy")
     if child_upload_policy is not None:
-        import capo_ec2.types.blob
+        import capo_ec2.types.secure_blob
 
-        out["upload_policy"] = capo_ec2.types.blob.deserialize_ec2_query(
+        out["upload_policy"] = capo_ec2.types.secure_blob.deserialize_ec2_query(
             child_upload_policy
         )
     child_upload_policy_signature = el.find("uploadPolicySignature")

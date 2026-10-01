@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 
 class EncryptionConfig(TypedDict, closed=True):
     resources: NotRequired["capo_eks.types.string_list.StringList"]
-    """<p>Specifies the resources to be encrypted. The only supported value is <code>secrets</code>.</p>"""
+    """<important> <p>Amazon EKS encrypts all Kubernetes API data with envelope encryption by default for clusters running Kubernetes version 1.28 or higher, so this field no longer affects which resources are encrypted.</p> </important> <p>Specifies the resources to be encrypted. The only supported value is <code>secrets</code>.</p>"""
     provider: NotRequired["capo_eks.types.provider.Provider"]
     """<p>Key Management Service (KMS) key. Either the ARN or the alias can be used.</p>"""
 

@@ -18,6 +18,7 @@ import capo_cloudformation.errors.token_already_exists_exception
 import capo_cloudformation.types.capabilities
 import capo_cloudformation.types.create_stack_input
 import capo_cloudformation.types.create_stack_output
+import capo_cloudformation.types.deployment_config
 import capo_cloudformation.types.notification_ar_ns
 import capo_cloudformation.types.on_failure
 import capo_cloudformation.types.parameters

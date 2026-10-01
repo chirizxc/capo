@@ -39,6 +39,9 @@ from .service_exception import ServiceException as ServiceException
 from .service_quota_exceeded_exception import (
     ServiceQuotaExceededException as ServiceQuotaExceededException,
 )
+from .subscription_required_exception import (
+    SubscriptionRequiredException as SubscriptionRequiredException,
+)
 from .throttled_exception import ThrottledException as ThrottledException
 from .throttling_exception import ThrottlingException as ThrottlingException
 from .unauthorized_exception import UnauthorizedException as UnauthorizedException

@@ -6,6 +6,9 @@ from typing_extensions import TypedDict
 
 from capo_sagemaker_runtime_http2._iter import AnyIterator
 from capo_sagemaker_runtime_http2._protocol.eventstream import Message
+from capo_sagemaker_runtime_http2.errors import (
+    UnknownServiceError,
+)
 
 if TYPE_CHECKING:
     import capo_sagemaker_runtime_http2.errors.internal_stream_failure
@@ -63,27 +66,39 @@ def serialize_event_json(value: _ResponseStreamEvent) -> bytes:
 
 def deserialize_event_json(message: Message) -> _ResponseStreamEvent:
     headers = message.headers
-    message_type = headers.get(":message-type", "event")  # noqa: F841
-    if message_type == "error":
-        error_type = headers.get(":error-type")
-        match error_type:
+    message_type = headers.get(":message-type", "event")
+    if message_type == "exception":
+        exception_type = headers.get(":exception-type")
+        match exception_type:
             case "ModelStreamError":
                 import capo_sagemaker_runtime_http2.errors.model_stream_error
 
+                data = capo_sagemaker_runtime_http2.errors.model_stream_error.deserialize_event_json(
+                    message
+                )
                 raise capo_sagemaker_runtime_http2.errors.model_stream_error.ModelStreamError(
-                    capo_sagemaker_runtime_http2.errors.model_stream_error.deserialize_event_json(
-                        message
-                    )
+                    data, message=data.get("message")
                 )
             case "InternalStreamFailure":
                 import capo_sagemaker_runtime_http2.errors.internal_stream_failure
 
-                raise capo_sagemaker_runtime_http2.errors.internal_stream_failure.InternalStreamFailure(
-                    capo_sagemaker_runtime_http2.errors.internal_stream_failure.deserialize_event_json(
-                        message
-                    )
+                data = capo_sagemaker_runtime_http2.errors.internal_stream_failure.deserialize_event_json(
+                    message
                 )
-        raise ValueError(f"ResponseStreamEvent: unrecognized error-type {error_type!r}")
+                raise capo_sagemaker_runtime_http2.errors.internal_stream_failure.InternalStreamFailure(
+                    data, message=data.get("message")
+                )
+        raise UnknownServiceError(
+            code=str(exception_type), message=None, response=message
+        )
+    if message_type == "error":
+        error_code = headers.get(":error-code")
+        error_message = headers.get(":error-message")
+        raise UnknownServiceError(
+            code=None if error_code is None else str(error_code),
+            message=None if error_message is None else str(error_message),
+            response=message,
+        )
     event_type = headers.get(":event-type")
     match event_type:
         case "PayloadPart":

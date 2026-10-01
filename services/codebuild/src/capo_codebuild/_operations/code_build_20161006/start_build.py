@@ -20,6 +20,7 @@ import capo_codebuild.types.compute_type
 import capo_codebuild.types.environment_type
 import capo_codebuild.types.environment_variables
 import capo_codebuild.types.git_submodules_config
+import capo_codebuild.types.host_kernel
 import capo_codebuild.types.image_pull_credentials_type
 import capo_codebuild.types.logs_config
 import capo_codebuild.types.project_artifacts

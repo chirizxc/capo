@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 from capo_imagebuilder.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_imagebuilder.types.boolean
     import capo_imagebuilder.types.client_token
     import capo_imagebuilder.types.component_configuration_list
     import capo_imagebuilder.types.container_type
@@ -25,17 +26,17 @@ class CreateContainerRecipeRequest(TypedDict, closed=True):
     container_type: "capo_imagebuilder.types.container_type.ContainerType"
     """<p>The type of container to create.</p>"""
     name: "capo_imagebuilder.types.resource_name.ResourceName"
-    """<p>The name of the container recipe.</p>"""
+    """<p>The name of the container recipe. The recipe name, combined with the semantic version, must be unique to your account in each Amazon Web Services Region. Image Builder generates the container recipe ARN from a normalized form of the name, so names that differ only in case, spaces, or underscores count as the same name.</p>"""
     description: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
     """<p>The description of the container recipe.</p>"""
     semantic_version: (
         "capo_imagebuilder.types.wildcard_version_number.WildcardVersionNumber"
     )
-    """<p>The semantic version of the container recipe. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: <major>.<minor>.<patch>/<build>. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> </note>"""
+    """<p>The semantic version of the container recipe. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: <major>.<minor>.<patch>/<build>. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes, you can assign any positive integer value, including zero. The upper limit is 2^30-1, or 1073741823, for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> </note>"""
     components: NotRequired[
         "capo_imagebuilder.types.component_configuration_list.ComponentConfigurationList"
     ]
-    """<p>The components included in the container recipe.</p>"""
+    """<p>The components included in the container recipe. You can specify each component only one time in a recipe.</p>"""
     instance_configuration: NotRequired[
         "capo_imagebuilder.types.instance_configuration.InstanceConfiguration"
     ]
@@ -43,17 +44,17 @@ class CreateContainerRecipeRequest(TypedDict, closed=True):
     dockerfile_template_data: NotRequired[
         "capo_imagebuilder.types.inline_docker_file_template.InlineDockerFileTemplate"
     ]
-    """<p>The Dockerfile template used to build your image as an inline data blob.</p>"""
+    r"""<p>The Dockerfile template used to build your image, as an inline data blob. You must specify exactly one of the <code>dockerfileTemplateData</code> or <code>dockerfileTemplateUri</code> properties. For the contextual variables that the template can include, see <a href=\"https://docs.aws.amazon.com/imagebuilder/latest/userguide/create-container-recipes.html\">Create a new version of a container recipe</a> in the <i>EC2 Image Builder User Guide</i>.</p>"""
     dockerfile_template_uri: NotRequired["capo_imagebuilder.types.uri.Uri"]
-    """<p>The Amazon S3 URI for the Dockerfile that will be used to build your container image.</p>"""
+    """<p>The Amazon S3 URI for the Dockerfile template that is used to build your container image. You must have permission to read the object. Image Builder reads the object once, when it creates the recipe, and stores its content in the recipe. Later changes to the S3 object don't affect the recipe. You must specify exactly one of the <code>dockerfileTemplateData</code> or <code>dockerfileTemplateUri</code> properties.</p>"""
     platform_override: NotRequired["capo_imagebuilder.types.platform.Platform"]
-    """<p>Specifies the operating system platform when you use a custom base image.</p>"""
+    """<p>Specifies the operating system platform when you use a custom base image. Container recipes support only the Linux and Windows platforms.</p>"""
     image_os_version_override: NotRequired[
         "capo_imagebuilder.types.non_empty_string.NonEmptyString"
     ]
-    """<p>Specifies the operating system version for the base image.</p>"""
+    """<p>Specifies the operating system version for the base image. Use this property only when the base image is a container image from a registry. When the base image is an Image Builder image, the operating system version comes from the parent image.</p>"""
     parent_image: "capo_imagebuilder.types.non_empty_string.NonEmptyString"
-    """<p>The base image for the container recipe.</p>"""
+    """<p>The base image for the container recipe. This can be an Image Builder image resource ARN or a container image URI from a registry, for example <code>amazonlinux:latest</code>.</p>"""
     tags: NotRequired["capo_imagebuilder.types.tag_map.TagMap"]
     """<p>Tags that are attached to the container recipe.</p>"""
     working_directory: NotRequired[
@@ -63,11 +64,13 @@ class CreateContainerRecipeRequest(TypedDict, closed=True):
     target_repository: (
         "capo_imagebuilder.types.target_container_repository.TargetContainerRepository"
     )
-    """<p>The destination repository for the container image.</p>"""
+    """<p>The destination repository for the container image. The Amazon ECR repository must already exist in the Amazon Web Services Region where the build runs.</p>"""
     kms_key_id: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
     r"""<p>The Amazon Resource Name (ARN) that uniquely identifies which KMS key is used to encrypt the Dockerfile template. This can be either the Key ARN or the Alias ARN. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN\">Key identifiers (KeyId)</a> in the <i>Key Management Service Developer Guide</i>.</p>"""
     client_token: "capo_imagebuilder.types.client_token.ClientToken"
-    r"""<p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>"""
+    r"""<p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>"""
+    dry_run: "capo_imagebuilder.types.boolean.Boolean"
+    """<p>Validates the required permissions and request parameters without performing the operation. If validation succeeds, the operation returns a <code>DryRunOperationException</code> error response.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -127,6 +130,7 @@ def serialize_json(value: CreateContainerRecipeRequest) -> dict:
     if "kms_key_id" in value:
         out["kmsKeyId"] = value["kms_key_id"]
     out["clientToken"] = value["client_token"]
+    out["dryRun"] = value.get("dry_run", False)
     return out
 
 
@@ -210,4 +214,8 @@ def deserialize_json(data: dict) -> CreateContainerRecipeRequest:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("CreateContainerRecipeRequest.client_token required")
+    if data.get("dryRun") is not None:
+        out["dry_run"] = data["dryRun"]
+    else:
+        out["dry_run"] = False
     return out

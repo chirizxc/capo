@@ -25,6 +25,9 @@ import capo_eks.types.create_access_config_request
 import capo_eks.types.create_cluster_request
 import capo_eks.types.create_cluster_response
 import capo_eks.types.encryption_config_list
+import capo_eks.types.kube_api_server_config_request
+import capo_eks.types.kube_controller_manager_config_request
+import capo_eks.types.kube_scheduler_config_request
 import capo_eks.types.kubernetes_network_config_request
 import capo_eks.types.logging
 import capo_eks.types.outpost_config_request

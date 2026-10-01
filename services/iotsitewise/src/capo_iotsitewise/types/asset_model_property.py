@@ -24,7 +24,7 @@ class AssetModelProperty(TypedDict, closed=True):
     name: "capo_iotsitewise.types.name.Name"
     """<p>The name of the asset model property.</p>"""
     data_type: "capo_iotsitewise.types.property_data_type.PropertyDataType"
-    """<p>The data type of the asset model property.</p> <p>If you specify <code>STRUCT</code>, you must also specify <code>dataTypeSpec</code> to identify the type of the structure for this property.</p>"""
+    """<p>The data type of the asset model property.</p> <p>The <code>VIDEO</code>, <code>ANNOTATION</code>, and <code>JSON</code> data types aren't supported for asset model properties. These types are used only by time series that store data for datasets in a workspace.</p> <p>If you specify <code>STRUCT</code>, you must also specify <code>dataTypeSpec</code> to identify the type of the structure for this property.</p>"""
     data_type_spec: NotRequired["capo_iotsitewise.types.name.Name"]
     """<p>The data type of the structure for this property. This parameter exists on properties that have the <code>STRUCT</code> data type.</p>"""
     unit: NotRequired["capo_iotsitewise.types.property_unit.PropertyUnit"]

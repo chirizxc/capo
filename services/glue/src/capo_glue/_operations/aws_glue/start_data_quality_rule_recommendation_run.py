@@ -15,7 +15,9 @@ import capo_glue.errors.conflict_exception
 import capo_glue.errors.internal_service_exception
 import capo_glue.errors.invalid_input_exception
 import capo_glue.errors.operation_timeout_exception
+import capo_glue.types.data_quality_rule_recommendation_run_additional_run_options
 import capo_glue.types.data_source
+import capo_glue.types.recommendation_mode
 import capo_glue.types.start_data_quality_rule_recommendation_run_request
 import capo_glue.types.start_data_quality_rule_recommendation_run_response
 from capo_glue._protocol.errors import parse_error_metadata_json

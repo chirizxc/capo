@@ -45,6 +45,7 @@ if TYPE_CHECKING:
     import capo_appconfig.types.create_configuration_profile_request
     import capo_appconfig.types.create_deployment_strategy_request
     import capo_appconfig.types.create_environment_request
+    import capo_appconfig.types.create_experiment_definition_request
     import capo_appconfig.types.create_extension_association_request
     import capo_appconfig.types.create_extension_request
     import capo_appconfig.types.create_hosted_configuration_version_request
@@ -52,12 +53,15 @@ if TYPE_CHECKING:
     import capo_appconfig.types.delete_configuration_profile_request
     import capo_appconfig.types.delete_deployment_strategy_request
     import capo_appconfig.types.delete_environment_request
+    import capo_appconfig.types.delete_experiment_definition_request
     import capo_appconfig.types.delete_extension_association_request
     import capo_appconfig.types.delete_extension_request
     import capo_appconfig.types.delete_hosted_configuration_version_request
+    import capo_appconfig.types.delete_type
     import capo_appconfig.types.deletion_protection_check
     import capo_appconfig.types.deletion_protection_settings
     import capo_appconfig.types.deployment
+    import capo_appconfig.types.deployment_parameters
     import capo_appconfig.types.deployment_strategies
     import capo_appconfig.types.deployment_strategy
     import capo_appconfig.types.deployment_strategy_id
@@ -67,6 +71,17 @@ if TYPE_CHECKING:
     import capo_appconfig.types.dynamic_parameter_map
     import capo_appconfig.types.environment
     import capo_appconfig.types.environments
+    import capo_appconfig.types.experiment_definition
+    import capo_appconfig.types.experiment_definition_status
+    import capo_appconfig.types.experiment_definition_summary
+    import capo_appconfig.types.experiment_definitions
+    import capo_appconfig.types.experiment_run
+    import capo_appconfig.types.experiment_run_event
+    import capo_appconfig.types.experiment_run_events
+    import capo_appconfig.types.experiment_run_result
+    import capo_appconfig.types.experiment_run_status
+    import capo_appconfig.types.experiment_run_summary
+    import capo_appconfig.types.experiment_runs
     import capo_appconfig.types.extension
     import capo_appconfig.types.extension_association
     import capo_appconfig.types.extension_association_summary
@@ -74,12 +89,15 @@ if TYPE_CHECKING:
     import capo_appconfig.types.extension_or_parameter_name
     import capo_appconfig.types.extension_summary
     import capo_appconfig.types.extensions
+    import capo_appconfig.types.flag_key
     import capo_appconfig.types.get_application_request
     import capo_appconfig.types.get_configuration_profile_request
     import capo_appconfig.types.get_configuration_request
     import capo_appconfig.types.get_deployment_request
     import capo_appconfig.types.get_deployment_strategy_request
     import capo_appconfig.types.get_environment_request
+    import capo_appconfig.types.get_experiment_definition_request
+    import capo_appconfig.types.get_experiment_run_request
     import capo_appconfig.types.get_extension_association_request
     import capo_appconfig.types.get_extension_request
     import capo_appconfig.types.get_hosted_configuration_version_request
@@ -98,6 +116,9 @@ if TYPE_CHECKING:
     import capo_appconfig.types.list_deployment_strategies_request
     import capo_appconfig.types.list_deployments_request
     import capo_appconfig.types.list_environments_request
+    import capo_appconfig.types.list_experiment_definitions_request
+    import capo_appconfig.types.list_experiment_run_events_request
+    import capo_appconfig.types.list_experiment_runs_request
     import capo_appconfig.types.list_extension_associations_request
     import capo_appconfig.types.list_extensions_request
     import capo_appconfig.types.list_hosted_configuration_versions_request
@@ -107,31 +128,43 @@ if TYPE_CHECKING:
     import capo_appconfig.types.minutes_between0_and24_hours
     import capo_appconfig.types.monitor_list
     import capo_appconfig.types.name
+    import capo_appconfig.types.name_with_reserved_aws_prefix
     import capo_appconfig.types.next_token
+    import capo_appconfig.types.nullable_percentage
     import capo_appconfig.types.parameter_map
     import capo_appconfig.types.parameter_value_map
+    import capo_appconfig.types.positive_integer
     import capo_appconfig.types.query_name
     import capo_appconfig.types.replicate_to
     import capo_appconfig.types.resource_tags
     import capo_appconfig.types.role_arn
+    import capo_appconfig.types.rule
     import capo_appconfig.types.start_deployment_request
+    import capo_appconfig.types.start_experiment_run_request
     import capo_appconfig.types.stop_deployment_request
+    import capo_appconfig.types.stop_experiment_run_request
     import capo_appconfig.types.string_with_length_between1_and64
     import capo_appconfig.types.string_with_length_between1_and255
     import capo_appconfig.types.tag_key_list
     import capo_appconfig.types.tag_map
     import capo_appconfig.types.tag_resource_request
+    import capo_appconfig.types.treatment_input
+    import capo_appconfig.types.treatment_input_list
+    import capo_appconfig.types.treatment_overrides
     import capo_appconfig.types.untag_resource_request
     import capo_appconfig.types.update_account_settings_request
     import capo_appconfig.types.update_application_request
     import capo_appconfig.types.update_configuration_profile_request
     import capo_appconfig.types.update_deployment_strategy_request
     import capo_appconfig.types.update_environment_request
+    import capo_appconfig.types.update_experiment_definition_request
+    import capo_appconfig.types.update_experiment_run_request
     import capo_appconfig.types.update_extension_association_request
     import capo_appconfig.types.update_extension_request
     import capo_appconfig.types.uri
     import capo_appconfig.types.validate_configuration_request
     import capo_appconfig.types.validator_list
+    import capo_appconfig.types.vended_metrics_settings
     import capo_appconfig.types.version
     import capo_appconfig.types.version_label
 
@@ -247,7 +280,7 @@ class AsyncAppConfigClient:
         Raises:
             capo_appconfig.errors.bad_request_exception.BadRequestException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_appconfig.errors.internal_server_exception.InternalServerException: <p>There was an internal failure in the AppConfig service.</p>
-            capo_appconfig.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The number of one more AppConfig resources exceeds the maximum allowed. Verify that your environment doesn't exceed the following service quotas:</p> <p>Applications: 100 max</p> <p>Deployment strategies: 20 max</p> <p>Configuration profiles: 100 max per application</p> <p>Environments: 20 max per application</p> <p>To resolve this issue, you can delete one or more resources and try again. Or, you can request a quota increase. For more information about quotas and to request an increase, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig\">Service quotas for AppConfig</a> in the Amazon Web Services General Reference.</p>
+            capo_appconfig.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The number of one more AppConfig resources exceeds the maximum allowed. Verify that your environment doesn't exceed the following service quotas:</p> <p>Applications: 100 max</p> <p>To resolve this issue, you can delete one or more resources and try again. Or, you can request a quota increase. For more information about quotas and to request an increase, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig\">Service quotas for AppConfig</a> in the Amazon Web Services General Reference.</p>
             capo_appconfig.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
@@ -289,7 +322,7 @@ class AsyncAppConfigClient:
 
     async def create_configuration_profile(
         self,
-        application_id: "capo_appconfig.types.id.Id",
+        application_id: "capo_appconfig.types.name.Name",
         name: "capo_appconfig.types.long_name.LongName",
         location_uri: "capo_appconfig.types.uri.Uri",
         *,
@@ -324,7 +357,7 @@ class AsyncAppConfigClient:
             capo_appconfig.errors.bad_request_exception.BadRequestException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_appconfig.errors.internal_server_exception.InternalServerException: <p>There was an internal failure in the AppConfig service.</p>
             capo_appconfig.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
-            capo_appconfig.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The number of one more AppConfig resources exceeds the maximum allowed. Verify that your environment doesn't exceed the following service quotas:</p> <p>Applications: 100 max</p> <p>Deployment strategies: 20 max</p> <p>Configuration profiles: 100 max per application</p> <p>Environments: 20 max per application</p> <p>To resolve this issue, you can delete one or more resources and try again. Or, you can request a quota increase. For more information about quotas and to request an increase, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig\">Service quotas for AppConfig</a> in the Amazon Web Services General Reference.</p>
+            capo_appconfig.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The number of one more AppConfig resources exceeds the maximum allowed. Verify that your environment doesn't exceed the following service quotas:</p> <p>Applications: 100 max</p> <p>To resolve this issue, you can delete one or more resources and try again. Or, you can request a quota increase. For more information about quotas and to request an increase, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig\">Service quotas for AppConfig</a> in the Amazon Web Services General Reference.</p>
             capo_appconfig.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
@@ -396,7 +429,7 @@ class AsyncAppConfigClient:
         Args:
             name: <p>A name for the deployment strategy.</p>
             description: <p>A description of the deployment strategy.</p>
-            deployment_duration_in_minutes: <p>Total amount of time for a deployment to last.</p>
+            deployment_duration_in_minutes: <p>Total amount of time for a deployment to last.</p> <note> <p>AppConfig Agent supports deploying feature flag or free-form configuration data to specific segments or individual users during a gradual rollout. Entity-based gradual deployments ensure that once a user or segment receives a configuration version, they continue to receive that same version throughout the deployment period, regardless of which compute resource serves their requests. For more information, see <a href=\"https://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-agent-how-to-use.html#appconfig-entity-based-gradual-deployments\">Using AppConfig Agent for user-based or entity-based gradual deployments</a> </p> </note>
             final_bake_time_in_minutes: <p>Specifies the amount of time AppConfig monitors for Amazon CloudWatch alarms after the configuration has been deployed to 100% of its targets, before considering the deployment to be complete. If an alarm is triggered during this time, AppConfig rolls back the deployment. You must configure permissions for AppConfig to roll back based on CloudWatch alarms. For more information, see <a href=\"https://docs.aws.amazon.com/appconfig/latest/userguide/getting-started-with-appconfig-cloudwatch-alarms-permissions.html\">Configuring permissions for rollback based on Amazon CloudWatch alarms</a> in the <i>AppConfig User Guide</i>.</p>
             growth_factor: <p>The percentage of targets to receive a deployed configuration during each interval.</p>
             growth_type: <p>The algorithm used to define how percentage grows over time. AppConfig supports the following growth types:</p> <p> <b>Linear</b>: For this type, AppConfig processes the deployment by dividing the total number of targets by the value specified for <code>Step percentage</code>. For example, a linear deployment that uses a <code>Step percentage</code> of 10 deploys the configuration to 10 percent of the hosts. After those deployments are complete, the system deploys the configuration to the next 10 percent. This continues until 100% of the targets have successfully received the configuration.</p> <p> <b>Exponential</b>: For this type, AppConfig processes the deployment exponentially using the following formula: <code>G*(2^N)</code>. In this formula, <code>G</code> is the growth factor specified by the user and <code>N</code> is the number of steps until the configuration is deployed to all targets. For example, if you specify a growth factor of 2, then the system rolls out the configuration as follows:</p> <p> <code>2*(2^0)</code> </p> <p> <code>2*(2^1)</code> </p> <p> <code>2*(2^2)</code> </p> <p>Expressed numerically, the deployment rolls out as follows: 2% of the targets, 4% of the targets, 8% of the targets, and continues until the configuration has been deployed to all targets.</p>
@@ -406,7 +439,7 @@ class AsyncAppConfigClient:
         Raises:
             capo_appconfig.errors.bad_request_exception.BadRequestException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_appconfig.errors.internal_server_exception.InternalServerException: <p>There was an internal failure in the AppConfig service.</p>
-            capo_appconfig.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The number of one more AppConfig resources exceeds the maximum allowed. Verify that your environment doesn't exceed the following service quotas:</p> <p>Applications: 100 max</p> <p>Deployment strategies: 20 max</p> <p>Configuration profiles: 100 max per application</p> <p>Environments: 20 max per application</p> <p>To resolve this issue, you can delete one or more resources and try again. Or, you can request a quota increase. For more information about quotas and to request an increase, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig\">Service quotas for AppConfig</a> in the Amazon Web Services General Reference.</p>
+            capo_appconfig.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The number of one more AppConfig resources exceeds the maximum allowed. Verify that your environment doesn't exceed the following service quotas:</p> <p>Applications: 100 max</p> <p>To resolve this issue, you can delete one or more resources and try again. Or, you can request a quota increase. For more information about quotas and to request an increase, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig\">Service quotas for AppConfig</a> in the Amazon Web Services General Reference.</p>
             capo_appconfig.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
@@ -458,7 +491,7 @@ class AsyncAppConfigClient:
 
     async def create_environment(
         self,
-        application_id: "capo_appconfig.types.id.Id",
+        application_id: "capo_appconfig.types.name.Name",
         name: "capo_appconfig.types.name.Name",
         *,
         config_overrides: Optional[AsyncAppConfigClientConfig] = None,
@@ -479,7 +512,7 @@ class AsyncAppConfigClient:
             capo_appconfig.errors.bad_request_exception.BadRequestException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_appconfig.errors.internal_server_exception.InternalServerException: <p>There was an internal failure in the AppConfig service.</p>
             capo_appconfig.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
-            capo_appconfig.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The number of one more AppConfig resources exceeds the maximum allowed. Verify that your environment doesn't exceed the following service quotas:</p> <p>Applications: 100 max</p> <p>Deployment strategies: 20 max</p> <p>Configuration profiles: 100 max per application</p> <p>Environments: 20 max per application</p> <p>To resolve this issue, you can delete one or more resources and try again. Or, you can request a quota increase. For more information about quotas and to request an increase, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig\">Service quotas for AppConfig</a> in the Amazon Web Services General Reference.</p>
+            capo_appconfig.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The number of one more AppConfig resources exceeds the maximum allowed. Verify that your environment doesn't exceed the following service quotas:</p> <p>Applications: 100 max</p> <p>To resolve this issue, you can delete one or more resources and try again. Or, you can request a quota increase. For more information about quotas and to request an increase, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig\">Service quotas for AppConfig</a> in the Amazon Web Services General Reference.</p>
             capo_appconfig.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
@@ -522,6 +555,101 @@ class AsyncAppConfigClient:
         await response.response.aclose()
         return response.output
 
+    async def create_experiment_definition(
+        self,
+        application_identifier: "capo_appconfig.types.identifier.Identifier",
+        name: "capo_appconfig.types.name_with_reserved_aws_prefix.NameWithReservedAwsPrefix",
+        configuration_profile_identifier: "capo_appconfig.types.identifier.Identifier",
+        environment_identifier: "capo_appconfig.types.identifier.Identifier",
+        flag_key: "capo_appconfig.types.flag_key.FlagKey",
+        treatments: "capo_appconfig.types.treatment_input_list.TreatmentInputList",
+        control: "capo_appconfig.types.treatment_input.TreatmentInput",
+        audience_rule: "capo_appconfig.types.rule.Rule",
+        *,
+        config_overrides: Optional[AsyncAppConfigClientConfig] = None,
+        hypothesis: Optional["capo_appconfig.types.description.Description"] = None,
+        audience_description: Optional[
+            "capo_appconfig.types.description.Description"
+        ] = None,
+        launch_criteria: Optional[
+            "capo_appconfig.types.description.Description"
+        ] = None,
+        tags: Optional["capo_appconfig.types.tag_map.TagMap"] = None,
+    ) -> "capo_appconfig.types.experiment_definition.ExperimentDefinition":
+        """<p>Creates an experiment definition in AppConfig. An experiment definition describes the purpose, scope, and operational configuration of an experiment, including the target audience, feature flag, and treatment configurations.</p>
+
+        Args:
+            application_identifier: <p>The application ID or name.</p>
+            name: <p>A name for the experiment definition.</p>
+            configuration_profile_identifier: <p>The configuration profile ID or name that stores the feature flag.</p>
+            environment_identifier: <p>The environment ID or name where the experiment will run.</p>
+            flag_key: <p>The key of the existing feature flag to use with the experiment.</p>
+            treatments: <p>A list of treatments to evaluate during the experiment. Each treatment defines a distinct variation compared to the control.</p>
+            control: <p>The control treatment that represents the baseline experience for comparison.</p>
+            audience_rule: <p>A rule that defines which users are eligible to be assigned to treatments during the experiment.</p>
+            hypothesis: <p>A description of the goal or hypothesis the experiment is designed to validate.</p>
+            audience_description: <p>A description of the intended audience for the experiment.</p>
+            launch_criteria: <p>Information about the conditions under which you would launch the winning treatment.</p>
+            tags: <p>The tags to assign to the experiment definition. Tags help organize and categorize your AppConfig resources.</p>
+
+        Raises:
+            capo_appconfig.errors.bad_request_exception.BadRequestException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
+            capo_appconfig.errors.conflict_exception.ConflictException: <p>The request could not be processed because of conflict in the current state of the resource.</p>
+            capo_appconfig.errors.internal_server_exception.InternalServerException: <p>There was an internal failure in the AppConfig service.</p>
+            capo_appconfig.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_appconfig.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The number of one more AppConfig resources exceeds the maximum allowed. Verify that your environment doesn't exceed the following service quotas:</p> <p>Applications: 100 max</p> <p>To resolve this issue, you can delete one or more resources and try again. Or, you can request a quota increase. For more information about quotas and to request an increase, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig\">Service quotas for AppConfig</a> in the Amazon Web Services General Reference.</p>
+            capo_appconfig.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            To create an experiment definition
+            The following CreateExperimentDefinition example creates an experiment definition that tests a feature flag with a 50/50 traffic split.
+
+            >>> await client.create_experiment_definition(application_identifier='339ohji', configuration_profile_identifier='ur8hx2f', environment_identifier='54j1r29', name='Example-Experiment-Definition', flag_key='my-feature-flag', treatments=[{'Weight': 50, 'FlagValue': {'Enabled': True}}], control={'Weight': 50, 'FlagValue': {'Enabled': False}}, audience_rule='(eq $country "US")')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_appconfig.types.create_experiment_definition_request.CreateExperimentDefinitionRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_appconfig.types.experiment_definition.ExperimentDefinition"
+        ]:
+            import capo_appconfig._operations.amazon_app_config.create_experiment_definition
+
+            (
+                output,
+                http_response,
+            ) = await capo_appconfig._operations.amazon_app_config.create_experiment_definition.async_create_experiment_definition(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_appconfig.types.create_experiment_definition_request.CreateExperimentDefinitionRequest = {
+            "application_identifier": application_identifier,
+            "name": name,
+            "configuration_profile_identifier": configuration_profile_identifier,
+            "environment_identifier": environment_identifier,
+            "flag_key": flag_key,
+            "treatments": treatments,
+            "control": control,
+            "audience_rule": audience_rule,
+        }
+        if hypothesis is not None:
+            input_["hypothesis"] = hypothesis
+        if audience_description is not None:
+            input_["audience_description"] = audience_description
+        if launch_criteria is not None:
+            input_["launch_criteria"] = launch_criteria
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def create_extension(
         self,
         name: "capo_appconfig.types.extension_or_parameter_name.ExtensionOrParameterName",
@@ -547,7 +675,7 @@ class AsyncAppConfigClient:
             capo_appconfig.errors.bad_request_exception.BadRequestException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_appconfig.errors.conflict_exception.ConflictException: <p>The request could not be processed because of conflict in the current state of the resource.</p>
             capo_appconfig.errors.internal_server_exception.InternalServerException: <p>There was an internal failure in the AppConfig service.</p>
-            capo_appconfig.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The number of one more AppConfig resources exceeds the maximum allowed. Verify that your environment doesn't exceed the following service quotas:</p> <p>Applications: 100 max</p> <p>Deployment strategies: 20 max</p> <p>Configuration profiles: 100 max per application</p> <p>Environments: 20 max per application</p> <p>To resolve this issue, you can delete one or more resources and try again. Or, you can request a quota increase. For more information about quotas and to request an increase, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig\">Service quotas for AppConfig</a> in the Amazon Web Services General Reference.</p>
+            capo_appconfig.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The number of one more AppConfig resources exceeds the maximum allowed. Verify that your environment doesn't exceed the following service quotas:</p> <p>Applications: 100 max</p> <p>To resolve this issue, you can delete one or more resources and try again. Or, you can request a quota increase. For more information about quotas and to request an increase, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig\">Service quotas for AppConfig</a> in the Amazon Web Services General Reference.</p>
             capo_appconfig.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -613,7 +741,7 @@ class AsyncAppConfigClient:
             capo_appconfig.errors.bad_request_exception.BadRequestException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_appconfig.errors.internal_server_exception.InternalServerException: <p>There was an internal failure in the AppConfig service.</p>
             capo_appconfig.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
-            capo_appconfig.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The number of one more AppConfig resources exceeds the maximum allowed. Verify that your environment doesn't exceed the following service quotas:</p> <p>Applications: 100 max</p> <p>Deployment strategies: 20 max</p> <p>Configuration profiles: 100 max per application</p> <p>Environments: 20 max per application</p> <p>To resolve this issue, you can delete one or more resources and try again. Or, you can request a quota increase. For more information about quotas and to request an increase, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig\">Service quotas for AppConfig</a> in the Amazon Web Services General Reference.</p>
+            capo_appconfig.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The number of one more AppConfig resources exceeds the maximum allowed. Verify that your environment doesn't exceed the following service quotas:</p> <p>Applications: 100 max</p> <p>To resolve this issue, you can delete one or more resources and try again. Or, you can request a quota increase. For more information about quotas and to request an increase, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig\">Service quotas for AppConfig</a> in the Amazon Web Services General Reference.</p>
             capo_appconfig.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -654,8 +782,8 @@ class AsyncAppConfigClient:
 
     async def create_hosted_configuration_version(
         self,
-        application_id: "capo_appconfig.types.id.Id",
-        configuration_profile_id: "capo_appconfig.types.id.Id",
+        application_id: "capo_appconfig.types.name.Name",
+        configuration_profile_id: "capo_appconfig.types.long_name.LongName",
         content: "capo_appconfig.types.blob.Blob",
         content_type: "capo_appconfig.types.string_with_length_between1_and255.StringWithLengthBetween1And255",
         *,
@@ -666,12 +794,12 @@ class AsyncAppConfigClient:
             "capo_appconfig.types.version_label.VersionLabel"
         ] = None,
     ) -> "capo_appconfig.types.hosted_configuration_version.HostedConfigurationVersion":
-        r"""<p>Creates a new configuration in the AppConfig hosted configuration store. If you're creating a feature flag, we recommend you familiarize yourself with the JSON schema for feature flag data. For more information, see <a href=\"https://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-creating-configuration-and-profile-feature-flags.html#appconfig-type-reference-feature-flags\">Type reference for AWS.AppConfig.FeatureFlags</a> in the <i>AppConfig User Guide</i>.</p>
+        r"""<p>Creates a new configuration in the AppConfig hosted configuration store. If you're creating a feature flag, we recommend you familiarize yourself with the JSON schema for feature flag data. For more information, see <a href=\"https://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-type-reference-feature-flags.html\">Type reference for AWS.AppConfig.FeatureFlags</a> in the <i>AppConfig User Guide</i>.</p>
 
         Args:
             application_id: <p>The application ID.</p>
             configuration_profile_id: <p>The configuration profile ID.</p>
-            description: <p>A description of the configuration.</p>
+            description: <p>A description of the configuration.</p> <note> <p>Due to HTTP limitations, this field only supports ASCII characters.</p> </note>
             content: <p>The configuration data, as bytes.</p> <note> <p>AppConfig accepts any type of data, including text formats like JSON or TOML, or binary formats like protocol buffers or compressed data.</p> </note>
             content_type: <p>A standard MIME type describing the format of the configuration content. For more information, see <a href=\"https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17\">Content-Type</a>.</p>
             latest_version_number: <p>An optional locking token used to prevent race conditions from overwriting configuration updates when creating a new version. To ensure your data is not overwritten when creating multiple hosted configuration versions in rapid succession, specify the version number of the latest hosted configuration version.</p>
@@ -683,7 +811,7 @@ class AsyncAppConfigClient:
             capo_appconfig.errors.internal_server_exception.InternalServerException: <p>There was an internal failure in the AppConfig service.</p>
             capo_appconfig.errors.payload_too_large_exception.PayloadTooLargeException: <p>The configuration size is too large.</p>
             capo_appconfig.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
-            capo_appconfig.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The number of one more AppConfig resources exceeds the maximum allowed. Verify that your environment doesn't exceed the following service quotas:</p> <p>Applications: 100 max</p> <p>Deployment strategies: 20 max</p> <p>Configuration profiles: 100 max per application</p> <p>Environments: 20 max per application</p> <p>To resolve this issue, you can delete one or more resources and try again. Or, you can request a quota increase. For more information about quotas and to request an increase, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig\">Service quotas for AppConfig</a> in the Amazon Web Services General Reference.</p>
+            capo_appconfig.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The number of one more AppConfig resources exceeds the maximum allowed. Verify that your environment doesn't exceed the following service quotas:</p> <p>Applications: 100 max</p> <p>To resolve this issue, you can delete one or more resources and try again. Or, you can request a quota increase. For more information about quotas and to request an increase, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/appconfig.html#limits_appconfig\">Service quotas for AppConfig</a> in the Amazon Web Services General Reference.</p>
             capo_appconfig.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
@@ -732,7 +860,7 @@ class AsyncAppConfigClient:
 
     async def delete_application(
         self,
-        application_id: "capo_appconfig.types.id.Id",
+        application_id: "capo_appconfig.types.name.Name",
         *,
         config_overrides: Optional[AsyncAppConfigClientConfig] = None,
     ) -> None:
@@ -783,8 +911,8 @@ class AsyncAppConfigClient:
 
     async def delete_configuration_profile(
         self,
-        application_id: "capo_appconfig.types.id.Id",
-        configuration_profile_id: "capo_appconfig.types.id.Id",
+        application_id: "capo_appconfig.types.name.Name",
+        configuration_profile_id: "capo_appconfig.types.long_name.LongName",
         *,
         config_overrides: Optional[AsyncAppConfigClientConfig] = None,
         deletion_protection_check: Optional[
@@ -893,8 +1021,8 @@ class AsyncAppConfigClient:
 
     async def delete_environment(
         self,
-        environment_id: "capo_appconfig.types.id.Id",
-        application_id: "capo_appconfig.types.id.Id",
+        environment_id: "capo_appconfig.types.name.Name",
+        application_id: "capo_appconfig.types.name.Name",
         *,
         config_overrides: Optional[AsyncAppConfigClientConfig] = None,
         deletion_protection_check: Optional[
@@ -942,6 +1070,64 @@ class AsyncAppConfigClient:
         }
         if deletion_protection_check is not None:
             input_["deletion_protection_check"] = deletion_protection_check
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_experiment_definition(
+        self,
+        application_identifier: "capo_appconfig.types.identifier.Identifier",
+        experiment_definition_identifier: "capo_appconfig.types.identifier.Identifier",
+        *,
+        config_overrides: Optional[AsyncAppConfigClientConfig] = None,
+        delete_type: Optional["capo_appconfig.types.delete_type.DeleteType"] = None,
+    ) -> None:
+        """<p>Deletes an experiment definition. You can archive the definition to hide it from the active list while preserving it for future reference, or permanently delete it along with all associated run history.</p>
+
+        Args:
+            application_identifier: <p>The application ID or name.</p>
+            experiment_definition_identifier: <p>The experiment definition ID or name.</p>
+            delete_type: <p>The type of deletion to perform. Valid values include archive (hide but preserve) and permanent (delete permanently).</p>
+
+        Raises:
+            capo_appconfig.errors.bad_request_exception.BadRequestException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
+            capo_appconfig.errors.conflict_exception.ConflictException: <p>The request could not be processed because of conflict in the current state of the resource.</p>
+            capo_appconfig.errors.internal_server_exception.InternalServerException: <p>There was an internal failure in the AppConfig service.</p>
+            capo_appconfig.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_appconfig.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            To delete an experiment definition
+            The following DeleteExperimentDefinition example archives (soft-deletes) the specified experiment definition.
+
+            >>> await client.delete_experiment_definition(application_identifier='339ohji', experiment_definition_identifier='bsxyd7k')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_appconfig.types.delete_experiment_definition_request.DeleteExperimentDefinitionRequest]",
+        ) -> AsyncOperationResponse[None]:
+            import capo_appconfig._operations.amazon_app_config.delete_experiment_definition
+
+            (
+                output,
+                http_response,
+            ) = await capo_appconfig._operations.amazon_app_config.delete_experiment_definition.async_delete_experiment_definition(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_appconfig.types.delete_experiment_definition_request.DeleteExperimentDefinitionRequest = {
+            "application_identifier": application_identifier,
+            "experiment_definition_identifier": experiment_definition_identifier,
+        }
+        if delete_type is not None:
+            input_["delete_type"] = delete_type
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1045,8 +1231,8 @@ class AsyncAppConfigClient:
 
     async def delete_hosted_configuration_version(
         self,
-        application_id: "capo_appconfig.types.id.Id",
-        configuration_profile_id: "capo_appconfig.types.id.Id",
+        application_id: "capo_appconfig.types.name.Name",
+        configuration_profile_id: "capo_appconfig.types.long_name.LongName",
         version_number: "capo_appconfig.types.integer.Integer",
         *,
         config_overrides: Optional[AsyncAppConfigClientConfig] = None,
@@ -1137,7 +1323,7 @@ class AsyncAppConfigClient:
 
     async def get_application(
         self,
-        application_id: "capo_appconfig.types.id.Id",
+        application_id: "capo_appconfig.types.name.Name",
         *,
         config_overrides: Optional[AsyncAppConfigClientConfig] = None,
     ) -> "capo_appconfig.types.application.Application":
@@ -1252,8 +1438,8 @@ class AsyncAppConfigClient:
 
     async def get_configuration_profile(
         self,
-        application_id: "capo_appconfig.types.id.Id",
-        configuration_profile_id: "capo_appconfig.types.id.Id",
+        application_id: "capo_appconfig.types.name.Name",
+        configuration_profile_id: "capo_appconfig.types.long_name.LongName",
         *,
         config_overrides: Optional[AsyncAppConfigClientConfig] = None,
     ) -> "capo_appconfig.types.configuration_profile.ConfigurationProfile":
@@ -1307,8 +1493,8 @@ class AsyncAppConfigClient:
 
     async def get_deployment(
         self,
-        application_id: "capo_appconfig.types.id.Id",
-        environment_id: "capo_appconfig.types.id.Id",
+        application_id: "capo_appconfig.types.name.Name",
+        environment_id: "capo_appconfig.types.name.Name",
         deployment_number: "capo_appconfig.types.integer.Integer",
         *,
         config_overrides: Optional[AsyncAppConfigClientConfig] = None,
@@ -1409,8 +1595,8 @@ class AsyncAppConfigClient:
 
     async def get_environment(
         self,
-        application_id: "capo_appconfig.types.id.Id",
-        environment_id: "capo_appconfig.types.id.Id",
+        application_id: "capo_appconfig.types.name.Name",
+        environment_id: "capo_appconfig.types.name.Name",
         *,
         config_overrides: Optional[AsyncAppConfigClientConfig] = None,
     ) -> "capo_appconfig.types.environment.Environment":
@@ -1450,6 +1636,119 @@ class AsyncAppConfigClient:
         input_: capo_appconfig.types.get_environment_request.GetEnvironmentRequest = {
             "application_id": application_id,
             "environment_id": environment_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_experiment_definition(
+        self,
+        application_identifier: "capo_appconfig.types.identifier.Identifier",
+        experiment_definition_identifier: "capo_appconfig.types.identifier.Identifier",
+        *,
+        config_overrides: Optional[AsyncAppConfigClientConfig] = None,
+    ) -> "capo_appconfig.types.experiment_definition.ExperimentDefinition":
+        """<p>Retrieves information about an experiment definition.</p>
+
+        Args:
+            application_identifier: <p>The application ID or name.</p>
+            experiment_definition_identifier: <p>The experiment definition ID or name.</p>
+
+        Raises:
+            capo_appconfig.errors.bad_request_exception.BadRequestException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
+            capo_appconfig.errors.internal_server_exception.InternalServerException: <p>There was an internal failure in the AppConfig service.</p>
+            capo_appconfig.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_appconfig.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            To get an experiment definition
+            The following GetExperimentDefinition example retrieves the details of an experiment definition.
+
+            >>> await client.get_experiment_definition(application_identifier='339ohji', experiment_definition_identifier='bsxyd7k')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_appconfig.types.get_experiment_definition_request.GetExperimentDefinitionRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_appconfig.types.experiment_definition.ExperimentDefinition"
+        ]:
+            import capo_appconfig._operations.amazon_app_config.get_experiment_definition
+
+            (
+                output,
+                http_response,
+            ) = await capo_appconfig._operations.amazon_app_config.get_experiment_definition.async_get_experiment_definition(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_appconfig.types.get_experiment_definition_request.GetExperimentDefinitionRequest = {
+            "application_identifier": application_identifier,
+            "experiment_definition_identifier": experiment_definition_identifier,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_experiment_run(
+        self,
+        application_identifier: "capo_appconfig.types.identifier.Identifier",
+        experiment_definition_identifier: "capo_appconfig.types.identifier.Identifier",
+        run: "capo_appconfig.types.positive_integer.PositiveInteger",
+        *,
+        config_overrides: Optional[AsyncAppConfigClientConfig] = None,
+    ) -> "capo_appconfig.types.experiment_run.ExperimentRun":
+        """<p>Retrieves information about an experiment run, including its status, start time, and exposure settings.</p>
+
+        Args:
+            application_identifier: <p>The application ID or name.</p>
+            experiment_definition_identifier: <p>The experiment definition ID or name.</p>
+            run: <p>The run number to retrieve.</p>
+
+        Raises:
+            capo_appconfig.errors.bad_request_exception.BadRequestException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
+            capo_appconfig.errors.internal_server_exception.InternalServerException: <p>There was an internal failure in the AppConfig service.</p>
+            capo_appconfig.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_appconfig.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            To get an experiment run
+            The following GetExperimentRun example retrieves the details of an experiment run.
+
+            >>> await client.get_experiment_run(application_identifier='339ohji', experiment_definition_identifier='bsxyd7k', run=1)
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_appconfig.types.get_experiment_run_request.GetExperimentRunRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_appconfig.types.experiment_run.ExperimentRun"
+        ]:
+            import capo_appconfig._operations.amazon_app_config.get_experiment_run
+
+            (
+                output,
+                http_response,
+            ) = await capo_appconfig._operations.amazon_app_config.get_experiment_run.async_get_experiment_run(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_appconfig.types.get_experiment_run_request.GetExperimentRunRequest = {
+            "application_identifier": application_identifier,
+            "experiment_definition_identifier": experiment_definition_identifier,
+            "run": run,
         }
 
         response = await aexecute_pipeline(
@@ -1556,8 +1855,8 @@ class AsyncAppConfigClient:
 
     async def get_hosted_configuration_version(
         self,
-        application_id: "capo_appconfig.types.id.Id",
-        configuration_profile_id: "capo_appconfig.types.id.Id",
+        application_id: "capo_appconfig.types.name.Name",
+        configuration_profile_id: "capo_appconfig.types.long_name.LongName",
         version_number: "capo_appconfig.types.integer.Integer",
         *,
         config_overrides: Optional[AsyncAppConfigClientConfig] = None,
@@ -1688,7 +1987,7 @@ class AsyncAppConfigClient:
 
     async def list_configuration_profiles(
         self,
-        application_id: "capo_appconfig.types.id.Id",
+        application_id: "capo_appconfig.types.name.Name",
         *,
         config_overrides: Optional[AsyncAppConfigClientConfig] = None,
         max_results: Optional["capo_appconfig.types.max_results.MaxResults"] = None,
@@ -1754,7 +2053,7 @@ class AsyncAppConfigClient:
 
     async def iter_list_configuration_profiles(
         self,
-        application_id: "capo_appconfig.types.id.Id",
+        application_id: "capo_appconfig.types.name.Name",
         *,
         config_overrides: Optional[AsyncAppConfigClientConfig] = None,
         max_results: Optional["capo_appconfig.types.max_results.MaxResults"] = None,
@@ -1781,8 +2080,8 @@ class AsyncAppConfigClient:
 
     async def list_deployments(
         self,
-        application_id: "capo_appconfig.types.id.Id",
-        environment_id: "capo_appconfig.types.id.Id",
+        application_id: "capo_appconfig.types.name.Name",
+        environment_id: "capo_appconfig.types.name.Name",
         *,
         config_overrides: Optional[AsyncAppConfigClientConfig] = None,
         max_results: Optional["capo_appconfig.types.max_results.MaxResults"] = None,
@@ -1836,8 +2135,8 @@ class AsyncAppConfigClient:
 
     async def iter_list_deployments(
         self,
-        application_id: "capo_appconfig.types.id.Id",
-        environment_id: "capo_appconfig.types.id.Id",
+        application_id: "capo_appconfig.types.name.Name",
+        environment_id: "capo_appconfig.types.name.Name",
         *,
         config_overrides: Optional[AsyncAppConfigClientConfig] = None,
         max_results: Optional["capo_appconfig.types.max_results.MaxResults"] = None,
@@ -1937,7 +2236,7 @@ class AsyncAppConfigClient:
 
     async def list_environments(
         self,
-        application_id: "capo_appconfig.types.id.Id",
+        application_id: "capo_appconfig.types.name.Name",
         *,
         config_overrides: Optional[AsyncAppConfigClientConfig] = None,
         max_results: Optional["capo_appconfig.types.max_results.MaxResults"] = None,
@@ -1995,7 +2294,7 @@ class AsyncAppConfigClient:
 
     async def iter_list_environments(
         self,
-        application_id: "capo_appconfig.types.id.Id",
+        application_id: "capo_appconfig.types.name.Name",
         *,
         config_overrides: Optional[AsyncAppConfigClientConfig] = None,
         max_results: Optional["capo_appconfig.types.max_results.MaxResults"] = None,
@@ -2008,6 +2307,316 @@ class AsyncAppConfigClient:
                 config_overrides=config_overrides,
                 max_results=max_results,
                 next_token=_token,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def list_experiment_definitions(
+        self,
+        *,
+        config_overrides: Optional[AsyncAppConfigClientConfig] = None,
+        application_identifier: Optional[
+            "capo_appconfig.types.identifier.Identifier"
+        ] = None,
+        configuration_profile_identifier: Optional[
+            "capo_appconfig.types.identifier.Identifier"
+        ] = None,
+        environment_identifier: Optional[
+            "capo_appconfig.types.identifier.Identifier"
+        ] = None,
+        status: Optional[
+            "capo_appconfig.types.experiment_definition_status.ExperimentDefinitionStatus"
+        ] = None,
+        max_results: Optional["capo_appconfig.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_appconfig.types.next_token.NextToken"] = None,
+    ) -> "capo_appconfig.types.experiment_definitions.ExperimentDefinitions":
+        """<p>Lists the experiment definitions for an account. You can filter results by application, configuration profile, environment, or status.</p>
+
+        Args:
+            application_identifier: <p>The application ID or name to filter results.</p>
+            configuration_profile_identifier: <p>The configuration profile ID or name to filter results.</p>
+            environment_identifier: <p>The environment ID or name to filter results.</p>
+            status: <p>A filter for the experiment definition status.</p>
+            max_results: <p>The maximum number of items to return for this call.</p>
+            next_token: <p>A token to start the list from a previously truncated response.</p>
+
+        Raises:
+            capo_appconfig.errors.bad_request_exception.BadRequestException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
+            capo_appconfig.errors.internal_server_exception.InternalServerException: <p>There was an internal failure in the AppConfig service.</p>
+            capo_appconfig.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_appconfig.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            To list experiment definitions
+            The following ListExperimentDefinitions example lists the experiment definitions for an application.
+
+            >>> await client.list_experiment_definitions(application_identifier='339ohji')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_appconfig.types.list_experiment_definitions_request.ListExperimentDefinitionsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_appconfig.types.experiment_definitions.ExperimentDefinitions"
+        ]:
+            import capo_appconfig._operations.amazon_app_config.list_experiment_definitions
+
+            (
+                output,
+                http_response,
+            ) = await capo_appconfig._operations.amazon_app_config.list_experiment_definitions.async_list_experiment_definitions(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_appconfig.types.list_experiment_definitions_request.ListExperimentDefinitionsRequest = {}
+        if application_identifier is not None:
+            input_["application_identifier"] = application_identifier
+        if configuration_profile_identifier is not None:
+            input_["configuration_profile_identifier"] = (
+                configuration_profile_identifier
+            )
+        if environment_identifier is not None:
+            input_["environment_identifier"] = environment_identifier
+        if status is not None:
+            input_["status"] = status
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_experiment_definitions(
+        self,
+        *,
+        config_overrides: Optional[AsyncAppConfigClientConfig] = None,
+        application_identifier: Optional[
+            "capo_appconfig.types.identifier.Identifier"
+        ] = None,
+        configuration_profile_identifier: Optional[
+            "capo_appconfig.types.identifier.Identifier"
+        ] = None,
+        environment_identifier: Optional[
+            "capo_appconfig.types.identifier.Identifier"
+        ] = None,
+        status: Optional[
+            "capo_appconfig.types.experiment_definition_status.ExperimentDefinitionStatus"
+        ] = None,
+        max_results: Optional["capo_appconfig.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_appconfig.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_appconfig.types.experiment_definition_summary.ExperimentDefinitionSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_experiment_definitions(
+                config_overrides=config_overrides,
+                application_identifier=application_identifier,
+                configuration_profile_identifier=configuration_profile_identifier,
+                environment_identifier=environment_identifier,
+                status=status,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def list_experiment_run_events(
+        self,
+        application_identifier: "capo_appconfig.types.identifier.Identifier",
+        experiment_definition_identifier: "capo_appconfig.types.identifier.Identifier",
+        run: "capo_appconfig.types.positive_integer.PositiveInteger",
+        *,
+        config_overrides: Optional[AsyncAppConfigClientConfig] = None,
+        max_results: Optional["capo_appconfig.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_appconfig.types.next_token.NextToken"] = None,
+    ) -> "capo_appconfig.types.experiment_run_events.ExperimentRunEvents":
+        """<p>Lists the events for a specified experiment run. Events provide a timeline of actions and state changes that occurred during the run.</p>
+
+        Args:
+            application_identifier: <p>The application ID or name.</p>
+            experiment_definition_identifier: <p>The experiment definition ID or name.</p>
+            run: <p>The run number.</p>
+            max_results: <p>The maximum number of items to return.</p>
+            next_token: <p>A token to start the list from a previously truncated response.</p>
+
+        Raises:
+            capo_appconfig.errors.bad_request_exception.BadRequestException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
+            capo_appconfig.errors.internal_server_exception.InternalServerException: <p>There was an internal failure in the AppConfig service.</p>
+            capo_appconfig.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_appconfig.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            To list experiment run events
+            The following ListExperimentRunEvents example lists the events for an experiment run.
+
+            >>> await client.list_experiment_run_events(application_identifier='339ohji', experiment_definition_identifier='bsxyd7k', run=1)
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_appconfig.types.list_experiment_run_events_request.ListExperimentRunEventsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_appconfig.types.experiment_run_events.ExperimentRunEvents"
+        ]:
+            import capo_appconfig._operations.amazon_app_config.list_experiment_run_events
+
+            (
+                output,
+                http_response,
+            ) = await capo_appconfig._operations.amazon_app_config.list_experiment_run_events.async_list_experiment_run_events(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_appconfig.types.list_experiment_run_events_request.ListExperimentRunEventsRequest = {
+            "application_identifier": application_identifier,
+            "experiment_definition_identifier": experiment_definition_identifier,
+            "run": run,
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_experiment_run_events(
+        self,
+        application_identifier: "capo_appconfig.types.identifier.Identifier",
+        experiment_definition_identifier: "capo_appconfig.types.identifier.Identifier",
+        run: "capo_appconfig.types.positive_integer.PositiveInteger",
+        *,
+        config_overrides: Optional[AsyncAppConfigClientConfig] = None,
+        max_results: Optional["capo_appconfig.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_appconfig.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_appconfig.types.experiment_run_event.ExperimentRunEvent]":
+        _token = next_token
+        while True:
+            _response = await self.list_experiment_run_events(
+                application_identifier,
+                experiment_definition_identifier,
+                run,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def list_experiment_runs(
+        self,
+        application_identifier: "capo_appconfig.types.identifier.Identifier",
+        experiment_definition_identifier: "capo_appconfig.types.identifier.Identifier",
+        *,
+        config_overrides: Optional[AsyncAppConfigClientConfig] = None,
+        max_results: Optional["capo_appconfig.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_appconfig.types.next_token.NextToken"] = None,
+        status: Optional[
+            "capo_appconfig.types.experiment_run_status.ExperimentRunStatus"
+        ] = None,
+    ) -> "capo_appconfig.types.experiment_runs.ExperimentRuns":
+        """<p>Lists the experiment runs for a specified experiment definition. You can filter by status.</p>
+
+        Args:
+            application_identifier: <p>The application ID or name.</p>
+            experiment_definition_identifier: <p>The experiment definition ID or name.</p>
+            max_results: <p>The maximum number of items to return.</p>
+            next_token: <p>A token to start the list from a previously truncated response.</p>
+            status: <p>A filter for the experiment run status.</p>
+
+        Raises:
+            capo_appconfig.errors.bad_request_exception.BadRequestException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
+            capo_appconfig.errors.internal_server_exception.InternalServerException: <p>There was an internal failure in the AppConfig service.</p>
+            capo_appconfig.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_appconfig.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            To list experiment runs
+            The following ListExperimentRuns example lists the experiment runs for an experiment definition.
+
+            >>> await client.list_experiment_runs(application_identifier='339ohji', experiment_definition_identifier='bsxyd7k')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_appconfig.types.list_experiment_runs_request.ListExperimentRunsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_appconfig.types.experiment_runs.ExperimentRuns"
+        ]:
+            import capo_appconfig._operations.amazon_app_config.list_experiment_runs
+
+            (
+                output,
+                http_response,
+            ) = await capo_appconfig._operations.amazon_app_config.list_experiment_runs.async_list_experiment_runs(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_appconfig.types.list_experiment_runs_request.ListExperimentRunsRequest = {
+            "application_identifier": application_identifier,
+            "experiment_definition_identifier": experiment_definition_identifier,
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if status is not None:
+            input_["status"] = status
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_experiment_runs(
+        self,
+        application_identifier: "capo_appconfig.types.identifier.Identifier",
+        experiment_definition_identifier: "capo_appconfig.types.identifier.Identifier",
+        *,
+        config_overrides: Optional[AsyncAppConfigClientConfig] = None,
+        max_results: Optional["capo_appconfig.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_appconfig.types.next_token.NextToken"] = None,
+        status: Optional[
+            "capo_appconfig.types.experiment_run_status.ExperimentRunStatus"
+        ] = None,
+    ) -> "AsyncIterator[capo_appconfig.types.experiment_run_summary.ExperimentRunSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_experiment_runs(
+                application_identifier,
+                experiment_definition_identifier,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                status=status,
             )
             _page = _resolve_path(_response, ("items",))
             for _item in _page or []:
@@ -2188,8 +2797,8 @@ class AsyncAppConfigClient:
 
     async def list_hosted_configuration_versions(
         self,
-        application_id: "capo_appconfig.types.id.Id",
-        configuration_profile_id: "capo_appconfig.types.id.Id",
+        application_id: "capo_appconfig.types.name.Name",
+        configuration_profile_id: "capo_appconfig.types.long_name.LongName",
         *,
         config_overrides: Optional[AsyncAppConfigClientConfig] = None,
         max_results: Optional["capo_appconfig.types.max_results.MaxResults"] = None,
@@ -2257,8 +2866,8 @@ class AsyncAppConfigClient:
 
     async def iter_list_hosted_configuration_versions(
         self,
-        application_id: "capo_appconfig.types.id.Id",
-        configuration_profile_id: "capo_appconfig.types.id.Id",
+        application_id: "capo_appconfig.types.name.Name",
+        configuration_profile_id: "capo_appconfig.types.long_name.LongName",
         *,
         config_overrides: Optional[AsyncAppConfigClientConfig] = None,
         max_results: Optional["capo_appconfig.types.max_results.MaxResults"] = None,
@@ -2334,10 +2943,10 @@ class AsyncAppConfigClient:
 
     async def start_deployment(
         self,
-        application_id: "capo_appconfig.types.id.Id",
-        environment_id: "capo_appconfig.types.id.Id",
+        application_id: "capo_appconfig.types.name.Name",
+        environment_id: "capo_appconfig.types.name.Name",
         deployment_strategy_id: "capo_appconfig.types.deployment_strategy_id.DeploymentStrategyId",
-        configuration_profile_id: "capo_appconfig.types.id.Id",
+        configuration_profile_id: "capo_appconfig.types.long_name.LongName",
         configuration_version: "capo_appconfig.types.version.Version",
         *,
         config_overrides: Optional[AsyncAppConfigClientConfig] = None,
@@ -2349,8 +2958,11 @@ class AsyncAppConfigClient:
         dynamic_extension_parameters: Optional[
             "capo_appconfig.types.dynamic_parameter_map.DynamicParameterMap"
         ] = None,
+        latest_deployment_number: Optional[
+            "capo_appconfig.types.integer.Integer"
+        ] = None,
     ) -> "capo_appconfig.types.deployment.Deployment":
-        """<p>Starts a deployment.</p>
+        r"""<p>Starts a deployment.</p> <note> <p>AppConfig Agent supports deploying feature flag or free-form configuration data to specific segments or individual users during a gradual rollout. Entity-based gradual deployments ensure that once a user or segment receives a configuration version, they continue to receive that same version throughout the deployment period, regardless of which compute resource serves their requests. For more information, see <a href=\"https://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-agent-how-to-use.html#appconfig-entity-based-gradual-deployments\">Using AppConfig Agent for user-based or entity-based gradual deployments</a> </p> </note>
 
         Args:
             application_id: <p>The application ID.</p>
@@ -2362,6 +2974,7 @@ class AsyncAppConfigClient:
             tags: <p>Metadata to assign to the deployment. Tags help organize and categorize your AppConfig resources. Each tag consists of a key and an optional value, both of which you define.</p>
             kms_key_identifier: <p>The KMS key identifier (key ID, key alias, or key ARN). AppConfig uses this ID to encrypt the configuration data using a customer managed key. </p>
             dynamic_extension_parameters: <p>A map of dynamic extension parameter names to values to pass to associated extensions with <code>PRE_START_DEPLOYMENT</code> actions.</p>
+            latest_deployment_number: <p>The number of the latest deployment. Use this value to ensure that the deployment starts from the expected state and to prevent conflicting updates.</p>
 
         Raises:
             capo_appconfig.errors.bad_request_exception.BadRequestException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
@@ -2400,6 +3013,90 @@ class AsyncAppConfigClient:
             input_["kms_key_identifier"] = kms_key_identifier
         if dynamic_extension_parameters is not None:
             input_["dynamic_extension_parameters"] = dynamic_extension_parameters
+        if latest_deployment_number is not None:
+            input_["latest_deployment_number"] = latest_deployment_number
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def start_experiment_run(
+        self,
+        application_identifier: "capo_appconfig.types.identifier.Identifier",
+        experiment_definition_identifier: "capo_appconfig.types.identifier.Identifier",
+        *,
+        config_overrides: Optional[AsyncAppConfigClientConfig] = None,
+        description: Optional["capo_appconfig.types.description.Description"] = None,
+        exposure_percentage: Optional[
+            "capo_appconfig.types.nullable_percentage.NullablePercentage"
+        ] = None,
+        treatment_overrides: Optional[
+            "capo_appconfig.types.treatment_overrides.TreatmentOverrides"
+        ] = None,
+        tags: Optional["capo_appconfig.types.tag_map.TagMap"] = None,
+        deployment_parameters: Optional[
+            "capo_appconfig.types.deployment_parameters.DeploymentParameters"
+        ] = None,
+    ) -> "capo_appconfig.types.experiment_run.ExperimentRun":
+        r"""<p>Starts an experiment run for the specified experiment definition. An experiment run delivers treatments to the target audience and collects metrics. You can start multiple experiment runs from the same experiment definition.</p> <note> <p>Billing for this experiment begins when you call this operation and continues until the experiment is stopped. For pricing details, see <a href=\"https://aws.amazon.com/systems-manager/pricing/\">AppConfig pricing</a>.</p> </note>
+
+        Args:
+            application_identifier: <p>The application ID or name.</p>
+            experiment_definition_identifier: <p>The experiment definition ID or name.</p>
+            description: <p>A description of this experiment run.</p>
+            exposure_percentage: <p>The percentage of the target audience to expose to treatments. Set to 0 to validate the experiment before exposing production users.</p>
+            treatment_overrides: <p>Treatment assignment overrides that assign specific entity IDs to treatments directly, bypassing random assignment.</p>
+            tags: <p>The tags to assign to the experiment run.</p>
+            deployment_parameters: <p>The deployment parameters for the experiment run, including a KMS key identifier for encryption.</p>
+
+        Raises:
+            capo_appconfig.errors.bad_request_exception.BadRequestException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
+            capo_appconfig.errors.conflict_exception.ConflictException: <p>The request could not be processed because of conflict in the current state of the resource.</p>
+            capo_appconfig.errors.internal_server_exception.InternalServerException: <p>There was an internal failure in the AppConfig service.</p>
+            capo_appconfig.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_appconfig.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            To start an experiment run
+            The following StartExperimentRun example starts an experiment run with 50% audience exposure.
+
+            >>> await client.start_experiment_run(application_identifier='339ohji', experiment_definition_identifier='bsxyd7k', exposure_percentage=50.0)
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_appconfig.types.start_experiment_run_request.StartExperimentRunRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_appconfig.types.experiment_run.ExperimentRun"
+        ]:
+            import capo_appconfig._operations.amazon_app_config.start_experiment_run
+
+            (
+                output,
+                http_response,
+            ) = await capo_appconfig._operations.amazon_app_config.start_experiment_run.async_start_experiment_run(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_appconfig.types.start_experiment_run_request.StartExperimentRunRequest = {
+            "application_identifier": application_identifier,
+            "experiment_definition_identifier": experiment_definition_identifier,
+        }
+        if description is not None:
+            input_["description"] = description
+        if exposure_percentage is not None:
+            input_["exposure_percentage"] = exposure_percentage
+        if treatment_overrides is not None:
+            input_["treatment_overrides"] = treatment_overrides
+        if tags is not None:
+            input_["tags"] = tags
+        if deployment_parameters is not None:
+            input_["deployment_parameters"] = deployment_parameters
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -2411,8 +3108,8 @@ class AsyncAppConfigClient:
 
     async def stop_deployment(
         self,
-        application_id: "capo_appconfig.types.id.Id",
-        environment_id: "capo_appconfig.types.id.Id",
+        application_id: "capo_appconfig.types.name.Name",
+        environment_id: "capo_appconfig.types.name.Name",
         deployment_number: "capo_appconfig.types.integer.Integer",
         *,
         config_overrides: Optional[AsyncAppConfigClientConfig] = None,
@@ -2460,6 +3157,77 @@ class AsyncAppConfigClient:
         }
         if allow_revert is not None:
             input_["allow_revert"] = allow_revert
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def stop_experiment_run(
+        self,
+        application_identifier: "capo_appconfig.types.identifier.Identifier",
+        experiment_definition_identifier: "capo_appconfig.types.identifier.Identifier",
+        run: "capo_appconfig.types.positive_integer.PositiveInteger",
+        *,
+        config_overrides: Optional[AsyncAppConfigClientConfig] = None,
+        result: Optional[
+            "capo_appconfig.types.experiment_run_result.ExperimentRunResult"
+        ] = None,
+        deployment_parameters: Optional[
+            "capo_appconfig.types.deployment_parameters.DeploymentParameters"
+        ] = None,
+    ) -> "capo_appconfig.types.experiment_run.ExperimentRun":
+        """<p>Stops a running experiment. Stopping an experiment run ends audience exposure and returns users to the currently deployed feature flag configuration.</p>
+
+        Args:
+            application_identifier: <p>The application ID or name.</p>
+            experiment_definition_identifier: <p>The experiment definition ID or name.</p>
+            run: <p>The run number to stop.</p>
+            result: <p>The result of the experiment run, including an executive summary and reasons for or against launching.</p>
+            deployment_parameters: <p>The deployment parameters for the stop operation.</p>
+
+        Raises:
+            capo_appconfig.errors.bad_request_exception.BadRequestException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
+            capo_appconfig.errors.conflict_exception.ConflictException: <p>The request could not be processed because of conflict in the current state of the resource.</p>
+            capo_appconfig.errors.internal_server_exception.InternalServerException: <p>There was an internal failure in the AppConfig service.</p>
+            capo_appconfig.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_appconfig.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            To stop an experiment run
+            The following StopExperimentRun example stops a running experiment and records the result.
+
+            >>> await client.stop_experiment_run(application_identifier='339ohji', experiment_definition_identifier='bsxyd7k', run=1, result={'ExecutiveSummary': 't1 wins with 16% lift in conversion', 'ReasonsToLaunch': 'Significant improvement in key metric'})
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_appconfig.types.stop_experiment_run_request.StopExperimentRunRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_appconfig.types.experiment_run.ExperimentRun"
+        ]:
+            import capo_appconfig._operations.amazon_app_config.stop_experiment_run
+
+            (
+                output,
+                http_response,
+            ) = await capo_appconfig._operations.amazon_app_config.stop_experiment_run.async_stop_experiment_run(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_appconfig.types.stop_experiment_run_request.StopExperimentRunRequest = {
+            "application_identifier": application_identifier,
+            "experiment_definition_identifier": experiment_definition_identifier,
+            "run": run,
+        }
+        if result is not None:
+            input_["result"] = result
+        if deployment_parameters is not None:
+            input_["deployment_parameters"] = deployment_parameters
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -2582,11 +3350,15 @@ class AsyncAppConfigClient:
         deletion_protection: Optional[
             "capo_appconfig.types.deletion_protection_settings.DeletionProtectionSettings"
         ] = None,
+        vended_metrics: Optional[
+            "capo_appconfig.types.vended_metrics_settings.VendedMetricsSettings"
+        ] = None,
     ) -> "capo_appconfig.types.account_settings.AccountSettings":
         r"""<p>Updates the value of the <code>DeletionProtection</code> parameter.</p>
 
         Args:
             deletion_protection: <p>A parameter to configure deletion protection. Deletion protection prevents a user from deleting a configuration profile or an environment if AppConfig has called either <a href=\"https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_appconfigdata_GetLatestConfiguration.html\">GetLatestConfiguration</a> or for the configuration profile or from the environment during the specified interval. The default interval for <code>ProtectionPeriodInMinutes</code> is 60.</p>
+            vended_metrics: <p>The configuration for vended metrics in the account.</p>
 
         Raises:
             capo_appconfig.errors.bad_request_exception.BadRequestException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
@@ -2613,6 +3385,8 @@ class AsyncAppConfigClient:
         input_: capo_appconfig.types.update_account_settings_request.UpdateAccountSettingsRequest = {}
         if deletion_protection is not None:
             input_["deletion_protection"] = deletion_protection
+        if vended_metrics is not None:
+            input_["vended_metrics"] = vended_metrics
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -2624,7 +3398,7 @@ class AsyncAppConfigClient:
 
     async def update_application(
         self,
-        application_id: "capo_appconfig.types.id.Id",
+        application_id: "capo_appconfig.types.name.Name",
         *,
         config_overrides: Optional[AsyncAppConfigClientConfig] = None,
         name: Optional["capo_appconfig.types.name.Name"] = None,
@@ -2682,8 +3456,8 @@ class AsyncAppConfigClient:
 
     async def update_configuration_profile(
         self,
-        application_id: "capo_appconfig.types.id.Id",
-        configuration_profile_id: "capo_appconfig.types.id.Id",
+        application_id: "capo_appconfig.types.name.Name",
+        configuration_profile_id: "capo_appconfig.types.long_name.LongName",
         *,
         config_overrides: Optional[AsyncAppConfigClientConfig] = None,
         name: Optional["capo_appconfig.types.long_name.LongName"] = None,
@@ -2840,8 +3614,8 @@ class AsyncAppConfigClient:
 
     async def update_environment(
         self,
-        application_id: "capo_appconfig.types.id.Id",
-        environment_id: "capo_appconfig.types.id.Id",
+        application_id: "capo_appconfig.types.name.Name",
+        environment_id: "capo_appconfig.types.name.Name",
         *,
         config_overrides: Optional[AsyncAppConfigClientConfig] = None,
         name: Optional["capo_appconfig.types.name.Name"] = None,
@@ -2894,6 +3668,173 @@ class AsyncAppConfigClient:
             input_["description"] = description
         if monitors is not None:
             input_["monitors"] = monitors
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_experiment_definition(
+        self,
+        application_identifier: "capo_appconfig.types.identifier.Identifier",
+        experiment_definition_identifier: "capo_appconfig.types.identifier.Identifier",
+        *,
+        config_overrides: Optional[AsyncAppConfigClientConfig] = None,
+        treatments: Optional[
+            "capo_appconfig.types.treatment_input_list.TreatmentInputList"
+        ] = None,
+        control: Optional["capo_appconfig.types.treatment_input.TreatmentInput"] = None,
+        hypothesis: Optional["capo_appconfig.types.description.Description"] = None,
+        audience_rule: Optional["capo_appconfig.types.rule.Rule"] = None,
+        audience_description: Optional[
+            "capo_appconfig.types.description.Description"
+        ] = None,
+        launch_criteria: Optional[
+            "capo_appconfig.types.description.Description"
+        ] = None,
+    ) -> "capo_appconfig.types.experiment_definition.ExperimentDefinition":
+        """<p>Updates an experiment definition. You can update treatments, the control, audience rules, and other properties. You cannot update an experiment definition while an experiment run is active.</p>
+
+        Args:
+            application_identifier: <p>The application ID or name.</p>
+            experiment_definition_identifier: <p>The experiment definition ID or name.</p>
+            treatments: <p>The updated list of treatments to evaluate during the experiment. Each treatment defines a distinct variation compared to the control.</p>
+            control: <p>An updated control treatment.</p>
+            hypothesis: <p>An updated hypothesis.</p>
+            audience_rule: <p>An updated audience rule.</p>
+            audience_description: <p>An updated audience description.</p>
+            launch_criteria: <p>Updated launch criteria.</p>
+
+        Raises:
+            capo_appconfig.errors.bad_request_exception.BadRequestException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
+            capo_appconfig.errors.conflict_exception.ConflictException: <p>The request could not be processed because of conflict in the current state of the resource.</p>
+            capo_appconfig.errors.internal_server_exception.InternalServerException: <p>There was an internal failure in the AppConfig service.</p>
+            capo_appconfig.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_appconfig.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            To update an experiment definition
+            The following UpdateExperimentDefinition example updates the hypothesis and audience rule of an experiment definition.
+
+            >>> await client.update_experiment_definition(application_identifier='339ohji', experiment_definition_identifier='bsxyd7k', hypothesis='Enabling the feature will increase conversion by 10%', audience_rule='(eq $country "US")')
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_appconfig.types.update_experiment_definition_request.UpdateExperimentDefinitionRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_appconfig.types.experiment_definition.ExperimentDefinition"
+        ]:
+            import capo_appconfig._operations.amazon_app_config.update_experiment_definition
+
+            (
+                output,
+                http_response,
+            ) = await capo_appconfig._operations.amazon_app_config.update_experiment_definition.async_update_experiment_definition(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_appconfig.types.update_experiment_definition_request.UpdateExperimentDefinitionRequest = {
+            "application_identifier": application_identifier,
+            "experiment_definition_identifier": experiment_definition_identifier,
+        }
+        if treatments is not None:
+            input_["treatments"] = treatments
+        if control is not None:
+            input_["control"] = control
+        if hypothesis is not None:
+            input_["hypothesis"] = hypothesis
+        if audience_rule is not None:
+            input_["audience_rule"] = audience_rule
+        if audience_description is not None:
+            input_["audience_description"] = audience_description
+        if launch_criteria is not None:
+            input_["launch_criteria"] = launch_criteria
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_experiment_run(
+        self,
+        application_identifier: "capo_appconfig.types.identifier.Identifier",
+        experiment_definition_identifier: "capo_appconfig.types.identifier.Identifier",
+        run: "capo_appconfig.types.positive_integer.PositiveInteger",
+        *,
+        config_overrides: Optional[AsyncAppConfigClientConfig] = None,
+        description: Optional["capo_appconfig.types.description.Description"] = None,
+        exposure_percentage: Optional[
+            "capo_appconfig.types.nullable_percentage.NullablePercentage"
+        ] = None,
+        treatment_overrides: Optional[
+            "capo_appconfig.types.treatment_overrides.TreatmentOverrides"
+        ] = None,
+        deployment_parameters: Optional[
+            "capo_appconfig.types.deployment_parameters.DeploymentParameters"
+        ] = None,
+    ) -> "capo_appconfig.types.experiment_run.ExperimentRun":
+        """<p>Updates a running experiment. Use this operation to increase audience exposure, modify treatment assignment overrides, or update the description of an active experiment run. Audience exposure can only be increased, not decreased.</p>
+
+        Args:
+            application_identifier: <p>The application ID or name.</p>
+            experiment_definition_identifier: <p>The experiment definition ID or name.</p>
+            run: <p>The run number to update.</p>
+            description: <p>An updated description for the experiment run.</p>
+            exposure_percentage: <p>The new exposure percentage. This value can only be increased from the current setting.</p>
+            treatment_overrides: <p>The updated treatment assignment overrides that assign specific entity IDs to treatments, bypassing random assignment.</p>
+            deployment_parameters: <p>The updated deployment parameters for the experiment run.</p>
+
+        Raises:
+            capo_appconfig.errors.bad_request_exception.BadRequestException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
+            capo_appconfig.errors.conflict_exception.ConflictException: <p>The request could not be processed because of conflict in the current state of the resource.</p>
+            capo_appconfig.errors.internal_server_exception.InternalServerException: <p>There was an internal failure in the AppConfig service.</p>
+            capo_appconfig.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_appconfig.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            To update an experiment run
+            The following UpdateExperimentRun example increases the exposure percentage of a running experiment.
+
+            >>> await client.update_experiment_run(application_identifier='339ohji', experiment_definition_identifier='bsxyd7k', run=1, exposure_percentage=75.0)
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_appconfig.types.update_experiment_run_request.UpdateExperimentRunRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_appconfig.types.experiment_run.ExperimentRun"
+        ]:
+            import capo_appconfig._operations.amazon_app_config.update_experiment_run
+
+            (
+                output,
+                http_response,
+            ) = await capo_appconfig._operations.amazon_app_config.update_experiment_run.async_update_experiment_run(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_appconfig.types.update_experiment_run_request.UpdateExperimentRunRequest = {
+            "application_identifier": application_identifier,
+            "experiment_definition_identifier": experiment_definition_identifier,
+            "run": run,
+        }
+        if description is not None:
+            input_["description"] = description
+        if exposure_percentage is not None:
+            input_["exposure_percentage"] = exposure_percentage
+        if treatment_overrides is not None:
+            input_["treatment_overrides"] = treatment_overrides
+        if deployment_parameters is not None:
+            input_["deployment_parameters"] = deployment_parameters
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -3018,8 +3959,8 @@ class AsyncAppConfigClient:
 
     async def validate_configuration(
         self,
-        application_id: "capo_appconfig.types.id.Id",
-        configuration_profile_id: "capo_appconfig.types.id.Id",
+        application_id: "capo_appconfig.types.name.Name",
+        configuration_profile_id: "capo_appconfig.types.long_name.LongName",
         configuration_version: "capo_appconfig.types.version.Version",
         *,
         config_overrides: Optional[AsyncAppConfigClientConfig] = None,

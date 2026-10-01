@@ -101,10 +101,11 @@ def get_signer(
 def build_request(options: OperationOptions | AsyncOperationOptions) -> zapros.Request:
     endpoint = resolve(
         EndpointParams(
-            Region=options.region,
             UseDualStack=options.use_dual_stack,
             UseFIPS=options.use_fips,
             Endpoint=options.endpoint,
+            Region=options.region,
+            SubServiceType=options.sub_service_type,
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + "/global-settings"

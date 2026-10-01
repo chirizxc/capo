@@ -2,7 +2,7 @@
 
 from typing import TYPE_CHECKING
 
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 from capo_connect.errors import DeserializationError
 
@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_connect.types.action_summaries
     import capo_connect.types.arn
     import capo_connect.types.event_source_name
+    import capo_connect.types.rule_capability_tiers
     import capo_connect.types.rule_id
     import capo_connect.types.rule_name
     import capo_connect.types.rule_publish_status
@@ -27,6 +28,10 @@ class RuleSummary(TypedDict, closed=True):
     """<p>The name of the event source.</p>"""
     publish_status: "capo_connect.types.rule_publish_status.RulePublishStatus"
     """<p>The publish status of the rule.</p>"""
+    rule_capability_tiers: NotRequired[
+        "capo_connect.types.rule_capability_tiers.RuleCapabilityTiers"
+    ]
+    """<p>The list of capability tiers associated with the rule. Used for categorizing rules by capability (for example, <code>GenerativeAI</code>).</p>"""
     action_summaries: "capo_connect.types.action_summaries.ActionSummaries"
     """<p>A list of ActionTypes associated with a rule. </p>"""
     created_time: "capo_connect.types.timestamp.Timestamp"
@@ -51,6 +56,14 @@ def serialize_json(value: RuleSummary) -> dict:
     out["PublishStatus"] = capo_connect.types.rule_publish_status.serialize_json(
         value["publish_status"]
     )
+    if "rule_capability_tiers" in value:
+        import capo_connect.types.rule_capability_tiers
+
+        out["RuleCapabilityTiers"] = (
+            capo_connect.types.rule_capability_tiers.serialize_json(
+                value["rule_capability_tiers"]
+            )
+        )
     import capo_connect.types.action_summaries
 
     out["ActionSummaries"] = capo_connect.types.action_summaries.serialize_json(
@@ -101,6 +114,14 @@ def deserialize_json(data: dict) -> RuleSummary:
         )
     else:
         raise DeserializationError("RuleSummary.publish_status required")
+    if data.get("RuleCapabilityTiers") is not None:
+        import capo_connect.types.rule_capability_tiers
+
+        out["rule_capability_tiers"] = (
+            capo_connect.types.rule_capability_tiers.deserialize_json(
+                data["RuleCapabilityTiers"]
+            )
+        )
     if data.get("ActionSummaries") is not None:
         import capo_connect.types.action_summaries
 

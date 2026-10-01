@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 from capo_bedrock_agentcore_control.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_bedrock_agentcore_control.types.http_api_schema_configuration
     import capo_bedrock_agentcore_control.types.runtime_arn
     import capo_bedrock_agentcore_control.types.runtime_qualifier
 
@@ -18,6 +19,10 @@ class RuntimeTargetConfiguration(TypedDict, closed=True):
         "capo_bedrock_agentcore_control.types.runtime_qualifier.RuntimeQualifier"
     ]
     """<p>The qualifier for the agent runtime, used to target a specific endpoint version. If not specified, the default endpoint is used.</p>"""
+    schema: NotRequired[
+        "capo_bedrock_agentcore_control.types.http_api_schema_configuration.HttpApiSchemaConfiguration"
+    ]
+    """<p>The API schema configuration that defines the structure of the runtime target's API.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -26,6 +31,14 @@ def serialize_json(value: RuntimeTargetConfiguration) -> dict:
     out["arn"] = value["arn"]
     if "qualifier" in value:
         out["qualifier"] = value["qualifier"]
+    if "schema" in value:
+        import capo_bedrock_agentcore_control.types.http_api_schema_configuration
+
+        out["schema"] = (
+            capo_bedrock_agentcore_control.types.http_api_schema_configuration.serialize_json(
+                value["schema"]
+            )
+        )
     return out
 
 
@@ -37,4 +50,12 @@ def deserialize_json(data: dict) -> RuntimeTargetConfiguration:
         raise DeserializationError("RuntimeTargetConfiguration.arn required")
     if data.get("qualifier") is not None:
         out["qualifier"] = data["qualifier"]
+    if data.get("schema") is not None:
+        import capo_bedrock_agentcore_control.types.http_api_schema_configuration
+
+        out["schema"] = (
+            capo_bedrock_agentcore_control.types.http_api_schema_configuration.deserialize_json(
+                data["schema"]
+            )
+        )
     return out

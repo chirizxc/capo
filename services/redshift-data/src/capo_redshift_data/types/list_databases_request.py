@@ -4,8 +4,6 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import NotRequired, TypedDict
 
-from capo_redshift_data.errors import DeserializationError
-
 if TYPE_CHECKING:
     import capo_redshift_data.types.cluster_identifier_string
     import capo_redshift_data.types.page_size
@@ -19,7 +17,7 @@ class ListDatabasesRequest(TypedDict, closed=True):
         "capo_redshift_data.types.cluster_identifier_string.ClusterIdentifierString"
     ]
     """<p>The cluster identifier. This parameter is required when connecting to a cluster and authenticating using either Secrets Manager or temporary credentials. </p>"""
-    database: "capo_redshift_data.types.string.String"
+    database: NotRequired["capo_redshift_data.types.string.String"]
     """<p>The name of the database. This parameter is required when authenticating using either Secrets Manager or temporary credentials. </p>"""
     secret_arn: NotRequired["capo_redshift_data.types.secret_arn.SecretArn"]
     """<p>The name or ARN of the secret that enables access to the database. This parameter is required when authenticating using Secrets Manager. </p>"""
@@ -40,7 +38,8 @@ def serialize_aws_json_1_1(value: ListDatabasesRequest) -> dict:
     out: dict = {}
     if "cluster_identifier" in value:
         out["ClusterIdentifier"] = value["cluster_identifier"]
-    out["Database"] = value["database"]
+    if "database" in value:
+        out["Database"] = value["database"]
     if "secret_arn" in value:
         out["SecretArn"] = value["secret_arn"]
     if "db_user" in value:
@@ -59,8 +58,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListDatabasesRequest:
         out["cluster_identifier"] = data["ClusterIdentifier"]
     if data.get("Database") is not None:
         out["database"] = data["Database"]
-    else:
-        raise DeserializationError("ListDatabasesRequest.database required")
     if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
     if data.get("DbUser") is not None:

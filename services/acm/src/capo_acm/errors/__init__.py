@@ -23,6 +23,9 @@ from ._base import (
 )
 from .access_denied_exception import AccessDeniedException as AccessDeniedException
 from .conflict_exception import ConflictException as ConflictException
+from .internal_server_exception import (
+    InternalServerException as InternalServerException,
+)
 from .invalid_args_exception import InvalidArgsException as InvalidArgsException
 from .invalid_arn_exception import InvalidArnException as InvalidArnException
 from .invalid_domain_validation_options_exception import (
@@ -40,6 +43,9 @@ from .request_in_progress_exception import (
 from .resource_in_use_exception import ResourceInUseException as ResourceInUseException
 from .resource_not_found_exception import (
     ResourceNotFoundException as ResourceNotFoundException,
+)
+from .service_quota_exceeded_exception import (
+    ServiceQuotaExceededException as ServiceQuotaExceededException,
 )
 from .tag_policy_exception import TagPolicyException as TagPolicyException
 from .throttling_exception import ThrottlingException as ThrottlingException

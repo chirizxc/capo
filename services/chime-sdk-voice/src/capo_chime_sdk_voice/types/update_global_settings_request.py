@@ -2,30 +2,31 @@
 
 from typing import TYPE_CHECKING
 
-from typing_extensions import NotRequired, TypedDict
+from typing_extensions import TypedDict
+
+from capo_chime_sdk_voice.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_chime_sdk_voice.types.voice_connector_settings
 
 
 class UpdateGlobalSettingsRequest(TypedDict, closed=True):
-    voice_connector: NotRequired[
+    voice_connector: (
         "capo_chime_sdk_voice.types.voice_connector_settings.VoiceConnectorSettings"
-    ]
+    )
     """<p>The Voice Connector settings.</p>"""
 
 
 # --- restJson1 ser/de ---
 def serialize_json(value: UpdateGlobalSettingsRequest) -> dict:
     out: dict = {}
-    if "voice_connector" in value:
-        import capo_chime_sdk_voice.types.voice_connector_settings
+    import capo_chime_sdk_voice.types.voice_connector_settings
 
-        out["VoiceConnector"] = (
-            capo_chime_sdk_voice.types.voice_connector_settings.serialize_json(
-                value["voice_connector"]
-            )
+    out["VoiceConnector"] = (
+        capo_chime_sdk_voice.types.voice_connector_settings.serialize_json(
+            value["voice_connector"]
         )
+    )
     return out
 
 
@@ -38,5 +39,9 @@ def deserialize_json(data: dict) -> UpdateGlobalSettingsRequest:
             capo_chime_sdk_voice.types.voice_connector_settings.deserialize_json(
                 data["VoiceConnector"]
             )
+        )
+    else:
+        raise DeserializationError(
+            "UpdateGlobalSettingsRequest.voice_connector required"
         )
     return out

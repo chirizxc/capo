@@ -32,6 +32,8 @@ class ConnectorProperty(TypedDict, closed=True):
     """<p>Specifies where this property should be included in REST requests, such as in headers, query parameters, or request body.</p>"""
     property_type: "capo_glue.types.property_type.PropertyType"
     """<p>The data type of this property</p>"""
+    format: NotRequired["str"]
+    """<p>A format template for the property value that defines how the value should be formatted before sending it in API requests. Use <code>{value}</code> as a placeholder for the actual property value (for example, <code>SSWS {value}</code>).</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -62,6 +64,8 @@ def serialize_aws_json_1_1(value: ConnectorProperty) -> dict:
     out["PropertyType"] = capo_glue.types.property_type.serialize_aws_json_1_1(
         value["property_type"]
     )
+    if "format" in value:
+        out["Format"] = value["format"]
     return out
 
 
@@ -101,4 +105,6 @@ def deserialize_aws_json_1_1(data: dict) -> ConnectorProperty:
         )
     else:
         raise DeserializationError("ConnectorProperty.property_type required")
+    if data.get("Format") is not None:
+        out["format"] = data["Format"]
     return out

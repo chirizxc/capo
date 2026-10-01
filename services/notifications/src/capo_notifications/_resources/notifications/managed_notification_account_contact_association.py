@@ -40,12 +40,14 @@ class ManagedNotificationAccountContactAssociation:
         managed_notification_configuration_arn: "capo_notifications.types.managed_notification_configuration_os_arn.ManagedNotificationConfigurationOsArn",
         *,
         config_overrides: Optional[NotificationsClientConfig] = None,
+        is_sensitive_events_subscribed: Optional[bool] = None,
     ) -> "capo_notifications.types.associate_managed_notification_account_contact_response.AssociateManagedNotificationAccountContactResponse":
         """<p>Associates an Account Contact with a particular <code>ManagedNotificationConfiguration</code>.</p>
 
         Args:
             contact_identifier: <p>A unique value of an Account Contact Type to associate with the <code>ManagedNotificationConfiguration</code>.</p>
             managed_notification_configuration_arn: <p>The Amazon Resource Name (ARN) of the <code>ManagedNotificationConfiguration</code> to associate with the Account Contact.</p>
+            is_sensitive_events_subscribed: <p>Specifies whether this contact is subscribed to sensitive events. The <code>notifications:SubscribeSensitiveEvents</code> permission controls access to sensitive events. Defaults to false.</p>
 
         Raises:
             capo_notifications.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
@@ -77,6 +79,8 @@ class ManagedNotificationAccountContactAssociation:
             "contact_identifier": contact_identifier,
             "managed_notification_configuration_arn": managed_notification_configuration_arn,
         }
+        if is_sensitive_events_subscribed is not None:
+            input_["is_sensitive_events_subscribed"] = is_sensitive_events_subscribed
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -148,12 +152,14 @@ class AsyncManagedNotificationAccountContactAssociation:
         managed_notification_configuration_arn: "capo_notifications.types.managed_notification_configuration_os_arn.ManagedNotificationConfigurationOsArn",
         *,
         config_overrides: Optional[AsyncNotificationsClientConfig] = None,
+        is_sensitive_events_subscribed: Optional[bool] = None,
     ) -> "capo_notifications.types.associate_managed_notification_account_contact_response.AssociateManagedNotificationAccountContactResponse":
         """<p>Associates an Account Contact with a particular <code>ManagedNotificationConfiguration</code>.</p>
 
         Args:
             contact_identifier: <p>A unique value of an Account Contact Type to associate with the <code>ManagedNotificationConfiguration</code>.</p>
             managed_notification_configuration_arn: <p>The Amazon Resource Name (ARN) of the <code>ManagedNotificationConfiguration</code> to associate with the Account Contact.</p>
+            is_sensitive_events_subscribed: <p>Specifies whether this contact is subscribed to sensitive events. The <code>notifications:SubscribeSensitiveEvents</code> permission controls access to sensitive events. Defaults to false.</p>
 
         Raises:
             capo_notifications.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
@@ -186,6 +192,8 @@ class AsyncManagedNotificationAccountContactAssociation:
             "contact_identifier": contact_identifier,
             "managed_notification_configuration_arn": managed_notification_configuration_arn,
         }
+        if is_sensitive_events_subscribed is not None:
+            input_["is_sensitive_events_subscribed"] = is_sensitive_events_subscribed
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

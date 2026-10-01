@@ -7,11 +7,13 @@ from typing_extensions import NotRequired, TypedDict
 from capo_kinesis.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_kinesis.types.channel_count_object
     import capo_kinesis.types.consumer_count_object
     import capo_kinesis.types.encryption_type
     import capo_kinesis.types.enhanced_monitoring_list
     import capo_kinesis.types.key_id
     import capo_kinesis.types.max_record_size_in_ki_b
+    import capo_kinesis.types.record_distribution_strategy
     import capo_kinesis.types.retention_period_hours
     import capo_kinesis.types.shard_count_object
     import capo_kinesis.types.stream_arn
@@ -64,6 +66,14 @@ class StreamDescriptionSummary(TypedDict, closed=True):
         "capo_kinesis.types.max_record_size_in_ki_b.MaxRecordSizeInKiB"
     ]
     """<p>The maximum record size of a single record in kibibyte (KiB) that you can write to, and read from a stream.</p>"""
+    channel_count: NotRequired[
+        "capo_kinesis.types.channel_count_object.ChannelCountObject"
+    ]
+    """<p>The number of channels associated with the stream.</p>"""
+    record_distribution_strategy: NotRequired[
+        "capo_kinesis.types.record_distribution_strategy.RecordDistributionStrategy"
+    ]
+    """<p>The record distribution strategy that the stream currently uses. A value of <code>AUTO</code> indicates that Amazon Kinesis Data Streams distributes records across shards using service-managed algorithms. A value of <code>USER_PARTITION_KEY</code> indicates that shard placement is determined by the partition key that producers supply. This field is only present for streams that use the on-demand capacity mode.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -124,6 +134,16 @@ def serialize_aws_json_1_1(value: StreamDescriptionSummary) -> dict:
         )
     if "max_record_size_in_ki_b" in value:
         out["MaxRecordSizeInKiB"] = value["max_record_size_in_ki_b"]
+    if "channel_count" in value:
+        out["ChannelCount"] = value["channel_count"]
+    if "record_distribution_strategy" in value:
+        import capo_kinesis.types.record_distribution_strategy
+
+        out["RecordDistributionStrategy"] = (
+            capo_kinesis.types.record_distribution_strategy.serialize_aws_json_1_1(
+                value["record_distribution_strategy"]
+            )
+        )
     return out
 
 
@@ -213,4 +233,14 @@ def deserialize_aws_json_1_1(data: dict) -> StreamDescriptionSummary:
         )
     if data.get("MaxRecordSizeInKiB") is not None:
         out["max_record_size_in_ki_b"] = data["MaxRecordSizeInKiB"]
+    if data.get("ChannelCount") is not None:
+        out["channel_count"] = data["ChannelCount"]
+    if data.get("RecordDistributionStrategy") is not None:
+        import capo_kinesis.types.record_distribution_strategy
+
+        out["record_distribution_strategy"] = (
+            capo_kinesis.types.record_distribution_strategy.deserialize_aws_json_1_1(
+                data["RecordDistributionStrategy"]
+            )
+        )
     return out

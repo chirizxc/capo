@@ -14,7 +14,7 @@ class SendWorkflowStepActionResponse(TypedDict, closed=True):
     step_execution_id: NotRequired[
         "capo_imagebuilder.types.workflow_step_execution_id.WorkflowStepExecutionId"
     ]
-    """<p>The workflow step that sent the step action.</p>"""
+    """<p>The unique identifier for the workflow step that received the action, as specified in the request.</p>"""
     image_build_version_arn: NotRequired[
         "capo_imagebuilder.types.image_build_version_arn.ImageBuildVersionArn"
     ]

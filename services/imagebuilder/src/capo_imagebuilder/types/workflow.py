@@ -33,7 +33,7 @@ class Workflow(TypedDict, closed=True):
     ]
     """<p>Describes what change has been made in this version of the workflow, or what makes this version different from other versions of the workflow.</p>"""
     type: NotRequired["capo_imagebuilder.types.workflow_type.WorkflowType"]
-    """<p>Specifies the image creation stage that the workflow applies to. Image Builder currently supports build and test workflows.</p>"""
+    """<p>The image creation stage that the workflow applies to.</p>"""
     state: NotRequired["capo_imagebuilder.types.workflow_state.WorkflowState"]
     """<p>Describes the current status of the workflow and the reason for that status.</p>"""
     owner: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
@@ -45,11 +45,11 @@ class Workflow(TypedDict, closed=True):
     date_created: NotRequired["capo_imagebuilder.types.date_time.DateTime"]
     """<p>The timestamp when Image Builder created the workflow resource.</p>"""
     tags: NotRequired["capo_imagebuilder.types.tag_map.TagMap"]
-    """<p>The tags that apply to the workflow resource</p>"""
+    """<p>The tags that apply to the workflow resource.</p>"""
     parameters: NotRequired[
         "capo_imagebuilder.types.workflow_parameter_detail_list.WorkflowParameterDetailList"
     ]
-    """<p>An array of input parameters that that the image workflow uses to control actions or configure settings.</p>"""
+    """<p>An array of input parameters that the image workflow uses to control actions or configure settings.</p>"""
 
 
 # --- restJson1 ser/de ---

@@ -11,6 +11,7 @@ from typing_extensions import Never
 import capo_auto_scaling._auth._signers
 import capo_auto_scaling._auth._sigv4
 import capo_auto_scaling._protocol.eventstream
+import capo_auto_scaling.errors.idempotent_call_in_progress_fault
 import capo_auto_scaling.errors.idempotent_parameter_mismatch_error
 import capo_auto_scaling.errors.resource_contention_fault
 import capo_auto_scaling.types.availability_zone_ids_limit1
@@ -36,6 +37,10 @@ def handle_error(response: zapros.Response) -> Never:
     code, message = parse_error_metadata(root)
     error_el = find_error_element(root)
     match code:
+        case "IdempotentCallInProgress":
+            raise capo_auto_scaling.errors.idempotent_call_in_progress_fault.IdempotentCallInProgressFault.from_query(
+                error_el, message
+            )
         case "IdempotentParameterMismatch":
             raise capo_auto_scaling.errors.idempotent_parameter_mismatch_error.IdempotentParameterMismatchError.from_query(
                 error_el, message

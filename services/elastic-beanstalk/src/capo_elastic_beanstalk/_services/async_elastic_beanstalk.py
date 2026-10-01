@@ -104,6 +104,7 @@ if TYPE_CHECKING:
     import capo_elastic_beanstalk.types.event_severity
     import capo_elastic_beanstalk.types.force_terminate
     import capo_elastic_beanstalk.types.group_name
+    import capo_elastic_beanstalk.types.image_configuration
     import capo_elastic_beanstalk.types.include_deleted
     import capo_elastic_beanstalk.types.include_deleted_back_to
     import capo_elastic_beanstalk.types.instances_health_attributes
@@ -273,7 +274,7 @@ class AsyncElasticBeanstalkClient:
             environment_name: <p>This specifies the name of the environment with the in-progress update that you want to cancel.</p>
 
         Raises:
-            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more AWS services.</p>
+            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more Amazon Web Services services.</p>
             capo_elastic_beanstalk.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
@@ -371,14 +372,14 @@ class AsyncElasticBeanstalkClient:
         *,
         config_overrides: Optional[AsyncElasticBeanstalkClientConfig] = None,
     ) -> None:
-        r"""<p>Add or change the operations role used by an environment. After this call is made, Elastic Beanstalk uses the associated operations role for permissions to downstream services during subsequent calls acting on this environment. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/iam-operationsrole.html\">Operations roles</a> in the <i>AWS Elastic Beanstalk Developer Guide</i>.</p>
+        """<important> <p>The operations role feature of Elastic Beanstalk is in beta release and is subject to change.</p> </important> <p>Add or change the operations role used by an environment. After this call is made, Elastic Beanstalk uses the associated operations role for permissions to downstream services during subsequent calls acting on this environment.</p>
 
         Args:
             environment_name: <p>The name of the environment to which to set the operations role.</p>
             operations_role: <p>The Amazon Resource Name (ARN) of an existing IAM role to be used as the environment's operations role.</p>
 
         Raises:
-            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more AWS services.</p>
+            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more Amazon Web Services services.</p>
             capo_elastic_beanstalk.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -480,7 +481,7 @@ class AsyncElasticBeanstalkClient:
             version_labels: <p>A list of version labels, specifying one or more application source bundles that belong to the target application. Each source bundle must include an environment manifest that specifies the name of the environment and the name of the solution stack to use, and optionally can specify environment links to create.</p>
 
         Raises:
-            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more AWS services.</p>
+            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more Amazon Web Services services.</p>
             capo_elastic_beanstalk.errors.too_many_environments_exception.TooManyEnvironmentsException: <p>The specified account has reached its limit of environments.</p>
             capo_elastic_beanstalk.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
@@ -608,23 +609,27 @@ class AsyncElasticBeanstalkClient:
             "capo_elastic_beanstalk.types.application_version_proccess.ApplicationVersionProccess"
         ] = None,
         tags: Optional["capo_elastic_beanstalk.types.tags.Tags"] = None,
+        image_configuration: Optional[
+            "capo_elastic_beanstalk.types.image_configuration.ImageConfiguration"
+        ] = None,
     ) -> "capo_elastic_beanstalk.types.application_version_description_message.ApplicationVersionDescriptionMessage":
-        """<p>Creates an application version for the specified application. You can create an application version from a source bundle in Amazon S3, a commit in AWS CodeCommit, or the output of an AWS CodeBuild build as follows:</p> <p>Specify a commit in an AWS CodeCommit repository with <code>SourceBuildInformation</code>.</p> <p>Specify a build in an AWS CodeBuild with <code>SourceBuildInformation</code> and <code>BuildConfiguration</code>.</p> <p>Specify a source bundle in S3 with <code>SourceBundle</code> </p> <p>Omit both <code>SourceBuildInformation</code> and <code>SourceBundle</code> to use the default sample application.</p> <note> <p>After you create an application version with a specified Amazon S3 bucket and key location, you can't change that Amazon S3 location. If you change the Amazon S3 location, you receive an exception when you attempt to launch an environment from the application version.</p> </note>
+        """<p>Creates an application version for the specified application. You can create an application version from a source bundle in Amazon S3, a commit in CodeCommit, or the output of an CodeBuild build as follows:</p> <p>Specify a commit in an CodeCommit repository with <code>SourceBuildInformation</code>.</p> <p>Specify a build in an CodeBuild with <code>SourceBuildInformation</code> and <code>BuildConfiguration</code>.</p> <p>Specify a source bundle in Amazon S3 with <code>SourceBundle</code> </p> <p>Omit both <code>SourceBuildInformation</code> and <code>SourceBundle</code> to use the default sample application.</p> <note> <p>After you create an application version with a specified Amazon S3 bucket and key location, you can't change that Amazon S3 location. If you change the Amazon S3 location, you receive an exception when you attempt to launch an environment from the application version.</p> </note>
 
         Args:
             application_name: <p> The name of the application. If no application is found with this name, and <code>AutoCreateApplication</code> is <code>false</code>, returns an <code>InvalidParameterValue</code> error. </p>
-            version_label: <p>A label identifying this version.</p> <p>Constraint: Must be unique per application. If an application version already exists with this label for the specified application, AWS Elastic Beanstalk returns an <code>InvalidParameterValue</code> error. </p>
+            version_label: <p>A label identifying this version.</p> <p>Constraint: Must be unique per application. If an application version already exists with this label for the specified application, Elastic Beanstalk returns an <code>InvalidParameterValue</code> error. </p>
             description: <p>A description of this application version.</p>
-            source_build_information: <p>Specify a commit in an AWS CodeCommit Git repository to use as the source code for the application version.</p>
-            source_bundle: <p>The Amazon S3 bucket and key that identify the location of the source bundle for this version.</p> <note> <p>The Amazon S3 bucket must be in the same region as the environment.</p> </note> <p>Specify a source bundle in S3 or a commit in an AWS CodeCommit repository (with <code>SourceBuildInformation</code>), but not both. If neither <code>SourceBundle</code> nor <code>SourceBuildInformation</code> are provided, Elastic Beanstalk uses a sample application.</p>
-            build_configuration: <p>Settings for an AWS CodeBuild build.</p>
+            source_build_information: <p>Specify a commit in an CodeCommit Git repository to use as the source code for the application version.</p>
+            source_bundle: <p>The Amazon S3 bucket and key that identify the location of the source bundle for this version.</p> <note> <p>The Amazon S3 bucket must be in the same region as the environment.</p> <p>Unless you're specifying a source bundle in the bucket that Elastic Beanstalk manages in your account, you must assign a custom policy to your user, and grant <code>Allow</code> permission to the <code>s3:Get*</code> actions on your S3 object resource, for example, <code>arn:aws:s3:::your-bucket/your-source-bundle-object</code>.</p> </note> <p>Specify a source bundle in Amazon S3 or a commit in an CodeCommit repository (with <code>SourceBuildInformation</code>), but not both. If neither <code>SourceBundle</code> nor <code>SourceBuildInformation</code> are provided, Elastic Beanstalk uses a sample application.</p>
+            build_configuration: <p>Settings for an CodeBuild build.</p> <p>Don't specify <code>BuildConfiguration</code> together with <code>ImageConfiguration</code>, which configures a container image build instead.</p>
             auto_create_application: <p>Set to <code>true</code> to create an application with the specified name if it doesn't already exist.</p>
-            process: <p>Pre-processes and validates the environment manifest (<code>env.yaml</code>) and configuration files (<code>*.config</code> files in the <code>.ebextensions</code> folder) in the source bundle. Validating configuration files can identify issues prior to deploying the application version to an environment.</p> <p>You must turn processing on for application versions that you create using AWS CodeBuild or AWS CodeCommit. For application versions built from a source bundle in Amazon S3, processing is optional.</p> <note> <p>The <code>Process</code> option validates Elastic Beanstalk configuration files. It doesn't validate your application's configuration files, like proxy server or Docker configuration.</p> </note>
+            process: <p>Pre-processes and validates the environment manifest (<code>env.yaml</code>) and configuration files (<code>*.config</code> files in the <code>.ebextensions</code> folder) in the source bundle. Validating configuration files can identify issues prior to deploying the application version to an environment.</p> <p>You must turn processing on for application versions that you create using CodeBuild or CodeCommit. For application versions built from a source bundle in Amazon S3, processing is optional.</p> <note> <p>The <code>Process</code> option validates Elastic Beanstalk configuration files. It doesn't validate your application's configuration files, like proxy server or Docker configuration.</p> </note>
             tags: <p>Specifies the tags applied to the application version.</p> <p>Elastic Beanstalk applies these tags only to the application version. Environments that use the application version don't inherit the tags.</p>
+            image_configuration: <p>The source of the container image for this application version. You can specify an image that you built and pushed to a container registry yourself, or settings for Elastic Beanstalk to build one from your source bundle. Specify exactly one of the <code>Source</code> and <code>Build</code> members.</p> <p>Don't specify <code>ImageConfiguration</code> together with <code>BuildConfiguration</code>, which configures an CodeBuild build instead.</p>
 
         Raises:
-            capo_elastic_beanstalk.errors.code_build_not_in_service_region_exception.CodeBuildNotInServiceRegionException: <p>AWS CodeBuild is not available in the specified region.</p>
-            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more AWS services.</p>
+            capo_elastic_beanstalk.errors.code_build_not_in_service_region_exception.CodeBuildNotInServiceRegionException: <p>CodeBuild is not available in the specified region.</p>
+            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more Amazon Web Services services.</p>
             capo_elastic_beanstalk.errors.s3_location_not_in_service_region_exception.S3LocationNotInServiceRegionException: <p>The specified S3 bucket does not belong to the S3 region in which the service is running. The following regions are supported:</p> <ul> <li> <p>IAD/us-east-1</p> </li> <li> <p>PDX/us-west-2</p> </li> <li> <p>DUB/eu-west-1</p> </li> </ul>
             capo_elastic_beanstalk.errors.too_many_applications_exception.TooManyApplicationsException: <p>The specified account has reached its limit of applications.</p>
             capo_elastic_beanstalk.errors.too_many_application_versions_exception.TooManyApplicationVersionsException: <p>The specified account has reached its limit of application versions.</p>
@@ -671,6 +676,8 @@ class AsyncElasticBeanstalkClient:
             input_["process"] = process
         if tags is not None:
             input_["tags"] = tags
+        if image_configuration is not None:
+            input_["image_configuration"] = image_configuration
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -706,21 +713,21 @@ class AsyncElasticBeanstalkClient:
         ] = None,
         tags: Optional["capo_elastic_beanstalk.types.tags.Tags"] = None,
     ) -> "capo_elastic_beanstalk.types.configuration_settings_description.ConfigurationSettingsDescription":
-        r"""<p>Creates an AWS Elastic Beanstalk configuration template, associated with a specific Elastic Beanstalk application. You define application configuration settings in a configuration template. You can then use the configuration template to deploy different versions of the application with the same configuration settings.</p> <p>Templates aren't associated with any environment. The <code>EnvironmentName</code> response element is always <code>null</code>.</p> <p>Related Topics</p> <ul> <li> <p> <a>DescribeConfigurationOptions</a> </p> </li> <li> <p> <a>DescribeConfigurationSettings</a> </p> </li> <li> <p> <a>ListAvailableSolutionStacks</a> </p> </li> </ul>
+        r"""<p>Creates an Elastic Beanstalk configuration template, associated with a specific Elastic Beanstalk application. You define application configuration settings in a configuration template. You can then use the configuration template to deploy different versions of the application with the same configuration settings.</p> <p>Templates aren't associated with any environment. The <code>EnvironmentName</code> response element is always <code>null</code>.</p> <p>Related Topics</p> <ul> <li> <p> <a>DescribeConfigurationOptions</a> </p> </li> <li> <p> <a>DescribeConfigurationSettings</a> </p> </li> <li> <p> <a>ListAvailableSolutionStacks</a> </p> </li> </ul>
 
         Args:
             application_name: <p>The name of the Elastic Beanstalk application to associate with this configuration template.</p>
             template_name: <p>The name of the configuration template.</p> <p>Constraint: This name must be unique per application.</p>
-            solution_stack_name: <p>The name of an Elastic Beanstalk solution stack (platform version) that this configuration uses. For example, <code>64bit Amazon Linux 2013.09 running Tomcat 7 Java 7</code>. A solution stack specifies the operating system, runtime, and application server for a configuration template. It also determines the set of configuration options as well as the possible and default values. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.platforms.html\">Supported Platforms</a> in the <i>AWS Elastic Beanstalk Developer Guide</i>.</p> <p>You must specify <code>SolutionStackName</code> if you don't specify <code>PlatformArn</code>, <code>EnvironmentId</code>, or <code>SourceConfiguration</code>.</p> <p>Use the <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_ListAvailableSolutionStacks.html\"> <code>ListAvailableSolutionStacks</code> </a> API to obtain a list of available solution stacks.</p>
-            platform_arn: <p>The Amazon Resource Name (ARN) of the custom platform. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/custom-platforms.html\"> Custom Platforms</a> in the <i>AWS Elastic Beanstalk Developer Guide</i>.</p> <note> <p>If you specify <code>PlatformArn</code>, then don't specify <code>SolutionStackName</code>.</p> </note>
+            solution_stack_name: <p>The name of an Elastic Beanstalk solution stack (platform version) that this configuration uses. For example, <code>64bit Amazon Linux 2013.09 running Tomcat 7 Java 7</code>. A solution stack specifies the operating system, runtime, and application server for a configuration template. It also determines the set of configuration options as well as the possible and default values. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.platforms.html\">Supported Platforms</a> in the <i>Elastic Beanstalk Developer Guide</i>.</p> <p>You must specify <code>SolutionStackName</code> if you don't specify <code>PlatformArn</code>, <code>EnvironmentId</code>, or <code>SourceConfiguration</code>.</p> <p>Use the <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_ListAvailableSolutionStacks.html\"> <code>ListAvailableSolutionStacks</code> </a> API to obtain a list of available solution stacks.</p>
+            platform_arn: <p>The Amazon Resource Name (ARN) of the custom platform. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/custom-platforms.html\"> Custom Platforms</a> in the <i>Elastic Beanstalk Developer Guide</i>.</p> <note> <p>If you specify <code>PlatformArn</code>, then don't specify <code>SolutionStackName</code>.</p> </note>
             source_configuration: <p>An Elastic Beanstalk configuration template to base this one on. If specified, Elastic Beanstalk uses the configuration values from the specified configuration template to create a new configuration.</p> <p>Values specified in <code>OptionSettings</code> override any values obtained from the <code>SourceConfiguration</code>.</p> <p>You must specify <code>SourceConfiguration</code> if you don't specify <code>PlatformArn</code>, <code>EnvironmentId</code>, or <code>SolutionStackName</code>.</p> <p>Constraint: If both solution stack name and source configuration are specified, the solution stack of the source configuration template must match the specified solution stack name.</p>
             environment_id: <p>The ID of an environment whose settings you want to use to create the configuration template. You must specify <code>EnvironmentId</code> if you don't specify <code>PlatformArn</code>, <code>SolutionStackName</code>, or <code>SourceConfiguration</code>.</p>
             description: <p>An optional description for this configuration.</p>
-            option_settings: <p>Option values for the Elastic Beanstalk configuration, such as the instance type. If specified, these values override the values obtained from the solution stack or the source configuration template. For a complete list of Elastic Beanstalk configuration options, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options.html\">Option Values</a> in the <i>AWS Elastic Beanstalk Developer Guide</i>.</p>
+            option_settings: <p>Option values for the Elastic Beanstalk configuration, such as the instance type. If specified, these values override the values obtained from the solution stack or the source configuration template. For a complete list of Elastic Beanstalk configuration options, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options.html\">Option Values</a> in the <i>Elastic Beanstalk Developer Guide</i>.</p>
             tags: <p>Specifies the tags applied to the configuration template.</p>
 
         Raises:
-            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more AWS services.</p>
+            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more Amazon Web Services services.</p>
             capo_elastic_beanstalk.errors.too_many_buckets_exception.TooManyBucketsException: <p>The specified account has reached its limit of Amazon S3 buckets.</p>
             capo_elastic_beanstalk.errors.too_many_configuration_templates_exception.TooManyConfigurationTemplatesException: <p>The specified account has reached its limit of configuration templates.</p>
             capo_elastic_beanstalk.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -818,7 +825,7 @@ class AsyncElasticBeanstalkClient:
             "capo_elastic_beanstalk.types.operations_role.OperationsRole"
         ] = None,
     ) -> "capo_elastic_beanstalk.types.environment_description.EnvironmentDescription":
-        r"""<p>Launches an AWS Elastic Beanstalk environment for the specified application using the specified configuration.</p>
+        r"""<p>Launches an Elastic Beanstalk environment for the specified application using the specified configuration.</p>
 
         Args:
             application_name: <p>The name of the application that is associated with this environment.</p>
@@ -826,18 +833,18 @@ class AsyncElasticBeanstalkClient:
             group_name: <p>The name of the group to which the target environment belongs. Specify a group name only if the environment's name is specified in an environment manifest and not with the environment name parameter. See <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-cfg-manifest.html\">Environment Manifest (env.yaml)</a> for details.</p>
             description: <p>Your description for this environment.</p>
             cname_prefix: <p>If specified, the environment attempts to use this value as the prefix for the CNAME in your Elastic Beanstalk environment URL. If not specified, the CNAME is generated automatically by appending a random alphanumeric string to the environment name.</p>
-            tier: <p>Specifies the tier to use in creating this environment. The environment tier that you choose determines whether Elastic Beanstalk provisions resources to support a web application that handles HTTP(S) requests or a web application that handles background-processing tasks.</p>
+            tier: <p>Specifies the tier to use in creating this environment. The environment tier that you choose determines whether Elastic Beanstalk provisions resources on Amazon EC2 instances or on an Amazon EKS cluster, and, for Amazon EC2, whether the environment serves HTTP(S) requests or processes background tasks from a queue.</p>
             tags: <p>Specifies the tags applied to resources in the environment.</p>
             version_label: <p>The name of the application version to deploy.</p> <p>Default: If not specified, Elastic Beanstalk attempts to deploy the sample application.</p>
             template_name: <p>The name of the Elastic Beanstalk configuration template to use with the environment.</p> <note> <p>If you specify <code>TemplateName</code>, then don't specify <code>SolutionStackName</code>.</p> </note>
-            solution_stack_name: <p>The name of an Elastic Beanstalk solution stack (platform version) to use with the environment. If specified, Elastic Beanstalk sets the configuration values to the default values associated with the specified solution stack. For a list of current solution stacks, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/platforms/platforms-supported.html\">Elastic Beanstalk Supported Platforms</a> in the <i>AWS Elastic Beanstalk Platforms</i> guide.</p> <note> <p>If you specify <code>SolutionStackName</code>, don't specify <code>PlatformArn</code> or <code>TemplateName</code>.</p> </note>
-            platform_arn: <p>The Amazon Resource Name (ARN) of the custom platform to use with the environment. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/custom-platforms.html\">Custom Platforms</a> in the <i>AWS Elastic Beanstalk Developer Guide</i>.</p> <note> <p>If you specify <code>PlatformArn</code>, don't specify <code>SolutionStackName</code>.</p> </note>
-            option_settings: <p>If specified, AWS Elastic Beanstalk sets the specified configuration options to the requested value in the configuration set for the new environment. These override the values obtained from the solution stack or the configuration template.</p>
+            solution_stack_name: <p>The name of an Elastic Beanstalk solution stack (platform version) to use with the environment. If specified, Elastic Beanstalk sets the configuration values to the default values associated with the specified solution stack. For a list of current solution stacks, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/platforms/platforms-supported.html\">Elastic Beanstalk Supported Platforms</a> in the <i>Elastic Beanstalk Platforms</i> guide.</p> <note> <p>If you specify <code>SolutionStackName</code>, don't specify <code>PlatformArn</code> or <code>TemplateName</code>.</p> </note>
+            platform_arn: <p>The Amazon Resource Name (ARN) of the custom platform to use with the environment. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/custom-platforms.html\">Custom Platforms</a> in the <i>Elastic Beanstalk Developer Guide</i>.</p> <note> <p>If you specify <code>PlatformArn</code>, don't specify <code>SolutionStackName</code>.</p> </note>
+            option_settings: <p>If specified, Elastic Beanstalk sets the specified configuration options to the requested value in the configuration set for the new environment. These override the values obtained from the solution stack or the configuration template.</p>
             options_to_remove: <p>A list of custom user-defined configuration options to remove from the configuration set for this new environment.</p>
-            operations_role: <p>The Amazon Resource Name (ARN) of an existing IAM role to be used as the environment's operations role. If specified, Elastic Beanstalk uses the operations role for permissions to downstream services during this call and during subsequent calls acting on this environment. To specify an operations role, you must have the <code>iam:PassRole</code> permission for the role. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/iam-operationsrole.html\">Operations roles</a> in the <i>AWS Elastic Beanstalk Developer Guide</i>.</p>
+            operations_role: <important> <p>The operations role feature of Elastic Beanstalk is in beta release and is subject to change.</p> </important> <p>The Amazon Resource Name (ARN) of an existing IAM role to be used as the environment's operations role. If specified, Elastic Beanstalk uses the operations role for permissions to downstream services during this call and during subsequent calls acting on this environment. To specify an operations role, you must have the <code>iam:PassRole</code> permission for the role.</p>
 
         Raises:
-            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more AWS services.</p>
+            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more Amazon Web Services services.</p>
             capo_elastic_beanstalk.errors.too_many_environments_exception.TooManyEnvironmentsException: <p>The specified account has reached its limit of environments.</p>
             capo_elastic_beanstalk.errors.UnknownServiceError: The service returned an error code this client does not model.
 
@@ -929,7 +936,7 @@ class AsyncElasticBeanstalkClient:
 
         Raises:
             capo_elastic_beanstalk.errors.elastic_beanstalk_service_exception.ElasticBeanstalkServiceException: <p>A generic service exception has occurred.</p>
-            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more AWS services.</p>
+            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more Amazon Web Services services.</p>
             capo_elastic_beanstalk.errors.too_many_platforms_exception.TooManyPlatformsException: <p>You have exceeded the maximum number of allowed platforms associated with the account.</p>
             capo_elastic_beanstalk.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
@@ -976,7 +983,7 @@ class AsyncElasticBeanstalkClient:
         """<p>Creates a bucket in Amazon S3 to store application versions, logs, and other files used by Elastic Beanstalk environments. The Elastic Beanstalk console and EB CLI call this API the first time you create an environment in a region. If the storage location already exists, <code>CreateStorageLocation</code> still returns the bucket name but does not create a new bucket.</p>
 
         Raises:
-            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more AWS services.</p>
+            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more Amazon Web Services services.</p>
             capo_elastic_beanstalk.errors.s3_subscription_required_exception.S3SubscriptionRequiredException: <p>The specified account does not have a subscription to Amazon S3.</p>
             capo_elastic_beanstalk.errors.too_many_buckets_exception.TooManyBucketsException: <p>The specified account has reached its limit of Amazon S3 buckets.</p>
             capo_elastic_beanstalk.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -1085,7 +1092,7 @@ class AsyncElasticBeanstalkClient:
             delete_source_bundle: <p>Set to <code>true</code> to delete the source bundle from your storage bucket. Otherwise, the application version is deleted only from Elastic Beanstalk and the source bundle remains in Amazon S3.</p>
 
         Raises:
-            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more AWS services.</p>
+            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more Amazon Web Services services.</p>
             capo_elastic_beanstalk.errors.operation_in_progress_exception.OperationInProgressException: <p>Unable to perform the specified operation because another operation that effects an element in this activity is already in progress.</p>
             capo_elastic_beanstalk.errors.s3_location_not_in_service_region_exception.S3LocationNotInServiceRegionException: <p>The specified S3 bucket does not belong to the S3 region in which the service is running. The following regions are supported:</p> <ul> <li> <p>IAD/us-east-1</p> </li> <li> <p>PDX/us-west-2</p> </li> <li> <p>DUB/eu-west-1</p> </li> </ul>
             capo_elastic_beanstalk.errors.source_bundle_deletion_exception.SourceBundleDeletionException: <p>Unable to delete the Amazon S3 source bundle associated with the application version. The application version was deleted successfully.</p>
@@ -1243,7 +1250,7 @@ class AsyncElasticBeanstalkClient:
 
         Raises:
             capo_elastic_beanstalk.errors.elastic_beanstalk_service_exception.ElasticBeanstalkServiceException: <p>A generic service exception has occurred.</p>
-            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more AWS services.</p>
+            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more Amazon Web Services services.</p>
             capo_elastic_beanstalk.errors.operation_in_progress_exception.OperationInProgressException: <p>Unable to perform the specified operation because another operation that effects an element in this activity is already in progress.</p>
             capo_elastic_beanstalk.errors.platform_version_still_referenced_exception.PlatformVersionStillReferencedException: <p>You cannot delete the platform version because there are still environments running on it.</p>
             capo_elastic_beanstalk.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -1280,10 +1287,10 @@ class AsyncElasticBeanstalkClient:
     async def describe_account_attributes(
         self, *, config_overrides: Optional[AsyncElasticBeanstalkClientConfig] = None
     ) -> "capo_elastic_beanstalk.types.describe_account_attributes_result.DescribeAccountAttributesResult":
-        """<p>Returns attributes related to AWS Elastic Beanstalk that are associated with the calling AWS account.</p> <p>The result currently has one set of attributes—resource quotas.</p>
+        r"""<p>Returns attributes related to Elastic Beanstalk that are associated with the calling Amazon Web Services account.</p> <p>The result currently has one set of attributes—resource quotas.</p> <p>This action only returns information about resources that the calling principle has IAM permissions to access. For example, consider a case where a user only has permission to access one of three resources. When the user calls the this action, the response will only include the one resource that the user has permission to access instead of all three resources. If the user doesn’t have access to any of the resources an empty result is returned.</p> <note> <p>The <a href=\"https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AWSElasticBeanstalkReadOnly.html\">AWSElasticBeanstalkReadOnly</a> managed policy allows operators to view information about resources related to Elastic Beanstalk. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html\"> Managing Elastic Beanstalk user policies</a> in the <i>Elastic Beanstalk Developer Guide</i>. For detailed instructions to attach a policy to a user or group, see the section <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html#iam-userpolicies-managed\"> Controlling access with managed policies</a> in the same topic.</p> </note>
 
         Raises:
-            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more AWS services.</p>
+            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more Amazon Web Services services.</p>
             capo_elastic_beanstalk.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1320,10 +1327,10 @@ class AsyncElasticBeanstalkClient:
             "capo_elastic_beanstalk.types.application_names_list.ApplicationNamesList"
         ] = None,
     ) -> "capo_elastic_beanstalk.types.application_descriptions_message.ApplicationDescriptionsMessage":
-        """<p>Returns the descriptions of existing applications.</p>
+        r"""<p>Returns the descriptions of existing applications.</p> <p>This action only returns information about applications that the calling principle has IAM permissions to access. For example, consider a case where a user only has permission to access two of three applications. When the user calls the <i>DescribeApplications</i> action, the response will only include the two applications that the user has permission to access instead of all three applications. If the user doesn’t have access to any of the applications an empty result is returned.</p> <note> <p>The <i>AWSElasticBeanstalkReadOnly</i> managed policy allows operators to view information about resources related to Elastic Beanstalk environments. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html\"> Managing Elastic Beanstalk user policies</a> in the <i>Elastic Beanstalk Developer Guide</i>. For detailed instructions to attach a policy to a user or group, see the section <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html#iam-userpolicies-managed\"> Controlling access with managed policies</a> in the same topic.</p> </note>
 
         Args:
-            application_names: <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to only include those with the specified names.</p>
+            application_names: <p>If specified, Elastic Beanstalk restricts the returned descriptions to only include those with the specified names.</p>
 
         Raises:
             capo_elastic_beanstalk.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -1378,7 +1385,7 @@ class AsyncElasticBeanstalkClient:
         ] = None,
         next_token: Optional["capo_elastic_beanstalk.types.token.Token"] = None,
     ) -> "capo_elastic_beanstalk.types.application_version_descriptions_message.ApplicationVersionDescriptionsMessage":
-        """<p>Retrieve a list of application versions.</p>
+        r"""<p>Retrieve a list of application versions.</p> <p>This action only returns information about resources that the calling principle has IAM permissions to access. For example, consider a case where a user only has permission to access one of three resources. When the user calls the this action, the response will only include the one resource that the user has permission to access instead of all three resources. If the user doesn’t have access to any of the resources an empty result is returned.</p> <note> <p>The <a href=\"https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AWSElasticBeanstalkReadOnly.html\">AWSElasticBeanstalkReadOnly</a> managed policy allows operators to view information about resources related to Elastic Beanstalk. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html\"> Managing Elastic Beanstalk user policies</a> in the <i>Elastic Beanstalk Developer Guide</i>. For detailed instructions to attach a policy to a user or group, see the section <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html#iam-userpolicies-managed\"> Controlling access with managed policies</a> in the same topic.</p> </note>
 
         Args:
             application_name: <p>Specify an application name to show only application versions for that application.</p>
@@ -1453,7 +1460,7 @@ class AsyncElasticBeanstalkClient:
             "capo_elastic_beanstalk.types.options_specifier_list.OptionsSpecifierList"
         ] = None,
     ) -> "capo_elastic_beanstalk.types.configuration_options_description.ConfigurationOptionsDescription":
-        """<p>Describes the configuration options that are used in a particular configuration template or environment, or that a specified solution stack defines. The description includes the values the options, their default values, and an indication of the required action on a running environment if an option value is changed.</p>
+        r"""<p>Describes the configuration options that are used in a particular configuration template or environment, or that a specified solution stack defines. The description includes the values the options, their default values, and an indication of the required action on a running environment if an option value is changed.</p> <p>This action only returns information about resources that the calling principle has IAM permissions to access. For example, consider a case where a user only has permission to access one of three resources. When the user calls the this action, the response will only include the one resource that the user has permission to access instead of all three resources. If the user doesn’t have access to any of the resources an empty result is returned.</p> <note> <p>The <a href=\"https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AWSElasticBeanstalkReadOnly.html\">AWSElasticBeanstalkReadOnly</a> managed policy allows operators to view information about resources related to Elastic Beanstalk. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html\"> Managing Elastic Beanstalk user policies</a> in the <i>Elastic Beanstalk Developer Guide</i>. For detailed instructions to attach a policy to a user or group, see the section <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html#iam-userpolicies-managed\"> Controlling access with managed policies</a> in the same topic.</p> </note>
 
         Args:
             application_name: <p>The name of the application associated with the configuration template or environment. Only needed if you want to describe the configuration options associated with either the configuration template or environment.</p>
@@ -1524,12 +1531,12 @@ class AsyncElasticBeanstalkClient:
             "capo_elastic_beanstalk.types.environment_name.EnvironmentName"
         ] = None,
     ) -> "capo_elastic_beanstalk.types.configuration_settings_descriptions.ConfigurationSettingsDescriptions":
-        """<p>Returns a description of the settings for the specified configuration set, that is, either a configuration template or the configuration set associated with a running environment.</p> <p>When describing the settings for the configuration set associated with a running environment, it is possible to receive two sets of setting descriptions. One is the deployed configuration set, and the other is a draft configuration of an environment that is either in the process of deployment or that failed to deploy.</p> <p>Related Topics</p> <ul> <li> <p> <a>DeleteEnvironmentConfiguration</a> </p> </li> </ul>
+        r"""<p>Returns a description of the settings for the specified configuration set, that is, either a configuration template or the configuration set associated with a running environment.</p> <p>When describing the settings for the configuration set associated with a running environment, it is possible to receive two sets of setting descriptions. One is the deployed configuration set, and the other is a draft configuration of an environment that is either in the process of deployment or that failed to deploy.</p> <p>This action only returns information about resources that the calling principle has IAM permissions to access. For example, consider a case where a user only has permission to access one of three resources. When the user calls the this action, the response will only include the one resource that the user has permission to access instead of all three resources. If the user doesn’t have access to any of the resources an empty result is returned.</p> <note> <p>The <a href=\"https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AWSElasticBeanstalkReadOnly.html\">AWSElasticBeanstalkReadOnly</a> managed policy allows operators to view information about resources related to Elastic Beanstalk. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html\"> Managing Elastic Beanstalk user policies</a> in the <i>Elastic Beanstalk Developer Guide</i>. For detailed instructions to attach a policy to a user or group, see the section <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html#iam-userpolicies-managed\"> Controlling access with managed policies</a> in the same topic.</p> </note> <p>Related Topics</p> <ul> <li> <p> <a>DeleteEnvironmentConfiguration</a> </p> </li> </ul>
 
         Args:
             application_name: <p>The application for the environment or configuration template.</p>
-            template_name: <p>The name of the configuration template to describe.</p> <p> Conditional: You must specify either this parameter or an EnvironmentName, but not both. If you specify both, AWS Elastic Beanstalk returns an <code>InvalidParameterCombination</code> error. If you do not specify either, AWS Elastic Beanstalk returns a <code>MissingRequiredParameter</code> error. </p>
-            environment_name: <p>The name of the environment to describe.</p> <p> Condition: You must specify either this or a TemplateName, but not both. If you specify both, AWS Elastic Beanstalk returns an <code>InvalidParameterCombination</code> error. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
+            template_name: <p>The name of the configuration template to describe.</p> <p> Conditional: You must specify either this parameter or an EnvironmentName, but not both. If you specify both, Elastic Beanstalk returns an <code>InvalidParameterCombination</code> error. If you do not specify either, Elastic Beanstalk returns a <code>MissingRequiredParameter</code> error. </p>
+            environment_name: <p>The name of the environment to describe.</p> <p> Condition: You must specify either this or a TemplateName, but not both. If you specify both, Elastic Beanstalk returns an <code>InvalidParameterCombination</code> error. If you do not specify either, Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
 
         Raises:
             capo_elastic_beanstalk.errors.too_many_buckets_exception.TooManyBucketsException: <p>The specified account has reached its limit of Amazon S3 buckets.</p>
@@ -1588,7 +1595,7 @@ class AsyncElasticBeanstalkClient:
             "capo_elastic_beanstalk.types.environment_health_attributes.EnvironmentHealthAttributes"
         ] = None,
     ) -> "capo_elastic_beanstalk.types.describe_environment_health_result.DescribeEnvironmentHealthResult":
-        """<p>Returns information about the overall health of the specified environment. The <b>DescribeEnvironmentHealth</b> operation is only available with AWS Elastic Beanstalk Enhanced Health.</p>
+        r"""<p>Returns information about the overall health of the specified environment. The <b>DescribeEnvironmentHealth</b> operation is only available with Elastic Beanstalk Enhanced Health.</p> <p>This action only returns information about environments that the calling principle has IAM permissions to access. For example, consider a case where a user only has permission to access one of three environments. When the user calls this action, the response will only include the one environment that the user has permission to access instead of all three environments. If the user doesn’t have access to any of the environments an empty result is returned.</p> <note> <p>The <a href=\"https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AWSElasticBeanstalkReadOnly.html\">AWSElasticBeanstalkReadOnly</a> managed policy allows operators to view information about resources related to Elastic Beanstalk environments. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html\"> Managing Elastic Beanstalk user policies</a> in the <i>Elastic Beanstalk Developer Guide</i>. For detailed instructions to attach a policy to a user or group, see the section <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html#iam-userpolicies-managed\"> Controlling access with managed policies</a> in the same topic.</p> </note>
 
         Args:
             environment_name: <p>Specify the environment by name.</p> <p>You must specify either this or an EnvironmentName, or both.</p>
@@ -1742,7 +1749,7 @@ class AsyncElasticBeanstalkClient:
             "capo_elastic_beanstalk.types.action_status.ActionStatus"
         ] = None,
     ) -> "capo_elastic_beanstalk.types.describe_environment_managed_actions_result.DescribeEnvironmentManagedActionsResult":
-        """<p>Lists an environment's upcoming and in-progress managed actions.</p>
+        r"""<p>Lists an environment's upcoming and in-progress managed actions.</p> <p>This action only returns information about environments that the calling principle has IAM permissions to access. For example, consider a case where a user only has permission to access one of three environments. When the user calls this action, the response will only include the one environment that the user has permission to access instead of all three environments. If the user doesn’t have access to any of the environments an empty result is returned.</p> <note> <p>The <a href=\"https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AWSElasticBeanstalkReadOnly.html\">AWSElasticBeanstalkReadOnly</a> managed policy allows operators to view information about resources related to Elastic Beanstalk environments. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html\"> Managing Elastic Beanstalk user policies</a> in the <i>Elastic Beanstalk Developer Guide</i>. For detailed instructions to attach a policy to a user or group, see the section <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html#iam-userpolicies-managed\"> Controlling access with managed policies</a> in the same topic.</p> </note>
 
         Args:
             environment_name: <p>The name of the target environment.</p>
@@ -1797,14 +1804,14 @@ class AsyncElasticBeanstalkClient:
             "capo_elastic_beanstalk.types.environment_name.EnvironmentName"
         ] = None,
     ) -> "capo_elastic_beanstalk.types.environment_resource_descriptions_message.EnvironmentResourceDescriptionsMessage":
-        """<p>Returns AWS resources for this environment.</p>
+        """<p>Returns Amazon Web Services resources for this environment.</p>
 
         Args:
-            environment_id: <p>The ID of the environment to retrieve AWS resource usage data.</p> <p> Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
-            environment_name: <p>The name of the environment to retrieve AWS resource usage data.</p> <p> Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
+            environment_id: <p>The ID of the environment to retrieve Amazon Web Services resource usage data.</p> <p> Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
+            environment_name: <p>The name of the environment to retrieve Amazon Web Services resource usage data.</p> <p> Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
 
         Raises:
-            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more AWS services.</p>
+            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more Amazon Web Services services.</p>
             capo_elastic_beanstalk.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
@@ -1871,13 +1878,13 @@ class AsyncElasticBeanstalkClient:
         ] = None,
         next_token: Optional["capo_elastic_beanstalk.types.token.Token"] = None,
     ) -> "capo_elastic_beanstalk.types.environment_descriptions_message.EnvironmentDescriptionsMessage":
-        """<p>Returns descriptions for existing environments.</p>
+        r"""<p>Returns descriptions for existing environments.</p> <p>This action only returns information about environments that the calling principle has IAM permissions to access. For example, consider a case where a user only has permission to access one of three environments. When the user calls the <i>DescribeEnvironments</i> action, the response will only include the one environment that the user has permission to access instead of all three environments. If the user doesn’t have access to any of the environments an empty result is returned.</p> <note> <p>The <a href=\"https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AWSElasticBeanstalkReadOnly.html\">AWSElasticBeanstalkReadOnly</a> managed policy allows operators to view information about resources related to Elastic Beanstalk environments. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html\"> Managing Elastic Beanstalk user policies</a> in the <i>Elastic Beanstalk Developer Guide</i>. For detailed instructions to attach a policy to a user or group, see the section <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html#iam-userpolicies-managed\"> Controlling access with managed policies</a> in the same topic.</p> </note>
 
         Args:
-            application_name: <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that are associated with this application.</p>
-            version_label: <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that are associated with this application version.</p>
-            environment_ids: <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that have the specified IDs.</p>
-            environment_names: <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that have the specified names.</p>
+            application_name: <p>If specified, Elastic Beanstalk restricts the returned descriptions to include only those that are associated with this application.</p>
+            version_label: <p>If specified, Elastic Beanstalk restricts the returned descriptions to include only those that are associated with this application version.</p>
+            environment_ids: <p>If specified, Elastic Beanstalk restricts the returned descriptions to include only those that have the specified IDs.</p>
+            environment_names: <p>If specified, Elastic Beanstalk restricts the returned descriptions to include only those that have the specified names.</p>
             include_deleted: <p>Indicates whether to include deleted environments:</p> <p> <code>true</code>: Environments that have been deleted after <code>IncludedDeletedBackTo</code> are displayed.</p> <p> <code>false</code>: Do not include deleted environments.</p>
             included_deleted_back_to: <p> If specified when <code>IncludeDeleted</code> is set to <code>true</code>, then environments deleted after this date are displayed. </p>
             max_records: <p>For a paginated request. Specify a maximum number of environments to include in each response.</p> <p>If no <code>MaxRecords</code> is specified, all available environments are retrieved in a single response.</p>
@@ -1974,19 +1981,19 @@ class AsyncElasticBeanstalkClient:
         ] = None,
         next_token: Optional["capo_elastic_beanstalk.types.token.Token"] = None,
     ) -> "capo_elastic_beanstalk.types.event_descriptions_message.EventDescriptionsMessage":
-        """<p>Returns list of event descriptions matching criteria up to the last 6 weeks.</p> <note> <p>This action returns the most recent 1,000 events from the specified <code>NextToken</code>.</p> </note>
+        r"""<p>Returns list of event descriptions matching criteria up to the last 6 weeks.</p> <p>This action returns the most recent 1,000 events from the specified <code>NextToken</code>.</p> <p>This action only returns information about resources that the calling principle has IAM permissions to access. For example, consider a case where a user only has permission to access one of three resources. When the user calls the this action, the response will only include the one resource that the user has permission to access instead of all three resources. If the user doesn’t have access to any of the resources an empty result is returned.</p> <note> <p>The <a href=\"https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AWSElasticBeanstalkReadOnly.html\">AWSElasticBeanstalkReadOnly</a> managed policy allows operators to view information about resources related to Elastic Beanstalk. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html\"> Managing Elastic Beanstalk user policies</a> in the <i>Elastic Beanstalk Developer Guide</i>. For detailed instructions to attach a policy to a user or group, see the section <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html#iam-userpolicies-managed\"> Controlling access with managed policies</a> in the same topic.</p> </note>
 
         Args:
-            application_name: <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those associated with this application.</p>
-            version_label: <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this application version.</p>
-            template_name: <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to those that are associated with this environment configuration.</p>
-            environment_id: <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this environment.</p>
-            environment_name: <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this environment.</p>
-            platform_arn: <p>The ARN of a custom platform version. If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this custom platform version.</p>
-            request_id: <p>If specified, AWS Elastic Beanstalk restricts the described events to include only those associated with this request ID.</p>
+            application_name: <p>If specified, Elastic Beanstalk restricts the returned descriptions to include only those associated with this application.</p>
+            version_label: <p>If specified, Elastic Beanstalk restricts the returned descriptions to those associated with this application version.</p>
+            template_name: <p>If specified, Elastic Beanstalk restricts the returned descriptions to those that are associated with this environment configuration.</p>
+            environment_id: <p>If specified, Elastic Beanstalk restricts the returned descriptions to those associated with this environment.</p>
+            environment_name: <p>If specified, Elastic Beanstalk restricts the returned descriptions to those associated with this environment.</p>
+            platform_arn: <p>The ARN of a custom platform version. If specified, Elastic Beanstalk restricts the returned descriptions to those associated with this custom platform version.</p>
+            request_id: <p>If specified, Elastic Beanstalk restricts the described events to include only those associated with this request ID.</p>
             severity: <p>If specified, limits the events returned from this call to include only those with the specified severity or higher.</p>
-            start_time: <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to those that occur on or after this time.</p>
-            end_time: <p> If specified, AWS Elastic Beanstalk restricts the returned descriptions to those that occur up to, but not including, the <code>EndTime</code>. </p>
+            start_time: <p>If specified, Elastic Beanstalk restricts the returned descriptions to those that occur on or after this time.</p>
+            end_time: <p> If specified, Elastic Beanstalk restricts the returned descriptions to those that occur up to, but not including, the <code>EndTime</code>. </p>
             max_records: <p>Specifies the maximum number of events that can be returned, beginning with the most recent event.</p>
             next_token: <p>Pagination token. If specified, the events return the next batch of results.</p>
 
@@ -2132,11 +2139,11 @@ class AsyncElasticBeanstalkClient:
             "capo_elastic_beanstalk.types.next_token.NextToken"
         ] = None,
     ) -> "capo_elastic_beanstalk.types.describe_instances_health_result.DescribeInstancesHealthResult":
-        r"""<p>Retrieves detailed information about the health of instances in your AWS Elastic Beanstalk. This operation requires <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced.html\">enhanced health reporting</a>.</p>
+        r"""<p>Retrieves detailed information about the health of instances in your Elastic Beanstalk environments. This operation requires <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced.html\">enhanced health reporting</a>.</p> <p>This action only returns information about environments that the calling principle has IAM permissions to access. For example, consider a case where a user only has permission to access one of three environments. When the user calls this action, the response will only include the one environment that the user has permission to access instead of all three environments. If the user doesn’t have access to any of the environments an empty result is returned.</p> <note> <p>The <a href=\"https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AWSElasticBeanstalkReadOnly.html\">AWSElasticBeanstalkReadOnly</a> managed policy allows operators to view information about resources related to Elastic Beanstalk environments. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html\"> Managing Elastic Beanstalk user policies</a> in the <i>Elastic Beanstalk Developer Guide</i>. For detailed instructions to attach a policy to a user or group, see the section <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html#iam-userpolicies-managed\"> Controlling access with managed policies</a> in the same topic.</p> </note>
 
         Args:
-            environment_name: <p>Specify the AWS Elastic Beanstalk environment by name.</p>
-            environment_id: <p>Specify the AWS Elastic Beanstalk environment by ID.</p>
+            environment_name: <p>Specify the Elastic Beanstalk environment by name.</p>
+            environment_id: <p>Specify the Elastic Beanstalk environment by ID.</p>
             attribute_names: <p>Specifies the response elements you wish to receive. To retrieve all attributes, set to <code>All</code>. If no attribute names are specified, returns a list of instances.</p>
             next_token: <p>Specify the pagination token returned by a previous call.</p>
 
@@ -2194,14 +2201,14 @@ class AsyncElasticBeanstalkClient:
             "capo_elastic_beanstalk.types.platform_arn.PlatformArn"
         ] = None,
     ) -> "capo_elastic_beanstalk.types.describe_platform_version_result.DescribePlatformVersionResult":
-        r"""<p>Describes a platform version. Provides full details. Compare to <a>ListPlatformVersions</a>, which provides summary information about a list of platform versions.</p> <p>For definitions of platform version and other platform-related terms, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/platforms-glossary.html\">AWS Elastic Beanstalk Platforms Glossary</a>.</p>
+        r"""<p>Describes a platform version. Provides full details. Compare to <a>ListPlatformVersions</a>, which provides summary information about a list of platform versions.</p> <p>For definitions of platform version and other platform-related terms, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/platforms-glossary.html\">Elastic Beanstalk Platforms Glossary</a>.</p> <p>This action only returns information about resources that the calling principle has IAM permissions to access. For example, consider a case where a user only has permission to access one of three resources. When the user calls the this action, the response will only include the one resource that the user has permission to access instead of all three resources. If the user doesn’t have access to any of the resources an empty result is returned.</p> <note> <p>The <a href=\"https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AWSElasticBeanstalkReadOnly.html\">AWSElasticBeanstalkReadOnly</a> managed policy allows operators to view information about resources related to Elastic Beanstalk. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html\"> Managing Elastic Beanstalk user policies</a> in the <i>Elastic Beanstalk Developer Guide</i>. For detailed instructions to attach a policy to a user or group, see the section <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html#iam-userpolicies-managed\"> Controlling access with managed policies</a> in the same topic.</p> </note>
 
         Args:
             platform_arn: <p>The ARN of the platform version.</p>
 
         Raises:
             capo_elastic_beanstalk.errors.elastic_beanstalk_service_exception.ElasticBeanstalkServiceException: <p>A generic service exception has occurred.</p>
-            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more AWS services.</p>
+            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more Amazon Web Services services.</p>
             capo_elastic_beanstalk.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2239,13 +2246,13 @@ class AsyncElasticBeanstalkClient:
         *,
         config_overrides: Optional[AsyncElasticBeanstalkClientConfig] = None,
     ) -> None:
-        r"""<p>Disassociate the operations role from an environment. After this call is made, Elastic Beanstalk uses the caller's permissions for permissions to downstream services during subsequent calls acting on this environment. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/iam-operationsrole.html\">Operations roles</a> in the <i>AWS Elastic Beanstalk Developer Guide</i>.</p>
+        """<important> <p>The operations role feature of Elastic Beanstalk is in beta release and is subject to change.</p> </important> <p>Disassociate the operations role from an environment. After this call is made, Elastic Beanstalk uses the caller's permissions for permissions to downstream services during subsequent calls acting on this environment.</p>
 
         Args:
             environment_name: <p>The name of the environment from which to disassociate the operations role.</p>
 
         Raises:
-            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more AWS services.</p>
+            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more Amazon Web Services services.</p>
             capo_elastic_beanstalk.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2278,7 +2285,7 @@ class AsyncElasticBeanstalkClient:
     async def list_available_solution_stacks(
         self, *, config_overrides: Optional[AsyncElasticBeanstalkClientConfig] = None
     ) -> "capo_elastic_beanstalk.types.list_available_solution_stacks_result_message.ListAvailableSolutionStacksResultMessage":
-        """<p>Returns a list of the available solution stack names, with the public version first and then in reverse chronological order.</p>
+        r"""<p>Returns a list of the available solution stack names, with the public version first and then in reverse chronological order.</p> <p>This action only returns information about resources that the calling principle has IAM permissions to access. For example, consider a case where a user only has permission to access one of three resources. When the user calls the this action, the response will only include the one resource that the user has permission to access instead of all three resources. If the user doesn’t have access to any of the resources an empty result is returned.</p> <note> <p>The <a href=\"https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AWSElasticBeanstalkReadOnly.html\">AWSElasticBeanstalkReadOnly</a> managed policy allows operators to view information about resources related to Elastic Beanstalk. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html\"> Managing Elastic Beanstalk user policies</a> in the <i>Elastic Beanstalk Developer Guide</i>. For detailed instructions to attach a policy to a user or group, see the section <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html#iam-userpolicies-managed\"> Controlling access with managed policies</a> in the same topic.</p> </note>
 
         Raises:
             capo_elastic_beanstalk.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -2327,7 +2334,7 @@ class AsyncElasticBeanstalkClient:
         ] = None,
         next_token: Optional["capo_elastic_beanstalk.types.token.Token"] = None,
     ) -> "capo_elastic_beanstalk.types.list_platform_branches_result.ListPlatformBranchesResult":
-        r"""<p>Lists the platform branches available for your account in an AWS Region. Provides summary information about each platform branch.</p> <p>For definitions of platform branch and other platform-related terms, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/platforms-glossary.html\">AWS Elastic Beanstalk Platforms Glossary</a>.</p>
+        r"""<p>Lists the platform branches available for your account in an Amazon Web Services Region. Provides summary information about each platform branch.</p> <p>For definitions of platform branch and other platform-related terms, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/platforms-glossary.html\">Elastic Beanstalk Platforms Glossary</a>.</p> <p>This action only returns information about resources that the calling principle has IAM permissions to access. For example, consider a case where a user only has permission to access one of three resources. When the user calls the this action, the response will only include the one resource that the user has permission to access instead of all three resources. If the user doesn’t have access to any of the resources an empty result is returned.</p> <note> <p>The <a href=\"https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AWSElasticBeanstalkReadOnly.html\">AWSElasticBeanstalkReadOnly</a> managed policy allows operators to view information about resources related to Elastic Beanstalk. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html\"> Managing Elastic Beanstalk user policies</a> in the <i>Elastic Beanstalk Developer Guide</i>. For detailed instructions to attach a policy to a user or group, see the section <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html#iam-userpolicies-managed\"> Controlling access with managed policies</a> in the same topic.</p> </note>
 
         Args:
             filters: <p>Criteria for restricting the resulting list of platform branches. The filter is evaluated as a logical conjunction (AND) of the separate <code>SearchFilter</code> terms.</p> <p>The following list shows valid attribute values for each of the <code>SearchFilter</code> terms. Most operators take a single value. The <code>in</code> and <code>not_in</code> operators can take multiple values.</p> <ul> <li> <p> <code>Attribute = BranchName</code>:</p> <ul> <li> <p> <code>Operator</code>: <code>=</code> | <code>!=</code> | <code>begins_with</code> | <code>ends_with</code> | <code>contains</code> | <code>in</code> | <code>not_in</code> </p> </li> </ul> </li> <li> <p> <code>Attribute = LifecycleState</code>:</p> <ul> <li> <p> <code>Operator</code>: <code>=</code> | <code>!=</code> | <code>in</code> | <code>not_in</code> </p> </li> <li> <p> <code>Values</code>: <code>beta</code> | <code>supported</code> | <code>deprecated</code> | <code>retired</code> </p> </li> </ul> </li> <li> <p> <code>Attribute = PlatformName</code>:</p> <ul> <li> <p> <code>Operator</code>: <code>=</code> | <code>!=</code> | <code>begins_with</code> | <code>ends_with</code> | <code>contains</code> | <code>in</code> | <code>not_in</code> </p> </li> </ul> </li> <li> <p> <code>Attribute = TierType</code>:</p> <ul> <li> <p> <code>Operator</code>: <code>=</code> | <code>!=</code> </p> </li> <li> <p> <code>Values</code>: <code>WebServer/Standard</code> | <code>Worker/SQS/HTTP</code> </p> </li> </ul> </li> </ul> <p>Array size: limited to 10 <code>SearchFilter</code> objects.</p> <p>Within each <code>SearchFilter</code> item, the <code>Values</code> array is limited to 10 items.</p>
@@ -2407,7 +2414,7 @@ class AsyncElasticBeanstalkClient:
         ] = None,
         next_token: Optional["capo_elastic_beanstalk.types.token.Token"] = None,
     ) -> "capo_elastic_beanstalk.types.list_platform_versions_result.ListPlatformVersionsResult":
-        r"""<p>Lists the platform versions available for your account in an AWS Region. Provides summary information about each platform version. Compare to <a>DescribePlatformVersion</a>, which provides full details about a single platform version.</p> <p>For definitions of platform version and other platform-related terms, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/platforms-glossary.html\">AWS Elastic Beanstalk Platforms Glossary</a>.</p>
+        r"""<p>Lists the platform versions available for your account in an Amazon Web Services Region. Provides summary information about each platform version. Compare to <a>DescribePlatformVersion</a>, which provides full details about a single platform version.</p> <p>This action only returns information about platform versions that the calling principle has IAM permissions to access. For example, consider a case where a user only has permission to access one of ten platform versions. When the user calls the <i>ListPlatformVersions</i> action, the response will only include the one platform version that the user has permission to access instead of all ten platform versions. If the user doesn’t have access to any of the platform versions an empty result is returned.</p> <note> <p>The <i>AWSElasticBeanstalkReadOnly</i> managed policy allows operators to view information about resources related to Elastic Beanstalk environments. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html\"> Managing Elastic Beanstalk user policies</a> in the <i>Elastic Beanstalk Developer Guide</i>. For detailed instructions to attach a policy to a user or group, see the section <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html#iam-userpolicies-managed\"> Controlling access with managed policies</a> in the same topic.</p> </note> <p>For definitions of platform version and other platform-related terms, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/platforms-glossary.html\">Elastic Beanstalk Platforms Glossary</a>.</p>
 
         Args:
             filters: <p>Criteria for restricting the resulting list of platform versions. The filter is interpreted as a logical conjunction (AND) of the separate <code>PlatformFilter</code> terms.</p>
@@ -2416,7 +2423,7 @@ class AsyncElasticBeanstalkClient:
 
         Raises:
             capo_elastic_beanstalk.errors.elastic_beanstalk_service_exception.ElasticBeanstalkServiceException: <p>A generic service exception has occurred.</p>
-            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more AWS services.</p>
+            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more Amazon Web Services services.</p>
             capo_elastic_beanstalk.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2485,13 +2492,13 @@ class AsyncElasticBeanstalkClient:
         *,
         config_overrides: Optional[AsyncElasticBeanstalkClientConfig] = None,
     ) -> "capo_elastic_beanstalk.types.resource_tags_description_message.ResourceTagsDescriptionMessage":
-        r"""<p>Return the tags applied to an AWS Elastic Beanstalk resource. The response contains a list of tag key-value pairs.</p> <p>Elastic Beanstalk supports tagging of all of its resources. For details about resource tagging, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/applications-tagging-resources.html\">Tagging Application Resources</a>.</p>
+        r"""<p>Return the tags applied to an Elastic Beanstalk resource. The response contains a list of tag key-value pairs.</p> <p>Elastic Beanstalk supports tagging of all of its resources. For details about resource tagging, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/applications-tagging-resources.html\">Tagging Application Resources</a>.</p> <p>This action only returns information about resources that the calling principle has IAM permissions to access. For example, consider a case where a user only has permission to access one of three resources. When the user calls the this action, the response will only include the one resource that the user has permission to access instead of all three resources. If the user doesn’t have access to any of the resources an empty result is returned.</p> <note> <p>The <a href=\"https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AWSElasticBeanstalkReadOnly.html\">AWSElasticBeanstalkReadOnly</a> managed policy allows operators to view information about resources related to Elastic Beanstalk. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html\"> Managing Elastic Beanstalk user policies</a> in the <i>Elastic Beanstalk Developer Guide</i>. For detailed instructions to attach a policy to a user or group, see the section <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html#iam-userpolicies-managed\"> Controlling access with managed policies</a> in the same topic.</p> </note>
 
         Args:
             resource_arn: <p>The Amazon Resource Name (ARN) of the resouce for which a tag list is requested.</p> <p>Must be the ARN of an Elastic Beanstalk resource.</p>
 
         Raises:
-            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more AWS services.</p>
+            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more Amazon Web Services services.</p>
             capo_elastic_beanstalk.errors.resource_not_found_exception.ResourceNotFoundException: <p>A resource doesn't exist for the specified Amazon Resource Name (ARN).</p>
             capo_elastic_beanstalk.errors.resource_type_not_supported_exception.ResourceTypeNotSupportedException: <p>The type of the specified Amazon Resource Name (ARN) isn't supported for this operation.</p>
             capo_elastic_beanstalk.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -2536,14 +2543,14 @@ class AsyncElasticBeanstalkClient:
             "capo_elastic_beanstalk.types.environment_name.EnvironmentName"
         ] = None,
     ) -> None:
-        """<p>Deletes and recreates all of the AWS resources (for example: the Auto Scaling group, load balancer, etc.) for a specified environment and forces a restart.</p>
+        """<p>Deletes and recreates all of the Amazon Web Services resources (for example: the Auto Scaling group, load balancer, etc.) for a specified environment and forces a restart.</p>
 
         Args:
-            environment_id: <p>The ID of the environment to rebuild.</p> <p> Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
-            environment_name: <p>The name of the environment to rebuild.</p> <p> Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
+            environment_id: <p>The ID of the environment to rebuild.</p> <p> Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
+            environment_name: <p>The name of the environment to rebuild.</p> <p> Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
 
         Raises:
-            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more AWS services.</p>
+            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more Amazon Web Services services.</p>
             capo_elastic_beanstalk.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
@@ -2596,8 +2603,8 @@ class AsyncElasticBeanstalkClient:
         """<p>Initiates a request to compile the specified type of information of the deployed environment.</p> <p> Setting the <code>InfoType</code> to <code>tail</code> compiles the last lines from the application server log files of every Amazon EC2 instance in your environment. </p> <p> Setting the <code>InfoType</code> to <code>bundle</code> compresses the application server log files for every Amazon EC2 instance into a <code>.zip</code> file. Legacy and .NET containers do not support bundle logs. </p> <p> Setting the <code>InfoType</code> to <code>analyze</code> collects recent events, instance health, and logs from your environment and sends them to Amazon Bedrock in your account to generate diagnostic insights and recommended next steps. </p> <p> Use <a>RetrieveEnvironmentInfo</a> to obtain the set of logs. </p> <p>Related Topics</p> <ul> <li> <p> <a>RetrieveEnvironmentInfo</a> </p> </li> </ul>
 
         Args:
-            environment_id: <p>The ID of the environment of the requested data.</p> <p>If no such environment is found, <code>RequestEnvironmentInfo</code> returns an <code>InvalidParameterValue</code> error. </p> <p>Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
-            environment_name: <p>The name of the environment of the requested data.</p> <p>If no such environment is found, <code>RequestEnvironmentInfo</code> returns an <code>InvalidParameterValue</code> error. </p> <p>Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
+            environment_id: <p>The ID of the environment of the requested data.</p> <p>If no such environment is found, <code>RequestEnvironmentInfo</code> returns an <code>InvalidParameterValue</code> error. </p> <p>Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
+            environment_name: <p>The name of the environment of the requested data.</p> <p>If no such environment is found, <code>RequestEnvironmentInfo</code> returns an <code>InvalidParameterValue</code> error. </p> <p>Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
             info_type: <p>The type of information to request.</p>
 
         Raises:
@@ -2654,8 +2661,8 @@ class AsyncElasticBeanstalkClient:
         """<p>Causes the environment to restart the application container server running on each Amazon EC2 instance.</p>
 
         Args:
-            environment_id: <p>The ID of the environment to restart the server for.</p> <p> Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
-            environment_name: <p>The name of the environment to restart the server for.</p> <p> Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
+            environment_id: <p>The ID of the environment to restart the server for.</p> <p> Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
+            environment_name: <p>The name of the environment to restart the server for.</p> <p> Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
 
         Raises:
             capo_elastic_beanstalk.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -2710,8 +2717,8 @@ class AsyncElasticBeanstalkClient:
         """<p>Retrieves the compiled information from a <a>RequestEnvironmentInfo</a> request.</p> <p>Related Topics</p> <ul> <li> <p> <a>RequestEnvironmentInfo</a> </p> </li> </ul>
 
         Args:
-            environment_id: <p>The ID of the data's environment.</p> <p>If no such environment is found, returns an <code>InvalidParameterValue</code> error.</p> <p>Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error.</p>
-            environment_name: <p>The name of the data's environment.</p> <p> If no such environment is found, returns an <code>InvalidParameterValue</code> error. </p> <p> Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
+            environment_id: <p>The ID of the data's environment.</p> <p>If no such environment is found, returns an <code>InvalidParameterValue</code> error.</p> <p>Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, Elastic Beanstalk returns <code>MissingRequiredParameter</code> error.</p>
+            environment_name: <p>The name of the data's environment.</p> <p> If no such environment is found, returns an <code>InvalidParameterValue</code> error. </p> <p> Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
             info_type: <p>The type of information to retrieve.</p>
 
         Raises:
@@ -2843,13 +2850,13 @@ class AsyncElasticBeanstalkClient:
         r"""<p>Terminates the specified environment.</p>
 
         Args:
-            environment_id: <p>The ID of the environment to terminate.</p> <p> Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
-            environment_name: <p>The name of the environment to terminate.</p> <p> Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
-            terminate_resources: <p>Indicates whether the associated AWS resources should shut down when the environment is terminated:</p> <ul> <li> <p> <code>true</code>: The specified environment as well as the associated AWS resources, such as Auto Scaling group and LoadBalancer, are terminated.</p> </li> <li> <p> <code>false</code>: AWS Elastic Beanstalk resource management is removed from the environment, but the AWS resources continue to operate.</p> </li> </ul> <p> For more information, see the <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/ug/\"> AWS Elastic Beanstalk User Guide. </a> </p> <p> Default: <code>true</code> </p> <p> Valid Values: <code>true</code> | <code>false</code> </p>
+            environment_id: <p>The ID of the environment to terminate.</p> <p> Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
+            environment_name: <p>The name of the environment to terminate.</p> <p> Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
+            terminate_resources: <p>Indicates whether the associated Amazon Web Services resources should shut down when the environment is terminated:</p> <ul> <li> <p> <code>true</code>: The specified environment as well as the associated Amazon Web Services resources, such as Auto Scaling group and LoadBalancer, are terminated.</p> </li> <li> <p> <code>false</code>: Elastic Beanstalk resource management is removed from the environment, but the Amazon Web Services resources continue to operate.</p> </li> </ul> <p> For more information, see the <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/ug/\"> Elastic Beanstalk User Guide. </a> </p> <p> Default: <code>true</code> </p> <p> Valid Values: <code>true</code> | <code>false</code> </p>
             force_terminate: <p>Terminates the target environment even if another environment in the same group is dependent on it.</p>
 
         Raises:
-            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more AWS services.</p>
+            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more Amazon Web Services services.</p>
             capo_elastic_beanstalk.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
@@ -2906,7 +2913,7 @@ class AsyncElasticBeanstalkClient:
 
         Args:
             application_name: <p>The name of the application to update. If no such application is found, <code>UpdateApplication</code> returns an <code>InvalidParameterValue</code> error. </p>
-            description: <p>A new description for the application.</p> <p>Default: If not specified, AWS Elastic Beanstalk does not update the description.</p>
+            description: <p>A new description for the application.</p> <p>Default: If not specified, Elastic Beanstalk does not update the description.</p>
 
         Raises:
             capo_elastic_beanstalk.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -2962,7 +2969,7 @@ class AsyncElasticBeanstalkClient:
             resource_lifecycle_config: <p>The lifecycle configuration.</p>
 
         Raises:
-            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more AWS services.</p>
+            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more Amazon Web Services services.</p>
             capo_elastic_beanstalk.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -3079,7 +3086,7 @@ class AsyncElasticBeanstalkClient:
             options_to_remove: <p>A list of configuration options to remove from the configuration set.</p> <p> Constraint: You can remove only <code>UserDefined</code> configuration options. </p>
 
         Raises:
-            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more AWS services.</p>
+            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more Amazon Web Services services.</p>
             capo_elastic_beanstalk.errors.too_many_buckets_exception.TooManyBucketsException: <p>The specified account has reached its limit of Amazon S3 buckets.</p>
             capo_elastic_beanstalk.errors.UnknownServiceError: The service returned an error code this client does not model.
 
@@ -3166,24 +3173,24 @@ class AsyncElasticBeanstalkClient:
             "capo_elastic_beanstalk.types.options_specifier_list.OptionsSpecifierList"
         ] = None,
     ) -> "capo_elastic_beanstalk.types.environment_description.EnvironmentDescription":
-        r"""<p>Updates the environment description, deploys a new application version, updates the configuration settings to an entirely new configuration template, or updates select configuration option values in the running environment.</p> <p> Attempting to update both the release and configuration is not allowed and AWS Elastic Beanstalk returns an <code>InvalidParameterCombination</code> error. </p> <p> When updating the configuration settings to a new template or individual settings, a draft configuration is created and <a>DescribeConfigurationSettings</a> for this environment returns two setting descriptions with different <code>DeploymentStatus</code> values. </p>
+        r"""<p>Updates the environment description, deploys a new application version, updates the configuration settings to an entirely new configuration template, or updates select configuration option values in the running environment.</p> <p> Attempting to update both the release and configuration is not allowed and Elastic Beanstalk returns an <code>InvalidParameterCombination</code> error. </p> <p> When updating the configuration settings to a new template or individual settings, a draft configuration is created and <a>DescribeConfigurationSettings</a> for this environment returns two setting descriptions with different <code>DeploymentStatus</code> values. </p>
 
         Args:
             application_name: <p>The name of the application with which the environment is associated.</p>
-            environment_id: <p>The ID of the environment to update.</p> <p>If no environment with this ID exists, AWS Elastic Beanstalk returns an <code>InvalidParameterValue</code> error.</p> <p>Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
-            environment_name: <p>The name of the environment to update. If no environment with this name exists, AWS Elastic Beanstalk returns an <code>InvalidParameterValue</code> error. </p> <p>Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
+            environment_id: <p>The ID of the environment to update.</p> <p>If no environment with this ID exists, Elastic Beanstalk returns an <code>InvalidParameterValue</code> error.</p> <p>Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
+            environment_name: <p>The name of the environment to update. If no environment with this name exists, Elastic Beanstalk returns an <code>InvalidParameterValue</code> error. </p> <p>Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
             group_name: <p>The name of the group to which the target environment belongs. Specify a group name only if the environment's name is specified in an environment manifest and not with the environment name or environment ID parameters. See <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-cfg-manifest.html\">Environment Manifest (env.yaml)</a> for details.</p>
-            description: <p>If this parameter is specified, AWS Elastic Beanstalk updates the description of this environment.</p>
-            tier: <p>This specifies the tier to use to update the environment.</p> <p>Condition: At this time, if you change the tier version, name, or type, AWS Elastic Beanstalk returns <code>InvalidParameterValue</code> error. </p>
-            version_label: <p>If this parameter is specified, AWS Elastic Beanstalk deploys the named application version to the environment. If no such application version is found, returns an <code>InvalidParameterValue</code> error. </p>
-            template_name: <p>If this parameter is specified, AWS Elastic Beanstalk deploys this configuration template to the environment. If no such configuration template is found, AWS Elastic Beanstalk returns an <code>InvalidParameterValue</code> error. </p>
+            description: <p>If this parameter is specified, Elastic Beanstalk updates the description of this environment.</p>
+            tier: <p>This specifies the tier to use to update the environment.</p> <p>Condition: At this time, if you change the tier version, name, or type, Elastic Beanstalk returns <code>InvalidParameterValue</code> error. </p>
+            version_label: <p>If this parameter is specified, Elastic Beanstalk deploys the named application version to the environment. If no such application version is found, returns an <code>InvalidParameterValue</code> error. </p>
+            template_name: <p>If this parameter is specified, Elastic Beanstalk deploys this configuration template to the environment. If no such configuration template is found, Elastic Beanstalk returns an <code>InvalidParameterValue</code> error. </p>
             solution_stack_name: <p>This specifies the platform version that the environment will run after the environment is updated.</p>
             platform_arn: <p>The ARN of the platform, if used.</p>
-            option_settings: <p>If specified, AWS Elastic Beanstalk updates the configuration set associated with the running environment and sets the specified configuration options to the requested value.</p>
+            option_settings: <p>If specified, Elastic Beanstalk updates the configuration set associated with the running environment and sets the specified configuration options to the requested value.</p>
             options_to_remove: <p>A list of custom user-defined configuration options to remove from the configuration set for this environment.</p>
 
         Raises:
-            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more AWS services.</p>
+            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more Amazon Web Services services.</p>
             capo_elastic_beanstalk.errors.too_many_buckets_exception.TooManyBucketsException: <p>The specified account has reached its limit of Amazon S3 buckets.</p>
             capo_elastic_beanstalk.errors.UnknownServiceError: The service returned an error code this client does not model.
 
@@ -3258,7 +3265,7 @@ class AsyncElasticBeanstalkClient:
             "capo_elastic_beanstalk.types.tag_key_list.TagKeyList"
         ] = None,
     ) -> None:
-        r"""<p>Update the list of tags applied to an AWS Elastic Beanstalk resource. Two lists can be passed: <code>TagsToAdd</code> for tags to add or update, and <code>TagsToRemove</code>.</p> <p>Elastic Beanstalk supports tagging of all of its resources. For details about resource tagging, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/applications-tagging-resources.html\">Tagging Application Resources</a>.</p> <p>If you create a custom IAM user policy to control permission to this operation, specify one of the following two virtual actions (or both) instead of the API operation name:</p> <dl> <dt>elasticbeanstalk:AddTags</dt> <dd> <p>Controls permission to call <code>UpdateTagsForResource</code> and pass a list of tags to add in the <code>TagsToAdd</code> parameter.</p> </dd> <dt>elasticbeanstalk:RemoveTags</dt> <dd> <p>Controls permission to call <code>UpdateTagsForResource</code> and pass a list of tag keys to remove in the <code>TagsToRemove</code> parameter.</p> </dd> </dl> <p>For details about creating a custom user policy, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html#AWSHowTo.iam.policies\">Creating a Custom User Policy</a>.</p>
+        r"""<p>Update the list of tags applied to an Elastic Beanstalk resource. Two lists can be passed: <code>TagsToAdd</code> for tags to add or update, and <code>TagsToRemove</code>.</p> <p>Elastic Beanstalk supports tagging of all of its resources. For details about resource tagging, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/applications-tagging-resources.html\">Tagging Application Resources</a>.</p> <p>If you create a custom policy to control permission to this operation, specify one of the following two virtual actions (or both) instead of the API operation name:</p> <dl> <dt>elasticbeanstalk:AddTags</dt> <dd> <p>Controls permission to call <code>UpdateTagsForResource</code> and pass a list of tags to add in the <code>TagsToAdd</code> parameter.</p> </dd> <dt>elasticbeanstalk:RemoveTags</dt> <dd> <p>Controls permission to call <code>UpdateTagsForResource</code> and pass a list of tag keys to remove in the <code>TagsToRemove</code> parameter.</p> </dd> </dl> <p>For details about creating a custom user policy, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.iam.managed-policies.html#AWSHowTo.iam.policies\">Creating a Custom User Policy</a>.</p>
 
         Args:
             resource_arn: <p>The Amazon Resource Name (ARN) of the resouce to be updated.</p> <p>Must be the ARN of an Elastic Beanstalk resource.</p>
@@ -3266,7 +3273,7 @@ class AsyncElasticBeanstalkClient:
             tags_to_remove: <p>A list of tag keys to remove. If a tag key doesn't exist, it is silently ignored.</p> <p>Specify at least one of these parameters: <code>TagsToAdd</code>, <code>TagsToRemove</code>.</p>
 
         Raises:
-            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more AWS services.</p>
+            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more Amazon Web Services services.</p>
             capo_elastic_beanstalk.errors.operation_in_progress_exception.OperationInProgressException: <p>Unable to perform the specified operation because another operation that effects an element in this activity is already in progress.</p>
             capo_elastic_beanstalk.errors.resource_not_found_exception.ResourceNotFoundException: <p>A resource doesn't exist for the specified Amazon Resource Name (ARN).</p>
             capo_elastic_beanstalk.errors.resource_type_not_supported_exception.ResourceTypeNotSupportedException: <p>The type of the specified Amazon Resource Name (ARN) isn't supported for this operation.</p>
@@ -3326,7 +3333,7 @@ class AsyncElasticBeanstalkClient:
             option_settings: <p>A list of the options and desired values to evaluate.</p>
 
         Raises:
-            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more AWS services.</p>
+            capo_elastic_beanstalk.errors.insufficient_privileges_exception.InsufficientPrivilegesException: <p>The specified account does not have sufficient privileges for one or more Amazon Web Services services.</p>
             capo_elastic_beanstalk.errors.too_many_buckets_exception.TooManyBucketsException: <p>The specified account has reached its limit of Amazon S3 buckets.</p>
             capo_elastic_beanstalk.errors.UnknownServiceError: The service returned an error code this client does not model.
 

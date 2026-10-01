@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
-    import capo_wellarchitected.types.list_notifications_max_results
+    import capo_wellarchitected.types.max_results
     import capo_wellarchitected.types.next_token
     import capo_wellarchitected.types.resource_arn
     import capo_wellarchitected.types.workload_id
@@ -14,9 +14,7 @@ if TYPE_CHECKING:
 class ListNotificationsInput(TypedDict, closed=True):
     workload_id: NotRequired["capo_wellarchitected.types.workload_id.WorkloadId"]
     next_token: NotRequired["capo_wellarchitected.types.next_token.NextToken"]
-    max_results: NotRequired[
-        "capo_wellarchitected.types.list_notifications_max_results.ListNotificationsMaxResults"
-    ]
+    max_results: NotRequired["capo_wellarchitected.types.max_results.MaxResults"]
     """<p>The maximum number of results to return for this request.</p>"""
     resource_arn: NotRequired["capo_wellarchitected.types.resource_arn.ResourceArn"]
     """<p>The ARN for the related resource for the notification.</p> <note> <p>Only one of <code>WorkloadID</code> or <code>ResourceARN</code> should be specified.</p> </note>"""

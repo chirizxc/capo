@@ -9,6 +9,7 @@ from capo_glue.errors import DeserializationError
 if TYPE_CHECKING:
     import capo_glue.types.column_list
     import capo_glue.types.description_string
+    import capo_glue.types.federated_table
     import capo_glue.types.name_string
     import capo_glue.types.non_negative_integer
     import capo_glue.types.parameters_map
@@ -49,6 +50,8 @@ class TableInput(TypedDict, closed=True):
     """<p>These key-value pairs define properties associated with the table.</p>"""
     target_table: NotRequired["capo_glue.types.table_identifier.TableIdentifier"]
     """<p>A <code>TableIdentifier</code> structure that describes a target table for resource linking.</p>"""
+    federated_table: NotRequired["capo_glue.types.federated_table.FederatedTable"]
+    """<p>A <code>FederatedTable</code> structure that references an entity outside the Glue Data Catalog. Specify this field to create a federated table, which points to a table in an external metastore instead of describing data managed in the Glue Data Catalog.</p>"""
     view_definition: NotRequired[
         "capo_glue.types.view_definition_input.ViewDefinitionInput"
     ]
@@ -107,6 +110,12 @@ def serialize_aws_json_1_1(value: TableInput) -> dict:
 
         out["TargetTable"] = capo_glue.types.table_identifier.serialize_aws_json_1_1(
             value["target_table"]
+        )
+    if "federated_table" in value:
+        import capo_glue.types.federated_table
+
+        out["FederatedTable"] = capo_glue.types.federated_table.serialize_aws_json_1_1(
+            value["federated_table"]
         )
     if "view_definition" in value:
         import capo_glue.types.view_definition_input
@@ -176,6 +185,14 @@ def deserialize_aws_json_1_1(data: dict) -> TableInput:
 
         out["target_table"] = capo_glue.types.table_identifier.deserialize_aws_json_1_1(
             data["TargetTable"]
+        )
+    if data.get("FederatedTable") is not None:
+        import capo_glue.types.federated_table
+
+        out["federated_table"] = (
+            capo_glue.types.federated_table.deserialize_aws_json_1_1(
+                data["FederatedTable"]
+            )
         )
     if data.get("ViewDefinition") is not None:
         import capo_glue.types.view_definition_input

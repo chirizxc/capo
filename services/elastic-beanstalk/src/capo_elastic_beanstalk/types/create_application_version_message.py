@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     import capo_elastic_beanstalk.types.auto_create_application
     import capo_elastic_beanstalk.types.build_configuration
     import capo_elastic_beanstalk.types.description
+    import capo_elastic_beanstalk.types.image_configuration
     import capo_elastic_beanstalk.types.s3_location
     import capo_elastic_beanstalk.types.source_build_information
     import capo_elastic_beanstalk.types.tags
@@ -23,19 +24,19 @@ class CreateApplicationVersionMessage(TypedDict, closed=True):
     application_name: "capo_elastic_beanstalk.types.application_name.ApplicationName"
     """<p> The name of the application. If no application is found with this name, and <code>AutoCreateApplication</code> is <code>false</code>, returns an <code>InvalidParameterValue</code> error. </p>"""
     version_label: "capo_elastic_beanstalk.types.version_label.VersionLabel"
-    """<p>A label identifying this version.</p> <p>Constraint: Must be unique per application. If an application version already exists with this label for the specified application, AWS Elastic Beanstalk returns an <code>InvalidParameterValue</code> error. </p>"""
+    """<p>A label identifying this version.</p> <p>Constraint: Must be unique per application. If an application version already exists with this label for the specified application, Elastic Beanstalk returns an <code>InvalidParameterValue</code> error. </p>"""
     description: NotRequired["capo_elastic_beanstalk.types.description.Description"]
     """<p>A description of this application version.</p>"""
     source_build_information: NotRequired[
         "capo_elastic_beanstalk.types.source_build_information.SourceBuildInformation"
     ]
-    """<p>Specify a commit in an AWS CodeCommit Git repository to use as the source code for the application version.</p>"""
+    """<p>Specify a commit in an CodeCommit Git repository to use as the source code for the application version.</p>"""
     source_bundle: NotRequired["capo_elastic_beanstalk.types.s3_location.S3Location"]
-    """<p>The Amazon S3 bucket and key that identify the location of the source bundle for this version.</p> <note> <p>The Amazon S3 bucket must be in the same region as the environment.</p> </note> <p>Specify a source bundle in S3 or a commit in an AWS CodeCommit repository (with <code>SourceBuildInformation</code>), but not both. If neither <code>SourceBundle</code> nor <code>SourceBuildInformation</code> are provided, Elastic Beanstalk uses a sample application.</p>"""
+    """<p>The Amazon S3 bucket and key that identify the location of the source bundle for this version.</p> <note> <p>The Amazon S3 bucket must be in the same region as the environment.</p> <p>Unless you're specifying a source bundle in the bucket that Elastic Beanstalk manages in your account, you must assign a custom policy to your user, and grant <code>Allow</code> permission to the <code>s3:Get*</code> actions on your S3 object resource, for example, <code>arn:aws:s3:::your-bucket/your-source-bundle-object</code>.</p> </note> <p>Specify a source bundle in Amazon S3 or a commit in an CodeCommit repository (with <code>SourceBuildInformation</code>), but not both. If neither <code>SourceBundle</code> nor <code>SourceBuildInformation</code> are provided, Elastic Beanstalk uses a sample application.</p>"""
     build_configuration: NotRequired[
         "capo_elastic_beanstalk.types.build_configuration.BuildConfiguration"
     ]
-    """<p>Settings for an AWS CodeBuild build.</p>"""
+    """<p>Settings for an CodeBuild build.</p> <p>Don't specify <code>BuildConfiguration</code> together with <code>ImageConfiguration</code>, which configures a container image build instead.</p>"""
     auto_create_application: NotRequired[
         "capo_elastic_beanstalk.types.auto_create_application.AutoCreateApplication"
     ]
@@ -43,9 +44,13 @@ class CreateApplicationVersionMessage(TypedDict, closed=True):
     process: NotRequired[
         "capo_elastic_beanstalk.types.application_version_proccess.ApplicationVersionProccess"
     ]
-    """<p>Pre-processes and validates the environment manifest (<code>env.yaml</code>) and configuration files (<code>*.config</code> files in the <code>.ebextensions</code> folder) in the source bundle. Validating configuration files can identify issues prior to deploying the application version to an environment.</p> <p>You must turn processing on for application versions that you create using AWS CodeBuild or AWS CodeCommit. For application versions built from a source bundle in Amazon S3, processing is optional.</p> <note> <p>The <code>Process</code> option validates Elastic Beanstalk configuration files. It doesn't validate your application's configuration files, like proxy server or Docker configuration.</p> </note>"""
+    """<p>Pre-processes and validates the environment manifest (<code>env.yaml</code>) and configuration files (<code>*.config</code> files in the <code>.ebextensions</code> folder) in the source bundle. Validating configuration files can identify issues prior to deploying the application version to an environment.</p> <p>You must turn processing on for application versions that you create using CodeBuild or CodeCommit. For application versions built from a source bundle in Amazon S3, processing is optional.</p> <note> <p>The <code>Process</code> option validates Elastic Beanstalk configuration files. It doesn't validate your application's configuration files, like proxy server or Docker configuration.</p> </note>"""
     tags: NotRequired["capo_elastic_beanstalk.types.tags.Tags"]
     """<p>Specifies the tags applied to the application version.</p> <p>Elastic Beanstalk applies these tags only to the application version. Environments that use the application version don't inherit the tags.</p>"""
+    image_configuration: NotRequired[
+        "capo_elastic_beanstalk.types.image_configuration.ImageConfiguration"
+    ]
+    """<p>The source of the container image for this application version. You can specify an image that you built and pushed to a container registry yourself, or settings for Elastic Beanstalk to build one from your source bundle. Specify exactly one of the <code>Source</code> and <code>Build</code> members.</p> <p>Don't specify <code>ImageConfiguration</code> together with <code>BuildConfiguration</code>, which configures an CodeBuild build instead.</p>"""
 
 
 # --- awsQuery ser/de ---
@@ -91,6 +96,12 @@ def serialize_query(
 
         capo_elastic_beanstalk.types.tags.serialize_query(
             value["tags"], pairs, f"{key_prefix}Tags"
+        )
+    if "image_configuration" in value:
+        import capo_elastic_beanstalk.types.image_configuration
+
+        capo_elastic_beanstalk.types.image_configuration.serialize_query(
+            value["image_configuration"], pairs, f"{key_prefix}ImageConfiguration"
         )
 
 
@@ -153,4 +164,13 @@ def deserialize_query(el: Element) -> CreateApplicationVersionMessage:
         import capo_elastic_beanstalk.types.tags
 
         out["tags"] = capo_elastic_beanstalk.types.tags.deserialize_query(child_tags)
+    child_image_configuration = el.find("ImageConfiguration")
+    if child_image_configuration is not None:
+        import capo_elastic_beanstalk.types.image_configuration
+
+        out["image_configuration"] = (
+            capo_elastic_beanstalk.types.image_configuration.deserialize_query(
+                child_image_configuration
+            )
+        )
     return out

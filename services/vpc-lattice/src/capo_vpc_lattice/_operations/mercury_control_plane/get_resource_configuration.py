@@ -20,6 +20,7 @@ import capo_vpc_lattice.errors.validation_exception
 import capo_vpc_lattice.types.get_resource_configuration_request
 import capo_vpc_lattice.types.get_resource_configuration_response
 import capo_vpc_lattice.types.port_range_list
+import capo_vpc_lattice.types.protocol_type
 import capo_vpc_lattice.types.resource_configuration_definition
 import capo_vpc_lattice.types.resource_configuration_type
 import capo_vpc_lattice.types.timestamp

@@ -43,6 +43,8 @@ class Plan(TypedDict, closed=True):
         "capo_arc_region_switch.types.report_configuration.ReportConfiguration"
     ]
     """<p>The report configuration for a plan.</p>"""
+    service_quota_checks_enabled: NotRequired["bool"]
+    """<p>Indicates whether service quota checks are enabled for the Region switch plan. When enabled, Region switch compares the applied service quota values across the plan's Amazon Web Services Regions and creates a warning when a quota in one Region is lower than the value required for the matching resource in another Region. Service quota checks are advisory and don't prevent you from creating, evaluating, or executing a plan.</p>"""
     name: "capo_arc_region_switch.types.plan_name.PlanName"
     """<p>The name for a plan.</p>"""
     regions: "capo_arc_region_switch.types.region_list.RegionList"
@@ -99,6 +101,8 @@ def serialize_aws_json_1_0(value: Plan) -> dict:
                 value["report_configuration"]
             )
         )
+    if "service_quota_checks_enabled" in value:
+        out["serviceQuotaChecksEnabled"] = value["service_quota_checks_enabled"]
     out["name"] = value["name"]
     import capo_arc_region_switch.types.region_list
 
@@ -176,6 +180,8 @@ def deserialize_aws_json_1_0(data: dict) -> Plan:
                 data["reportConfiguration"]
             )
         )
+    if data.get("serviceQuotaChecksEnabled") is not None:
+        out["service_quota_checks_enabled"] = data["serviceQuotaChecksEnabled"]
     if data.get("name") is not None:
         out["name"] = data["name"]
     else:

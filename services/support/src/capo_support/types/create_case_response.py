@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 class CreateCaseResponse(TypedDict, closed=True):
     case_id: NotRequired["capo_support.types.case_id.CaseId"]
-    """<p>The support case ID requested or returned in the call. The case ID is an alphanumeric string in the following format: case-<i>12345678910-2013-c4c1d2bf33c5cf47</i> </p>"""
+    """<p>The support case ID requested or returned in the call. The case ID is an alphanumeric string in the following format: case-<i>12345678910-exen-2025-c4c1d2bf33c5cf47</i> </p>"""
 
 
 # --- awsJson1_1 ser/de ---

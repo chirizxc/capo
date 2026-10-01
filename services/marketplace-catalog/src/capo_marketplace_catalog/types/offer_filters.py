@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_marketplace_catalog.types.offer_availability_end_date_filter
     import capo_marketplace_catalog.types.offer_buyer_accounts_filter
+    import capo_marketplace_catalog.types.offer_created_by_source_filter
     import capo_marketplace_catalog.types.offer_entity_id_filter
     import capo_marketplace_catalog.types.offer_last_modified_date_filter
     import capo_marketplace_catalog.types.offer_name_filter
@@ -15,6 +16,8 @@ if TYPE_CHECKING:
     import capo_marketplace_catalog.types.offer_resale_authorization_id_filter
     import capo_marketplace_catalog.types.offer_set_id_filter
     import capo_marketplace_catalog.types.offer_state_filter
+    import capo_marketplace_catalog.types.offer_target_agreement_id_filter
+    import capo_marketplace_catalog.types.offer_target_agreement_intent_filter
     import capo_marketplace_catalog.types.offer_targeting_filter
 
 
@@ -63,6 +66,18 @@ class OfferFilters(TypedDict, closed=True):
         "capo_marketplace_catalog.types.offer_set_id_filter.OfferSetIdFilter"
     ]
     """<p>Allows filtering on the <code>OfferSetId</code> of an offer.</p>"""
+    target_agreement_id: NotRequired[
+        "capo_marketplace_catalog.types.offer_target_agreement_id_filter.OfferTargetAgreementIdFilter"
+    ]
+    """<p>Allows filtering on the <code>TargetAgreementId</code> of an offer.</p>"""
+    target_agreement_intent: NotRequired[
+        "capo_marketplace_catalog.types.offer_target_agreement_intent_filter.OfferTargetAgreementIntentFilter"
+    ]
+    """<p>Allows filtering on the <code>TargetAgreementIntent</code> of an offer.</p>"""
+    created_by_source: NotRequired[
+        "capo_marketplace_catalog.types.offer_created_by_source_filter.OfferCreatedBySourceFilter"
+    ]
+    """<p>Allows filtering on the <code>CreatedBySource</code> of an offer.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -150,6 +165,30 @@ def serialize_json(value: OfferFilters) -> dict:
         out["OfferSetId"] = (
             capo_marketplace_catalog.types.offer_set_id_filter.serialize_json(
                 value["offer_set_id"]
+            )
+        )
+    if "target_agreement_id" in value:
+        import capo_marketplace_catalog.types.offer_target_agreement_id_filter
+
+        out["TargetAgreementId"] = (
+            capo_marketplace_catalog.types.offer_target_agreement_id_filter.serialize_json(
+                value["target_agreement_id"]
+            )
+        )
+    if "target_agreement_intent" in value:
+        import capo_marketplace_catalog.types.offer_target_agreement_intent_filter
+
+        out["TargetAgreementIntent"] = (
+            capo_marketplace_catalog.types.offer_target_agreement_intent_filter.serialize_json(
+                value["target_agreement_intent"]
+            )
+        )
+    if "created_by_source" in value:
+        import capo_marketplace_catalog.types.offer_created_by_source_filter
+
+        out["CreatedBySource"] = (
+            capo_marketplace_catalog.types.offer_created_by_source_filter.serialize_json(
+                value["created_by_source"]
             )
         )
     return out
@@ -241,6 +280,30 @@ def deserialize_json(data: dict) -> OfferFilters:
         out["offer_set_id"] = (
             capo_marketplace_catalog.types.offer_set_id_filter.deserialize_json(
                 data["OfferSetId"]
+            )
+        )
+    if data.get("TargetAgreementId") is not None:
+        import capo_marketplace_catalog.types.offer_target_agreement_id_filter
+
+        out["target_agreement_id"] = (
+            capo_marketplace_catalog.types.offer_target_agreement_id_filter.deserialize_json(
+                data["TargetAgreementId"]
+            )
+        )
+    if data.get("TargetAgreementIntent") is not None:
+        import capo_marketplace_catalog.types.offer_target_agreement_intent_filter
+
+        out["target_agreement_intent"] = (
+            capo_marketplace_catalog.types.offer_target_agreement_intent_filter.deserialize_json(
+                data["TargetAgreementIntent"]
+            )
+        )
+    if data.get("CreatedBySource") is not None:
+        import capo_marketplace_catalog.types.offer_created_by_source_filter
+
+        out["created_by_source"] = (
+            capo_marketplace_catalog.types.offer_created_by_source_filter.deserialize_json(
+                data["CreatedBySource"]
             )
         )
     return out

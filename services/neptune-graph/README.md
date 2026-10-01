@@ -19,6 +19,21 @@ async def main():
         print(response)
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_neptune_graph import AsyncNeptuneGraphClient
+
+
+async def main():
+    async with AsyncNeptuneGraphClient() as neptune_graph:
+        # Example: paginate over list_graphs
+        async for item in neptune_graph.iter_list_graphs():
+            print(item)
+```
+
 ## Streaming Response
 
 Some operations return a streaming response body. Use the operation as an async context manager and iterate over the response field to read chunks.

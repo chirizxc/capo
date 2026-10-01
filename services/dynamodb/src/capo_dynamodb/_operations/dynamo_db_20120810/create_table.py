@@ -30,6 +30,7 @@ import capo_dynamodb.types.stream_specification
 import capo_dynamodb.types.table_class
 import capo_dynamodb.types.table_description
 import capo_dynamodb.types.tag_list
+import capo_dynamodb.types.vector_index_list
 import capo_dynamodb.types.warm_throughput
 from capo_dynamodb._protocol.errors import parse_error_metadata_json
 from capo_dynamodb._rule_engine._endpoint_rule_set import EndpointParams, resolve
@@ -125,6 +126,7 @@ def build_request(
             AccountIdEndpointMode=options.account_id_endpoint_mode,
             ResourceArn=input_.get("table_name"),
             ResourceArnList=options.resource_arn_list,
+            IsSearchOperation=options.is_search_operation,
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + ""

@@ -35,7 +35,7 @@ class CreateEventBusRequest(TypedDict, closed=True):
         "capo_eventbridge.types.dead_letter_config.DeadLetterConfig"
     ]
     log_config: NotRequired["capo_eventbridge.types.log_config.LogConfig"]
-    r"""<p>The logging configuration settings for the event bus.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/eb-event-bus-logs.html\">Configuring logs for event buses</a> in the <i>EventBridge User Guide</i>.</p>"""
+    r"""<p>The logging configuration settings for the event bus.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-bus-logs.html\">Configuring logs for event buses</a> in the <i>EventBridge User Guide</i>.</p>"""
     tags: NotRequired["capo_eventbridge.types.tag_list.TagList"]
     """<p>Tags to associate with the event bus.</p>"""
 

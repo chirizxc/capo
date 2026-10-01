@@ -13,6 +13,8 @@ if TYPE_CHECKING:
     import capo_route53resolver.types.creator_request_id
     import capo_route53resolver.types.dns_threat_protection
     import capo_route53resolver.types.firewall_domain_redirection_action
+    import capo_route53resolver.types.firewall_rule_status
+    import capo_route53resolver.types.firewall_rule_status_message
     import capo_route53resolver.types.firewall_rule_type
     import capo_route53resolver.types.name
     import capo_route53resolver.types.priority
@@ -76,7 +78,7 @@ class FirewallRule(TypedDict, closed=True):
     dns_threat_protection: NotRequired[
         "capo_route53resolver.types.dns_threat_protection.DnsThreatProtection"
     ]
-    """<p> The type of the DNS Firewall Advanced rule. Valid values are: </p> <ul> <li> <p> <code>DGA</code>: Domain generation algorithms detection. DGAs are used by attackers to generate a large number of domains to to launch malware attacks.</p> </li> <li> <p> <code>DNS_TUNNELING</code>: DNS tunneling detection. DNS tunneling is used by attackers to exfiltrate data from the client by using the DNS tunnel without making a network connection to the client.</p> </li> </ul>"""
+    """<p> The type of the DNS Firewall Advanced rule. Valid values are: </p> <ul> <li> <p> <code>DGA</code>: Domain generation algorithms detection. DGAs are used by attackers to generate a large number of domains to launch malware attacks.</p> </li> <li> <p> <code>DNS_TUNNELING</code>: DNS tunneling detection. DNS tunneling is used by attackers to exfiltrate data from the client by using the DNS tunnel without making a network connection to the client.</p> </li> <li> <p> <code>DICTIONARY_DGA</code>: Dictionary-based domain generation algorithms detection. Dictionary DGAs use wordlists to generate domains that appear more legitimate, making them harder to detect than traditional DGAs.</p> </li> </ul>"""
     confidence_threshold: NotRequired[
         "capo_route53resolver.types.confidence_threshold.ConfidenceThreshold"
     ]
@@ -84,7 +86,15 @@ class FirewallRule(TypedDict, closed=True):
     firewall_rule_type: NotRequired[
         "capo_route53resolver.types.firewall_rule_type.FirewallRuleType"
     ]
-    """<p>The rule type configuration for the firewall rule. Exactly one member of this union should be set.</p>"""
+    """<p>The rule type configuration for the firewall rule. This is a tagged union — exactly one of its members will be populated. Possible members are:</p> <ul> <li> <p> <code>FirewallAdvancedContentCategory</code> — an Amazon Web Services-managed content category (for example, <code>VIOLENCE_AND_HATE_SPEECH</code>).</p> </li> <li> <p> <code>FirewallAdvancedThreatCategory</code> — an Amazon Web Services-managed advanced threat category (for example, <code>PHISHING</code>).</p> </li> <li> <p> <code>DnsThreatProtection</code> — a built-in DNS Firewall Advanced threat detector (<code>DGA</code>, <code>DNS_TUNNELING</code>, or <code>DICTIONARY_DGA</code>).</p> </li> <li> <p> <code>PartnerThreatProtection</code> — a third-party threat feed delivered through Amazon Web Services Marketplace.</p> </li> </ul> <p>To enumerate the values supported in your account, call <a>ListFirewallRuleTypes</a>.</p>"""
+    status: NotRequired[
+        "capo_route53resolver.types.firewall_rule_status.FirewallRuleStatus"
+    ]
+    """<p>The lifecycle state of the firewall rule. Possible values:</p> <ul> <li> <p> <code>CREATING</code> — DNS Firewall is provisioning the rule. Rules created with the <code>PartnerThreatProtection</code> rule type begin in this state while DNS Firewall verifies the calling account's Amazon Web Services Marketplace entitlement.</p> </li> <li> <p> <code>COMPLETE</code> — The rule is provisioned and enforcing matches.</p> </li> <li> <p> <code>CREATION_FAILED</code> — Provisioning failed. <code>StatusMessage</code> contains a human-readable reason. A rule in this state is immutable: <a>UpdateFirewallRule</a> rejects the request, and the rule must be removed with <a>DeleteFirewallRule</a>.</p> </li> </ul> <p>For rules that do not require asynchronous provisioning, this field may be absent.</p>"""
+    status_message: NotRequired[
+        "capo_route53resolver.types.firewall_rule_status_message.FirewallRuleStatusMessage"
+    ]
+    """<p>An additional message about the rule's lifecycle state. Populated when <code>Status</code> is <code>CREATION_FAILED</code> to describe why provisioning failed.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -166,6 +176,10 @@ def serialize_aws_json_1_1(value: FirewallRule) -> dict:
                 value["firewall_rule_type"]
             )
         )
+    if "status" in value:
+        out["Status"] = value["status"]
+    if "status_message" in value:
+        out["StatusMessage"] = value["status_message"]
     return out
 
 
@@ -247,4 +261,8 @@ def deserialize_aws_json_1_1(data: dict) -> FirewallRule:
                 data["FirewallRuleType"]
             )
         )
+    if data.get("Status") is not None:
+        out["status"] = data["Status"]
+    if data.get("StatusMessage") is not None:
+        out["status_message"] = data["StatusMessage"]
     return out

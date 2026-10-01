@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.harness_content_block_delta_event
     import capo_bedrock_agentcore.types.harness_content_block_start_event
     import capo_bedrock_agentcore.types.harness_content_block_stop_event
+    import capo_bedrock_agentcore.types.harness_hook_event
     import capo_bedrock_agentcore.types.harness_message_start_event
     import capo_bedrock_agentcore.types.harness_message_stop_event
     import capo_bedrock_agentcore.types.harness_metadata_event
@@ -62,6 +63,10 @@ class _InvokeHarnessStreamOutput_runtimeClientError(TypedDict, closed=True):
     )
 
 
+class _InvokeHarnessStreamOutput_hookEvent(TypedDict, closed=True):
+    hookEvent: "capo_bedrock_agentcore.types.harness_hook_event.HarnessHookEvent"
+
+
 _InvokeHarnessStreamOutput: TypeAlias = (
     _InvokeHarnessStreamOutput_messageStart
     | _InvokeHarnessStreamOutput_contentBlockStart
@@ -72,6 +77,7 @@ _InvokeHarnessStreamOutput: TypeAlias = (
     | _InvokeHarnessStreamOutput_internalServerException
     | _InvokeHarnessStreamOutput_validationException
     | _InvokeHarnessStreamOutput_runtimeClientError
+    | _InvokeHarnessStreamOutput_hookEvent
 )
 InvokeHarnessStreamOutput: TypeAlias = AnyIterator[_InvokeHarnessStreamOutput]
 
@@ -135,6 +141,12 @@ def serialize_event_json(value: _InvokeHarnessStreamOutput) -> bytes:
                 capo_bedrock_agentcore.errors.runtime_client_error.serialize_event_json(
                     payload
                 )
+            )
+        case {"hookEvent": payload}:
+            import capo_bedrock_agentcore.types.harness_hook_event
+
+            return capo_bedrock_agentcore.types.harness_hook_event.serialize_event_json(
+                payload
             )
         case _:
             raise ValueError(
@@ -233,6 +245,14 @@ def deserialize_event_json(message: Message) -> _InvokeHarnessStreamOutput:
 
             return {
                 "metadata": capo_bedrock_agentcore.types.harness_metadata_event.deserialize_event_json(
+                    message
+                )
+            }
+        case "hookEvent":
+            import capo_bedrock_agentcore.types.harness_hook_event
+
+            return {
+                "hookEvent": capo_bedrock_agentcore.types.harness_hook_event.deserialize_event_json(
                     message
                 )
             }

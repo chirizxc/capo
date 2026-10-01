@@ -13,6 +13,8 @@ import capo_sagemaker._auth._sigv4
 import capo_sagemaker._protocol.eventstream
 import capo_sagemaker.errors.conflict_exception
 import capo_sagemaker.errors.resource_not_found
+import capo_sagemaker.types.idc_config_input
+import capo_sagemaker.types.partner_app_auth_type
 import capo_sagemaker.types.partner_app_config
 import capo_sagemaker.types.partner_app_maintenance_config
 import capo_sagemaker.types.tag_list

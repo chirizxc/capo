@@ -13,6 +13,8 @@ if TYPE_CHECKING:
     import capo_sts.types.issuer
     import capo_sts.types.name_qualifier
     import capo_sts.types.non_negative_integer_type
+    import capo_sts.types.session_token_size_type
+    import capo_sts.types.session_token_utilization_type
     import capo_sts.types.source_identity_type
     import capo_sts.types.subject
     import capo_sts.types.subject_type
@@ -41,6 +43,12 @@ class AssumeRoleWithSAMLResponse(TypedDict, closed=True):
         "capo_sts.types.source_identity_type.sourceIdentityType"
     ]
     r"""<p>The value in the <code>SourceIdentity</code> attribute in the SAML assertion. The source identity value persists across <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html#iam-term-role-chaining\">chained role</a> sessions.</p> <p>You can require users to set a source identity value when they assume a role. You do this by using the <code>sts:SourceIdentity</code> condition key in a role trust policy. That way, actions that are taken with the role are associated with that user. After the source identity is set, the value cannot be changed. It is present in the request for all actions that are taken by the role and persists across <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html#id_roles_terms-and-concepts\">chained role</a> sessions. You can configure your SAML identity provider to use an attribute associated with your users, like user name or email, as the source identity when calling <code>AssumeRoleWithSAML</code>. You do this by adding an attribute to the SAML assertion. For more information about using source identity, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html\">Monitor and control actions taken with assumed roles</a> in the <i>IAM User Guide</i>.</p> <p>The regex used to validate this parameter is a string of characters consisting of upper- and lower-case alphanumeric characters with no spaces. You can also include underscores or any of the following characters: =,.@-</p>"""
+    session_token_utilization: NotRequired[
+        "capo_sts.types.session_token_utilization_type.sessionTokenUtilizationType"
+    ]
+    session_token_size: NotRequired[
+        "capo_sts.types.session_token_size_type.sessionTokenSizeType"
+    ]
 
 
 # --- awsQuery ser/de ---
@@ -76,6 +84,17 @@ def serialize_query(
         pairs.append((f"{key_prefix}NameQualifier", str(value["name_qualifier"])))
     if "source_identity" in value:
         pairs.append((f"{key_prefix}SourceIdentity", str(value["source_identity"])))
+    if "session_token_utilization" in value:
+        pairs.append(
+            (
+                f"{key_prefix}SessionTokenUtilization",
+                str(value["session_token_utilization"]),
+            )
+        )
+    if "session_token_size" in value:
+        pairs.append(
+            (f"{key_prefix}SessionTokenSize", str(value["session_token_size"]))
+        )
 
 
 def deserialize_query(el: Element) -> AssumeRoleWithSAMLResponse:
@@ -115,4 +134,12 @@ def deserialize_query(el: Element) -> AssumeRoleWithSAMLResponse:
     child_source_identity = el.find("SourceIdentity")
     if child_source_identity is not None:
         out["source_identity"] = str(child_source_identity.text or "")
+    child_session_token_utilization = el.find("SessionTokenUtilization")
+    if child_session_token_utilization is not None:
+        out["session_token_utilization"] = int(
+            child_session_token_utilization.text or ""
+        )
+    child_session_token_size = el.find("SessionTokenSize")
+    if child_session_token_size is not None:
+        out["session_token_size"] = int(child_session_token_size.text or "")
     return out

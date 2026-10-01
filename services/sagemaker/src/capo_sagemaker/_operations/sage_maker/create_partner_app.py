@@ -15,6 +15,7 @@ import capo_sagemaker.errors.conflict_exception
 import capo_sagemaker.errors.resource_limit_exceeded
 import capo_sagemaker.types.create_partner_app_request
 import capo_sagemaker.types.create_partner_app_response
+import capo_sagemaker.types.idc_config_input
 import capo_sagemaker.types.partner_app_auth_type
 import capo_sagemaker.types.partner_app_config
 import capo_sagemaker.types.partner_app_maintenance_config

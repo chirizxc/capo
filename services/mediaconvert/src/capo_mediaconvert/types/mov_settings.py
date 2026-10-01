@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_mediaconvert.types.cmfc_audio_duration
     import capo_mediaconvert.types.mov_clap_atom
     import capo_mediaconvert.types.mov_cslg_atom
     import capo_mediaconvert.types.mov_mpeg2_four_cc_control
@@ -13,6 +14,10 @@ if TYPE_CHECKING:
 
 
 class MovSettings(TypedDict, closed=True):
+    audio_duration: NotRequired[
+        "capo_mediaconvert.types.cmfc_audio_duration.CmfcAudioDuration"
+    ]
+    """Specify this setting only when your output will be consumed by a downstream repackaging workflow that is sensitive to very small duration differences between video and audio. For this situation, choose Match video duration. In all other cases, keep the default value, Default codec duration. When you choose Match video duration, MediaConvert pads the output audio streams with silence or trims them to ensure that the total duration of each audio stream is at least as long as the total duration of the video stream. After padding or trimming, the audio stream duration is no more than one frame longer than the video stream. MediaConvert applies audio padding or trimming only to the end of the last segment of the output. For unsegmented outputs, MediaConvert adds padding only to the end of the file. When you keep the default value, any minor discrepancies between audio and video duration will depend on your output audio codec."""
     clap_atom: NotRequired["capo_mediaconvert.types.mov_clap_atom.MovClapAtom"]
     """When enabled, include 'clap' atom if appropriate for the video output settings."""
     cslg_atom: NotRequired["capo_mediaconvert.types.mov_cslg_atom.MovCslgAtom"]
@@ -32,6 +37,14 @@ class MovSettings(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: MovSettings) -> dict:
     out: dict = {}
+    if "audio_duration" in value:
+        import capo_mediaconvert.types.cmfc_audio_duration
+
+        out["audioDuration"] = (
+            capo_mediaconvert.types.cmfc_audio_duration.serialize_json(
+                value["audio_duration"]
+            )
+        )
     if "clap_atom" in value:
         import capo_mediaconvert.types.mov_clap_atom
 
@@ -71,6 +84,14 @@ def serialize_json(value: MovSettings) -> dict:
 
 def deserialize_json(data: dict) -> MovSettings:
     out: MovSettings = {}  # type: ignore[typeddict-item]
+    if data.get("audioDuration") is not None:
+        import capo_mediaconvert.types.cmfc_audio_duration
+
+        out["audio_duration"] = (
+            capo_mediaconvert.types.cmfc_audio_duration.deserialize_json(
+                data["audioDuration"]
+            )
+        )
     if data.get("clapAtom") is not None:
         import capo_mediaconvert.types.mov_clap_atom
 

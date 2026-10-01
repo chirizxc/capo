@@ -7,7 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_healthlake.types.datastore_name
     import capo_healthlake.types.datastore_status
-    import capo_healthlake.types.timestamp
+    import capo_healthlake.types.health_lake_timestamp
 
 
 class DatastoreFilter(TypedDict, closed=True):
@@ -17,9 +17,13 @@ class DatastoreFilter(TypedDict, closed=True):
         "capo_healthlake.types.datastore_status.DatastoreStatus"
     ]
     """<p>Filter data store results by status.</p>"""
-    created_before: NotRequired["capo_healthlake.types.timestamp.Timestamp"]
+    created_before: NotRequired[
+        "capo_healthlake.types.health_lake_timestamp.HealthLakeTimestamp"
+    ]
     """<p>Filter to set cutoff dates for records. All data stores created before the specified date are included in the results. </p>"""
-    created_after: NotRequired["capo_healthlake.types.timestamp.Timestamp"]
+    created_after: NotRequired[
+        "capo_healthlake.types.health_lake_timestamp.HealthLakeTimestamp"
+    ]
     """<p>Filter to set cutoff dates for records. All data stores created after the specified date are included in the results.</p>"""
 
 
@@ -37,16 +41,20 @@ def serialize_aws_json_1_0(value: DatastoreFilter) -> dict:
             )
         )
     if "created_before" in value:
-        import capo_healthlake.types.timestamp
+        import capo_healthlake.types.health_lake_timestamp
 
-        out["CreatedBefore"] = capo_healthlake.types.timestamp.serialize_aws_json_1_0(
-            value["created_before"]
+        out["CreatedBefore"] = (
+            capo_healthlake.types.health_lake_timestamp.serialize_aws_json_1_0(
+                value["created_before"]
+            )
         )
     if "created_after" in value:
-        import capo_healthlake.types.timestamp
+        import capo_healthlake.types.health_lake_timestamp
 
-        out["CreatedAfter"] = capo_healthlake.types.timestamp.serialize_aws_json_1_0(
-            value["created_after"]
+        out["CreatedAfter"] = (
+            capo_healthlake.types.health_lake_timestamp.serialize_aws_json_1_0(
+                value["created_after"]
+            )
         )
     return out
 
@@ -64,17 +72,19 @@ def deserialize_aws_json_1_0(data: dict) -> DatastoreFilter:
             )
         )
     if data.get("CreatedBefore") is not None:
-        import capo_healthlake.types.timestamp
+        import capo_healthlake.types.health_lake_timestamp
 
         out["created_before"] = (
-            capo_healthlake.types.timestamp.deserialize_aws_json_1_0(
+            capo_healthlake.types.health_lake_timestamp.deserialize_aws_json_1_0(
                 data["CreatedBefore"]
             )
         )
     if data.get("CreatedAfter") is not None:
-        import capo_healthlake.types.timestamp
+        import capo_healthlake.types.health_lake_timestamp
 
-        out["created_after"] = capo_healthlake.types.timestamp.deserialize_aws_json_1_0(
-            data["CreatedAfter"]
+        out["created_after"] = (
+            capo_healthlake.types.health_lake_timestamp.deserialize_aws_json_1_0(
+                data["CreatedAfter"]
+            )
         )
     return out

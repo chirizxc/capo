@@ -13,11 +13,11 @@ if TYPE_CHECKING:
 
 class LifecyclePolicyDetailAction(TypedDict, closed=True):
     type: "capo_imagebuilder.types.lifecycle_policy_detail_action_type.LifecyclePolicyDetailActionType"
-    """<p>Specifies the lifecycle action to take.</p>"""
+    """<p>Specifies the lifecycle action to take. <code>DELETE</code> deletes the image resource and, with <code>includeResources</code>, also removes distributed AMIs, snapshots, or container images. <code>DEPRECATE</code> and <code>DISABLE</code> set the corresponding status on the image resource and, if <code>includeResources.amis</code> is set, on its distributed AMIs.</p>"""
     include_resources: NotRequired[
         "capo_imagebuilder.types.lifecycle_policy_detail_action_include_resources.LifecyclePolicyDetailActionIncludeResources"
     ]
-    """<p>Specifies the resources that the lifecycle policy applies to.</p>"""
+    """<p>Specifies which underlying resources the action extends to beyond the Image Builder image resource itself: distributed AMIs, their snapshots, or distributed container images. <code>DELETE</code> rules can include all three, <code>DEPRECATE</code> and <code>DISABLE</code> rules can include AMIs only, and you can only include snapshots together with AMIs.</p>"""
 
 
 # --- restJson1 ser/de ---

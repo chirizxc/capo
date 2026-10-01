@@ -20,8 +20,11 @@ import capo_iotsitewise.errors.resource_not_found_exception
 import capo_iotsitewise.errors.throttling_exception
 import capo_iotsitewise.types.create_dataset_request
 import capo_iotsitewise.types.create_dataset_response
+import capo_iotsitewise.types.dataset_config
 import capo_iotsitewise.types.dataset_source
 import capo_iotsitewise.types.dataset_status
+import capo_iotsitewise.types.dataset_type_enum
+import capo_iotsitewise.types.metadata
 import capo_iotsitewise.types.tag_map
 from capo_iotsitewise._protocol.errors import parse_error_metadata_json
 from capo_iotsitewise._rule_engine._endpoint_rule_set import EndpointParams, resolve

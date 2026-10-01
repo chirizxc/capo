@@ -905,7 +905,7 @@ class AsyncDataSyncClient:
 
         Args:
             subdirectory: <p>A subdirectory in the HDFS cluster. This subdirectory is used to read data from or write data to the HDFS cluster. If the subdirectory isn't specified, it will default to <code>/</code>.</p>
-            name_nodes: <p>The NameNode that manages the HDFS namespace. The NameNode performs operations such as opening, closing, and renaming files and directories. The NameNode contains the information to map blocks of data to the DataNodes. You can use only one NameNode.</p>
+            name_nodes: <p>The NameNode that manages the HDFS namespace. The NameNode performs operations such as opening, closing, and renaming files and directories. The NameNode contains the information to map blocks of data to the DataNodes.</p> <p>The number of NameNodes you can specify depends on the task mode:</p> <ul> <li> <p> <b>Enhanced mode</b> – You can specify multiple NameNodes for HDFS High Availability (HA) configurations.</p> </li> <li> <p> <b>Basic mode</b> – You can specify only one NameNode.</p> </li> </ul>
             block_size: <p>The size of data blocks to write into the HDFS cluster. The block size must be a multiple of 512 bytes. The default block size is 128 mebibytes (MiB).</p>
             replication_factor: <p>The number of DataNodes to replicate the data to when writing to the HDFS cluster. By default, data is replicated to three DataNodes.</p>
             kms_key_provider_uri: <p>The URI of the HDFS cluster's Key Management Server (KMS). </p>
@@ -3231,7 +3231,7 @@ class AsyncDataSyncClient:
         Args:
             location_arn: <p>The Amazon Resource Name (ARN) of the source HDFS cluster location.</p>
             subdirectory: <p>A subdirectory in the HDFS cluster. This subdirectory is used to read data from or write data to the HDFS cluster.</p>
-            name_nodes: <p>The NameNode that manages the HDFS namespace. The NameNode performs operations such as opening, closing, and renaming files and directories. The NameNode contains the information to map blocks of data to the DataNodes. You can use only one NameNode.</p>
+            name_nodes: <p>The NameNode that manages the HDFS namespace. The NameNode performs operations such as opening, closing, and renaming files and directories. The NameNode contains the information to map blocks of data to the DataNodes.</p> <p>The number of NameNodes you can specify depends on the task mode:</p> <ul> <li> <p>Enhanced mode – You can specify multiple NameNodes for HDFS High Availability (HA) configurations.</p> </li> <li> <p>Basic mode – You can specify only one NameNode.</p> </li> </ul>
             block_size: <p>The size of the data blocks to write into the HDFS cluster. </p>
             replication_factor: <p>The number of DataNodes to replicate the data to when writing to the HDFS cluster. </p>
             kms_key_provider_uri: <p>The URI of the HDFS cluster's Key Management Server (KMS). </p>

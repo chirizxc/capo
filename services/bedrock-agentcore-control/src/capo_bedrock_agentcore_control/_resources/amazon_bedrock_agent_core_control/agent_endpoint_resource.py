@@ -254,7 +254,7 @@ class AgentEndpointResource:
             "capo_bedrock_agentcore_control.types.client_token.ClientToken"
         ] = None,
     ) -> "capo_bedrock_agentcore_control.types.delete_agent_runtime_endpoint_response.DeleteAgentRuntimeEndpointResponse":
-        """<p>Deletes an AAgentCore Runtime endpoint.</p>
+        """<p>Deletes an AgentCore Runtime endpoint.</p>
 
         Args:
             agent_runtime_id: <p>The unique identifier of the AgentCore Runtime associated with the endpoint.</p>
@@ -573,7 +573,7 @@ class AsyncAgentEndpointResource:
             "capo_bedrock_agentcore_control.types.client_token.ClientToken"
         ] = None,
     ) -> "capo_bedrock_agentcore_control.types.delete_agent_runtime_endpoint_response.DeleteAgentRuntimeEndpointResponse":
-        """<p>Deletes an AAgentCore Runtime endpoint.</p>
+        """<p>Deletes an AgentCore Runtime endpoint.</p>
 
         Args:
             agent_runtime_id: <p>The unique identifier of the AgentCore Runtime associated with the endpoint.</p>

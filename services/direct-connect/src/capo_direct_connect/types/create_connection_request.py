@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     import capo_direct_connect.types.lag_id
     import capo_direct_connect.types.location_code
     import capo_direct_connect.types.provider_name
+    import capo_direct_connect.types.request_billing_mode
     import capo_direct_connect.types.request_mac_sec
     import capo_direct_connect.types.tag_list
 
@@ -33,6 +34,10 @@ class CreateConnectionRequest(TypedDict, closed=True):
         "capo_direct_connect.types.request_mac_sec.RequestMACSec"
     ]
     r"""<p>Indicates whether you want the connection to support MAC Security (MACsec).</p> <p>MAC Security (MACsec) is unavailable on hosted connections. For information about MAC Security (MACsec) prerequisites, see <a href=\"https://docs.aws.amazon.com/directconnect/latest/UserGuide/MACSec.html\">MAC Security in Direct Connect</a> in the <i>Direct Connect User Guide</i>.</p>"""
+    billing_mode: NotRequired[
+        "capo_direct_connect.types.request_billing_mode.RequestBillingMode"
+    ]
+    """<p>The billing mode for the connection.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -53,6 +58,14 @@ def serialize_aws_json_1_1(value: CreateConnectionRequest) -> dict:
         out["providerName"] = value["provider_name"]
     if "request_mac_sec" in value:
         out["requestMACSec"] = value["request_mac_sec"]
+    if "billing_mode" in value:
+        import capo_direct_connect.types.request_billing_mode
+
+        out["billingMode"] = (
+            capo_direct_connect.types.request_billing_mode.serialize_aws_json_1_1(
+                value["billing_mode"]
+            )
+        )
     return out
 
 
@@ -82,4 +95,12 @@ def deserialize_aws_json_1_1(data: dict) -> CreateConnectionRequest:
         out["provider_name"] = data["providerName"]
     if data.get("requestMACSec") is not None:
         out["request_mac_sec"] = data["requestMACSec"]
+    if data.get("billingMode") is not None:
+        import capo_direct_connect.types.request_billing_mode
+
+        out["billing_mode"] = (
+            capo_direct_connect.types.request_billing_mode.deserialize_aws_json_1_1(
+                data["billingMode"]
+            )
+        )
     return out

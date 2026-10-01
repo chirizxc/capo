@@ -12,11 +12,14 @@ if TYPE_CHECKING:
     import capo_network_firewall.types.description
     import capo_network_firewall.types.enabled_analysis_types
     import capo_network_firewall.types.encryption_configuration
+    import capo_network_firewall.types.nat_gateway_mappings_list
+    import capo_network_firewall.types.proxy_settings
     import capo_network_firewall.types.resource_arn
     import capo_network_firewall.types.resource_name
     import capo_network_firewall.types.subnet_mappings
     import capo_network_firewall.types.tag_list
     import capo_network_firewall.types.transit_gateway_id
+    import capo_network_firewall.types.vpc_endpoint
     import capo_network_firewall.types.vpc_id
 
 
@@ -59,6 +62,18 @@ class CreateFirewallRequest(TypedDict, closed=True):
     """<p>Required. The Availability Zones where you want to create firewall endpoints for a transit gateway-attached firewall. You must specify at least one Availability Zone. Consider enabling the firewall in every Availability Zone where you have workloads to maintain Availability Zone isolation.</p> <p>You can modify Availability Zones later using <a>AssociateAvailabilityZones</a> or <a>DisassociateAvailabilityZones</a>, but this may briefly disrupt traffic. The <code>AvailabilityZoneChangeProtection</code> setting controls whether you can make these modifications.</p>"""
     availability_zone_change_protection: "capo_network_firewall.types.boolean.Boolean"
     """<p>Optional. A setting indicating whether the firewall is protected against changes to its Availability Zone configuration. When set to <code>TRUE</code>, you cannot add or remove Availability Zones without first disabling this protection using <a>UpdateAvailabilityZoneChangeProtection</a>.</p> <p>Default value: <code>FALSE</code> </p>"""
+    nat_gateway_mappings: NotRequired[
+        "capo_network_firewall.types.nat_gateway_mappings_list.NatGatewayMappingsList"
+    ]
+    """<p>The NAT gateways that the firewall uses to proxy traffic when <code>NoSourcePreservation</code> is <code>TRUE</code>. Network Firewall attaches the firewall to each NAT gateway that you specify, so that egress traffic is proxied through the NAT gateway. </p>"""
+    proxy_settings: NotRequired[
+        "capo_network_firewall.types.proxy_settings.ProxySettings"
+    ]
+    """<p>The listener configuration for a proxy mode firewall, used when <code>NoSourcePreservation</code> is <code>TRUE</code>. This specifies the ports and protocols on which the firewall's proxy listens for traffic. </p>"""
+    no_source_preservation: "capo_network_firewall.types.boolean.Boolean"
+    """<p>Optional. Indicates whether the firewall operates in proxy mode, in which the source IP address of the traffic is not preserved. When set to <code>TRUE</code>, the firewall proxies traffic through a NAT gateway and the traffic reaching the destination uses the NAT gateway's IP address as the source. </p> <p>When you set this to <code>TRUE</code>, you must specify <code>NatGatewayMappings</code> and <code>VpcEndpoint</code> instead of a top-level <code>VpcId</code> and <code>SubnetMappings</code>. </p> <p>You can't change this setting after you create the firewall. </p> <p>Default value: <code>FALSE</code> </p>"""
+    vpc_endpoint: NotRequired["capo_network_firewall.types.vpc_endpoint.VpcEndpoint"]
+    """<p>The VPC and subnets for the firewall endpoint, used when <code>NoSourcePreservation</code> is <code>TRUE</code>. Network Firewall creates the firewall endpoint in the subnets that you specify here. </p> <p>For proxy mode firewalls, provide the firewall's VPC and endpoint subnets through this parameter instead of the top-level <code>VpcId</code> and <code>SubnetMappings</code>. </p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -118,6 +133,31 @@ def serialize_aws_json_1_0(value: CreateFirewallRequest) -> dict:
     out["AvailabilityZoneChangeProtection"] = value.get(
         "availability_zone_change_protection", False
     )
+    if "nat_gateway_mappings" in value:
+        import capo_network_firewall.types.nat_gateway_mappings_list
+
+        out["NatGatewayMappings"] = (
+            capo_network_firewall.types.nat_gateway_mappings_list.serialize_aws_json_1_0(
+                value["nat_gateway_mappings"]
+            )
+        )
+    if "proxy_settings" in value:
+        import capo_network_firewall.types.proxy_settings
+
+        out["ProxySettings"] = (
+            capo_network_firewall.types.proxy_settings.serialize_aws_json_1_0(
+                value["proxy_settings"]
+            )
+        )
+    out["NoSourcePreservation"] = value.get("no_source_preservation", False)
+    if "vpc_endpoint" in value:
+        import capo_network_firewall.types.vpc_endpoint
+
+        out["VpcEndpoint"] = (
+            capo_network_firewall.types.vpc_endpoint.serialize_aws_json_1_0(
+                value["vpc_endpoint"]
+            )
+        )
     return out
 
 
@@ -195,4 +235,32 @@ def deserialize_aws_json_1_0(data: dict) -> CreateFirewallRequest:
         ]
     else:
         out["availability_zone_change_protection"] = False
+    if data.get("NatGatewayMappings") is not None:
+        import capo_network_firewall.types.nat_gateway_mappings_list
+
+        out["nat_gateway_mappings"] = (
+            capo_network_firewall.types.nat_gateway_mappings_list.deserialize_aws_json_1_0(
+                data["NatGatewayMappings"]
+            )
+        )
+    if data.get("ProxySettings") is not None:
+        import capo_network_firewall.types.proxy_settings
+
+        out["proxy_settings"] = (
+            capo_network_firewall.types.proxy_settings.deserialize_aws_json_1_0(
+                data["ProxySettings"]
+            )
+        )
+    if data.get("NoSourcePreservation") is not None:
+        out["no_source_preservation"] = data["NoSourcePreservation"]
+    else:
+        out["no_source_preservation"] = False
+    if data.get("VpcEndpoint") is not None:
+        import capo_network_firewall.types.vpc_endpoint
+
+        out["vpc_endpoint"] = (
+            capo_network_firewall.types.vpc_endpoint.deserialize_aws_json_1_0(
+                data["VpcEndpoint"]
+            )
+        )
     return out

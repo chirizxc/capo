@@ -22,6 +22,8 @@ ResourceType: TypeAlias = Literal[
     "AWS::SecurityHub::HubV2",
     "AWS::CloudWatch::OTelEnrichment",
     "AWS::MSK::Cluster",
+    "AWS::S3::Bucket",
+    "AWS::Bedrock::KnowledgeBase",
 ]
 
 

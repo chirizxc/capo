@@ -9,6 +9,7 @@ from capo_cleanrooms.errors import DeserializationError
 if TYPE_CHECKING:
     import datetime
 
+    import capo_cleanrooms.types.child_resource_list
     import capo_cleanrooms.types.configured_table_arn
     import capo_cleanrooms.types.configured_table_association_analysis_rule_type_list
     import capo_cleanrooms.types.configured_table_association_arn
@@ -48,6 +49,10 @@ class ConfiguredTableAssociation(TypedDict, closed=True):
     """<p>The time the configured table association was created.</p>"""
     update_time: "datetime.datetime"
     """<p>The time the configured table association was last updated.</p>"""
+    child_resources: NotRequired[
+        "capo_cleanrooms.types.child_resource_list.ChildResourceList"
+    ]
+    """<p>The child resources that depend on this configured table association.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -81,6 +86,14 @@ def serialize_json(value: ConfiguredTableAssociation) -> dict:
     out["updateTime"] = capo_cleanrooms.types._prelude.timestamp.serialize_json(
         value["update_time"]
     )
+    if "child_resources" in value:
+        import capo_cleanrooms.types.child_resource_list
+
+        out["childResources"] = (
+            capo_cleanrooms.types.child_resource_list.serialize_json(
+                value["child_resources"]
+            )
+        )
     return out
 
 
@@ -148,4 +161,12 @@ def deserialize_json(data: dict) -> ConfiguredTableAssociation:
         )
     else:
         raise DeserializationError("ConfiguredTableAssociation.update_time required")
+    if data.get("childResources") is not None:
+        import capo_cleanrooms.types.child_resource_list
+
+        out["child_resources"] = (
+            capo_cleanrooms.types.child_resource_list.deserialize_json(
+                data["childResources"]
+            )
+        )
     return out

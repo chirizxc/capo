@@ -21,6 +21,7 @@ import capo_quicksight.errors.resource_not_found_exception
 import capo_quicksight.errors.resource_unavailable_exception
 import capo_quicksight.errors.throttling_exception
 import capo_quicksight.types.capabilities
+import capo_quicksight.types.governance
 import capo_quicksight.types.update_custom_permissions_request
 import capo_quicksight.types.update_custom_permissions_response
 from capo_quicksight._protocol.errors import parse_error_metadata_json

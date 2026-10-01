@@ -23,11 +23,14 @@ import capo_codedeploy.errors.invalid_alarm_config_exception
 import capo_codedeploy.errors.invalid_application_name_exception
 import capo_codedeploy.errors.invalid_auto_rollback_config_exception
 import capo_codedeploy.errors.invalid_auto_scaling_group_exception
+import capo_codedeploy.errors.invalid_compute_platform_exception
 import capo_codedeploy.errors.invalid_deployment_config_name_exception
 import capo_codedeploy.errors.invalid_deployment_group_name_exception
+import capo_codedeploy.errors.invalid_ecs_service_exception
 import capo_codedeploy.errors.invalid_file_exists_behavior_exception
 import capo_codedeploy.errors.invalid_git_hub_account_token_exception
 import capo_codedeploy.errors.invalid_ignore_application_stop_failures_value_exception
+import capo_codedeploy.errors.invalid_input_exception
 import capo_codedeploy.errors.invalid_load_balancer_info_exception
 import capo_codedeploy.errors.invalid_revision_exception
 import capo_codedeploy.errors.invalid_role_exception
@@ -41,6 +44,7 @@ import capo_codedeploy.types.alarm_configuration
 import capo_codedeploy.types.auto_rollback_configuration
 import capo_codedeploy.types.create_deployment_input
 import capo_codedeploy.types.create_deployment_output
+import capo_codedeploy.types.deployment_mode
 import capo_codedeploy.types.file_exists_behavior
 import capo_codedeploy.types.revision_location
 import capo_codedeploy.types.target_instances
@@ -102,12 +106,20 @@ def handle_error(response: zapros.Response) -> Never:
             raise capo_codedeploy.errors.invalid_auto_scaling_group_exception.InvalidAutoScalingGroupException.from_aws_json_1_1(
                 data, message
             )
+        case "InvalidComputePlatformException":
+            raise capo_codedeploy.errors.invalid_compute_platform_exception.InvalidComputePlatformException.from_aws_json_1_1(
+                data, message
+            )
         case "InvalidDeploymentConfigNameException":
             raise capo_codedeploy.errors.invalid_deployment_config_name_exception.InvalidDeploymentConfigNameException.from_aws_json_1_1(
                 data, message
             )
         case "InvalidDeploymentGroupNameException":
             raise capo_codedeploy.errors.invalid_deployment_group_name_exception.InvalidDeploymentGroupNameException.from_aws_json_1_1(
+                data, message
+            )
+        case "InvalidECSServiceException":
+            raise capo_codedeploy.errors.invalid_ecs_service_exception.InvalidECSServiceException.from_aws_json_1_1(
                 data, message
             )
         case "InvalidFileExistsBehaviorException":
@@ -120,6 +132,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "InvalidIgnoreApplicationStopFailuresValueException":
             raise capo_codedeploy.errors.invalid_ignore_application_stop_failures_value_exception.InvalidIgnoreApplicationStopFailuresValueException.from_aws_json_1_1(
+                data, message
+            )
+        case "InvalidInputException":
+            raise capo_codedeploy.errors.invalid_input_exception.InvalidInputException.from_aws_json_1_1(
                 data, message
             )
         case "InvalidLoadBalancerInfoException":

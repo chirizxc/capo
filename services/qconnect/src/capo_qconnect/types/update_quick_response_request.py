@@ -50,7 +50,7 @@ class UpdateQuickResponseRequest(TypedDict, closed=True):
     is_active: NotRequired["bool"]
     """<p>Whether the quick response is active. </p>"""
     channels: NotRequired["capo_qconnect.types.channels.Channels"]
-    """<p>The Amazon Connect contact channels this quick response applies to. The supported contact channel types include <code>Chat</code>.</p>"""
+    """<p>The Connect Customer contact channels this quick response applies to. The supported contact channel types include <code>Chat</code>.</p>"""
     language: NotRequired["capo_qconnect.types.language_code.LanguageCode"]
     """<p>The language code value for the language in which the quick response is written. The supported language codes include <code>de_DE</code>, <code>en_US</code>, <code>es_ES</code>, <code>fr_FR</code>, <code>id_ID</code>, <code>it_IT</code>, <code>ja_JP</code>, <code>ko_KR</code>, <code>pt_BR</code>, <code>zh_CN</code>, <code>zh_TW</code> </p>"""
 

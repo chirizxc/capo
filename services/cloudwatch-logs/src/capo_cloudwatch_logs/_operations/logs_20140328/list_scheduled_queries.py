@@ -17,6 +17,7 @@ import capo_cloudwatch_logs.errors.throttling_exception
 import capo_cloudwatch_logs.errors.validation_exception
 import capo_cloudwatch_logs.types.list_scheduled_queries_request
 import capo_cloudwatch_logs.types.list_scheduled_queries_response
+import capo_cloudwatch_logs.types.schedule_type
 import capo_cloudwatch_logs.types.scheduled_query_state
 import capo_cloudwatch_logs.types.scheduled_query_summary_list
 from capo_cloudwatch_logs._protocol.errors import parse_error_metadata_json

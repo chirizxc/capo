@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     import capo_mediapackagev2.types.resource_description
     import capo_mediapackagev2.types.resource_name
     import capo_mediapackagev2.types.segment
+    import capo_mediapackagev2.types.stream_name_output_mode
     import capo_mediapackagev2.types.tag_map
     import capo_mediapackagev2.types.uri_separator
 
@@ -64,6 +65,10 @@ class CreateOriginEndpointRequest(TypedDict, closed=True):
     """<p>The failover settings for the endpoint.</p>"""
     uri_separator: NotRequired["capo_mediapackagev2.types.uri_separator.UriSeparator"]
     """<p>The separator character to use in generated URIs for this origin endpoint. This setting applies to all manifest types on the endpoint. If you don't specify a value, the default is <code>UNDERSCORE</code>.</p>"""
+    stream_name_output_mode: NotRequired[
+        "capo_mediapackagev2.types.stream_name_output_mode.StreamNameOutputMode"
+    ]
+    """<p>The output mode for stream names in egress manifests. This setting is valid only when the associated channel's <code>InputType</code> is <code>HLS</code>. You can't change the stream name output mode after you create the endpoint.</p> <p> <code>INDEX</code> uses numeric indices for stream names (for example, 1, 2, 3). <code>PASSTHROUGH_NAME</code> uses the stream names from the input manifest. If you don't specify a value, the default is <code>INDEX</code>.</p>"""
     tags: NotRequired["capo_mediapackagev2.types.tag_map.TagMap"]
     r"""<p>A comma-separated list of tag key:value pairs that you define. For example:</p> <p> <code>\"Key1\": \"Value1\",</code> </p> <p> <code>\"Key2\": \"Value2\"</code> </p>"""
 
@@ -132,6 +137,14 @@ def serialize_json(value: CreateOriginEndpointRequest) -> dict:
 
         out["UriSeparator"] = capo_mediapackagev2.types.uri_separator.serialize_json(
             value["uri_separator"]
+        )
+    if "stream_name_output_mode" in value:
+        import capo_mediapackagev2.types.stream_name_output_mode
+
+        out["StreamNameOutputMode"] = (
+            capo_mediapackagev2.types.stream_name_output_mode.serialize_json(
+                value["stream_name_output_mode"]
+            )
         )
     if "tags" in value:
         import capo_mediapackagev2.types.tag_map
@@ -215,6 +228,14 @@ def deserialize_json(data: dict) -> CreateOriginEndpointRequest:
 
         out["uri_separator"] = capo_mediapackagev2.types.uri_separator.deserialize_json(
             data["UriSeparator"]
+        )
+    if data.get("StreamNameOutputMode") is not None:
+        import capo_mediapackagev2.types.stream_name_output_mode
+
+        out["stream_name_output_mode"] = (
+            capo_mediapackagev2.types.stream_name_output_mode.deserialize_json(
+                data["StreamNameOutputMode"]
+            )
         )
     if data.get("Tags") is not None:
         import capo_mediapackagev2.types.tag_map

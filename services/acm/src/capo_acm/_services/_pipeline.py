@@ -33,9 +33,10 @@ TOutput = TypeVar("TOutput")
 @dataclass
 class OperationOptions:
     client: Client
-    use_dual_stack: bool | None = None
-    use_fips: bool | None = None
     region: str | None = None
+    service_type: str | None = None
+    use_fips: bool | None = None
+    use_dual_stack: bool | None = None
     endpoint: str | None = None
     retry_max_attempts: int | None = None
     credentials_provider: IdentityProvider[Credentials] | None = None
@@ -44,9 +45,10 @@ class OperationOptions:
 @dataclass
 class AsyncOperationOptions:
     client: AsyncClient
-    use_dual_stack: bool | None = None
-    use_fips: bool | None = None
     region: str | None = None
+    service_type: str | None = None
+    use_fips: bool | None = None
+    use_dual_stack: bool | None = None
     endpoint: str | None = None
     retry_max_attempts: int | None = None
     credentials_provider: IdentityProvider[Credentials] | None = None

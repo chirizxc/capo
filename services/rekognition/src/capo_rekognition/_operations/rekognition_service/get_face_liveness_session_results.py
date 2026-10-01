@@ -20,9 +20,11 @@ import capo_rekognition.errors.throttling_exception
 import capo_rekognition.types.audit_image
 import capo_rekognition.types.audit_images
 import capo_rekognition.types.challenge
+import capo_rekognition.types.feedback_list
 import capo_rekognition.types.get_face_liveness_session_results_request
 import capo_rekognition.types.get_face_liveness_session_results_response
 import capo_rekognition.types.liveness_session_status
+import capo_rekognition.types.session_metadata
 from capo_rekognition._protocol.errors import parse_error_metadata_json
 from capo_rekognition._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_rekognition._services._pipeline import AsyncOperationOptions, OperationOptions

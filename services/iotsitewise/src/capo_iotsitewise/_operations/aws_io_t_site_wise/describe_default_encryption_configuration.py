@@ -13,6 +13,7 @@ import capo_iotsitewise._auth._sigv4
 import capo_iotsitewise._protocol.eventstream
 import capo_iotsitewise.errors.internal_failure_exception
 import capo_iotsitewise.errors.invalid_request_exception
+import capo_iotsitewise.errors.resource_not_found_exception
 import capo_iotsitewise.errors.throttling_exception
 import capo_iotsitewise.types.configuration_status
 import capo_iotsitewise.types.describe_default_encryption_configuration_request
@@ -34,6 +35,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "InvalidRequestException":
             raise capo_iotsitewise.errors.invalid_request_exception.InvalidRequestException.from_json(
+                data, message
+            )
+        case "ResourceNotFoundException":
+            raise capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException.from_json(
                 data, message
             )
         case "ThrottlingException":

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     import capo_cloudwatch_logs.types.log_group_name
     import capo_cloudwatch_logs.types.log_stream_name
     import capo_cloudwatch_logs.types.next_token
+    import capo_cloudwatch_logs.types.start_from_head
     import capo_cloudwatch_logs.types.timestamp
     import capo_cloudwatch_logs.types.unmask
 
@@ -35,7 +36,7 @@ class FilterLogEventsRequest(TypedDict, closed=True):
     ]
     """<p>Filters the results to include only events from log streams that have names starting with this prefix.</p> <p>If you specify a value for both <code>logStreamNamePrefix</code> and <code>logStreamNames</code>, the action returns an <code>InvalidParameterException</code> error.</p>"""
     start_time: NotRequired["capo_cloudwatch_logs.types.timestamp.Timestamp"]
-    """<p>The start of the time range, expressed as the number of milliseconds after <code>Jan 1, 1970 00:00:00 UTC</code>. Events with a timestamp before this time are not returned.</p>"""
+    """<p>The start of the time range, expressed as the number of milliseconds after <code>Jan 1, 1970 00:00:00 UTC</code>. Events with a timestamp before this time are not returned.</p> <note> <p>Set <code>startTime</code> explicitly to reduce the chances of empty pages in the response.</p> </note>"""
     end_time: NotRequired["capo_cloudwatch_logs.types.timestamp.Timestamp"]
     """<p>The end of the time range, expressed as the number of milliseconds after <code>Jan 1, 1970 00:00:00 UTC</code>. Events with a timestamp later than this time are not returned.</p>"""
     filter_pattern: NotRequired[
@@ -46,6 +47,10 @@ class FilterLogEventsRequest(TypedDict, closed=True):
     """<p>The token for the next set of events to return. (You received this token from a previous call.)</p>"""
     limit: NotRequired["capo_cloudwatch_logs.types.events_limit.EventsLimit"]
     """<p>The maximum number of events to return. The default is 10,000 events.</p>"""
+    start_from_head: NotRequired[
+        "capo_cloudwatch_logs.types.start_from_head.StartFromHead"
+    ]
+    """<p>If the value is true, the earliest log events are returned first. If the value is false, the latest log events are returned first. The default value is true.</p> <p>The <code>startFromHead</code> parameter sets the sort direction on the first request. On subsequent requests, the <code>nextToken</code> determines the sort direction. To continue paginating in the same direction, provide the returned <code>nextToken</code>. If you provide both <code>nextToken</code> and <code>startFromHead</code>, the direction of the <code>nextToken</code> is used.</p> <note> <p>Setting <code>startFromHead</code> to <code>false</code> is supported only when <code>startTime</code> is on or after <code>Jan 1, 2024 00:00:00 UTC</code>. A request with <code>startFromHead</code> set to <code>false</code> and a <code>startTime</code> before this date returns an <code>InvalidParameterException</code>.</p> </note>"""
     interleaved: NotRequired["capo_cloudwatch_logs.types.interleaved.Interleaved"]
     """<p>If the value is true, the operation attempts to provide responses that contain events from multiple log streams within the log group, interleaved in a single response. If the value is false, all the matched log events in the first log stream are searched first, then those in the next log stream, and so on.</p> <p> <b>Important</b> As of June 17, 2019, this parameter is ignored and the value is assumed to be true. The response from this operation always interleaves events from multiple log streams within a log group.</p>"""
     unmask: "capo_cloudwatch_logs.types.unmask.Unmask"
@@ -79,6 +84,8 @@ def serialize_aws_json_1_1(value: FilterLogEventsRequest) -> dict:
         out["nextToken"] = value["next_token"]
     if "limit" in value:
         out["limit"] = value["limit"]
+    if "start_from_head" in value:
+        out["startFromHead"] = value["start_from_head"]
     if "interleaved" in value:
         out["interleaved"] = value["interleaved"]
     out["unmask"] = value.get("unmask", False)
@@ -111,6 +118,8 @@ def deserialize_aws_json_1_1(data: dict) -> FilterLogEventsRequest:
         out["next_token"] = data["nextToken"]
     if data.get("limit") is not None:
         out["limit"] = data["limit"]
+    if data.get("startFromHead") is not None:
+        out["start_from_head"] = data["startFromHead"]
     if data.get("interleaved") is not None:
         out["interleaved"] = data["interleaved"]
     if data.get("unmask") is not None:

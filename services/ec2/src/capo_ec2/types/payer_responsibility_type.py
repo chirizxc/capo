@@ -6,6 +6,7 @@ from capo_ec2._protocol.xml import Element
 
 PayerResponsibilityType: TypeAlias = Literal[
     "vpc-endpoint-account",
+    "resource-gateway-account",
     "vpc-endpoint-service-account",
 ]
 

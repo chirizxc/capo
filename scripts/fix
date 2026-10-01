@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# regenerate the sync twins in tests/ first (see ry.yml), so ruff formats them too
+uv run ry --fix tests
+uv run ruff check --fix tests
+uv run ruff format tests

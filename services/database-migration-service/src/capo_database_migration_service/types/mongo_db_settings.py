@@ -42,7 +42,7 @@ class MongoDbSettings(TypedDict, closed=True):
     ]
     r"""<p> Specifies either document or table mode. </p> <p>Default value is <code>\"none\"</code>. Specify <code>\"none\"</code> to use document mode. Specify <code>\"one\"</code> to use table mode.</p>"""
     extract_doc_id: NotRequired["capo_database_migration_service.types.string.String"]
-    r"""<p> Specifies the document ID. Use this setting when <code>NestingLevel</code> is set to <code>\"none\"</code>. </p> <p>Default value is <code>\"false\"</code>. </p>"""
+    r"""<p>Specifies whether the document ID is added to the target table. Use this setting when <code>NestingLevel</code> is set to <code>\"none\"</code>. </p> <p>Set <code>ExtractDocId</code> to <code>\"true\"</code> when using <a href=\"https://www.mongodb.com/docs/manual/reference/method/Session.startTransaction/#mongodb-method-Session.startTransaction\">multi-document transactions</a> with CDC. </p> <p>Default value is <code>\"false\"</code>.</p>"""
     docs_to_investigate: NotRequired[
         "capo_database_migration_service.types.string.String"
     ]

@@ -10,6 +10,8 @@ NotebookInstanceStatus: TypeAlias = Literal[
     "Failed",
     "Deleting",
     "Updating",
+    "PendingMaintenance",
+    "InMaintenance",
 ]
 
 

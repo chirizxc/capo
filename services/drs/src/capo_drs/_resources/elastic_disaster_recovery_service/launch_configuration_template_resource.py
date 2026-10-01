@@ -28,6 +28,7 @@ if TYPE_CHECKING:
     import capo_drs.types.licensing
     import capo_drs.types.max_results_type
     import capo_drs.types.pagination_token
+    import capo_drs.types.recovery_mode
     import capo_drs.types.tags_map
     import capo_drs.types.target_instance_type_right_sizing_method
     import capo_drs.types.update_launch_configuration_template_request
@@ -57,6 +58,7 @@ class LaunchConfigurationTemplateResource:
         export_bucket_arn: Optional["capo_drs.types.arn.ARN"] = None,
         post_launch_enabled: Optional[bool] = None,
         launch_into_source_instance: Optional[bool] = None,
+        recovery_mode: Optional["capo_drs.types.recovery_mode.RecoveryMode"] = None,
     ) -> "capo_drs.types.create_launch_configuration_template_response.CreateLaunchConfigurationTemplateResponse":
         """<p>Creates a new Launch Configuration Template.</p>
 
@@ -70,6 +72,7 @@ class LaunchConfigurationTemplateResource:
             export_bucket_arn: <p>S3 bucket ARN to export Source Network templates.</p>
             post_launch_enabled: <p>Whether we want to activate post-launch actions.</p>
             launch_into_source_instance: <p>DRS will set the 'launch into instance ID' of any source server when performing a drill, recovery or failback to the previous region or availability zone, using the instance ID of the source instance.</p>
+            recovery_mode: <p>Recovery mode.</p>
 
         Raises:
             capo_drs.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -117,6 +120,8 @@ class LaunchConfigurationTemplateResource:
             input_["post_launch_enabled"] = post_launch_enabled
         if launch_into_source_instance is not None:
             input_["launch_into_source_instance"] = launch_into_source_instance
+        if recovery_mode is not None:
+            input_["recovery_mode"] = recovery_mode
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -143,6 +148,7 @@ class LaunchConfigurationTemplateResource:
         export_bucket_arn: Optional["capo_drs.types.arn.ARN"] = None,
         post_launch_enabled: Optional[bool] = None,
         launch_into_source_instance: Optional[bool] = None,
+        recovery_mode: Optional["capo_drs.types.recovery_mode.RecoveryMode"] = None,
     ) -> "capo_drs.types.update_launch_configuration_template_response.UpdateLaunchConfigurationTemplateResponse":
         """<p>Updates an existing Launch Configuration Template by ID.</p>
 
@@ -156,6 +162,7 @@ class LaunchConfigurationTemplateResource:
             export_bucket_arn: <p>S3 bucket ARN to export Source Network templates.</p>
             post_launch_enabled: <p>Whether we want to activate post-launch actions.</p>
             launch_into_source_instance: <p>DRS will set the 'launch into instance ID' of any source server when performing a drill, recovery or failback to the previous region or availability zone, using the instance ID of the source instance.</p>
+            recovery_mode: <p>Recovery mode.</p>
 
         Raises:
             capo_drs.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -203,6 +210,8 @@ class LaunchConfigurationTemplateResource:
             input_["post_launch_enabled"] = post_launch_enabled
         if launch_into_source_instance is not None:
             input_["launch_into_source_instance"] = launch_into_source_instance
+        if recovery_mode is not None:
+            input_["recovery_mode"] = recovery_mode
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -340,6 +349,7 @@ class AsyncLaunchConfigurationTemplateResource:
         export_bucket_arn: Optional["capo_drs.types.arn.ARN"] = None,
         post_launch_enabled: Optional[bool] = None,
         launch_into_source_instance: Optional[bool] = None,
+        recovery_mode: Optional["capo_drs.types.recovery_mode.RecoveryMode"] = None,
     ) -> "capo_drs.types.create_launch_configuration_template_response.CreateLaunchConfigurationTemplateResponse":
         """<p>Creates a new Launch Configuration Template.</p>
 
@@ -353,6 +363,7 @@ class AsyncLaunchConfigurationTemplateResource:
             export_bucket_arn: <p>S3 bucket ARN to export Source Network templates.</p>
             post_launch_enabled: <p>Whether we want to activate post-launch actions.</p>
             launch_into_source_instance: <p>DRS will set the 'launch into instance ID' of any source server when performing a drill, recovery or failback to the previous region or availability zone, using the instance ID of the source instance.</p>
+            recovery_mode: <p>Recovery mode.</p>
 
         Raises:
             capo_drs.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -401,6 +412,8 @@ class AsyncLaunchConfigurationTemplateResource:
             input_["post_launch_enabled"] = post_launch_enabled
         if launch_into_source_instance is not None:
             input_["launch_into_source_instance"] = launch_into_source_instance
+        if recovery_mode is not None:
+            input_["recovery_mode"] = recovery_mode
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -427,6 +440,7 @@ class AsyncLaunchConfigurationTemplateResource:
         export_bucket_arn: Optional["capo_drs.types.arn.ARN"] = None,
         post_launch_enabled: Optional[bool] = None,
         launch_into_source_instance: Optional[bool] = None,
+        recovery_mode: Optional["capo_drs.types.recovery_mode.RecoveryMode"] = None,
     ) -> "capo_drs.types.update_launch_configuration_template_response.UpdateLaunchConfigurationTemplateResponse":
         """<p>Updates an existing Launch Configuration Template by ID.</p>
 
@@ -440,6 +454,7 @@ class AsyncLaunchConfigurationTemplateResource:
             export_bucket_arn: <p>S3 bucket ARN to export Source Network templates.</p>
             post_launch_enabled: <p>Whether we want to activate post-launch actions.</p>
             launch_into_source_instance: <p>DRS will set the 'launch into instance ID' of any source server when performing a drill, recovery or failback to the previous region or availability zone, using the instance ID of the source instance.</p>
+            recovery_mode: <p>Recovery mode.</p>
 
         Raises:
             capo_drs.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -488,6 +503,8 @@ class AsyncLaunchConfigurationTemplateResource:
             input_["post_launch_enabled"] = post_launch_enabled
         if launch_into_source_instance is not None:
             input_["launch_into_source_instance"] = launch_into_source_instance
+        if recovery_mode is not None:
+            input_["recovery_mode"] = recovery_mode
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

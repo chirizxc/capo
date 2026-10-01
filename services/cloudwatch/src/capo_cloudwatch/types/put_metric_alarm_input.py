@@ -30,6 +30,7 @@ if TYPE_CHECKING:
     import capo_cloudwatch.types.tag_list
     import capo_cloudwatch.types.threshold
     import capo_cloudwatch.types.treat_missing_data
+    import capo_cloudwatch.types.warm_up_configuration
 
 
 class PutMetricAlarmInput(TypedDict, closed=True):
@@ -97,6 +98,10 @@ class PutMetricAlarmInput(TypedDict, closed=True):
         "capo_cloudwatch.types.evaluation_window.EvaluationWindow"
     ]
     r"""<p>The evaluation window that the alarm uses to select the range of metric data that it evaluates. Specify either a sliding window or a wall clock window. If you omit this parameter, the alarm uses a sliding window.</p> <p>A sliding window advances each time the alarm is evaluated, forming a rolling time window. A wall clock window aligns the evaluated range to fixed clock boundaries, such as the top of the hour or the start of the day.</p> <p>You can use <code>EvaluationWindow</code> with any type of metric alarm except alarms that are based on a PromQL query.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/alarm-evaluation-window.html\">Alarm evaluation windows</a> in the <i>CloudWatch User Guide</i>.</p>"""
+    warm_up_configuration: NotRequired[
+        "capo_cloudwatch.types.warm_up_configuration.WarmUpConfiguration"
+    ]
+    r"""<p>The warm-up configuration for the alarm. A warm-up period delays alarm evaluation after you create or update the alarm. The warm-up period reduces alarm noise from missing data while a new resource or service starts publishing metrics.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/alarm-warm-up.html\">Alarm warm-up periods</a> in the <i>Amazon CloudWatch User Guide</i>.</p>"""
     evaluation_criteria: NotRequired[
         "capo_cloudwatch.types.evaluation_criteria.EvaluationCriteria"
     ]
@@ -216,6 +221,14 @@ def serialize_aws_json_1_0(value: PutMetricAlarmInput) -> dict:
                 value["evaluation_window"]
             )
         )
+    if "warm_up_configuration" in value:
+        import capo_cloudwatch.types.warm_up_configuration
+
+        out["WarmUpConfiguration"] = (
+            capo_cloudwatch.types.warm_up_configuration.serialize_aws_json_1_0(
+                value["warm_up_configuration"]
+            )
+        )
     if "evaluation_criteria" in value:
         import capo_cloudwatch.types.evaluation_criteria
 
@@ -329,6 +342,14 @@ def deserialize_aws_json_1_0(data: dict) -> PutMetricAlarmInput:
         out["evaluation_window"] = (
             capo_cloudwatch.types.evaluation_window.deserialize_aws_json_1_0(
                 data["EvaluationWindow"]
+            )
+        )
+    if data.get("WarmUpConfiguration") is not None:
+        import capo_cloudwatch.types.warm_up_configuration
+
+        out["warm_up_configuration"] = (
+            capo_cloudwatch.types.warm_up_configuration.deserialize_aws_json_1_0(
+                data["WarmUpConfiguration"]
             )
         )
     if data.get("EvaluationCriteria") is not None:
@@ -470,6 +491,12 @@ def serialize_query(
         capo_cloudwatch.types.evaluation_window.serialize_query(
             value["evaluation_window"], pairs, f"{key_prefix}EvaluationWindow"
         )
+    if "warm_up_configuration" in value:
+        import capo_cloudwatch.types.warm_up_configuration
+
+        capo_cloudwatch.types.warm_up_configuration.serialize_query(
+            value["warm_up_configuration"], pairs, f"{key_prefix}WarmUpConfiguration"
+        )
     if "evaluation_criteria" in value:
         import capo_cloudwatch.types.evaluation_criteria
 
@@ -597,6 +624,15 @@ def deserialize_query(el: Element) -> PutMetricAlarmInput:
         out["evaluation_window"] = (
             capo_cloudwatch.types.evaluation_window.deserialize_query(
                 child_evaluation_window
+            )
+        )
+    child_warm_up_configuration = el.find("WarmUpConfiguration")
+    if child_warm_up_configuration is not None:
+        import capo_cloudwatch.types.warm_up_configuration
+
+        out["warm_up_configuration"] = (
+            capo_cloudwatch.types.warm_up_configuration.deserialize_query(
+                child_warm_up_configuration
             )
         )
     child_evaluation_criteria = el.find("EvaluationCriteria")

@@ -10,6 +10,8 @@ from capo_bedrock_agentcore_control.errors import (
 )
 
 if TYPE_CHECKING:
+    import capo_bedrock_agentcore_control.types.http_connector_target_configuration
+    import capo_bedrock_agentcore_control.types.passthrough_target_configuration
     import capo_bedrock_agentcore_control.types.runtime_target_configuration
 
 
@@ -17,7 +19,19 @@ class _HttpTargetConfiguration_agentcoreRuntime(TypedDict, closed=True):
     agentcoreRuntime: "capo_bedrock_agentcore_control.types.runtime_target_configuration.RuntimeTargetConfiguration"
 
 
-HttpTargetConfiguration: TypeAlias = _HttpTargetConfiguration_agentcoreRuntime
+class _HttpTargetConfiguration_passthrough(TypedDict, closed=True):
+    passthrough: "capo_bedrock_agentcore_control.types.passthrough_target_configuration.PassthroughTargetConfiguration"
+
+
+class _HttpTargetConfiguration_connector(TypedDict, closed=True):
+    connector: "capo_bedrock_agentcore_control.types.http_connector_target_configuration.HttpConnectorTargetConfiguration"
+
+
+HttpTargetConfiguration: TypeAlias = (
+    _HttpTargetConfiguration_agentcoreRuntime
+    | _HttpTargetConfiguration_passthrough
+    | _HttpTargetConfiguration_connector
+)
 
 
 # --- restJson1 ser/de ---
@@ -28,6 +42,22 @@ def serialize_json(value: HttpTargetConfiguration) -> dict:
         return {
             "agentcoreRuntime": capo_bedrock_agentcore_control.types.runtime_target_configuration.serialize_json(
                 value["agentcoreRuntime"]
+            )
+        }
+    elif "passthrough" in value:
+        import capo_bedrock_agentcore_control.types.passthrough_target_configuration
+
+        return {
+            "passthrough": capo_bedrock_agentcore_control.types.passthrough_target_configuration.serialize_json(
+                value["passthrough"]
+            )
+        }
+    elif "connector" in value:
+        import capo_bedrock_agentcore_control.types.http_connector_target_configuration
+
+        return {
+            "connector": capo_bedrock_agentcore_control.types.http_connector_target_configuration.serialize_json(
+                value["connector"]
             )
         }
     else:
@@ -41,6 +71,22 @@ def deserialize_json(data: dict) -> HttpTargetConfiguration:
         return {
             "agentcoreRuntime": capo_bedrock_agentcore_control.types.runtime_target_configuration.deserialize_json(
                 data["agentcoreRuntime"]
+            )
+        }
+    elif data.get("passthrough") is not None:
+        import capo_bedrock_agentcore_control.types.passthrough_target_configuration
+
+        return {
+            "passthrough": capo_bedrock_agentcore_control.types.passthrough_target_configuration.deserialize_json(
+                data["passthrough"]
+            )
+        }
+    elif data.get("connector") is not None:
+        import capo_bedrock_agentcore_control.types.http_connector_target_configuration
+
+        return {
+            "connector": capo_bedrock_agentcore_control.types.http_connector_target_configuration.deserialize_json(
+                data["connector"]
             )
         }
     else:

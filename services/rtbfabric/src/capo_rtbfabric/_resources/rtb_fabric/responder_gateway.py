@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     import capo_rtbfabric.types.associate_certificate_request
     import capo_rtbfabric.types.associate_certificate_response
     import capo_rtbfabric.types.certificate_association_summary
+    import capo_rtbfabric.types.client_routing_policy
     import capo_rtbfabric.types.create_responder_gateway_request
     import capo_rtbfabric.types.create_responder_gateway_response
     import capo_rtbfabric.types.delete_responder_gateway_request
@@ -80,22 +81,26 @@ class ResponderGateway:
         description: Optional[str] = None,
         tags: Optional["capo_rtbfabric.types.tags_map.TagsMap"] = None,
         gateway_type: Optional["capo_rtbfabric.types.gateway_type.GatewayType"] = None,
+        client_routing_policy: Optional[
+            "capo_rtbfabric.types.client_routing_policy.ClientRoutingPolicy"
+        ] = None,
     ) -> "capo_rtbfabric.types.create_responder_gateway_response.CreateResponderGatewayResponse":
-        """<p>Creates a responder gateway.</p> <important> <p>A domain name or managed endpoint is required.</p> </important>
+        r"""<p>Creates a responder gateway.</p> <important> <p>A domain name or managed endpoint is required.</p> </important>
 
         Args:
             vpc_id: <p>The unique identifier of the Virtual Private Cloud (VPC).</p>
-            subnet_ids: <p>The unique identifiers of the subnets.</p>
+            subnet_ids: <p>Unique identifiers of the subnets. A service quota for your account sets the number of Availability Zones that your subnets can span. By default, this quota is one Availability Zone. To span more Availability Zones, request a quota increase.</p>
             security_group_ids: <p>The unique identifiers of the security groups.</p>
             domain_name: <p>The domain name for the responder gateway.</p>
             port: <p>The networking port to use.</p>
             protocol: <p>The networking protocol to use.</p>
             trust_store_configuration: <p>The configuration of the trust store.</p>
             managed_endpoint_configuration: <p>The configuration for the managed endpoint.</p>
-            client_token: <p>The unique client token.</p>
+            client_token: <p>Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a <a href=\"https://wikipedia.org/wiki/Universally_unique_identifier\">UUID type of value</a>.</p> <p>If you don't provide this value, then Amazon Web Services generates a random one for you.</p> <p>If you retry the operation with the same <code>clientToken</code>, but with different parameters, the retry fails with an <code>IdempotentParameterMismatch</code> error.</p>
             description: <p>An optional description for the responder gateway.</p>
             tags: <p>A map of the key-value pairs of the tag or tags to assign to the resource.</p>
             gateway_type: <p>The type of gateway. Valid values are <code>EXTERNAL</code> or <code>INTERNAL</code>.</p>
+            client_routing_policy: <p>The client routing policy of the gateway. This policy controls which Availability Zones RTB Fabric uses to reach the gateway for the requester gateways that send traffic to it. Valid values are the following:</p> <ul> <li> <p> <code>AVAILABILITY_ZONE_AFFINITY</code>: RTB Fabric routes each requester's traffic to gateway capacity in the requester's own Availability Zone when the gateway has capacity available there. Otherwise, RTB Fabric routes the traffic to gateway capacity in the other Availability Zones of the gateway.</p> </li> <li> <p> <code>ANY_AVAILABILITY_ZONE</code>: RTB Fabric routes each requester's traffic to gateway capacity in every Availability Zone that the subnets of the gateway span. The Availability Zone that the requester is in does not change this.</p> </li> </ul> <p>If you don't specify a value, RTB Fabric uses <code>AVAILABILITY_ZONE_AFFINITY</code>. To get the behavior of <code>ANY_AVAILABILITY_ZONE</code>, create the gateway with subnets in more than one Availability Zone. RTB Fabric does not support partial Availability Zone affinity, so <code>PARTIAL_AVAILABILITY_ZONE_AFFINITY</code> is not a valid value. For more information, see <a href=\"https://docs.aws.amazon.com/rtb-fabric/latest/userguide/working-with-responder-gateways.html#configuring-availability-zone-affinity\">Configuring Availability Zone affinity</a> in the <i>Amazon Web Services RTB Fabric User Guide</i>.</p>
 
         Raises:
             capo_rtbfabric.errors.access_denied_exception.AccessDeniedException: <p>The request could not be completed because you do not have sufficient access to perform this action.</p>
@@ -150,6 +155,8 @@ class ResponderGateway:
             input_["tags"] = tags
         if gateway_type is not None:
             input_["gateway_type"] = gateway_type
+        if client_routing_policy is not None:
+            input_["client_routing_policy"] = client_routing_policy
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -279,7 +286,7 @@ class ResponderGateway:
         Args:
             gateway_id: <p>The unique identifier of the gateway.</p>
             acm_certificate_arn: <p>The Amazon Resource Name (ARN) of the ACM certificate to associate.</p>
-            client_token: <p>Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a <a href=\"https://wikipedia.org/wiki/Universally_unique_identifier\">UUID type of value</a>.</p> <p>If you don't provide this value, then Amazon Web Services generates a random one for you.</p> <p>If you retry the operation with the same <code>ClientToken</code>, but with different parameters, the retry fails with an <code>IdempotentParameterMismatch</code> error.</p>
+            client_token: <p>Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a <a href=\"https://wikipedia.org/wiki/Universally_unique_identifier\">UUID type of value</a>.</p> <p>If you don't provide this value, then Amazon Web Services generates a random one for you.</p> <p>If you retry the operation with the same <code>clientToken</code>, but with different parameters, the retry fails with an <code>IdempotentParameterMismatch</code> error.</p>
 
         Raises:
             capo_rtbfabric.errors.access_denied_exception.AccessDeniedException: <p>The request could not be completed because you do not have sufficient access to perform this action.</p>
@@ -521,19 +528,23 @@ class ResponderGateway:
             "capo_rtbfabric.types.managed_endpoint_configuration.ManagedEndpointConfiguration"
         ] = None,
         description: Optional[str] = None,
+        client_routing_policy: Optional[
+            "capo_rtbfabric.types.client_routing_policy.ClientRoutingPolicy"
+        ] = None,
     ) -> "capo_rtbfabric.types.update_responder_gateway_response.UpdateResponderGatewayResponse":
-        """<p>Updates a responder gateway.</p>
+        r"""<p>Updates the description, Auto Scaling group managed endpoint configuration, trust store configuration, and client routing policy of a responder gateway. This operation also updates the <code>protocols</code> list in the listener configuration.</p> <p>You cannot change the <code>domainName</code>, <code>port</code>, and <code>protocol</code> values that you set when you create a responder gateway. To change any of them, delete the gateway and create a new one.</p>
 
         Args:
-            domain_name: <p>The domain name for the responder gateway.</p>
-            port: <p>The networking port to use.</p>
-            protocol: <p>The networking protocol to use.</p>
+            domain_name: <p>Domain name for the responder gateway. This operation does not change the domain name of an existing gateway. To use a different domain name, delete the gateway and create a new one.</p>
+            port: <p>Networking port to use. This operation does not change the port of an existing gateway. To use a different port, delete the gateway and create a new one.</p>
+            protocol: <p>Networking protocol to use. This operation does not change the protocol of an existing gateway. To use a different protocol, delete the gateway and create a new one.</p>
             listener_config: <p>The listener configuration for the responder gateway.</p>
             trust_store_configuration: <p>The configuration of the trust store.</p>
             managed_endpoint_configuration: <p>The configuration for the managed endpoint.</p>
-            client_token: <p>The unique client token.</p>
+            client_token: <p>Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a <a href=\"https://wikipedia.org/wiki/Universally_unique_identifier\">UUID type of value</a>.</p> <p>If you don't provide this value, then Amazon Web Services generates a random one for you.</p> <p>If you retry the operation with the same <code>clientToken</code>, but with different parameters, the retry fails with an <code>IdempotentParameterMismatch</code> error.</p>
             gateway_id: <p>The unique identifier of the gateway.</p>
             description: <p>An optional description for the responder gateway.</p>
+            client_routing_policy: <p>The client routing policy of the gateway. This policy controls which Availability Zones RTB Fabric uses to reach the gateway for the requester gateways that send traffic to it. Valid values are the following:</p> <ul> <li> <p> <code>AVAILABILITY_ZONE_AFFINITY</code>: RTB Fabric routes each requester's traffic to gateway capacity in the requester's own Availability Zone when the gateway has capacity available there. Otherwise, RTB Fabric routes the traffic to gateway capacity in the other Availability Zones of the gateway.</p> </li> <li> <p> <code>ANY_AVAILABILITY_ZONE</code>: RTB Fabric routes each requester's traffic to gateway capacity in every Availability Zone that the subnets of the gateway span. The Availability Zone that the requester is in does not change this.</p> </li> </ul> <p>If you don't specify a value, the gateway keeps its current client routing policy. Changing the policy sets the gateway status to <code>PENDING_UPDATE</code> until the change is complete. RTB Fabric does not support partial Availability Zone affinity, so <code>PARTIAL_AVAILABILITY_ZONE_AFFINITY</code> is not a valid value. For more information, see <a href=\"https://docs.aws.amazon.com/rtb-fabric/latest/userguide/working-with-responder-gateways.html#configuring-availability-zone-affinity\">Configuring Availability Zone affinity</a> in the <i>Amazon Web Services RTB Fabric User Guide</i>.</p>
 
         Raises:
             capo_rtbfabric.errors.access_denied_exception.AccessDeniedException: <p>The request could not be completed because you do not have sufficient access to perform this action.</p>
@@ -582,6 +593,8 @@ class ResponderGateway:
             input_["managed_endpoint_configuration"] = managed_endpoint_configuration
         if description is not None:
             input_["description"] = description
+        if client_routing_policy is not None:
+            input_["client_routing_policy"] = client_routing_policy
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -619,22 +632,26 @@ class AsyncResponderGateway:
         description: Optional[str] = None,
         tags: Optional["capo_rtbfabric.types.tags_map.TagsMap"] = None,
         gateway_type: Optional["capo_rtbfabric.types.gateway_type.GatewayType"] = None,
+        client_routing_policy: Optional[
+            "capo_rtbfabric.types.client_routing_policy.ClientRoutingPolicy"
+        ] = None,
     ) -> "capo_rtbfabric.types.create_responder_gateway_response.CreateResponderGatewayResponse":
-        """<p>Creates a responder gateway.</p> <important> <p>A domain name or managed endpoint is required.</p> </important>
+        r"""<p>Creates a responder gateway.</p> <important> <p>A domain name or managed endpoint is required.</p> </important>
 
         Args:
             vpc_id: <p>The unique identifier of the Virtual Private Cloud (VPC).</p>
-            subnet_ids: <p>The unique identifiers of the subnets.</p>
+            subnet_ids: <p>Unique identifiers of the subnets. A service quota for your account sets the number of Availability Zones that your subnets can span. By default, this quota is one Availability Zone. To span more Availability Zones, request a quota increase.</p>
             security_group_ids: <p>The unique identifiers of the security groups.</p>
             domain_name: <p>The domain name for the responder gateway.</p>
             port: <p>The networking port to use.</p>
             protocol: <p>The networking protocol to use.</p>
             trust_store_configuration: <p>The configuration of the trust store.</p>
             managed_endpoint_configuration: <p>The configuration for the managed endpoint.</p>
-            client_token: <p>The unique client token.</p>
+            client_token: <p>Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a <a href=\"https://wikipedia.org/wiki/Universally_unique_identifier\">UUID type of value</a>.</p> <p>If you don't provide this value, then Amazon Web Services generates a random one for you.</p> <p>If you retry the operation with the same <code>clientToken</code>, but with different parameters, the retry fails with an <code>IdempotentParameterMismatch</code> error.</p>
             description: <p>An optional description for the responder gateway.</p>
             tags: <p>A map of the key-value pairs of the tag or tags to assign to the resource.</p>
             gateway_type: <p>The type of gateway. Valid values are <code>EXTERNAL</code> or <code>INTERNAL</code>.</p>
+            client_routing_policy: <p>The client routing policy of the gateway. This policy controls which Availability Zones RTB Fabric uses to reach the gateway for the requester gateways that send traffic to it. Valid values are the following:</p> <ul> <li> <p> <code>AVAILABILITY_ZONE_AFFINITY</code>: RTB Fabric routes each requester's traffic to gateway capacity in the requester's own Availability Zone when the gateway has capacity available there. Otherwise, RTB Fabric routes the traffic to gateway capacity in the other Availability Zones of the gateway.</p> </li> <li> <p> <code>ANY_AVAILABILITY_ZONE</code>: RTB Fabric routes each requester's traffic to gateway capacity in every Availability Zone that the subnets of the gateway span. The Availability Zone that the requester is in does not change this.</p> </li> </ul> <p>If you don't specify a value, RTB Fabric uses <code>AVAILABILITY_ZONE_AFFINITY</code>. To get the behavior of <code>ANY_AVAILABILITY_ZONE</code>, create the gateway with subnets in more than one Availability Zone. RTB Fabric does not support partial Availability Zone affinity, so <code>PARTIAL_AVAILABILITY_ZONE_AFFINITY</code> is not a valid value. For more information, see <a href=\"https://docs.aws.amazon.com/rtb-fabric/latest/userguide/working-with-responder-gateways.html#configuring-availability-zone-affinity\">Configuring Availability Zone affinity</a> in the <i>Amazon Web Services RTB Fabric User Guide</i>.</p>
 
         Raises:
             capo_rtbfabric.errors.access_denied_exception.AccessDeniedException: <p>The request could not be completed because you do not have sufficient access to perform this action.</p>
@@ -690,6 +707,8 @@ class AsyncResponderGateway:
             input_["tags"] = tags
         if gateway_type is not None:
             input_["gateway_type"] = gateway_type
+        if client_routing_policy is not None:
+            input_["client_routing_policy"] = client_routing_policy
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -821,7 +840,7 @@ class AsyncResponderGateway:
         Args:
             gateway_id: <p>The unique identifier of the gateway.</p>
             acm_certificate_arn: <p>The Amazon Resource Name (ARN) of the ACM certificate to associate.</p>
-            client_token: <p>Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a <a href=\"https://wikipedia.org/wiki/Universally_unique_identifier\">UUID type of value</a>.</p> <p>If you don't provide this value, then Amazon Web Services generates a random one for you.</p> <p>If you retry the operation with the same <code>ClientToken</code>, but with different parameters, the retry fails with an <code>IdempotentParameterMismatch</code> error.</p>
+            client_token: <p>Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a <a href=\"https://wikipedia.org/wiki/Universally_unique_identifier\">UUID type of value</a>.</p> <p>If you don't provide this value, then Amazon Web Services generates a random one for you.</p> <p>If you retry the operation with the same <code>clientToken</code>, but with different parameters, the retry fails with an <code>IdempotentParameterMismatch</code> error.</p>
 
         Raises:
             capo_rtbfabric.errors.access_denied_exception.AccessDeniedException: <p>The request could not be completed because you do not have sufficient access to perform this action.</p>
@@ -1067,19 +1086,23 @@ class AsyncResponderGateway:
             "capo_rtbfabric.types.managed_endpoint_configuration.ManagedEndpointConfiguration"
         ] = None,
         description: Optional[str] = None,
+        client_routing_policy: Optional[
+            "capo_rtbfabric.types.client_routing_policy.ClientRoutingPolicy"
+        ] = None,
     ) -> "capo_rtbfabric.types.update_responder_gateway_response.UpdateResponderGatewayResponse":
-        """<p>Updates a responder gateway.</p>
+        r"""<p>Updates the description, Auto Scaling group managed endpoint configuration, trust store configuration, and client routing policy of a responder gateway. This operation also updates the <code>protocols</code> list in the listener configuration.</p> <p>You cannot change the <code>domainName</code>, <code>port</code>, and <code>protocol</code> values that you set when you create a responder gateway. To change any of them, delete the gateway and create a new one.</p>
 
         Args:
-            domain_name: <p>The domain name for the responder gateway.</p>
-            port: <p>The networking port to use.</p>
-            protocol: <p>The networking protocol to use.</p>
+            domain_name: <p>Domain name for the responder gateway. This operation does not change the domain name of an existing gateway. To use a different domain name, delete the gateway and create a new one.</p>
+            port: <p>Networking port to use. This operation does not change the port of an existing gateway. To use a different port, delete the gateway and create a new one.</p>
+            protocol: <p>Networking protocol to use. This operation does not change the protocol of an existing gateway. To use a different protocol, delete the gateway and create a new one.</p>
             listener_config: <p>The listener configuration for the responder gateway.</p>
             trust_store_configuration: <p>The configuration of the trust store.</p>
             managed_endpoint_configuration: <p>The configuration for the managed endpoint.</p>
-            client_token: <p>The unique client token.</p>
+            client_token: <p>Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a <a href=\"https://wikipedia.org/wiki/Universally_unique_identifier\">UUID type of value</a>.</p> <p>If you don't provide this value, then Amazon Web Services generates a random one for you.</p> <p>If you retry the operation with the same <code>clientToken</code>, but with different parameters, the retry fails with an <code>IdempotentParameterMismatch</code> error.</p>
             gateway_id: <p>The unique identifier of the gateway.</p>
             description: <p>An optional description for the responder gateway.</p>
+            client_routing_policy: <p>The client routing policy of the gateway. This policy controls which Availability Zones RTB Fabric uses to reach the gateway for the requester gateways that send traffic to it. Valid values are the following:</p> <ul> <li> <p> <code>AVAILABILITY_ZONE_AFFINITY</code>: RTB Fabric routes each requester's traffic to gateway capacity in the requester's own Availability Zone when the gateway has capacity available there. Otherwise, RTB Fabric routes the traffic to gateway capacity in the other Availability Zones of the gateway.</p> </li> <li> <p> <code>ANY_AVAILABILITY_ZONE</code>: RTB Fabric routes each requester's traffic to gateway capacity in every Availability Zone that the subnets of the gateway span. The Availability Zone that the requester is in does not change this.</p> </li> </ul> <p>If you don't specify a value, the gateway keeps its current client routing policy. Changing the policy sets the gateway status to <code>PENDING_UPDATE</code> until the change is complete. RTB Fabric does not support partial Availability Zone affinity, so <code>PARTIAL_AVAILABILITY_ZONE_AFFINITY</code> is not a valid value. For more information, see <a href=\"https://docs.aws.amazon.com/rtb-fabric/latest/userguide/working-with-responder-gateways.html#configuring-availability-zone-affinity\">Configuring Availability Zone affinity</a> in the <i>Amazon Web Services RTB Fabric User Guide</i>.</p>
 
         Raises:
             capo_rtbfabric.errors.access_denied_exception.AccessDeniedException: <p>The request could not be completed because you do not have sufficient access to perform this action.</p>
@@ -1129,6 +1152,8 @@ class AsyncResponderGateway:
             input_["managed_endpoint_configuration"] = managed_endpoint_configuration
         if description is not None:
             input_["description"] = description
+        if client_routing_policy is not None:
+            input_["client_routing_policy"] = client_routing_policy
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

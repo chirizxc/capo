@@ -2,7 +2,7 @@
 
 from typing import Literal, TypeAlias, cast
 
-"""<p>Specifies the dimensions available for grouping and filtering emissions data.</p>"""
+"""<p>Specifies the dimensions available for grouping and filtering environmental impact data.</p>"""
 Dimension: TypeAlias = Literal[
     "USAGE_ACCOUNT_ID",
     "REGION",

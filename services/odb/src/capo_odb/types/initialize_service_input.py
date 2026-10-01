@@ -1,17 +1,34 @@
 """Generated from Smithy shape ``com.amazonaws.odb#InitializeServiceInput``."""
 
-from typing_extensions import TypedDict
+from typing import TYPE_CHECKING
+
+from typing_extensions import NotRequired, TypedDict
+
+if TYPE_CHECKING:
+    import capo_odb.types.access
 
 
 class InitializeServiceInput(TypedDict, closed=True):
     oci_identity_domain: "bool"
     """<p>The Oracle Cloud Infrastructure (OCI) identity domain configuration for service initialization.</p>"""
+    autonomous_database_oci_aws_secrets_manager_integration: NotRequired[
+        "capo_odb.types.access.Access"
+    ]
+    """<p>Specifies whether to enable or disable the OCI service-account role for Amazon Web Services Secrets Manager integration with Autonomous Database.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: InitializeServiceInput) -> dict:
     out: dict = {}
     out["ociIdentityDomain"] = value.get("oci_identity_domain", True)
+    if "autonomous_database_oci_aws_secrets_manager_integration" in value:
+        import capo_odb.types.access
+
+        out["autonomousDatabaseOciAwsSecretsManagerIntegration"] = (
+            capo_odb.types.access.serialize_aws_json_1_0(
+                value["autonomous_database_oci_aws_secrets_manager_integration"]
+            )
+        )
     return out
 
 
@@ -21,4 +38,12 @@ def deserialize_aws_json_1_0(data: dict) -> InitializeServiceInput:
         out["oci_identity_domain"] = data["ociIdentityDomain"]
     else:
         out["oci_identity_domain"] = True
+    if data.get("autonomousDatabaseOciAwsSecretsManagerIntegration") is not None:
+        import capo_odb.types.access
+
+        out["autonomous_database_oci_aws_secrets_manager_integration"] = (
+            capo_odb.types.access.deserialize_aws_json_1_0(
+                data["autonomousDatabaseOciAwsSecretsManagerIntegration"]
+            )
+        )
     return out

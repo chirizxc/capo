@@ -25,6 +25,7 @@ import capo_quicksight.errors.throttling_exception
 import capo_quicksight.types.capabilities
 import capo_quicksight.types.create_custom_permissions_request
 import capo_quicksight.types.create_custom_permissions_response
+import capo_quicksight.types.governance
 import capo_quicksight.types.tag_list
 from capo_quicksight._protocol.errors import parse_error_metadata_json
 from capo_quicksight._rule_engine._endpoint_rule_set import EndpointParams, resolve

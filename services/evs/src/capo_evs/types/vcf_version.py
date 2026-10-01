@@ -5,6 +5,7 @@ from typing import Literal, TypeAlias, cast
 VcfVersion: TypeAlias = Literal[
     "VCF-5.2.1",
     "VCF-5.2.2",
+    "SELF_DEPLOYED",
 ]
 
 

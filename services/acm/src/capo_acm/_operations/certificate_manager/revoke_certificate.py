@@ -17,6 +17,7 @@ import capo_acm.errors.invalid_arn_exception
 import capo_acm.errors.resource_in_use_exception
 import capo_acm.errors.resource_not_found_exception
 import capo_acm.errors.throttling_exception
+import capo_acm.errors.validation_exception
 import capo_acm.types.revocation_reason
 import capo_acm.types.revoke_certificate_request
 import capo_acm.types.revoke_certificate_response
@@ -52,6 +53,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "ThrottlingException":
             raise capo_acm.errors.throttling_exception.ThrottlingException.from_aws_json_1_1(
+                data, message
+            )
+        case "ValidationException":
+            raise capo_acm.errors.validation_exception.ValidationException.from_aws_json_1_1(
                 data, message
             )
         case _:
@@ -115,9 +120,10 @@ def build_request(
     endpoint = resolve(
         EndpointParams(
             Region=options.region,
-            UseDualStack=options.use_dual_stack,
-            UseFIPS=options.use_fips,
             Endpoint=options.endpoint,
+            UseFIPS=options.use_fips,
+            UseDualStack=options.use_dual_stack,
+            ServiceType="ACM",
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + ""

@@ -2,6 +2,7 @@
 
 from typing import Literal, TypeAlias, cast
 
+"""The type of preloaded data."""
 PreloadDataType: TypeAlias = Literal["SYNTHEA",]
 
 

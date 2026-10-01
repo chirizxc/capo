@@ -93,3 +93,45 @@ def test_iso_b_partition__us_isob_east_1_():
     params = EndpointParams(Region='us-isob-east-1', UseFIPS=False, UseDualStack=False)
     result = resolve(params)
     assert result.url == 'https://us-isob-east-1.signin.sc2shome.sgov.gov'
+
+def test_oauth_endpoint_in_us_east_1__aws_partiti():
+    """OAuth endpoint in us-east-1 (aws partition)"""
+    params = EndpointParams(IsOAuthEndpoint=True, Region='us-east-1', UseFIPS=False, UseDualStack=False)
+    result = resolve(params)
+    assert result.url == 'https://us-east-1.oauth.signin.aws'
+
+def test_oauth_endpoint_in_us_west_2__aws_partiti():
+    """OAuth endpoint in us-west-2 (aws partition)"""
+    params = EndpointParams(IsOAuthEndpoint=True, Region='us-west-2', UseFIPS=False, UseDualStack=False)
+    result = resolve(params)
+    assert result.url == 'https://us-west-2.oauth.signin.aws'
+
+def test_oauth_endpoint_with_fips_returns_an_erro():
+    """OAuth endpoint with FIPS returns an error (no FIPS variant exists)"""
+    params = EndpointParams(IsOAuthEndpoint=True, Region='us-east-1', UseFIPS=True, UseDualStack=False)
+    with pytest.raises(EndpointError, match=re.escape('FIPS endpoints are not supported for OAuth operations. Disable FIPS or use a non-OAuth operation.')):
+        resolve(params)
+
+def test_oauth_endpoint_with_fips_returns_an_erro():
+    """OAuth endpoint with FIPS returns an error in us-west-2 (aws partition)"""
+    params = EndpointParams(IsOAuthEndpoint=True, Region='us-west-2', UseFIPS=True, UseDualStack=False)
+    with pytest.raises(EndpointError, match=re.escape('FIPS endpoints are not supported for OAuth operations. Disable FIPS or use a non-OAuth operation.')):
+        resolve(params)
+
+def test_oauth_endpoint_with_fips_returns_an_erro():
+    """OAuth endpoint with FIPS returns an error in cn-north-1 (non-aws partition, error is partition-agnostic)"""
+    params = EndpointParams(IsOAuthEndpoint=True, Region='cn-north-1', UseFIPS=True, UseDualStack=False)
+    with pytest.raises(EndpointError, match=re.escape('FIPS endpoints are not supported for OAuth operations. Disable FIPS or use a non-OAuth operation.')):
+        resolve(params)
+
+def test_oauth_endpoint_with_fips_returns_an_erro():
+    """OAuth endpoint with FIPS returns an error even with a custom SDK endpoint override"""
+    params = EndpointParams(IsOAuthEndpoint=True, Region='us-east-1', Endpoint='https://custom.signin.example.com', UseFIPS=True, UseDualStack=False)
+    with pytest.raises(EndpointError, match=re.escape('FIPS endpoints are not supported for OAuth operations. Disable FIPS or use a non-OAuth operation.')):
+        resolve(params)
+
+def test_oauth_operation_with_custom_sdk_endpoint():
+    """OAuth operation with custom SDK endpoint override"""
+    params = EndpointParams(IsOAuthEndpoint=True, Region='us-east-1', Endpoint='https://custom.signin.example.com', UseFIPS=False, UseDualStack=False)
+    result = resolve(params)
+    assert result.url == 'https://custom.signin.example.com'

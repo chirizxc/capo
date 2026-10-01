@@ -48,6 +48,11 @@ if TYPE_CHECKING:
     import capo_network_firewall.types.availability_zone_mappings
     import capo_network_firewall.types.az_subnets
     import capo_network_firewall.types.boolean
+    import capo_network_firewall.types.container_association_summary
+    import capo_network_firewall.types.container_monitoring_configurations
+    import capo_network_firewall.types.container_monitoring_type
+    import capo_network_firewall.types.create_container_association_request
+    import capo_network_firewall.types.create_container_association_response
     import capo_network_firewall.types.create_firewall_policy_request
     import capo_network_firewall.types.create_firewall_policy_response
     import capo_network_firewall.types.create_firewall_request
@@ -67,6 +72,8 @@ if TYPE_CHECKING:
     import capo_network_firewall.types.create_tls_inspection_configuration_response
     import capo_network_firewall.types.create_vpc_endpoint_association_request
     import capo_network_firewall.types.create_vpc_endpoint_association_response
+    import capo_network_firewall.types.delete_container_association_request
+    import capo_network_firewall.types.delete_container_association_response
     import capo_network_firewall.types.delete_firewall_policy_request
     import capo_network_firewall.types.delete_firewall_policy_response
     import capo_network_firewall.types.delete_firewall_request
@@ -89,6 +96,8 @@ if TYPE_CHECKING:
     import capo_network_firewall.types.delete_tls_inspection_configuration_response
     import capo_network_firewall.types.delete_vpc_endpoint_association_request
     import capo_network_firewall.types.delete_vpc_endpoint_association_response
+    import capo_network_firewall.types.describe_container_association_request
+    import capo_network_firewall.types.describe_container_association_response
     import capo_network_firewall.types.describe_firewall_metadata_request
     import capo_network_firewall.types.describe_firewall_metadata_response
     import capo_network_firewall.types.describe_firewall_policy_request
@@ -142,6 +151,8 @@ if TYPE_CHECKING:
     import capo_network_firewall.types.get_analysis_report_results_response
     import capo_network_firewall.types.list_analysis_reports_request
     import capo_network_firewall.types.list_analysis_reports_response
+    import capo_network_firewall.types.list_container_associations_request
+    import capo_network_firewall.types.list_container_associations_response
     import capo_network_firewall.types.list_firewall_policies_request
     import capo_network_firewall.types.list_firewall_policies_response
     import capo_network_firewall.types.list_firewalls_request
@@ -167,6 +178,7 @@ if TYPE_CHECKING:
     import capo_network_firewall.types.listener_properties_request
     import capo_network_firewall.types.logging_configuration
     import capo_network_firewall.types.nat_gateway_id
+    import capo_network_firewall.types.nat_gateway_mappings_list
     import capo_network_firewall.types.pagination_max_results
     import capo_network_firewall.types.pagination_token
     import capo_network_firewall.types.policy_string
@@ -180,6 +192,7 @@ if TYPE_CHECKING:
     import capo_network_firewall.types.proxy_rule_phase_action
     import capo_network_firewall.types.proxy_rule_priority_list
     import capo_network_firewall.types.proxy_rules_by_request_phase
+    import capo_network_firewall.types.proxy_settings
     import capo_network_firewall.types.put_resource_policy_request
     import capo_network_firewall.types.put_resource_policy_response
     import capo_network_firewall.types.reject_network_firewall_transit_gateway_attachment_request
@@ -222,6 +235,8 @@ if TYPE_CHECKING:
     import capo_network_firewall.types.untag_resource_response
     import capo_network_firewall.types.update_availability_zone_change_protection_request
     import capo_network_firewall.types.update_availability_zone_change_protection_response
+    import capo_network_firewall.types.update_container_association_request
+    import capo_network_firewall.types.update_container_association_response
     import capo_network_firewall.types.update_firewall_analysis_settings_request
     import capo_network_firewall.types.update_firewall_analysis_settings_response
     import capo_network_firewall.types.update_firewall_delete_protection_request
@@ -246,6 +261,8 @@ if TYPE_CHECKING:
     import capo_network_firewall.types.update_proxy_rule_priorities_response
     import capo_network_firewall.types.update_proxy_rule_request
     import capo_network_firewall.types.update_proxy_rule_response
+    import capo_network_firewall.types.update_proxy_settings_request
+    import capo_network_firewall.types.update_proxy_settings_response
     import capo_network_firewall.types.update_rule_group_request
     import capo_network_firewall.types.update_rule_group_response
     import capo_network_firewall.types.update_subnet_change_protection_request
@@ -253,6 +270,7 @@ if TYPE_CHECKING:
     import capo_network_firewall.types.update_tls_inspection_configuration_request
     import capo_network_firewall.types.update_tls_inspection_configuration_response
     import capo_network_firewall.types.update_token
+    import capo_network_firewall.types.vpc_endpoint
     import capo_network_firewall.types.vpc_endpoint_association_metadata
     import capo_network_firewall.types.vpc_endpoint_id
     import capo_network_firewall.types.vpc_id
@@ -664,6 +682,70 @@ class AsyncNetworkFirewallClient:
         await response.response.aclose()
         return response.output
 
+    async def create_container_association(
+        self,
+        container_association_name: "capo_network_firewall.types.resource_name.ResourceName",
+        type: "capo_network_firewall.types.container_monitoring_type.ContainerMonitoringType",
+        container_monitoring_configurations: "capo_network_firewall.types.container_monitoring_configurations.ContainerMonitoringConfigurations",
+        *,
+        config_overrides: Optional[AsyncNetworkFirewallClientConfig] = None,
+        description: Optional[
+            "capo_network_firewall.types.description.Description"
+        ] = None,
+        tags: Optional["capo_network_firewall.types.tag_list.TagList"] = None,
+    ) -> "capo_network_firewall.types.create_container_association_response.CreateContainerAssociationResponse":
+        """<p>Creates a Network Firewall container association. The association monitors container lifecycle events in your Amazon ECS or Amazon EKS clusters and resolves running container addresses for use in firewall rules.</p>
+
+        Args:
+            container_association_name: <p>The descriptive name of the container association. You can't change the name of a container association after you create it.</p>
+            description: <p>A description of the container association.</p>
+            type: <p>The type of containers to monitor. You can't change the container type after creation. Valid values:</p> <ul> <li> <p> <code>ECS</code> - Amazon Elastic Container Service</p> </li> <li> <p> <code>EKS</code> - Amazon Elastic Kubernetes Service</p> </li> </ul>
+            container_monitoring_configurations: <p>The monitoring configurations for the container association. Each configuration specifies an Amazon ECS or Amazon EKS cluster to monitor and optional attribute filters to narrow which containers are tracked.</p>
+            tags: <p>The key:value pairs to associate with the resource.</p>
+
+        Raises:
+            capo_network_firewall.errors.insufficient_capacity_exception.InsufficientCapacityException: <p>Amazon Web Services doesn't currently have enough available capacity to fulfill your request. Try your request later. </p>
+            capo_network_firewall.errors.internal_server_error.InternalServerError: <p>Your request is valid, but Network Firewall couldn't perform the operation because of a system problem. Retry your request. </p>
+            capo_network_firewall.errors.invalid_request_exception.InvalidRequestException: <p>The operation failed because of a problem with your request. Examples include: </p> <ul> <li> <p>You specified an unsupported parameter name or value.</p> </li> <li> <p>You tried to update a property with a value that isn't among the available types.</p> </li> <li> <p>Your request references an ARN that is malformed, or corresponds to a resource that isn't valid in the context of the request.</p> </li> </ul>
+            capo_network_firewall.errors.limit_exceeded_exception.LimitExceededException: <p>Unable to perform the operation because doing so would violate a limit setting. </p>
+            capo_network_firewall.errors.throttling_exception.ThrottlingException: <p>Unable to process the request due to throttling limitations.</p>
+            capo_network_firewall.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_network_firewall.types.create_container_association_request.CreateContainerAssociationRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_network_firewall.types.create_container_association_response.CreateContainerAssociationResponse"
+        ]:
+            import capo_network_firewall._operations.network_firewall_20201112.create_container_association
+
+            (
+                output,
+                http_response,
+            ) = await capo_network_firewall._operations.network_firewall_20201112.create_container_association.async_create_container_association(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_network_firewall.types.create_container_association_request.CreateContainerAssociationRequest = {
+            "container_association_name": container_association_name,
+            "type": type,
+            "container_monitoring_configurations": container_monitoring_configurations,
+        }
+        if description is not None:
+            input_["description"] = description
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def create_firewall(
         self,
         firewall_name: "capo_network_firewall.types.resource_name.ResourceName",
@@ -702,6 +784,18 @@ class AsyncNetworkFirewallClient:
         availability_zone_change_protection: Optional[
             "capo_network_firewall.types.boolean.Boolean"
         ] = None,
+        nat_gateway_mappings: Optional[
+            "capo_network_firewall.types.nat_gateway_mappings_list.NatGatewayMappingsList"
+        ] = None,
+        proxy_settings: Optional[
+            "capo_network_firewall.types.proxy_settings.ProxySettings"
+        ] = None,
+        no_source_preservation: Optional[
+            "capo_network_firewall.types.boolean.Boolean"
+        ] = None,
+        vpc_endpoint: Optional[
+            "capo_network_firewall.types.vpc_endpoint.VpcEndpoint"
+        ] = None,
     ) -> "capo_network_firewall.types.create_firewall_response.CreateFirewallResponse":
         r"""<p>Creates an Network Firewall <a>Firewall</a> and accompanying <a>FirewallStatus</a> for a VPC. </p> <p>The firewall defines the configuration settings for an Network Firewall firewall. The settings that you can define at creation include the firewall policy, the subnets in your VPC to use for the firewall endpoints, and any tags that are attached to the firewall Amazon Web Services resource. </p> <p>After you create a firewall, you can provide additional settings, like the logging configuration. </p> <p>To update the settings for a firewall, you use the operations that apply to the settings themselves, for example <a>UpdateLoggingConfiguration</a>, <a>AssociateSubnets</a>, and <a>UpdateFirewallDeleteProtection</a>. </p> <p>To manage a firewall's tags, use the standard Amazon Web Services resource tagging operations, <a>ListTagsForResource</a>, <a>TagResource</a>, and <a>UntagResource</a>.</p> <p>To retrieve information about firewalls, use <a>ListFirewalls</a> and <a>DescribeFirewall</a>.</p> <p>To generate a report on the last 30 days of traffic monitored by a firewall, use <a>StartAnalysisReport</a>.</p>
 
@@ -720,6 +814,10 @@ class AsyncNetworkFirewallClient:
             transit_gateway_id: <p>Required when creating a transit gateway-attached firewall. The unique identifier of the transit gateway to attach to this firewall. You can provide either a transit gateway from your account or one that has been shared with you through Resource Access Manager.</p> <important> <p>After creating the firewall, you cannot change the transit gateway association. To use a different transit gateway, you must create a new firewall.</p> </important> <p>For information about creating firewalls, see <a>CreateFirewall</a>. For specific guidance about transit gateway-attached firewalls, see <a href=\"https://docs.aws.amazon.com/network-firewall/latest/developerguide/tgw-firewall-considerations.html\">Considerations for transit gateway-attached firewalls</a> in the <i>Network Firewall Developer Guide</i>.</p>
             availability_zone_mappings: <p>Required. The Availability Zones where you want to create firewall endpoints for a transit gateway-attached firewall. You must specify at least one Availability Zone. Consider enabling the firewall in every Availability Zone where you have workloads to maintain Availability Zone isolation.</p> <p>You can modify Availability Zones later using <a>AssociateAvailabilityZones</a> or <a>DisassociateAvailabilityZones</a>, but this may briefly disrupt traffic. The <code>AvailabilityZoneChangeProtection</code> setting controls whether you can make these modifications.</p>
             availability_zone_change_protection: <p>Optional. A setting indicating whether the firewall is protected against changes to its Availability Zone configuration. When set to <code>TRUE</code>, you cannot add or remove Availability Zones without first disabling this protection using <a>UpdateAvailabilityZoneChangeProtection</a>.</p> <p>Default value: <code>FALSE</code> </p>
+            nat_gateway_mappings: <p>The NAT gateways that the firewall uses to proxy traffic when <code>NoSourcePreservation</code> is <code>TRUE</code>. Network Firewall attaches the firewall to each NAT gateway that you specify, so that egress traffic is proxied through the NAT gateway. </p>
+            proxy_settings: <p>The listener configuration for a proxy mode firewall, used when <code>NoSourcePreservation</code> is <code>TRUE</code>. This specifies the ports and protocols on which the firewall's proxy listens for traffic. </p>
+            no_source_preservation: <p>Optional. Indicates whether the firewall operates in proxy mode, in which the source IP address of the traffic is not preserved. When set to <code>TRUE</code>, the firewall proxies traffic through a NAT gateway and the traffic reaching the destination uses the NAT gateway's IP address as the source. </p> <p>When you set this to <code>TRUE</code>, you must specify <code>NatGatewayMappings</code> and <code>VpcEndpoint</code> instead of a top-level <code>VpcId</code> and <code>SubnetMappings</code>. </p> <p>You can't change this setting after you create the firewall. </p> <p>Default value: <code>FALSE</code> </p>
+            vpc_endpoint: <p>The VPC and subnets for the firewall endpoint, used when <code>NoSourcePreservation</code> is <code>TRUE</code>. Network Firewall creates the firewall endpoint in the subnets that you specify here. </p> <p>For proxy mode firewalls, provide the firewall's VPC and endpoint subnets through this parameter instead of the top-level <code>VpcId</code> and <code>SubnetMappings</code>. </p>
 
         Raises:
             capo_network_firewall.errors.insufficient_capacity_exception.InsufficientCapacityException: <p>Amazon Web Services doesn't currently have enough available capacity to fulfill your request. Try your request later. </p>
@@ -779,6 +877,14 @@ class AsyncNetworkFirewallClient:
             input_["availability_zone_change_protection"] = (
                 availability_zone_change_protection
             )
+        if nat_gateway_mappings is not None:
+            input_["nat_gateway_mappings"] = nat_gateway_mappings
+        if proxy_settings is not None:
+            input_["proxy_settings"] = proxy_settings
+        if no_source_preservation is not None:
+            input_["no_source_preservation"] = no_source_preservation
+        if vpc_endpoint is not None:
+            input_["vpc_endpoint"] = vpc_endpoint
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1354,6 +1460,62 @@ class AsyncNetworkFirewallClient:
             input_["description"] = description
         if tags is not None:
             input_["tags"] = tags
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_container_association(
+        self,
+        *,
+        config_overrides: Optional[AsyncNetworkFirewallClientConfig] = None,
+        container_association_name: Optional[
+            "capo_network_firewall.types.resource_name.ResourceName"
+        ] = None,
+        container_association_arn: Optional[
+            "capo_network_firewall.types.resource_arn.ResourceArn"
+        ] = None,
+    ) -> "capo_network_firewall.types.delete_container_association_response.DeleteContainerAssociationResponse":
+        """<p>Deletes a container association. The resource transitions to a <code>DELETING</code> state. Deletion is asynchronous - Network Firewall returns immediately while cleanup proceeds in the background. You can't delete a container association while a rule group references it.</p>
+
+        Args:
+            container_association_name: <p>The descriptive name of the container association.</p> <p>You must specify the ARN or the name, and you can specify both. </p>
+            container_association_arn: <p>The Amazon Resource Name (ARN) of the container association.</p> <p>You must specify the ARN or the name, and you can specify both. </p>
+
+        Raises:
+            capo_network_firewall.errors.internal_server_error.InternalServerError: <p>Your request is valid, but Network Firewall couldn't perform the operation because of a system problem. Retry your request. </p>
+            capo_network_firewall.errors.invalid_operation_exception.InvalidOperationException: <p>The operation failed because it's not valid. For example, you might have tried to delete a rule group or firewall policy that's in use.</p>
+            capo_network_firewall.errors.invalid_request_exception.InvalidRequestException: <p>The operation failed because of a problem with your request. Examples include: </p> <ul> <li> <p>You specified an unsupported parameter name or value.</p> </li> <li> <p>You tried to update a property with a value that isn't among the available types.</p> </li> <li> <p>Your request references an ARN that is malformed, or corresponds to a resource that isn't valid in the context of the request.</p> </li> </ul>
+            capo_network_firewall.errors.resource_not_found_exception.ResourceNotFoundException: <p>Unable to locate a resource using the parameters that you provided.</p>
+            capo_network_firewall.errors.throttling_exception.ThrottlingException: <p>Unable to process the request due to throttling limitations.</p>
+            capo_network_firewall.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_network_firewall.types.delete_container_association_request.DeleteContainerAssociationRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_network_firewall.types.delete_container_association_response.DeleteContainerAssociationResponse"
+        ]:
+            import capo_network_firewall._operations.network_firewall_20201112.delete_container_association
+
+            (
+                output,
+                http_response,
+            ) = await capo_network_firewall._operations.network_firewall_20201112.delete_container_association.async_delete_container_association(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_network_firewall.types.delete_container_association_request.DeleteContainerAssociationRequest = {}
+        if container_association_name is not None:
+            input_["container_association_name"] = container_association_name
+        if container_association_arn is not None:
+            input_["container_association_arn"] = container_association_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1965,6 +2127,61 @@ class AsyncNetworkFirewallClient:
         input_: capo_network_firewall.types.delete_vpc_endpoint_association_request.DeleteVpcEndpointAssociationRequest = {
             "vpc_endpoint_association_arn": vpc_endpoint_association_arn
         }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def describe_container_association(
+        self,
+        *,
+        config_overrides: Optional[AsyncNetworkFirewallClientConfig] = None,
+        container_association_name: Optional[
+            "capo_network_firewall.types.resource_name.ResourceName"
+        ] = None,
+        container_association_arn: Optional[
+            "capo_network_firewall.types.resource_arn.ResourceArn"
+        ] = None,
+    ) -> "capo_network_firewall.types.describe_container_association_response.DescribeContainerAssociationResponse":
+        """<p>Retrieves the configuration and status of a container association.</p>
+
+        Args:
+            container_association_name: <p>The descriptive name of the container association.</p> <p>You must specify the ARN or the name, and you can specify both. </p>
+            container_association_arn: <p>The Amazon Resource Name (ARN) of the container association.</p> <p>You must specify the ARN or the name, and you can specify both. </p>
+
+        Raises:
+            capo_network_firewall.errors.internal_server_error.InternalServerError: <p>Your request is valid, but Network Firewall couldn't perform the operation because of a system problem. Retry your request. </p>
+            capo_network_firewall.errors.invalid_request_exception.InvalidRequestException: <p>The operation failed because of a problem with your request. Examples include: </p> <ul> <li> <p>You specified an unsupported parameter name or value.</p> </li> <li> <p>You tried to update a property with a value that isn't among the available types.</p> </li> <li> <p>Your request references an ARN that is malformed, or corresponds to a resource that isn't valid in the context of the request.</p> </li> </ul>
+            capo_network_firewall.errors.resource_not_found_exception.ResourceNotFoundException: <p>Unable to locate a resource using the parameters that you provided.</p>
+            capo_network_firewall.errors.throttling_exception.ThrottlingException: <p>Unable to process the request due to throttling limitations.</p>
+            capo_network_firewall.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_network_firewall.types.describe_container_association_request.DescribeContainerAssociationRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_network_firewall.types.describe_container_association_response.DescribeContainerAssociationResponse"
+        ]:
+            import capo_network_firewall._operations.network_firewall_20201112.describe_container_association
+
+            (
+                output,
+                http_response,
+            ) = await capo_network_firewall._operations.network_firewall_20201112.describe_container_association.async_describe_container_association(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_network_firewall.types.describe_container_association_request.DescribeContainerAssociationRequest = {}
+        if container_association_name is not None:
+            input_["container_association_name"] = container_association_name
+        if container_association_arn is not None:
+            input_["container_association_arn"] = container_association_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -3227,6 +3444,85 @@ class AsyncNetworkFirewallClient:
                 max_results=max_results,
             )
             _page = _resolve_path(_response, ("analysis_reports",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def list_container_associations(
+        self,
+        *,
+        config_overrides: Optional[AsyncNetworkFirewallClientConfig] = None,
+        max_results: Optional[
+            "capo_network_firewall.types.pagination_max_results.PaginationMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_network_firewall.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "capo_network_firewall.types.list_container_associations_response.ListContainerAssociationsResponse":
+        """<p>Lists the container associations in your account and Region. Use the <code>NextToken</code> parameter in subsequent requests to retrieve additional results.</p>
+
+        Args:
+            max_results: <p>The maximum number of objects that you want Network Firewall to return for this request. If more objects are available, in the response, Network Firewall provides a <code>NextToken</code> value that you can use in a subsequent call to get the next batch of objects.</p>
+            next_token: <p>When you request a list of objects with a <code>MaxResults</code> setting, if the number of objects that are still available for retrieval exceeds the maximum you requested, Network Firewall returns a <code>NextToken</code> value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.</p>
+
+        Raises:
+            capo_network_firewall.errors.internal_server_error.InternalServerError: <p>Your request is valid, but Network Firewall couldn't perform the operation because of a system problem. Retry your request. </p>
+            capo_network_firewall.errors.invalid_request_exception.InvalidRequestException: <p>The operation failed because of a problem with your request. Examples include: </p> <ul> <li> <p>You specified an unsupported parameter name or value.</p> </li> <li> <p>You tried to update a property with a value that isn't among the available types.</p> </li> <li> <p>Your request references an ARN that is malformed, or corresponds to a resource that isn't valid in the context of the request.</p> </li> </ul>
+            capo_network_firewall.errors.throttling_exception.ThrottlingException: <p>Unable to process the request due to throttling limitations.</p>
+            capo_network_firewall.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_network_firewall.types.list_container_associations_request.ListContainerAssociationsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_network_firewall.types.list_container_associations_response.ListContainerAssociationsResponse"
+        ]:
+            import capo_network_firewall._operations.network_firewall_20201112.list_container_associations
+
+            (
+                output,
+                http_response,
+            ) = await capo_network_firewall._operations.network_firewall_20201112.list_container_associations.async_list_container_associations(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_network_firewall.types.list_container_associations_request.ListContainerAssociationsRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_container_associations(
+        self,
+        *,
+        config_overrides: Optional[AsyncNetworkFirewallClientConfig] = None,
+        max_results: Optional[
+            "capo_network_firewall.types.pagination_max_results.PaginationMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_network_firewall.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_network_firewall.types.container_association_summary.ContainerAssociationSummary]":
+        _token = next_token
+        while True:
+            _response = await self.list_container_associations(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("container_associations",))
             for _item in _page or []:
                 yield _item
             _token = _resolve_path(_response, ("next_token",))
@@ -4730,6 +5026,82 @@ class AsyncNetworkFirewallClient:
         await response.response.aclose()
         return response.output
 
+    async def update_container_association(
+        self,
+        type: "capo_network_firewall.types.container_monitoring_type.ContainerMonitoringType",
+        container_monitoring_configurations: "capo_network_firewall.types.container_monitoring_configurations.ContainerMonitoringConfigurations",
+        update_token: "capo_network_firewall.types.update_token.UpdateToken",
+        *,
+        config_overrides: Optional[AsyncNetworkFirewallClientConfig] = None,
+        container_association_name: Optional[
+            "capo_network_firewall.types.resource_name.ResourceName"
+        ] = None,
+        container_association_arn: Optional[
+            "capo_network_firewall.types.resource_arn.ResourceArn"
+        ] = None,
+        description: Optional[
+            "capo_network_firewall.types.description.Description"
+        ] = None,
+        tags: Optional["capo_network_firewall.types.tag_list.TagList"] = None,
+    ) -> "capo_network_firewall.types.update_container_association_response.UpdateContainerAssociationResponse":
+        """<p>Updates the monitoring configurations and description of a container association. You can't change the container type after creation. Provide an update token to enable optimistic concurrency control.</p>
+
+        Args:
+            container_association_name: <p>The descriptive name of the container association.</p> <p>You must specify the ARN or the name, and you can specify both. </p>
+            container_association_arn: <p>The Amazon Resource Name (ARN) of the container association.</p> <p>You must specify the ARN or the name, and you can specify both. </p>
+            description: <p>A description of the container association. When omitted, the existing description remains unchanged. To clear the description, pass an empty string.</p>
+            type: <p>The container type. This value must match the existing type and can't be changed. Valid values:</p> <ul> <li> <p> <code>ECS</code> - Amazon Elastic Container Service</p> </li> <li> <p> <code>EKS</code> - Amazon Elastic Kubernetes Service</p> </li> </ul>
+            container_monitoring_configurations: <p>The updated monitoring configurations for the container association. Each configuration specifies an Amazon ECS or Amazon EKS cluster to monitor and optional attribute filters.</p>
+            tags: <p>The key:value pairs to associate with the resource.</p>
+            update_token: <p>A token used for optimistic locking. Network Firewall returns a token to your requests that access the container association. The token marks the state of the container association resource at the time of the request.</p> <p>To make changes to the container association, you provide the token in your request. Network Firewall uses the token to ensure that the container association hasn't changed since you last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>. If this happens, retrieve the container association again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token.</p>
+
+        Raises:
+            capo_network_firewall.errors.internal_server_error.InternalServerError: <p>Your request is valid, but Network Firewall couldn't perform the operation because of a system problem. Retry your request. </p>
+            capo_network_firewall.errors.invalid_request_exception.InvalidRequestException: <p>The operation failed because of a problem with your request. Examples include: </p> <ul> <li> <p>You specified an unsupported parameter name or value.</p> </li> <li> <p>You tried to update a property with a value that isn't among the available types.</p> </li> <li> <p>Your request references an ARN that is malformed, or corresponds to a resource that isn't valid in the context of the request.</p> </li> </ul>
+            capo_network_firewall.errors.invalid_token_exception.InvalidTokenException: <p>The token you provided is stale or isn't valid for the operation. </p>
+            capo_network_firewall.errors.resource_not_found_exception.ResourceNotFoundException: <p>Unable to locate a resource using the parameters that you provided.</p>
+            capo_network_firewall.errors.throttling_exception.ThrottlingException: <p>Unable to process the request due to throttling limitations.</p>
+            capo_network_firewall.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_network_firewall.types.update_container_association_request.UpdateContainerAssociationRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_network_firewall.types.update_container_association_response.UpdateContainerAssociationResponse"
+        ]:
+            import capo_network_firewall._operations.network_firewall_20201112.update_container_association
+
+            (
+                output,
+                http_response,
+            ) = await capo_network_firewall._operations.network_firewall_20201112.update_container_association.async_update_container_association(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_network_firewall.types.update_container_association_request.UpdateContainerAssociationRequest = {
+            "type": type,
+            "container_monitoring_configurations": container_monitoring_configurations,
+            "update_token": update_token,
+        }
+        if container_association_name is not None:
+            input_["container_association_name"] = container_association_name
+        if container_association_arn is not None:
+            input_["container_association_arn"] = container_association_arn
+        if description is not None:
+            input_["description"] = description
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def update_firewall_analysis_settings(
         self,
         *,
@@ -5565,6 +5937,76 @@ class AsyncNetworkFirewallClient:
             input_["proxy_rule_group_name"] = proxy_rule_group_name
         if proxy_rule_group_arn is not None:
             input_["proxy_rule_group_arn"] = proxy_rule_group_arn
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_proxy_settings(
+        self,
+        *,
+        config_overrides: Optional[AsyncNetworkFirewallClientConfig] = None,
+        firewall_arn: Optional[
+            "capo_network_firewall.types.resource_arn.ResourceArn"
+        ] = None,
+        firewall_name: Optional[
+            "capo_network_firewall.types.resource_name.ResourceName"
+        ] = None,
+        update_token: Optional[
+            "capo_network_firewall.types.update_token.UpdateToken"
+        ] = None,
+        proxy_settings: Optional[
+            "capo_network_firewall.types.proxy_settings.ProxySettings"
+        ] = None,
+    ) -> "capo_network_firewall.types.update_proxy_settings_response.UpdateProxySettingsResponse":
+        """<p>Modifies the proxy listener configuration of a proxy mode firewall. Proxy mode firewalls are created with <code>NoSourcePreservation</code> set to <code>TRUE</code>. Use this operation to change the ports and protocols on which the firewall's proxy listens for traffic. </p>
+
+        Args:
+            firewall_arn: <p>The Amazon Resource Name (ARN) of the firewall.</p> <p>You must specify the ARN or the name, and you can specify both. </p>
+            firewall_name: <p>The descriptive name of the firewall. You can't change the name of a firewall after you create it.</p> <p>You must specify the ARN or the name, and you can specify both. </p>
+            update_token: <p>An optional token that you can use for optimistic locking. Network Firewall returns a token to your requests that access the firewall. The token marks the state of the firewall resource at the time of the request. </p> <p>To make an unconditional change to the firewall, omit the token in your update request. Without the token, Network Firewall performs your updates regardless of whether the firewall has changed since you last retrieved it.</p> <p>To make a conditional change to the firewall, provide the token in your update request. Network Firewall uses the token to ensure that the firewall hasn't changed since you last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>. If this happens, retrieve the firewall again to get a current copy of it with a new token. Reapply your changes as needed, then try the operation again using the new token. </p>
+            proxy_settings: <p>The proxy listener configuration to set on the firewall. This specifies the ports and protocols on which the firewall's proxy listens for traffic. </p>
+
+        Raises:
+            capo_network_firewall.errors.internal_server_error.InternalServerError: <p>Your request is valid, but Network Firewall couldn't perform the operation because of a system problem. Retry your request. </p>
+            capo_network_firewall.errors.invalid_operation_exception.InvalidOperationException: <p>The operation failed because it's not valid. For example, you might have tried to delete a rule group or firewall policy that's in use.</p>
+            capo_network_firewall.errors.invalid_request_exception.InvalidRequestException: <p>The operation failed because of a problem with your request. Examples include: </p> <ul> <li> <p>You specified an unsupported parameter name or value.</p> </li> <li> <p>You tried to update a property with a value that isn't among the available types.</p> </li> <li> <p>Your request references an ARN that is malformed, or corresponds to a resource that isn't valid in the context of the request.</p> </li> </ul>
+            capo_network_firewall.errors.invalid_token_exception.InvalidTokenException: <p>The token you provided is stale or isn't valid for the operation. </p>
+            capo_network_firewall.errors.resource_not_found_exception.ResourceNotFoundException: <p>Unable to locate a resource using the parameters that you provided.</p>
+            capo_network_firewall.errors.resource_owner_check_exception.ResourceOwnerCheckException: <p>Unable to change the resource because your account doesn't own it. </p>
+            capo_network_firewall.errors.throttling_exception.ThrottlingException: <p>Unable to process the request due to throttling limitations.</p>
+            capo_network_firewall.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_network_firewall.types.update_proxy_settings_request.UpdateProxySettingsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_network_firewall.types.update_proxy_settings_response.UpdateProxySettingsResponse"
+        ]:
+            import capo_network_firewall._operations.network_firewall_20201112.update_proxy_settings
+
+            (
+                output,
+                http_response,
+            ) = await capo_network_firewall._operations.network_firewall_20201112.update_proxy_settings.async_update_proxy_settings(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_network_firewall.types.update_proxy_settings_request.UpdateProxySettingsRequest = {}
+        if firewall_arn is not None:
+            input_["firewall_arn"] = firewall_arn
+        if firewall_name is not None:
+            input_["firewall_name"] = firewall_name
+        if update_token is not None:
+            input_["update_token"] = update_token
+        if proxy_settings is not None:
+            input_["proxy_settings"] = proxy_settings
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

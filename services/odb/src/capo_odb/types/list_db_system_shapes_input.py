@@ -12,6 +12,8 @@ class ListDbSystemShapesInput(TypedDict, closed=True):
     """<p>The logical name of the AZ, for example, us-east-1a. This name varies depending on the account.</p>"""
     availability_zone_id: NotRequired["str"]
     """<p>The physical ID of the AZ, for example, use1-az4. This ID persists across accounts.</p>"""
+    shape_family: NotRequired["str"]
+    """<p>The shape family to filter results by.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -25,6 +27,8 @@ def serialize_aws_json_1_0(value: ListDbSystemShapesInput) -> dict:
         out["availabilityZone"] = value["availability_zone"]
     if "availability_zone_id" in value:
         out["availabilityZoneId"] = value["availability_zone_id"]
+    if "shape_family" in value:
+        out["shapeFamily"] = value["shape_family"]
     return out
 
 
@@ -38,4 +42,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListDbSystemShapesInput:
         out["availability_zone"] = data["availabilityZone"]
     if data.get("availabilityZoneId") is not None:
         out["availability_zone_id"] = data["availabilityZoneId"]
+    if data.get("shapeFamily") is not None:
+        out["shape_family"] = data["shapeFamily"]
     return out

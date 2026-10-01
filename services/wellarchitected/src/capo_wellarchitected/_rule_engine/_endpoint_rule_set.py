@@ -8,6 +8,7 @@ from ._endpoint_runtime import (
     EndpointError,
     get_attr,
     interpolate,
+    string_equals,
 )
 
 
@@ -17,13 +18,15 @@ class EndpointParams:
         *,
         UseDualStack: bool | None = None,
         UseFIPS: bool | None = None,
-        Region: str | None = None,
         Endpoint: str | None = None,
+        Region: str | None = None,
+        SubServiceType: str | None = None,
     ):
         self.UseDualStack = UseDualStack if UseDualStack is not None else False
         self.UseFIPS = UseFIPS if UseFIPS is not None else False
-        self.Region = Region if Region is not None else None
         self.Endpoint = Endpoint if Endpoint is not None else None
+        self.Region = Region if Region is not None else None
+        self.SubServiceType = SubServiceType if SubServiceType is not None else None
 
 
 def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
@@ -47,6 +50,157 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                 )
             )
         return Endpoint(url=p.Endpoint, properties={}, headers={})
+    _locals: dict[str, Any] = {}
+    if p.SubServiceType is not None:
+        if string_equals(p.SubServiceType, interpolate("AGENT", p, _locals)):
+            if p.Region is not None:
+                _locals["PartitionResult"] = aws_partition(p.Region)
+                if _locals["PartitionResult"] is not None:
+                    if p.UseFIPS is True:
+                        if p.UseDualStack is True:
+                            if (
+                                get_attr(
+                                    _locals["PartitionResult"],
+                                    interpolate("supportsFIPS", p, _locals),
+                                )
+                                is True
+                            ):
+                                if (
+                                    get_attr(
+                                        _locals["PartitionResult"],
+                                        interpolate("supportsDualStack", p, _locals),
+                                    )
+                                    is True
+                                ):
+                                    return Endpoint(
+                                        url=interpolate(
+                                            "https://wellarchitected-agent-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                            p,
+                                            _locals,
+                                        ),
+                                        properties={
+                                            "authSchemes": [
+                                                {
+                                                    "name": interpolate(
+                                                        "sigv4", p, _locals
+                                                    ),
+                                                    "signingName": interpolate(
+                                                        "wellarchitected", p, _locals
+                                                    ),
+                                                    "signingRegion": interpolate(
+                                                        "{Region}", p, _locals
+                                                    ),
+                                                }
+                                            ]
+                                        },
+                                        headers={},
+                                    )
+                            raise EndpointError(
+                                interpolate(
+                                    "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                    p,
+                                    _locals,
+                                )
+                            )
+                    if p.UseFIPS is True:
+                        if p.UseDualStack is False:
+                            if (
+                                get_attr(
+                                    _locals["PartitionResult"],
+                                    interpolate("supportsFIPS", p, _locals),
+                                )
+                                is True
+                            ):
+                                return Endpoint(
+                                    url=interpolate(
+                                        "https://wellarchitected-agent-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                        p,
+                                        _locals,
+                                    ),
+                                    properties={
+                                        "authSchemes": [
+                                            {
+                                                "name": interpolate(
+                                                    "sigv4", p, _locals
+                                                ),
+                                                "signingName": interpolate(
+                                                    "wellarchitected", p, _locals
+                                                ),
+                                                "signingRegion": interpolate(
+                                                    "{Region}", p, _locals
+                                                ),
+                                            }
+                                        ]
+                                    },
+                                    headers={},
+                                )
+                            raise EndpointError(
+                                interpolate(
+                                    "FIPS is enabled but this partition does not support FIPS",
+                                    p,
+                                    _locals,
+                                )
+                            )
+                    if p.UseFIPS is False:
+                        if p.UseDualStack is True:
+                            if (
+                                get_attr(
+                                    _locals["PartitionResult"],
+                                    interpolate("supportsDualStack", p, _locals),
+                                )
+                                is True
+                            ):
+                                return Endpoint(
+                                    url=interpolate(
+                                        "https://wellarchitected-agent.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                        p,
+                                        _locals,
+                                    ),
+                                    properties={
+                                        "authSchemes": [
+                                            {
+                                                "name": interpolate(
+                                                    "sigv4", p, _locals
+                                                ),
+                                                "signingName": interpolate(
+                                                    "wellarchitected", p, _locals
+                                                ),
+                                                "signingRegion": interpolate(
+                                                    "{Region}", p, _locals
+                                                ),
+                                            }
+                                        ]
+                                    },
+                                    headers={},
+                                )
+                            raise EndpointError(
+                                interpolate(
+                                    "DualStack is enabled but this partition does not support DualStack",
+                                    p,
+                                    _locals,
+                                )
+                            )
+                    return Endpoint(
+                        url=interpolate(
+                            "https://wellarchitected-agent.{Region}.{PartitionResult#dnsSuffix}",
+                            p,
+                            _locals,
+                        ),
+                        properties={
+                            "authSchemes": [
+                                {
+                                    "name": interpolate("sigv4", p, _locals),
+                                    "signingName": interpolate(
+                                        "wellarchitected", p, _locals
+                                    ),
+                                    "signingRegion": interpolate(
+                                        "{Region}", p, _locals
+                                    ),
+                                }
+                            ]
+                        },
+                        headers={},
+                    )
     _locals: dict[str, Any] = {}
     if p.Region is not None:
         _locals["PartitionResult"] = aws_partition(p.Region)
@@ -78,50 +232,52 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                         )
                     )
             if p.UseFIPS is True:
-                if (
-                    get_attr(
+                if p.UseDualStack is False:
+                    if (
+                        get_attr(
+                            _locals["PartitionResult"],
+                            interpolate("supportsFIPS", p, _locals),
+                        )
+                        is True
+                    ):
+                        return Endpoint(
+                            url=interpolate(
+                                "https://wellarchitected-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                p,
+                                _locals,
+                            ),
+                            properties={},
+                            headers={},
+                        )
+                    raise EndpointError(
+                        interpolate(
+                            "FIPS is enabled but this partition does not support FIPS",
+                            p,
+                            _locals,
+                        )
+                    )
+            if p.UseFIPS is False:
+                if p.UseDualStack is True:
+                    if True is get_attr(
                         _locals["PartitionResult"],
-                        interpolate("supportsFIPS", p, _locals),
-                    )
-                    is True
-                ):
-                    return Endpoint(
-                        url=interpolate(
-                            "https://wellarchitected-fips.{Region}.{PartitionResult#dnsSuffix}",
+                        interpolate("supportsDualStack", p, _locals),
+                    ):
+                        return Endpoint(
+                            url=interpolate(
+                                "https://wellarchitected.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                p,
+                                _locals,
+                            ),
+                            properties={},
+                            headers={},
+                        )
+                    raise EndpointError(
+                        interpolate(
+                            "DualStack is enabled but this partition does not support DualStack",
                             p,
                             _locals,
-                        ),
-                        properties={},
-                        headers={},
+                        )
                     )
-                raise EndpointError(
-                    interpolate(
-                        "FIPS is enabled but this partition does not support FIPS",
-                        p,
-                        _locals,
-                    )
-                )
-            if p.UseDualStack is True:
-                if True is get_attr(
-                    _locals["PartitionResult"],
-                    interpolate("supportsDualStack", p, _locals),
-                ):
-                    return Endpoint(
-                        url=interpolate(
-                            "https://wellarchitected.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                            p,
-                            _locals,
-                        ),
-                        properties={},
-                        headers={},
-                    )
-                raise EndpointError(
-                    interpolate(
-                        "DualStack is enabled but this partition does not support DualStack",
-                        p,
-                        _locals,
-                    )
-                )
             return Endpoint(
                 url=interpolate(
                     "https://wellarchitected.{Region}.{PartitionResult#dnsSuffix}",
@@ -131,7 +287,6 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                 properties={},
                 headers={},
             )
-    _locals: dict[str, Any] = {}
     raise EndpointError(
         interpolate("Invalid Configuration: Missing Region", p, _locals)
     )

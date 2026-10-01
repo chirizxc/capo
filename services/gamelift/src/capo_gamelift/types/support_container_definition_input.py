@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     import capo_gamelift.types.container_port_configuration
     import capo_gamelift.types.container_vcpu
     import capo_gamelift.types.image_uri_string
+    import capo_gamelift.types.linux_capabilities
     import capo_gamelift.types.non_zero_and128_max_ascii_string
 
 
@@ -52,6 +53,10 @@ class SupportContainerDefinitionInput(TypedDict, closed=True):
     """<p>A set of ports that Amazon GameLift Servers can assign to processes in a container. The container port configuration must have enough ports for each container process that accepts inbound traffic connections. A container port configuration can have can have one or more container port ranges. Each range specifies starting and ending values as well as the supported network protocol.</p> <p>Container ports aren't directly accessed by inbound traffic. Amazon GameLift Servers maps each container port to an externally accessible connection port (see the container fleet property <code>ConnectionPortRange</code>). </p>"""
     vcpu: NotRequired["capo_gamelift.types.container_vcpu.ContainerVcpu"]
     r"""<p>The number of vCPU units to reserve for this container. The container can use more resources when needed, if available. If you don't reserve CPU units for this container, it shares the container group's total vCPU limit. </p> <p> <b>Related data type: </b> <a href=\"https://docs.aws.amazon.com/gamelift/latest/apireference/API_ContainerGroupDefinition.html\">ContainerGroupDefinition</a> TotalCpuLimit </p>"""
+    linux_capabilities: NotRequired[
+        "capo_gamelift.types.linux_capabilities.LinuxCapabilities"
+    ]
+    r"""<p>Linux-specific modifications that are applied to the default Docker container configuration, such as Linux capabilities. For more information see <a href=\"https://docs.aws.amazon.com/gamelift/latest/apireference/API_LinuxCapabilities.html\">LinuxCapabilities</a>.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -115,6 +120,14 @@ def serialize_aws_json_1_1(value: SupportContainerDefinitionInput) -> dict:
             if value["vcpu"] == float("-inf")
             else value["vcpu"]
         )
+    if "linux_capabilities" in value:
+        import capo_gamelift.types.linux_capabilities
+
+        out["LinuxCapabilities"] = (
+            capo_gamelift.types.linux_capabilities.serialize_aws_json_1_1(
+                value["linux_capabilities"]
+            )
+        )
     return out
 
 
@@ -170,4 +183,12 @@ def deserialize_aws_json_1_1(data: dict) -> SupportContainerDefinitionInput:
         )
     if data.get("Vcpu") is not None:
         out["vcpu"] = float(data["Vcpu"])
+    if data.get("LinuxCapabilities") is not None:
+        import capo_gamelift.types.linux_capabilities
+
+        out["linux_capabilities"] = (
+            capo_gamelift.types.linux_capabilities.deserialize_aws_json_1_1(
+                data["LinuxCapabilities"]
+            )
+        )
     return out

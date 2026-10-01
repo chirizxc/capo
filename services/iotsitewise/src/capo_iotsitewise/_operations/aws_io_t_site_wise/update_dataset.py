@@ -16,10 +16,13 @@ import capo_iotsitewise.errors.conflicting_operation_exception
 import capo_iotsitewise.errors.internal_failure_exception
 import capo_iotsitewise.errors.invalid_request_exception
 import capo_iotsitewise.errors.limit_exceeded_exception
+import capo_iotsitewise.errors.resource_already_exists_exception
 import capo_iotsitewise.errors.resource_not_found_exception
 import capo_iotsitewise.errors.throttling_exception
+import capo_iotsitewise.types.dataset_config
 import capo_iotsitewise.types.dataset_source
 import capo_iotsitewise.types.dataset_status
+import capo_iotsitewise.types.metadata
 import capo_iotsitewise.types.update_dataset_request
 import capo_iotsitewise.types.update_dataset_response
 from capo_iotsitewise._protocol.errors import parse_error_metadata_json
@@ -46,6 +49,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "LimitExceededException":
             raise capo_iotsitewise.errors.limit_exceeded_exception.LimitExceededException.from_json(
+                data, message
+            )
+        case "ResourceAlreadyExistsException":
+            raise capo_iotsitewise.errors.resource_already_exists_exception.ResourceAlreadyExistsException.from_json(
                 data, message
             )
         case "ResourceNotFoundException":

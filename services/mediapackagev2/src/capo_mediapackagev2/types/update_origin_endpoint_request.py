@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     import capo_mediapackagev2.types.resource_description
     import capo_mediapackagev2.types.resource_name
     import capo_mediapackagev2.types.segment
+    import capo_mediapackagev2.types.stream_name_output_mode
     import capo_mediapackagev2.types.uri_separator
 
 
@@ -59,6 +60,10 @@ class UpdateOriginEndpointRequest(TypedDict, closed=True):
     """<p>The failover settings for the endpoint.</p>"""
     uri_separator: NotRequired["capo_mediapackagev2.types.uri_separator.UriSeparator"]
     """<p>The separator character to use in generated URIs for this origin endpoint. This setting applies to all manifest types on the endpoint. If you don't specify a value in the update request, the current value is preserved.</p>"""
+    stream_name_output_mode: NotRequired[
+        "capo_mediapackagev2.types.stream_name_output_mode.StreamNameOutputMode"
+    ]
+    """<p>The output mode for stream names in egress manifests. If you provide a value, it must match the current value. You can't change the stream name output mode after you create the endpoint.</p>"""
     e_tag: NotRequired["capo_mediapackagev2.types.entity_tag.EntityTag"]
     """<p>The expected current Entity Tag (ETag) for the resource. If the specified ETag does not match the resource's current entity tag, the update request will be rejected.</p>"""
 
@@ -126,6 +131,14 @@ def serialize_json(value: UpdateOriginEndpointRequest) -> dict:
 
         out["UriSeparator"] = capo_mediapackagev2.types.uri_separator.serialize_json(
             value["uri_separator"]
+        )
+    if "stream_name_output_mode" in value:
+        import capo_mediapackagev2.types.stream_name_output_mode
+
+        out["StreamNameOutputMode"] = (
+            capo_mediapackagev2.types.stream_name_output_mode.serialize_json(
+                value["stream_name_output_mode"]
+            )
         )
     return out
 
@@ -199,5 +212,13 @@ def deserialize_json(data: dict) -> UpdateOriginEndpointRequest:
 
         out["uri_separator"] = capo_mediapackagev2.types.uri_separator.deserialize_json(
             data["UriSeparator"]
+        )
+    if data.get("StreamNameOutputMode") is not None:
+        import capo_mediapackagev2.types.stream_name_output_mode
+
+        out["stream_name_output_mode"] = (
+            capo_mediapackagev2.types.stream_name_output_mode.deserialize_json(
+                data["StreamNameOutputMode"]
+            )
         )
     return out

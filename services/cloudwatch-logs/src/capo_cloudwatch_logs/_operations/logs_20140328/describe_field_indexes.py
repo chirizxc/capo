@@ -20,6 +20,7 @@ import capo_cloudwatch_logs.types.describe_field_indexes_log_group_identifiers
 import capo_cloudwatch_logs.types.describe_field_indexes_request
 import capo_cloudwatch_logs.types.describe_field_indexes_response
 import capo_cloudwatch_logs.types.field_indexes
+import capo_cloudwatch_logs.types.index_categories
 from capo_cloudwatch_logs._protocol.errors import parse_error_metadata_json
 from capo_cloudwatch_logs._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_cloudwatch_logs._services._pipeline import (

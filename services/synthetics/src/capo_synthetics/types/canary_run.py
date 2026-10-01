@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_synthetics.types.canary_name
     import capo_synthetics.types.canary_run_status
     import capo_synthetics.types.canary_run_timeline
+    import capo_synthetics.types.location
     import capo_synthetics.types.retry_attempt
     import capo_synthetics.types.string
     import capo_synthetics.types.uuid
@@ -36,6 +37,8 @@ class CanaryRun(TypedDict, closed=True):
     """<p>Returns the dry run configurations for a canary.</p>"""
     browser_type: NotRequired["capo_synthetics.types.browser_type.BrowserType"]
     """<p>The browser type associated with this canary run.</p>"""
+    location: NotRequired["capo_synthetics.types.location.Location"]
+    """<p>The Amazon Web Services Region where this canary run was executed.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -77,6 +80,8 @@ def serialize_json(value: CanaryRun) -> dict:
         out["BrowserType"] = capo_synthetics.types.browser_type.serialize_json(
             value["browser_type"]
         )
+    if "location" in value:
+        out["Location"] = value["location"]
     return out
 
 
@@ -118,4 +123,6 @@ def deserialize_json(data: dict) -> CanaryRun:
         out["browser_type"] = capo_synthetics.types.browser_type.deserialize_json(
             data["BrowserType"]
         )
+    if data.get("Location") is not None:
+        out["location"] = data["Location"]
     return out

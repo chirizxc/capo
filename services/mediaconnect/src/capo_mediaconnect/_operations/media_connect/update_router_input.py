@@ -20,6 +20,7 @@ import capo_mediaconnect.errors.not_found_exception
 import capo_mediaconnect.errors.service_unavailable_exception
 import capo_mediaconnect.errors.too_many_requests_exception
 import capo_mediaconnect.types.maintenance_configuration
+import capo_mediaconnect.types.router_content_quality_analysis_configuration
 import capo_mediaconnect.types.router_input
 import capo_mediaconnect.types.router_input_configuration
 import capo_mediaconnect.types.router_input_tier

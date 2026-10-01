@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     import capo_support.types.language
     import capo_support.types.max_results
     import capo_support.types.next_token
+    import capo_support.types.nullable_boolean_type
 
 
 class DescribeCasesRequest(TypedDict, closed=True):
@@ -22,9 +23,9 @@ class DescribeCasesRequest(TypedDict, closed=True):
     display_id: NotRequired["capo_support.types.display_id.DisplayId"]
     """<p>The ID displayed for a case in the Amazon Web Services Support Center user interface.</p>"""
     after_time: NotRequired["capo_support.types.after_time.AfterTime"]
-    """<p>The start date for a filtered date search on support case communications. Case communications are available for 12 months after creation.</p>"""
+    """<p>The start date for a filtered date search on support case communications. Case communications are available for 24 months after creation.</p>"""
     before_time: NotRequired["capo_support.types.before_time.BeforeTime"]
-    """<p>The end date for a filtered date search on support case communications. Case communications are available for 12 months after creation.</p>"""
+    """<p>The end date for a filtered date search on support case communications. Case communications are available for 24 months after creation.</p>"""
     include_resolved_cases: (
         "capo_support.types.include_resolved_cases.IncludeResolvedCases"
     )
@@ -34,11 +35,13 @@ class DescribeCasesRequest(TypedDict, closed=True):
     max_results: NotRequired["capo_support.types.max_results.MaxResults"]
     """<p>The maximum number of results to return before paginating.</p>"""
     language: NotRequired["capo_support.types.language.Language"]
-    r"""<p>The language in which Amazon Web Services Support handles the case. Amazon Web Services Support currently supports Chinese (“zh”), English (\"en\"), Japanese (\"ja\") and Korean (“ko”). You must specify the ISO 639-1 code for the <code>language</code> parameter if you want support in that language.</p>"""
+    r"""<p>The language in which Amazon Web Services Support handles the case. Amazon Web Services Support currently supports Chinese (“zh”), English (\"en\"), Japanese (\"ja\") , Chinese (\"zh\"), Spanish (\"es\"), Portuguese (\"pt\"), French (\"fr\"), Korean (“ko”), and Turkish (\"tr\"). You must specify the ISO 639-1 code for the <code>language</code> parameter if you want support in that language.</p>"""
     include_communications: NotRequired[
         "capo_support.types.include_communications.IncludeCommunications"
     ]
     """<p>Specifies whether to include communications in the <code>DescribeCases</code> response. By default, communications are included.</p>"""
+    dry_run: NotRequired["capo_support.types.nullable_boolean_type.NullableBooleanType"]
+    """<p>Specifies whether to validate the request without actually returning case data. When set to <code>true</code>, the request is validated but no cases are returned, and the operation returns a <code>DryRunOperationException</code>. When omitted or set to <code>false</code>, the request runs normally.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -65,6 +68,8 @@ def serialize_aws_json_1_1(value: DescribeCasesRequest) -> dict:
         out["language"] = value["language"]
     if "include_communications" in value:
         out["includeCommunications"] = value["include_communications"]
+    if "dry_run" in value:
+        out["dryRun"] = value["dry_run"]
     return out
 
 
@@ -94,4 +99,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeCasesRequest:
         out["language"] = data["language"]
     if data.get("includeCommunications") is not None:
         out["include_communications"] = data["includeCommunications"]
+    if data.get("dryRun") is not None:
+        out["dry_run"] = data["dryRun"]
     return out

@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     import capo_outposts.types.catalog_item_status
     import capo_outposts.types.catalog_item_weight_lbs
     import capo_outposts.types.ec2_capacity_list_definition
+    import capo_outposts.types.rack_scaling_type
     import capo_outposts.types.sku_code
     import capo_outposts.types.supported_storage_list
     import capo_outposts.types.supported_uplink_gbps_list_definition
@@ -41,6 +42,10 @@ class CatalogItem(TypedDict, closed=True):
         "capo_outposts.types.supported_storage_list.SupportedStorageList"
     ]
     """<p> The supported storage options for the catalog item. </p>"""
+    rack_scaling_type: NotRequired[
+        "capo_outposts.types.rack_scaling_type.RackScalingType"
+    ]
+    """<p>The rack scaling type supported by the catalog item. Valid values are <code>SINGLE_RACK</code> and <code>MULTI_RACK</code>.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -90,6 +95,12 @@ def serialize_json(value: CatalogItem) -> dict:
                 value["supported_storage"]
             )
         )
+    if "rack_scaling_type" in value:
+        import capo_outposts.types.rack_scaling_type
+
+        out["RackScalingType"] = capo_outposts.types.rack_scaling_type.serialize_json(
+            value["rack_scaling_type"]
+        )
     return out
 
 
@@ -129,6 +140,14 @@ def deserialize_json(data: dict) -> CatalogItem:
         out["supported_storage"] = (
             capo_outposts.types.supported_storage_list.deserialize_json(
                 data["SupportedStorage"]
+            )
+        )
+    if data.get("RackScalingType") is not None:
+        import capo_outposts.types.rack_scaling_type
+
+        out["rack_scaling_type"] = (
+            capo_outposts.types.rack_scaling_type.deserialize_json(
+                data["RackScalingType"]
             )
         )
     return out

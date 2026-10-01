@@ -145,6 +145,7 @@ def build_request(
                 "TransactItems[*].[ConditionCheck.TableName, Put.TableName, Delete.TableName, Update.TableName][]",
                 input_,
             ),
+            IsSearchOperation=options.is_search_operation,
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + ""

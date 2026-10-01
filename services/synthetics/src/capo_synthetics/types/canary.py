@@ -16,7 +16,9 @@ if TYPE_CHECKING:
     import capo_synthetics.types.dry_run_config_output
     import capo_synthetics.types.engine_configs
     import capo_synthetics.types.function_arn
+    import capo_synthetics.types.kms_key_arn
     import capo_synthetics.types.max_size1024
+    import capo_synthetics.types.multi_location_config
     import capo_synthetics.types.provisioned_resource_cleanup_setting
     import capo_synthetics.types.role_arn
     import capo_synthetics.types.string
@@ -77,12 +79,18 @@ class Canary(TypedDict, closed=True):
         "capo_synthetics.types.visual_references_output.VisualReferencesOutput"
     ]
     """<p>A list of visual reference configurations for the canary, one for each browser type that the canary is configured to run on. Visual references are used for visual monitoring comparisons.</p> <p> <code>syn-nodejs-puppeteer-11.0</code> and above, and <code>syn-nodejs-playwright-3.0</code> and above, only supports <code>visualReferences</code>. <code>visualReference</code> field is not supported.</p> <p>Versions older than <code>syn-nodejs-puppeteer-11.0</code> supports both <code>visualReference</code> and <code>visualReferences</code> for backward compatibility. It is recommended to use <code>visualReferences</code> for consistency and future compatibility.</p>"""
+    multi_location_config: NotRequired[
+        "capo_synthetics.types.multi_location_config.MultiLocationConfig"
+    ]
+    """<p>If this canary is part of a multi-location configuration, this structure contains information about the canary's location type, primary location, and replicas.</p>"""
     tags: NotRequired["capo_synthetics.types.tag_map.TagMap"]
     """<p>The list of key-value pairs that are associated with the canary.</p>"""
     artifact_config: NotRequired[
         "capo_synthetics.types.artifact_config_output.ArtifactConfigOutput"
     ]
     """<p>A structure that contains the configuration for canary artifacts, including the encryption-at-rest settings for artifacts that the canary uploads to Amazon S3.</p>"""
+    kms_key_arn: NotRequired["capo_synthetics.types.kms_key_arn.KmsKeyArn"]
+    """<p>The Amazon Resource Name (ARN) of the customer-managed AWS Key Management Service (AWS KMS) key used to encrypt the canary's AWS Lambda function environment variables at rest. If you don't specify a value, the service uses an AWS-managed key.</p>"""
     dry_run_config: NotRequired[
         "capo_synthetics.types.dry_run_config_output.DryRunConfigOutput"
     ]
@@ -182,6 +190,14 @@ def serialize_json(value: Canary) -> dict:
                 value["visual_references"]
             )
         )
+    if "multi_location_config" in value:
+        import capo_synthetics.types.multi_location_config
+
+        out["MultiLocationConfig"] = (
+            capo_synthetics.types.multi_location_config.serialize_json(
+                value["multi_location_config"]
+            )
+        )
     if "tags" in value:
         import capo_synthetics.types.tag_map
 
@@ -194,6 +210,8 @@ def serialize_json(value: Canary) -> dict:
                 value["artifact_config"]
             )
         )
+    if "kms_key_arn" in value:
+        out["KmsKeyArn"] = value["kms_key_arn"]
     if "dry_run_config" in value:
         import capo_synthetics.types.dry_run_config_output
 
@@ -297,6 +315,14 @@ def deserialize_json(data: dict) -> Canary:
                 data["VisualReferences"]
             )
         )
+    if data.get("MultiLocationConfig") is not None:
+        import capo_synthetics.types.multi_location_config
+
+        out["multi_location_config"] = (
+            capo_synthetics.types.multi_location_config.deserialize_json(
+                data["MultiLocationConfig"]
+            )
+        )
     if data.get("Tags") is not None:
         import capo_synthetics.types.tag_map
 
@@ -309,6 +335,8 @@ def deserialize_json(data: dict) -> Canary:
                 data["ArtifactConfig"]
             )
         )
+    if data.get("KmsKeyArn") is not None:
+        out["kms_key_arn"] = data["KmsKeyArn"]
     if data.get("DryRunConfig") is not None:
         import capo_synthetics.types.dry_run_config_output
 

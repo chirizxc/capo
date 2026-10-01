@@ -35,6 +35,7 @@ if TYPE_CHECKING:
     import capo_drs.types.pagination_token
     import capo_drs.types.pit_policy
     import capo_drs.types.positive_integer
+    import capo_drs.types.recovery_mode
     import capo_drs.types.recovery_snapshot
     import capo_drs.types.recovery_snapshots_order
     import capo_drs.types.replication_configuration
@@ -540,6 +541,7 @@ class SourceServerResource:
         launch_into_instance_properties: Optional[
             "capo_drs.types.launch_into_instance_properties.LaunchIntoInstanceProperties"
         ] = None,
+        recovery_mode: Optional["capo_drs.types.recovery_mode.RecoveryMode"] = None,
     ) -> "capo_drs.types.launch_configuration.LaunchConfiguration":
         """<p>Updates a LaunchConfiguration by Source Server ID.</p>
 
@@ -553,6 +555,7 @@ class SourceServerResource:
             licensing: <p>The licensing configuration to be used for this launch configuration.</p>
             post_launch_enabled: <p>Whether we want to enable post-launch actions for the Source Server.</p>
             launch_into_instance_properties: <p>Launch into existing instance properties.</p>
+            recovery_mode: <p>Recovery mode.</p>
 
         Raises:
             capo_drs.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
@@ -600,6 +603,8 @@ class SourceServerResource:
             input_["post_launch_enabled"] = post_launch_enabled
         if launch_into_instance_properties is not None:
             input_["launch_into_instance_properties"] = launch_into_instance_properties
+        if recovery_mode is not None:
+            input_["recovery_mode"] = recovery_mode
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -1291,6 +1296,7 @@ class AsyncSourceServerResource:
         launch_into_instance_properties: Optional[
             "capo_drs.types.launch_into_instance_properties.LaunchIntoInstanceProperties"
         ] = None,
+        recovery_mode: Optional["capo_drs.types.recovery_mode.RecoveryMode"] = None,
     ) -> "capo_drs.types.launch_configuration.LaunchConfiguration":
         """<p>Updates a LaunchConfiguration by Source Server ID.</p>
 
@@ -1304,6 +1310,7 @@ class AsyncSourceServerResource:
             licensing: <p>The licensing configuration to be used for this launch configuration.</p>
             post_launch_enabled: <p>Whether we want to enable post-launch actions for the Source Server.</p>
             launch_into_instance_properties: <p>Launch into existing instance properties.</p>
+            recovery_mode: <p>Recovery mode.</p>
 
         Raises:
             capo_drs.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
@@ -1352,6 +1359,8 @@ class AsyncSourceServerResource:
             input_["post_launch_enabled"] = post_launch_enabled
         if launch_into_instance_properties is not None:
             input_["launch_into_instance_properties"] = launch_into_instance_properties
+        if recovery_mode is not None:
+            input_["recovery_mode"] = recovery_mode
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

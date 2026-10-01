@@ -36,7 +36,7 @@ class CreateRoutingProfileRequest(TypedDict, closed=True):
     manual_assignment_queue_configs: NotRequired[
         "capo_connect.types.routing_profile_manual_assignment_queue_config_list.RoutingProfileManualAssignmentQueueConfigList"
     ]
-    """<p>The manual assignment queues associated with the routing profile. If no queue is added, agents and supervisors can't pick or assign any contacts from this routing profile. The limit of 10 array members applies to the maximum number of RoutingProfileManualAssignmentQueueConfig objects that can be passed during a CreateRoutingProfile API request. It is different from the quota of 50 queues per routing profile per instance that is listed in Connect Customer service quotas.</p> <p>Note: Use this config for chat, email, and task contacts. It does not support voice contacts.</p>"""
+    """<p>The manual assignment queues associated with the routing profile. If no queue is added, agents and supervisors can't pick or assign any contacts from this routing profile. The limit of 10 array members applies to the maximum number of RoutingProfileManualAssignmentQueueConfig objects that can be passed during a CreateRoutingProfile API request. It is different from the quota of 50 queues per routing profile per instance that is listed in Connect Customer service quotas.</p> <note> <p>For voice contacts, manual assignment supports only agent-first callback contacts. Chat, email, and task contacts are fully supported.</p> </note>"""
     media_concurrencies: "capo_connect.types.media_concurrencies.MediaConcurrencies"
     """<p>The channels that agents can handle in the Contact Control Panel (CCP) for this routing profile.</p>"""
     tags: NotRequired["capo_connect.types.tag_map.TagMap"]

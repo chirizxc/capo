@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     import capo_quicksight.types.resource_status
     import capo_quicksight.types.sheet_list
     import capo_quicksight.types.timestamp
+    import capo_quicksight.types.topic_arns_list
     import capo_quicksight.types.version_description
     import capo_quicksight.types.version_number
 
@@ -31,7 +32,9 @@ class DashboardVersion(TypedDict, closed=True):
     data_set_arns: NotRequired[
         "capo_quicksight.types.data_set_arns_list.DataSetArnsList"
     ]
-    """<p>The Amazon Resource Numbers (ARNs) for the datasets that are associated with this version of the dashboard.</p>"""
+    """<p>The Amazon Resource Names (ARNs) for the datasets that are associated with this version of the dashboard.</p>"""
+    topic_arns: NotRequired["capo_quicksight.types.topic_arns_list.TopicArnsList"]
+    """<p>The Amazon Resource Names (ARNs) for the topics that are associated with this version of the dashboard.</p>"""
     description: NotRequired[
         "capo_quicksight.types.version_description.VersionDescription"
     ]
@@ -74,6 +77,12 @@ def serialize_json(value: DashboardVersion) -> dict:
 
         out["DataSetArns"] = capo_quicksight.types.data_set_arns_list.serialize_json(
             value["data_set_arns"]
+        )
+    if "topic_arns" in value:
+        import capo_quicksight.types.topic_arns_list
+
+        out["TopicArns"] = capo_quicksight.types.topic_arns_list.serialize_json(
+            value["topic_arns"]
         )
     if "description" in value:
         out["Description"] = value["description"]
@@ -119,6 +128,12 @@ def deserialize_json(data: dict) -> DashboardVersion:
             capo_quicksight.types.data_set_arns_list.deserialize_json(
                 data["DataSetArns"]
             )
+        )
+    if data.get("TopicArns") is not None:
+        import capo_quicksight.types.topic_arns_list
+
+        out["topic_arns"] = capo_quicksight.types.topic_arns_list.deserialize_json(
+            data["TopicArns"]
         )
     if data.get("Description") is not None:
         out["description"] = data["Description"]

@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_network_firewall.types.attachment_status
     import capo_network_firewall.types.az_subnet
+    import capo_network_firewall.types.dns_name
     import capo_network_firewall.types.endpoint_id
     import capo_network_firewall.types.status_message
 
@@ -24,6 +25,8 @@ class Attachment(TypedDict, closed=True):
         "capo_network_firewall.types.status_message.StatusMessage"
     ]
     r"""<p>If Network Firewall fails to create or delete the firewall endpoint in the subnet, it populates this with the reason for the error or failure and how to resolve it. A <code>FAILED</code> status indicates a non-recoverable state, and a <code>ERROR</code> status indicates an issue that you can fix. Depending on the error, it can take as many as 15 minutes to populate this field. For more information about the causes for failiure or errors and solutions available for this field, see <a href=\"https://docs.aws.amazon.com/network-firewall/latest/developerguide/firewall-troubleshooting-endpoint-failures.html\">Troubleshooting firewall endpoint failures</a> in the <i>Network Firewall Developer Guide</i>.</p>"""
+    dns_name: NotRequired["capo_network_firewall.types.dns_name.DnsName"]
+    """<p>The DNS name that resolves to the firewall endpoint in the subnet. This is populated for proxy mode firewalls, where clients direct traffic to the firewall's proxy using this name. </p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -43,6 +46,8 @@ def serialize_aws_json_1_0(value: Attachment) -> dict:
         )
     if "status_message" in value:
         out["StatusMessage"] = value["status_message"]
+    if "dns_name" in value:
+        out["DnsName"] = value["dns_name"]
     return out
 
 
@@ -62,4 +67,6 @@ def deserialize_aws_json_1_0(data: dict) -> Attachment:
         )
     if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
+    if data.get("DnsName") is not None:
+        out["dns_name"] = data["DnsName"]
     return out

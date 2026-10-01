@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     import capo_sagemaker.types.evaluation_type
     import capo_sagemaker.types.evaluator_arn
     import capo_sagemaker.types.peft
+    import capo_sagemaker.types.sequence_length
     import capo_sagemaker.types.serverless_job_base_model_arn
     import capo_sagemaker.types.serverless_job_type
 
@@ -35,6 +36,8 @@ class ServerlessJobConfig(TypedDict, closed=True):
     """<p> The evaluation job type. Required when serverless job type is <code>Evaluation</code>. </p>"""
     evaluator_arn: NotRequired["capo_sagemaker.types.evaluator_arn.EvaluatorArn"]
     """<p> The evaluator Amazon Resource Name (ARN) used as reward function or reward prompt. </p>"""
+    sequence_length: NotRequired["capo_sagemaker.types.sequence_length.SequenceLength"]
+    """<p> The maximum sequence length, in tokens, that the customization job supports. SageMaker uses this value to select a training configuration for the base model that you specify. The parameter supports the following values: </p> <ul> <li> <p> <code>1K</code> </p> </li> <li> <p> <code>2K</code> </p> </li> <li> <p> <code>4K</code> </p> </li> <li> <p> <code>8K</code> </p> </li> <li> <p> <code>16K</code> </p> </li> <li> <p> <code>32K</code> </p> </li> <li> <p> <code>64K</code> </p> </li> <li> <p> <code>128K</code> </p> </li> </ul> <p> If you don't specify a value, SageMaker selects a training configuration based on the other values that you specify. The selection is not restricted to a particular sequence length. </p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -70,6 +73,8 @@ def serialize_aws_json_1_1(value: ServerlessJobConfig) -> dict:
         )
     if "evaluator_arn" in value:
         out["EvaluatorArn"] = value["evaluator_arn"]
+    if "sequence_length" in value:
+        out["SequenceLength"] = value["sequence_length"]
     return out
 
 
@@ -113,4 +118,6 @@ def deserialize_aws_json_1_1(data: dict) -> ServerlessJobConfig:
         )
     if data.get("EvaluatorArn") is not None:
         out["evaluator_arn"] = data["EvaluatorArn"]
+    if data.get("SequenceLength") is not None:
+        out["sequence_length"] = data["SequenceLength"]
     return out

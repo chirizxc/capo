@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     import capo_sagemaker.types.available_upgrade
     import capo_sagemaker.types.boolean
     import capo_sagemaker.types.error_info
+    import capo_sagemaker.types.idc_config_output
     import capo_sagemaker.types.kms_key_id
     import capo_sagemaker.types.non_empty_string64
     import capo_sagemaker.types.partner_app_arn
@@ -56,7 +57,7 @@ class DescribePartnerAppResponse(TypedDict, closed=True):
     auth_type: NotRequired[
         "capo_sagemaker.types.partner_app_auth_type.PartnerAppAuthType"
     ]
-    """<p>The authorization type that users use to access the SageMaker Partner AI App.</p>"""
+    """<p>The authorization type that users use to access the SageMaker Partner AI App. Valid values:</p> <ul> <li> <p> <code>IAM</code>: Users access the SageMaker Partner AI App with their Amazon Web Services IAM identity.</p> </li> <li> <p> <code>IDC</code>: Users access the SageMaker Partner AI App with their Amazon Web Services IAM Identity Center identity.</p> </li> </ul>"""
     enable_iam_session_based_identity: NotRequired[
         "capo_sagemaker.types.boolean.Boolean"
     ]
@@ -73,6 +74,8 @@ class DescribePartnerAppResponse(TypedDict, closed=True):
         "capo_sagemaker.types.available_upgrade.AvailableUpgrade"
     ]
     """<p>A map of available minor version upgrades for the SageMaker Partner AI App. The key is the semantic version number, and the value is a list of release notes for that version. A null value indicates no upgrades are available.</p>"""
+    idc_config: NotRequired["capo_sagemaker.types.idc_config_output.IdcConfigOutput"]
+    """<p>Contains the Amazon Web Services IAM Identity Center configuration for the SageMaker Partner AI App, including the Identity Center instance and the Identity Center application that SageMaker creates for the app. The service returns this field for apps that use <code>IDC</code> authorization.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -170,6 +173,14 @@ def serialize_aws_json_1_1(value: DescribePartnerAppResponse) -> dict:
                 value["available_upgrade"]
             )
         )
+    if "idc_config" in value:
+        import capo_sagemaker.types.idc_config_output
+
+        out["IdcConfig"] = (
+            capo_sagemaker.types.idc_config_output.serialize_aws_json_1_1(
+                value["idc_config"]
+            )
+        )
     return out
 
 
@@ -265,6 +276,14 @@ def deserialize_aws_json_1_1(data: dict) -> DescribePartnerAppResponse:
         out["available_upgrade"] = (
             capo_sagemaker.types.available_upgrade.deserialize_aws_json_1_1(
                 data["AvailableUpgrade"]
+            )
+        )
+    if data.get("IdcConfig") is not None:
+        import capo_sagemaker.types.idc_config_output
+
+        out["idc_config"] = (
+            capo_sagemaker.types.idc_config_output.deserialize_aws_json_1_1(
+                data["IdcConfig"]
             )
         )
     return out

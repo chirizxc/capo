@@ -9,8 +9,10 @@ from capo_bedrock_agent_runtime.errors import DeserializationError
 if TYPE_CHECKING:
     import capo_bedrock_agent_runtime.types.retrieval_result_confluence_location
     import capo_bedrock_agent_runtime.types.retrieval_result_custom_document_location
+    import capo_bedrock_agent_runtime.types.retrieval_result_google_drive_location
     import capo_bedrock_agent_runtime.types.retrieval_result_kendra_document_location
     import capo_bedrock_agent_runtime.types.retrieval_result_location_type
+    import capo_bedrock_agent_runtime.types.retrieval_result_one_drive_location
     import capo_bedrock_agent_runtime.types.retrieval_result_s3_location
     import capo_bedrock_agent_runtime.types.retrieval_result_salesforce_location
     import capo_bedrock_agent_runtime.types.retrieval_result_share_point_location
@@ -53,6 +55,14 @@ class RetrievalResultLocation(TypedDict, closed=True):
         "capo_bedrock_agent_runtime.types.retrieval_result_sql_location.RetrievalResultSqlLocation"
     ]
     """<p>Specifies information about the SQL query used to retrieve the result.</p>"""
+    one_drive_location: NotRequired[
+        "capo_bedrock_agent_runtime.types.retrieval_result_one_drive_location.RetrievalResultOneDriveLocation"
+    ]
+    """<p>The Microsoft OneDrive data source location.</p>"""
+    google_drive_location: NotRequired[
+        "capo_bedrock_agent_runtime.types.retrieval_result_google_drive_location.RetrievalResultGoogleDriveLocation"
+    ]
+    """<p>The Google Drive data source location.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -127,6 +137,22 @@ def serialize_json(value: RetrievalResultLocation) -> dict:
         out["sqlLocation"] = (
             capo_bedrock_agent_runtime.types.retrieval_result_sql_location.serialize_json(
                 value["sql_location"]
+            )
+        )
+    if "one_drive_location" in value:
+        import capo_bedrock_agent_runtime.types.retrieval_result_one_drive_location
+
+        out["oneDriveLocation"] = (
+            capo_bedrock_agent_runtime.types.retrieval_result_one_drive_location.serialize_json(
+                value["one_drive_location"]
+            )
+        )
+    if "google_drive_location" in value:
+        import capo_bedrock_agent_runtime.types.retrieval_result_google_drive_location
+
+        out["googleDriveLocation"] = (
+            capo_bedrock_agent_runtime.types.retrieval_result_google_drive_location.serialize_json(
+                value["google_drive_location"]
             )
         )
     return out
@@ -206,6 +232,22 @@ def deserialize_json(data: dict) -> RetrievalResultLocation:
         out["sql_location"] = (
             capo_bedrock_agent_runtime.types.retrieval_result_sql_location.deserialize_json(
                 data["sqlLocation"]
+            )
+        )
+    if data.get("oneDriveLocation") is not None:
+        import capo_bedrock_agent_runtime.types.retrieval_result_one_drive_location
+
+        out["one_drive_location"] = (
+            capo_bedrock_agent_runtime.types.retrieval_result_one_drive_location.deserialize_json(
+                data["oneDriveLocation"]
+            )
+        )
+    if data.get("googleDriveLocation") is not None:
+        import capo_bedrock_agent_runtime.types.retrieval_result_google_drive_location
+
+        out["google_drive_location"] = (
+            capo_bedrock_agent_runtime.types.retrieval_result_google_drive_location.deserialize_json(
+                data["googleDriveLocation"]
             )
         )
     return out

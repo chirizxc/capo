@@ -16,7 +16,7 @@ class ContainerDistributionConfiguration(TypedDict, closed=True):
     description: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
     """<p>The description of the container distribution configuration.</p>"""
     container_tags: NotRequired["capo_imagebuilder.types.string_list.StringList"]
-    """<p>Tags that are attached to the container distribution configuration.</p>"""
+    """<p>Tags that Image Builder applies to the distributed container image in the target repository. These are repository image tags, not resource tags.</p>"""
     target_repository: (
         "capo_imagebuilder.types.target_container_repository.TargetContainerRepository"
     )

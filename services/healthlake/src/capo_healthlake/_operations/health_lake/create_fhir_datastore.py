@@ -15,12 +15,16 @@ import capo_healthlake.errors.access_denied_exception
 import capo_healthlake.errors.internal_server_exception
 import capo_healthlake.errors.throttling_exception
 import capo_healthlake.errors.validation_exception
+import capo_healthlake.types.analytics_configuration
+import capo_healthlake.types.backup_configuration
 import capo_healthlake.types.create_fhir_datastore_request
 import capo_healthlake.types.create_fhir_datastore_response
 import capo_healthlake.types.datastore_status
 import capo_healthlake.types.fhir_version
 import capo_healthlake.types.identity_provider_configuration
+import capo_healthlake.types.nlp_configuration
 import capo_healthlake.types.preload_data_config
+import capo_healthlake.types.profile_configuration
 import capo_healthlake.types.sse_configuration
 import capo_healthlake.types.tag_list
 from capo_healthlake._protocol.errors import parse_error_metadata_json

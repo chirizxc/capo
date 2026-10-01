@@ -55,13 +55,18 @@ if TYPE_CHECKING:
     import capo_gameliftstreams.types.create_application_output
     import capo_gameliftstreams.types.create_stream_group_input
     import capo_gameliftstreams.types.create_stream_group_output
+    import capo_gameliftstreams.types.create_stream_session_admin_shell_input
+    import capo_gameliftstreams.types.create_stream_session_admin_shell_output
     import capo_gameliftstreams.types.create_stream_session_connection_input
     import capo_gameliftstreams.types.create_stream_session_connection_output
+    import capo_gameliftstreams.types.create_stream_url_input
+    import capo_gameliftstreams.types.create_stream_url_output
     import capo_gameliftstreams.types.delete_application_input
     import capo_gameliftstreams.types.delete_stream_group_input
     import capo_gameliftstreams.types.description
     import capo_gameliftstreams.types.disassociate_applications_input
     import capo_gameliftstreams.types.disassociate_applications_output
+    import capo_gameliftstreams.types.display_configuration
     import capo_gameliftstreams.types.environment_variables
     import capo_gameliftstreams.types.executable_path
     import capo_gameliftstreams.types.export_files_status
@@ -75,8 +80,13 @@ if TYPE_CHECKING:
     import capo_gameliftstreams.types.get_stream_group_output
     import capo_gameliftstreams.types.get_stream_session_input
     import capo_gameliftstreams.types.get_stream_session_output
+    import capo_gameliftstreams.types.get_stream_url_input
+    import capo_gameliftstreams.types.get_stream_url_output
+    import capo_gameliftstreams.types.iam_role_arn
     import capo_gameliftstreams.types.identifier
     import capo_gameliftstreams.types.identifiers
+    import capo_gameliftstreams.types.list_application_shader_caches_input
+    import capo_gameliftstreams.types.list_application_shader_caches_output
     import capo_gameliftstreams.types.list_applications_input
     import capo_gameliftstreams.types.list_applications_output
     import capo_gameliftstreams.types.list_stream_groups_input
@@ -85,6 +95,8 @@ if TYPE_CHECKING:
     import capo_gameliftstreams.types.list_stream_sessions_by_account_output
     import capo_gameliftstreams.types.list_stream_sessions_input
     import capo_gameliftstreams.types.list_stream_sessions_output
+    import capo_gameliftstreams.types.list_stream_urls_input
+    import capo_gameliftstreams.types.list_stream_urls_output
     import capo_gameliftstreams.types.list_tags_for_resource_request
     import capo_gameliftstreams.types.list_tags_for_resource_response
     import capo_gameliftstreams.types.location_configurations
@@ -96,6 +108,8 @@ if TYPE_CHECKING:
     import capo_gameliftstreams.types.performance_stats_configuration
     import capo_gameliftstreams.types.protocol
     import capo_gameliftstreams.types.remove_stream_group_locations_input
+    import capo_gameliftstreams.types.revocation_mode
+    import capo_gameliftstreams.types.revoke_stream_url_input
     import capo_gameliftstreams.types.runtime_environment
     import capo_gameliftstreams.types.session_length_seconds
     import capo_gameliftstreams.types.signal_request
@@ -105,6 +119,8 @@ if TYPE_CHECKING:
     import capo_gameliftstreams.types.stream_group_summary
     import capo_gameliftstreams.types.stream_session_status
     import capo_gameliftstreams.types.stream_session_summary
+    import capo_gameliftstreams.types.stream_url_status
+    import capo_gameliftstreams.types.stream_url_summary
     import capo_gameliftstreams.types.tag_key_list
     import capo_gameliftstreams.types.tag_resource_request
     import capo_gameliftstreams.types.tag_resource_response
@@ -116,6 +132,8 @@ if TYPE_CHECKING:
     import capo_gameliftstreams.types.update_application_output
     import capo_gameliftstreams.types.update_stream_group_input
     import capo_gameliftstreams.types.update_stream_group_output
+    import capo_gameliftstreams.types.url_expires_after_minutes
+    import capo_gameliftstreams.types.usage_limit
     import capo_gameliftstreams.types.user_id
 
 
@@ -311,6 +329,57 @@ class GameLiftStreamsClient:
         response.response.close()
         return response.output
 
+    def create_stream_session_admin_shell(
+        self,
+        identifier: "capo_gameliftstreams.types.identifier.Identifier",
+        stream_session_identifier: "capo_gameliftstreams.types.identifier.Identifier",
+        *,
+        config_overrides: Optional[GameLiftStreamsClientConfig] = None,
+    ) -> "capo_gameliftstreams.types.create_stream_session_admin_shell_output.CreateStreamSessionAdminShellOutput":
+        r"""<p>Creates an administrative terminal session with full access to the live runtime environment of the Amazon GameLift Streams stream session. Use the returned credentials (<code>SessionId</code>, <code>StreamUrl</code> and <code>TokenValue</code>) with the Amazon Web Services Systems Manager <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html\">Session Manager plugin</a> for the CLI to access the terminal session.</p> <p>The stream session must be in one of the following statuses: <code>ACTIVE</code>, <code>CONNECTED</code>, <code>PENDING_CLIENT_RECONNECTION</code>, or <code>RECONNECTING</code>.</p> <p>The <code>StreamUrl</code> is valid for 60 seconds. After it expires, call this operation again to get a new URL.</p> <important> <p>The returned credentials grant full access to the live runtime environment of the Amazon GameLift Streams stream session. The operator who connects to the terminal session has the same level of access that your Amazon GameLift Streams applications have, including potentially user input, screen images, and application data files. Grant permissions to call this operation only to trusted IAM identities that require live runtime environment access.</p> </important>
+
+        Args:
+            identifier: <p>The stream group that runs this stream session.</p> <p>This value is an <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html\">Amazon Resource Name (ARN)</a> or ID that uniquely identifies the stream group resource. Example ARN: <code>arn:aws:gameliftstreams:us-west-2:111122223333:streamgroup/sg-1AB2C3De4</code>. Example ID: <code>sg-1AB2C3De4</code>. </p>
+            stream_session_identifier: <p>An <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html\">Amazon Resource Name (ARN)</a> or ID that uniquely identifies the stream session resource. Example ARN: <code>arn:aws:gameliftstreams:us-west-2:111122223333:streamsession/sg-1AB2C3De4/ABC123def4567</code>. Example ID: <code>ABC123def4567</code>. </p>
+
+        Raises:
+            capo_gameliftstreams.errors.access_denied_exception.AccessDeniedException: <p>You don't have the required permissions to access this Amazon GameLift Streams resource. Correct the permissions before you try again.</p>
+            capo_gameliftstreams.errors.internal_server_exception.InternalServerException: <p>The service encountered an internal error and is unable to complete the request.</p>
+            capo_gameliftstreams.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the request was not found. Correct the request before you try again.</p>
+            capo_gameliftstreams.errors.stream_session_access_not_ready_exception.StreamSessionAccessNotReadyException: <p>The terminal connection to the stream session is not yet available. Wait before retrying the request.</p>
+            capo_gameliftstreams.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling. Retry the request after the suggested wait time.</p>
+            capo_gameliftstreams.errors.validation_exception.ValidationException: <p>One or more parameter values in the request fail to satisfy the specified constraints. Correct the invalid parameter values before retrying the request.</p>
+            capo_gameliftstreams.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_gameliftstreams.types.create_stream_session_admin_shell_input.CreateStreamSessionAdminShellInput]",
+        ) -> OperationResponse[
+            "capo_gameliftstreams.types.create_stream_session_admin_shell_output.CreateStreamSessionAdminShellOutput"
+        ]:
+            import capo_gameliftstreams._operations.game_lift_streams.create_stream_session_admin_shell
+
+            output, http_response = (
+                capo_gameliftstreams._operations.game_lift_streams.create_stream_session_admin_shell.create_stream_session_admin_shell(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_gameliftstreams.types.create_stream_session_admin_shell_input.CreateStreamSessionAdminShellInput = {
+            "identifier": identifier,
+            "stream_session_identifier": stream_session_identifier,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def create_stream_session_connection(
         self,
         identifier: "capo_gameliftstreams.types.identifier.Identifier",
@@ -360,6 +429,116 @@ class GameLiftStreamsClient:
             "stream_session_identifier": stream_session_identifier,
             "signal_request": signal_request,
         }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def create_stream_url(
+        self,
+        identifier: "capo_gameliftstreams.types.identifier.Identifier",
+        application_identifier: "capo_gameliftstreams.types.identifier.Identifier",
+        protocol: "capo_gameliftstreams.types.protocol.Protocol",
+        url_expires_after_minutes: "capo_gameliftstreams.types.url_expires_after_minutes.UrlExpiresAfterMinutes",
+        locations: "capo_gameliftstreams.types.location_list.LocationList",
+        *,
+        config_overrides: Optional[GameLiftStreamsClientConfig] = None,
+        usage_limit: Optional[
+            "capo_gameliftstreams.types.usage_limit.UsageLimit"
+        ] = None,
+        description: Optional[
+            "capo_gameliftstreams.types.description.Description"
+        ] = None,
+        session_length_seconds: Optional[
+            "capo_gameliftstreams.types.session_length_seconds.SessionLengthSeconds"
+        ] = None,
+        additional_launch_args: Optional[
+            "capo_gameliftstreams.types.game_launch_arg_list.GameLaunchArgList"
+        ] = None,
+        additional_environment_variables: Optional[
+            "capo_gameliftstreams.types.environment_variables.EnvironmentVariables"
+        ] = None,
+        role_arn: Optional["capo_gameliftstreams.types.iam_role_arn.IamRoleArn"] = None,
+        display_configuration: Optional[
+            "capo_gameliftstreams.types.display_configuration.DisplayConfiguration"
+        ] = None,
+        client_token: Optional[
+            "capo_gameliftstreams.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_gameliftstreams.types.create_stream_url_output.CreateStreamUrlOutput":
+        r"""<p>Creates a stream URL that grants temporary access to a stream session in a web browser without requiring an Amazon Web Services account or client integration.</p> <p>You can use the stream URL to start a stream session up to the number of times set by <code>UsageLimit</code>, until it expires after <code>UrlExpiresAfterMinutes</code>. Each successful use starts a new stream session.</p> <p>To make the request idempotent, provide a <code>ClientToken</code>.</p>
+
+        Args:
+            identifier: <p>An <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html\">Amazon Resource Name (ARN)</a> or ID that uniquely identifies the stream group resource. Example ARN: <code>arn:aws:gameliftstreams:us-west-2:111122223333:streamgroup/sg-1AB2C3De4</code>. Example ID: <code>sg-1AB2C3De4</code>. </p> <p>The stream session runs in this stream group.</p>
+            application_identifier: <p>An <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html\">Amazon Resource Name (ARN)</a> or ID that uniquely identifies the application resource. Example ARN: <code>arn:aws:gameliftstreams:us-west-2:111122223333:application/a-9ZY8X7Wv6</code>. Example ID: <code>a-9ZY8X7Wv6</code>. </p> <p>This application must be associated with the stream group.</p>
+            protocol: <p>The data transport protocol for the stream session. Amazon GameLift Streams supports <code>WebRTC</code>.</p>
+            url_expires_after_minutes: <p>The number of minutes after creation that the stream URL remains valid. After this period, the status of the stream URL changes to <code>EXPIRED</code> and it can no longer start stream sessions. The minimum is 1 minute. For the maximum, see <a href=\"https://docs.aws.amazon.com/gameliftstreams/latest/developerguide/regions-quotas.html\">Regions, quotas, and limitations</a> in the <i>Amazon GameLift Streams Developer Guide</i>.</p>
+            usage_limit: <p>The maximum number of times the stream URL can start a stream session. Each successful use reduces the remaining uses by one. The minimum is 1, and the default is 1. For the maximum, see <a href=\"https://docs.aws.amazon.com/gameliftstreams/latest/developerguide/regions-quotas.html\">Regions, quotas, and limitations</a> in the <i>Amazon GameLift Streams Developer Guide</i>.</p>
+            description: <p>A descriptive label for the stream URL.</p>
+            locations: <p>A list of locations, in order of preference, where Amazon GameLift Streams can place the stream session. Specify each location by its Amazon Web Services Region code, for example <code>us-east-1</code>. For a complete list of locations that Amazon GameLift Streams supports, refer to <a href=\"https://docs.aws.amazon.com/gameliftstreams/latest/developerguide/regions-quotas.html\">Regions, quotas, and limitations</a> in the <i>Amazon GameLift Streams Developer Guide</i>. </p>
+            session_length_seconds: <p>The maximum length of time, in seconds, that a stream session started from this stream URL can run. Valid values are 1-86400 seconds (1 second to 24 hours). The default is 43200 seconds (12 hours).</p>
+            additional_launch_args: <p>A list of CLI arguments that are sent to the streaming server when a stream session launches. You can use this to configure the application or stream session details. You can also provide custom arguments that Amazon GameLift Streams passes to your game client.</p> <p> <code>AdditionalEnvironmentVariables</code> and <code>AdditionalLaunchArgs</code> have similar purposes. <code>AdditionalEnvironmentVariables</code> passes data using environment variables; while <code>AdditionalLaunchArgs</code> passes data using command-line arguments.</p>
+            additional_environment_variables: <p>A set of options that you can use to control the stream session runtime environment, expressed as a set of key-value pairs. You can use this to configure the application or stream session details. You can also provide custom environment variables that Amazon GameLift Streams passes to your game client.</p> <note> <p>If you want to debug your application with environment variables, we recommend that you do so in a local environment outside of Amazon GameLift Streams. For more information, refer to the Compatibility Guidance in the troubleshooting section of the Developer Guide.</p> </note> <p> <code>AdditionalEnvironmentVariables</code> and <code>AdditionalLaunchArgs</code> have similar purposes. <code>AdditionalEnvironmentVariables</code> passes data using environment variables; while <code>AdditionalLaunchArgs</code> passes data using command-line arguments.</p>
+            role_arn: <p>The Amazon Resource Name (ARN) of the IAM role that Amazon GameLift Streams assumes during stream sessions started from this stream URL. For more information, see <a href=\"https://docs.aws.amazon.com/gameliftstreams/latest/developerguide/session-credentials.html\">Provide AWS credentials to your streaming application</a> in the <i>Amazon GameLift Streams Developer Guide</i>.</p>
+            display_configuration: <p>The display settings, such as resolution, for stream sessions started from this stream URL.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure this request is idempotent. If you retry a request with the same <code>ClientToken</code>, Amazon GameLift Streams returns the original response without performing the operation again.</p>
+
+        Raises:
+            capo_gameliftstreams.errors.access_denied_exception.AccessDeniedException: <p>You don't have the required permissions to access this Amazon GameLift Streams resource. Correct the permissions before you try again.</p>
+            capo_gameliftstreams.errors.conflict_exception.ConflictException: <p>The requested operation would cause a conflict with the current state of a service resource associated with the request. Resolve the conflict before retrying this request.</p>
+            capo_gameliftstreams.errors.internal_server_exception.InternalServerException: <p>The service encountered an internal error and is unable to complete the request.</p>
+            capo_gameliftstreams.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the request was not found. Correct the request before you try again.</p>
+            capo_gameliftstreams.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would cause the resource to exceed an allowed service quota. Resolve the issue before you try again.</p>
+            capo_gameliftstreams.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling. Retry the request after the suggested wait time.</p>
+            capo_gameliftstreams.errors.validation_exception.ValidationException: <p>One or more parameter values in the request fail to satisfy the specified constraints. Correct the invalid parameter values before retrying the request.</p>
+            capo_gameliftstreams.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_gameliftstreams.types.create_stream_url_input.CreateStreamUrlInput]",
+        ) -> OperationResponse[
+            "capo_gameliftstreams.types.create_stream_url_output.CreateStreamUrlOutput"
+        ]:
+            import capo_gameliftstreams._operations.game_lift_streams.create_stream_url
+
+            output, http_response = (
+                capo_gameliftstreams._operations.game_lift_streams.create_stream_url.create_stream_url(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_gameliftstreams.types.create_stream_url_input.CreateStreamUrlInput = {
+            "identifier": identifier,
+            "application_identifier": application_identifier,
+            "protocol": protocol,
+            "url_expires_after_minutes": url_expires_after_minutes,
+            "locations": locations,
+        }
+        if usage_limit is not None:
+            input_["usage_limit"] = usage_limit
+        if description is not None:
+            input_["description"] = description
+        if session_length_seconds is not None:
+            input_["session_length_seconds"] = session_length_seconds
+        if additional_launch_args is not None:
+            input_["additional_launch_args"] = additional_launch_args
+        if additional_environment_variables is not None:
+            input_["additional_environment_variables"] = (
+                additional_environment_variables
+            )
+        if role_arn is not None:
+            input_["role_arn"] = role_arn
+        if display_configuration is not None:
+            input_["display_configuration"] = display_configuration
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -515,6 +694,103 @@ class GameLiftStreamsClient:
         input_: capo_gameliftstreams.types.get_stream_session_input.GetStreamSessionInput = {
             "identifier": identifier,
             "stream_session_identifier": stream_session_identifier,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_stream_url(
+        self,
+        identifier: "capo_gameliftstreams.types.identifier.Identifier",
+        stream_url_identifier: "capo_gameliftstreams.types.identifier.Identifier",
+        *,
+        config_overrides: Optional[GameLiftStreamsClientConfig] = None,
+    ) -> "capo_gameliftstreams.types.get_stream_url_output.GetStreamUrlOutput":
+        r"""<p>Retrieves properties for a stream URL, including its current status, usage, and the stream sessions started through it.</p> <p>If you delete the stream group or application that backs the stream URL, this operation updates the status of the stream URL to <code>REVOKED</code>.</p>
+
+        Args:
+            identifier: <p>An <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html\">Amazon Resource Name (ARN)</a> or ID that uniquely identifies the stream group resource. Example ARN: <code>arn:aws:gameliftstreams:us-west-2:111122223333:streamgroup/sg-1AB2C3De4</code>. Example ID: <code>sg-1AB2C3De4</code>. </p> <p>This is the stream group that owns the stream URL.</p>
+            stream_url_identifier: <p>The unique identifier of the stream URL. Specify a stream URL ID or Amazon Resource Name (ARN). Example ARN: <code>arn:aws:gameliftstreams:us-west-2:111122223333:streamurl/sg-1AB2C3De4/su-1AB2C3De4</code>. Example ID: <code>su-1AB2C3De4</code>.</p>
+
+        Raises:
+            capo_gameliftstreams.errors.access_denied_exception.AccessDeniedException: <p>You don't have the required permissions to access this Amazon GameLift Streams resource. Correct the permissions before you try again.</p>
+            capo_gameliftstreams.errors.internal_server_exception.InternalServerException: <p>The service encountered an internal error and is unable to complete the request.</p>
+            capo_gameliftstreams.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the request was not found. Correct the request before you try again.</p>
+            capo_gameliftstreams.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling. Retry the request after the suggested wait time.</p>
+            capo_gameliftstreams.errors.validation_exception.ValidationException: <p>One or more parameter values in the request fail to satisfy the specified constraints. Correct the invalid parameter values before retrying the request.</p>
+            capo_gameliftstreams.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_gameliftstreams.types.get_stream_url_input.GetStreamUrlInput]",
+        ) -> OperationResponse[
+            "capo_gameliftstreams.types.get_stream_url_output.GetStreamUrlOutput"
+        ]:
+            import capo_gameliftstreams._operations.game_lift_streams.get_stream_url
+
+            output, http_response = (
+                capo_gameliftstreams._operations.game_lift_streams.get_stream_url.get_stream_url(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_gameliftstreams.types.get_stream_url_input.GetStreamUrlInput = {
+            "identifier": identifier,
+            "stream_url_identifier": stream_url_identifier,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_application_shader_caches(
+        self,
+        identifier: "capo_gameliftstreams.types.identifier.Identifier",
+        *,
+        config_overrides: Optional[GameLiftStreamsClientConfig] = None,
+    ) -> "capo_gameliftstreams.types.list_application_shader_caches_output.ListApplicationShaderCachesOutput":
+        r"""<p>Lists the shader caches associated with an Amazon GameLift Streams application. Each shader cache entry includes its status, associated stream groups, and size in bytes.</p> <p>Returns shader caches associated with the specified Amazon GameLift Streams application in all statuses.</p>
+
+        Args:
+            identifier: <p>An <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html\">Amazon Resource Name (ARN)</a> or ID that uniquely identifies the application resource. Example ARN: <code>arn:aws:gameliftstreams:us-west-2:111122223333:application/a-9ZY8X7Wv6</code>. Example ID: <code>a-9ZY8X7Wv6</code>. </p>
+
+        Raises:
+            capo_gameliftstreams.errors.access_denied_exception.AccessDeniedException: <p>You don't have the required permissions to access this Amazon GameLift Streams resource. Correct the permissions before you try again.</p>
+            capo_gameliftstreams.errors.internal_server_exception.InternalServerException: <p>The service encountered an internal error and is unable to complete the request.</p>
+            capo_gameliftstreams.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the request was not found. Correct the request before you try again.</p>
+            capo_gameliftstreams.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling. Retry the request after the suggested wait time.</p>
+            capo_gameliftstreams.errors.validation_exception.ValidationException: <p>One or more parameter values in the request fail to satisfy the specified constraints. Correct the invalid parameter values before retrying the request.</p>
+            capo_gameliftstreams.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_gameliftstreams.types.list_application_shader_caches_input.ListApplicationShaderCachesInput]",
+        ) -> OperationResponse[
+            "capo_gameliftstreams.types.list_application_shader_caches_output.ListApplicationShaderCachesOutput"
+        ]:
+            import capo_gameliftstreams._operations.game_lift_streams.list_application_shader_caches
+
+            output, http_response = (
+                capo_gameliftstreams._operations.game_lift_streams.list_application_shader_caches.list_application_shader_caches(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_gameliftstreams.types.list_application_shader_caches_input.ListApplicationShaderCachesInput = {
+            "identifier": identifier
         }
 
         response = execute_pipeline(
@@ -722,6 +998,101 @@ class GameLiftStreamsClient:
             if not _token:
                 break
 
+    def list_stream_urls(
+        self,
+        *,
+        config_overrides: Optional[GameLiftStreamsClientConfig] = None,
+        status: Optional[
+            "capo_gameliftstreams.types.stream_url_status.StreamUrlStatus"
+        ] = None,
+        stream_group_identifier: Optional[
+            "capo_gameliftstreams.types.identifier.Identifier"
+        ] = None,
+        next_token: Optional["capo_gameliftstreams.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_gameliftstreams.types.max_results.MaxResults"
+        ] = None,
+    ) -> "capo_gameliftstreams.types.list_stream_urls_output.ListStreamUrlsOutput":
+        r"""<p>Retrieves a list of the stream URLs in the current Amazon Web Services Region for your Amazon Web Services account. You can filter the results by status or by stream group. Use the pagination parameters to retrieve results as a set of sequential pages. If you delete the stream group or application that backs a stream URL, this operation updates that stream URL's status to <code>REVOKED</code>.</p>
+
+        Args:
+            status: <p>Filters the list to stream URLs with the specified status.</p> <ul> <li> <p> <code>ACTIVE</code>: The stream URL is valid and can start stream sessions.</p> </li> <li> <p> <code>EXPIRED</code>: The stream URL has passed its expiration time and can no longer start stream sessions.</p> </li> <li> <p> <code>REVOKED</code>: The stream URL was revoked and can no longer start stream sessions.</p> </li> <li> <p> <code>LIMIT_REACHED</code>: The stream URL has been used the maximum number of times and can no longer start stream sessions.</p> </li> </ul>
+            stream_group_identifier: <p>Filters the list to stream URLs that belong to the specified stream group.</p> <p>This value is an <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html\">Amazon Resource Name (ARN)</a> or ID that uniquely identifies the stream group resource. Example ARN: <code>arn:aws:gameliftstreams:us-west-2:111122223333:streamgroup/sg-1AB2C3De4</code>. Example ID: <code>sg-1AB2C3De4</code>. </p>
+            next_token: <p>The token that marks the start of the next set of results. Use this token when you retrieve results as sequential pages. To get the first page of results, omit a token value. To get the remaining pages, provide the token returned with the previous result set. </p>
+            max_results: <p>The maximum number of results to return per page. Valid values are 1-100. The default is 25.</p>
+
+        Raises:
+            capo_gameliftstreams.errors.access_denied_exception.AccessDeniedException: <p>You don't have the required permissions to access this Amazon GameLift Streams resource. Correct the permissions before you try again.</p>
+            capo_gameliftstreams.errors.internal_server_exception.InternalServerException: <p>The service encountered an internal error and is unable to complete the request.</p>
+            capo_gameliftstreams.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling. Retry the request after the suggested wait time.</p>
+            capo_gameliftstreams.errors.validation_exception.ValidationException: <p>One or more parameter values in the request fail to satisfy the specified constraints. Correct the invalid parameter values before retrying the request.</p>
+            capo_gameliftstreams.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_gameliftstreams.types.list_stream_urls_input.ListStreamUrlsInput]",
+        ) -> OperationResponse[
+            "capo_gameliftstreams.types.list_stream_urls_output.ListStreamUrlsOutput"
+        ]:
+            import capo_gameliftstreams._operations.game_lift_streams.list_stream_urls
+
+            output, http_response = (
+                capo_gameliftstreams._operations.game_lift_streams.list_stream_urls.list_stream_urls(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_gameliftstreams.types.list_stream_urls_input.ListStreamUrlsInput = {}
+        if status is not None:
+            input_["status"] = status
+        if stream_group_identifier is not None:
+            input_["stream_group_identifier"] = stream_group_identifier
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_stream_urls(
+        self,
+        *,
+        config_overrides: Optional[GameLiftStreamsClientConfig] = None,
+        status: Optional[
+            "capo_gameliftstreams.types.stream_url_status.StreamUrlStatus"
+        ] = None,
+        stream_group_identifier: Optional[
+            "capo_gameliftstreams.types.identifier.Identifier"
+        ] = None,
+        next_token: Optional["capo_gameliftstreams.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_gameliftstreams.types.max_results.MaxResults"
+        ] = None,
+    ) -> "Iterator[capo_gameliftstreams.types.stream_url_summary.StreamUrlSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_stream_urls(
+                config_overrides=config_overrides,
+                status=status,
+                stream_group_identifier=stream_group_identifier,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     def list_tags_for_resource(
         self,
         resource_arn: "capo_gameliftstreams.types.arn.Arn",
@@ -816,6 +1187,60 @@ class GameLiftStreamsClient:
         response.response.close()
         return response.output
 
+    def revoke_stream_url(
+        self,
+        identifier: "capo_gameliftstreams.types.identifier.Identifier",
+        stream_url_identifier: "capo_gameliftstreams.types.identifier.Identifier",
+        *,
+        config_overrides: Optional[GameLiftStreamsClientConfig] = None,
+        revocation_mode: Optional[
+            "capo_gameliftstreams.types.revocation_mode.RevocationMode"
+        ] = None,
+    ) -> None:
+        r"""<p>Revokes a stream URL so that it can no longer start new stream sessions. By default, stream sessions that are already running continue until they end on their own. To also end running sessions, set <code>RevocationMode</code> to <code>REVOKE_AND_TERMINATE_SESSIONS</code>.</p> <p>Revoking a stream URL is permanent. The status of the stream URL changes to <code>REVOKED</code>.</p>
+
+        Args:
+            identifier: <p>An <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html\">Amazon Resource Name (ARN)</a> or ID that uniquely identifies the stream group resource. Example ARN: <code>arn:aws:gameliftstreams:us-west-2:111122223333:streamgroup/sg-1AB2C3De4</code>. Example ID: <code>sg-1AB2C3De4</code>. </p> <p>This is the stream group that owns the stream URL.</p>
+            stream_url_identifier: <p>The unique identifier of the stream URL to revoke. Specify a stream URL ID or Amazon Resource Name (ARN). Example ARN: <code>arn:aws:gameliftstreams:us-west-2:111122223333:streamurl/sg-1AB2C3De4/su-1AB2C3De4</code>. Example ID: <code>su-1AB2C3De4</code>.</p>
+            revocation_mode: <p>Controls what happens to running stream sessions when you revoke the stream URL. If you do not specify a value, the default is <code>REVOKE_URL</code>. Possible values include the following:</p> <ul> <li> <p> <code>REVOKE_URL</code>: Stops the stream URL from starting new stream sessions. Running sessions continue until they end.</p> </li> <li> <p> <code>REVOKE_AND_TERMINATE_SESSIONS</code>: Stops new stream sessions and ends any running stream sessions.</p> </li> </ul>
+
+        Raises:
+            capo_gameliftstreams.errors.access_denied_exception.AccessDeniedException: <p>You don't have the required permissions to access this Amazon GameLift Streams resource. Correct the permissions before you try again.</p>
+            capo_gameliftstreams.errors.internal_server_exception.InternalServerException: <p>The service encountered an internal error and is unable to complete the request.</p>
+            capo_gameliftstreams.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the request was not found. Correct the request before you try again.</p>
+            capo_gameliftstreams.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling. Retry the request after the suggested wait time.</p>
+            capo_gameliftstreams.errors.validation_exception.ValidationException: <p>One or more parameter values in the request fail to satisfy the specified constraints. Correct the invalid parameter values before retrying the request.</p>
+            capo_gameliftstreams.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_gameliftstreams.types.revoke_stream_url_input.RevokeStreamUrlInput]",
+        ) -> OperationResponse[None]:
+            import capo_gameliftstreams._operations.game_lift_streams.revoke_stream_url
+
+            output, http_response = (
+                capo_gameliftstreams._operations.game_lift_streams.revoke_stream_url.revoke_stream_url(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_gameliftstreams.types.revoke_stream_url_input.RevokeStreamUrlInput = {
+            "identifier": identifier,
+            "stream_url_identifier": stream_url_identifier,
+        }
+        if revocation_mode is not None:
+            input_["revocation_mode"] = revocation_mode
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def start_stream_session(
         self,
         identifier: "capo_gameliftstreams.types.identifier.Identifier",
@@ -849,6 +1274,10 @@ class GameLiftStreamsClient:
         performance_stats_configuration: Optional[
             "capo_gameliftstreams.types.performance_stats_configuration.PerformanceStatsConfiguration"
         ] = None,
+        role_arn: Optional["capo_gameliftstreams.types.iam_role_arn.IamRoleArn"] = None,
+        display_configuration: Optional[
+            "capo_gameliftstreams.types.display_configuration.DisplayConfiguration"
+        ] = None,
     ) -> "capo_gameliftstreams.types.start_stream_session_output.StartStreamSessionOutput":
         r"""<p> This action initiates a new stream session and outputs connection information that clients can use to access the stream. A stream session refers to an instance of a stream that Amazon GameLift Streams transmits from the server to the end-user. A stream session runs on a compute resource that a stream group has allocated. The start stream session process works as follows: </p> <ol> <li> <p>Prerequisites:</p> <ul> <li> <p>You must have a stream group in <code>ACTIVE</code> status</p> </li> <li> <p>You must have idle or on-demand capacity in a stream group in the location you want to stream from</p> </li> <li> <p>You must have at least one application associated to the stream group (use <a href=\"https://docs.aws.amazon.com/gameliftstreams/latest/apireference/API_AssociateApplications.html\">AssociateApplications</a> if needed)</p> </li> </ul> </li> <li> <p>Start stream request:</p> <ul> <li> <p>Your backend server calls <b>StartStreamSession</b> to initiate connection</p> </li> <li> <p>Amazon GameLift Streams creates the stream session resource, assigns an Amazon Resource Name (ARN) value, and begins searching for available stream capacity to run the stream</p> </li> <li> <p>Session transitions to <code>ACTIVATING</code> status</p> </li> </ul> </li> <li> <p>Placement completion:</p> <ul> <li> <p>If Amazon GameLift Streams is successful in finding capacity for the stream, the stream session status changes to <code>ACTIVE</code> status and <b>StartStreamSession</b> returns stream connection information</p> </li> <li> <p>If Amazon GameLift Streams was not successful in finding capacity within the placement timeout period (defined according to the capacity type and platform type), the stream session status changes to <code>ERROR</code> status and <b>StartStreamSession</b> returns a <code>StatusReason</code> of <code>placementTimeout</code> </p> </li> </ul> </li> <li> <p>Connection completion:</p> <ul> <li> <p>Provide the new connection information to the requesting client</p> </li> <li> <p>Client must establish connection within <code>ConnectionTimeoutSeconds</code> (specified in <b>StartStreamSession</b> parameters)</p> </li> <li> <p>Session terminates automatically if client fails to connect in time</p> </li> </ul> </li> </ol> <p>For more information about the stream session lifecycle, see <a href=\"https://docs.aws.amazon.com/gameliftstreams/latest/developerguide/stream-sessions.html\">Stream sessions</a> in the <i>Amazon GameLift Streams Developer Guide</i>.</p> <p>Timeouts to be aware of that affect a stream session:</p> <ul> <li> <p> <b>Placement timeout</b>: The amount of time that Amazon GameLift Streams has to find capacity for a stream request. Placement timeout varies based on the capacity type used to fulfill your stream request:</p> <ul> <li> <p> <b>Always-on capacity</b>: 75 seconds</p> </li> <li> <p> <b>On-demand capacity</b>:</p> <ul> <li> <p>Linux/Proton runtimes: 90 seconds</p> </li> <li> <p>Windows runtime: 10 minutes</p> </li> </ul> </li> </ul> </li> <li> <p> <b>Connection timeout</b>: The amount of time that Amazon GameLift Streams waits for a client to connect to a stream session in <code>ACTIVE</code> status, or reconnect to a stream session in <code>PENDING_CLIENT_RECONNECTION</code> status, the latter of which occurs when a client disconnects or loses connection from a stream session. If no client connects before the timeout, Amazon GameLift Streams terminates the stream session. This value is specified by <code>ConnectionTimeoutSeconds</code> in the <code>StartStreamSession</code> parameters.</p> </li> <li> <p> <b>Maximum session length</b>: A stream session will be terminated after this amount of time has elapsed since it started, regardless of any existing client connections. This value is specified by <code>SessionLengthSeconds</code> in the <code>StartStreamSession</code> parameters.</p> </li> </ul> <p>To start a new stream session, specify a stream group ID and application ID, along with the transport protocol and signal request to use with the stream session.</p> <p>For stream groups that have multiple locations, provide a set of locations ordered by priority using a <code>Locations</code> parameter. Amazon GameLift Streams will start a single stream session in the next available location. An application must be finished replicating to a remote location before the remote location can host a stream.</p> <p>To reconnect to a stream session after a client disconnects or loses connection, use <a href=\"https://docs.aws.amazon.com/gameliftstreams/latest/apireference/API_CreateStreamSessionConnection.html\">CreateStreamSessionConnection</a>.</p>
 
@@ -866,6 +1295,8 @@ class GameLiftStreamsClient:
             additional_launch_args: <p>A list of CLI arguments that are sent to the streaming server when a stream session launches. You can use this to configure the application or stream session details. You can also provide custom arguments that Amazon GameLift Streams passes to your game client.</p> <p> <code>AdditionalEnvironmentVariables</code> and <code>AdditionalLaunchArgs</code> have similar purposes. <code>AdditionalEnvironmentVariables</code> passes data using environment variables; while <code>AdditionalLaunchArgs</code> passes data using command-line arguments.</p>
             additional_environment_variables: <p>A set of options that you can use to control the stream session runtime environment, expressed as a set of key-value pairs. You can use this to configure the application or stream session details. You can also provide custom environment variables that Amazon GameLift Streams passes to your game client.</p> <note> <p>If you want to debug your application with environment variables, we recommend that you do so in a local environment outside of Amazon GameLift Streams. For more information, refer to the Compatibility Guidance in the troubleshooting section of the Developer Guide.</p> </note> <p> <code>AdditionalEnvironmentVariables</code> and <code>AdditionalLaunchArgs</code> have similar purposes. <code>AdditionalEnvironmentVariables</code> passes data using environment variables; while <code>AdditionalLaunchArgs</code> passes data using command-line arguments.</p>
             performance_stats_configuration: <p>Configuration settings for sharing the stream session's performance stats with the client</p>
+            role_arn: <p>The ARN of an AWS Identity and Access Management (IAM) role that Amazon GameLift Streams assumes on your behalf during the stream session. The role grants Amazon GameLift Streams permission to obtain temporary credentials for your application. The role's trust policy must allow the <code>gameliftstreams.amazonaws.com</code> service principal to assume it. The role name must start with <code>GameLiftStreams-</code>.</p>
+            display_configuration: <p>The configuration for the stream session's virtual monitor, including the resolution settings.</p> <p>If not specified, Amazon GameLift Streams uses the default resolution of 1920 × 1080.</p>
 
         Raises:
             capo_gameliftstreams.errors.access_denied_exception.AccessDeniedException: <p>You don't have the required permissions to access this Amazon GameLift Streams resource. Correct the permissions before you try again.</p>
@@ -919,6 +1350,10 @@ class GameLiftStreamsClient:
             )
         if performance_stats_configuration is not None:
             input_["performance_stats_configuration"] = performance_stats_configuration
+        if role_arn is not None:
+            input_["role_arn"] = role_arn
+        if display_configuration is not None:
+            input_["display_configuration"] = display_configuration
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -1093,7 +1528,7 @@ class GameLiftStreamsClient:
             "capo_gameliftstreams.types.client_token.ClientToken"
         ] = None,
     ) -> "capo_gameliftstreams.types.create_application_output.CreateApplicationOutput":
-        r"""<p>Creates an application resource in Amazon GameLift Streams, which specifies the application content you want to stream, such as a game build or other software, and configures the settings to run it.</p> <p> Before you create an application, upload your application content files to an Amazon Simple Storage Service (Amazon S3) bucket. For more information, see <b>Getting Started</b> in the Amazon GameLift Streams Developer Guide. </p> <important> <p> Make sure that your files in the Amazon S3 bucket are the correct version you want to use. If you change the files at a later time, you will need to create a new Amazon GameLift Streams application. </p> </important> <p> If the request is successful, Amazon GameLift Streams begins to create an application and sets the status to <code>INITIALIZED</code>. When an application reaches <code>READY</code> status, you can use the application to set up stream groups and start streams. To track application status, call <a href=\"https://docs.aws.amazon.com/gameliftstreams/latest/apireference/API_GetApplication.html\">GetApplication</a>. </p>
+        r"""<p>Creates an application resource in Amazon GameLift Streams, which specifies the application content you want to stream, such as a game build or other software, and configures the settings to run it.</p> <p> Before you create an application, upload your application content files to an Amazon Simple Storage Service (Amazon S3) bucket. For more information, see <b>Getting Started</b> in the Amazon GameLift Streams Developer Guide. </p> <important> <p> Make sure that your files in the Amazon S3 bucket are the correct version you want to use. If you change the files at a later time, you will need to create a new Amazon GameLift Streams application. </p> </important> <note> <p> Creating an application is the only time Amazon GameLift Streams accesses your Amazon S3 bucket. After the application reaches <code>READY</code> status, you can delete the original files from your Amazon S3 bucket without affecting the application. </p> </note> <p> If the request is successful, Amazon GameLift Streams begins to create an application and sets the status to <code>INITIALIZED</code>. When an application reaches <code>READY</code> status, you can use the application to set up stream groups and start streams. To track application status, call <a href=\"https://docs.aws.amazon.com/gameliftstreams/latest/apireference/API_GetApplication.html\">GetApplication</a>. </p>
 
         Args:
             description: <p>A human-readable label for the application. You can update this value later.</p>

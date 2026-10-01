@@ -1,0 +1,29 @@
+"""Generated from Smithy shape ``com.amazonaws.iotsitewise#TaskSummaries``."""
+
+from typing import TYPE_CHECKING, TypeAlias
+
+if TYPE_CHECKING:
+    import capo_iotsitewise.types.task_summary
+
+TaskSummaries: TypeAlias = list["capo_iotsitewise.types.task_summary.TaskSummary"]
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: TaskSummaries) -> list:
+    import capo_iotsitewise.types.task_summary
+
+    out: list = []
+    for item in value:
+        out.append(capo_iotsitewise.types.task_summary.serialize_json(item))
+    return out
+
+
+def deserialize_json(data: list) -> TaskSummaries:
+    import capo_iotsitewise.types.task_summary
+
+    out: TaskSummaries = []
+    for item in data:
+        if item is None:
+            continue
+        out.append(capo_iotsitewise.types.task_summary.deserialize_json(item))
+    return out

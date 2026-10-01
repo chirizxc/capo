@@ -27,6 +27,9 @@ from .active_sessions_exceeded_exception import (
 from .active_statements_exceeded_exception import (
     ActiveStatementsExceededException as ActiveStatementsExceededException,
 )
+from .active_waiting_requests_exceeded_exception import (
+    ActiveWaitingRequestsExceededException as ActiveWaitingRequestsExceededException,
+)
 from .batch_execute_statement_exception import (
     BatchExecuteStatementException as BatchExecuteStatementException,
 )

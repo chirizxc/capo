@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_chime_sdk_voice.types.call_distribution_type
     import capo_chime_sdk_voice.types.iso8601_timestamp
     import capo_chime_sdk_voice.types.non_empty_string
     import capo_chime_sdk_voice.types.voice_connector_group_name
@@ -36,6 +37,9 @@ class VoiceConnectorGroup(TypedDict, closed=True):
         "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString"
     ]
     """<p>The ARN of the Voice Connector group.</p>"""
+    call_distribution_type: NotRequired[
+        "capo_chime_sdk_voice.types.call_distribution_type.CallDistributionType"
+    ]
 
 
 # --- restJson1 ser/de ---
@@ -71,6 +75,14 @@ def serialize_json(value: VoiceConnectorGroup) -> dict:
         )
     if "voice_connector_group_arn" in value:
         out["VoiceConnectorGroupArn"] = value["voice_connector_group_arn"]
+    if "call_distribution_type" in value:
+        import capo_chime_sdk_voice.types.call_distribution_type
+
+        out["CallDistributionType"] = (
+            capo_chime_sdk_voice.types.call_distribution_type.serialize_json(
+                value["call_distribution_type"]
+            )
+        )
     return out
 
 
@@ -106,4 +118,12 @@ def deserialize_json(data: dict) -> VoiceConnectorGroup:
         )
     if data.get("VoiceConnectorGroupArn") is not None:
         out["voice_connector_group_arn"] = data["VoiceConnectorGroupArn"]
+    if data.get("CallDistributionType") is not None:
+        import capo_chime_sdk_voice.types.call_distribution_type
+
+        out["call_distribution_type"] = (
+            capo_chime_sdk_voice.types.call_distribution_type.deserialize_json(
+                data["CallDistributionType"]
+            )
+        )
     return out

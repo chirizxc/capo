@@ -20,6 +20,7 @@ import capo_marketplace_agreement.types.acceptor
 import capo_marketplace_agreement.types.agreement_status
 import capo_marketplace_agreement.types.describe_agreement_input
 import capo_marketplace_agreement.types.describe_agreement_output
+import capo_marketplace_agreement.types.end_time_behavior
 import capo_marketplace_agreement.types.estimated_charges
 import capo_marketplace_agreement.types.proposal_summary
 import capo_marketplace_agreement.types.proposer

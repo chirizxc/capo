@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import json
 from typing import Any
-from urllib.parse import quote
 
 import zapros
 from typing_extensions import Never
@@ -117,16 +116,14 @@ def build_request(
             UseFIPS=options.use_fips, Endpoint=options.endpoint, Region=options.region
         )
     )  # noqa: F841
-    url = (
-        endpoint.url.rstrip("/")
-        + "/hosted-zone-associations/resource-arn/{resourceArn+}"
-    )
-    url = url.replace("{resourceArn+}", quote(input_["resource_arn"], safe="/"))
+    url = endpoint.url.rstrip("/") + "/hosted-zone-associations"
     params: list[tuple[str, str]] = []
     if "max_results" in input_:
         params.append(("max_results", str(input_["max_results"])))
     if "next_token" in input_:
         params.append(("next_token", input_["next_token"]))
+    if "resource_arn" in input_:
+        params.append(("resourceArn", input_["resource_arn"]))
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))

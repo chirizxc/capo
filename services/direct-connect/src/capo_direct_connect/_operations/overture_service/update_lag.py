@@ -13,11 +13,13 @@ import capo_direct_connect._auth._sigv4
 import capo_direct_connect._protocol.eventstream
 import capo_direct_connect.errors.direct_connect_client_exception
 import capo_direct_connect.errors.direct_connect_server_exception
+import capo_direct_connect.types.billing_mode
 import capo_direct_connect.types.connection_list
 import capo_direct_connect.types.has_logical_redundancy
 import capo_direct_connect.types.lag
 import capo_direct_connect.types.lag_state
 import capo_direct_connect.types.mac_sec_key_list
+import capo_direct_connect.types.rate_limiter_status
 import capo_direct_connect.types.tag_list
 import capo_direct_connect.types.update_lag_request
 from capo_direct_connect._protocol.errors import parse_error_metadata_json

@@ -27,9 +27,9 @@ class GetBatchResponse(TypedDict, closed=True):
     name: NotRequired["capo_omics.types.batch_name.BatchName"]
     """<p>The optional user-friendly name of the batch.</p>"""
     status: NotRequired["capo_omics.types.batch_status.BatchStatus"]
-    """<p>The current status of the run batch. Possible values: <code>CREATING</code> (initial setup), <code>PENDING</code> (ready to submit runs), <code>SUBMITTING</code> (submitting runs), <code>INPROGRESS</code> (runs executing), <code>STOPPING</code> (cancellation in progress), <code>PROCESSED</code> (all runs completed), <code>CANCELLED</code> (batch cancelled), <code>FAILED</code> (batch failed), <code>RUNS_DELETING</code> (deleting runs), <code>RUNS_DELETED</code> (runs deleted).</p>"""
+    """<p>The current status of the run batch. Possible values: <code>CREATING</code> (initial setup), <code>PENDING</code> (ready to submit runs), <code>SUBMITTING</code> (submitting runs), <code>INPROGRESS</code> (runs executing), <code>STOPPING</code> (cancellation in progress), <code>PROCESSED</code> (all runs completed), <code>CANCELLED</code> (batch cancelled), <code>FAILED</code> (batch failed), <code>RUNS_DELETING</code> (deleting runs), <code>RUNS_DELETE_FAILED</code> (run deletion failed for some or all runs), <code>RUNS_DELETED</code> (runs deleted).</p>"""
     tags: NotRequired["capo_omics.types.tag_map.TagMap"]
-    """<p>AWS tags associated with the run batch.</p>"""
+    """<p>Amazon Web Services tags associated with the run batch.</p>"""
     total_runs: NotRequired["int"]
     """<p>The total number of runs in the batch.</p>"""
     default_run_setting: NotRequired[

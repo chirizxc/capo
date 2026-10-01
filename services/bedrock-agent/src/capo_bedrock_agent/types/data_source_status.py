@@ -6,6 +6,9 @@ DataSourceStatus: TypeAlias = Literal[
     "AVAILABLE",
     "DELETING",
     "DELETE_UNSUCCESSFUL",
+    "CREATING",
+    "UPDATING",
+    "FAILED",
 ]
 
 

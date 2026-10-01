@@ -27,7 +27,7 @@ class ImprovementSummary(TypedDict, closed=True):
     improvement_plans: NotRequired[
         "capo_wellarchitected.types.choice_improvement_plans.ChoiceImprovementPlans"
     ]
-    """<p>The improvement plan details.</p>"""
+    """<p>The improvement plan details.</p> <p>This value is only applicable to custom lenses.</p>"""
     jira_configuration: NotRequired[
         "capo_wellarchitected.types.jira_configuration.JiraConfiguration"
     ]

@@ -20,6 +20,7 @@ import capo_elastic_beanstalk.types.application_version_description
 import capo_elastic_beanstalk.types.application_version_description_message
 import capo_elastic_beanstalk.types.build_configuration
 import capo_elastic_beanstalk.types.create_application_version_message
+import capo_elastic_beanstalk.types.image_configuration
 import capo_elastic_beanstalk.types.s3_location
 import capo_elastic_beanstalk.types.source_build_information
 import capo_elastic_beanstalk.types.tags

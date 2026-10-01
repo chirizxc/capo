@@ -18,6 +18,7 @@ import capo_healthlake.errors.resource_not_found_exception
 import capo_healthlake.errors.throttling_exception
 import capo_healthlake.errors.validation_exception
 import capo_healthlake.types.analytics_configuration
+import capo_healthlake.types.backup_configuration
 import capo_healthlake.types.datastore_properties
 import capo_healthlake.types.identity_provider_configuration
 import capo_healthlake.types.nlp_configuration

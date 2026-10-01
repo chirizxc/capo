@@ -11,8 +11,10 @@ if TYPE_CHECKING:
     import capo_cloudformation.types.change_set_name
     import capo_cloudformation.types.change_set_type
     import capo_cloudformation.types.client_token
+    import capo_cloudformation.types.deployment_config
     import capo_cloudformation.types.deployment_mode
     import capo_cloudformation.types.description
+    import capo_cloudformation.types.disable_validation
     import capo_cloudformation.types.import_existing_resources
     import capo_cloudformation.types.include_nested_stacks
     import capo_cloudformation.types.notification_ar_ns
@@ -92,6 +94,14 @@ class CreateChangeSetInput(TypedDict, closed=True):
         "capo_cloudformation.types.deployment_mode.DeploymentMode"
     ]
     r"""<p>Determines how CloudFormation handles configuration drift during deployment.</p> <ul> <li> <p> <code>REVERT_DRIFT</code> – Creates a drift-aware change set that brings actual resource states in line with template definitions. Provides a three-way comparison between actual state, previous deployment state, and desired state.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/drift-aware-change-sets.html\">Using drift-aware change sets</a> in the <i>CloudFormation User Guide</i>.</p>"""
+    deployment_config: NotRequired[
+        "capo_cloudformation.types.deployment_config.DeploymentConfig"
+    ]
+    """<p>The deployment configuration for this stack operation, including the deployment mode.</p>"""
+    disable_validation: NotRequired[
+        "capo_cloudformation.types.disable_validation.DisableValidation"
+    ]
+    """<p> Set to <code>true</code> to disable pre-deployment validations in changeset or stack operations. </p> <p> Default: <code>false</code> </p>"""
 
 
 # --- awsQuery ser/de ---
@@ -193,6 +203,19 @@ def serialize_query(
 
         capo_cloudformation.types.deployment_mode.serialize_query(
             value["deployment_mode"], pairs, f"{key_prefix}DeploymentMode"
+        )
+    if "deployment_config" in value:
+        import capo_cloudformation.types.deployment_config
+
+        capo_cloudformation.types.deployment_config.serialize_query(
+            value["deployment_config"], pairs, f"{key_prefix}DeploymentConfig"
+        )
+    if "disable_validation" in value:
+        pairs.append(
+            (
+                f"{key_prefix}DisableValidation",
+                "true" if value["disable_validation"] else "false",
+            )
         )
 
 
@@ -316,4 +339,18 @@ def deserialize_query(el: Element) -> CreateChangeSetInput:
                 child_deployment_mode
             )
         )
+    child_deployment_config = el.find("DeploymentConfig")
+    if child_deployment_config is not None:
+        import capo_cloudformation.types.deployment_config
+
+        out["deployment_config"] = (
+            capo_cloudformation.types.deployment_config.deserialize_query(
+                child_deployment_config
+            )
+        )
+    child_disable_validation = el.find("DisableValidation")
+    if child_disable_validation is not None:
+        out["disable_validation"] = (
+            child_disable_validation.text or ""
+        ).lower() == "true"
     return out

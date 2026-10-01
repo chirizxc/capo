@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     import capo_chime_sdk_voice.types.e164_phone_number
     import capo_chime_sdk_voice.types.guid_string
     import capo_chime_sdk_voice.types.iso8601_timestamp
+    import capo_chime_sdk_voice.types.non_empty_string
     import capo_chime_sdk_voice.types.phone_number_association_list
     import capo_chime_sdk_voice.types.phone_number_capabilities
     import capo_chime_sdk_voice.types.phone_number_name
@@ -29,6 +30,9 @@ class PhoneNumber(TypedDict, closed=True):
         "capo_chime_sdk_voice.types.e164_phone_number.E164PhoneNumber"
     ]
     """<p>The phone number, in E.164 format.</p>"""
+    phone_number_arn: NotRequired[
+        "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString"
+    ]
     country: NotRequired[
         "capo_chime_sdk_voice.types.alpha2_country_code.Alpha2CountryCode"
     ]
@@ -82,6 +86,8 @@ def serialize_json(value: PhoneNumber) -> dict:
         out["PhoneNumberId"] = value["phone_number_id"]
     if "e164_phone_number" in value:
         out["E164PhoneNumber"] = value["e164_phone_number"]
+    if "phone_number_arn" in value:
+        out["PhoneNumberArn"] = value["phone_number_arn"]
     if "country" in value:
         out["Country"] = value["country"]
     if "type" in value:
@@ -167,6 +173,8 @@ def deserialize_json(data: dict) -> PhoneNumber:
         out["phone_number_id"] = data["PhoneNumberId"]
     if data.get("E164PhoneNumber") is not None:
         out["e164_phone_number"] = data["E164PhoneNumber"]
+    if data.get("PhoneNumberArn") is not None:
+        out["phone_number_arn"] = data["PhoneNumberArn"]
     if data.get("Country") is not None:
         out["country"] = data["Country"]
     if data.get("Type") is not None:

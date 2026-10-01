@@ -8,6 +8,7 @@ from capo_sesv2.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_sesv2.types.amazon_resource_name
+    import capo_sesv2.types.configuration_overrides
     import capo_sesv2.types.configuration_set_name
     import capo_sesv2.types.destination
     import capo_sesv2.types.email_address
@@ -56,6 +57,10 @@ class SendEmailRequest(TypedDict, closed=True):
         "capo_sesv2.types.list_management_options.ListManagementOptions"
     ]
     """<p>An object used to specify a list or topic to which an email belongs, which will be used when a contact chooses to unsubscribe.</p>"""
+    configuration_overrides: NotRequired[
+        "capo_sesv2.types.configuration_overrides.ConfigurationOverrides"
+    ]
+    """<p>An object that overrides, for this message only, settings that would otherwise apply to it. Each setting that you don't override keeps the value that already applies.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -106,6 +111,14 @@ def serialize_json(value: SendEmailRequest) -> dict:
         out["ListManagementOptions"] = (
             capo_sesv2.types.list_management_options.serialize_json(
                 value["list_management_options"]
+            )
+        )
+    if "configuration_overrides" in value:
+        import capo_sesv2.types.configuration_overrides
+
+        out["ConfigurationOverrides"] = (
+            capo_sesv2.types.configuration_overrides.serialize_json(
+                value["configuration_overrides"]
             )
         )
     return out
@@ -165,6 +178,14 @@ def deserialize_json(data: dict) -> SendEmailRequest:
         out["list_management_options"] = (
             capo_sesv2.types.list_management_options.deserialize_json(
                 data["ListManagementOptions"]
+            )
+        )
+    if data.get("ConfigurationOverrides") is not None:
+        import capo_sesv2.types.configuration_overrides
+
+        out["configuration_overrides"] = (
+            capo_sesv2.types.configuration_overrides.deserialize_json(
+                data["ConfigurationOverrides"]
             )
         )
     return out

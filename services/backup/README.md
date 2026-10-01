@@ -29,8 +29,8 @@ from capo_backup import AsyncBackupClient
 
 async def main():
     async with AsyncBackupClient() as backup:
-        # Example: paginate over list_backup_jobs
-        async for item in backup.iter_list_backup_jobs():
+        # Example: paginate over list_backup_access_points
+        async for item in backup.iter_list_backup_access_points():
             print(item)
 ```
 

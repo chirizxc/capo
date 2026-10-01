@@ -14,6 +14,7 @@ import capo_cloudformation._protocol.eventstream
 import capo_cloudformation.errors.insufficient_capabilities_exception
 import capo_cloudformation.errors.token_already_exists_exception
 import capo_cloudformation.types.capabilities
+import capo_cloudformation.types.deployment_config
 import capo_cloudformation.types.notification_ar_ns
 import capo_cloudformation.types.parameters
 import capo_cloudformation.types.resource_types

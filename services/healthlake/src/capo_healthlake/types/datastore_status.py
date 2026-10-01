@@ -2,6 +2,7 @@
 
 from typing import Literal, TypeAlias, cast
 
+"""The status of a data store."""
 DatastoreStatus: TypeAlias = Literal[
     "CREATING",
     "ACTIVE",

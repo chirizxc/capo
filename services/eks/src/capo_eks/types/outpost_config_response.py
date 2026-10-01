@@ -8,6 +8,7 @@ from capo_eks.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_eks.types.control_plane_placement_response
+    import capo_eks.types.etcd_placement_response
     import capo_eks.types.string
     import capo_eks.types.string_list
 
@@ -16,11 +17,17 @@ class OutpostConfigResponse(TypedDict, closed=True):
     outpost_arns: "capo_eks.types.string_list.StringList"
     """<p>The ARN of the Outpost that you specified for use with your local Amazon EKS cluster on Outposts.</p>"""
     control_plane_instance_type: "capo_eks.types.string.String"
-    """<p>The Amazon EC2 instance type used for the control plane. The instance type is the same for all control plane instances.</p>"""
+    """<p>The Amazon EC2 instance type for the Kubernetes control plane instances of your local Amazon EKS cluster on Amazon Web Services Outposts. The instance type is the same for all control plane instances.</p>"""
     control_plane_placement: NotRequired[
         "capo_eks.types.control_plane_placement_response.ControlPlanePlacementResponse"
     ]
     r"""<p>An object representing the placement configuration for all the control plane instances of your local Amazon EKS cluster on an Amazon Web Services Outpost. For more information, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/eks-outposts-capacity-considerations.html\">Capacity considerations</a> in the <i>Amazon EKS User Guide</i>.</p>"""
+    etcd_instance_type: NotRequired["capo_eks.types.string.String"]
+    """<p>The Amazon EC2 instance type for etcd instances of your local Amazon EKS cluster on Amazon Web Services Outposts. The instance type is the same for all etcd instances.</p>"""
+    etcd_placement: NotRequired[
+        "capo_eks.types.etcd_placement_response.EtcdPlacementResponse"
+    ]
+    r"""<p>An object representing the placement configuration for the etcd instances of your local Amazon EKS cluster on an Amazon Web Services Outpost. For more information, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/eks-outposts-capacity-considerations.html\">Capacity considerations</a> in the <i>Amazon EKS User Guide</i>.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -39,6 +46,14 @@ def serialize_json(value: OutpostConfigResponse) -> dict:
             capo_eks.types.control_plane_placement_response.serialize_json(
                 value["control_plane_placement"]
             )
+        )
+    if "etcd_instance_type" in value:
+        out["etcdInstanceType"] = value["etcd_instance_type"]
+    if "etcd_placement" in value:
+        import capo_eks.types.etcd_placement_response
+
+        out["etcdPlacement"] = capo_eks.types.etcd_placement_response.serialize_json(
+            value["etcd_placement"]
         )
     return out
 
@@ -66,5 +81,13 @@ def deserialize_json(data: dict) -> OutpostConfigResponse:
             capo_eks.types.control_plane_placement_response.deserialize_json(
                 data["controlPlanePlacement"]
             )
+        )
+    if data.get("etcdInstanceType") is not None:
+        out["etcd_instance_type"] = data["etcdInstanceType"]
+    if data.get("etcdPlacement") is not None:
+        import capo_eks.types.etcd_placement_response
+
+        out["etcd_placement"] = capo_eks.types.etcd_placement_response.deserialize_json(
+            data["etcdPlacement"]
         )
     return out

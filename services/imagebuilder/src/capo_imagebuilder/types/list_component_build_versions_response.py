@@ -16,7 +16,7 @@ class ListComponentBuildVersionsResponse(TypedDict, closed=True):
     component_summary_list: NotRequired[
         "capo_imagebuilder.types.component_summary_list.ComponentSummaryList"
     ]
-    """<p>The list of component summaries for the specified semantic version.</p>"""
+    """<p>The list of component summaries. Each summary represents one build version of the specified component version, or of the components that your account owns if you didn't specify an ARN. Deprecated build versions aren't included.</p>"""
     next_token: NotRequired["capo_imagebuilder.types.pagination_token.PaginationToken"]
     """<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service hasn't included in this request. Use this token with the next request to retrieve additional objects.</p>"""
 

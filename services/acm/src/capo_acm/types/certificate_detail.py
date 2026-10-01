@@ -5,7 +5,9 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_acm.types.acme_account_id
     import capo_acm.types.arn
+    import capo_acm.types.certificate_key_pair_origin
     import capo_acm.types.certificate_managed_by
     import capo_acm.types.certificate_options
     import capo_acm.types.certificate_status
@@ -23,6 +25,7 @@ if TYPE_CHECKING:
     import capo_acm.types.revocation_reason
     import capo_acm.types.string
     import capo_acm.types.t_stamp
+    import capo_acm.types.update_summary
 
 
 class CertificateDetail(TypedDict, closed=True):
@@ -87,7 +90,17 @@ class CertificateDetail(TypedDict, closed=True):
     ]
     """<p>Specifies whether the certificate is eligible for renewal. At this time, only exported private certificates can be renewed with the <a>RenewCertificate</a> command.</p>"""
     options: NotRequired["capo_acm.types.certificate_options.CertificateOptions"]
-    """<p>Value that specifies whether to add the certificate to a transparency log. Certificate transparency makes it possible to detect SSL certificates that have been mistakenly or maliciously issued. A browser might respond to certificate that has not been logged by showing an error message. The logs are cryptographically secure. </p>"""
+    """<p>Contains the certificate options. Certificate transparency logging opt-out is no longer available. All public certificates are recorded in a certificate transparency log.</p>"""
+    update_summary: NotRequired["capo_acm.types.update_summary.UpdateSummary"]
+    """<p>Contains information about the most recent update to the certificate. This field exists only when the certificate type is <code>AMAZON_ISSUED</code> and a certificate update has been requested.</p>"""
+    certificate_key_pair_origin: NotRequired[
+        "capo_acm.types.certificate_key_pair_origin.CertificateKeyPairOrigin"
+    ]
+    """<p>The origin of the certificate's key pair.</p>"""
+    acme_endpoint_arn: NotRequired["capo_acm.types.arn.Arn"]
+    """<p>The ARN of the ACME endpoint used to issue the certificate.</p>"""
+    acme_account_id: NotRequired["capo_acm.types.acme_account_id.AcmeAccountId"]
+    """<p>The ACME account identifier associated with the certificate.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -237,6 +250,24 @@ def serialize_aws_json_1_1(value: CertificateDetail) -> dict:
         out["Options"] = capo_acm.types.certificate_options.serialize_aws_json_1_1(
             value["options"]
         )
+    if "update_summary" in value:
+        import capo_acm.types.update_summary
+
+        out["UpdateSummary"] = capo_acm.types.update_summary.serialize_aws_json_1_1(
+            value["update_summary"]
+        )
+    if "certificate_key_pair_origin" in value:
+        import capo_acm.types.certificate_key_pair_origin
+
+        out["CertificateKeyPairOrigin"] = (
+            capo_acm.types.certificate_key_pair_origin.serialize_aws_json_1_1(
+                value["certificate_key_pair_origin"]
+            )
+        )
+    if "acme_endpoint_arn" in value:
+        out["AcmeEndpointArn"] = value["acme_endpoint_arn"]
+    if "acme_account_id" in value:
+        out["AcmeAccountId"] = value["acme_account_id"]
     return out
 
 
@@ -390,4 +421,22 @@ def deserialize_aws_json_1_1(data: dict) -> CertificateDetail:
         out["options"] = capo_acm.types.certificate_options.deserialize_aws_json_1_1(
             data["Options"]
         )
+    if data.get("UpdateSummary") is not None:
+        import capo_acm.types.update_summary
+
+        out["update_summary"] = capo_acm.types.update_summary.deserialize_aws_json_1_1(
+            data["UpdateSummary"]
+        )
+    if data.get("CertificateKeyPairOrigin") is not None:
+        import capo_acm.types.certificate_key_pair_origin
+
+        out["certificate_key_pair_origin"] = (
+            capo_acm.types.certificate_key_pair_origin.deserialize_aws_json_1_1(
+                data["CertificateKeyPairOrigin"]
+            )
+        )
+    if data.get("AcmeEndpointArn") is not None:
+        out["acme_endpoint_arn"] = data["AcmeEndpointArn"]
+    if data.get("AcmeAccountId") is not None:
+        out["acme_account_id"] = data["AcmeAccountId"]
     return out

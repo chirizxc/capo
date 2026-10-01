@@ -20,16 +20,23 @@ if TYPE_CHECKING:
     import capo_elementalinference.types.create_feed_request
     import capo_elementalinference.types.create_feed_response
     import capo_elementalinference.types.create_output_list
+    import capo_elementalinference.types.delete_feed_policy_request
     import capo_elementalinference.types.delete_feed_request
     import capo_elementalinference.types.delete_feed_response
     import capo_elementalinference.types.disassociate_feed_request
     import capo_elementalinference.types.disassociate_feed_response
     import capo_elementalinference.types.feed_id
     import capo_elementalinference.types.feed_summary
+    import capo_elementalinference.types.get_feed_policy_request
+    import capo_elementalinference.types.get_feed_policy_response
     import capo_elementalinference.types.get_feed_request
     import capo_elementalinference.types.get_feed_response
+    import capo_elementalinference.types.iam_role_arn
     import capo_elementalinference.types.list_feeds_request
     import capo_elementalinference.types.list_feeds_response
+    import capo_elementalinference.types.policy_document
+    import capo_elementalinference.types.put_feed_policy_request
+    import capo_elementalinference.types.put_feed_policy_response
     import capo_elementalinference.types.resource_name
     import capo_elementalinference.types.tag_map
     import capo_elementalinference.types.update_feed_request
@@ -55,12 +62,16 @@ class FeedResource:
         outputs: "capo_elementalinference.types.create_output_list.CreateOutputList",
         *,
         config_overrides: Optional[ElementalInferenceClientConfig] = None,
+        access_role_arn: Optional[
+            "capo_elementalinference.types.iam_role_arn.IamRoleArn"
+        ] = None,
         tags: Optional["capo_elementalinference.types.tag_map.TagMap"] = None,
     ) -> "capo_elementalinference.types.create_feed_response.CreateFeedResponse":
         """<p>Creates a feed. The feed is the target for the live media stream that is being sent by the calling application. An example of a calling application is AWS Elemental MediaLive. </p> <p>The key contents of the feed is an array of outputs. Each output represents an Elemental Inference feature. After you create the feed, you must associate a resource with the feed. At that point, you will have a useable feed: resource - feed - output or outputs. </p>
 
         Args:
             name: <p>A user-friendly name for this feed.</p>
+            access_role_arn: <p>The ARN of an IAM role that Elemental Inference assumes to access resources in your account on your behalf. For example, the smart crop feature uses this role to read graphics-compositing templates from your Amazon S3 bucket. You specify one access role for each feed. </p>
             outputs: <p>An array of outputs for this feed. Each output represents a specific Elemental Inference feature. For example, there is one output type for the smart crop feature. You must specify at least one output, but you can later add outputs using AssociateFeed, or add, modify, and delete outputs using UpdateFeed. </p>
             tags: <p>Optional tags. You can also add tags later, using TagResource.</p>
 
@@ -93,6 +104,8 @@ class FeedResource:
             "name": name,
             "outputs": outputs,
         }
+        if access_role_arn is not None:
+            input_["access_role_arn"] = access_role_arn
         if tags is not None:
             input_["tags"] = tags
 
@@ -157,11 +170,15 @@ class FeedResource:
         outputs: "capo_elementalinference.types.update_output_list.UpdateOutputList",
         *,
         config_overrides: Optional[ElementalInferenceClientConfig] = None,
+        access_role_arn: Optional[
+            "capo_elementalinference.types.iam_role_arn.IamRoleArn"
+        ] = None,
     ) -> "capo_elementalinference.types.update_feed_response.UpdateFeedResponse":
         """<p>Updates the name and/or outputs in a feed. </p> <p>UpdateFeed is a PUT operation, which means that the payload that you specify completely overwrites the existing payload. </p> <p>This means that if you want to touch the array of outputs, you must pass in the full new list. So you must omit outputs you want to delete, and include outputs you want to add or modify. </p> <p>If you want to patch the array of outputs to make selective additions, use AssociateFeed. </p>
 
         Args:
             name: <p>Required. You can specify the existing name (to leave it unchanged) or a new name. </p>
+            access_role_arn: <p>The ARN of an IAM role that Elemental Inference assumes to access resources in your account on your behalf. You can specify the existing role (to leave it unchanged) or a new role. You specify one access role for each feed. </p>
             id: <p>The ID of the feed to update.</p>
             outputs: <p>Required. You can specify the existing array of outputs (to leave outputs unchanged) or you can specify a new array. </p>
 
@@ -196,6 +213,8 @@ class FeedResource:
             "id": id,
             "outputs": outputs,
         }
+        if access_role_arn is not None:
+            input_["access_role_arn"] = access_role_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -363,6 +382,51 @@ class FeedResource:
         response.response.close()
         return response.output
 
+    def delete_feed_policy(
+        self,
+        id: "capo_elementalinference.types.feed_id.FeedId",
+        *,
+        config_overrides: Optional[ElementalInferenceClientConfig] = None,
+    ) -> None:
+        """<p>Deletes the resource-based policy attached to the specified feed. After you delete the policy, the operation revokes the cross-account access that the policy granted. </p>
+
+        Args:
+            id: <p>The ID of the feed whose policy you want to delete.</p>
+
+        Raises:
+            capo_elementalinference.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_elementalinference.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error occurred. This is a temporary condition and the request can be retried. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the action doesn't exist.</p>
+            capo_elementalinference.errors.too_many_request_exception.TooManyRequestException: <p>The request was denied due to request throttling. Too many requests have been made within a given time period. Reduce the frequency of requests and use exponential backoff when retrying. </p>
+            capo_elementalinference.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service. Check the error message for details about which parameter or field is invalid and correct the request before retrying. </p>
+            capo_elementalinference.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_elementalinference.types.delete_feed_policy_request.DeleteFeedPolicyRequest]",
+        ) -> OperationResponse[None]:
+            import capo_elementalinference._operations.elemental_inference.delete_feed_policy
+
+            output, http_response = (
+                capo_elementalinference._operations.elemental_inference.delete_feed_policy.delete_feed_policy(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_elementalinference.types.delete_feed_policy_request.DeleteFeedPolicyRequest = {
+            "id": id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def disassociate_feed(
         self,
         id: "capo_elementalinference.types.feed_id.FeedId",
@@ -418,6 +482,104 @@ class FeedResource:
         response.response.close()
         return response.output
 
+    def get_feed_policy(
+        self,
+        id: "capo_elementalinference.types.feed_id.FeedId",
+        *,
+        config_overrides: Optional[ElementalInferenceClientConfig] = None,
+    ) -> "capo_elementalinference.types.get_feed_policy_response.GetFeedPolicyResponse":
+        """<p>Retrieves the resource-based policy attached to the specified feed.</p>
+
+        Args:
+            id: <p>The ID of the feed whose policy you want to retrieve.</p>
+
+        Raises:
+            capo_elementalinference.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_elementalinference.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error occurred. This is a temporary condition and the request can be retried. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the action doesn't exist.</p>
+            capo_elementalinference.errors.too_many_request_exception.TooManyRequestException: <p>The request was denied due to request throttling. Too many requests have been made within a given time period. Reduce the frequency of requests and use exponential backoff when retrying. </p>
+            capo_elementalinference.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service. Check the error message for details about which parameter or field is invalid and correct the request before retrying. </p>
+            capo_elementalinference.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_elementalinference.types.get_feed_policy_request.GetFeedPolicyRequest]",
+        ) -> OperationResponse[
+            "capo_elementalinference.types.get_feed_policy_response.GetFeedPolicyResponse"
+        ]:
+            import capo_elementalinference._operations.elemental_inference.get_feed_policy
+
+            output, http_response = (
+                capo_elementalinference._operations.elemental_inference.get_feed_policy.get_feed_policy(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_elementalinference.types.get_feed_policy_request.GetFeedPolicyRequest = {
+            "id": id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def put_feed_policy(
+        self,
+        id: "capo_elementalinference.types.feed_id.FeedId",
+        policy: "capo_elementalinference.types.policy_document.PolicyDocument",
+        *,
+        config_overrides: Optional[ElementalInferenceClientConfig] = None,
+    ) -> "capo_elementalinference.types.put_feed_policy_response.PutFeedPolicyResponse":
+        """<p>Attaches or replaces a resource-based policy on the specified feed. A resource-based policy grants cross-account access to the feed. </p>
+
+        Args:
+            id: <p>The ID of the feed to attach the policy to.</p>
+            policy: <p>The resource-based policy document to attach to the feed.</p>
+
+        Raises:
+            capo_elementalinference.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_elementalinference.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict.</p>
+            capo_elementalinference.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error occurred. This is a temporary condition and the request can be retried. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the action doesn't exist.</p>
+            capo_elementalinference.errors.too_many_request_exception.TooManyRequestException: <p>The request was denied due to request throttling. Too many requests have been made within a given time period. Reduce the frequency of requests and use exponential backoff when retrying. </p>
+            capo_elementalinference.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service. Check the error message for details about which parameter or field is invalid and correct the request before retrying. </p>
+            capo_elementalinference.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_elementalinference.types.put_feed_policy_request.PutFeedPolicyRequest]",
+        ) -> OperationResponse[
+            "capo_elementalinference.types.put_feed_policy_response.PutFeedPolicyResponse"
+        ]:
+            import capo_elementalinference._operations.elemental_inference.put_feed_policy
+
+            output, http_response = (
+                capo_elementalinference._operations.elemental_inference.put_feed_policy.put_feed_policy(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_elementalinference.types.put_feed_policy_request.PutFeedPolicyRequest = {
+            "id": id,
+            "policy": policy,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
 
 class AsyncFeedResource:
     def __init__(self, service: AsyncElementalInferenceClient) -> None:
@@ -429,12 +591,16 @@ class AsyncFeedResource:
         outputs: "capo_elementalinference.types.create_output_list.CreateOutputList",
         *,
         config_overrides: Optional[AsyncElementalInferenceClientConfig] = None,
+        access_role_arn: Optional[
+            "capo_elementalinference.types.iam_role_arn.IamRoleArn"
+        ] = None,
         tags: Optional["capo_elementalinference.types.tag_map.TagMap"] = None,
     ) -> "capo_elementalinference.types.create_feed_response.CreateFeedResponse":
         """<p>Creates a feed. The feed is the target for the live media stream that is being sent by the calling application. An example of a calling application is AWS Elemental MediaLive. </p> <p>The key contents of the feed is an array of outputs. Each output represents an Elemental Inference feature. After you create the feed, you must associate a resource with the feed. At that point, you will have a useable feed: resource - feed - output or outputs. </p>
 
         Args:
             name: <p>A user-friendly name for this feed.</p>
+            access_role_arn: <p>The ARN of an IAM role that Elemental Inference assumes to access resources in your account on your behalf. For example, the smart crop feature uses this role to read graphics-compositing templates from your Amazon S3 bucket. You specify one access role for each feed. </p>
             outputs: <p>An array of outputs for this feed. Each output represents a specific Elemental Inference feature. For example, there is one output type for the smart crop feature. You must specify at least one output, but you can later add outputs using AssociateFeed, or add, modify, and delete outputs using UpdateFeed. </p>
             tags: <p>Optional tags. You can also add tags later, using TagResource.</p>
 
@@ -468,6 +634,8 @@ class AsyncFeedResource:
             "name": name,
             "outputs": outputs,
         }
+        if access_role_arn is not None:
+            input_["access_role_arn"] = access_role_arn
         if tags is not None:
             input_["tags"] = tags
 
@@ -533,11 +701,15 @@ class AsyncFeedResource:
         outputs: "capo_elementalinference.types.update_output_list.UpdateOutputList",
         *,
         config_overrides: Optional[AsyncElementalInferenceClientConfig] = None,
+        access_role_arn: Optional[
+            "capo_elementalinference.types.iam_role_arn.IamRoleArn"
+        ] = None,
     ) -> "capo_elementalinference.types.update_feed_response.UpdateFeedResponse":
         """<p>Updates the name and/or outputs in a feed. </p> <p>UpdateFeed is a PUT operation, which means that the payload that you specify completely overwrites the existing payload. </p> <p>This means that if you want to touch the array of outputs, you must pass in the full new list. So you must omit outputs you want to delete, and include outputs you want to add or modify. </p> <p>If you want to patch the array of outputs to make selective additions, use AssociateFeed. </p>
 
         Args:
             name: <p>Required. You can specify the existing name (to leave it unchanged) or a new name. </p>
+            access_role_arn: <p>The ARN of an IAM role that Elemental Inference assumes to access resources in your account on your behalf. You can specify the existing role (to leave it unchanged) or a new role. You specify one access role for each feed. </p>
             id: <p>The ID of the feed to update.</p>
             outputs: <p>Required. You can specify the existing array of outputs (to leave outputs unchanged) or you can specify a new array. </p>
 
@@ -573,6 +745,8 @@ class AsyncFeedResource:
             "id": id,
             "outputs": outputs,
         }
+        if access_role_arn is not None:
+            input_["access_role_arn"] = access_role_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -743,6 +917,52 @@ class AsyncFeedResource:
         await response.response.aclose()
         return response.output
 
+    async def delete_feed_policy(
+        self,
+        id: "capo_elementalinference.types.feed_id.FeedId",
+        *,
+        config_overrides: Optional[AsyncElementalInferenceClientConfig] = None,
+    ) -> None:
+        """<p>Deletes the resource-based policy attached to the specified feed. After you delete the policy, the operation revokes the cross-account access that the policy granted. </p>
+
+        Args:
+            id: <p>The ID of the feed whose policy you want to delete.</p>
+
+        Raises:
+            capo_elementalinference.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_elementalinference.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error occurred. This is a temporary condition and the request can be retried. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the action doesn't exist.</p>
+            capo_elementalinference.errors.too_many_request_exception.TooManyRequestException: <p>The request was denied due to request throttling. Too many requests have been made within a given time period. Reduce the frequency of requests and use exponential backoff when retrying. </p>
+            capo_elementalinference.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service. Check the error message for details about which parameter or field is invalid and correct the request before retrying. </p>
+            capo_elementalinference.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_elementalinference.types.delete_feed_policy_request.DeleteFeedPolicyRequest]",
+        ) -> AsyncOperationResponse[None]:
+            import capo_elementalinference._operations.elemental_inference.delete_feed_policy
+
+            (
+                output,
+                http_response,
+            ) = await capo_elementalinference._operations.elemental_inference.delete_feed_policy.async_delete_feed_policy(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_elementalinference.types.delete_feed_policy_request.DeleteFeedPolicyRequest = {
+            "id": id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def disassociate_feed(
         self,
         id: "capo_elementalinference.types.feed_id.FeedId",
@@ -790,6 +1010,106 @@ class AsyncFeedResource:
         }
         if dry_run is not None:
             input_["dry_run"] = dry_run
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_feed_policy(
+        self,
+        id: "capo_elementalinference.types.feed_id.FeedId",
+        *,
+        config_overrides: Optional[AsyncElementalInferenceClientConfig] = None,
+    ) -> "capo_elementalinference.types.get_feed_policy_response.GetFeedPolicyResponse":
+        """<p>Retrieves the resource-based policy attached to the specified feed.</p>
+
+        Args:
+            id: <p>The ID of the feed whose policy you want to retrieve.</p>
+
+        Raises:
+            capo_elementalinference.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_elementalinference.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error occurred. This is a temporary condition and the request can be retried. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the action doesn't exist.</p>
+            capo_elementalinference.errors.too_many_request_exception.TooManyRequestException: <p>The request was denied due to request throttling. Too many requests have been made within a given time period. Reduce the frequency of requests and use exponential backoff when retrying. </p>
+            capo_elementalinference.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service. Check the error message for details about which parameter or field is invalid and correct the request before retrying. </p>
+            capo_elementalinference.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_elementalinference.types.get_feed_policy_request.GetFeedPolicyRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_elementalinference.types.get_feed_policy_response.GetFeedPolicyResponse"
+        ]:
+            import capo_elementalinference._operations.elemental_inference.get_feed_policy
+
+            (
+                output,
+                http_response,
+            ) = await capo_elementalinference._operations.elemental_inference.get_feed_policy.async_get_feed_policy(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_elementalinference.types.get_feed_policy_request.GetFeedPolicyRequest = {
+            "id": id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def put_feed_policy(
+        self,
+        id: "capo_elementalinference.types.feed_id.FeedId",
+        policy: "capo_elementalinference.types.policy_document.PolicyDocument",
+        *,
+        config_overrides: Optional[AsyncElementalInferenceClientConfig] = None,
+    ) -> "capo_elementalinference.types.put_feed_policy_response.PutFeedPolicyResponse":
+        """<p>Attaches or replaces a resource-based policy on the specified feed. A resource-based policy grants cross-account access to the feed. </p>
+
+        Args:
+            id: <p>The ID of the feed to attach the policy to.</p>
+            policy: <p>The resource-based policy document to attach to the feed.</p>
+
+        Raises:
+            capo_elementalinference.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_elementalinference.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict.</p>
+            capo_elementalinference.errors.internal_server_error_exception.InternalServerErrorException: <p>An internal server error occurred. This is a temporary condition and the request can be retried. If the problem persists, contact AWS Support. </p>
+            capo_elementalinference.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource specified in the action doesn't exist.</p>
+            capo_elementalinference.errors.too_many_request_exception.TooManyRequestException: <p>The request was denied due to request throttling. Too many requests have been made within a given time period. Reduce the frequency of requests and use exponential backoff when retrying. </p>
+            capo_elementalinference.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service. Check the error message for details about which parameter or field is invalid and correct the request before retrying. </p>
+            capo_elementalinference.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_elementalinference.types.put_feed_policy_request.PutFeedPolicyRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_elementalinference.types.put_feed_policy_response.PutFeedPolicyResponse"
+        ]:
+            import capo_elementalinference._operations.elemental_inference.put_feed_policy
+
+            (
+                output,
+                http_response,
+            ) = await capo_elementalinference._operations.elemental_inference.put_feed_policy.async_put_feed_policy(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self._service.operation_options(config_overrides)
+        input_: capo_elementalinference.types.put_feed_policy_request.PutFeedPolicyRequest = {
+            "id": id,
+            "policy": policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

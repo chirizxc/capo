@@ -16,6 +16,7 @@ import capo_ec2.types.create_interruptible_capacity_reservation_allocation_resul
 import capo_ec2.types.interruptible_capacity_reservation_allocation_status
 import capo_ec2.types.interruption_type
 import capo_ec2.types.tag_specification_list
+import capo_ec2.types.zero_size_preference
 from capo_ec2._protocol.errors import parse_error_metadata
 from capo_ec2._protocol.xml import fromstring
 from capo_ec2._rule_engine._endpoint_rule_set import EndpointParams, resolve

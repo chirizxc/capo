@@ -16,8 +16,13 @@ import capo_geo_maps.errors.access_denied_exception
 import capo_geo_maps.errors.internal_server_exception
 import capo_geo_maps.errors.throttling_exception
 import capo_geo_maps.errors.validation_exception
+import capo_geo_maps.types.color_scheme
 import capo_geo_maps.types.get_static_map_request
 import capo_geo_maps.types.get_static_map_response
+import capo_geo_maps.types.label_size
+import capo_geo_maps.types.map_feature_mode
+import capo_geo_maps.types.scale_bar_unit
+import capo_geo_maps.types.static_map_style
 from capo_geo_maps._protocol.errors import parse_error_metadata_json
 from capo_geo_maps._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_geo_maps._services._pipeline import AsyncOperationOptions, OperationOptions
@@ -120,7 +125,13 @@ def build_request(
             Region=options.region,
         )
     )  # noqa: F841
-    url = endpoint.url.rstrip("/") + "/static/{FileName}"
+    import capo_geo_maps.types.color_scheme
+    import capo_geo_maps.types.label_size
+    import capo_geo_maps.types.map_feature_mode
+    import capo_geo_maps.types.scale_bar_unit
+    import capo_geo_maps.types.static_map_style
+
+    url = endpoint.url.rstrip("/") + "/v2/static/{FileName}"
     url = url.replace("{FileName}", quote(input_["file_name"], safe=""))
     params: list[tuple[str, str]] = []
     if "bounding_box" in input_:
@@ -130,7 +141,12 @@ def build_request(
     if "center" in input_:
         params.append(("center", input_["center"]))
     if "color_scheme" in input_:
-        params.append(("color-scheme", input_["color_scheme"]))
+        params.append(
+            (
+                "color-scheme",
+                capo_geo_maps.types.color_scheme.serialize_json(input_["color_scheme"]),
+            )
+        )
     if "compact_overlay" in input_:
         params.append(("compact-overlay", input_["compact_overlay"]))
     if "crop_labels" in input_:
@@ -142,7 +158,12 @@ def build_request(
     if "key" in input_:
         params.append(("key", input_["key"]))
     if "label_size" in input_:
-        params.append(("label-size", input_["label_size"]))
+        params.append(
+            (
+                "label-size",
+                capo_geo_maps.types.label_size.serialize_json(input_["label_size"]),
+            )
+        )
     if "language" in input_:
         params.append(("lang", input_["language"]))
     if "padding" in input_:
@@ -150,13 +171,32 @@ def build_request(
     if "political_view" in input_:
         params.append(("political-view", input_["political_view"]))
     if "points_of_interests" in input_:
-        params.append(("pois", input_["points_of_interests"]))
+        params.append(
+            (
+                "pois",
+                capo_geo_maps.types.map_feature_mode.serialize_json(
+                    input_["points_of_interests"]
+                ),
+            )
+        )
     if "radius" in input_:
         params.append(("radius", str(input_["radius"])))
     if "scale_bar_unit" in input_:
-        params.append(("scale-unit", input_["scale_bar_unit"]))
+        params.append(
+            (
+                "scale-unit",
+                capo_geo_maps.types.scale_bar_unit.serialize_json(
+                    input_["scale_bar_unit"]
+                ),
+            )
+        )
     if "style" in input_:
-        params.append(("style", input_["style"]))
+        params.append(
+            (
+                "style",
+                capo_geo_maps.types.static_map_style.serialize_json(input_["style"]),
+            )
+        )
     if "width" in input_:
         params.append(("width", str(input_["width"])))
     if "zoom" in input_:

@@ -2,7 +2,10 @@
 
 from typing import Literal, TypeAlias, cast
 
-DatasetSourceFormat: TypeAlias = Literal["KNOWLEDGE_BASE",]
+DatasetSourceFormat: TypeAlias = Literal[
+    "KNOWLEDGE_BASE",
+    "TIMESERIES",
+]
 
 
 # --- restJson1 ser/de ---

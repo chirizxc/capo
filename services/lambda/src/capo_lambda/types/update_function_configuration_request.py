@@ -38,7 +38,7 @@ class UpdateFunctionConfigurationRequest(TypedDict, closed=True):
     description: NotRequired["capo_lambda.types.description.Description"]
     """<p>A description of the function.</p>"""
     timeout: NotRequired["capo_lambda.types.timeout.Timeout"]
-    r"""<p>The amount of time (in seconds) that Lambda allows a function to run before stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html\">Lambda execution environment</a>.</p>"""
+    r"""<p>The amount of time (in seconds) that Lambda allows a function to run before stopping it. The default is 3 seconds, and the maximum allowed value is 900 seconds. For functions using Lambda Managed Instances, asynchronous invocations and event source mapping invocations (except Amazon MQ and Amazon DocumentDB) support a maximum allowed value of 5,400 seconds (90 minutes). For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html\">Lambda execution environment</a>.</p>"""
     memory_size: NotRequired["capo_lambda.types.memory_size.MemorySize"]
     r"""<p>The amount of <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-memory-console\">memory available to the function</a> at runtime. Increasing the function memory also increases its CPU allocation. The default value is 128 MB. The value can be any multiple of 1 MB.</p>"""
     vpc_config: NotRequired["capo_lambda.types.vpc_config.VpcConfig"]

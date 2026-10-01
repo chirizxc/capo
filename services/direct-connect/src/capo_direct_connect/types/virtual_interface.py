@@ -20,6 +20,8 @@ if TYPE_CHECKING:
     import capo_direct_connect.types.long_asn
     import capo_direct_connect.types.mtu
     import capo_direct_connect.types.owner_account
+    import capo_direct_connect.types.prefix_pool_allocated_count
+    import capo_direct_connect.types.rate_limit
     import capo_direct_connect.types.region
     import capo_direct_connect.types.route_filter_prefix_list
     import capo_direct_connect.types.router_config
@@ -55,9 +57,9 @@ class VirtualInterface(TypedDict, closed=True):
     vlan: "capo_direct_connect.types.vlan.VLAN"
     """<p>The ID of the VLAN.</p>"""
     asn: "capo_direct_connect.types.asn.ASN"
-    """<p>The autonomous system number (ASN). The valid range is from 1 to 2147483646 for Border Gateway Protocol (BGP) configuration. If you provide a number greater than the maximum, an error is returned. Use <code>asnLong</code> instead.</p> <note> <p>You can use <code>asnLong</code> or <code>asn</code>, but not both. We recommend using <code>asnLong</code> as it supports a greater pool of numbers. </p> <ul> <li> <p>The <code>asnLong</code> attribute accepts both ASN and long ASN ranges.</p> </li> <li> <p>If you provide a value in the same API call for both <code>asn</code> and <code>asnLong</code>, the API will only accept the value for <code>asnLong</code>.</p> </li> </ul> </note>"""
+    """<p>The autonomous system number (ASN). The valid range is from 1 to 2147483646 for Border Gateway Protocol (BGP) configuration. If you provide a number greater than the maximum, an error is returned. Use <code>asnLong</code> instead.</p> <ul> <li> <p>You can use <code>asnLong</code> or <code>asn</code>, but not both. We recommend using <code>asnLong</code> as it supports a greater pool of numbers. </p> </li> <li> <p>If you provide a value in the same API call for both <code>asn</code> and <code>asnLong</code>, the API will only accept the value for <code>asnLong</code>. </p> </li> <li> <p>If you enter a 4-byte ASN for the <code>asn</code> parameter, the API returns an error. </p> </li> <li> <p>If you are using a 2-byte ASN, the API response will include the 2-byte value for both the <code>asn</code> and <code>asnLong</code> fields.</p> </li> </ul>"""
     asn_long: NotRequired["capo_direct_connect.types.long_asn.LongAsn"]
-    """<p>The long ASN for the virtual interface. The valid range is from 1 to 4294967294 for BGP configuration.</p> <note> <p>You can use <code>asnLong</code> or <code>asn</code>, but not both. We recommend using <code>asnLong</code> as it supports a greater pool of numbers. </p> <ul> <li> <p>The <code>asnLong</code> attribute accepts both ASN and long ASN ranges.</p> </li> <li> <p>If you provide a value in the same API call for both <code>asn</code> and <code>asnLong</code>, the API will only accept the value for <code>asnLong</code>.</p> </li> </ul> </note>"""
+    """<p>The long ASN for the virtual interface. The valid range is from 1 to 4294967294 for BGP configuration.</p> <p>Note the following limitations when using <code>asnLong</code>:</p> <ul> <li> <p>You can use <code>asnLong</code> or <code>asn</code>, but not both. We recommend using <code>asnLong</code> as it supports a greater pool of numbers. </p> </li> <li> <p> <code>asnLong</code> accepts any valid ASN value, regardless if it's 2-byte or 4-byte. </p> </li> <li> <p>When using a 4-byte <code>asnLong</code>, the API response returns <code>0</code> for the legacy <code>asn</code> attribute since 4-byte ASN values exceed the maximum supported value of 2,147,483,647.</p> </li> <li> <p>If you are using a 2-byte ASN, the API response will include the 2-byte value for both the <code>asn</code> and <code>asnLong</code> fields.</p> </li> <li> <p>If you provide a value in the same API call for both <code>asn</code> and <code>asnLong</code>, the API will only accept the value for <code>asnLong</code>.</p> </li> </ul>"""
     amazon_side_asn: NotRequired["capo_direct_connect.types.long_asn.LongAsn"]
     """<p>The autonomous system number (AS) for the Amazon side of the connection.</p>"""
     auth_key: NotRequired["capo_direct_connect.types.bgp_auth_key.BGPAuthKey"]
@@ -116,6 +118,16 @@ class VirtualInterface(TypedDict, closed=True):
         "capo_direct_connect.types.site_link_enabled.SiteLinkEnabled"
     ]
     """<p>Indicates whether SiteLink is enabled.</p>"""
+    prefix_pool_allocated_count_ipv4: NotRequired[
+        "capo_direct_connect.types.prefix_pool_allocated_count.PrefixPoolAllocatedCount"
+    ]
+    """<p>The number of inbound IPv4 route prefixes allocated to the virtual interface. Not applicable to public virtual interfaces.</p>"""
+    prefix_pool_allocated_count_ipv6: NotRequired[
+        "capo_direct_connect.types.prefix_pool_allocated_count.PrefixPoolAllocatedCount"
+    ]
+    """<p>The number of inbound IPv6 route prefixes allocated to the virtual interface. Not applicable to public virtual interfaces.</p>"""
+    rate_limit: NotRequired["capo_direct_connect.types.rate_limit.RateLimit"]
+    """<p>The rate limit (bandwidth allocation) applied to the virtual interface. The value must be one of the supported bandwidth values and cannot exceed the bandwidth of the parent connection or LAG. Supported values: <code>50Mbps</code>, <code>100Mbps</code>, <code>200Mbps</code>, <code>300Mbps</code>, <code>400Mbps</code>, <code>500Mbps</code>, <code>600Mbps</code>, <code>700Mbps</code>, <code>800Mbps</code>, <code>900Mbps</code>, <code>1Gbps</code>, <code>1.2Gbps</code>, <code>1.5Gbps</code>, <code>1.8Gbps</code>, <code>2Gbps</code>, <code>2.1Gbps</code>, <code>2.4Gbps</code>, <code>2.7Gbps</code>, <code>3Gbps</code>, <code>3.2Gbps</code>, <code>3.6Gbps</code>, <code>4Gbps</code>, <code>5Gbps</code>, <code>6Gbps</code>, <code>7Gbps</code>, <code>8Gbps</code>, <code>9Gbps</code>, <code>10Gbps</code>, <code>12Gbps</code>, <code>15Gbps</code>, <code>18Gbps</code>, <code>20Gbps</code>, <code>21Gbps</code>, <code>24Gbps</code>, <code>27Gbps</code>, <code>30Gbps</code>, <code>32Gbps</code>, <code>36Gbps</code>, <code>40Gbps</code>, <code>50Gbps</code>, <code>60Gbps</code>, <code>70Gbps</code>, <code>80Gbps</code>, <code>100Gbps</code>, <code>120Gbps</code>, <code>150Gbps</code>, <code>180Gbps</code>, <code>200Gbps</code>, <code>210Gbps</code>, <code>240Gbps</code>, <code>270Gbps</code>, <code>300Gbps</code>, <code>320Gbps</code>, <code>360Gbps</code>, <code>400Gbps</code>, <code>450Gbps</code>, <code>480Gbps</code>, <code>500Gbps</code>, <code>540Gbps</code>, <code>600Gbps</code>, <code>700Gbps</code>, <code>800Gbps</code>, <code>900Gbps</code>, <code>1Tbps</code>, <code>1.1Tbps</code>, <code>1.2Tbps</code>, <code>1.3Tbps</code>, <code>1.4Tbps</code>, <code>1.5Tbps</code>, <code>1.6Tbps</code>.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -201,6 +213,12 @@ def serialize_aws_json_1_1(value: VirtualInterface) -> dict:
         )
     if "site_link_enabled" in value:
         out["siteLinkEnabled"] = value["site_link_enabled"]
+    if "prefix_pool_allocated_count_ipv4" in value:
+        out["prefixPoolAllocatedCountIpv4"] = value["prefix_pool_allocated_count_ipv4"]
+    if "prefix_pool_allocated_count_ipv6" in value:
+        out["prefixPoolAllocatedCountIpv6"] = value["prefix_pool_allocated_count_ipv6"]
+    if "rate_limit" in value:
+        out["rateLimit"] = value["rate_limit"]
     return out
 
 
@@ -292,4 +310,10 @@ def deserialize_aws_json_1_1(data: dict) -> VirtualInterface:
         )
     if data.get("siteLinkEnabled") is not None:
         out["site_link_enabled"] = data["siteLinkEnabled"]
+    if data.get("prefixPoolAllocatedCountIpv4") is not None:
+        out["prefix_pool_allocated_count_ipv4"] = data["prefixPoolAllocatedCountIpv4"]
+    if data.get("prefixPoolAllocatedCountIpv6") is not None:
+        out["prefix_pool_allocated_count_ipv6"] = data["prefixPoolAllocatedCountIpv6"]
+    if data.get("rateLimit") is not None:
+        out["rate_limit"] = data["rateLimit"]
     return out

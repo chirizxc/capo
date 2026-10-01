@@ -21,6 +21,8 @@ if TYPE_CHECKING:
     import capo_omics.types.run_request_id
     import capo_omics.types.run_retention_mode
     import capo_omics.types.run_role_arn
+    import capo_omics.types.scratch_storage_mode
+    import capo_omics.types.session_policy
     import capo_omics.types.storage_type
     import capo_omics.types.tag_map
     import capo_omics.types.workflow_id
@@ -37,7 +39,7 @@ class StartRunRequest(TypedDict, closed=True):
     run_id: NotRequired["capo_omics.types.run_id.RunId"]
     """<p>The ID of a run to duplicate.</p>"""
     role_arn: "capo_omics.types.run_role_arn.RunRoleArn"
-    """<p>A service role for the run. The <code>roleArn</code> requires access to Amazon Web Services HealthOmics, S3, Cloudwatch logs, and EC2. An example <code>roleArn</code> is <code>arn:aws:iam::123456789012:role/omics-service-role-serviceRole-W8O1XMPL7QZ</code>. In this example, the AWS account ID is <code>123456789012</code> and the role name is <code>omics-service-role-serviceRole-W8O1XMPL7QZ</code>.</p>"""
+    """<p>A service role for the run. The <code>roleArn</code> requires access to Amazon Web Services HealthOmics, S3, Cloudwatch logs, and EC2. An example <code>roleArn</code> is <code>arn:aws:iam::123456789012:role/omics-service-role-serviceRole-W8O1XMPL7QZ</code>. In this example, the Amazon Web Services account ID is <code>123456789012</code> and the role name is <code>omics-service-role-serviceRole-W8O1XMPL7QZ</code>.</p>"""
     name: NotRequired["capo_omics.types.run_name.RunName"]
     """<p>A name for the run. This is recommended to view and organize runs in the Amazon Web Services HealthOmics console and CloudWatch logs.</p>"""
     cache_id: NotRequired["capo_omics.types.numeric_id_in_arn.NumericIdInArn"]
@@ -72,10 +74,16 @@ class StartRunRequest(TypedDict, closed=True):
     r"""<p>The name of the workflow version. Use workflow versions to track and organize changes to the workflow. If your workflow has multiple versions, the run uses the default version unless you specify a version name. To learn more, see <a href=\"https://docs.aws.amazon.com/omics/latest/dev/workflow-versions.html\">Workflow versioning</a> in the <i>Amazon Web Services HealthOmics User Guide</i>.</p>"""
     networking_mode: NotRequired["capo_omics.types.networking_mode.NetworkingMode"]
     """<p>Optional configuration for run networking behavior. If not specified, this will default to RESTRICTED.</p>"""
+    scratch_storage_mode: NotRequired[
+        "capo_omics.types.scratch_storage_mode.ScratchStorageMode"
+    ]
+    """<p>Optional configuration for enabling scratch ephemeral storage mounted at /tmp. If not specified, this will default to SHARED. This configuration is applicable only for CPU tasks. For tasks using GPUs, scratch storage is always LOCAL.</p>"""
     configuration_name: NotRequired[
         "capo_omics.types.configuration_name.ConfigurationName"
     ]
     """<p>Optional configuration name to use for the workflow run.</p>"""
+    session_policy: NotRequired["capo_omics.types.session_policy.SessionPolicy"]
+    """Optional inline policy json for scoping down permissions via a session policy on the IAM role provided in the roleArn parameter."""
     engine_settings: NotRequired["capo_omics.types.engine_settings.EngineSettings"]
     """<p>Engine-specific settings for the workflow run. Use this field to specify configuration options that are specific to the workflow engine (for example, Nextflow profiles).</p>"""
 
@@ -122,8 +130,12 @@ def serialize_json(value: StartRunRequest) -> dict:
         out["workflowVersionName"] = value["workflow_version_name"]
     if "networking_mode" in value:
         out["networkingMode"] = value["networking_mode"]
+    if "scratch_storage_mode" in value:
+        out["scratchStorageMode"] = value["scratch_storage_mode"]
     if "configuration_name" in value:
         out["configurationName"] = value["configuration_name"]
+    if "session_policy" in value:
+        out["sessionPolicy"] = value["session_policy"]
     if "engine_settings" in value:
         out["engineSettings"] = value["engine_settings"]
     return out
@@ -179,8 +191,12 @@ def deserialize_json(data: dict) -> StartRunRequest:
         out["workflow_version_name"] = data["workflowVersionName"]
     if data.get("networkingMode") is not None:
         out["networking_mode"] = data["networkingMode"]
+    if data.get("scratchStorageMode") is not None:
+        out["scratch_storage_mode"] = data["scratchStorageMode"]
     if data.get("configurationName") is not None:
         out["configuration_name"] = data["configurationName"]
+    if data.get("sessionPolicy") is not None:
+        out["session_policy"] = data["sessionPolicy"]
     if data.get("engineSettings") is not None:
         out["engine_settings"] = data["engineSettings"]
     return out

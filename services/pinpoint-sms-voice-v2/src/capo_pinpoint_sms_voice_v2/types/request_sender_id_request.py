@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 
 class RequestSenderIdRequest(TypedDict, closed=True):
     sender_id: "capo_pinpoint_sms_voice_v2.types.sender_id.SenderId"
-    """<p>The sender ID string to request.</p>"""
+    """<p>The sender ID string to request. The sender ID can be 1-11 alphanumeric characters including letters (A-Z, a-z), numbers (0-9), or hyphens (-). The sender ID must contain at least one letter and cannot start or end with a hyphen.</p>"""
     iso_country_code: "capo_pinpoint_sms_voice_v2.types.iso_country_code.IsoCountryCode"
     """<p>The two-character code, in ISO 3166-1 alpha-2 format, for the country or region.</p>"""
     message_types: NotRequired[

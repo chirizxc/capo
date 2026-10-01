@@ -147,7 +147,7 @@ class ConnectContactLensClient:
             "capo_connect_contact_lens.types.next_token.NextToken"
         ] = None,
     ) -> "capo_connect_contact_lens.types.list_realtime_contact_analysis_segments_response.ListRealtimeContactAnalysisSegmentsResponse":
-        """<p>Provides a list of analysis segments for a real-time analysis session.</p>
+        """<p>Provides a list of analysis segments for a real-time analysis session for voice.</p> <note> <p>Voice data is retained for 24 hours. You must invoke this API during that time.</p> </note>
 
         Args:
             instance_id: <p>The identifier of the Amazon Connect instance.</p>

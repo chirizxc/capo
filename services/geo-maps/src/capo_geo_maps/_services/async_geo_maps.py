@@ -52,6 +52,8 @@ if TYPE_CHECKING:
     import capo_geo_maps.types.language_tag
     import capo_geo_maps.types.map_feature_mode
     import capo_geo_maps.types.map_style
+    import capo_geo_maps.types.poi_category_list
+    import capo_geo_maps.types.poi_density
     import capo_geo_maps.types.position_list_string
     import capo_geo_maps.types.position_string
     import capo_geo_maps.types.scale_bar_unit
@@ -300,7 +302,7 @@ class AsyncGeoMapsClient:
         style: Optional["capo_geo_maps.types.static_map_style.StaticMapStyle"] = None,
         zoom: Optional["capo_geo_maps.types.sensitive_float.SensitiveFloat"] = None,
     ) -> "capo_geo_maps.types.get_static_map_response.GetStaticMapResponse":
-        r"""<note> <p>This operation is not supported in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers. </p> </note> <p> <code>GetStaticMap</code> provides high-quality static map images with customizable options. You can modify the map's appearance and overlay additional information. It's an ideal solution for applications requiring tailored static map snapshots.</p> <p>For more information, see the following topics in the <i>Amazon Location Service Developer Guide</i>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/static-maps.html\">Static maps</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/customizing-static-maps.html\">Customize static maps</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/overlaying-static-map.html\">Overlay on the static map</a> </p> </li> </ul>
+        r"""<p> <code>GetStaticMap</code> provides high-quality static map images with customizable options. You can modify the map's appearance and overlay additional information. It's an ideal solution for applications requiring tailored static map snapshots. Not supported in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers.</p> <p>For more information, see the following topics in the <i>Amazon Location Service Developer Guide</i>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/static-maps.html\">Static maps</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/customizing-static-maps.html\">Customize static maps</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/overlaying-static-map.html\">Overlay on the static map</a> </p> </li> </ul>
 
         Args:
             bounding_box: <p>Takes in two pairs of coordinates in World Geodetic System (WGS 84) format: [longitude, latitude], denoting south-westerly and north-easterly edges of the image. The underlying area becomes the view of the image. </p> <p>Example: -123.17075,49.26959,-123.08125,49.31429</p>
@@ -412,6 +414,10 @@ class AsyncGeoMapsClient:
             "capo_geo_maps.types.travel_mode_list.TravelModeList"
         ] = None,
         buildings: Optional["capo_geo_maps.types.buildings.Buildings"] = None,
+        poi_density: Optional["capo_geo_maps.types.poi_density.PoiDensity"] = None,
+        poi_categories: Optional[
+            "capo_geo_maps.types.poi_category_list.PoiCategoryList"
+        ] = None,
         key: Optional["capo_geo_maps.types.api_key.ApiKey"] = None,
     ) -> "capo_geo_maps.types.get_style_descriptor_response.GetStyleDescriptorResponse":
         r"""<p> <code>GetStyleDescriptor</code> returns information about the style.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/styling-dynamic-maps.html\">Style dynamic maps</a> in the <i>Amazon Location Service Developer Guide</i>.</p>
@@ -425,6 +431,8 @@ class AsyncGeoMapsClient:
             traffic: <p>Displays real-time traffic information overlay on map, such as incident events and flow events. Not supported in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers.</p> <p>This parameter is valid for all map styles except <code>Satellite</code>.</p>
             travel_modes: <p>Renders additional map information relevant to selected travel modes. Information for multiple travel modes can be displayed simultaneously, although this increases the overall information density rendered on the map. Not supported in <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers.</p> <p>This parameter is valid for all map styles except <code>Satellite</code>.</p>
             buildings: <p>Adjusts how building details are rendered on the map.</p> <p>The following building styles are currently supported:</p> <ul> <li> <p> <code>Buildings3D</code>: Displays buildings as three-dimensional extrusions on the map.</p> </li> </ul> <p> <code>Buildings3D</code> is valid only for the <code>Standard</code> and <code>Monochrome</code> map styles.</p>
+            poi_density: <p>Controls how densely points of interest are rendered on the map. The density value controls the zoom level at which each category of points of interest appears, and how quickly less prominent points of interest are revealed as you zoom in. Denser values display more points of interest at lower zoom levels.</p> <p>Use <code>Off</code> to hide all points of interest. When you omit this parameter, the map renders at <code>Default</code> density.</p> <note> <p>The difference between density values is most noticeable at mid-range zoom levels. At high zoom levels, all density values converge on displaying every available point of interest.</p> </note> <p>This parameter is valid only for the <code>Standard</code> and <code>Hybrid</code> map styles. In <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, this parameter is valid only for the <code>Standard</code> map style.</p>
+            poi_categories: <p>Renders only the specified categories of points of interest. When you omit this parameter, the map renders all categories.</p> <p>The following categories are currently supported:</p> <ul> <li> <p> <code>FoodAndDrink</code> </p> </li> <li> <p> <code>Entertainment</code> </p> </li> <li> <p> <code>SightsAndMuseums</code> </p> </li> <li> <p> <code>Transportation</code> </p> </li> <li> <p> <code>Accommodations</code> </p> </li> <li> <p> <code>LeisureAndOutdoor</code> </p> </li> <li> <p> <code>Shopping</code> </p> </li> <li> <p> <code>BusinessAndServices</code> </p> </li> <li> <p> <code>FacilitiesAndBuildings</code> </p> </li> </ul> <p>Specify each category as a separate <code>poi-categories</code> query parameter. Duplicate values are rejected.</p> <note> <p>This parameter has no effect when <code>poi-density</code> is set to <code>Off</code>, which hides all points of interest regardless of category.</p> </note> <p>This parameter is valid only for the <code>Standard</code> and <code>Hybrid</code> map styles. In <code>ap-southeast-1</code> and <code>ap-southeast-5</code> regions for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/GrabMaps.html\">GrabMaps</a> customers, this parameter is valid only for the <code>Standard</code> map style.</p>
             key: <p>Optional: The API key to be used for authorization. Either an API key or valid SigV4 signature must be provided when making a request. </p>
 
         Raises:
@@ -464,6 +472,10 @@ class AsyncGeoMapsClient:
             input_["travel_modes"] = travel_modes
         if buildings is not None:
             input_["buildings"] = buildings
+        if poi_density is not None:
+            input_["poi_density"] = poi_density
+        if poi_categories is not None:
+            input_["poi_categories"] = poi_categories
         if key is not None:
             input_["key"] = key
 

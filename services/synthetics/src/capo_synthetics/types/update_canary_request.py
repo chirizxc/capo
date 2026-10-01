@@ -5,14 +5,17 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_synthetics.types.add_replica_locations
     import capo_synthetics.types.artifact_config_input
     import capo_synthetics.types.browser_configs
     import capo_synthetics.types.canary_code_input
     import capo_synthetics.types.canary_name
     import capo_synthetics.types.canary_run_config_input
     import capo_synthetics.types.canary_schedule_input
+    import capo_synthetics.types.kms_key_arn
     import capo_synthetics.types.max_size1024
     import capo_synthetics.types.provisioned_resource_cleanup_setting
+    import capo_synthetics.types.remove_replica_locations
     import capo_synthetics.types.role_arn
     import capo_synthetics.types.string
     import capo_synthetics.types.uuid
@@ -70,6 +73,16 @@ class UpdateCanaryRequest(TypedDict, closed=True):
     """<p>A list of visual reference configurations for the canary, one for each browser type that the canary is configured to run on. Visual references are used for visual monitoring comparisons.</p> <p> <code>syn-nodejs-puppeteer-11.0</code> and above, and <code>syn-nodejs-playwright-3.0</code> and above, only supports <code>visualReferences</code>. <code>visualReference</code> field is not supported.</p> <p>Versions older than <code>syn-nodejs-puppeteer-11.0</code> supports both <code>visualReference</code> and <code>visualReferences</code> for backward compatibility. It is recommended to use <code>visualReferences</code> for consistency and future compatibility.</p> <p>For multibrowser visual monitoring, you can update the baseline for all configured browsers in a single update call by specifying a list of VisualReference objects, one per browser. Each VisualReference object maps to a specific browser configuration, allowing you to manage visual baselines for multiple browsers simultaneously.</p> <p>For single configuration canaries using Chrome browser (default browser), use visualReferences for <code>syn-nodejs-puppeteer-11.0</code> and above, and <code>syn-nodejs-playwright-3.0</code> and above canaries. The browserType in the visualReference object is not mandatory.</p>"""
     browser_configs: NotRequired["capo_synthetics.types.browser_configs.BrowserConfigs"]
     """<p>A structure that specifies the browser type to use for a canary run. CloudWatch Synthetics supports running canaries on both <code>CHROME</code> and <code>FIREFOX</code> browsers.</p> <note> <p>If not specified, <code>browserConfigs</code> defaults to Chrome.</p> </note>"""
+    add_replica_locations: NotRequired[
+        "capo_synthetics.types.add_replica_locations.AddReplicaLocations"
+    ]
+    """<p>A list of locations (Amazon Web Services Regions) to add as replicas for the canary. Each location specifies a Region and optional VPC configuration for the replica. You can add up to 50 replica locations.</p>"""
+    remove_replica_locations: NotRequired[
+        "capo_synthetics.types.remove_replica_locations.RemoveReplicaLocations"
+    ]
+    """<p>A list of locations (Amazon Web Services Regions) to remove as replicas for the canary. You must specify at least one location to remove. All replicas can be removed in a single API call and you cannot remove the primary location.</p>"""
+    kms_key_arn: NotRequired["capo_synthetics.types.kms_key_arn.KmsKeyArn"]
+    """<p>The Amazon Resource Name (ARN) of the customer-managed AWS Key Management Service (AWS KMS) key used to encrypt the canary's AWS Lambda function environment variables at rest. If you don't specify a value, the service uses an AWS-managed key. If you omit this parameter, the service retains the existing value. To revert to the AWS-managed key, set this parameter to an empty string.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -149,6 +162,24 @@ def serialize_json(value: UpdateCanaryRequest) -> dict:
         out["BrowserConfigs"] = capo_synthetics.types.browser_configs.serialize_json(
             value["browser_configs"]
         )
+    if "add_replica_locations" in value:
+        import capo_synthetics.types.add_replica_locations
+
+        out["AddReplicaLocations"] = (
+            capo_synthetics.types.add_replica_locations.serialize_json(
+                value["add_replica_locations"]
+            )
+        )
+    if "remove_replica_locations" in value:
+        import capo_synthetics.types.remove_replica_locations
+
+        out["RemoveReplicaLocations"] = (
+            capo_synthetics.types.remove_replica_locations.serialize_json(
+                value["remove_replica_locations"]
+            )
+        )
+    if "kms_key_arn" in value:
+        out["KmsKeyArn"] = value["kms_key_arn"]
     return out
 
 
@@ -230,4 +261,22 @@ def deserialize_json(data: dict) -> UpdateCanaryRequest:
         out["browser_configs"] = capo_synthetics.types.browser_configs.deserialize_json(
             data["BrowserConfigs"]
         )
+    if data.get("AddReplicaLocations") is not None:
+        import capo_synthetics.types.add_replica_locations
+
+        out["add_replica_locations"] = (
+            capo_synthetics.types.add_replica_locations.deserialize_json(
+                data["AddReplicaLocations"]
+            )
+        )
+    if data.get("RemoveReplicaLocations") is not None:
+        import capo_synthetics.types.remove_replica_locations
+
+        out["remove_replica_locations"] = (
+            capo_synthetics.types.remove_replica_locations.deserialize_json(
+                data["RemoveReplicaLocations"]
+            )
+        )
+    if data.get("KmsKeyArn") is not None:
+        out["kms_key_arn"] = data["KmsKeyArn"]
     return out

@@ -14,23 +14,23 @@ class ResourceQuotas(TypedDict, closed=True):
     application_quota: NotRequired[
         "capo_elastic_beanstalk.types.resource_quota.ResourceQuota"
     ]
-    """<p>The quota for applications in the AWS account.</p>"""
+    """<p>The quota for applications in the Amazon Web Services account.</p>"""
     application_version_quota: NotRequired[
         "capo_elastic_beanstalk.types.resource_quota.ResourceQuota"
     ]
-    """<p>The quota for application versions in the AWS account.</p>"""
+    """<p>The quota for application versions in the Amazon Web Services account.</p>"""
     environment_quota: NotRequired[
         "capo_elastic_beanstalk.types.resource_quota.ResourceQuota"
     ]
-    """<p>The quota for environments in the AWS account.</p>"""
+    """<p>The quota for environments in the Amazon Web Services account.</p>"""
     configuration_template_quota: NotRequired[
         "capo_elastic_beanstalk.types.resource_quota.ResourceQuota"
     ]
-    """<p>The quota for configuration templates in the AWS account.</p>"""
+    """<p>The quota for configuration templates in the Amazon Web Services account.</p>"""
     custom_platform_quota: NotRequired[
         "capo_elastic_beanstalk.types.resource_quota.ResourceQuota"
     ]
-    """<p>The quota for custom platforms in the AWS account.</p>"""
+    """<p>The quota for custom platforms in the Amazon Web Services account.</p>"""
 
 
 # --- awsQuery ser/de ---

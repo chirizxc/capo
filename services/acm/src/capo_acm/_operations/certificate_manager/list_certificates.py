@@ -13,6 +13,7 @@ import capo_acm._auth._sigv4
 import capo_acm._protocol.eventstream
 import capo_acm.errors.invalid_args_exception
 import capo_acm.errors.validation_exception
+import capo_acm.types.certificate_key_pair_origins
 import capo_acm.types.certificate_statuses
 import capo_acm.types.certificate_summary_list
 import capo_acm.types.filters
@@ -99,9 +100,10 @@ def build_request(
     endpoint = resolve(
         EndpointParams(
             Region=options.region,
-            UseDualStack=options.use_dual_stack,
-            UseFIPS=options.use_fips,
             Endpoint=options.endpoint,
+            UseFIPS=options.use_fips,
+            UseDualStack=options.use_dual_stack,
+            ServiceType="ACM",
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + ""

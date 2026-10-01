@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.gateway_arn
     import capo_bedrock_agentcore.types.gateway_filter
     import capo_bedrock_agentcore.types.role_arn
+    import capo_bedrock_agentcore.types.tags_map
     import capo_bedrock_agentcore.types.variant_list
 
 
@@ -42,6 +43,8 @@ class CreateABTestRequest(TypedDict, closed=True):
     """<p>Whether to enable the A/B test immediately upon creation. If true, traffic splitting begins automatically.</p>"""
     client_token: NotRequired["capo_bedrock_agentcore.types.client_token.ClientToken"]
     """<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, the service ignores the request, but does not return an error.</p>"""
+    tags: NotRequired["capo_bedrock_agentcore.types.tags_map.TagsMap"]
+    """<p>A map of tag keys and values to associate with the A/B test.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -76,6 +79,12 @@ def serialize_json(value: CreateABTestRequest) -> dict:
         out["enableOnCreate"] = value["enable_on_create"]
     if "client_token" in value:
         out["clientToken"] = value["client_token"]
+    if "tags" in value:
+        import capo_bedrock_agentcore.types.tags_map
+
+        out["tags"] = capo_bedrock_agentcore.types.tags_map.serialize_json(
+            value["tags"]
+        )
     return out
 
 
@@ -125,4 +134,10 @@ def deserialize_json(data: dict) -> CreateABTestRequest:
         out["enable_on_create"] = data["enableOnCreate"]
     if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
+    if data.get("tags") is not None:
+        import capo_bedrock_agentcore.types.tags_map
+
+        out["tags"] = capo_bedrock_agentcore.types.tags_map.deserialize_json(
+            data["tags"]
+        )
     return out

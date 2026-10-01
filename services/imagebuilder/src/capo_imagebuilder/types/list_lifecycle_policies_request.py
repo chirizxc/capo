@@ -12,13 +12,13 @@ if TYPE_CHECKING:
 
 class ListLifecyclePoliciesRequest(TypedDict, closed=True):
     filters: NotRequired["capo_imagebuilder.types.filter_list.FilterList"]
-    """<p>Streamline results based on one of the following values: <code>Name</code>, <code>Status</code>.</p>"""
+    """<p>Use the following filters to streamline results: <code>name</code>, <code>resourceType</code>, and <code>status</code>. Filter names are matched exactly as shown.</p>"""
     max_results: NotRequired[
         "capo_imagebuilder.types.restricted_integer.RestrictedInteger"
     ]
-    """<p>Specify the maximum number of items to return in a request.</p>"""
+    """<p>The maximum number of items to return in a single request.</p>"""
     next_token: NotRequired["capo_imagebuilder.types.pagination_token.PaginationToken"]
-    """<p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>"""
+    """<p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>"""
 
 
 # --- restJson1 ser/de ---

@@ -16,9 +16,11 @@ import capo_elasticache.errors.invalid_parameter_value_exception
 import capo_elasticache.errors.invalid_replication_group_state_fault
 import capo_elasticache.errors.replication_group_not_found_fault
 import capo_elasticache.errors.service_linked_role_not_found_fault
+import capo_elasticache.errors.tag_quota_per_resource_exceeded
 import capo_elasticache.types.create_global_replication_group_message
 import capo_elasticache.types.create_global_replication_group_result
 import capo_elasticache.types.global_replication_group
+import capo_elasticache.types.tag_list
 from capo_elasticache._protocol.errors import find_error_element, parse_error_metadata
 from capo_elasticache._protocol.xml import fromstring
 from capo_elasticache._rule_engine._endpoint_rule_set import EndpointParams, resolve
@@ -49,6 +51,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "ServiceLinkedRoleNotFoundFault":
             raise capo_elasticache.errors.service_linked_role_not_found_fault.ServiceLinkedRoleNotFoundFault.from_query(
+                error_el, message
+            )
+        case "TagQuotaPerResourceExceeded":
+            raise capo_elasticache.errors.tag_quota_per_resource_exceeded.TagQuotaPerResourceExceeded.from_query(
                 error_el, message
             )
         case _:

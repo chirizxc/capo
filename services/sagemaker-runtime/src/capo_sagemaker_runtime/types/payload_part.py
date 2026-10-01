@@ -27,7 +27,11 @@ def deserialize_json(data: dict) -> PayloadPart:
 
 
 def serialize_event_json(value: PayloadPart) -> bytes:
-    headers: dict[str, HeaderValue] = {":event-type": "PayloadPart"}
+    headers: dict[str, HeaderValue] = {
+        ":message-type": "event",
+        ":event-type": "PayloadPart",
+        ":content-type": "application/octet-stream",
+    }
     payload = b""
     payload = value["bytes"]
     return Message(headers=headers, payload=payload).encode()

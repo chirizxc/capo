@@ -9,8 +9,10 @@ from capo_securityagent.errors import DeserializationError
 if TYPE_CHECKING:
     import capo_securityagent.types.integration_id
     import capo_securityagent.types.kms_key_id
+    import capo_securityagent.types.private_connection_name
     import capo_securityagent.types.provider
     import capo_securityagent.types.provider_type
+    import capo_securityagent.types.target_url
 
 
 class GetIntegrationOutput(TypedDict, closed=True):
@@ -26,6 +28,12 @@ class GetIntegrationOutput(TypedDict, closed=True):
     """<p>The display name of the integration.</p>"""
     kms_key_id: NotRequired["capo_securityagent.types.kms_key_id.KmsKeyId"]
     """<p>The identifier of the AWS KMS key used to encrypt data associated with the integration.</p>"""
+    target_url: NotRequired["capo_securityagent.types.target_url.TargetUrl"]
+    """<p>The HTTPS URL of the customer self-hosted instance, such as a GitHub Enterprise Server or self-managed GitLab instance. This value is absent for SaaS integrations.</p>"""
+    private_connection_name: NotRequired[
+        "capo_securityagent.types.private_connection_name.PrivateConnectionName"
+    ]
+    """<p>The name of the private connection used to reach the integration's self-hosted instance over private networking, if one is configured.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -47,6 +55,10 @@ def serialize_json(value: GetIntegrationOutput) -> dict:
         out["displayName"] = value["display_name"]
     if "kms_key_id" in value:
         out["kmsKeyId"] = value["kms_key_id"]
+    if "target_url" in value:
+        out["targetUrl"] = value["target_url"]
+    if "private_connection_name" in value:
+        out["privateConnectionName"] = value["private_connection_name"]
     return out
 
 
@@ -80,4 +92,8 @@ def deserialize_json(data: dict) -> GetIntegrationOutput:
         out["display_name"] = data["displayName"]
     if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
+    if data.get("targetUrl") is not None:
+        out["target_url"] = data["targetUrl"]
+    if data.get("privateConnectionName") is not None:
+        out["private_connection_name"] = data["privateConnectionName"]
     return out

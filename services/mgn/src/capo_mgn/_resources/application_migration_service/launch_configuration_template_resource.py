@@ -116,7 +116,7 @@ class LaunchConfigurationTemplateResource:
             parameters_encryption_key: <p>Parameters encryption key.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.uninitialized_account_exception.UninitializedAccountException: <p>Uninitialized account exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -234,7 +234,7 @@ class LaunchConfigurationTemplateResource:
             parameters_encryption_key: <p>Parameters encryption key.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.uninitialized_account_exception.UninitializedAccountException: <p>Uninitialized account exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
@@ -674,7 +674,7 @@ class AsyncLaunchConfigurationTemplateResource:
             parameters_encryption_key: <p>Parameters encryption key.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.uninitialized_account_exception.UninitializedAccountException: <p>Uninitialized account exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -793,7 +793,7 @@ class AsyncLaunchConfigurationTemplateResource:
             parameters_encryption_key: <p>Parameters encryption key.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.uninitialized_account_exception.UninitializedAccountException: <p>Uninitialized account exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>

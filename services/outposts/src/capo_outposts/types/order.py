@@ -13,11 +13,21 @@ if TYPE_CHECKING:
     import capo_outposts.types.outpost_id_only
     import capo_outposts.types.payment_option
     import capo_outposts.types.payment_term
+    import capo_outposts.types.quote_identifier
+    import capo_outposts.types.quote_option_identifier
 
 
 class Order(TypedDict, closed=True):
     outpost_id: NotRequired["capo_outposts.types.outpost_id_only.OutpostIdOnly"]
     """<p> The ID of the Outpost in the order. </p>"""
+    quote_identifier: NotRequired[
+        "capo_outposts.types.quote_identifier.QuoteIdentifier"
+    ]
+    """<p>The ID of the quote associated with the order.</p>"""
+    quote_option_identifier: NotRequired[
+        "capo_outposts.types.quote_option_identifier.QuoteOptionIdentifier"
+    ]
+    """<p>The ID of the quote option associated with the order.</p>"""
     order_id: NotRequired["capo_outposts.types.order_id.OrderId"]
     """<p>The ID of the order.</p>"""
     status: NotRequired["capo_outposts.types.order_status.OrderStatus"]
@@ -47,6 +57,10 @@ def serialize_json(value: Order) -> dict:
     out: dict = {}
     if "outpost_id" in value:
         out["OutpostId"] = value["outpost_id"]
+    if "quote_identifier" in value:
+        out["QuoteIdentifier"] = value["quote_identifier"]
+    if "quote_option_identifier" in value:
+        out["QuoteOptionIdentifier"] = value["quote_option_identifier"]
     if "order_id" in value:
         out["OrderId"] = value["order_id"]
     if "status" in value:
@@ -100,6 +114,10 @@ def deserialize_json(data: dict) -> Order:
     out: Order = {}  # type: ignore[typeddict-item]
     if data.get("OutpostId") is not None:
         out["outpost_id"] = data["OutpostId"]
+    if data.get("QuoteIdentifier") is not None:
+        out["quote_identifier"] = data["QuoteIdentifier"]
+    if data.get("QuoteOptionIdentifier") is not None:
+        out["quote_option_identifier"] = data["QuoteOptionIdentifier"]
     if data.get("OrderId") is not None:
         out["order_id"] = data["OrderId"]
     if data.get("Status") is not None:

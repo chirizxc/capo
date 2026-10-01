@@ -17,6 +17,7 @@ import capo_gamelift.errors.invalid_request_exception
 import capo_gamelift.errors.limit_exceeded_exception
 import capo_gamelift.errors.tagging_failed_exception
 import capo_gamelift.errors.unauthorized_exception
+import capo_gamelift.errors.unsupported_region_exception
 import capo_gamelift.types.create_location_input
 import capo_gamelift.types.create_location_output
 import capo_gamelift.types.location_model
@@ -53,6 +54,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "UnauthorizedException":
             raise capo_gamelift.errors.unauthorized_exception.UnauthorizedException.from_aws_json_1_1(
+                data, message
+            )
+        case "UnsupportedRegionException":
+            raise capo_gamelift.errors.unsupported_region_exception.UnsupportedRegionException.from_aws_json_1_1(
                 data, message
             )
         case _:

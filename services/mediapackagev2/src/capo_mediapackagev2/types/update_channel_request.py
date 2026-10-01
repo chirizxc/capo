@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_mediapackagev2.types.entity_tag
     import capo_mediapackagev2.types.input_switch_configuration
+    import capo_mediapackagev2.types.multiview_configuration
     import capo_mediapackagev2.types.output_header_configuration
     import capo_mediapackagev2.types.resource_description
     import capo_mediapackagev2.types.resource_name
@@ -31,6 +32,10 @@ class UpdateChannelRequest(TypedDict, closed=True):
         "capo_mediapackagev2.types.output_header_configuration.OutputHeaderConfiguration"
     ]
     """<p>The settings for what common media server data (CMSD) headers AWS Elemental MediaPackage includes in responses to the CDN. This setting is valid only when <code>InputType</code> is <code>CMAF</code>.</p>"""
+    multiview_configuration: NotRequired[
+        "capo_mediapackagev2.types.multiview_configuration.MultiviewConfiguration"
+    ]
+    """<p>The multiview configuration for the channel. This setting is required when the channel's <code>InputType</code> is <code>MULTIVIEW</code>, and can't be set for any other input type. Because <code>InputType</code> is immutable, you can change a multiview channel's sources and layouts. You can't add or remove the multiview configuration itself.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -54,6 +59,14 @@ def serialize_json(value: UpdateChannelRequest) -> dict:
                 value["output_header_configuration"]
             )
         )
+    if "multiview_configuration" in value:
+        import capo_mediapackagev2.types.multiview_configuration
+
+        out["MultiviewConfiguration"] = (
+            capo_mediapackagev2.types.multiview_configuration.serialize_json(
+                value["multiview_configuration"]
+            )
+        )
     return out
 
 
@@ -75,6 +88,14 @@ def deserialize_json(data: dict) -> UpdateChannelRequest:
         out["output_header_configuration"] = (
             capo_mediapackagev2.types.output_header_configuration.deserialize_json(
                 data["OutputHeaderConfiguration"]
+            )
+        )
+    if data.get("MultiviewConfiguration") is not None:
+        import capo_mediapackagev2.types.multiview_configuration
+
+        out["multiview_configuration"] = (
+            capo_mediapackagev2.types.multiview_configuration.deserialize_json(
+                data["MultiviewConfiguration"]
             )
         )
     return out

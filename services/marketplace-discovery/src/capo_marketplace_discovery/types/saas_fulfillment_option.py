@@ -7,7 +7,11 @@ from typing_extensions import NotRequired, TypedDict
 from capo_marketplace_discovery.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import datetime
+
     import capo_marketplace_discovery.types.fulfillment_option_type
+    import capo_marketplace_discovery.types.saas_quick_launch_status
+    import capo_marketplace_discovery.types.url
 
 
 class SaasFulfillmentOption(TypedDict, closed=True):
@@ -23,6 +27,12 @@ class SaasFulfillmentOption(TypedDict, closed=True):
     """<p>The URL of the seller's software registration landing page.</p>"""
     usage_instructions: NotRequired["str"]
     """<p>Instructions on how to access and use this SaaS product.</p>"""
+    available_from_time: NotRequired["datetime.datetime"]
+    """<p>The date and time when the SaaS product became available for fulfillment.</p>"""
+    launch_url: NotRequired["capo_marketplace_discovery.types.url.URL"]
+    """<p>The URL that a buyer uses to launch the seller's SaaS product. This URL is distinct from <code>fulfillmentUrl</code>, which is the seller's software registration landing page.</p>"""
+    quick_launch: "capo_marketplace_discovery.types.saas_quick_launch_status.SaasQuickLaunchStatus"
+    """<p>Specifies whether the SaaS product supports quick-launch deployment.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -41,6 +51,23 @@ def serialize_json(value: SaasFulfillmentOption) -> dict:
         out["fulfillmentUrl"] = value["fulfillment_url"]
     if "usage_instructions" in value:
         out["usageInstructions"] = value["usage_instructions"]
+    if "available_from_time" in value:
+        import capo_marketplace_discovery.types._prelude.timestamp
+
+        out["availableFromTime"] = (
+            capo_marketplace_discovery.types._prelude.timestamp.serialize_json(
+                value["available_from_time"]
+            )
+        )
+    if "launch_url" in value:
+        out["launchUrl"] = value["launch_url"]
+    import capo_marketplace_discovery.types.saas_quick_launch_status
+
+    out["quickLaunch"] = (
+        capo_marketplace_discovery.types.saas_quick_launch_status.serialize_json(
+            value["quick_launch"]
+        )
+    )
     return out
 
 
@@ -74,4 +101,24 @@ def deserialize_json(data: dict) -> SaasFulfillmentOption:
         out["fulfillment_url"] = data["fulfillmentUrl"]
     if data.get("usageInstructions") is not None:
         out["usage_instructions"] = data["usageInstructions"]
+    if data.get("availableFromTime") is not None:
+        import capo_marketplace_discovery.types._prelude.timestamp
+
+        out["available_from_time"] = (
+            capo_marketplace_discovery.types._prelude.timestamp.deserialize_json(
+                data["availableFromTime"]
+            )
+        )
+    if data.get("launchUrl") is not None:
+        out["launch_url"] = data["launchUrl"]
+    if data.get("quickLaunch") is not None:
+        import capo_marketplace_discovery.types.saas_quick_launch_status
+
+        out["quick_launch"] = (
+            capo_marketplace_discovery.types.saas_quick_launch_status.deserialize_json(
+                data["quickLaunch"]
+            )
+        )
+    else:
+        raise DeserializationError("SaasFulfillmentOption.quick_launch required")
     return out

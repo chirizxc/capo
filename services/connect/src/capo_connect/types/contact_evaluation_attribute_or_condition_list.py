@@ -1,0 +1,39 @@
+"""Generated from Smithy shape ``com.amazonaws.connect#ContactEvaluationAttributeOrConditionList``."""
+
+from typing import TYPE_CHECKING, TypeAlias
+
+if TYPE_CHECKING:
+    import capo_connect.types.contact_evaluation_attribute_and_condition
+
+ContactEvaluationAttributeOrConditionList: TypeAlias = list[
+    "capo_connect.types.contact_evaluation_attribute_and_condition.ContactEvaluationAttributeAndCondition"
+]
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: ContactEvaluationAttributeOrConditionList) -> list:
+    import capo_connect.types.contact_evaluation_attribute_and_condition
+
+    out: list = []
+    for item in value:
+        out.append(
+            capo_connect.types.contact_evaluation_attribute_and_condition.serialize_json(
+                item
+            )
+        )
+    return out
+
+
+def deserialize_json(data: list) -> ContactEvaluationAttributeOrConditionList:
+    import capo_connect.types.contact_evaluation_attribute_and_condition
+
+    out: ContactEvaluationAttributeOrConditionList = []
+    for item in data:
+        if item is None:
+            continue
+        out.append(
+            capo_connect.types.contact_evaluation_attribute_and_condition.deserialize_json(
+                item
+            )
+        )
+    return out

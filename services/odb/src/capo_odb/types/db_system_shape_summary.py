@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_odb.types.compute_model
+    import capo_odb.types.shape_attribute_list
     import capo_odb.types.shape_type
 
 
@@ -52,6 +53,10 @@ class DbSystemShapeSummary(TypedDict, closed=True):
     """<p>The family of the shape.</p>"""
     shape_type: NotRequired["capo_odb.types.shape_type.ShapeType"]
     """<p>The shape type. This property is determined by the CPU hardware.</p>"""
+    shape_attributes: NotRequired[
+        "capo_odb.types.shape_attribute_list.ShapeAttributeList"
+    ]
+    """<p>If provided and applicable, return DB System shape parameters based on the shape attribute provided.</p>"""
     name: NotRequired["str"]
     """<p>The name of the shape.</p>"""
     compute_model: NotRequired["capo_odb.types.compute_model.ComputeModel"]
@@ -112,6 +117,14 @@ def serialize_aws_json_1_0(value: DbSystemShapeSummary) -> dict:
 
         out["shapeType"] = capo_odb.types.shape_type.serialize_aws_json_1_0(
             value["shape_type"]
+        )
+    if "shape_attributes" in value:
+        import capo_odb.types.shape_attribute_list
+
+        out["shapeAttributes"] = (
+            capo_odb.types.shape_attribute_list.serialize_aws_json_1_0(
+                value["shape_attributes"]
+            )
         )
     if "name" in value:
         out["name"] = value["name"]
@@ -177,6 +190,14 @@ def deserialize_aws_json_1_0(data: dict) -> DbSystemShapeSummary:
 
         out["shape_type"] = capo_odb.types.shape_type.deserialize_aws_json_1_0(
             data["shapeType"]
+        )
+    if data.get("shapeAttributes") is not None:
+        import capo_odb.types.shape_attribute_list
+
+        out["shape_attributes"] = (
+            capo_odb.types.shape_attribute_list.deserialize_aws_json_1_0(
+                data["shapeAttributes"]
+            )
         )
     if data.get("name") is not None:
         out["name"] = data["name"]

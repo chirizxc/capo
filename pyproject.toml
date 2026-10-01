@@ -12,6 +12,7 @@ dev = [
     "anyio>=4",
     "trio",
     "ry-cli==0.4.0",
+    "ruff>=0.15.14",
     "ty==0.0.68",
     "capo-s3[sso]",
     "capo-transcribe-streaming[sso]",
@@ -19,6 +20,7 @@ dev = [
     "capo-iam[sso]",
     "capo-ebs[sso]",
     "capo-ec2[sso]",
+    "capo-eventbridgev2[sso]",
     "pytest-xdist>=3.8.0",
     "pyodide-build>=0.23.4",
     "hishel[async]>=1.4.0",
@@ -34,6 +36,7 @@ capo-sts = { path = "services/sts", editable = true }
 capo-iam = { path = "services/iam", editable = true }
 capo-ebs = { path = "services/ebs", editable = true }
 capo-ec2 = { path = "services/ec2", editable = true }
+capo-eventbridgev2 = { path = "services/eventbridgev2", editable = true }
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

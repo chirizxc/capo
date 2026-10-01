@@ -9,6 +9,7 @@ from capo_socialmessaging.errors import DeserializationError
 if TYPE_CHECKING:
     import capo_socialmessaging.types.linked_whats_app_business_account_id
     import capo_socialmessaging.types.meta_flow_category_list
+    import capo_socialmessaging.types.meta_flow_endpoint_uri
     import capo_socialmessaging.types.meta_flow_id
     import capo_socialmessaging.types.meta_flow_json_blob
     import capo_socialmessaging.types.meta_flow_name
@@ -31,6 +32,10 @@ class CreateWhatsAppFlowInput(TypedDict, closed=True):
     """<p>Set to <code>true</code> to publish the Flow immediately after creation. Requires a valid <code>flowJson</code> that passes Meta's validation.</p>"""
     clone_flow_id: NotRequired["capo_socialmessaging.types.meta_flow_id.MetaFlowId"]
     """<p>The ID of an existing Flow within the same WhatsApp Business Account to clone.</p>"""
+    endpoint_uri: NotRequired[
+        "capo_socialmessaging.types.meta_flow_endpoint_uri.MetaFlowEndpointUri"
+    ]
+    """<p>The HTTPS endpoint that Meta calls for a data exchange Flow.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -55,6 +60,8 @@ def serialize_json(value: CreateWhatsAppFlowInput) -> dict:
         out["publish"] = value["publish"]
     if "clone_flow_id" in value:
         out["cloneFlowId"] = value["clone_flow_id"]
+    if "endpoint_uri" in value:
+        out["endpointUri"] = value["endpoint_uri"]
     return out
 
 
@@ -90,4 +97,6 @@ def deserialize_json(data: dict) -> CreateWhatsAppFlowInput:
         out["publish"] = data["publish"]
     if data.get("cloneFlowId") is not None:
         out["clone_flow_id"] = data["cloneFlowId"]
+    if data.get("endpointUri") is not None:
+        out["endpoint_uri"] = data["endpointUri"]
     return out

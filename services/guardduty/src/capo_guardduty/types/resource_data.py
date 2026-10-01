@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_guardduty.types.access_key
     import capo_guardduty.types.autoscaling_auto_scaling_group
+    import capo_guardduty.types.bedrock_guardrail_resource
     import capo_guardduty.types.cloudformation_stack
     import capo_guardduty.types.container_finding_resource
     import capo_guardduty.types.ec2_image
@@ -70,6 +71,10 @@ class ResourceData(TypedDict, closed=True):
         "capo_guardduty.types.cloudformation_stack.CloudformationStack"
     ]
     """<p>Contains detailed information about the CloudFormation stack associated with the activity that prompted GuardDuty to generate a finding.</p>"""
+    bedrock_guardrail: NotRequired[
+        "capo_guardduty.types.bedrock_guardrail_resource.BedrockGuardrailResource"
+    ]
+    """<p>Contains detailed information about the Amazon Bedrock guardrail associated with the activity that prompted GuardDuty to generate a finding.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -179,6 +184,14 @@ def serialize_json(value: ResourceData) -> dict:
         out["cloudformationStack"] = (
             capo_guardduty.types.cloudformation_stack.serialize_json(
                 value["cloudformation_stack"]
+            )
+        )
+    if "bedrock_guardrail" in value:
+        import capo_guardduty.types.bedrock_guardrail_resource
+
+        out["bedrockGuardrail"] = (
+            capo_guardduty.types.bedrock_guardrail_resource.serialize_json(
+                value["bedrock_guardrail"]
             )
         )
     return out
@@ -292,6 +305,14 @@ def deserialize_json(data: dict) -> ResourceData:
         out["cloudformation_stack"] = (
             capo_guardduty.types.cloudformation_stack.deserialize_json(
                 data["cloudformationStack"]
+            )
+        )
+    if data.get("bedrockGuardrail") is not None:
+        import capo_guardduty.types.bedrock_guardrail_resource
+
+        out["bedrock_guardrail"] = (
+            capo_guardduty.types.bedrock_guardrail_resource.deserialize_json(
+                data["bedrockGuardrail"]
             )
         )
     return out

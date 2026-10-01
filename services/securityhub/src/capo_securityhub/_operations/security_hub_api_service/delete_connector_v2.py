@@ -20,6 +20,7 @@ import capo_securityhub.errors.throttling_exception
 import capo_securityhub.errors.validation_exception
 import capo_securityhub.types.delete_connector_v2_request
 import capo_securityhub.types.delete_connector_v2_response
+import capo_securityhub.types.enablement_status
 from capo_securityhub._protocol.errors import parse_error_metadata_json
 from capo_securityhub._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_securityhub._services._pipeline import AsyncOperationOptions, OperationOptions
@@ -61,14 +62,18 @@ def handle_error(response: zapros.Response) -> Never:
 def handle_response(
     response: zapros.Response,
 ) -> capo_securityhub.types.delete_connector_v2_response.DeleteConnectorV2Response:
-    out: capo_securityhub.types.delete_connector_v2_response.DeleteConnectorV2Response = {}  # type: ignore[typeddict-item]
+    out: capo_securityhub.types.delete_connector_v2_response.DeleteConnectorV2Response = capo_securityhub.types.delete_connector_v2_response.deserialize_json(
+        json.loads(response.read())
+    )
     return out
 
 
 async def async_handle_response(
     response: zapros.Response,
 ) -> capo_securityhub.types.delete_connector_v2_response.DeleteConnectorV2Response:
-    out: capo_securityhub.types.delete_connector_v2_response.DeleteConnectorV2Response = {}  # type: ignore[typeddict-item]
+    out: capo_securityhub.types.delete_connector_v2_response.DeleteConnectorV2Response = capo_securityhub.types.delete_connector_v2_response.deserialize_json(
+        json.loads(await response.aread())
+    )
     return out
 
 

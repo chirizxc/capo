@@ -13,6 +13,7 @@ import capo_support._auth._sigv4
 import capo_support._protocol.eventstream
 import capo_support.errors.attachment_id_not_found
 import capo_support.errors.describe_attachment_limit_exceeded
+import capo_support.errors.dry_run_operation_exception
 import capo_support.errors.internal_server_error
 import capo_support.types.attachment
 import capo_support.types.describe_attachment_request
@@ -33,6 +34,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "DescribeAttachmentLimitExceeded":
             raise capo_support.errors.describe_attachment_limit_exceeded.DescribeAttachmentLimitExceeded.from_aws_json_1_1(
+                data, message
+            )
+        case "DryRunOperationException":
+            raise capo_support.errors.dry_run_operation_exception.DryRunOperationException.from_aws_json_1_1(
                 data, message
             )
         case "InternalServerError":

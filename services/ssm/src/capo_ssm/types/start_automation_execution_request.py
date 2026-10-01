@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_ssm.types.alarm_configuration
     import capo_ssm.types.automation_parameter_key
     import capo_ssm.types.automation_parameter_map
+    import capo_ssm.types.automation_targets
     import capo_ssm.types.document_arn
     import capo_ssm.types.document_version
     import capo_ssm.types.execution_mode
@@ -20,7 +21,6 @@ if TYPE_CHECKING:
     import capo_ssm.types.target_locations
     import capo_ssm.types.target_locations_url
     import capo_ssm.types.target_maps
-    import capo_ssm.types.targets
 
 
 class StartAutomationExecutionRequest(TypedDict, closed=True):
@@ -40,7 +40,7 @@ class StartAutomationExecutionRequest(TypedDict, closed=True):
         "capo_ssm.types.automation_parameter_key.AutomationParameterKey"
     ]
     """<p>The name of the parameter used as the target resource for the rate-controlled execution. Required if you specify targets.</p>"""
-    targets: NotRequired["capo_ssm.types.targets.Targets"]
+    targets: NotRequired["capo_ssm.types.automation_targets.AutomationTargets"]
     """<p>A key-value mapping to target resources. Required if you specify TargetParameterName.</p> <p>If both this parameter and the <code>TargetLocation:Targets</code> parameter are supplied, <code>TargetLocation:Targets</code> takes precedence.</p>"""
     target_maps: NotRequired["capo_ssm.types.target_maps.TargetMaps"]
     """<p>A key-value mapping of document parameters to target resources. Both Targets and TargetMaps can't be specified together.</p>"""
@@ -87,9 +87,11 @@ def serialize_aws_json_1_1(value: StartAutomationExecutionRequest) -> dict:
     if "target_parameter_name" in value:
         out["TargetParameterName"] = value["target_parameter_name"]
     if "targets" in value:
-        import capo_ssm.types.targets
+        import capo_ssm.types.automation_targets
 
-        out["Targets"] = capo_ssm.types.targets.serialize_aws_json_1_1(value["targets"])
+        out["Targets"] = capo_ssm.types.automation_targets.serialize_aws_json_1_1(
+            value["targets"]
+        )
     if "target_maps" in value:
         import capo_ssm.types.target_maps
 
@@ -152,9 +154,9 @@ def deserialize_aws_json_1_1(data: dict) -> StartAutomationExecutionRequest:
     if data.get("TargetParameterName") is not None:
         out["target_parameter_name"] = data["TargetParameterName"]
     if data.get("Targets") is not None:
-        import capo_ssm.types.targets
+        import capo_ssm.types.automation_targets
 
-        out["targets"] = capo_ssm.types.targets.deserialize_aws_json_1_1(
+        out["targets"] = capo_ssm.types.automation_targets.deserialize_aws_json_1_1(
             data["Targets"]
         )
     if data.get("TargetMaps") is not None:

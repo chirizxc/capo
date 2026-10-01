@@ -22,6 +22,7 @@ import capo_wafv2.errors.waf_optimistic_lock_exception
 import capo_wafv2.errors.waf_subscription_not_found_exception
 import capo_wafv2.errors.waf_unavailable_entity_exception
 import capo_wafv2.types.custom_response_bodies
+import capo_wafv2.types.monetization_config
 import capo_wafv2.types.rules
 import capo_wafv2.types.scope
 import capo_wafv2.types.update_rule_group_request

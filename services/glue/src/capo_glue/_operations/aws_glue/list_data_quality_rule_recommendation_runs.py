@@ -18,6 +18,7 @@ import capo_glue.types.data_quality_rule_recommendation_run_filter
 import capo_glue.types.data_quality_rule_recommendation_run_list
 import capo_glue.types.list_data_quality_rule_recommendation_runs_request
 import capo_glue.types.list_data_quality_rule_recommendation_runs_response
+import capo_glue.types.tags_map
 from capo_glue._protocol.errors import parse_error_metadata_json
 from capo_glue._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_glue._services._pipeline import AsyncOperationOptions, OperationOptions

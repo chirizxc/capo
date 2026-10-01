@@ -42,6 +42,50 @@ class ResourceFilterCriteria(TypedDict, closed=True):
         "capo_inspector2.types.resource_map_filter_list.ResourceMapFilterList"
     ]
     """<p>The Amazon Web Services Lambda function tags used as resource filter criteria.</p>"""
+    cloud_provider: NotRequired[
+        "capo_inspector2.types.resource_string_filter_list.ResourceStringFilterList"
+    ]
+    """<p>The cloud providers used as resource filter criteria.</p>"""
+    cloud_provider_account_id: NotRequired[
+        "capo_inspector2.types.resource_string_filter_list.ResourceStringFilterList"
+    ]
+    """<p>The cloud provider account IDs used as resource filter criteria.</p>"""
+    cloud_provider_org_id: NotRequired[
+        "capo_inspector2.types.resource_string_filter_list.ResourceStringFilterList"
+    ]
+    """<p>The cloud provider organization IDs used as resource filter criteria.</p>"""
+    cloud_provider_region: NotRequired[
+        "capo_inspector2.types.resource_string_filter_list.ResourceStringFilterList"
+    ]
+    """<p>The cloud provider regions used as resource filter criteria.</p>"""
+    cloud_vm_instance_tags: NotRequired[
+        "capo_inspector2.types.resource_map_filter_list.ResourceMapFilterList"
+    ]
+    """<p>The cloud VM instance tags used as resource filter criteria.</p>"""
+    cloud_container_image_tags: NotRequired[
+        "capo_inspector2.types.resource_string_filter_list.ResourceStringFilterList"
+    ]
+    """<p>The cloud container image tags used as resource filter criteria.</p>"""
+    cloud_container_repository_name: NotRequired[
+        "capo_inspector2.types.resource_string_filter_list.ResourceStringFilterList"
+    ]
+    """<p>The cloud container repository names used as resource filter criteria.</p>"""
+    cloud_container_registry_name: NotRequired[
+        "capo_inspector2.types.resource_string_filter_list.ResourceStringFilterList"
+    ]
+    """<p>The cloud container registry names used as resource filter criteria.</p>"""
+    cloud_serverless_function_name: NotRequired[
+        "capo_inspector2.types.resource_string_filter_list.ResourceStringFilterList"
+    ]
+    """<p>The cloud serverless function names used as resource filter criteria.</p>"""
+    cloud_serverless_function_runtime: NotRequired[
+        "capo_inspector2.types.resource_string_filter_list.ResourceStringFilterList"
+    ]
+    """<p>The cloud serverless function runtimes used as resource filter criteria.</p>"""
+    cloud_serverless_function_tags: NotRequired[
+        "capo_inspector2.types.resource_map_filter_list.ResourceMapFilterList"
+    ]
+    """<p>The cloud serverless function tags used as resource filter criteria.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -111,6 +155,94 @@ def serialize_json(value: ResourceFilterCriteria) -> dict:
                 value["lambda_function_tags"]
             )
         )
+    if "cloud_provider" in value:
+        import capo_inspector2.types.resource_string_filter_list
+
+        out["cloudProvider"] = (
+            capo_inspector2.types.resource_string_filter_list.serialize_json(
+                value["cloud_provider"]
+            )
+        )
+    if "cloud_provider_account_id" in value:
+        import capo_inspector2.types.resource_string_filter_list
+
+        out["cloudProviderAccountId"] = (
+            capo_inspector2.types.resource_string_filter_list.serialize_json(
+                value["cloud_provider_account_id"]
+            )
+        )
+    if "cloud_provider_org_id" in value:
+        import capo_inspector2.types.resource_string_filter_list
+
+        out["cloudProviderOrgId"] = (
+            capo_inspector2.types.resource_string_filter_list.serialize_json(
+                value["cloud_provider_org_id"]
+            )
+        )
+    if "cloud_provider_region" in value:
+        import capo_inspector2.types.resource_string_filter_list
+
+        out["cloudProviderRegion"] = (
+            capo_inspector2.types.resource_string_filter_list.serialize_json(
+                value["cloud_provider_region"]
+            )
+        )
+    if "cloud_vm_instance_tags" in value:
+        import capo_inspector2.types.resource_map_filter_list
+
+        out["cloudVmInstanceTags"] = (
+            capo_inspector2.types.resource_map_filter_list.serialize_json(
+                value["cloud_vm_instance_tags"]
+            )
+        )
+    if "cloud_container_image_tags" in value:
+        import capo_inspector2.types.resource_string_filter_list
+
+        out["cloudContainerImageTags"] = (
+            capo_inspector2.types.resource_string_filter_list.serialize_json(
+                value["cloud_container_image_tags"]
+            )
+        )
+    if "cloud_container_repository_name" in value:
+        import capo_inspector2.types.resource_string_filter_list
+
+        out["cloudContainerRepositoryName"] = (
+            capo_inspector2.types.resource_string_filter_list.serialize_json(
+                value["cloud_container_repository_name"]
+            )
+        )
+    if "cloud_container_registry_name" in value:
+        import capo_inspector2.types.resource_string_filter_list
+
+        out["cloudContainerRegistryName"] = (
+            capo_inspector2.types.resource_string_filter_list.serialize_json(
+                value["cloud_container_registry_name"]
+            )
+        )
+    if "cloud_serverless_function_name" in value:
+        import capo_inspector2.types.resource_string_filter_list
+
+        out["cloudServerlessFunctionName"] = (
+            capo_inspector2.types.resource_string_filter_list.serialize_json(
+                value["cloud_serverless_function_name"]
+            )
+        )
+    if "cloud_serverless_function_runtime" in value:
+        import capo_inspector2.types.resource_string_filter_list
+
+        out["cloudServerlessFunctionRuntime"] = (
+            capo_inspector2.types.resource_string_filter_list.serialize_json(
+                value["cloud_serverless_function_runtime"]
+            )
+        )
+    if "cloud_serverless_function_tags" in value:
+        import capo_inspector2.types.resource_map_filter_list
+
+        out["cloudServerlessFunctionTags"] = (
+            capo_inspector2.types.resource_map_filter_list.serialize_json(
+                value["cloud_serverless_function_tags"]
+            )
+        )
     return out
 
 
@@ -178,6 +310,94 @@ def deserialize_json(data: dict) -> ResourceFilterCriteria:
         out["lambda_function_tags"] = (
             capo_inspector2.types.resource_map_filter_list.deserialize_json(
                 data["lambdaFunctionTags"]
+            )
+        )
+    if data.get("cloudProvider") is not None:
+        import capo_inspector2.types.resource_string_filter_list
+
+        out["cloud_provider"] = (
+            capo_inspector2.types.resource_string_filter_list.deserialize_json(
+                data["cloudProvider"]
+            )
+        )
+    if data.get("cloudProviderAccountId") is not None:
+        import capo_inspector2.types.resource_string_filter_list
+
+        out["cloud_provider_account_id"] = (
+            capo_inspector2.types.resource_string_filter_list.deserialize_json(
+                data["cloudProviderAccountId"]
+            )
+        )
+    if data.get("cloudProviderOrgId") is not None:
+        import capo_inspector2.types.resource_string_filter_list
+
+        out["cloud_provider_org_id"] = (
+            capo_inspector2.types.resource_string_filter_list.deserialize_json(
+                data["cloudProviderOrgId"]
+            )
+        )
+    if data.get("cloudProviderRegion") is not None:
+        import capo_inspector2.types.resource_string_filter_list
+
+        out["cloud_provider_region"] = (
+            capo_inspector2.types.resource_string_filter_list.deserialize_json(
+                data["cloudProviderRegion"]
+            )
+        )
+    if data.get("cloudVmInstanceTags") is not None:
+        import capo_inspector2.types.resource_map_filter_list
+
+        out["cloud_vm_instance_tags"] = (
+            capo_inspector2.types.resource_map_filter_list.deserialize_json(
+                data["cloudVmInstanceTags"]
+            )
+        )
+    if data.get("cloudContainerImageTags") is not None:
+        import capo_inspector2.types.resource_string_filter_list
+
+        out["cloud_container_image_tags"] = (
+            capo_inspector2.types.resource_string_filter_list.deserialize_json(
+                data["cloudContainerImageTags"]
+            )
+        )
+    if data.get("cloudContainerRepositoryName") is not None:
+        import capo_inspector2.types.resource_string_filter_list
+
+        out["cloud_container_repository_name"] = (
+            capo_inspector2.types.resource_string_filter_list.deserialize_json(
+                data["cloudContainerRepositoryName"]
+            )
+        )
+    if data.get("cloudContainerRegistryName") is not None:
+        import capo_inspector2.types.resource_string_filter_list
+
+        out["cloud_container_registry_name"] = (
+            capo_inspector2.types.resource_string_filter_list.deserialize_json(
+                data["cloudContainerRegistryName"]
+            )
+        )
+    if data.get("cloudServerlessFunctionName") is not None:
+        import capo_inspector2.types.resource_string_filter_list
+
+        out["cloud_serverless_function_name"] = (
+            capo_inspector2.types.resource_string_filter_list.deserialize_json(
+                data["cloudServerlessFunctionName"]
+            )
+        )
+    if data.get("cloudServerlessFunctionRuntime") is not None:
+        import capo_inspector2.types.resource_string_filter_list
+
+        out["cloud_serverless_function_runtime"] = (
+            capo_inspector2.types.resource_string_filter_list.deserialize_json(
+                data["cloudServerlessFunctionRuntime"]
+            )
+        )
+    if data.get("cloudServerlessFunctionTags") is not None:
+        import capo_inspector2.types.resource_map_filter_list
+
+        out["cloud_serverless_function_tags"] = (
+            capo_inspector2.types.resource_map_filter_list.deserialize_json(
+                data["cloudServerlessFunctionTags"]
             )
         )
     return out

@@ -5,14 +5,16 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
-    import capo_firehose.types.awskms_key_arn
+    import capo_firehose.types.awskms_key_arn_for_sse
     import capo_firehose.types.delivery_stream_encryption_status
     import capo_firehose.types.failure_description
     import capo_firehose.types.key_type
 
 
 class DeliveryStreamEncryptionConfiguration(TypedDict, closed=True):
-    key_arn: NotRequired["capo_firehose.types.awskms_key_arn.AWSKMSKeyARN"]
+    key_arn: NotRequired[
+        "capo_firehose.types.awskms_key_arn_for_sse.AWSKMSKeyARNForSSE"
+    ]
     """<p>If <code>KeyType</code> is <code>CUSTOMER_MANAGED_CMK</code>, this field contains the ARN of the customer managed CMK. If <code>KeyType</code> is <code>Amazon Web Services_OWNED_CMK</code>, <code>DeliveryStreamEncryptionConfiguration</code> doesn't contain a value for <code>KeyARN</code>.</p>"""
     key_type: NotRequired["capo_firehose.types.key_type.KeyType"]
     r"""<p>Indicates the type of customer master key (CMK) that is used for encryption. The default setting is <code>Amazon Web Services_OWNED_CMK</code>. For more information about CMKs, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys\">Customer Master Keys (CMKs)</a>.</p>"""

@@ -193,6 +193,7 @@ if TYPE_CHECKING:
     import capo_iot_wireless.types.get_wireless_gateway_task_request
     import capo_iot_wireless.types.get_wireless_gateway_task_response
     import capo_iot_wireless.types.gnss
+    import capo_iot_wireless.types.gnss_multi_frame
     import capo_iot_wireless.types.identifier
     import capo_iot_wireless.types.identifier_type
     import capo_iot_wireless.types.import_task_id
@@ -3190,6 +3191,9 @@ class AsyncIoTWirelessClient:
         cell_towers: Optional["capo_iot_wireless.types.cell_towers.CellTowers"] = None,
         ip: Optional["capo_iot_wireless.types.ip.Ip"] = None,
         gnss: Optional["capo_iot_wireless.types.gnss.Gnss"] = None,
+        gnss_multi_frame: Optional[
+            "capo_iot_wireless.types.gnss_multi_frame.GnssMultiFrame"
+        ] = None,
         timestamp: Optional[
             "capo_iot_wireless.types.creation_date.CreationDate"
         ] = None,
@@ -3203,9 +3207,10 @@ class AsyncIoTWirelessClient:
             wi_fi_access_points: <p>Retrieves an estimated device position by resolving WLAN measurement data. The position is resolved using HERE's Wi-Fi based solver.</p>
             cell_towers: <p>Retrieves an estimated device position by resolving measurement data from cellular radio towers. The position is resolved using HERE's cellular-based solver.</p>
             ip: <p>Retrieves an estimated device position by resolving the IP address information from the device. The position is resolved using MaxMind's IP-based solver.</p>
-            gnss: <p>Retrieves an estimated device position by resolving the global navigation satellite system (GNSS) scan data. The position is resolved using the GNSS solver powered by LoRa Cloud.</p>
+            gnss: <p>Retrieves an estimated device position by resolving the global navigation satellite system (GNSS) scan data. The position is resolved using the GNSS solver powered by LoRa Cloud. This field is mutually exclusive with the GnssMultiFrame field.</p>
+            gnss_multi_frame: <p>Retrieves an estimated device position by resolving multiple global navigation satellite system (GNSS) scan captures. The position is resolved using the multi-frame GNSS solver powered by LoRa Cloud. This field is mutually exclusive with the Gnss field.</p>
             timestamp: <p>Optional information that specifies the time when the position information will be resolved. It uses the Unix timestamp format. If not specified, the time at which the request was received will be used.</p>
-            advanced_configuration: Optional configuration to customize position estimates. If not provided, defaults are applied.
+            advanced_configuration: <p>Optional configuration for customizing position measurement data.</p>
 
         Raises:
             capo_iot_wireless.errors.access_denied_exception.AccessDeniedException: <p>User does not have permission to perform this action.</p>
@@ -3241,6 +3246,8 @@ class AsyncIoTWirelessClient:
             input_["ip"] = ip
         if gnss is not None:
             input_["gnss"] = gnss
+        if gnss_multi_frame is not None:
+            input_["gnss_multi_frame"] = gnss_multi_frame
         if timestamp is not None:
             input_["timestamp"] = timestamp
         if advanced_configuration is not None:

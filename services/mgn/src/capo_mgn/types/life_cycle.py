@@ -16,7 +16,7 @@ class LifeCycle(TypedDict, closed=True):
     added_to_service_date_time: NotRequired[
         "capo_mgn.types.iso8601_datetime_string.ISO8601DatetimeString"
     ]
-    """<p>Lifecycle added to service data and time.</p>"""
+    """<p>Lifecycle added to service date and time.</p>"""
     first_byte_date_time: NotRequired[
         "capo_mgn.types.iso8601_datetime_string.ISO8601DatetimeString"
     ]

@@ -18,6 +18,7 @@ import capo_cloudformation.types.capabilities
 import capo_cloudformation.types.change_set_type
 import capo_cloudformation.types.create_change_set_input
 import capo_cloudformation.types.create_change_set_output
+import capo_cloudformation.types.deployment_config
 import capo_cloudformation.types.deployment_mode
 import capo_cloudformation.types.notification_ar_ns
 import capo_cloudformation.types.on_stack_failure

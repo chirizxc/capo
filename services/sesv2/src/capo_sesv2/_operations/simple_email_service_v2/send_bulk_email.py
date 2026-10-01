@@ -22,6 +22,7 @@ import capo_sesv2.errors.too_many_requests_exception
 import capo_sesv2.types.bulk_email_content
 import capo_sesv2.types.bulk_email_entry_list
 import capo_sesv2.types.bulk_email_entry_result_list
+import capo_sesv2.types.configuration_overrides
 import capo_sesv2.types.email_address_list
 import capo_sesv2.types.message_tag_list
 import capo_sesv2.types.send_bulk_email_request

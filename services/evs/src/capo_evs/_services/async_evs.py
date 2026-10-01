@@ -33,6 +33,7 @@ from capo_evs._services._pipeline import (
 )
 
 if TYPE_CHECKING:
+    import capo_evs.types.account_setting_list
     import capo_evs.types.allocation_id
     import capo_evs.types.appliance_fqdn
     import capo_evs.types.arn
@@ -68,6 +69,8 @@ if TYPE_CHECKING:
     import capo_evs.types.environment_state_list
     import capo_evs.types.environment_summary
     import capo_evs.types.esx_version
+    import capo_evs.types.get_account_settings_request
+    import capo_evs.types.get_account_settings_response
     import capo_evs.types.get_depot_url_request
     import capo_evs.types.get_depot_url_response
     import capo_evs.types.get_environment_request
@@ -94,6 +97,8 @@ if TYPE_CHECKING:
     import capo_evs.types.list_vm_entitlements_response
     import capo_evs.types.max_results
     import capo_evs.types.pagination_token
+    import capo_evs.types.put_account_settings_request
+    import capo_evs.types.put_account_settings_response
     import capo_evs.types.request_tag_map
     import capo_evs.types.secret_identifier
     import capo_evs.types.service_access_security_groups
@@ -209,6 +214,44 @@ class AsyncevsClient:
         )
         return interceptors_, options_
 
+    async def get_account_settings(
+        self, *, config_overrides: Optional[AsyncevsClientConfig] = None
+    ) -> "capo_evs.types.get_account_settings_response.GetAccountSettingsResponse":
+        """<p>Returns the configured EVS settings for your Amazon Web Services account in the specified Amazon Web Services Region. If no settings have been set, an empty list is returned.</p>
+
+        Raises:
+            capo_evs.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Retry your request.</p>
+            capo_evs.errors.throttling_exception.ThrottlingException: <p>The operation could not be performed because the service is throttling requests. This exception is thrown when the service endpoint receives too many concurrent requests.</p>
+            capo_evs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints. You will see this exception if invalid inputs are provided for any of the Amazon EVS environment operations, or if a list operation is performed on an environment resource that is still initializing.</p>
+            capo_evs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_evs.types.get_account_settings_request.GetAccountSettingsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_evs.types.get_account_settings_response.GetAccountSettingsResponse"
+        ]:
+            import capo_evs._operations.amazon_elastic_v_mware_service.get_account_settings
+
+            (
+                output,
+                http_response,
+            ) = await capo_evs._operations.amazon_elastic_v_mware_service.get_account_settings.async_get_account_settings(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_evs.types.get_account_settings_request.GetAccountSettingsRequest = {}
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def get_versions(
         self, *, config_overrides: Optional[AsyncevsClientConfig] = None
     ) -> "capo_evs.types.get_versions_response.GetVersionsResponse":
@@ -280,6 +323,52 @@ class AsyncevsClient:
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_evs.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
             "resource_arn": resource_arn
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def put_account_settings(
+        self,
+        settings: "capo_evs.types.account_setting_list.AccountSettingList",
+        *,
+        config_overrides: Optional[AsyncevsClientConfig] = None,
+    ) -> "capo_evs.types.put_account_settings_response.PutAccountSettingsResponse":
+        """<p>Creates or updates account-level EVS settings for your Amazon Web Services account in the specified Amazon Web Services Region.</p> <p>EVS settings included in the request are created or overwritten. Settings omitted from the request retain their current values.</p>
+
+        Args:
+            settings: <p>A list of regional account-level EVS settings to create or update. Only the settings included in this list are modified.</p>
+
+        Raises:
+            capo_evs.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred. Retry your request.</p>
+            capo_evs.errors.throttling_exception.ThrottlingException: <p>The operation could not be performed because the service is throttling requests. This exception is thrown when the service endpoint receives too many concurrent requests.</p>
+            capo_evs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints. You will see this exception if invalid inputs are provided for any of the Amazon EVS environment operations, or if a list operation is performed on an environment resource that is still initializing.</p>
+            capo_evs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_evs.types.put_account_settings_request.PutAccountSettingsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_evs.types.put_account_settings_response.PutAccountSettingsResponse"
+        ]:
+            import capo_evs._operations.amazon_elastic_v_mware_service.put_account_settings
+
+            (
+                output,
+                http_response,
+            ) = await capo_evs._operations.amazon_elastic_v_mware_service.put_account_settings.async_put_account_settings(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_evs.types.put_account_settings_request.PutAccountSettingsRequest = {
+            "settings": settings
         }
 
         response = await aexecute_pipeline(
@@ -394,12 +483,7 @@ class AsyncevsClient:
         service_access_subnet_id: "capo_evs.types.subnet_id.SubnetId",
         vcf_version: "capo_evs.types.vcf_version.VcfVersion",
         terms_accepted: bool,
-        license_info: "capo_evs.types.license_info_list.LicenseInfoList",
         initial_vlans: "capo_evs.types.initial_vlans.InitialVlans",
-        hosts: "capo_evs.types.host_info_for_create_list.HostInfoForCreateList",
-        connectivity_info: "capo_evs.types.connectivity_info.ConnectivityInfo",
-        vcf_hostnames: "capo_evs.types.vcf_hostnames.VcfHostnames",
-        site_id: str,
         *,
         config_overrides: Optional[AsyncevsClientConfig] = None,
         client_token: Optional["capo_evs.types.client_token.ClientToken"] = None,
@@ -411,8 +495,19 @@ class AsyncevsClient:
         service_access_security_groups: Optional[
             "capo_evs.types.service_access_security_groups.ServiceAccessSecurityGroups"
         ] = None,
+        connectivity_info: Optional[
+            "capo_evs.types.connectivity_info.ConnectivityInfo"
+        ] = None,
+        license_info: Optional[
+            "capo_evs.types.license_info_list.LicenseInfoList"
+        ] = None,
+        hosts: Optional[
+            "capo_evs.types.host_info_for_create_list.HostInfoForCreateList"
+        ] = None,
+        vcf_hostnames: Optional["capo_evs.types.vcf_hostnames.VcfHostnames"] = None,
+        site_id: Optional[str] = None,
     ) -> "capo_evs.types.create_environment_response.CreateEnvironmentResponse":
-        r"""<p>Creates an Amazon EVS environment that runs VCF software, such as SDDC Manager, NSX Manager, and vCenter Server.</p> <p>During environment creation, Amazon EVS performs validations on DNS settings, provisions VLAN subnets and hosts, and deploys the supplied version of VCF.</p> <p>It can take several hours to create an environment. After the deployment completes, you can configure VCF in the vSphere user interface according to your needs.</p> <important> <p>When creating a new environment, the default ESX version for the selected VCF version will be used, you cannot choose a specific ESX version in <code>CreateEnvironment</code> action. When a host has been added with a specific ESX version, it can only be upgraded using vCenter Lifecycle Manager.</p> </important> <note> <p>You cannot use the <code>dedicatedHostId</code> and <code>placementGroupId</code> parameters together in the same <code>CreateEnvironment</code> action. This results in a <code>ValidationException</code> response.</p> </note>
+        r"""<p>Creates an Amazon EVS environment that runs VCF software, such as SDDC Manager, NSX Manager, and vCenter Server.</p> <note> <p>When you specify <code>SELF_DEPLOYED</code> for <code>vcfVersion</code>, Amazon EVS provisions only the VLAN subnets; no hosts are added and no VCF installation is performed. After the environment is created, you can add hosts with <code>CreateEnvironmentHost</code> and install VCF yourself. The <code>licenseInfo</code>, <code>hosts</code>, <code>vcfHostnames</code>, <code>siteId</code>, and <code>connectivityInfo</code> parameters are not supported in this mode.</p> </note> <p>When you specify any other VCF version, Amazon EVS installs and configures VCF for you. For more information, see <a href=\"https://docs.aws.amazon.com/evs/latest/userguide/getting-started-self-deployed.html\">Self-deployed mode</a> in the <i>Amazon EVS User Guide</i>.</p> <important> <p>When Amazon EVS installs VCF, the default ESX version for the selected VCF version will be used. After a host is added with a specific ESX version, it can only be upgraded using vCenter Lifecycle Manager.</p> </important> <note> <p>You cannot use the <code>dedicatedHostId</code> and <code>placementGroupId</code> parameters together in the same <code>CreateEnvironment</code> action. This results in a <code>ValidationException</code> response.</p> </note>
 
         Args:
             client_token: <note> <p>This parameter is not used in Amazon EVS currently. If you supply input for this parameter, it will have no effect.</p> </note> <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the environment creation request. If you do not specify a client token, a randomly generated token is used for the request to ensure idempotency.</p>
@@ -421,15 +516,15 @@ class AsyncevsClient:
             tags: <p>Metadata that assists with categorization and organization. Each tag consists of a key and an optional value. You define both. Tags don't propagate to any other cluster or Amazon Web Services resources.</p>
             service_access_security_groups: <p>The security group that controls communication between the Amazon EVS control plane and VPC. The default security group is used if a custom security group isn't specified.</p> <p>The security group should allow access to the following.</p> <ul> <li> <p>TCP/UDP access to the DNS servers</p> </li> <li> <p>HTTPS/SSH access to the host management VLAN subnet</p> </li> <li> <p>HTTPS/SSH access to the Management VM VLAN subnet</p> </li> </ul> <p>You should avoid modifying the security group rules after deployment, as this can break the persistent connection between the Amazon EVS control plane and VPC. This can cause future environment actions like adding or removing hosts to fail.</p>
             vpc_id: <p>A unique ID for the VPC that the environment is deployed inside.</p> <p>Amazon EVS requires that all VPC subnets exist in a single Availability Zone in a Region where the service is available.</p> <p>The VPC that you specify must have a valid DHCP option set with domain name, at least two DNS servers, and an NTP server. These settings are used to configure your VCF appliances and hosts. The VPC cannot be used with any other deployed Amazon EVS environment. Amazon EVS does not provide multi-VPC support for environments at this time.</p> <p>Amazon EVS does not support the following Amazon Web Services networking options for NSX overlay connectivity: cross-Region VPC peering, Amazon S3 gateway endpoints, or Amazon Web Services Direct Connect virtual private gateway associations.</p> <note> <p>Ensure that you specify a VPC that is adequately sized to accommodate the Amazon EVS subnets.</p> </note>
-            service_access_subnet_id: <p>The subnet that is used to establish connectivity between the Amazon EVS control plane and VPC. Amazon EVS uses this subnet to validate mandatory DNS records for your VCF appliances and hosts and create the environment.</p>
-            vcf_version: <p> The VCF version to use for the environment.</p>
-            terms_accepted: <p>Customer confirmation that the customer has purchased and will continue to maintain the required number of VCF software licenses to cover all physical processor cores in the Amazon EVS environment. Information about your VCF software in Amazon EVS will be shared with Broadcom to verify license compliance. Amazon EVS does not validate license keys. To validate license keys, visit the Broadcom support portal.</p>
-            license_info: <p>The license information that Amazon EVS requires to create an environment. Amazon EVS requires two license keys: a VCF solution key and a vSAN license key. The VCF solution key must meet minimum core requirements, and the vSAN license key must meet minimum capacity requirements for your selected instance type.</p> <p>For information about minimum license requirements, see <a href=\"https://docs.aws.amazon.com/evs/latest/userguide/vcf-license-mgmt.html\">the VCF subscriptions section</a> in the <i>Amazon EVS User Guide</i>.</p> <p>VCF licenses can be used for only one Amazon EVS environment. Amazon EVS does not support reuse of VCF licenses for multiple environments.</p> <p>VCF license information can be retrieved from the Broadcom portal.</p>
+            service_access_subnet_id: <p>The subnet that is used to establish connectivity between the Amazon EVS control plane and VPC. The Amazon EVS control plane uses this subnet to interface with your environment. This includes validating DNS records and enabling Amazon EVS Connectors.</p>
+            vcf_version: <p>The VCF version to use for the environment.</p> <ul> <li> <p> <code>SELF_DEPLOYED</code>: You install VCF yourself. The <code>licenseInfo</code>, <code>hosts</code>, <code>vcfHostnames</code>, <code>siteId</code>, and <code>connectivityInfo</code> parameters are not supported.</p> </li> <li> <p>Any other valid value: Amazon EVS installs and configures VCF for you in the version you specify.</p> </li> </ul>
+            terms_accepted: <p>Confirmation that the customer has purchased and will continue to maintain the required number of VCF software licenses to cover all physical processor cores in the Amazon EVS environment. Information about your VCF software in Amazon EVS will be shared with Broadcom to verify license compliance. Amazon EVS does not validate license keys. To validate license keys, visit the Broadcom support portal.</p>
             initial_vlans: <p>The initial VLAN subnets for the Amazon EVS environment.</p> <note> <p>For each Amazon EVS VLAN subnet, you must specify a non-overlapping CIDR block. Amazon EVS VLAN subnets have a minimum CIDR block size of /28 and a maximum size of /24.</p> </note>
-            hosts: <p>The ESX hosts to add to the environment. Amazon EVS requires that you provide details for a minimum of 4 hosts during environment creation.</p> <p>For each host, you must provide the desired hostname, EC2 SSH keypair name, and EC2 instance type. Optionally, you can also provide a partition or cluster placement group to use, or use Amazon EC2 Dedicated Hosts.</p>
-            connectivity_info: <p> The connectivity configuration for the environment. Amazon EVS requires that you specify two route server peer IDs. During environment creation, the route server endpoints peer with the NSX edges over the NSX uplink subnet, providing BGP-based dynamic routing for overlay networks.</p>
-            vcf_hostnames: <p>The DNS hostnames for the virtual machines that host the VCF management appliances. Amazon EVS requires that you provide DNS hostnames for the following appliances: vCenter, NSX Manager, SDDC Manager, and Cloud Builder.</p>
-            site_id: <p>The Broadcom Site ID that is allocated to you as part of your electronic software delivery. This ID allows customer access to the Broadcom portal, and is provided to you by Broadcom at the close of your software contract or contract renewal. Amazon EVS uses the Broadcom Site ID that you provide to meet Broadcom VCF license usage reporting requirements for Amazon EVS.</p>
+            connectivity_info: <p>The connectivity configuration for the environment. Amazon EVS requires that you specify two route server peer IDs. During environment creation, the route server endpoints peer with the NSX edges over the NSX uplink subnet, providing BGP-based dynamic routing for overlay networks.</p> <note> <p>Not supported when <code>vcfVersion</code> is <code>SELF_DEPLOYED</code>.</p> </note>
+            license_info: <p>The license information that Amazon EVS requires to create an environment. Amazon EVS requires two license keys: a VCF solution key and a vSAN license key. The VCF solution key must meet minimum core requirements, and the vSAN license key must meet minimum capacity requirements for your selected instance type.</p> <p>For information about minimum license requirements, see <a href=\"https://docs.aws.amazon.com/evs/latest/userguide/vcf-license-mgmt.html\">the VCF subscriptions section</a> in the <i>Amazon EVS User Guide</i>.</p> <p>VCF licenses can be used for only one Amazon EVS environment. Amazon EVS does not support reuse of VCF licenses for multiple environments.</p> <p>VCF license information can be retrieved from the Broadcom portal.</p> <note> <p>Not supported when <code>vcfVersion</code> is <code>SELF_DEPLOYED</code>.</p> </note>
+            hosts: <p>The ESX hosts to add to the environment. For each host, provide the desired hostname, EC2 SSH keypair name, and EC2 instance type. Optionally, provide a partition or cluster placement group, or use Amazon EC2 Dedicated Hosts.</p> <note> <p>Not supported when <code>vcfVersion</code> is <code>SELF_DEPLOYED</code>. In that case, you can add hosts using <code>CreateEnvironmentHost</code> after the environment is created.</p> </note>
+            vcf_hostnames: <p>The DNS hostnames for the virtual machines that host the VCF management appliances. Provide hostnames for vCenter, NSX Manager, SDDC Manager, and Cloud Builder.</p> <note> <p>Not supported when <code>vcfVersion</code> is <code>SELF_DEPLOYED</code>.</p> </note>
+            site_id: <p>The Broadcom Site ID that is allocated to you as part of your electronic software delivery. This ID allows customer access to the Broadcom portal, and is provided to you by Broadcom at the close of your software contract or contract renewal. Amazon EVS uses the Broadcom Site ID that you provide to meet Broadcom VCF license usage reporting requirements for Amazon EVS.</p> <note> <p>Not supported when <code>vcfVersion</code> is <code>SELF_DEPLOYED</code>.</p> </note>
 
         Raises:
             capo_evs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the specified constraints. You will see this exception if invalid inputs are provided for any of the Amazon EVS environment operations, or if a list operation is performed on an environment resource that is still initializing.</p>
@@ -457,12 +552,7 @@ class AsyncevsClient:
             "service_access_subnet_id": service_access_subnet_id,
             "vcf_version": vcf_version,
             "terms_accepted": terms_accepted,
-            "license_info": license_info,
             "initial_vlans": initial_vlans,
-            "hosts": hosts,
-            "connectivity_info": connectivity_info,
-            "vcf_hostnames": vcf_hostnames,
-            "site_id": site_id,
         }
         if client_token is None:
             client_token = str(uuid.uuid4())
@@ -475,6 +565,16 @@ class AsyncevsClient:
             input_["tags"] = tags
         if service_access_security_groups is not None:
             input_["service_access_security_groups"] = service_access_security_groups
+        if connectivity_info is not None:
+            input_["connectivity_info"] = connectivity_info
+        if license_info is not None:
+            input_["license_info"] = license_info
+        if hosts is not None:
+            input_["hosts"] = hosts
+        if vcf_hostnames is not None:
+            input_["vcf_hostnames"] = vcf_hostnames
+        if site_id is not None:
+            input_["site_id"] = site_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -785,14 +885,14 @@ class AsyncevsClient:
         config_overrides: Optional[AsyncevsClientConfig] = None,
         client_token: Optional["capo_evs.types.client_token.ClientToken"] = None,
     ) -> "capo_evs.types.create_environment_connector_response.CreateEnvironmentConnectorResponse":
-        """<p>Creates a connector for an Amazon EVS environment. A connector establishes a connection to a VCF appliance, such as vCenter, using a fully qualified domain name and an Amazon Web Services Secrets Manager secret that stores the appliance credentials.</p>
+        """<p>Creates a connector for an Amazon EVS environment. A connector allows the Amazon EVS control plane to interface with VCF appliances using a fully qualified domain name.</p> <p>You can create only one connector of each type per environment. For environments where Amazon EVS installs VCF, the <code>SDDC_MANAGER</code> connector is created automatically.</p> <note> <p>Amazon EVS requires an active connector to SDDC Manager or VCF Operations Manager to monitor environment health and license compliance.</p> </note>
 
         Args:
             client_token: <note> <p>This parameter is not used in Amazon EVS currently. If you supply input for this parameter, it will have no effect.</p> </note> <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the connector creation request. If you do not specify a client token, a randomly generated token is used for the request to ensure idempotency.</p>
             environment_id: <p>A unique ID for the environment to create the connector in.</p>
-            type: <p>The type of connector to create.</p>
+            type: <p>The type of connector to create.</p> <ul> <li> <p> <code>OPERATIONS_MANAGER</code>: Connector to an Operations Manager appliance. Required for VCF 9x environments.</p> </li> <li> <p> <code>SDDC_MANAGER</code>: Connector to an SDDC Manager appliance. Required for VCF 5.x environments.</p> </li> <li> <p> <code>VCENTER</code>: Connector to a vCenter Server appliance. Required for features that depend on vCenter, such as Windows Server license-included.</p> </li> </ul>
             appliance_fqdn: <p>The fully qualified domain name (FQDN) of the VCF appliance that the connector targets.</p>
-            secret_identifier: <p>The ARN or name of the Amazon Web Services Secrets Manager secret that stores the credentials for the VCF appliance.</p> <important> <p>Do not use credentials with Administrator privileges. We recommend using a service account with the minimum required permissions.</p> </important>
+            secret_identifier: <p>The ARN or name of the Amazon Web Services Secrets Manager secret that stores the credentials for the VCF appliance. <code>SDDC_MANAGER</code> requires an <code>apiKey</code> field; <code>OPERATIONS_MANAGER</code> and <code>VCENTER</code> require <code>username</code> and <code>password</code> fields.</p> <important> <p>Do not use credentials with Administrator privileges. We recommend using a service account with read-only permissions.</p> </important>
 
         Raises:
             capo_evs.errors.resource_not_found_exception.ResourceNotFoundException: <p>A service resource associated with the request could not be found. The resource might not be specified correctly, or it may have a <code>state</code> of <code>DELETED</code>.</p>
@@ -846,7 +946,7 @@ class AsyncevsClient:
     ) -> (
         "capo_evs.types.create_environment_host_response.CreateEnvironmentHostResponse"
     ):
-        """<p>Creates an ESX host and adds it to an Amazon EVS environment. Amazon EVS supports 4-32 hosts per environment.</p> <p>This action can only be used after the Amazon EVS environment is deployed.</p> <p>You can use the <code>dedicatedHostId</code> parameter to specify an Amazon EC2 Dedicated Host for ESX host creation.</p> <p> You can use the <code>placementGroupId</code> parameter to specify a cluster or partition placement group to launch EC2 instances into.</p> <note> <p>If you don't specify an ESX version when adding hosts using <code>CreateEnvironmentHost</code> action, Amazon EVS automatically uses the default ESX version associated with your environment's VCF version. To find the default ESX version for a particular VCF version, use the <code>GetVersions</code> action.</p> </note> <note> <p>You cannot use the <code>dedicatedHostId</code> and <code>placementGroupId</code> parameters together in the same <code>CreateEnvironmentHost</code> action. This results in a <code>ValidationException</code> response.</p> </note>
+        """<p>Creates an ESX host and adds it to an Amazon EVS environment.</p> <p>This action can only be used after the Amazon EVS environment is deployed.</p> <p>You can use the <code>dedicatedHostId</code> parameter to specify an Amazon EC2 Dedicated Host for ESX host creation.</p> <p> You can use the <code>placementGroupId</code> parameter to specify a cluster or partition placement group to launch EC2 instances into.</p> <note> <p>If you don't specify an ESX version when adding hosts using <code>CreateEnvironmentHost</code> action, Amazon EVS automatically uses the default ESX version for your environment's VCF version. To find the available ESX versions for a particular VCF version, use the <code>GetVersions</code> action.</p> <p>You cannot use the <code>dedicatedHostId</code> and <code>placementGroupId</code> parameters together in the same <code>CreateEnvironmentHost</code> action. This results in a <code>ValidationException</code> response.</p> </note>
 
         Args:
             client_token: <note> <p>This parameter is not used in Amazon EVS currently. If you supply input for this parameter, it will have no effect.</p> </note> <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the host creation request. If you do not specify a client token, a randomly generated token is used for the request to ensure idempotency.</p>

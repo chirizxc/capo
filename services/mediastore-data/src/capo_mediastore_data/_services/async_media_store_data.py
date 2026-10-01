@@ -18,6 +18,7 @@ from capo_mediastore_data._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_mediastore_data._auth._zapros_handler import AuthMiddleware
+from capo_mediastore_data._body import Body, aclosing_bodies
 from capo_mediastore_data._iter import ensure_async_iterator
 from capo_mediastore_data._pagination import resolve_path as _resolve_path
 from capo_mediastore_data._services._aws_config import aaws_config
@@ -376,7 +377,7 @@ class AsyncMediaStoreDataClient:
 
     async def put_object(
         self,
-        body: AsyncIterator[bytes] | bytes,
+        body: Body[AsyncIterator[bytes]] | AsyncIterator[bytes] | bytes,
         path: "capo_mediastore_data.types.path_naming.PathNaming",
         *,
         config_overrides: Optional[AsyncMediaStoreDataClientConfig] = None,
@@ -438,13 +439,14 @@ class AsyncMediaStoreDataClient:
         if upload_availability is not None:
             input_["upload_availability"] = upload_availability
 
-        response = await aexecute_pipeline(
-            AsyncOperationRequest(input=input_, options=options_),
-            handler=_handler,
-            interceptors=list(interceptors_),
-        )
-        await response.response.aclose()
-        return response.output
+        async with aclosing_bodies(input_):
+            response = await aexecute_pipeline(
+                AsyncOperationRequest(input=input_, options=options_),
+                handler=_handler,
+                interceptors=list(interceptors_),
+            )
+            await response.response.aclose()
+            return response.output
 
     async def __aenter__(self) -> Self:
         return self

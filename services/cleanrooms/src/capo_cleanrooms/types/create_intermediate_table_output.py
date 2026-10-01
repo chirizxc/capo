@@ -1,0 +1,43 @@
+"""Generated from Smithy shape ``com.amazonaws.cleanrooms#CreateIntermediateTableOutput``."""
+
+from typing import TYPE_CHECKING
+
+from typing_extensions import TypedDict
+
+from capo_cleanrooms.errors import DeserializationError
+
+if TYPE_CHECKING:
+    import capo_cleanrooms.types.intermediate_table
+
+
+class CreateIntermediateTableOutput(TypedDict, closed=True):
+    intermediate_table: "capo_cleanrooms.types.intermediate_table.IntermediateTable"
+    """<p>The intermediate table that was created.</p>"""
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: CreateIntermediateTableOutput) -> dict:
+    out: dict = {}
+    import capo_cleanrooms.types.intermediate_table
+
+    out["intermediateTable"] = capo_cleanrooms.types.intermediate_table.serialize_json(
+        value["intermediate_table"]
+    )
+    return out
+
+
+def deserialize_json(data: dict) -> CreateIntermediateTableOutput:
+    out: CreateIntermediateTableOutput = {}  # type: ignore[typeddict-item]
+    if data.get("intermediateTable") is not None:
+        import capo_cleanrooms.types.intermediate_table
+
+        out["intermediate_table"] = (
+            capo_cleanrooms.types.intermediate_table.deserialize_json(
+                data["intermediateTable"]
+            )
+        )
+    else:
+        raise DeserializationError(
+            "CreateIntermediateTableOutput.intermediate_table required"
+        )
+    return out

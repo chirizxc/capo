@@ -15,7 +15,7 @@ class PutImagePolicyRequest(TypedDict, closed=True):
     image_arn: "capo_imagebuilder.types.image_build_version_arn.ImageBuildVersionArn"
     """<p>The Amazon Resource Name (ARN) of the image that this policy should be applied to.</p>"""
     policy: "capo_imagebuilder.types.resource_policy_document.ResourcePolicyDocument"
-    """<p>The policy to apply.</p>"""
+    """<p>The resource policy to apply to the image, as a JSON policy document. Image Builder validates the policy with Amazon Web Services RAM before applying it, and rejects invalid policies with <code>InvalidParameterValueException</code>.</p>"""
 
 
 # --- restJson1 ser/de ---

@@ -8,6 +8,7 @@ from capo_cloudformation._protocol.xml import Element
 
 if TYPE_CHECKING:
     import capo_cloudformation.types.client_request_token
+    import capo_cloudformation.types.deployment_config
     import capo_cloudformation.types.retain_except_on_create
     import capo_cloudformation.types.role_arn
     import capo_cloudformation.types.stack_name_or_id
@@ -26,6 +27,10 @@ class RollbackStackInput(TypedDict, closed=True):
         "capo_cloudformation.types.retain_except_on_create.RetainExceptOnCreate"
     ]
     """<p>When set to <code>true</code>, newly created resources are deleted when the operation rolls back. This includes newly created resources marked with a deletion policy of <code>Retain</code>.</p> <p>Default: <code>false</code> </p>"""
+    deployment_config: NotRequired[
+        "capo_cloudformation.types.deployment_config.DeploymentConfig"
+    ]
+    """<p>The deployment configuration for this stack operation, including the deployment mode.</p>"""
 
 
 # --- awsQuery ser/de ---
@@ -48,6 +53,12 @@ def serialize_query(
                 "true" if value["retain_except_on_create"] else "false",
             )
         )
+    if "deployment_config" in value:
+        import capo_cloudformation.types.deployment_config
+
+        capo_cloudformation.types.deployment_config.serialize_query(
+            value["deployment_config"], pairs, f"{key_prefix}DeploymentConfig"
+        )
 
 
 def deserialize_query(el: Element) -> RollbackStackInput:
@@ -66,4 +77,13 @@ def deserialize_query(el: Element) -> RollbackStackInput:
         out["retain_except_on_create"] = (
             child_retain_except_on_create.text or ""
         ).lower() == "true"
+    child_deployment_config = el.find("DeploymentConfig")
+    if child_deployment_config is not None:
+        import capo_cloudformation.types.deployment_config
+
+        out["deployment_config"] = (
+            capo_cloudformation.types.deployment_config.deserialize_query(
+                child_deployment_config
+            )
+        )
     return out

@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_mediaconnect.types.fabric_configuration
     import capo_mediaconnect.types.maintenance_configuration
     import capo_mediaconnect.types.router_output_arn
     import capo_mediaconnect.types.router_output_configuration
@@ -31,6 +32,10 @@ class UpdateRouterOutputRequest(TypedDict, closed=True):
         "capo_mediaconnect.types.maintenance_configuration.MaintenanceConfiguration"
     ]
     """<p>The updated maintenance configuration settings for the router output, including any changes to preferred maintenance windows and schedules.</p>"""
+    fabric_configuration: NotRequired[
+        "capo_mediaconnect.types.fabric_configuration.FabricConfiguration"
+    ]
+    """<p>The updated fabric configuration settings for the router output. You cannot update the fabric configuration while the output has an active route. You must unroute the output before updating the fabric configuration.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -68,6 +73,14 @@ def serialize_json(value: UpdateRouterOutputRequest) -> dict:
                 value["maintenance_configuration"]
             )
         )
+    if "fabric_configuration" in value:
+        import capo_mediaconnect.types.fabric_configuration
+
+        out["fabricConfiguration"] = (
+            capo_mediaconnect.types.fabric_configuration.serialize_json(
+                value["fabric_configuration"]
+            )
+        )
     return out
 
 
@@ -103,6 +116,14 @@ def deserialize_json(data: dict) -> UpdateRouterOutputRequest:
         out["maintenance_configuration"] = (
             capo_mediaconnect.types.maintenance_configuration.deserialize_json(
                 data["maintenanceConfiguration"]
+            )
+        )
+    if data.get("fabricConfiguration") is not None:
+        import capo_mediaconnect.types.fabric_configuration
+
+        out["fabric_configuration"] = (
+            capo_mediaconnect.types.fabric_configuration.deserialize_json(
+                data["fabricConfiguration"]
             )
         )
     return out

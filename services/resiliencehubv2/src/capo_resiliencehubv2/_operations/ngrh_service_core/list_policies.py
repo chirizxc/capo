@@ -110,6 +110,8 @@ def build_request(
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + "/v2/list-policies"
     params: list[tuple[str, str]] = []
+    if "account_id" in input_:
+        params.append(("accountId", input_["account_id"]))
     params.append(("maxResults", str(input_.get("max_results", 100))))
     if "next_token" in input_:
         params.append(("nextToken", input_["next_token"]))

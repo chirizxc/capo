@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.date_timestamp
     import capo_bedrock_agentcore.types.name
     import capo_bedrock_agentcore.types.proxy_configuration
+    import capo_bedrock_agentcore.types.tools_file_system_configurations
     import capo_bedrock_agentcore.types.view_port
 
 
@@ -61,6 +62,10 @@ class GetBrowserSessionResponse(TypedDict, closed=True):
     """<p>The active proxy configuration for this browser session. This field is only present if proxy configuration was provided when the session was started using <code>StartBrowserSession</code>. The configuration includes proxy servers, domain bypass rules and the proxy authentication credentials.</p>"""
     certificates: NotRequired["capo_bedrock_agentcore.types.certificates.Certificates"]
     """<p>The list of certificates installed in the browser session.</p>"""
+    filesystem_configurations: NotRequired[
+        "capo_bedrock_agentcore.types.tools_file_system_configurations.ToolsFileSystemConfigurations"
+    ]
+    """<p>The file system configurations for the browser session. Each entry describes an access point and its mount path.</p>"""
     session_replay_artifact: NotRequired["str"]
     """<p>The artifact containing the session replay information.</p>"""
     last_updated_at: NotRequired[
@@ -142,6 +147,14 @@ def serialize_json(value: GetBrowserSessionResponse) -> dict:
 
         out["certificates"] = capo_bedrock_agentcore.types.certificates.serialize_json(
             value["certificates"]
+        )
+    if "filesystem_configurations" in value:
+        import capo_bedrock_agentcore.types.tools_file_system_configurations
+
+        out["filesystemConfigurations"] = (
+            capo_bedrock_agentcore.types.tools_file_system_configurations.serialize_json(
+                value["filesystem_configurations"]
+            )
         )
     if "session_replay_artifact" in value:
         out["sessionReplayArtifact"] = value["session_replay_artifact"]
@@ -242,6 +255,14 @@ def deserialize_json(data: dict) -> GetBrowserSessionResponse:
         out["certificates"] = (
             capo_bedrock_agentcore.types.certificates.deserialize_json(
                 data["certificates"]
+            )
+        )
+    if data.get("filesystemConfigurations") is not None:
+        import capo_bedrock_agentcore.types.tools_file_system_configurations
+
+        out["filesystem_configurations"] = (
+            capo_bedrock_agentcore.types.tools_file_system_configurations.deserialize_json(
+                data["filesystemConfigurations"]
             )
         )
     if data.get("sessionReplayArtifact") is not None:

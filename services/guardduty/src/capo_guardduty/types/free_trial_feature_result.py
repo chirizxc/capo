@@ -14,6 +14,7 @@ FreeTrialFeatureResult: TypeAlias = Literal[
     "EKS_RUNTIME_MONITORING",
     "EC2_RUNTIME_MONITORING",
     "FARGATE_RUNTIME_MONITORING",
+    "AI_PROTECTION",
 ]
 
 

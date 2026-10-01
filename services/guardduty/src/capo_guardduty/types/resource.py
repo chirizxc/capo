@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_guardduty.types.access_key_details
+    import capo_guardduty.types.bedrock_guardrail_details
     import capo_guardduty.types.container
     import capo_guardduty.types.ebs_snapshot_details
     import capo_guardduty.types.ebs_volume_details
@@ -15,6 +16,7 @@ if TYPE_CHECKING:
     import capo_guardduty.types.instance_details
     import capo_guardduty.types.kubernetes_details
     import capo_guardduty.types.lambda_details
+    import capo_guardduty.types.model_details
     import capo_guardduty.types.rds_db_instance_details
     import capo_guardduty.types.rds_db_user_details
     import capo_guardduty.types.rds_limitless_db_details
@@ -81,6 +83,12 @@ class Resource(TypedDict, closed=True):
         "capo_guardduty.types.recovery_point_details.RecoveryPointDetails"
     ]
     """<p>Contains details about the backup recovery point that was scanned.</p>"""
+    bedrock_guardrail_details: NotRequired[
+        "capo_guardduty.types.bedrock_guardrail_details.BedrockGuardrailDetails"
+    ]
+    """<p>Contains information about the Bedrock guardrail that was involved in a finding.</p>"""
+    model_details: NotRequired["capo_guardduty.types.model_details.ModelDetails"]
+    """<p>Contains information about the AI models involved in a finding.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -197,6 +205,20 @@ def serialize_json(value: Resource) -> dict:
             capo_guardduty.types.recovery_point_details.serialize_json(
                 value["recovery_point_details"]
             )
+        )
+    if "bedrock_guardrail_details" in value:
+        import capo_guardduty.types.bedrock_guardrail_details
+
+        out["bedrockGuardrailDetails"] = (
+            capo_guardduty.types.bedrock_guardrail_details.serialize_json(
+                value["bedrock_guardrail_details"]
+            )
+        )
+    if "model_details" in value:
+        import capo_guardduty.types.model_details
+
+        out["modelDetails"] = capo_guardduty.types.model_details.serialize_json(
+            value["model_details"]
         )
     return out
 
@@ -320,5 +342,19 @@ def deserialize_json(data: dict) -> Resource:
             capo_guardduty.types.recovery_point_details.deserialize_json(
                 data["recoveryPointDetails"]
             )
+        )
+    if data.get("bedrockGuardrailDetails") is not None:
+        import capo_guardduty.types.bedrock_guardrail_details
+
+        out["bedrock_guardrail_details"] = (
+            capo_guardduty.types.bedrock_guardrail_details.deserialize_json(
+                data["bedrockGuardrailDetails"]
+            )
+        )
+    if data.get("modelDetails") is not None:
+        import capo_guardduty.types.model_details
+
+        out["model_details"] = capo_guardduty.types.model_details.deserialize_json(
+            data["modelDetails"]
         )
     return out

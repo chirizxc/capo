@@ -7,6 +7,8 @@ ProfileSubtype: TypeAlias = Literal[
     "INFREQUENT",
     "UNSEEN",
     "RARE",
+    "COUNT",
+    "AVERAGE",
 ]
 
 

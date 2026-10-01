@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 from capo_mwaa_serverless.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_mwaa_serverless.types.code
     import capo_mwaa_serverless.types.definition_s3_location
     import capo_mwaa_serverless.types.description_string
     import capo_mwaa_serverless.types.encryption_configuration
@@ -62,6 +63,12 @@ class GetWorkflowResponse(TypedDict, closed=True):
         "capo_mwaa_serverless.types.definition_s3_location.DefinitionS3Location"
     ]
     """<p>The Amazon S3 location of the workflow definition file.</p>"""
+    code: NotRequired["capo_mwaa_serverless.types.code.Code"]
+    """<p>The Amazon S3 location of the code artifacts provided during workflow creation or update.</p>"""
+    code_snapshotted_at: NotRequired[
+        "capo_mwaa_serverless.types.timestamp_value.TimestampValue"
+    ]
+    """<p>The time at which the code artifacts were copied for this workflow, in ISO 8601 date-time format.</p>"""
     schedule_configuration: NotRequired[
         "capo_mwaa_serverless.types.schedule_configuration.ScheduleConfiguration"
     ]
@@ -144,6 +151,20 @@ def serialize_aws_json_1_0(value: GetWorkflowResponse) -> dict:
         out["DefinitionS3Location"] = (
             capo_mwaa_serverless.types.definition_s3_location.serialize_aws_json_1_0(
                 value["definition_s3_location"]
+            )
+        )
+    if "code" in value:
+        import capo_mwaa_serverless.types.code
+
+        out["Code"] = capo_mwaa_serverless.types.code.serialize_aws_json_1_0(
+            value["code"]
+        )
+    if "code_snapshotted_at" in value:
+        import capo_mwaa_serverless.types.timestamp_value
+
+        out["CodeSnapshottedAt"] = (
+            capo_mwaa_serverless.types.timestamp_value.serialize_aws_json_1_0(
+                value["code_snapshotted_at"]
             )
         )
     if "schedule_configuration" in value:
@@ -237,6 +258,20 @@ def deserialize_aws_json_1_0(data: dict) -> GetWorkflowResponse:
         out["definition_s3_location"] = (
             capo_mwaa_serverless.types.definition_s3_location.deserialize_aws_json_1_0(
                 data["DefinitionS3Location"]
+            )
+        )
+    if data.get("Code") is not None:
+        import capo_mwaa_serverless.types.code
+
+        out["code"] = capo_mwaa_serverless.types.code.deserialize_aws_json_1_0(
+            data["Code"]
+        )
+    if data.get("CodeSnapshottedAt") is not None:
+        import capo_mwaa_serverless.types.timestamp_value
+
+        out["code_snapshotted_at"] = (
+            capo_mwaa_serverless.types.timestamp_value.deserialize_aws_json_1_0(
+                data["CodeSnapshottedAt"]
             )
         )
     if data.get("ScheduleConfiguration") is not None:

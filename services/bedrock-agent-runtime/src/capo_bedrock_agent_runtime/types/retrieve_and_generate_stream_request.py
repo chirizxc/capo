@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agent_runtime.types.retrieve_and_generate_input
     import capo_bedrock_agent_runtime.types.retrieve_and_generate_session_configuration
     import capo_bedrock_agent_runtime.types.session_id
+    import capo_bedrock_agent_runtime.types.user_context
 
 
 class RetrieveAndGenerateStreamRequest(TypedDict, closed=True):
@@ -26,6 +27,10 @@ class RetrieveAndGenerateStreamRequest(TypedDict, closed=True):
         "capo_bedrock_agent_runtime.types.retrieve_and_generate_session_configuration.RetrieveAndGenerateSessionConfiguration"
     ]
     """<p>Contains details about the session with the knowledge base.</p>"""
+    user_context: NotRequired[
+        "capo_bedrock_agent_runtime.types.user_context.UserContext"
+    ]
+    """<p>Contains information about the user making the request. This is used for access control filtering to ensure that retrieval results only include documents the user is authorized to access.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -54,6 +59,14 @@ def serialize_json(value: RetrieveAndGenerateStreamRequest) -> dict:
         out["sessionConfiguration"] = (
             capo_bedrock_agent_runtime.types.retrieve_and_generate_session_configuration.serialize_json(
                 value["session_configuration"]
+            )
+        )
+    if "user_context" in value:
+        import capo_bedrock_agent_runtime.types.user_context
+
+        out["userContext"] = (
+            capo_bedrock_agent_runtime.types.user_context.serialize_json(
+                value["user_context"]
             )
         )
     return out
@@ -87,6 +100,14 @@ def deserialize_json(data: dict) -> RetrieveAndGenerateStreamRequest:
         out["session_configuration"] = (
             capo_bedrock_agent_runtime.types.retrieve_and_generate_session_configuration.deserialize_json(
                 data["sessionConfiguration"]
+            )
+        )
+    if data.get("userContext") is not None:
+        import capo_bedrock_agent_runtime.types.user_context
+
+        out["user_context"] = (
+            capo_bedrock_agent_runtime.types.user_context.deserialize_json(
+                data["userContext"]
             )
         )
     return out

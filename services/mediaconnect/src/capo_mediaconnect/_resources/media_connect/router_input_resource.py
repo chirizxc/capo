@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     import capo_mediaconnect.types.__map_of_string
     import capo_mediaconnect.types.batch_get_router_input_request
     import capo_mediaconnect.types.batch_get_router_input_response
+    import capo_mediaconnect.types.client_token
     import capo_mediaconnect.types.create_router_input_request
     import capo_mediaconnect.types.create_router_input_response
     import capo_mediaconnect.types.delete_router_input_request
@@ -34,6 +35,7 @@ if TYPE_CHECKING:
     import capo_mediaconnect.types.maintenance_configuration
     import capo_mediaconnect.types.restart_router_input_request
     import capo_mediaconnect.types.restart_router_input_response
+    import capo_mediaconnect.types.router_content_quality_analysis_configuration
     import capo_mediaconnect.types.router_input_arn
     import capo_mediaconnect.types.router_input_arn_list
     import capo_mediaconnect.types.router_input_configuration
@@ -79,7 +81,12 @@ class RouterInputResource:
             "capo_mediaconnect.types.maintenance_configuration.MaintenanceConfiguration"
         ] = None,
         tags: Optional["capo_mediaconnect.types.__map_of_string.__mapOfString"] = None,
-        client_token: Optional[str] = None,
+        client_token: Optional[
+            "capo_mediaconnect.types.client_token.ClientToken"
+        ] = None,
+        content_quality_analysis_configuration: Optional[
+            "capo_mediaconnect.types.router_content_quality_analysis_configuration.RouterContentQualityAnalysisConfiguration"
+        ] = None,
     ) -> (
         "capo_mediaconnect.types.create_router_input_response.CreateRouterInputResponse"
     ):
@@ -97,6 +104,7 @@ class RouterInputResource:
             maintenance_configuration: <p>The maintenance configuration settings for the router input, including preferred maintenance windows and schedules.</p>
             tags: <p>Key-value pairs that can be used to tag and organize this router input.</p>
             client_token: <p>A unique identifier for the request to ensure idempotency.</p>
+            content_quality_analysis_configuration: <p>The content quality analysis configuration for the router input.</p>
 
         Raises:
             capo_mediaconnect.errors.bad_request_exception.BadRequestException: <p>This exception is thrown if the request contains a semantic error. The precise meaning depends on the API, and is documented in the error message. </p>
@@ -144,6 +152,10 @@ class RouterInputResource:
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
+        if content_quality_analysis_configuration is not None:
+            input_["content_quality_analysis_configuration"] = (
+                content_quality_analysis_configuration
+            )
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -224,6 +236,9 @@ class RouterInputResource:
         maintenance_configuration: Optional[
             "capo_mediaconnect.types.maintenance_configuration.MaintenanceConfiguration"
         ] = None,
+        content_quality_analysis_configuration: Optional[
+            "capo_mediaconnect.types.router_content_quality_analysis_configuration.RouterContentQualityAnalysisConfiguration"
+        ] = None,
     ) -> (
         "capo_mediaconnect.types.update_router_input_response.UpdateRouterInputResponse"
     ):
@@ -238,6 +253,7 @@ class RouterInputResource:
             tier: <p>The updated tier level for the router input.</p>
             transit_encryption: <p>The updated transit encryption settings for the router input.</p>
             maintenance_configuration: <p>The updated maintenance configuration settings for the router input, including any changes to preferred maintenance windows and schedules.</p>
+            content_quality_analysis_configuration: <p>The content quality analysis configuration for the router input.</p>
 
         Raises:
             capo_mediaconnect.errors.bad_request_exception.BadRequestException: <p>This exception is thrown if the request contains a semantic error. The precise meaning depends on the API, and is documented in the error message. </p>
@@ -282,6 +298,10 @@ class RouterInputResource:
             input_["transit_encryption"] = transit_encryption
         if maintenance_configuration is not None:
             input_["maintenance_configuration"] = maintenance_configuration
+        if content_quality_analysis_configuration is not None:
+            input_["content_quality_analysis_configuration"] = (
+                content_quality_analysis_configuration
+            )
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -712,7 +732,12 @@ class AsyncRouterInputResource:
             "capo_mediaconnect.types.maintenance_configuration.MaintenanceConfiguration"
         ] = None,
         tags: Optional["capo_mediaconnect.types.__map_of_string.__mapOfString"] = None,
-        client_token: Optional[str] = None,
+        client_token: Optional[
+            "capo_mediaconnect.types.client_token.ClientToken"
+        ] = None,
+        content_quality_analysis_configuration: Optional[
+            "capo_mediaconnect.types.router_content_quality_analysis_configuration.RouterContentQualityAnalysisConfiguration"
+        ] = None,
     ) -> (
         "capo_mediaconnect.types.create_router_input_response.CreateRouterInputResponse"
     ):
@@ -730,6 +755,7 @@ class AsyncRouterInputResource:
             maintenance_configuration: <p>The maintenance configuration settings for the router input, including preferred maintenance windows and schedules.</p>
             tags: <p>Key-value pairs that can be used to tag and organize this router input.</p>
             client_token: <p>A unique identifier for the request to ensure idempotency.</p>
+            content_quality_analysis_configuration: <p>The content quality analysis configuration for the router input.</p>
 
         Raises:
             capo_mediaconnect.errors.bad_request_exception.BadRequestException: <p>This exception is thrown if the request contains a semantic error. The precise meaning depends on the API, and is documented in the error message. </p>
@@ -778,6 +804,10 @@ class AsyncRouterInputResource:
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
+        if content_quality_analysis_configuration is not None:
+            input_["content_quality_analysis_configuration"] = (
+                content_quality_analysis_configuration
+            )
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -859,6 +889,9 @@ class AsyncRouterInputResource:
         maintenance_configuration: Optional[
             "capo_mediaconnect.types.maintenance_configuration.MaintenanceConfiguration"
         ] = None,
+        content_quality_analysis_configuration: Optional[
+            "capo_mediaconnect.types.router_content_quality_analysis_configuration.RouterContentQualityAnalysisConfiguration"
+        ] = None,
     ) -> (
         "capo_mediaconnect.types.update_router_input_response.UpdateRouterInputResponse"
     ):
@@ -873,6 +906,7 @@ class AsyncRouterInputResource:
             tier: <p>The updated tier level for the router input.</p>
             transit_encryption: <p>The updated transit encryption settings for the router input.</p>
             maintenance_configuration: <p>The updated maintenance configuration settings for the router input, including any changes to preferred maintenance windows and schedules.</p>
+            content_quality_analysis_configuration: <p>The content quality analysis configuration for the router input.</p>
 
         Raises:
             capo_mediaconnect.errors.bad_request_exception.BadRequestException: <p>This exception is thrown if the request contains a semantic error. The precise meaning depends on the API, and is documented in the error message. </p>
@@ -918,6 +952,10 @@ class AsyncRouterInputResource:
             input_["transit_encryption"] = transit_encryption
         if maintenance_configuration is not None:
             input_["maintenance_configuration"] = maintenance_configuration
+        if content_quality_analysis_configuration is not None:
+            input_["content_quality_analysis_configuration"] = (
+                content_quality_analysis_configuration
+            )
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

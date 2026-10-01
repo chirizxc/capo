@@ -18,10 +18,12 @@ if TYPE_CHECKING:
     import capo_mediaconnect.types.__map_of_string
     import capo_mediaconnect.types.batch_get_router_output_request
     import capo_mediaconnect.types.batch_get_router_output_response
+    import capo_mediaconnect.types.client_token
     import capo_mediaconnect.types.create_router_output_request
     import capo_mediaconnect.types.create_router_output_response
     import capo_mediaconnect.types.delete_router_output_request
     import capo_mediaconnect.types.delete_router_output_response
+    import capo_mediaconnect.types.fabric_configuration
     import capo_mediaconnect.types.get_router_output_request
     import capo_mediaconnect.types.get_router_output_response
     import capo_mediaconnect.types.list_router_outputs_request
@@ -74,7 +76,12 @@ class RouterOutputResource:
             "capo_mediaconnect.types.maintenance_configuration.MaintenanceConfiguration"
         ] = None,
         tags: Optional["capo_mediaconnect.types.__map_of_string.__mapOfString"] = None,
-        client_token: Optional[str] = None,
+        fabric_configuration: Optional[
+            "capo_mediaconnect.types.fabric_configuration.FabricConfiguration"
+        ] = None,
+        client_token: Optional[
+            "capo_mediaconnect.types.client_token.ClientToken"
+        ] = None,
     ) -> "capo_mediaconnect.types.create_router_output_response.CreateRouterOutputResponse":
         """<p>Creates a new router output in AWS Elemental MediaConnect.</p>
 
@@ -88,6 +95,7 @@ class RouterOutputResource:
             availability_zone: <p>The Availability Zone where you want to create the router output. This must be a valid Availability Zone for the region specified by <code>regionName</code>, or the current region if no <code>regionName</code> is provided. </p>
             maintenance_configuration: <p>The maintenance configuration settings for the router output, including preferred maintenance windows and schedules.</p>
             tags: <p>Key-value pairs that can be used to tag this router output.</p>
+            fabric_configuration: <p>The fabric configuration settings for the router output.</p>
             client_token: <p>A unique identifier for the request to ensure idempotency.</p>
 
         Raises:
@@ -131,6 +139,8 @@ class RouterOutputResource:
             input_["maintenance_configuration"] = maintenance_configuration
         if tags is not None:
             input_["tags"] = tags
+        if fabric_configuration is not None:
+            input_["fabric_configuration"] = fabric_configuration
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -211,6 +221,9 @@ class RouterOutputResource:
         maintenance_configuration: Optional[
             "capo_mediaconnect.types.maintenance_configuration.MaintenanceConfiguration"
         ] = None,
+        fabric_configuration: Optional[
+            "capo_mediaconnect.types.fabric_configuration.FabricConfiguration"
+        ] = None,
     ) -> "capo_mediaconnect.types.update_router_output_response.UpdateRouterOutputResponse":
         """<p>Updates the configuration of an existing router output in AWS Elemental MediaConnect.</p>
 
@@ -222,6 +235,7 @@ class RouterOutputResource:
             routing_scope: <p>Specifies whether the router output can take inputs that are in different Regions. REGIONAL (default) - can only take inputs from same Region. GLOBAL - can take inputs from any Region.</p>
             tier: <p>The updated tier level for the router output.</p>
             maintenance_configuration: <p>The updated maintenance configuration settings for the router output, including any changes to preferred maintenance windows and schedules.</p>
+            fabric_configuration: <p>The updated fabric configuration settings for the router output. You cannot update the fabric configuration while the output has an active route. You must unroute the output before updating the fabric configuration.</p>
 
         Raises:
             capo_mediaconnect.errors.bad_request_exception.BadRequestException: <p>This exception is thrown if the request contains a semantic error. The precise meaning depends on the API, and is documented in the error message. </p>
@@ -264,6 +278,8 @@ class RouterOutputResource:
             input_["tier"] = tier
         if maintenance_configuration is not None:
             input_["maintenance_configuration"] = maintenance_configuration
+        if fabric_configuration is not None:
+            input_["fabric_configuration"] = fabric_configuration
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -652,7 +668,12 @@ class AsyncRouterOutputResource:
             "capo_mediaconnect.types.maintenance_configuration.MaintenanceConfiguration"
         ] = None,
         tags: Optional["capo_mediaconnect.types.__map_of_string.__mapOfString"] = None,
-        client_token: Optional[str] = None,
+        fabric_configuration: Optional[
+            "capo_mediaconnect.types.fabric_configuration.FabricConfiguration"
+        ] = None,
+        client_token: Optional[
+            "capo_mediaconnect.types.client_token.ClientToken"
+        ] = None,
     ) -> "capo_mediaconnect.types.create_router_output_response.CreateRouterOutputResponse":
         """<p>Creates a new router output in AWS Elemental MediaConnect.</p>
 
@@ -666,6 +687,7 @@ class AsyncRouterOutputResource:
             availability_zone: <p>The Availability Zone where you want to create the router output. This must be a valid Availability Zone for the region specified by <code>regionName</code>, or the current region if no <code>regionName</code> is provided. </p>
             maintenance_configuration: <p>The maintenance configuration settings for the router output, including preferred maintenance windows and schedules.</p>
             tags: <p>Key-value pairs that can be used to tag this router output.</p>
+            fabric_configuration: <p>The fabric configuration settings for the router output.</p>
             client_token: <p>A unique identifier for the request to ensure idempotency.</p>
 
         Raises:
@@ -710,6 +732,8 @@ class AsyncRouterOutputResource:
             input_["maintenance_configuration"] = maintenance_configuration
         if tags is not None:
             input_["tags"] = tags
+        if fabric_configuration is not None:
+            input_["fabric_configuration"] = fabric_configuration
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
@@ -791,6 +815,9 @@ class AsyncRouterOutputResource:
         maintenance_configuration: Optional[
             "capo_mediaconnect.types.maintenance_configuration.MaintenanceConfiguration"
         ] = None,
+        fabric_configuration: Optional[
+            "capo_mediaconnect.types.fabric_configuration.FabricConfiguration"
+        ] = None,
     ) -> "capo_mediaconnect.types.update_router_output_response.UpdateRouterOutputResponse":
         """<p>Updates the configuration of an existing router output in AWS Elemental MediaConnect.</p>
 
@@ -802,6 +829,7 @@ class AsyncRouterOutputResource:
             routing_scope: <p>Specifies whether the router output can take inputs that are in different Regions. REGIONAL (default) - can only take inputs from same Region. GLOBAL - can take inputs from any Region.</p>
             tier: <p>The updated tier level for the router output.</p>
             maintenance_configuration: <p>The updated maintenance configuration settings for the router output, including any changes to preferred maintenance windows and schedules.</p>
+            fabric_configuration: <p>The updated fabric configuration settings for the router output. You cannot update the fabric configuration while the output has an active route. You must unroute the output before updating the fabric configuration.</p>
 
         Raises:
             capo_mediaconnect.errors.bad_request_exception.BadRequestException: <p>This exception is thrown if the request contains a semantic error. The precise meaning depends on the API, and is documented in the error message. </p>
@@ -845,6 +873,8 @@ class AsyncRouterOutputResource:
             input_["tier"] = tier
         if maintenance_configuration is not None:
             input_["maintenance_configuration"] = maintenance_configuration
+        if fabric_configuration is not None:
+            input_["fabric_configuration"] = fabric_configuration
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

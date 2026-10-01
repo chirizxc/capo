@@ -10,8 +10,10 @@ if TYPE_CHECKING:
     import capo_gameliftstreams.types.client_token
     import capo_gameliftstreams.types.connection_timeout_seconds
     import capo_gameliftstreams.types.description
+    import capo_gameliftstreams.types.display_configuration
     import capo_gameliftstreams.types.environment_variables
     import capo_gameliftstreams.types.game_launch_arg_list
+    import capo_gameliftstreams.types.iam_role_arn
     import capo_gameliftstreams.types.identifier
     import capo_gameliftstreams.types.location_list
     import capo_gameliftstreams.types.performance_stats_configuration
@@ -58,6 +60,12 @@ class StartStreamSessionInput(TypedDict, closed=True):
         "capo_gameliftstreams.types.performance_stats_configuration.PerformanceStatsConfiguration"
     ]
     """<p>Configuration settings for sharing the stream session's performance stats with the client</p>"""
+    role_arn: NotRequired["capo_gameliftstreams.types.iam_role_arn.IamRoleArn"]
+    """<p>The ARN of an AWS Identity and Access Management (IAM) role that Amazon GameLift Streams assumes on your behalf during the stream session. The role grants Amazon GameLift Streams permission to obtain temporary credentials for your application. The role's trust policy must allow the <code>gameliftstreams.amazonaws.com</code> service principal to assume it. The role name must start with <code>GameLiftStreams-</code>.</p>"""
+    display_configuration: NotRequired[
+        "capo_gameliftstreams.types.display_configuration.DisplayConfiguration"
+    ]
+    """<p>The configuration for the stream session's virtual monitor, including the resolution settings.</p> <p>If not specified, Amazon GameLift Streams uses the default resolution of 1920 × 1080.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -108,6 +116,16 @@ def serialize_json(value: StartStreamSessionInput) -> dict:
         out["PerformanceStatsConfiguration"] = (
             capo_gameliftstreams.types.performance_stats_configuration.serialize_json(
                 value["performance_stats_configuration"]
+            )
+        )
+    if "role_arn" in value:
+        out["RoleArn"] = value["role_arn"]
+    if "display_configuration" in value:
+        import capo_gameliftstreams.types.display_configuration
+
+        out["DisplayConfiguration"] = (
+            capo_gameliftstreams.types.display_configuration.serialize_json(
+                value["display_configuration"]
             )
         )
     return out
@@ -171,6 +189,16 @@ def deserialize_json(data: dict) -> StartStreamSessionInput:
         out["performance_stats_configuration"] = (
             capo_gameliftstreams.types.performance_stats_configuration.deserialize_json(
                 data["PerformanceStatsConfiguration"]
+            )
+        )
+    if data.get("RoleArn") is not None:
+        out["role_arn"] = data["RoleArn"]
+    if data.get("DisplayConfiguration") is not None:
+        import capo_gameliftstreams.types.display_configuration
+
+        out["display_configuration"] = (
+            capo_gameliftstreams.types.display_configuration.deserialize_json(
+                data["DisplayConfiguration"]
             )
         )
     return out

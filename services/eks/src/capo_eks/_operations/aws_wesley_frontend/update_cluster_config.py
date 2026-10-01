@@ -21,6 +21,9 @@ import capo_eks.errors.server_exception
 import capo_eks.errors.throttling_exception
 import capo_eks.types.compute_config_request
 import capo_eks.types.control_plane_scaling_config
+import capo_eks.types.kube_api_server_config_request
+import capo_eks.types.kube_controller_manager_config_request
+import capo_eks.types.kube_scheduler_config_request
 import capo_eks.types.kubernetes_network_config_request
 import capo_eks.types.logging
 import capo_eks.types.remote_network_config_request

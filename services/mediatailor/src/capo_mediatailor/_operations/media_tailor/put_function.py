@@ -13,12 +13,15 @@ import capo_mediatailor._auth._signers
 import capo_mediatailor._auth._sigv4
 import capo_mediatailor._protocol.eventstream
 import capo_mediatailor.types.__map_of__string
+import capo_mediatailor.types.aws_service_request_configuration
+import capo_mediatailor.types.concurrent_executor_configuration
 import capo_mediatailor.types.custom_output_configuration
 import capo_mediatailor.types.function_type
 import capo_mediatailor.types.http_request_configuration
 import capo_mediatailor.types.put_function_request
 import capo_mediatailor.types.put_function_response
 import capo_mediatailor.types.sequential_executor_configuration
+import capo_mediatailor.types.vast_request_configuration
 from capo_mediatailor._protocol.errors import parse_error_metadata_json
 from capo_mediatailor._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_mediatailor._services._pipeline import AsyncOperationOptions, OperationOptions

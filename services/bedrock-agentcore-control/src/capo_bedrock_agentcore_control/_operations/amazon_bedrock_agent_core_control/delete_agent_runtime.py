@@ -123,6 +123,8 @@ def build_request(
     url = endpoint.url.rstrip("/") + "/runtimes/{agentRuntimeId}/"
     url = url.replace("{agentRuntimeId}", quote(input_["agent_runtime_id"], safe=""))
     params: list[tuple[str, str]] = []
+    if "agent_runtime_version" in input_:
+        params.append(("version", input_["agent_runtime_version"]))
     if "client_token" in input_:
         params.append(("clientToken", input_["client_token"]))
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}

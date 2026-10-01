@@ -19,6 +19,7 @@ import capo_timestream_influxdb.errors.validation_exception
 import capo_timestream_influxdb.types.cluster_configuration
 import capo_timestream_influxdb.types.cluster_deployment_type
 import capo_timestream_influxdb.types.cluster_status
+import capo_timestream_influxdb.types.db_backup_configuration_output_list
 import capo_timestream_influxdb.types.db_instance_type
 import capo_timestream_influxdb.types.db_storage_type
 import capo_timestream_influxdb.types.engine_type

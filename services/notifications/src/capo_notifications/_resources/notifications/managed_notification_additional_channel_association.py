@@ -40,12 +40,14 @@ class ManagedNotificationAdditionalChannelAssociation:
         managed_notification_configuration_arn: "capo_notifications.types.managed_notification_configuration_os_arn.ManagedNotificationConfigurationOsArn",
         *,
         config_overrides: Optional[NotificationsClientConfig] = None,
+        is_sensitive_events_subscribed: Optional[bool] = None,
     ) -> "capo_notifications.types.associate_managed_notification_additional_channel_response.AssociateManagedNotificationAdditionalChannelResponse":
         """<p>Associates an additional Channel with a particular <code>ManagedNotificationConfiguration</code>.</p> <p>Supported Channels include Amazon Q Developer in chat applications, the Console Mobile Application, and emails (notifications-contacts).</p>
 
         Args:
             channel_arn: <p>The Amazon Resource Name (ARN) of the Channel to associate with the <code>ManagedNotificationConfiguration</code>.</p> <p>Supported ARNs include Amazon Q Developer in chat applications, the Console Mobile Application, and email (notifications-contacts).</p>
             managed_notification_configuration_arn: <p>The Amazon Resource Name (ARN) of the <code>ManagedNotificationConfiguration</code> to associate with the additional Channel.</p>
+            is_sensitive_events_subscribed: <p>Specifies whether this channel is subscribed to sensitive events. The <code>notifications:SubscribeSensitiveEvents</code> permission controls access to sensitive events. Defaults to false.</p>
 
         Raises:
             capo_notifications.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
@@ -77,6 +79,8 @@ class ManagedNotificationAdditionalChannelAssociation:
             "channel_arn": channel_arn,
             "managed_notification_configuration_arn": managed_notification_configuration_arn,
         }
+        if is_sensitive_events_subscribed is not None:
+            input_["is_sensitive_events_subscribed"] = is_sensitive_events_subscribed
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -147,12 +151,14 @@ class AsyncManagedNotificationAdditionalChannelAssociation:
         managed_notification_configuration_arn: "capo_notifications.types.managed_notification_configuration_os_arn.ManagedNotificationConfigurationOsArn",
         *,
         config_overrides: Optional[AsyncNotificationsClientConfig] = None,
+        is_sensitive_events_subscribed: Optional[bool] = None,
     ) -> "capo_notifications.types.associate_managed_notification_additional_channel_response.AssociateManagedNotificationAdditionalChannelResponse":
         """<p>Associates an additional Channel with a particular <code>ManagedNotificationConfiguration</code>.</p> <p>Supported Channels include Amazon Q Developer in chat applications, the Console Mobile Application, and emails (notifications-contacts).</p>
 
         Args:
             channel_arn: <p>The Amazon Resource Name (ARN) of the Channel to associate with the <code>ManagedNotificationConfiguration</code>.</p> <p>Supported ARNs include Amazon Q Developer in chat applications, the Console Mobile Application, and email (notifications-contacts).</p>
             managed_notification_configuration_arn: <p>The Amazon Resource Name (ARN) of the <code>ManagedNotificationConfiguration</code> to associate with the additional Channel.</p>
+            is_sensitive_events_subscribed: <p>Specifies whether this channel is subscribed to sensitive events. The <code>notifications:SubscribeSensitiveEvents</code> permission controls access to sensitive events. Defaults to false.</p>
 
         Raises:
             capo_notifications.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
@@ -185,6 +191,8 @@ class AsyncManagedNotificationAdditionalChannelAssociation:
             "channel_arn": channel_arn,
             "managed_notification_configuration_arn": managed_notification_configuration_arn,
         }
+        if is_sensitive_events_subscribed is not None:
+            input_["is_sensitive_events_subscribed"] = is_sensitive_events_subscribed
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

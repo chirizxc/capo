@@ -110,7 +110,7 @@ class ModifyReplicationGroupMessage(TypedDict, closed=True):
     cluster_mode: NotRequired["capo_elasticache.types.cluster_mode.ClusterMode"]
     """<p>Enabled or Disabled. To modify cluster mode from Disabled to Enabled, you must first set the cluster mode to Compatible. Compatible mode allows your Valkey or Redis OSS clients to connect using both cluster mode enabled and cluster mode disabled. After you migrate all Valkey or Redis OSS clients to use cluster mode enabled, you can then complete cluster mode configuration and set the cluster mode to Enabled.</p>"""
     durability: NotRequired["capo_elasticache.types.durability.Durability"]
-    r"""<p>Specifies the durability setting for the replication group. Use this parameter to change the durability mode of an existing replication group, for example from <code>sync</code> to <code>async</code> or vice versa. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Durability.html\">Durability</a>.</p>"""
+    r"""<p>Specifies the durability setting for the replication group. Use this parameter to change the durability mode of an existing replication group, for example from <code>sync</code> to <code>async</code> or vice versa. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/durability.html\">Durability</a>.</p>"""
 
 
 # --- awsQuery ser/de ---

@@ -22,6 +22,7 @@ import capo_devops_agent.errors.service_quota_exceeded_exception
 import capo_devops_agent.errors.throttling_exception
 import capo_devops_agent.errors.validation_exception
 import capo_devops_agent.types.agent_space
+import capo_devops_agent.types.agent_space_preferences
 import capo_devops_agent.types.update_agent_space_input
 import capo_devops_agent.types.update_agent_space_output
 from capo_devops_agent._protocol.errors import parse_error_metadata_json

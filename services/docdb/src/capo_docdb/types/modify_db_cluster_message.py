@@ -70,7 +70,11 @@ class ModifyDBClusterMessage(TypedDict, closed=True):
     ]
     """<p>Specifies whether to rotate the secret managed by Amazon Web Services Secrets Manager for the master user password.</p> <p>This setting is valid only if the master user password is managed by Amazon DocumentDB in Amazon Web Services Secrets Manager for the cluster. The secret value contains the updated password.</p> <p>Constraint: You must apply the change immediately when rotating the master user password.</p>"""
     network_type: NotRequired["capo_docdb.types.string.String"]
-    r"""<p>The network type of the cluster.</p> <p>The network type is determined by the <code>DBSubnetGroup</code> specified for the cluster. A <code>DBSubnetGroup</code> can support only the IPv4 protocol or the IPv4 and the IPv6 protocols (<code>DUAL</code>).</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/vpc-clusters.html\">DocumentDB clusters in a VPC</a> in the Amazon DocumentDB Developer Guide.</p> <p>Valid Values: <code>IPV4</code> | <code>DUAL</code> </p>"""
+    r"""<p>The network type of the cluster.</p> <p>The network type is determined by the <code>DBSubnetGroup</code> specified for the cluster. A <code>DBSubnetGroup</code> can support only the IPv4 protocol or the IPv4 and the IPv6 protocols (<code>DUAL</code>).</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/devguide/vpc-clusters.html\">DocumentDB clusters in a VPC</a> in the Amazon DocumentDB Developer Guide.</p> <p>Valid Values: <code>IPV4</code> | <code>DUAL</code> </p>"""
+    copy_tags_to_snapshot: NotRequired[
+        "capo_docdb.types.boolean_optional.BooleanOptional"
+    ]
+    """<p>Specifies whether to copy all tags from the DB cluster to snapshots of the DB cluster. The default is not to copy them.</p>"""
 
 
 # --- awsQuery ser/de ---
@@ -193,6 +197,13 @@ def serialize_query(
         )
     if "network_type" in value:
         pairs.append((f"{key_prefix}NetworkType", str(value["network_type"])))
+    if "copy_tags_to_snapshot" in value:
+        pairs.append(
+            (
+                f"{key_prefix}CopyTagsToSnapshot",
+                "true" if value["copy_tags_to_snapshot"] else "false",
+            )
+        )
 
 
 def deserialize_query(el: Element) -> ModifyDBClusterMessage:
@@ -297,4 +308,9 @@ def deserialize_query(el: Element) -> ModifyDBClusterMessage:
     child_network_type = el.find("NetworkType")
     if child_network_type is not None:
         out["network_type"] = str(child_network_type.text or "")
+    child_copy_tags_to_snapshot = el.find("CopyTagsToSnapshot")
+    if child_copy_tags_to_snapshot is not None:
+        out["copy_tags_to_snapshot"] = (
+            child_copy_tags_to_snapshot.text or ""
+        ).lower() == "true"
     return out

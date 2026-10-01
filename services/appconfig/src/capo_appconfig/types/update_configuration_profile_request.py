@@ -6,17 +6,17 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_appconfig.types.description
-    import capo_appconfig.types.id
     import capo_appconfig.types.kms_key_identifier_or_empty
     import capo_appconfig.types.long_name
+    import capo_appconfig.types.name
     import capo_appconfig.types.role_arn
     import capo_appconfig.types.validator_list
 
 
 class UpdateConfigurationProfileRequest(TypedDict, closed=True):
-    application_id: "capo_appconfig.types.id.Id"
+    application_id: "capo_appconfig.types.name.Name"
     """<p>The application ID.</p>"""
-    configuration_profile_id: "capo_appconfig.types.id.Id"
+    configuration_profile_id: "capo_appconfig.types.long_name.LongName"
     """<p>The ID of the configuration profile.</p>"""
     name: NotRequired["capo_appconfig.types.long_name.LongName"]
     """<p>The name of the configuration profile.</p>"""

@@ -14,17 +14,17 @@ if TYPE_CHECKING:
 
 class ListWorkflowsRequest(TypedDict, closed=True):
     owner: NotRequired["capo_imagebuilder.types.ownership.Ownership"]
-    """<p>Used to get a list of workflow build version filtered by the identity of the creator.</p>"""
+    """<p>Filters results based on the workflow owner. By default, this request returns the workflows that your account owns (<code>Self</code>). Specify <code>Amazon</code> to list the workflows that Image Builder manages. Image Builder rejects the <code>Shared</code> and <code>ThirdParty</code> owner values for workflows, and <code>AWSMarketplace</code> returns no results.</p>"""
     filters: NotRequired["capo_imagebuilder.types.filter_list.FilterList"]
-    """<p>Used to streamline search results.</p>"""
+    """<p>Filters to narrow the list of workflows. You can filter on <code>name</code>, <code>version</code>, <code>description</code>, and <code>type</code>.</p>"""
     by_name: "capo_imagebuilder.types.boolean.Boolean"
-    """<p>Specify all or part of the workflow name to streamline results.</p>"""
+    """<p>Specifies whether to return one entry per workflow name, with all versions of each workflow aggregated. Defaults to <code>false</code>, which returns one entry per workflow version. You can't combine this option with the <code>version</code> filter.</p>"""
     max_results: NotRequired[
         "capo_imagebuilder.types.restricted_integer.RestrictedInteger"
     ]
-    """<p>Specify the maximum number of items to return in a request.</p>"""
+    """<p>The maximum number of items to return in a single request.</p>"""
     next_token: NotRequired["capo_imagebuilder.types.pagination_token.PaginationToken"]
-    """<p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>"""
+    """<p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>"""
 
 
 # --- restJson1 ser/de ---

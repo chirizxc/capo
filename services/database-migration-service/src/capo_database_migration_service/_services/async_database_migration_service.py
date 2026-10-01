@@ -582,7 +582,7 @@ class AsyncDatabaseMigrationServiceClient:
         *,
         config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
     ) -> "capo_database_migration_service.types.cancel_metadata_model_conversion_response.CancelMetadataModelConversionResponse":
-        """<p>Cancels a single metadata model conversion operation that was started with <code>StartMetadataModelConversion</code>.</p>
+        r"""<p>Cancels a single metadata model conversion operation that was started with <code>StartMetadataModelConversion</code>.</p> <p> <b>Required permissions:</b> <code>dms:CancelMetadataModelConversion</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
             migration_project_identifier: <p>The migration project name or Amazon Resource Name (ARN).</p>
@@ -593,6 +593,12 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.invalid_resource_state_fault.InvalidResourceStateFault: <p>The resource is in a state that prevents it from being used for database migration.</p>
             capo_database_migration_service.errors.resource_not_found_fault.ResourceNotFoundFault: <p>The resource could not be found.</p>
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Cancel a metadata model conversion
+            The following example cancels a metadata model conversion operation.
+
+            >>> await client.cancel_metadata_model_conversion(migration_project_identifier='arn:aws:dms:us-east-1:111122223333:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRS', request_identifier='a1b2c3d4-5678-90ab-cdef-EXAMPLE11111')
         """
 
         async def _handler(
@@ -631,7 +637,7 @@ class AsyncDatabaseMigrationServiceClient:
         *,
         config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
     ) -> "capo_database_migration_service.types.cancel_metadata_model_creation_response.CancelMetadataModelCreationResponse":
-        """<p>Cancels a single metadata model creation operation that was started with <code>StartMetadataModelCreation</code>.</p>
+        r"""<p>Cancels a single metadata model creation operation that was started with <code>StartMetadataModelCreation</code>.</p> <p> <b>Required permissions:</b> <code>dms:CancelMetadataModelCreation</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
             migration_project_identifier: <p>The migration project name or Amazon Resource Name (ARN).</p>
@@ -642,6 +648,12 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.invalid_resource_state_fault.InvalidResourceStateFault: <p>The resource is in a state that prevents it from being used for database migration.</p>
             capo_database_migration_service.errors.resource_not_found_fault.ResourceNotFoundFault: <p>The resource could not be found.</p>
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Cancel a metadata model creation
+            The following example cancels a metadata model creation operation.
+
+            >>> await client.cancel_metadata_model_creation(migration_project_identifier='arn:aws:dms:us-east-1:111122223333:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRS', request_identifier='a1b2c3d4-5678-90ab-cdef-EXAMPLE11111')
         """
 
         async def _handler(
@@ -830,12 +842,12 @@ class AsyncDatabaseMigrationServiceClient:
         ] = None,
         tags: Optional["capo_database_migration_service.types.tag_list.TagList"] = None,
     ) -> "capo_database_migration_service.types.create_data_provider_response.CreateDataProviderResponse":
-        r"""<p>Creates a data provider using the provided settings. A data provider stores a data store type and location information about your database. </p>
+        r"""<p>Creates a data provider using the provided settings. A data provider stores a data store type and location information about your database. </p> <p> <b>Required permissions:</b> <code>dms:CreateDataProvider</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
             data_provider_name: <p>A user-friendly name for the data provider.</p>
             description: <p>A user-friendly description of the data provider.</p>
-            engine: <p>The type of database engine for the data provider. Valid values include <code>\"aurora\"</code>, <code>\"aurora-postgresql\"</code>, <code>\"mysql\"</code>, <code>\"oracle\"</code>, <code>\"postgres\"</code>, <code>\"sqlserver\"</code>, <code>redshift</code>, <code>mariadb</code>, <code>mongodb</code>, <code>db2</code>, <code>db2-zos</code>, <code>docdb</code>, and <code>sybase</code>. A value of <code>\"aurora\"</code> represents Amazon Aurora MySQL-Compatible Edition.</p>
+            engine: <p>The type of database engine for the data provider.</p> <p>Valid values: <code>aurora</code>, <code>aurora-postgresql</code>, <code>db2</code>, <code>db2-zos</code>, <code>docdb</code>, <code>mariadb</code>, <code>mongodb</code>, <code>mysql</code>, <code>oracle</code>, <code>postgres</code>, <code>redshift</code>, <code>sqlserver</code>, and <code>sybase</code>. A value of <code>aurora</code> represents Amazon Aurora MySQL-Compatible Edition.</p>
             virtual: <p>Indicates whether the data provider is virtual.</p>
             settings: <p>The settings in JSON format for a data provider.</p>
             tags: <p>One or more tags to be assigned to the data provider.</p>
@@ -848,10 +860,10 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Create Data Provider
-            Creates the data provider with the specified parameters.
+            Create a Microsoft SQL Server data provider
+            The following example creates a Microsoft SQL Server data provider.
 
-            >>> await client.create_data_provider(data_provider_name='sqlServer-dev', engine='sqlserver', description='description', settings={'MicrosoftSqlServerSettings': {'ServerName': 'ServerName2', 'Port': 11112, 'DatabaseName': 'DatabaseName', 'SslMode': 'none'}}, tags=[{'Key': 'access', 'Value': 'authorizedusers'}])
+            >>> await client.create_data_provider(data_provider_name='example-data-provider', engine='sqlserver', description='Example data provider for documentation', settings={'MicrosoftSqlServerSettings': {'ServerName': 'example-source-server.us-east-1.rds.amazonaws.com', 'Port': 1433, 'DatabaseName': 'ExampleDatabase', 'SslMode': 'verify-full', 'CertificateArn': 'arn:aws:dms:us-east-1:111122223333:cert:EXAMPLEABCDEFGHIJKLMNOPQRS'}})
         """
 
         async def _handler(
@@ -1315,7 +1327,7 @@ class AsyncDatabaseMigrationServiceClient:
             "capo_database_migration_service.types.string_list.StringList"
         ] = None,
     ) -> "capo_database_migration_service.types.create_instance_profile_response.CreateInstanceProfileResponse":
-        """<p>Creates the instance profile using the specified parameters.</p>
+        r"""<p>Creates the instance profile using the specified parameters.</p> <p> <b>Required permissions:</b> <code>dms:CreateInstanceProfile</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
             availability_zone: <p>The Availability Zone where the instance profile will be created. The default value is a random, system-chosen Availability Zone in the Amazon Web Services Region where your data provider is created, for examplem <code>us-east-1d</code>.</p>
@@ -1341,10 +1353,10 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Create Instance Profile
-            Creates the instance profile using the specified parameters.
+            Create an instance profile
+            The following example creates an instance profile.
 
-            >>> await client.create_instance_profile(subnet_group_identifier='my-subnet-group', publicly_accessible=True, kms_key_arn='arn:aws:kms:us-east-1:012345678901:key/01234567-89ab-cdef-0123-456789abcdef', instance_profile_name='my-instance-profile', description='Description', network_type='DUAL', tags=[{'Key': 'access', 'Value': 'authorizedusers'}])
+            >>> await client.create_instance_profile(instance_profile_name='example-instance-profile', description='Example instance profile for documentation', subnet_group_identifier='example-replication-subnet-group', vpc_security_groups=['sg-0123456789abcdef0'], kms_key_arn='arn:aws:kms:us-east-1:111122223333:key/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111', network_type='IPV4', publicly_accessible=False)
         """
 
         async def _handler(
@@ -1412,14 +1424,14 @@ class AsyncDatabaseMigrationServiceClient:
             "capo_database_migration_service.types.sc_application_attributes.SCApplicationAttributes"
         ] = None,
     ) -> "capo_database_migration_service.types.create_migration_project_response.CreateMigrationProjectResponse":
-        r"""<p>Creates the migration project using the specified parameters.</p> <p>You can run this action only after you create an instance profile and data providers using <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_CreateInstanceProfile.html\">CreateInstanceProfile</a> and <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_CreateDataProvider.html\">CreateDataProvider</a>.</p>
+        r"""<p>Creates the migration project using the specified parameters.</p> <p>You can run this action only after you create an instance profile and data providers using <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_CreateInstanceProfile.html\">CreateInstanceProfile</a> and <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_CreateDataProvider.html\">CreateDataProvider</a>.</p> <p> <b>Required permissions:</b> <code>dms:CreateMigrationProject</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
             migration_project_name: <p>A user-friendly name for the migration project.</p>
             source_data_provider_descriptors: <p>Information about the source data provider, including the name, ARN, and Secrets Manager parameters.</p>
             target_data_provider_descriptors: <p>Information about the target data provider, including the name, ARN, and Amazon Web Services Secrets Manager parameters.</p>
             instance_profile_identifier: <p>The identifier of the associated instance profile. Identifiers must begin with a letter and must contain only ASCII letters, digits, and hyphens. They can't end with a hyphen, or contain two consecutive hyphens.</p>
-            transformation_rules: <p>The settings in JSON format for migration rules. Migration rules make it possible for you to change the object names according to the rules that you specify. For example, you can change an object name to lowercase or uppercase, add or remove a prefix or suffix, or rename objects.</p>
+            transformation_rules: <p>A JSON string that specifies the transformation rules for the migration project. Transformation rules let you customize how DMS Schema Conversion converts your source database objects, including renaming, adding prefixes or suffixes, and changing data types. For the transformation rule format and examples, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/sc-transformation-rules.html\">Transformation rules in DMS Schema Conversion</a>.</p> <note> <p>Homogeneous data migrations do not support transformation rules.</p> </note>
             description: <p>A user-friendly description of the migration project.</p>
             tags: <p>One or more tags to be assigned to the migration project.</p>
             schema_conversion_application_attributes: <p>The schema conversion application attributes, including the Amazon S3 bucket name and Amazon S3 role ARN.</p>
@@ -1435,10 +1447,10 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Create Migration Project
-            Creates the migration project with the specified parameters.
+            Create a migration project
+            The following example creates a migration project.
 
-            >>> await client.create_migration_project(migration_project_name='my-migration-project', source_data_provider_descriptors=[{'DataProviderIdentifier': 'arn:aws:dms:us-east-1:012345678901:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345', 'SecretsManagerSecretId': 'arn:aws:secretsmanager:us-east-1:012345678901:secret:myorg/example1/ALL.SOURCE.ORACLE_12-A1B2C3', 'SecretsManagerAccessRoleArn': 'arn:aws:iam::012345678901:role/myuser-admin-access'}], target_data_provider_descriptors=[{'DataProviderIdentifier': 'arn:aws:dms:us-east-1:012345678901:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345', 'SecretsManagerSecretId': 'arn:aws:secretsmanager:us-east-1:012345678901:secret:myorg/example1/TARGET.postgresql-A1B2C3', 'SecretsManagerAccessRoleArn': 'arn:aws:iam::012345678901:role/myuser-admin-access'}], instance_profile_identifier='ip-au-17', schema_conversion_application_attributes={'S3BucketPath': 'arn:aws:s3:::mylogin-bucket', 'S3BucketRoleArn': 'arn:aws:iam::012345678901:role/Admin'}, tags=[{'Key': 'access', 'Value': 'authorizedusers'}], description='description', transformation_rules='{"key0":"value0","key1":"value1","key2":"value2"}')
+            >>> await client.create_migration_project(migration_project_name='example-migration-project', description='Example migration project for documentation', source_data_provider_descriptors=[{'DataProviderIdentifier': 'arn:aws:dms:us-east-1:111122223333:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRS', 'SecretsManagerSecretId': 'arn:aws:secretsmanager:us-east-1:111122223333:secret:example-source-secret-A1B2C3', 'SecretsManagerAccessRoleArn': 'arn:aws:iam::111122223333:role/example-secrets-manager-role'}], target_data_provider_descriptors=[{'DataProviderIdentifier': 'arn:aws:dms:us-east-1:111122223333:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRS', 'SecretsManagerSecretId': 'arn:aws:secretsmanager:us-east-1:111122223333:secret:example-target-secret-A1B2C3', 'SecretsManagerAccessRoleArn': 'arn:aws:iam::111122223333:role/example-secrets-manager-role'}], instance_profile_identifier='arn:aws:dms:us-east-1:111122223333:instance-profile:EXAMPLEABCDEFGHIJKLMNOPQRS', transformation_rules='{"rules":[{"rule-type":"transformation","rule-id":"1","rule-name":"1","rule-target":"schema","rule-action":"rename","object-locator":{"schema-name":"ExampleSchema"},"value":"TargetSchema"}]}', schema_conversion_application_attributes={'S3BucketPath': 's3://amzn-s3-demo-bucket', 'S3BucketRoleArn': 'arn:aws:iam::111122223333:role/example-s3-access-role'})
         """
 
         async def _handler(
@@ -2058,7 +2070,7 @@ class AsyncDatabaseMigrationServiceClient:
         *,
         config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
     ) -> "capo_database_migration_service.types.delete_data_provider_response.DeleteDataProviderResponse":
-        """<p>Deletes the specified data provider.</p> <note> <p>All migration projects associated with the data provider must be deleted or modified before you can delete the data provider.</p> </note>
+        r"""<p>Deletes the specified data provider.</p> <p> <b>Required permissions:</b> <code>dms:DeleteDataProvider</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p> <note> <p>All migration projects associated with the data provider must be deleted or modified before you can delete the data provider.</p> </note>
 
         Args:
             data_provider_identifier: <p>The identifier of the data provider to delete.</p>
@@ -2071,10 +2083,10 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Delete Data Provider
-            Deletes the specified data provider.
+            Delete a data provider
+            The following example deletes a data provider identified by its ARN.
 
-            >>> await client.delete_data_provider(data_provider_identifier='arn:aws:dms:us-east-1:012345678901:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345')
+            >>> await client.delete_data_provider(data_provider_identifier='arn:aws:dms:us-east-1:111122223333:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRS')
         """
 
         async def _handler(
@@ -2299,7 +2311,7 @@ class AsyncDatabaseMigrationServiceClient:
         *,
         config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
     ) -> "capo_database_migration_service.types.delete_instance_profile_response.DeleteInstanceProfileResponse":
-        """<p>Deletes the specified instance profile.</p> <note> <p>All migration projects associated with the instance profile must be deleted or modified before you can delete the instance profile.</p> </note>
+        r"""<p>Deletes the specified instance profile.</p> <p> <b>Required permissions:</b> <code>dms:DeleteInstanceProfile</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p> <note> <p>All migration projects associated with the instance profile must be deleted or modified before you can delete the instance profile.</p> </note>
 
         Args:
             instance_profile_identifier: <p>The identifier of the instance profile to delete.</p>
@@ -2312,10 +2324,10 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Delete Instance Profile
-            Deletes the specified instance profile.
+            Delete an instance profile
+            The following example deletes an instance profile identified by its ARN.
 
-            >>> await client.delete_instance_profile(instance_profile_identifier='arn:aws:dms:us-east-1:012345678901:instance-profile:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345')
+            >>> await client.delete_instance_profile(instance_profile_identifier='arn:aws:dms:us-east-1:111122223333:instance-profile:EXAMPLEABCDEFGHIJKLMNOPQRS')
         """
 
         async def _handler(
@@ -2352,7 +2364,7 @@ class AsyncDatabaseMigrationServiceClient:
         *,
         config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
     ) -> "capo_database_migration_service.types.delete_migration_project_response.DeleteMigrationProjectResponse":
-        """<p>Deletes the specified migration project.</p> <note> <p>The migration project must be closed before you can delete it.</p> </note>
+        r"""<p>Deletes the specified migration project.</p> <p> <b>Required permissions:</b> <code>dms:DeleteMigrationProject</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p> <note> <p>The migration project must be closed before you can delete it.</p> </note>
 
         Args:
             migration_project_identifier: <p>The name or Amazon Resource Name (ARN) of the migration project to delete.</p>
@@ -2365,10 +2377,10 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Delete Migration Project
-            Deletes the specified migration project.
+            Delete a migration project
+            The following example deletes a migration project identified by its ARN.
 
-            >>> await client.delete_migration_project(migration_project_identifier='arn:aws:dms:us-east-1:012345678901:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345')
+            >>> await client.delete_migration_project(migration_project_identifier='arn:aws:dms:us-east-1:111122223333:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRS')
         """
 
         async def _handler(
@@ -3003,7 +3015,7 @@ class AsyncDatabaseMigrationServiceClient:
         *,
         config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
     ) -> "capo_database_migration_service.types.describe_conversion_configuration_response.DescribeConversionConfigurationResponse":
-        """<p>Returns configuration parameters for a schema conversion project.</p>
+        r"""<p>Returns configuration parameters for a schema conversion project.</p> <p> <b>Required permissions:</b> <code>dms:DescribeConversionConfiguration</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
             migration_project_identifier: <p>The name or Amazon Resource Name (ARN) for the schema conversion project to describe.</p>
@@ -3013,10 +3025,10 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Describe Conversion Configuration
-            Returns configuration parameters for a schema conversion project.
+            Retrieving conversion configuration for a migration project
+            The following example retrieves the conversion configuration for a migration project.
 
-            >>> await client.describe_conversion_configuration(migration_project_identifier='arn:aws:dms:us-east-1:012345678901:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345')
+            >>> await client.describe_conversion_configuration(migration_project_identifier='arn:aws:dms:us-east-1:111122223333:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRS')
         """
 
         async def _handler(
@@ -3164,10 +3176,10 @@ class AsyncDatabaseMigrationServiceClient:
         ] = None,
         marker: Optional["capo_database_migration_service.types.string.String"] = None,
     ) -> "capo_database_migration_service.types.describe_data_providers_response.DescribeDataProvidersResponse":
-        """<p>Returns a paginated list of data providers for your account in the current region.</p>
+        r"""<p>Returns a paginated list of data providers for your account in the current region.</p> <p> <b>Required permissions:</b> <code>dms:ListDataProviders</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
-            filters: <p>Filters applied to the data providers described in the form of key-value pairs.</p> <p>Valid filter names and values: data-provider-identifier, data provider arn or name</p>
+            filters: <p>The filters to apply to the data providers.</p> <p>The following filter names are supported:</p> <ul> <li> <p> <code>data-provider-identifier</code> – The data provider name or ARN.</p> </li> </ul>
             max_records: <p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, DMS includes a pagination token in the response so that you can retrieve the remaining results.</p>
             marker: <p>Specifies the unique pagination token that makes it possible to display the next page of results. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p> <p>If <code>Marker</code> is returned by a previous response, there are more results available. The value of <code>Marker</code> is a unique pagination token for each page. To retrieve the next page, make the call again using the returned token and keeping all other arguments unchanged.</p>
 
@@ -3178,9 +3190,10 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Describe Data Providers
+            Describe data providers with a filter
+            The following example retrieves the details of a data provider identified by its ARN.
 
-            >>> await client.describe_data_providers(filters=[{'Name': 'data-provider-identifier', 'Values': ['arn:aws:dms:us-east-1:012345678901:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345']}], max_records=20, marker='EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345')
+            >>> await client.describe_data_providers(filters=[{'Name': 'data-provider-identifier', 'Values': ['arn:aws:dms:us-east-1:111122223333:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRS']}])
         """
 
         async def _handler(
@@ -3854,11 +3867,11 @@ class AsyncDatabaseMigrationServiceClient:
             "capo_database_migration_service.types.integer_optional.IntegerOptional"
         ] = None,
     ) -> "capo_database_migration_service.types.describe_extension_pack_associations_response.DescribeExtensionPackAssociationsResponse":
-        """<p>Returns a paginated list of extension pack associations for the specified migration project. An extension pack is an add-on module that emulates functions present in a source database that are required when converting objects to the target database.</p>
+        r"""<p>Returns a paginated list of extension pack installation requests for a migration project, initiated by <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_StartExtensionPackAssociation.html\">StartExtensionPackAssociation</a>.</p> <p> <b>Required permissions:</b> <code>dms:ListExtensionPacks</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
-            migration_project_identifier: <p>The name or Amazon Resource Name (ARN) for the migration project.</p>
-            filters: <p>Filters applied to the extension pack associations described in the form of key-value pairs.</p>
+            migration_project_identifier: <p>The migration project name or Amazon Resource Name (ARN).</p>
+            filters: <p>The filters to apply to the extension pack installation requests.</p> <p>The following filter names are supported:</p> <ul> <li> <p> <code>request-id</code> – The request identifier.</p> </li> <li> <p> <code>status</code> – The request status. Valid values: <code>RECEIVED</code>, <code>IN_PROGRESS</code>, <code>SUCCESS</code>, <code>FAILED</code>.</p> </li> </ul>
             marker: <p>Specifies the unique pagination token that makes it possible to display the next page of results. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p> <p>If <code>Marker</code> is returned by a previous response, there are more results available. The value of <code>Marker</code> is a unique pagination token for each page. To retrieve the next page, make the call again using the returned token and keeping all other arguments unchanged.</p>
             max_records: <p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, DMS includes a pagination token in the response so that you can retrieve the remaining results.</p>
 
@@ -3866,10 +3879,10 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Describe Extension Pack Associations
-            Returns a paginated list of extension pack associations for the specified migration project.
+            Retrieve the status of extension pack associations
+            The following example retrieves the status of operations that apply an extension pack to the target database, identified by their request IDs.
 
-            >>> await client.describe_extension_pack_associations(migration_project_identifier='arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012', filters=[{'Name': 'instance-profile-identifier', 'Values': ['arn:aws:dms:us-east-1:012345678901:instance-profile:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345']}], marker='0123456789abcdefghijklmnopqrs', max_records=20)
+            >>> await client.describe_extension_pack_associations(migration_project_identifier='arn:aws:dms:us-east-1:111122223333:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRS', filters=[{'Name': 'request-id', 'Values': ['a1b2c3d4-5678-90ab-cdef-EXAMPLE11111', 'a1b2c3d4-5678-90ab-cdef-EXAMPLE22222', 'a1b2c3d4-5678-90ab-cdef-EXAMPLE33333']}])
         """
 
         async def _handler(
@@ -4360,10 +4373,10 @@ class AsyncDatabaseMigrationServiceClient:
         ] = None,
         marker: Optional["capo_database_migration_service.types.string.String"] = None,
     ) -> "capo_database_migration_service.types.describe_instance_profiles_response.DescribeInstanceProfilesResponse":
-        """<p>Returns a paginated list of instance profiles for your account in the current region.</p>
+        r"""<p>Returns a paginated list of instance profiles for your account in the current region.</p> <p> <b>Required permissions:</b> <code>dms:ListInstanceProfiles</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
-            filters: <p>Filters applied to the instance profiles described in the form of key-value pairs.</p> <p>Valid filter names and values: instance-profile-identifier, instance profile arn or name</p>
+            filters: <p>The filters to apply to the instance profiles.</p> <p>The following filter names are supported:</p> <ul> <li> <p> <code>instance-profile-identifier</code> – The instance profile name or ARN.</p> </li> </ul>
             max_records: <p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, DMS includes a pagination token in the response so that you can retrieve the remaining results.</p>
             marker: <p>Specifies the unique pagination token that makes it possible to display the next page of results. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p> <p>If <code>Marker</code> is returned by a previous response, there are more results available. The value of <code>Marker</code> is a unique pagination token for each page. To retrieve the next page, make the call again using the returned token and keeping all other arguments unchanged.</p>
 
@@ -4374,10 +4387,10 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Describe Instance Profiles
-            Returns a paginated list of instance profiles for your account in the current region.
+            Describe instance profiles with a filter
+            The following example retrieves the details of an instance profile identified by its ARN.
 
-            >>> await client.describe_instance_profiles(filters=[{'Name': 'instance-profile-identifier', 'Values': ['arn:aws:dms:us-east-1:012345678901:instance-profile:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345']}], max_records=20, marker='0123456789abcdefghijklmnopqrs')
+            >>> await client.describe_instance_profiles(filters=[{'Name': 'instance-profile-identifier', 'Values': ['arn:aws:dms:us-east-1:111122223333:instance-profile:EXAMPLEABCDEFGHIJKLMNOPQRS']}])
         """
 
         async def _handler(
@@ -4445,10 +4458,10 @@ class AsyncDatabaseMigrationServiceClient:
         *,
         config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
     ) -> "capo_database_migration_service.types.describe_metadata_model_response.DescribeMetadataModelResponse":
-        r"""<p>Gets detailed information about the specified metadata model, including its definition and corresponding converted objects in the target database if applicable.</p>
+        r"""<p>Gets detailed information about the specified metadata model, including its definition and corresponding converted objects in the target database if applicable.</p> <p> <b>Required permissions:</b> <code>dms:DescribeMetadataModel</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
-            selection_rules: <p>The JSON string that specifies which metadata model to retrieve. Only one selection rule with \"rule-action\": \"explicit\" can be provided. For more information, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TableMapping.SelectionTransformation.Selections.html\">Selection Rules</a> in the DMS User Guide.</p>
+            selection_rules: <p>A JSON string that identifies the metadata model to retrieve. For the selection rule format and examples, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/sc-selection-rules.html\">Selection rules in DMS Schema Conversion</a>.</p> <p>Usage:</p> <ul> <li> <p>Accepts source or target selection rules depending on the <code>Origin</code> parameter. The <code>server-name</code> in the object locator must match the corresponding data provider.</p> </li> <li> <p>Supports only <code>explicit</code> rule actions.</p> </li> <li> <p>Exactly one rule is allowed.</p> </li> </ul>
             migration_project_identifier: <p>The migration project name or Amazon Resource Name (ARN).</p>
             origin: <p>Specifies whether to retrieve metadata from the source or target tree. Valid values: SOURCE | TARGET</p>
 
@@ -4456,6 +4469,12 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.access_denied_fault.AccessDeniedFault: <p>DMS was denied access to the endpoint. Check that the role is correctly configured.</p>
             capo_database_migration_service.errors.resource_not_found_fault.ResourceNotFoundFault: <p>The resource could not be found.</p>
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Retrieve a source table metadata model
+            The following example retrieves detailed information about the ExampleTable table in the ExampleSchema schema from the source metadata tree, including its SQL definition and references to the corresponding converted metadata models in the target database.
+
+            >>> await client.describe_metadata_model(migration_project_identifier='arn:aws:dms:us-east-1:111122223333:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRS', selection_rules='{"rules": [{"rule-type": "selection", "rule-id": "1", "rule-name": "1", "object-locator": {"server-name": "example-source-server.us-east-1.rds.amazonaws.com", "schema-name": "ExampleSchema", "table-name": "ExampleTable"}, "rule-action": "explicit"}]}', origin='SOURCE')
         """
 
         async def _handler(
@@ -4501,11 +4520,11 @@ class AsyncDatabaseMigrationServiceClient:
             "capo_database_migration_service.types.integer_optional.IntegerOptional"
         ] = None,
     ) -> "capo_database_migration_service.types.describe_metadata_model_assessments_response.DescribeMetadataModelAssessmentsResponse":
-        """<p>Returns a paginated list of metadata model assessments for your account in the current region.</p>
+        r"""<p>Returns a paginated list of metadata model assessment requests for a migration project, initiated by <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_StartMetadataModelAssessment.html\">StartMetadataModelAssessment</a>.</p> <p> <b>Required permissions:</b> <code>dms:ListMetadataModelAssessments</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
-            migration_project_identifier: <p>The name or Amazon Resource Name (ARN) of the migration project.</p>
-            filters: <p>Filters applied to the metadata model assessments described in the form of key-value pairs.</p>
+            migration_project_identifier: <p>The migration project name or Amazon Resource Name (ARN).</p>
+            filters: <p>The filters to apply to the metadata model assessment requests.</p> <p>The following filter names are supported:</p> <ul> <li> <p> <code>request-id</code> – The request identifier.</p> </li> <li> <p> <code>status</code> – The request status. Valid values: <code>RECEIVED</code>, <code>IN_PROGRESS</code>, <code>SUCCESS</code>, <code>FAILED</code>.</p> </li> </ul>
             marker: <p>Specifies the unique pagination token that makes it possible to display the next page of results. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p> <p>If <code>Marker</code> is returned by a previous response, there are more results available. The value of <code>Marker</code> is a unique pagination token for each page. To retrieve the next page, make the call again using the returned token and keeping all other arguments unchanged.</p>
             max_records: <p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, DMS includes a pagination token in the response so that you can retrieve the remaining results.</p>
 
@@ -4514,10 +4533,10 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Describe Metadata Model Assessments
-            Returns a paginated list of metadata model assessments for your account in the current region.
+            Retrieve the status of metadata model assessments
+            The following example retrieves the status of metadata model assessment operations identified by their request IDs.
 
-            >>> await client.describe_metadata_model_assessments(migration_project_identifier='', filters=[{'Name': 'my-migration-project', 'Values': ['arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012']}], marker='0123456789abcdefghijklmnopqrs', max_records=20)
+            >>> await client.describe_metadata_model_assessments(migration_project_identifier='arn:aws:dms:us-east-1:111122223333:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRS', filters=[{'Name': 'request-id', 'Values': ['a1b2c3d4-5678-90ab-cdef-EXAMPLE11111', 'a1b2c3d4-5678-90ab-cdef-EXAMPLE22222', 'a1b2c3d4-5678-90ab-cdef-EXAMPLE33333']}])
         """
 
         async def _handler(
@@ -4593,10 +4612,10 @@ class AsyncDatabaseMigrationServiceClient:
             "capo_database_migration_service.types.integer_optional.IntegerOptional"
         ] = None,
     ) -> "capo_database_migration_service.types.describe_metadata_model_children_response.DescribeMetadataModelChildrenResponse":
-        r"""<p>Gets a list of child metadata models for the specified metadata model in the database hierarchy.</p>
+        r"""<p>Gets a list of child metadata models for the specified metadata model in the database hierarchy.</p> <p> <b>Required permissions:</b> <code>dms:DescribeMetadataModelChildren</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
-            selection_rules: <p>The JSON string that specifies which metadata model's children to retrieve. Only one selection rule with \"rule-action\": \"explicit\" can be provided. For more information, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TableMapping.SelectionTransformation.Selections.html\">Selection Rules</a> in the DMS User Guide.</p>
+            selection_rules: <p>A JSON string that identifies the metadata model whose children to retrieve. For the selection rule format and examples, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/sc-selection-rules.html\">Selection rules in DMS Schema Conversion</a>.</p> <p>Usage:</p> <ul> <li> <p>Accepts source or target selection rules depending on the <code>Origin</code> parameter. The <code>server-name</code> in the object locator must match the corresponding data provider.</p> </li> <li> <p>Supports only <code>explicit</code> rule actions.</p> </li> <li> <p>Exactly one rule is allowed.</p> </li> </ul>
             migration_project_identifier: <p>The migration project name or Amazon Resource Name (ARN).</p>
             origin: <p>Specifies whether to retrieve metadata from the source or target tree. Valid values: SOURCE | TARGET</p>
             marker: <p>Specifies the unique pagination token that indicates where the next page should start. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords.</p>
@@ -4606,6 +4625,12 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.access_denied_fault.AccessDeniedFault: <p>DMS was denied access to the endpoint. Check that the role is correctly configured.</p>
             capo_database_migration_service.errors.resource_not_found_fault.ResourceNotFoundFault: <p>The resource could not be found.</p>
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Retrieve children of a schema
+            The following example retrieves the child metadata models of the ExampleSchema schema from the source metadata tree.
+
+            >>> await client.describe_metadata_model_children(migration_project_identifier='arn:aws:dms:us-east-1:111122223333:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRS', selection_rules='{"rules": [{"rule-type": "selection", "rule-id": "1", "rule-name": "1", "object-locator": {"server-name": "example-source-server.us-east-1.rds.amazonaws.com", "schema-name": "ExampleSchema"}, "rule-action": "explicit"}]}', origin='SOURCE')
         """
 
         async def _handler(
@@ -4684,11 +4709,11 @@ class AsyncDatabaseMigrationServiceClient:
             "capo_database_migration_service.types.integer_optional.IntegerOptional"
         ] = None,
     ) -> "capo_database_migration_service.types.describe_metadata_model_conversions_response.DescribeMetadataModelConversionsResponse":
-        """<p>Returns a paginated list of metadata model conversions for a migration project.</p>
+        r"""<p>Returns a paginated list of metadata model conversion requests for a migration project, initiated by <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_StartMetadataModelConversion.html\">StartMetadataModelConversion</a>.</p> <p>To cancel a queued or in-progress request, call <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_CancelMetadataModelConversion.html\">CancelMetadataModelConversion</a>.</p> <p> <b>Required permissions:</b> <code>dms:ListMetadataModelConversions</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
             migration_project_identifier: <p>The migration project name or Amazon Resource Name (ARN).</p>
-            filters: <p>Filters applied to the metadata model conversions described in the form of key-value pairs.</p>
+            filters: <p>The filters to apply to the metadata model conversion requests.</p> <p>The following filter names are supported:</p> <ul> <li> <p> <code>request-id</code> – The request identifier.</p> </li> <li> <p> <code>status</code> – The request status. Valid values: <code>RECEIVED</code>, <code>IN_PROGRESS</code>, <code>SUCCESS</code>, <code>FAILED</code>, <code>CANCELING</code>, <code>CANCELED</code>.</p> </li> </ul>
             marker: <p>Specifies the unique pagination token that makes it possible to display the next page of results. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p> <p>If <code>Marker</code> is returned by a previous response, there are more results available. The value of <code>Marker</code> is a unique pagination token for each page. To retrieve the next page, make the call again using the returned token and keeping all other arguments unchanged.</p>
             max_records: <p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, DMS includes a pagination token in the response so that you can retrieve the remaining results.</p>
 
@@ -4697,10 +4722,10 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Describe Metadata Model Conversions
-            Returns a paginated list of metadata model conversions for a migration project.
+            Retrieve the status of metadata model conversions
+            The following example retrieves the status of metadata model conversion operations identified by their request IDs.
 
-            >>> await client.describe_metadata_model_conversions(migration_project_identifier='arn:aws:dms:us-east-1:012345678901:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345', filters=[{'Name': 'request-id', 'Values': ['01234567-89ab-cdef-0123-456789abcdef']}], marker='EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ123456', max_records=123)
+            >>> await client.describe_metadata_model_conversions(migration_project_identifier='arn:aws:dms:us-east-1:111122223333:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRS', filters=[{'Name': 'request-id', 'Values': ['a1b2c3d4-5678-90ab-cdef-EXAMPLE11111', 'a1b2c3d4-5678-90ab-cdef-EXAMPLE22222', 'a1b2c3d4-5678-90ab-cdef-EXAMPLE33333']}])
         """
 
         async def _handler(
@@ -4777,18 +4802,24 @@ class AsyncDatabaseMigrationServiceClient:
             "capo_database_migration_service.types.integer_optional.IntegerOptional"
         ] = None,
     ) -> "capo_database_migration_service.types.describe_metadata_model_creations_response.DescribeMetadataModelCreationsResponse":
-        """<p>Returns a paginated list of metadata model creation requests for a migration project.</p>
+        r"""<p>Returns a paginated list of metadata model creation requests for a migration project, initiated by <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_StartMetadataModelCreation.html\">StartMetadataModelCreation</a>.</p> <p>To cancel a queued or in-progress request, call <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_CancelMetadataModelCreation.html\">CancelMetadataModelCreation</a>.</p> <p> <b>Required permissions:</b> <code>dms:DescribeMetadataModelCreations</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
-            filters: <p>Filters applied to the metadata model creation requests described in the form of key-value pairs. The supported filters are request-id and status.</p>
-            marker: <p>Specifies the unique pagination token that makes it possible to display the next page of metadata model creation requests. If Marker is returned by a previous response, there are more metadata model creation requests available.</p>
-            max_records: <p>The maximum number of metadata model creation requests to include in the response. If more requests exist than the specified MaxRecords value, a pagination token is provided in the response so that you can retrieve the remaining results.</p>
+            filters: <p>The filters to apply to the metadata model creation requests.</p> <p>The following filter names are supported:</p> <ul> <li> <p> <code>request-id</code> – The request identifier.</p> </li> <li> <p> <code>status</code> – The request status. Valid values: <code>RECEIVED</code>, <code>IN_PROGRESS</code>, <code>SUCCESS</code>, <code>FAILED</code>, <code>CANCELING</code>, <code>CANCELED</code>.</p> </li> </ul>
+            marker: <p>Specifies the unique pagination token that makes it possible to display the next page of results. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p> <p>If <code>Marker</code> is returned by a previous response, there are more results available. The value of <code>Marker</code> is a unique pagination token for each page. To retrieve the next page, make the call again using the returned token and keeping all other arguments unchanged.</p>
+            max_records: <p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, DMS includes a pagination token in the response so that you can retrieve the remaining results.</p>
             migration_project_identifier: <p>The migration project name or Amazon Resource Name (ARN).</p>
 
         Raises:
             capo_database_migration_service.errors.access_denied_fault.AccessDeniedFault: <p>DMS was denied access to the endpoint. Check that the role is correctly configured.</p>
             capo_database_migration_service.errors.resource_not_found_fault.ResourceNotFoundFault: <p>The resource could not be found.</p>
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Retrieve the status of metadata model creations
+            The following example retrieves the status of metadata model creation operations identified by their request IDs.
+
+            >>> await client.describe_metadata_model_creations(migration_project_identifier='arn:aws:dms:us-east-1:111122223333:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRS', filters=[{'Name': 'request-id', 'Values': ['a1b2c3d4-5678-90ab-cdef-EXAMPLE11111', 'a1b2c3d4-5678-90ab-cdef-EXAMPLE22222', 'a1b2c3d4-5678-90ab-cdef-EXAMPLE33333']}])
         """
 
         async def _handler(
@@ -4867,11 +4898,11 @@ class AsyncDatabaseMigrationServiceClient:
             "capo_database_migration_service.types.integer_optional.IntegerOptional"
         ] = None,
     ) -> "capo_database_migration_service.types.describe_metadata_model_exports_as_script_response.DescribeMetadataModelExportsAsScriptResponse":
-        """<p>Returns a paginated list of metadata model exports.</p>
+        r"""<p>Returns a paginated list of metadata model export requests for a migration project, initiated by <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_StartMetadataModelExportAsScript.html\">StartMetadataModelExportAsScript</a>.</p> <p> <b>Required permissions:</b> <code>dms:ListMetadataModelExports</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
             migration_project_identifier: <p>The migration project name or Amazon Resource Name (ARN).</p>
-            filters: <p>Filters applied to the metadata model exports described in the form of key-value pairs.</p>
+            filters: <p>The filters to apply to the metadata model export requests.</p> <p>The following filter names are supported:</p> <ul> <li> <p> <code>request-id</code> – The request identifier.</p> </li> <li> <p> <code>status</code> – The request status. Valid values: <code>RECEIVED</code>, <code>IN_PROGRESS</code>, <code>SUCCESS</code>, <code>FAILED</code>.</p> </li> </ul>
             marker: <p>Specifies the unique pagination token that makes it possible to display the next page of results. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p> <p>If <code>Marker</code> is returned by a previous response, there are more results available. The value of <code>Marker</code> is a unique pagination token for each page. To retrieve the next page, make the call again using the returned token and keeping all other arguments unchanged.</p>
             max_records: <p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, DMS includes a pagination token in the response so that you can retrieve the remaining results.</p>
 
@@ -4880,10 +4911,10 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Describe Metadata Model Exports As Script
-            Returns a paginated list of metadata model exports.
+            Retrieve the status of metadata model exports as script
+            The following example retrieves the status of operations that export metadata models as data definition language (DDL) scripts, identified by their request IDs.
 
-            >>> await client.describe_metadata_model_exports_as_script(migration_project_identifier='arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012', filters=[{'Name': 'request-id', 'Values': ['01234567-89ab-cdef-0123-456789abcdef']}], marker='0123456789abcdefghijklmnopqrs', max_records=20)
+            >>> await client.describe_metadata_model_exports_as_script(migration_project_identifier='arn:aws:dms:us-east-1:111122223333:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRS', filters=[{'Name': 'request-id', 'Values': ['a1b2c3d4-5678-90ab-cdef-EXAMPLE11111', 'a1b2c3d4-5678-90ab-cdef-EXAMPLE22222', 'a1b2c3d4-5678-90ab-cdef-EXAMPLE33333']}])
         """
 
         async def _handler(
@@ -4960,11 +4991,11 @@ class AsyncDatabaseMigrationServiceClient:
             "capo_database_migration_service.types.integer_optional.IntegerOptional"
         ] = None,
     ) -> "capo_database_migration_service.types.describe_metadata_model_exports_to_target_response.DescribeMetadataModelExportsToTargetResponse":
-        """<p>Returns a paginated list of metadata model exports.</p>
+        r"""<p>Returns a paginated list of metadata model export requests for a migration project, initiated by <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_StartMetadataModelExportToTarget.html\">StartMetadataModelExportToTarget</a>.</p> <p> <b>Required permissions:</b> <code>dms:ListMetadataModelExports</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
             migration_project_identifier: <p>The migration project name or Amazon Resource Name (ARN).</p>
-            filters: <p>Filters applied to the metadata model exports described in the form of key-value pairs.</p>
+            filters: <p>The filters to apply to the metadata model export requests.</p> <p>The following filter names are supported:</p> <ul> <li> <p> <code>request-id</code> – The request identifier.</p> </li> <li> <p> <code>status</code> – The request status. Valid values: <code>RECEIVED</code>, <code>IN_PROGRESS</code>, <code>SUCCESS</code>, <code>FAILED</code>.</p> </li> </ul>
             marker: <p>Specifies the unique pagination token that makes it possible to display the next page of results. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p> <p>If <code>Marker</code> is returned by a previous response, there are more results available. The value of <code>Marker</code> is a unique pagination token for each page. To retrieve the next page, make the call again using the returned token and keeping all other arguments unchanged.</p>
             max_records: <p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, DMS includes a pagination token in the response so that you can retrieve the remaining results.</p>
 
@@ -4973,10 +5004,10 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Describe Metadata Model Exports To Target
-            Returns a paginated list of metadata model exports.
+            Retrieve the status of metadata model exports to target
+            The following example retrieves the status of operations that export converted metadata models to the target database, identified by their request IDs.
 
-            >>> await client.describe_metadata_model_exports_to_target(migration_project_identifier='arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012', filters=[{'Name': 'request-id', 'Values': ['01234567-89ab-cdef-0123-456789abcdef']}], marker='0123456789abcdefghijklmnopqrs', max_records=20)
+            >>> await client.describe_metadata_model_exports_to_target(migration_project_identifier='arn:aws:dms:us-east-1:111122223333:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRS', filters=[{'Name': 'request-id', 'Values': ['a1b2c3d4-5678-90ab-cdef-EXAMPLE11111', 'a1b2c3d4-5678-90ab-cdef-EXAMPLE22222', 'a1b2c3d4-5678-90ab-cdef-EXAMPLE33333']}])
         """
 
         async def _handler(
@@ -5053,23 +5084,23 @@ class AsyncDatabaseMigrationServiceClient:
             "capo_database_migration_service.types.integer_optional.IntegerOptional"
         ] = None,
     ) -> "capo_database_migration_service.types.describe_metadata_model_imports_response.DescribeMetadataModelImportsResponse":
-        """<p>Returns a paginated list of metadata model imports.</p>
+        r"""<p>Returns a paginated list of metadata model import requests for a migration project, initiated by <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_StartMetadataModelImport.html\">StartMetadataModelImport</a>.</p> <p> <b>Required permissions:</b> <code>dms:DescribeMetadataModelImports</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
             migration_project_identifier: <p>The migration project name or Amazon Resource Name (ARN).</p>
-            filters: <p>Filters applied to the metadata model imports described in the form of key-value pairs.</p>
+            filters: <p>The filters to apply to the metadata model import requests.</p> <p>The following filter names are supported:</p> <ul> <li> <p> <code>request-id</code> – The request identifier.</p> </li> <li> <p> <code>status</code> – The request status. Valid values: <code>RECEIVED</code>, <code>IN_PROGRESS</code>, <code>SUCCESS</code>, <code>FAILED</code>.</p> </li> </ul>
             marker: <p>Specifies the unique pagination token that makes it possible to display the next page of results. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p> <p>If <code>Marker</code> is returned by a previous response, there are more results available. The value of <code>Marker</code> is a unique pagination token for each page. To retrieve the next page, make the call again using the returned token and keeping all other arguments unchanged.</p>
-            max_records: <p>A paginated list of metadata model imports.</p>
+            max_records: <p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, DMS includes a pagination token in the response so that you can retrieve the remaining results.</p>
 
         Raises:
             capo_database_migration_service.errors.resource_not_found_fault.ResourceNotFoundFault: <p>The resource could not be found.</p>
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Describe Metadata Model Imports
-            Returns a paginated list of metadata model imports.
+            Retrieve the status of metadata model imports
+            The following example retrieves the status of metadata import operations identified by their request IDs.
 
-            >>> await client.describe_metadata_model_imports(migration_project_identifier='arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012', filters=[{'Name': 'request-id', 'Values': ['01234567-89ab-cdef-0123-456789abcdef']}], marker='0123456789abcdefghijklmnopqrs', max_records=20)
+            >>> await client.describe_metadata_model_imports(migration_project_identifier='arn:aws:dms:us-east-1:111122223333:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRS', filters=[{'Name': 'request-id', 'Values': ['a1b2c3d4-5678-90ab-cdef-EXAMPLE11111', 'a1b2c3d4-5678-90ab-cdef-EXAMPLE22222', 'a1b2c3d4-5678-90ab-cdef-EXAMPLE33333']}])
         """
 
         async def _handler(
@@ -5145,10 +5176,10 @@ class AsyncDatabaseMigrationServiceClient:
         ] = None,
         marker: Optional["capo_database_migration_service.types.string.String"] = None,
     ) -> "capo_database_migration_service.types.describe_migration_projects_response.DescribeMigrationProjectsResponse":
-        """<p>Returns a paginated list of migration projects for your account in the current region.</p>
+        r"""<p>Returns a paginated list of migration projects for your account in the current region.</p> <p> <b>Required permissions:</b> <code>dms:ListMigrationProjects</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
-            filters: <p>Filters applied to the migration projects described in the form of key-value pairs.</p> <p>Valid filter names and values:</p> <ul> <li> <p>instance-profile-identifier, instance profile arn or name</p> </li> <li> <p>data-provider-identifier, data provider arn or name</p> </li> <li> <p>migration-project-identifier, migration project arn or name</p> </li> </ul>
+            filters: <p>The filters to apply to the migration projects.</p> <p>The following filter names are supported:</p> <ul> <li> <p> <code>migration-project-identifier</code> – The migration project name or ARN.</p> </li> <li> <p> <code>instance-profile-identifier</code> – The instance profile name or ARN.</p> </li> <li> <p> <code>data-provider-identifier</code> – The source or target data provider name or ARN.</p> </li> <li> <p> <code>source-data-provider-identifier</code> – The source data provider name or ARN.</p> </li> <li> <p> <code>target-data-provider-identifier</code> – The target data provider name or ARN.</p> </li> </ul>
             max_records: <p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, DMS includes a pagination token in the response so that you can retrieve the remaining results.</p>
             marker: <p>Specifies the unique pagination token that makes it possible to display the next page of results. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p> <p>If <code>Marker</code> is returned by a previous response, there are more results available. The value of <code>Marker</code> is a unique pagination token for each page. To retrieve the next page, make the call again using the returned token and keeping all other arguments unchanged.</p>
 
@@ -5159,10 +5190,10 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Describe Migration Projects
-            Returns a paginated list of migration projects for your account in the current region.
+            Describe migration projects with a filter
+            The following example retrieves the details of a migration project identified by its ARN.
 
-            >>> await client.describe_migration_projects(filters=[{'Name': 'migration-project-identifier', 'Values': ['arn:aws:dms:us-east-1:012345678901:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ12345678901']}], max_records=20, marker='EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ123456')
+            >>> await client.describe_migration_projects(filters=[{'Name': 'migration-project-identifier', 'Values': ['arn:aws:dms:us-east-1:111122223333:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRS']}])
         """
 
         async def _handler(
@@ -6646,11 +6677,11 @@ class AsyncDatabaseMigrationServiceClient:
             "capo_database_migration_service.types.assessment_report_types_list.AssessmentReportTypesList"
         ] = None,
     ) -> "capo_database_migration_service.types.export_metadata_model_assessment_response.ExportMetadataModelAssessmentResponse":
-        """<p>Saves a copy of a database migration assessment report to your Amazon S3 bucket. DMS can save your assessment report as a comma-separated value (CSV) or a PDF file. </p>
+        r"""<p>Saves a copy of a database migration assessment report to your Amazon S3 bucket. DMS can save your assessment report as a comma-separated value (CSV) or a PDF file. </p> <p> <b>Required permissions:</b> <code>dms:ExportMetadataModelAssessment</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
             migration_project_identifier: <p>The migration project name or Amazon Resource Name (ARN).</p>
-            selection_rules: <p>A value that specifies the database objects to assess.</p>
+            selection_rules: <p>A JSON string that identifies the metadata models to export a conversion assessment report for. For the selection rule format and examples, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/sc-selection-rules.html\">Selection rules in DMS Schema Conversion</a>.</p> <p>Usage:</p> <ul> <li> <p>Accepts only source selection rules, where <code>server-name</code> in the object locator matches the source data provider.</p> </li> <li> <p>Supports only <code>explicit</code> rule actions.</p> </li> </ul>
             file_name: <p>The name of the assessment file to create in your Amazon S3 bucket.</p>
             assessment_report_types: <p>The file format of the assessment file.</p>
 
@@ -6659,10 +6690,10 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Export Metadata Model Assessment
-            Saves a copy of a database migration assessment report to your S3 bucket. DMS can save your assessment report as a comma-separated value (CSV) or a PDF file.
+            Export a conversion assessment report
+            The following example exports a conversion assessment report for all objects in the ExampleSchema schema.
 
-            >>> await client.export_metadata_model_assessment(migration_project_identifier='arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012', selection_rules='{"rules": [{"rule-type": "selection","rule-id": "1","rule-name": "1","object-locator": {"server-name": "aurora-pg.cluster-a1b2c3d4e5f6.us-east-1.rds.amazonaws.com", "schema-name": "schema1", "table-name": "Cities"},"rule-action": "explicit"} ]}', file_name='file', assessment_report_types=['pdf'])
+            >>> await client.export_metadata_model_assessment(migration_project_identifier='arn:aws:dms:us-east-1:111122223333:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRS', selection_rules='{"rules": [{"rule-type": "selection", "rule-id": "1", "rule-name": "1", "object-locator": {"server-name": "example-source-server.us-east-1.rds.amazonaws.com", "schema-name": "ExampleSchema"}, "rule-action": "explicit"}]}', file_name='example-assessment-report', assessment_report_types=['pdf', 'csv'])
         """
 
         async def _handler(
@@ -6705,17 +6736,23 @@ class AsyncDatabaseMigrationServiceClient:
         *,
         config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
     ) -> "capo_database_migration_service.types.get_target_selection_rules_response.GetTargetSelectionRulesResponse":
-        """<p>Converts source selection rules into their target counterparts for schema conversion operations.</p>
+        r"""<p>Converts source selection rules into their target counterparts for schema conversion operations.</p> <p> <b>Required permissions:</b> <code>dms:GetTargetSelectionRules</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
             migration_project_identifier: <p>The migration project name or Amazon Resource Name (ARN).</p>
-            selection_rules: <p>The JSON string representing the source selection rules for conversion. Selection rules must contain only supported metadata model types. For more information, see Selection Rules in the DMS User Guide.</p>
+            selection_rules: <p>A JSON string that contains the source selection rules to convert into their target counterparts. For the selection rule format and examples, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/sc-selection-rules.html\">Selection rules in DMS Schema Conversion</a>.</p> <p>Usage:</p> <ul> <li> <p>Accepts only source selection rules, where <code>server-name</code> in the object locator matches the source data provider.</p> </li> <li> <p>Supports only <code>explicit</code> rule actions.</p> </li> <li> <p>Does not support <code>category-name</code> in the object locator.</p> </li> <li> <p>Up to 10 rules are allowed.</p> </li> </ul>
 
         Raises:
             capo_database_migration_service.errors.access_denied_fault.AccessDeniedFault: <p>DMS was denied access to the endpoint. Check that the role is correctly configured.</p>
             capo_database_migration_service.errors.invalid_resource_state_fault.InvalidResourceStateFault: <p>The resource is in a state that prevents it from being used for database migration.</p>
             capo_database_migration_service.errors.resource_not_found_fault.ResourceNotFoundFault: <p>The resource could not be found.</p>
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Convert source selection rules to target selection rules
+            The following example converts source selection rules that select the ExampleTable table in the ExampleSchema schema into target selection rules that reference its converted counterpart.
+
+            >>> await client.get_target_selection_rules(migration_project_identifier='arn:aws:dms:us-east-1:111122223333:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRS', selection_rules='{"rules": [{"rule-type": "selection", "rule-id": "1", "rule-name": "1", "object-locator": {"server-name": "example-source-server.us-east-1.rds.amazonaws.com", "database-name": "ExampleDatabase", "schema-name": "ExampleSchema", "table-name": "ExampleTable"}, "rule-action": "explicit"}]}')
         """
 
         async def _handler(
@@ -6888,11 +6925,11 @@ class AsyncDatabaseMigrationServiceClient:
         *,
         config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
     ) -> "capo_database_migration_service.types.modify_conversion_configuration_response.ModifyConversionConfigurationResponse":
-        """<p>Modifies the specified schema conversion configuration using the provided parameters. </p>
+        r"""<p>Modifies the specified schema conversion configuration using the provided parameters. </p> <p> <b>Required permissions:</b> <code>dms:UpdateConversionConfiguration</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
             migration_project_identifier: <p>The migration project name or Amazon Resource Name (ARN).</p>
-            conversion_configuration: <p>The new conversion configuration.</p>
+            conversion_configuration: <p>A JSON string that contains the schema conversion settings to update. For the format and available settings, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/schema-conversion-settings.html\">Specifying schema conversion settings for migration projects</a>.</p> <p>Usage:</p> <ul> <li> <p>Include only the sections and keys to change. The operation merges supplied values with the existing configuration.</p> </li> </ul>
 
         Raises:
             capo_database_migration_service.errors.invalid_resource_state_fault.InvalidResourceStateFault: <p>The resource is in a state that prevents it from being used for database migration.</p>
@@ -6900,10 +6937,10 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Modify Conversion Configuration
-            Modifies the specified schema conversion configuration using the provided parameters.
+            Modifying conversion configuration for a migration project
+            The following example enables generative AI assisted conversion and updates a conversion pair setting for a migration project.
 
-            >>> await client.modify_conversion_configuration(migration_project_identifier='arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012', conversion_configuration='{"Common project settings":{"ShowSeverityLevelInSql":"CRITICAL"},"ORACLE_TO_POSTGRESQL" : {"ToTimeZone":false,"LastDayBuiltinFunctionOracle":false,   "NextDayBuiltinFunctionOracle":false,"ConvertProceduresToFunction":false,"NvlBuiltinFunctionOracle":false,"DbmsAssertBuiltinFunctionOracle":false}}')
+            >>> await client.modify_conversion_configuration(migration_project_identifier='arn:aws:dms:us-east-1:111122223333:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRS', conversion_configuration='{"Common project settings":{"EnableGenAiConversion":true},"MSSQL_TO_AURORA_POSTGRESQL":{"ConvertProceduresToFunction":false}}')
         """
 
         async def _handler(
@@ -7051,13 +7088,13 @@ class AsyncDatabaseMigrationServiceClient:
             "capo_database_migration_service.types.data_provider_settings.DataProviderSettings"
         ] = None,
     ) -> "capo_database_migration_service.types.modify_data_provider_response.ModifyDataProviderResponse":
-        r"""<p>Modifies the specified data provider using the provided settings.</p> <note> <p>You must remove the data provider from all migration projects before you can modify it.</p> </note>
+        r"""<p>Modifies the specified data provider using the provided settings.</p> <p> <b>Required permissions:</b> <code>dms:UpdateDataProvider</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p> <note> <p>You must remove the data provider from all migration projects before you can modify it.</p> </note>
 
         Args:
             data_provider_identifier: <p>The identifier of the data provider. Identifiers must begin with a letter and must contain only ASCII letters, digits, and hyphens. They can't end with a hyphen, or contain two consecutive hyphens.</p>
             data_provider_name: <p>The name of the data provider.</p>
             description: <p>A user-friendly description of the data provider.</p>
-            engine: <p>The type of database engine for the data provider. Valid values include <code>\"aurora\"</code>, <code>\"aurora-postgresql\"</code>, <code>\"mysql\"</code>, <code>\"oracle\"</code>, <code>\"postgres\"</code>, <code>\"sqlserver\"</code>, <code>redshift</code>, <code>mariadb</code>, <code>mongodb</code>, <code>db2</code>, <code>db2-zos</code>, <code>docdb</code>, and <code>sybase</code>. A value of <code>\"aurora\"</code> represents Amazon Aurora MySQL-Compatible Edition.</p>
+            engine: <p>The type of database engine for the data provider.</p> <p>Valid values: <code>aurora</code>, <code>aurora-postgresql</code>, <code>db2</code>, <code>db2-zos</code>, <code>docdb</code>, <code>mariadb</code>, <code>mongodb</code>, <code>mysql</code>, <code>oracle</code>, <code>postgres</code>, <code>redshift</code>, <code>sqlserver</code>, and <code>sybase</code>. A value of <code>aurora</code> represents Amazon Aurora MySQL-Compatible Edition.</p>
             virtual: <p>Indicates whether the data provider is virtual.</p>
             exact_settings: <p>If this attribute is Y, the current call to <code>ModifyDataProvider</code> replaces all existing data provider settings with the exact settings that you specify in this call. If this attribute is N, the current call to <code>ModifyDataProvider</code> does two things: </p> <ul> <li> <p>It replaces any data provider settings that already exist with new values, for settings with the same names.</p> </li> <li> <p>It creates new data provider settings that you specify in the call, for settings with different names. </p> </li> </ul>
             settings: <p>The settings in JSON format for a data provider.</p>
@@ -7070,10 +7107,10 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Modify Data Provider
-            Modifies the specified data provider using the provided settings.
+            Modify a data provider
+            The following example updates the description and server name of a data provider.
 
-            >>> await client.modify_data_provider(data_provider_identifier='arn:aws:dms:us-east-1:012345678901:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345', data_provider_name='new-name', engine='sqlserver', description='description', settings={'MicrosoftSqlServerSettings': {'ServerName': 'ServerName2', 'Port': 11112, 'DatabaseName': 'DatabaseName', 'SslMode': 'none'}})
+            >>> await client.modify_data_provider(data_provider_identifier='arn:aws:dms:us-east-1:111122223333:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRS', description='Updated data provider description', engine='sqlserver', settings={'MicrosoftSqlServerSettings': {'ServerName': 'new-source-server.us-east-1.rds.amazonaws.com'}})
         """
 
         async def _handler(
@@ -7474,7 +7511,7 @@ class AsyncDatabaseMigrationServiceClient:
             "capo_database_migration_service.types.string_list.StringList"
         ] = None,
     ) -> "capo_database_migration_service.types.modify_instance_profile_response.ModifyInstanceProfileResponse":
-        """<p>Modifies the specified instance profile using the provided parameters.</p> <note> <p>All migration projects associated with the instance profile must be deleted or modified before you can modify the instance profile.</p> </note>
+        r"""<p>Modifies the specified instance profile using the provided parameters.</p> <p> <b>Required permissions:</b> <code>dms:UpdateInstanceProfile</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p> <note> <p>All migration projects associated with the instance profile must be deleted or modified before you can modify the instance profile.</p> </note>
 
         Args:
             instance_profile_identifier: <p>The identifier of the instance profile. Identifiers must begin with a letter and must contain only ASCII letters, digits, and hyphens. They can't end with a hyphen, or contain two consecutive hyphens.</p>
@@ -7498,10 +7535,10 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Modify Instance Profile
-            Modifies the specified instance profile using the provided parameters.
+            Modify an instance profile
+            The following example updates the description and network type of an instance profile.
 
-            >>> await client.modify_instance_profile(instance_profile_identifier='', availability_zone='', kms_key_arn='', publicly_accessible=True, network_type='', instance_profile_name='', description='', subnet_group_identifier='', vpc_security_groups=[])
+            >>> await client.modify_instance_profile(instance_profile_identifier='arn:aws:dms:us-east-1:111122223333:instance-profile:EXAMPLEABCDEFGHIJKLMNOPQRS', description='Updated instance profile description', network_type='DUAL')
         """
 
         async def _handler(
@@ -7575,7 +7612,7 @@ class AsyncDatabaseMigrationServiceClient:
             "capo_database_migration_service.types.sc_application_attributes.SCApplicationAttributes"
         ] = None,
     ) -> "capo_database_migration_service.types.modify_migration_project_response.ModifyMigrationProjectResponse":
-        """<p>Modifies the specified migration project using the provided parameters.</p> <note> <p>The migration project must be closed before you can modify it.</p> </note>
+        r"""<p>Modifies the specified migration project using the provided parameters.</p> <p> <b>Required permissions:</b> <code>dms:UpdateMigrationProject</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p> <note> <p>The migration project must be closed before you can modify it.</p> </note>
 
         Args:
             migration_project_identifier: <p>The identifier of the migration project. Identifiers must begin with a letter and must contain only ASCII letters, digits, and hyphens. They can't end with a hyphen, or contain two consecutive hyphens.</p>
@@ -7583,7 +7620,7 @@ class AsyncDatabaseMigrationServiceClient:
             source_data_provider_descriptors: <p>Information about the source data provider, including the name, ARN, and Amazon Web Services Secrets Manager parameters.</p>
             target_data_provider_descriptors: <p>Information about the target data provider, including the name, ARN, and Amazon Web Services Secrets Manager parameters.</p>
             instance_profile_identifier: <p>The name or Amazon Resource Name (ARN) for the instance profile.</p>
-            transformation_rules: <p>The settings in JSON format for migration rules. Migration rules make it possible for you to change the object names according to the rules that you specify. For example, you can change an object name to lowercase or uppercase, add or remove a prefix or suffix, or rename objects.</p>
+            transformation_rules: <p>A JSON string that specifies the transformation rules for the migration project. Transformation rules let you customize how DMS Schema Conversion converts your source database objects, including renaming, adding prefixes or suffixes, and changing data types. For the transformation rule format and examples, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/sc-transformation-rules.html\">Transformation rules in DMS Schema Conversion</a>.</p> <note> <p>Homogeneous data migrations do not support transformation rules.</p> </note>
             description: <p>A user-friendly description of the migration project.</p>
             schema_conversion_application_attributes: <p>The schema conversion application attributes, including the Amazon S3 bucket name and Amazon S3 role ARN.</p>
 
@@ -7597,10 +7634,10 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Modify Migration Project
-            Modifies the specified migration project using the provided parameters.
+            Modify a migration project
+            The following example updates the source data provider and description of a migration project.
 
-            >>> await client.modify_migration_project(migration_project_identifier='arn:aws:dms:us-east-1:012345678901:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345', migration_project_name='new-name', source_data_provider_descriptors=[{'DataProviderIdentifier': 'arn:aws:dms:us-east-1:012345678901:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345', 'SecretsManagerSecretId': 'arn:aws:secretsmanager:us-east-1:012345678901:secret:myorg/myuser/ALL.SOURCE.ORACLE_12-A1B2C3', 'SecretsManagerAccessRoleArn': 'arn:aws:iam::012345678901:role/myuser-admin-access'}], target_data_provider_descriptors=[{'DataProviderIdentifier': 'arn:aws:dms:us-east-1:012345678901:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345', 'SecretsManagerSecretId': 'arn:aws:secretsmanager:us-east-1:012345678901:secret:myorg/myuser/TARGET.postgresql-A1B2C3', 'SecretsManagerAccessRoleArn': 'arn:aws:iam::012345678901:role/myuser-admin-access'}], instance_profile_identifier='my-instance-profile', schema_conversion_application_attributes={'S3BucketPath': 'arn:aws:s3:::myuser-bucket', 'S3BucketRoleArn': 'arn:aws:iam::012345678901:role/Admin'}, description='description')
+            >>> await client.modify_migration_project(migration_project_identifier='arn:aws:dms:us-east-1:111122223333:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRS', description='Updated migration project description', source_data_provider_descriptors=[{'DataProviderIdentifier': 'arn:aws:dms:us-east-1:111122223333:data-provider:EXAMPLEABCDEFGHIJKLMNOPQRS'}])
         """
 
         async def _handler(
@@ -8460,7 +8497,7 @@ class AsyncDatabaseMigrationServiceClient:
         *,
         config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
     ) -> "capo_database_migration_service.types.start_extension_pack_association_response.StartExtensionPackAssociationResponse":
-        """<p>Applies the extension pack to your target database. An extension pack is an add-on module that emulates functions present in a source database that are required when converting objects to the target database. </p>
+        r"""<p>Queues the installation of the extension pack on your target database. If other requests created by <code>Start*</code> operations are already in the migration project's queue, the installation begins after they complete.</p> <p>This operation requires a non-virtual target data provider.</p> <p>If the extension pack already exists, the operation reinstalls it. To ensure compatibility, reconvert your database objects if the version has changed since your last conversion. For more information, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/extension-pack.html\">Using extension packs in DMS Schema Conversion</a>.</p> <p>To check the status of the request, call <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_DescribeExtensionPackAssociations.html\">DescribeExtensionPackAssociations</a> using the returned <code>RequestIdentifier</code> as a filter.</p> <p> <b>Required permissions:</b> <code>dms:AssociateExtensionPack</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
             migration_project_identifier: <p>The migration project name or Amazon Resource Name (ARN).</p>
@@ -8477,10 +8514,10 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Start Extension Pack Association
-            Applies the extension pack to your target database.
+            Install the extension pack on the target database
+            The following example queues the installation of the extension pack on the target database.
 
-            >>> await client.start_extension_pack_association(migration_project_identifier='arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012')
+            >>> await client.start_extension_pack_association(migration_project_identifier='arn:aws:dms:us-east-1:111122223333:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRS')
         """
 
         async def _handler(
@@ -8518,11 +8555,11 @@ class AsyncDatabaseMigrationServiceClient:
         *,
         config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
     ) -> "capo_database_migration_service.types.start_metadata_model_assessment_response.StartMetadataModelAssessmentResponse":
-        """<p>Creates a database migration assessment report by assessing the migration complexity for your source database. A database migration assessment report summarizes all of the schema conversion tasks. It also details the action items for database objects that can't be converted to the database engine of your target database instance. </p>
+        r"""<p>Queues an assessment of the selected source metadata models (database objects such as tables, views, and procedures) to evaluate conversion complexity to the target database format. If other requests created by <code>Start*</code> operations are already in the migration project's queue, the assessment begins after they complete.</p> <p>The assessment request loads metadata models that are not yet in the metadata tree, but does not reload metadata models that are already present. If your source database has changed since the metadata was loaded, refresh the affected metadata models with <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_StartMetadataModelImport.html\">StartMetadataModelImport</a> before calling this operation.</p> <p>To check the status of the assessment request, call <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_DescribeMetadataModelAssessments.html\">DescribeMetadataModelAssessments</a> using the returned <code>RequestIdentifier</code> as a filter.</p> <p>To export the conversion assessment report after the request completes successfully, call <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_ExportMetadataModelAssessment.html\">ExportMetadataModelAssessment</a>.</p> <p> <b>Required permissions:</b> <code>dms:StartMetadataModelAssessment</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
             migration_project_identifier: <p>The migration project name or Amazon Resource Name (ARN).</p>
-            selection_rules: <p>A value that specifies the database objects to assess.</p>
+            selection_rules: <p>A JSON string that identifies the metadata models to assess. For the selection rule format and examples, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/sc-selection-rules.html\">Selection rules in DMS Schema Conversion</a>.</p> <p>Usage:</p> <ul> <li> <p>Accepts only source selection rules, where <code>server-name</code> in the object locator matches the source data provider.</p> </li> <li> <p>Supports <code>explicit</code>, <code>include</code>, and <code>exclude</code> rule actions.</p> </li> </ul>
 
         Raises:
             capo_database_migration_service.errors.access_denied_fault.AccessDeniedFault: <p>DMS was denied access to the endpoint. Check that the role is correctly configured.</p>
@@ -8536,11 +8573,10 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Start Metadata Model Assessment
-            Creates a database migration assessment report by assessing the migration complexity for
-         your source database.
+            Assess all objects in a schema
+            The following example queues an assessment of the conversion complexity for all objects in the ExampleSchema schema.
 
-            >>> await client.start_metadata_model_assessment(migration_project_identifier='arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012', selection_rules='{"rules": [{"rule-type": "selection","rule-id": "1","rule-name": "1","object-locator": {"server-name": "aurora-pg.cluster-0a1b2c3d4e5f.us-east-1.rds.amazonaws.com", "schema-name": "schema1", "table-name": "Cities"},"rule-action": "explicit"} ]}')
+            >>> await client.start_metadata_model_assessment(migration_project_identifier='arn:aws:dms:us-east-1:111122223333:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRS', selection_rules='{"rules": [{"rule-type": "selection","rule-id": "1","rule-name": "1","object-locator": {"server-name": "example-source-server.us-east-1.rds.amazonaws.com", "schema-name": "ExampleSchema"},"rule-action": "explicit"}]}')
         """
 
         async def _handler(
@@ -8579,11 +8615,11 @@ class AsyncDatabaseMigrationServiceClient:
         *,
         config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
     ) -> "capo_database_migration_service.types.start_metadata_model_conversion_response.StartMetadataModelConversionResponse":
-        """<p>Converts your source database objects to a format compatible with the target database. </p>
+        r"""<p>Queues a conversion of the selected source metadata models (database objects such as tables, views, and procedures) to the target database format. If other requests created by <code>Start*</code> operations are already in the migration project's queue, the conversion begins after they complete.</p> <p>The conversion request loads metadata models that are not yet in the metadata tree, but does not reload metadata models that are already present. If your source database has changed since the metadata was loaded, refresh the affected metadata models with <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_StartMetadataModelImport.html\">StartMetadataModelImport</a> before calling this operation.</p> <note> <p>If converted objects already exist in the target metadata tree, the conversion overwrites them, including any manual edits.</p> </note> <p>To check the status of the conversion request, call <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_DescribeMetadataModelConversions.html\">DescribeMetadataModelConversions</a> using the returned <code>RequestIdentifier</code> as a filter.</p> <p>To cancel a queued or in-progress request, call <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_CancelMetadataModelConversion.html\">CancelMetadataModelConversion</a> with the returned <code>RequestIdentifier</code>.</p> <p>After the conversion completes successfully:</p> <ul> <li> <p>To export a post-conversion assessment report, call <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_ExportMetadataModelAssessment.html\">ExportMetadataModelAssessment</a>.</p> </li> <li> <p>To retrieve converted code, use any of the following options:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_DescribeMetadataModel.html\">DescribeMetadataModel</a> and <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_DescribeMetadataModelChildren.html\">DescribeMetadataModelChildren</a> – navigate the target metadata tree and retrieve converted definitions.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_StartMetadataModelExportAsScript.html\">StartMetadataModelExportAsScript</a> – export as data definition language (DDL) scripts to your Amazon S3 bucket.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_StartMetadataModelExportToTarget.html\">StartMetadataModelExportToTarget</a> – apply directly to your target database.</p> </li> </ul> </li> </ul> <p> <b>Required permissions:</b> <code>dms:StartMetadataModelConversion</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
             migration_project_identifier: <p>The migration project name or Amazon Resource Name (ARN).</p>
-            selection_rules: <p>A value that specifies the database objects to convert.</p>
+            selection_rules: <p>A JSON string that identifies the metadata models to convert. For the selection rule format and examples, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/sc-selection-rules.html\">Selection rules in DMS Schema Conversion</a>.</p> <p>Usage:</p> <ul> <li> <p>Accepts only source selection rules, where <code>server-name</code> in the object locator matches the source data provider.</p> </li> <li> <p>Supports <code>explicit</code>, <code>include</code>, and <code>exclude</code> rule actions.</p> </li> </ul>
 
         Raises:
             capo_database_migration_service.errors.access_denied_fault.AccessDeniedFault: <p>DMS was denied access to the endpoint. Check that the role is correctly configured.</p>
@@ -8597,10 +8633,10 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Start Metadata Model Conversion
-            Converts your source database objects to a format compatible with the target database.
+            Convert all objects in a schema
+            The following example queues a conversion of all objects in the ExampleSchema schema to the target database format.
 
-            >>> await client.start_metadata_model_conversion(migration_project_identifier='arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012', selection_rules='{"rules": [{"rule-type": "selection","rule-id": "1","rule-name": "1","object-locator": {"server-name": "aurora-pg.cluster-0a1b2c3d4e5f.us-east-1.rds.amazonaws.com", "schema-name": "schema1", "table-name": "Cities"},"rule-action": "explicit"} ]}')
+            >>> await client.start_metadata_model_conversion(migration_project_identifier='arn:aws:dms:us-east-1:111122223333:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRS', selection_rules='{"rules": [{"rule-type": "selection","rule-id": "1","rule-name": "1","object-locator": {"server-name": "example-source-server.us-east-1.rds.amazonaws.com", "schema-name": "ExampleSchema"},"rule-action": "explicit"}]}')
         """
 
         async def _handler(
@@ -8641,13 +8677,13 @@ class AsyncDatabaseMigrationServiceClient:
         *,
         config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
     ) -> "capo_database_migration_service.types.start_metadata_model_creation_response.StartMetadataModelCreationResponse":
-        """<p>Creates source metadata model of the given type with the specified properties for schema conversion operations.</p> <note> <p>This action supports only these directions: from SQL Server to Aurora PostgreSQL, or from SQL Server to RDS for PostgreSQL.</p> </note>
+        r"""<p>Queues the creation of a metadata model in the source metadata tree. If other requests created by <code>Start*</code> operations are already in the migration project's queue, the creation begins after they complete.</p> <note> <p>This operation supports only Microsoft SQL Server to Aurora PostgreSQL and Microsoft SQL Server to Amazon RDS for PostgreSQL conversion paths.</p> </note> <p>To check the status of the creation request, call <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_DescribeMetadataModelCreations.html\">DescribeMetadataModelCreations</a> using the returned <code>RequestIdentifier</code> as a filter.</p> <p>To cancel a queued or in-progress request, call <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_CancelMetadataModelCreation.html\">CancelMetadataModelCreation</a> with the returned <code>RequestIdentifier</code>.</p> <important> <p>Calling <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_StartMetadataModelImport.html\">StartMetadataModelImport</a> with <code>Refresh</code> deletes metadata models created by this operation.</p> </important> <p>After the creation completes successfully:</p> <ul> <li> <p>To evaluate conversion complexity, call <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_StartMetadataModelAssessment.html\">StartMetadataModelAssessment</a>.</p> </li> <li> <p>To convert to the target database format, call <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_StartMetadataModelConversion.html\">StartMetadataModelConversion</a>.</p> </li> </ul> <p> <b>Required permissions:</b> <code>dms:StartMetadataModelCreation</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
             migration_project_identifier: <p>The migration project name or Amazon Resource Name (ARN).</p>
-            selection_rules: <p>The JSON string that specifies the location where the metadata model will be created. Selection rules must specify a single schema. For more information, see Selection Rules in the DMS User Guide.</p>
-            metadata_model_name: <p>The name of the metadata model.</p>
-            properties: <p>The properties of metadata model in JSON format. This object is a Union. Only one member of this object can be specified or returned.</p>
+            selection_rules: <p>A JSON string that identifies the source schema for the metadata model. For the selection rule format and examples, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/sc-selection-rules.html\">Selection rules in DMS Schema Conversion</a>.</p> <p>Usage:</p> <ul> <li> <p>Accepts only source selection rules, where <code>server-name</code> in the object locator matches the source data provider.</p> </li> <li> <p>Supports only <code>explicit</code> rule actions.</p> </li> <li> <p>Exactly one rule is allowed.</p> </li> </ul>
+            metadata_model_name: <p>The name for the metadata model to use in subsequent operations.</p>
+            properties: <p>The properties of the metadata model.</p>
 
         Raises:
             capo_database_migration_service.errors.access_denied_fault.AccessDeniedFault: <p>DMS was denied access to the endpoint. Check that the role is correctly configured.</p>
@@ -8655,6 +8691,12 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.resource_not_found_fault.ResourceNotFoundFault: <p>The resource could not be found.</p>
             capo_database_migration_service.errors.resource_quota_exceeded_fault.ResourceQuotaExceededFault: <p>The quota for this resource quota has been exceeded.</p>
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Create a metadata model for a SQL statement
+            The following example queues the creation of a metadata model for a SQL statement. The selection rule specifies the schema where the metadata model is placed, and MetadataModelName provides a unique identifier for use in subsequent operations.
+
+            >>> await client.start_metadata_model_creation(migration_project_identifier='arn:aws:dms:us-east-1:111122223333:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRS', selection_rules='{"rules": [{"rule-type": "selection", "rule-id": "1", "rule-name": "1", "object-locator": {"server-name": "example-source-server.us-east-1.rds.amazonaws.com", "database-name": "ExampleDatabase", "schema-name": "ExampleSchema"}, "rule-action": "explicit"}]}', metadata_model_name='ExampleStatement', properties={'StatementProperties': {'Definition': 'SELECT * FROM ExampleTable;'}})
         """
 
         async def _handler(
@@ -8699,13 +8741,13 @@ class AsyncDatabaseMigrationServiceClient:
             "capo_database_migration_service.types.string.String"
         ] = None,
     ) -> "capo_database_migration_service.types.start_metadata_model_export_as_script_response.StartMetadataModelExportAsScriptResponse":
-        """<p>Saves your converted code to a file as a SQL script, and stores this file on your Amazon S3 bucket.</p>
+        r"""<p>Queues an export of metadata models (database objects such as tables, views, and procedures) as a data definition language (DDL) script. The script is stored as a ZIP archive in the Amazon S3 bucket associated with the migration project. If other requests created by <code>Start*</code> operations are already in the migration project's queue, the export begins after they complete.</p> <p>When exporting from the target metadata tree, the export applies only to metadata models created by conversion. Metadata models imported from the database are skipped.</p> <p>To check the status of the export request, call <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_DescribeMetadataModelExportsAsScript.html\">DescribeMetadataModelExportsAsScript</a> using the returned <code>RequestIdentifier</code> as a filter.</p> <p> <b>Required permissions:</b> <code>dms:StartMetadataModelExportAsScripts</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
             migration_project_identifier: <p>The migration project name or Amazon Resource Name (ARN).</p>
-            selection_rules: <p>A value that specifies the database objects to export.</p>
-            origin: <p>Whether to export the metadata model from the source or the target.</p>
-            file_name: <p>The name of the model file to create in the Amazon S3 bucket.</p>
+            selection_rules: <p>A JSON string that identifies the metadata models to export as a SQL script. For the selection rule format and examples, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/sc-selection-rules.html\">Selection rules in DMS Schema Conversion</a>.</p> <p>Usage:</p> <ul> <li> <p>Accepts source or target selection rules depending on the <code>Origin</code> parameter. The <code>server-name</code> in the object locator must match the corresponding data provider.</p> </li> <li> <p>Supports <code>explicit</code>, <code>include</code>, and <code>exclude</code> rule actions.</p> </li> </ul>
+            origin: <p>Specifies the metadata tree to export from.</p>
+            file_name: <p>The name for the exported file. When you omit this parameter, the service generates a name from the data provider engine name and an export timestamp.</p>
 
         Raises:
             capo_database_migration_service.errors.access_denied_fault.AccessDeniedFault: <p>DMS was denied access to the endpoint. Check that the role is correctly configured.</p>
@@ -8719,10 +8761,10 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Start Metadata Model Export As Script
-            Saves your converted code to a file as a SQL script, and stores this file on your S3 bucket.
+            Export converted metadata models as DDL scripts
+            The following example queues an export of converted metadata models for all objects in the ExampleSchema schema as data definition language (DDL) scripts to the S3 bucket associated with the migration project.
 
-            >>> await client.start_metadata_model_export_as_script(migration_project_identifier='arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012', selection_rules='{"rules": [{"rule-type": "selection","rule-id": "1","rule-name": "1","object-locator": {"server-name": "aurora-pg.cluster-0a1b2c3d4e5f.us-east-1.rds.amazonaws.com", "schema-name": "schema1", "table-name": "Cities"},"rule-action": "explicit"} ]}', origin='SOURCE', file_name='FILE')
+            >>> await client.start_metadata_model_export_as_script(migration_project_identifier='arn:aws:dms:us-east-1:111122223333:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRS', selection_rules='{"rules": [{"rule-type": "selection","rule-id": "1","rule-name": "1","object-locator": {"server-name": "example-target-server.us-east-1.rds.amazonaws.com", "schema-name": "ExampleSchema"},"rule-action": "explicit"}]}', origin='TARGET', file_name='ExampleScript')
         """
 
         async def _handler(
@@ -8767,12 +8809,12 @@ class AsyncDatabaseMigrationServiceClient:
             "capo_database_migration_service.types.boolean_optional.BooleanOptional"
         ] = None,
     ) -> "capo_database_migration_service.types.start_metadata_model_export_to_target_response.StartMetadataModelExportToTargetResponse":
-        """<p>Applies converted database objects to your target database. </p>
+        r"""<p>Queues an export of the selected converted metadata models (database objects such as tables, views, and procedures) to your target database. If other requests created by <code>Start*</code> operations are already in the migration project's queue, the export begins after they complete.</p> <p>This operation requires a non-virtual target data provider.</p> <p>The export applies only metadata models created by conversion. Metadata models imported from the database are skipped.</p> <note> <p>If objects with the same name already exist on the target database, the export overwrites them.</p> </note> <p>The operation installs the extension pack on the target database. For more information, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/extension-pack.html\">Using extension packs in DMS Schema Conversion</a>.</p> <p>To check the status of the export request, call <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_DescribeMetadataModelExportsToTarget.html\">DescribeMetadataModelExportsToTarget</a> using the returned <code>RequestIdentifier</code> as a filter.</p> <p> <b>Required permissions:</b> <code>dms:StartMetadataModelExportToTarget</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
             migration_project_identifier: <p>The migration project name or Amazon Resource Name (ARN).</p>
-            selection_rules: <p>A value that specifies the database objects to export.</p>
-            overwrite_extension_pack: <p>Whether to overwrite the migration project extension pack. An extension pack is an add-on module that emulates functions present in a source database that are required when converting objects to the target database.</p>
+            selection_rules: <p>A JSON string that identifies the metadata models to export to the target database. For the selection rule format and examples, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/sc-selection-rules.html\">Selection rules in DMS Schema Conversion</a>.</p> <p>Usage:</p> <ul> <li> <p>Accepts only target selection rules, where <code>server-name</code> in the object locator matches the target data provider.</p> </li> <li> <p>Supports <code>explicit</code>, <code>include</code>, and <code>exclude</code> rule actions.</p> </li> </ul>
+            overwrite_extension_pack: <p>Specifies whether to overwrite the extension pack if one already exists on the target database. The default value is <code>true</code>.</p>
 
         Raises:
             capo_database_migration_service.errors.access_denied_fault.AccessDeniedFault: <p>DMS was denied access to the endpoint. Check that the role is correctly configured.</p>
@@ -8786,10 +8828,10 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Start Metadata Model Export To Target
-            Applies converted database objects to your target database.
+            Export converted metadata models to the target database
+            The following example queues an export of converted metadata models for all objects in the ExampleSchema schema to the target database.
 
-            >>> await client.start_metadata_model_export_to_target(migration_project_identifier='arn:aws:dms:us-east-1:012345678901:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRSTUVWXYZ012345', selection_rules='{"rules": [{"rule-type": "selection","rule-id": "1","rule-name": "1","object-locator": {"server-name": "aurora-pg.cluster-a1b2c3d4e5f6.us-east-1.rds.amazonaws.com", "schema-name": "schema1", "table-name": "Cities"},"rule-action": "explicit"} ]}', overwrite_extension_pack=True)
+            >>> await client.start_metadata_model_export_to_target(migration_project_identifier='arn:aws:dms:us-east-1:111122223333:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRS', selection_rules='{"rules": [{"rule-type": "selection","rule-id": "1","rule-name": "1","object-locator": {"server-name": "example-target-server.us-east-1.rds.amazonaws.com", "schema-name": "ExampleSchema"},"rule-action": "explicit"}]}', overwrite_extension_pack=True)
         """
 
         async def _handler(
@@ -8834,13 +8876,13 @@ class AsyncDatabaseMigrationServiceClient:
             "capo_database_migration_service.types.boolean.Boolean"
         ] = None,
     ) -> "capo_database_migration_service.types.start_metadata_model_import_response.StartMetadataModelImportResponse":
-        """<p>Loads the metadata for all the dependent database objects of the parent object.</p> <p>This operation uses your project's Amazon S3 bucket as a metadata cache to improve performance.</p>
+        r"""<p>Queues an import of metadata models (database objects such as tables, views, and procedures) from your data provider into the metadata tree. If other requests created by <code>Start*</code> operations are already in the migration project's queue, the import begins after they complete.</p> <p>To check the status of the import request, call <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_DescribeMetadataModelImports.html\">DescribeMetadataModelImports</a> using the returned <code>RequestIdentifier</code> as a filter.</p> <p> <b>Required permissions:</b> <code>dms:StartMetadataModelImport</code>. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsdatabasemigrationservice.html\">Actions, resources, and condition keys for Database Migration Service</a>.</p>
 
         Args:
             migration_project_identifier: <p>The migration project name or Amazon Resource Name (ARN).</p>
-            selection_rules: <p>A value that specifies the database objects to import.</p>
-            origin: <p>Whether to load metadata to the source or target database.</p>
-            refresh: <p>If <code>true</code>, DMS loads metadata for the specified objects from the source database.</p>
+            selection_rules: <p>A JSON string that identifies the metadata models to import from the data provider. For the selection rule format and examples, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/sc-selection-rules.html\">Selection rules in DMS Schema Conversion</a>.</p> <p>Usage:</p> <ul> <li> <p>Accepts source or target selection rules depending on the <code>Origin</code> parameter. The <code>server-name</code> in the object locator must match the corresponding data provider.</p> </li> <li> <p>Supports <code>explicit</code>, <code>include</code>, and <code>exclude</code> rule actions.</p> </li> </ul>
+            origin: <p>Specifies the metadata tree to import into.</p> <note> <p>You cannot import from a virtual target data provider.</p> </note>
+            refresh: <p>Specifies whether to refresh the selected metadata models from the data provider.</p> <p>When <code>true</code>, the import reloads the selected metadata models with current definitions and removes their existing subtree.</p> <p>When <code>false</code> (default), the import loads the full subtree that has not yet been loaded into the metadata tree.</p>
 
         Raises:
             capo_database_migration_service.errors.access_denied_fault.AccessDeniedFault: <p>DMS was denied access to the endpoint. Check that the role is correctly configured.</p>
@@ -8854,10 +8896,10 @@ class AsyncDatabaseMigrationServiceClient:
             capo_database_migration_service.errors.UnknownServiceError: The service returned an error code this client does not model.
 
         Examples:
-            Start Metadata Model Import
-            Loads the metadata for all the dependent database objects of the parent object.
+            Import metadata from the source database
+            The following example queues a metadata import for all objects in the ExampleSchema schema from the source database.
 
-            >>> await client.start_metadata_model_import(migration_project_identifier='arn:aws:dms:us-east-1:012345678901:migration-project:0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ012', selection_rules='{"rules": [{"rule-type": "selection","rule-id": "1","rule-name": "1","object-locator": {"server-name": "aurora-pg.cluster-0a1b2c3d4e5f.us-east-1.rds.amazonaws.com", "schema-name": "schema1", "table-name": "Cities"},"rule-action": "explicit"} ]}', origin='SOURCE', refresh=False)
+            >>> await client.start_metadata_model_import(migration_project_identifier='arn:aws:dms:us-east-1:111122223333:migration-project:EXAMPLEABCDEFGHIJKLMNOPQRS', selection_rules='{"rules": [{"rule-type": "selection","rule-id": "1","rule-name": "1","object-locator": {"server-name": "example-source-server.us-east-1.rds.amazonaws.com", "schema-name": "ExampleSchema"},"rule-action": "explicit"}]}', origin='SOURCE', refresh=False)
         """
 
         async def _handler(

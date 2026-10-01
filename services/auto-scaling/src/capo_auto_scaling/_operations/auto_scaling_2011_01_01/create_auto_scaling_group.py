@@ -28,6 +28,7 @@ import capo_auto_scaling.types.launch_template_specification
 import capo_auto_scaling.types.lifecycle_hook_specifications
 import capo_auto_scaling.types.load_balancer_names
 import capo_auto_scaling.types.mixed_instances_policy
+import capo_auto_scaling.types.operator
 import capo_auto_scaling.types.tags
 import capo_auto_scaling.types.target_group_ar_ns
 import capo_auto_scaling.types.termination_policies

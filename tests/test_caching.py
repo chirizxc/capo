@@ -122,7 +122,10 @@ class TestAsyncCaching:  # unasync: generate
         assert wire_log == [("GET", False, 200), ("GET", True, 304)]
 
     async def test_changed_object_is_downloaded_again(
-        self, cached_async_s3: AsyncS3Client, bucket: str, wire_log: list[WireEntry]
+        self,
+        cached_async_s3: AsyncS3Client,
+        bucket: str,
+        wire_log: list[WireEntry],
     ):
         await cached_async_s3.put_object(bucket, KEY, body=DATA, cache_control="no-cache")
         assert await aread_body(cached_async_s3.get_object(bucket, KEY)) == DATA
@@ -157,6 +160,7 @@ class TestAsyncCaching:  # unasync: generate
             assert await aread_body(client.get_object(bucket, KEY)) == DATA
         assert wire_log == [("GET", False, 200), ("GET", False, 200)]
 
+
 class TestCaching:  # unasync: generated
     def test_repeat_download_is_revalidated_not_transferred(
         self, cached_s3: S3Client, bucket: str, wire_log: list[WireEntry]
@@ -170,7 +174,10 @@ class TestCaching:  # unasync: generated
         assert wire_log == [("GET", False, 200), ("GET", True, 304)]
 
     def test_changed_object_is_downloaded_again(
-        self, cached_s3: S3Client, bucket: str, wire_log: list[WireEntry]
+        self,
+        cached_s3: S3Client,
+        bucket: str,
+        wire_log: list[WireEntry],
     ):
         cached_s3.put_object(bucket, KEY, body=DATA, cache_control="no-cache")
         assert read_body(cached_s3.get_object(bucket, KEY)) == DATA

@@ -140,6 +140,13 @@ def build_request(
         params.append(("organizationalUnitId", input_["organizational_unit_id"]))
     if "related_account" in input_:
         params.append(("relatedAccount", input_["related_account"]))
+    if "include_sensitive_events" in input_:
+        params.append(
+            (
+                "includeSensitiveEvents",
+                "true" if input_["include_sensitive_events"] else "false",
+            )
+        )
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))

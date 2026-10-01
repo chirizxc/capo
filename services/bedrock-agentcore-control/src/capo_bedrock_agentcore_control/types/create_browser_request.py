@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.role_arn
     import capo_bedrock_agentcore_control.types.sandbox_name
     import capo_bedrock_agentcore_control.types.tags_map
+    import capo_bedrock_agentcore_control.types.tools_file_system_configurations
 
 
 class CreateBrowserRequest(TypedDict, closed=True):
@@ -48,6 +49,10 @@ class CreateBrowserRequest(TypedDict, closed=True):
         "capo_bedrock_agentcore_control.types.certificates.Certificates"
     ]
     """<p>A list of certificates to install in the browser.</p>"""
+    filesystem_configurations: NotRequired[
+        "capo_bedrock_agentcore_control.types.tools_file_system_configurations.ToolsFileSystemConfigurations"
+    ]
+    """<p>The file system configurations to mount into the browser. Use these configurations to mount your own Amazon Simple Storage Service (Amazon S3) Files or Amazon Elastic File System (Amazon EFS) access points. Your sessions can then access your data. If you don't specify this field, no file systems are mounted.</p>"""
     client_token: NotRequired[
         "capo_bedrock_agentcore_control.types.client_token.ClientToken"
     ]
@@ -101,6 +106,14 @@ def serialize_json(value: CreateBrowserRequest) -> dict:
         out["certificates"] = (
             capo_bedrock_agentcore_control.types.certificates.serialize_json(
                 value["certificates"]
+            )
+        )
+    if "filesystem_configurations" in value:
+        import capo_bedrock_agentcore_control.types.tools_file_system_configurations
+
+        out["filesystemConfigurations"] = (
+            capo_bedrock_agentcore_control.types.tools_file_system_configurations.serialize_json(
+                value["filesystem_configurations"]
             )
         )
     if "client_token" in value:
@@ -166,6 +179,14 @@ def deserialize_json(data: dict) -> CreateBrowserRequest:
         out["certificates"] = (
             capo_bedrock_agentcore_control.types.certificates.deserialize_json(
                 data["certificates"]
+            )
+        )
+    if data.get("filesystemConfigurations") is not None:
+        import capo_bedrock_agentcore_control.types.tools_file_system_configurations
+
+        out["filesystem_configurations"] = (
+            capo_bedrock_agentcore_control.types.tools_file_system_configurations.deserialize_json(
+                data["filesystemConfigurations"]
             )
         )
     if data.get("clientToken") is not None:

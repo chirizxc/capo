@@ -12,6 +12,7 @@ if TYPE_CHECKING:
 
 class MaterializedViewRefreshTaskRunningException_(TypedDict, closed=True):
     message: NotRequired["capo_glue.types.message_string.MessageString"]
+    """<p>A message describing the problem.</p>"""
 
 
 # --- awsJson1_1 ser/de ---

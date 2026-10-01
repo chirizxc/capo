@@ -7,13 +7,15 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_quicksight.types.collective_constant
     import capo_quicksight.types.constant_type
-    import capo_quicksight.types.limited_string
+    import capo_quicksight.types.limited_sensitive_string
 
 
 class TopicCategoryFilterConstant(TypedDict, closed=True):
     constant_type: NotRequired["capo_quicksight.types.constant_type.ConstantType"]
     """<p>The type of category filter constant. This element is used to specify whether a constant is a singular or collective. Valid values are <code>SINGULAR</code> and <code>COLLECTIVE</code>.</p>"""
-    singular_constant: NotRequired["capo_quicksight.types.limited_string.LimitedString"]
+    singular_constant: NotRequired[
+        "capo_quicksight.types.limited_sensitive_string.LimitedSensitiveString"
+    ]
     """<p>A singular constant used in a category filter. This element is used to specify a single value for the constant.</p>"""
     collective_constant: NotRequired[
         "capo_quicksight.types.collective_constant.CollectiveConstant"

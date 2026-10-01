@@ -17,6 +17,7 @@ import capo_gameliftstreams.errors.internal_server_exception
 import capo_gameliftstreams.errors.resource_not_found_exception
 import capo_gameliftstreams.errors.throttling_exception
 import capo_gameliftstreams.errors.validation_exception
+import capo_gameliftstreams.types.display_configuration
 import capo_gameliftstreams.types.environment_variables
 import capo_gameliftstreams.types.export_files_metadata
 import capo_gameliftstreams.types.game_launch_arg_list

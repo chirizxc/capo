@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 class LifecycleExecutionResourcesImpactedSummary(TypedDict, closed=True):
     has_impacted_resources: "capo_imagebuilder.types.boolean.Boolean"
-    """<p>Indicates whether an image resource that was identified for a lifecycle action has associated resources that are also impacted.</p>"""
+    """<p>Indicates whether the lifecycle execution identified any resources to take lifecycle actions on.</p>"""
 
 
 # --- restJson1 ser/de ---

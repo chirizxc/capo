@@ -309,6 +309,7 @@ if TYPE_CHECKING:
     import capo_lex_models_v2.types.slot_type_values
     import capo_lex_models_v2.types.slot_value_elicitation_setting
     import capo_lex_models_v2.types.slot_value_selection_setting
+    import capo_lex_models_v2.types.speaker_diarization_settings
     import capo_lex_models_v2.types.speech_detection_sensitivity
     import capo_lex_models_v2.types.speech_recognition_settings
     import capo_lex_models_v2.types.start_bot_analyzer_request
@@ -886,6 +887,9 @@ class LexModelsV2Client:
         speech_detection_sensitivity: Optional[
             "capo_lex_models_v2.types.speech_detection_sensitivity.SpeechDetectionSensitivity"
         ] = None,
+        speaker_diarization_settings: Optional[
+            "capo_lex_models_v2.types.speaker_diarization_settings.SpeakerDiarizationSettings"
+        ] = None,
     ) -> "capo_lex_models_v2.types.create_bot_locale_response.CreateBotLocaleResponse":
         r"""<p>Creates a locale in the bot. The locale contains the intents and slot types that the bot uses in conversations with users in the specified language and locale. You must add a locale to a bot before you can add intents and slot types to the bot.</p>
 
@@ -900,6 +904,7 @@ class LexModelsV2Client:
             audio_filler_settings: <p>Audio filler settings to configure for the new bot locale. When enabled, Amazon Lex plays a brief background audio filler during speech-to-speech interactions to mask processing delays. Requires <code>unifiedSpeechSettings</code> (speech-to-speech) to be configured on the bot locale.</p>
             speech_recognition_settings: <p>Speech-to-text settings to configure for the new bot locale.</p>
             speech_detection_sensitivity: <p>The sensitivity level for voice activity detection (VAD) in the bot locale. This setting helps optimize speech recognition accuracy by adjusting how the system responds to background noise during voice interactions.</p>
+            speaker_diarization_settings: <p>The speaker diarization settings to configure for the new bot locale. When enabled, Amazon Lex restricts speech detection to the primary (loudest) speaker during streaming audio conversations.</p>
 
         Raises:
             capo_lex_models_v2.errors.conflict_exception.ConflictException: <p>The action that you tried to perform couldn't be completed because the resource is in a conflicting state. For example, deleting a bot that is in the CREATING state. Try your request again. </p>
@@ -946,6 +951,8 @@ class LexModelsV2Client:
             input_["generative_ai_settings"] = generative_ai_settings
         if speech_detection_sensitivity is not None:
             input_["speech_detection_sensitivity"] = speech_detection_sensitivity
+        if speaker_diarization_settings is not None:
+            input_["speaker_diarization_settings"] = speaker_diarization_settings
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -7422,6 +7429,9 @@ class LexModelsV2Client:
         speech_detection_sensitivity: Optional[
             "capo_lex_models_v2.types.speech_detection_sensitivity.SpeechDetectionSensitivity"
         ] = None,
+        speaker_diarization_settings: Optional[
+            "capo_lex_models_v2.types.speaker_diarization_settings.SpeakerDiarizationSettings"
+        ] = None,
     ) -> "capo_lex_models_v2.types.update_bot_locale_response.UpdateBotLocaleResponse":
         r"""<p>Updates the settings that a bot has for a specific locale.</p>
 
@@ -7437,6 +7447,7 @@ class LexModelsV2Client:
             speech_recognition_settings: <p>Updated speech-to-text settings to apply to the bot locale.</p>
             generative_ai_settings: <p>Contains settings for generative AI features powered by Amazon Bedrock for your bot locale. Use this object to turn generative AI features on and off. Pricing may differ if you turn a feature on. For more information, see LINK.</p>
             speech_detection_sensitivity: <p>The new sensitivity level for voice activity detection (VAD) in the bot locale. This setting helps optimize speech recognition accuracy by adjusting how the system responds to background noise during voice interactions.</p>
+            speaker_diarization_settings: <p>The updated speaker diarization settings to apply to the bot locale. If you omit this field, Amazon Lex keeps the setting currently stored on the bot locale. To turn speaker diarization off, set <code>enabled</code> to <code>false</code> explicitly.</p>
 
         Raises:
             capo_lex_models_v2.errors.conflict_exception.ConflictException: <p>The action that you tried to perform couldn't be completed because the resource is in a conflicting state. For example, deleting a bot that is in the CREATING state. Try your request again. </p>
@@ -7483,6 +7494,8 @@ class LexModelsV2Client:
             input_["generative_ai_settings"] = generative_ai_settings
         if speech_detection_sensitivity is not None:
             input_["speech_detection_sensitivity"] = speech_detection_sensitivity
+        if speaker_diarization_settings is not None:
+            input_["speaker_diarization_settings"] = speaker_diarization_settings
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),

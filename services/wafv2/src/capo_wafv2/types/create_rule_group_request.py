@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     import capo_wafv2.types.custom_response_bodies
     import capo_wafv2.types.entity_description
     import capo_wafv2.types.entity_name
+    import capo_wafv2.types.monetization_config
     import capo_wafv2.types.rules
     import capo_wafv2.types.scope
     import capo_wafv2.types.tag_list
@@ -36,6 +37,10 @@ class CreateRuleGroupRequest(TypedDict, closed=True):
         "capo_wafv2.types.custom_response_bodies.CustomResponseBodies"
     ]
     r"""<p>A map of custom response keys and content bodies. When you create a rule with a block action, you can send a custom response to the web request. You define these for the rule group, and then use them in the rules that you define in the rule group. </p> <p>For information about customizing web requests and responses, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html\">Customizing web requests and responses in WAF</a> in the <i>WAF Developer Guide</i>. </p> <p>For information about the limits on count and size for custom request and response settings, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/limits.html\">WAF quotas</a> in the <i>WAF Developer Guide</i>. </p>"""
+    monetization_config: NotRequired[
+        "capo_wafv2.types.monetization_config.MonetizationConfig"
+    ]
+    """<p>The monetization configuration for the rule group. Provide this when any rule in the rule group uses the <code>Monetize</code> action.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -67,6 +72,14 @@ def serialize_aws_json_1_1(value: CreateRuleGroupRequest) -> dict:
         out["CustomResponseBodies"] = (
             capo_wafv2.types.custom_response_bodies.serialize_aws_json_1_1(
                 value["custom_response_bodies"]
+            )
+        )
+    if "monetization_config" in value:
+        import capo_wafv2.types.monetization_config
+
+        out["MonetizationConfig"] = (
+            capo_wafv2.types.monetization_config.serialize_aws_json_1_1(
+                value["monetization_config"]
             )
         )
     return out
@@ -114,6 +127,14 @@ def deserialize_aws_json_1_1(data: dict) -> CreateRuleGroupRequest:
         out["custom_response_bodies"] = (
             capo_wafv2.types.custom_response_bodies.deserialize_aws_json_1_1(
                 data["CustomResponseBodies"]
+            )
+        )
+    if data.get("MonetizationConfig") is not None:
+        import capo_wafv2.types.monetization_config
+
+        out["monetization_config"] = (
+            capo_wafv2.types.monetization_config.deserialize_aws_json_1_1(
+                data["MonetizationConfig"]
             )
         )
     return out

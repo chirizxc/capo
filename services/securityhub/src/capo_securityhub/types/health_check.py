@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_securityhub.types.connector_status
+    import capo_securityhub.types.health_issue_list
     import capo_securityhub.types.non_empty_string
     import capo_securityhub.types.timestamp
 
@@ -19,6 +20,8 @@ class HealthCheck(TypedDict, closed=True):
     """<p>The message for the reason of connectorStatus change.</p>"""
     last_checked_at: NotRequired["capo_securityhub.types.timestamp.Timestamp"]
     """<p>ISO 8601 UTC timestamp for the time check the health status of the connectorV2.</p>"""
+    issues: NotRequired["capo_securityhub.types.health_issue_list.HealthIssueList"]
+    """<p>A list of health issues associated with the connector, including error codes and messages.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -37,6 +40,12 @@ def serialize_json(value: HealthCheck) -> dict:
 
         out["LastCheckedAt"] = capo_securityhub.types.timestamp.serialize_json(
             value["last_checked_at"]
+        )
+    if "issues" in value:
+        import capo_securityhub.types.health_issue_list
+
+        out["Issues"] = capo_securityhub.types.health_issue_list.serialize_json(
+            value["issues"]
         )
     return out
 
@@ -58,5 +67,11 @@ def deserialize_json(data: dict) -> HealthCheck:
 
         out["last_checked_at"] = capo_securityhub.types.timestamp.deserialize_json(
             data["LastCheckedAt"]
+        )
+    if data.get("Issues") is not None:
+        import capo_securityhub.types.health_issue_list
+
+        out["issues"] = capo_securityhub.types.health_issue_list.deserialize_json(
+            data["Issues"]
         )
     return out

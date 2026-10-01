@@ -15,7 +15,7 @@ class ListLifecycleExecutionResourcesResponse(TypedDict, closed=True):
     lifecycle_execution_id: NotRequired[
         "capo_imagebuilder.types.lifecycle_execution_id.LifecycleExecutionId"
     ]
-    """<p>Runtime details for the specified runtime instance of the lifecycle policy.</p>"""
+    """<p>The unique identifier for the runtime instance of the lifecycle policy.</p>"""
     lifecycle_execution_state: NotRequired[
         "capo_imagebuilder.types.lifecycle_execution_state.LifecycleExecutionState"
     ]

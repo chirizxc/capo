@@ -1,0 +1,69 @@
+"""Generated from Smithy shape ``com.amazonaws.applicationsignals#BatchDeleteDeletionTarget``."""
+
+from typing import TYPE_CHECKING, TypeAlias
+
+from typing_extensions import TypedDict
+
+from capo_application_signals.errors import DeserializationError, SerializationError
+
+if TYPE_CHECKING:
+    import capo_application_signals.types.batch_delete_by_resource_arns
+    import capo_application_signals.types.batch_delete_scope
+
+
+class _BatchDeleteDeletionTarget_Scope(TypedDict, closed=True):
+    Scope: "capo_application_signals.types.batch_delete_scope.BatchDeleteScope"
+
+
+class _BatchDeleteDeletionTarget_ResourceArns(TypedDict, closed=True):
+    ResourceArns: "capo_application_signals.types.batch_delete_by_resource_arns.BatchDeleteByResourceArns"
+
+
+BatchDeleteDeletionTarget: TypeAlias = (
+    _BatchDeleteDeletionTarget_Scope | _BatchDeleteDeletionTarget_ResourceArns
+)
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: BatchDeleteDeletionTarget) -> dict:
+    if "Scope" in value:
+        import capo_application_signals.types.batch_delete_scope
+
+        return {
+            "Scope": capo_application_signals.types.batch_delete_scope.serialize_json(
+                value["Scope"]
+            )
+        }
+    elif "ResourceArns" in value:
+        import capo_application_signals.types.batch_delete_by_resource_arns
+
+        return {
+            "ResourceArns": capo_application_signals.types.batch_delete_by_resource_arns.serialize_json(
+                value["ResourceArns"]
+            )
+        }
+    else:
+        raise SerializationError("BatchDeleteDeletionTarget: no variant present")
+
+
+def deserialize_json(data: dict) -> BatchDeleteDeletionTarget:
+    if data.get("Scope") is not None:
+        import capo_application_signals.types.batch_delete_scope
+
+        return {
+            "Scope": capo_application_signals.types.batch_delete_scope.deserialize_json(
+                data["Scope"]
+            )
+        }
+    elif data.get("ResourceArns") is not None:
+        import capo_application_signals.types.batch_delete_by_resource_arns
+
+        return {
+            "ResourceArns": capo_application_signals.types.batch_delete_by_resource_arns.deserialize_json(
+                data["ResourceArns"]
+            )
+        }
+    else:
+        raise DeserializationError(
+            "BatchDeleteDeletionTarget: no recognized variant key"
+        )

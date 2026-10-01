@@ -7,6 +7,7 @@ StreamSessionStatusReason: TypeAlias = Literal[
     "invalidSignalRequest",
     "placementTimeout",
     "applicationLogS3DestinationError",
+    "assumeRoleFailed",
     "applicationExit",
     "connectionTimeout",
     "reconnectionTimeout",

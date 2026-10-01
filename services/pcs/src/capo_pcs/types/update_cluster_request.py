@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_pcs.types.cluster_identifier
     import capo_pcs.types.sb_client_token
     import capo_pcs.types.update_cluster_slurm_configuration_request
+    import capo_pcs.types.update_scheduler_request
 
 
 class UpdateClusterRequest(TypedDict, closed=True):
@@ -21,6 +22,10 @@ class UpdateClusterRequest(TypedDict, closed=True):
         "capo_pcs.types.update_cluster_slurm_configuration_request.UpdateClusterSlurmConfigurationRequest"
     ]
     """<p>Additional options related to the Slurm scheduler.</p>"""
+    scheduler: NotRequired[
+        "capo_pcs.types.update_scheduler_request.UpdateSchedulerRequest"
+    ]
+    r"""<p>The scheduler configuration to update for the cluster. Use this to update the scheduler version. For more information, see <a href=\"https://docs.aws.amazon.com/pcs/latest/userguide/working-with_clusters_version_update.html\">Updating the scheduler version on a cluster</a> in the <i>PCS User Guide</i>.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -35,6 +40,14 @@ def serialize_aws_json_1_0(value: UpdateClusterRequest) -> dict:
         out["slurmConfiguration"] = (
             capo_pcs.types.update_cluster_slurm_configuration_request.serialize_aws_json_1_0(
                 value["slurm_configuration"]
+            )
+        )
+    if "scheduler" in value:
+        import capo_pcs.types.update_scheduler_request
+
+        out["scheduler"] = (
+            capo_pcs.types.update_scheduler_request.serialize_aws_json_1_0(
+                value["scheduler"]
             )
         )
     return out
@@ -54,6 +67,14 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateClusterRequest:
         out["slurm_configuration"] = (
             capo_pcs.types.update_cluster_slurm_configuration_request.deserialize_aws_json_1_0(
                 data["slurmConfiguration"]
+            )
+        )
+    if data.get("scheduler") is not None:
+        import capo_pcs.types.update_scheduler_request
+
+        out["scheduler"] = (
+            capo_pcs.types.update_scheduler_request.deserialize_aws_json_1_0(
+                data["scheduler"]
             )
         )
     return out

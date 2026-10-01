@@ -17,7 +17,9 @@ import capo_geo_places.errors.throttling_exception
 import capo_geo_places.errors.validation_exception
 import capo_geo_places.types.position
 import capo_geo_places.types.reverse_geocode_additional_feature_list
+import capo_geo_places.types.reverse_geocode_address_names_mode
 import capo_geo_places.types.reverse_geocode_filter
+import capo_geo_places.types.reverse_geocode_intended_use
 import capo_geo_places.types.reverse_geocode_request
 import capo_geo_places.types.reverse_geocode_response
 import capo_geo_places.types.reverse_geocode_result_item_list

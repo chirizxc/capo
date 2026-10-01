@@ -2,11 +2,12 @@
 
 from typing import TYPE_CHECKING
 
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.memory_id
     import capo_bedrock_agentcore.types.memory_record_id
+    import capo_bedrock_agentcore.types.namespace
 
 
 class DeleteMemoryRecordInput(TypedDict, closed=True):
@@ -14,6 +15,8 @@ class DeleteMemoryRecordInput(TypedDict, closed=True):
     """<p>The identifier of the AgentCore Memory resource from which to delete the memory record.</p>"""
     memory_record_id: "capo_bedrock_agentcore.types.memory_record_id.MemoryRecordId"
     """<p>The identifier of the memory record to delete.</p>"""
+    namespace: NotRequired["capo_bedrock_agentcore.types.namespace.Namespace"]
+    """<p>The namespace of the memory record to delete. This value is used for IAM condition key authorization.</p>"""
 
 
 # --- restJson1 ser/de ---

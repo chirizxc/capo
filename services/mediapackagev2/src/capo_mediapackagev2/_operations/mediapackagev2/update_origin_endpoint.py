@@ -30,6 +30,7 @@ import capo_mediapackagev2.types.get_hls_manifests
 import capo_mediapackagev2.types.get_low_latency_hls_manifests
 import capo_mediapackagev2.types.get_mss_manifests
 import capo_mediapackagev2.types.segment
+import capo_mediapackagev2.types.stream_name_output_mode
 import capo_mediapackagev2.types.tag_map
 import capo_mediapackagev2.types.update_origin_endpoint_request
 import capo_mediapackagev2.types.update_origin_endpoint_response

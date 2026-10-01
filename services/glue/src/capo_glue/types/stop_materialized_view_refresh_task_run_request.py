@@ -16,7 +16,7 @@ class StopMaterializedViewRefreshTaskRunRequest(TypedDict, closed=True):
     database_name: "capo_glue.types.name_string.NameString"
     """<p>The name of the database where the table resides.</p>"""
     table_name: "capo_glue.types.name_string.NameString"
-    """<p>The name of the table to generate statistics.</p>"""
+    """<p>The name of the materialized view.</p>"""
 
 
 # --- awsJson1_1 ser/de ---

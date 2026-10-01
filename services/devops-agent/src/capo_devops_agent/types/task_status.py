@@ -14,6 +14,7 @@ TaskStatus: TypeAlias = Literal[
     "TIMED_OUT",
     "CANCELED",
     "SKIPPED",
+    "WAITING",
 ]
 
 

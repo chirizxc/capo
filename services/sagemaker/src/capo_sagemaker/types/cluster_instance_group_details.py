@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_sagemaker.types.active_operations
+    import capo_sagemaker.types.cluster_auto_patch_config_details
     import capo_sagemaker.types.cluster_capacity_requirements
     import capo_sagemaker.types.cluster_image_version_status
     import capo_sagemaker.types.cluster_instance_count
@@ -22,6 +23,7 @@ if TYPE_CHECKING:
     import capo_sagemaker.types.cluster_threads_per_core
     import capo_sagemaker.types.deployment_configuration
     import capo_sagemaker.types.image_id
+    import capo_sagemaker.types.image_release_version
     import capo_sagemaker.types.instance_group_status
     import capo_sagemaker.types.instance_group_training_plan_status
     import capo_sagemaker.types.on_start_deep_health_checks
@@ -97,10 +99,22 @@ class ClusterInstanceGroupDetails(TypedDict, closed=True):
         "capo_sagemaker.types.scheduled_update_config.ScheduledUpdateConfig"
     ]
     """<p>The configuration object of the schedule that SageMaker follows when updating the AMI.</p>"""
+    auto_patch_config: NotRequired[
+        "capo_sagemaker.types.cluster_auto_patch_config_details.ClusterAutoPatchConfigDetails"
+    ]
+    """<p>The auto-patching configuration for the instance group, including the current patching strategy and next scheduled patch date.</p>"""
     current_image_id: NotRequired["capo_sagemaker.types.image_id.ImageId"]
     """<p>The ID of the Amazon Machine Image (AMI) currently in use by the instance group.</p>"""
     desired_image_id: NotRequired["capo_sagemaker.types.image_id.ImageId"]
     """<p>The ID of the Amazon Machine Image (AMI) desired for the instance group.</p>"""
+    current_image_release_version: NotRequired[
+        "capo_sagemaker.types.image_release_version.ImageReleaseVersion"
+    ]
+    """<p>The version of the HyperPod-managed AMI currently running on the instance group.</p>"""
+    desired_image_release_version: NotRequired[
+        "capo_sagemaker.types.image_release_version.ImageReleaseVersion"
+    ]
+    """<p>The desired version of the HyperPod-managed AMI for the instance group. This may differ from the current version when an update is pending.</p>"""
     image_version_status: NotRequired[
         "capo_sagemaker.types.cluster_image_version_status.ClusterImageVersionStatus"
     ]
@@ -229,10 +243,22 @@ def serialize_aws_json_1_1(value: ClusterInstanceGroupDetails) -> dict:
                 value["scheduled_update_config"]
             )
         )
+    if "auto_patch_config" in value:
+        import capo_sagemaker.types.cluster_auto_patch_config_details
+
+        out["AutoPatchConfig"] = (
+            capo_sagemaker.types.cluster_auto_patch_config_details.serialize_aws_json_1_1(
+                value["auto_patch_config"]
+            )
+        )
     if "current_image_id" in value:
         out["CurrentImageId"] = value["current_image_id"]
     if "desired_image_id" in value:
         out["DesiredImageId"] = value["desired_image_id"]
+    if "current_image_release_version" in value:
+        out["CurrentImageReleaseVersion"] = value["current_image_release_version"]
+    if "desired_image_release_version" in value:
+        out["DesiredImageReleaseVersion"] = value["desired_image_release_version"]
     if "image_version_status" in value:
         import capo_sagemaker.types.cluster_image_version_status
 
@@ -392,10 +418,22 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterInstanceGroupDetails:
                 data["ScheduledUpdateConfig"]
             )
         )
+    if data.get("AutoPatchConfig") is not None:
+        import capo_sagemaker.types.cluster_auto_patch_config_details
+
+        out["auto_patch_config"] = (
+            capo_sagemaker.types.cluster_auto_patch_config_details.deserialize_aws_json_1_1(
+                data["AutoPatchConfig"]
+            )
+        )
     if data.get("CurrentImageId") is not None:
         out["current_image_id"] = data["CurrentImageId"]
     if data.get("DesiredImageId") is not None:
         out["desired_image_id"] = data["DesiredImageId"]
+    if data.get("CurrentImageReleaseVersion") is not None:
+        out["current_image_release_version"] = data["CurrentImageReleaseVersion"]
+    if data.get("DesiredImageReleaseVersion") is not None:
+        out["desired_image_release_version"] = data["DesiredImageReleaseVersion"]
     if data.get("ImageVersionStatus") is not None:
         import capo_sagemaker.types.cluster_image_version_status
 

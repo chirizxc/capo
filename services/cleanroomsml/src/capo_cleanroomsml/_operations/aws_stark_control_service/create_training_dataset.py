@@ -13,6 +13,7 @@ import capo_cleanroomsml._auth._sigv4
 import capo_cleanroomsml._protocol.eventstream
 import capo_cleanroomsml.errors.access_denied_exception
 import capo_cleanroomsml.errors.conflict_exception
+import capo_cleanroomsml.errors.throttling_exception
 import capo_cleanroomsml.errors.validation_exception
 import capo_cleanroomsml.types.create_training_dataset_request
 import capo_cleanroomsml.types.create_training_dataset_response
@@ -37,6 +38,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "ConflictException":
             raise capo_cleanroomsml.errors.conflict_exception.ConflictException.from_json(
+                data, message
+            )
+        case "ThrottlingException":
+            raise capo_cleanroomsml.errors.throttling_exception.ThrottlingException.from_json(
                 data, message
             )
         case "ValidationException":

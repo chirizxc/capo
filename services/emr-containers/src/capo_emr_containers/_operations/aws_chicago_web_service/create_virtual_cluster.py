@@ -18,6 +18,7 @@ import capo_emr_containers.errors.validation_exception
 import capo_emr_containers.types.container_provider
 import capo_emr_containers.types.create_virtual_cluster_request
 import capo_emr_containers.types.create_virtual_cluster_response
+import capo_emr_containers.types.scheduler_configuration
 import capo_emr_containers.types.tag_map
 from capo_emr_containers._protocol.errors import parse_error_metadata_json
 from capo_emr_containers._rule_engine._endpoint_rule_set import EndpointParams, resolve

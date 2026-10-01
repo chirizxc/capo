@@ -2,4 +2,5 @@
 
 from typing import TypeAlias
 
+"""An opaque pagination token."""
 NextToken: TypeAlias = str

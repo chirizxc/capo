@@ -2,17 +2,22 @@
 
 from typing import TYPE_CHECKING
 
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 from capo_partnercentral_selling.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_partnercentral_selling.types.lead_customer
+    import capo_partnercentral_selling.types.lead_insights
     import capo_partnercentral_selling.types.lead_interaction_list
     import capo_partnercentral_selling.types.lead_qualification_status
 
 
 class LeadContext(TypedDict, closed=True):
+    insights: NotRequired[
+        "capo_partnercentral_selling.types.lead_insights.LeadInsights"
+    ]
+    """<p>Insights that AI generates and associates with the lead. These insights provide automated analysis such as lead readiness scoring to help partners assess the lead quality.</p>"""
     qualification_status: "capo_partnercentral_selling.types.lead_qualification_status.LeadQualificationStatus"
     """<p>Indicates the current qualification status of the lead, such as whether it has been qualified, disqualified, or is still under evaluation. This helps track the lead's progression through the qualification process.</p>"""
     customer: "capo_partnercentral_selling.types.lead_customer.LeadCustomer"
@@ -26,6 +31,14 @@ class LeadContext(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: LeadContext) -> dict:
     out: dict = {}
+    if "insights" in value:
+        import capo_partnercentral_selling.types.lead_insights
+
+        out["Insights"] = (
+            capo_partnercentral_selling.types.lead_insights.serialize_aws_json_1_0(
+                value["insights"]
+            )
+        )
     out["QualificationStatus"] = value.get("qualification_status", "Unqualified")
     import capo_partnercentral_selling.types.lead_customer
 
@@ -46,6 +59,14 @@ def serialize_aws_json_1_0(value: LeadContext) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LeadContext:
     out: LeadContext = {}  # type: ignore[typeddict-item]
+    if data.get("Insights") is not None:
+        import capo_partnercentral_selling.types.lead_insights
+
+        out["insights"] = (
+            capo_partnercentral_selling.types.lead_insights.deserialize_aws_json_1_0(
+                data["Insights"]
+            )
+        )
     if data.get("QualificationStatus") is not None:
         out["qualification_status"] = data["QualificationStatus"]
     else:

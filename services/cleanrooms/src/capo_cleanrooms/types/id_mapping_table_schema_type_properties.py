@@ -2,17 +2,20 @@
 
 from typing import TYPE_CHECKING
 
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 from capo_cleanrooms.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_cleanrooms.types.id_mapping_table_input_source_list
+    import capo_cleanrooms.types.uuid
 
 
 class IdMappingTableSchemaTypeProperties(TypedDict, closed=True):
     id_mapping_table_input_source: "capo_cleanrooms.types.id_mapping_table_input_source_list.IdMappingTableInputSourceList"
     """<p>Defines which ID namespace associations are used to create the ID mapping table.</p>"""
+    id_mapping_table_id: NotRequired["capo_cleanrooms.types.uuid.UUID"]
+    """<p>The unique identifier of the ID mapping table.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -25,6 +28,8 @@ def serialize_json(value: IdMappingTableSchemaTypeProperties) -> dict:
             value["id_mapping_table_input_source"]
         )
     )
+    if "id_mapping_table_id" in value:
+        out["idMappingTableId"] = value["id_mapping_table_id"]
     return out
 
 
@@ -42,4 +47,6 @@ def deserialize_json(data: dict) -> IdMappingTableSchemaTypeProperties:
         raise DeserializationError(
             "IdMappingTableSchemaTypeProperties.id_mapping_table_input_source required"
         )
+    if data.get("idMappingTableId") is not None:
+        out["id_mapping_table_id"] = data["idMappingTableId"]
     return out

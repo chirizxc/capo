@@ -20,11 +20,11 @@ class CreateEnvironmentConnectorRequest(TypedDict, closed=True):
     environment_id: "capo_evs.types.environment_id.EnvironmentId"
     """<p>A unique ID for the environment to create the connector in.</p>"""
     type: "capo_evs.types.connector_type.ConnectorType"
-    """<p>The type of connector to create.</p>"""
+    """<p>The type of connector to create.</p> <ul> <li> <p> <code>OPERATIONS_MANAGER</code>: Connector to an Operations Manager appliance. Required for VCF 9x environments.</p> </li> <li> <p> <code>SDDC_MANAGER</code>: Connector to an SDDC Manager appliance. Required for VCF 5.x environments.</p> </li> <li> <p> <code>VCENTER</code>: Connector to a vCenter Server appliance. Required for features that depend on vCenter, such as Windows Server license-included.</p> </li> </ul>"""
     appliance_fqdn: "capo_evs.types.appliance_fqdn.ApplianceFqdn"
     """<p>The fully qualified domain name (FQDN) of the VCF appliance that the connector targets.</p>"""
     secret_identifier: "capo_evs.types.secret_identifier.SecretIdentifier"
-    """<p>The ARN or name of the Amazon Web Services Secrets Manager secret that stores the credentials for the VCF appliance.</p> <important> <p>Do not use credentials with Administrator privileges. We recommend using a service account with the minimum required permissions.</p> </important>"""
+    """<p>The ARN or name of the Amazon Web Services Secrets Manager secret that stores the credentials for the VCF appliance. <code>SDDC_MANAGER</code> requires an <code>apiKey</code> field; <code>OPERATIONS_MANAGER</code> and <code>VCENTER</code> require <code>username</code> and <code>password</code> fields.</p> <important> <p>Do not use credentials with Administrator privileges. We recommend using a service account with read-only permissions.</p> </important>"""
 
 
 # --- awsJson1_0 ser/de ---

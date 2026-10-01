@@ -14,6 +14,7 @@ import capo_chime_sdk_voice._auth._sigv4
 import capo_chime_sdk_voice._protocol.eventstream
 import capo_chime_sdk_voice.errors.bad_request_exception
 import capo_chime_sdk_voice.errors.forbidden_exception
+import capo_chime_sdk_voice.errors.gone_exception
 import capo_chime_sdk_voice.errors.not_found_exception
 import capo_chime_sdk_voice.errors.service_failure_exception
 import capo_chime_sdk_voice.errors.service_unavailable_exception
@@ -41,6 +42,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "ForbiddenException":
             raise capo_chime_sdk_voice.errors.forbidden_exception.ForbiddenException.from_json(
+                data, message
+            )
+        case "GoneException":
+            raise capo_chime_sdk_voice.errors.gone_exception.GoneException.from_json(
                 data, message
             )
         case "NotFoundException":

@@ -1,6 +1,8 @@
 """Generated from Smithy shape ``com.amazonaws.migrationhuborchestrator#AWSMigrationHubOrchestrator``."""
 
+import uuid
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +18,7 @@ from capo_migrationhuborchestrator._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_migrationhuborchestrator._auth._zapros_handler import AuthMiddleware
+from capo_migrationhuborchestrator._pagination import resolve_path as _resolve_path
 from capo_migrationhuborchestrator._resources.aws_migration_hub_orchestrator.migration_workflow import (
     MigrationWorkflow,
 )
@@ -51,15 +54,102 @@ from capo_migrationhuborchestrator._services._pipeline import (
 )
 
 if TYPE_CHECKING:
+    import capo_migrationhuborchestrator.types.application_configuration_name
+    import capo_migrationhuborchestrator.types.client_token
+    import capo_migrationhuborchestrator.types.create_migration_workflow_request
+    import capo_migrationhuborchestrator.types.create_migration_workflow_response
+    import capo_migrationhuborchestrator.types.create_template_request
+    import capo_migrationhuborchestrator.types.create_template_response
+    import capo_migrationhuborchestrator.types.create_workflow_step_group_request
+    import capo_migrationhuborchestrator.types.create_workflow_step_group_response
+    import capo_migrationhuborchestrator.types.create_workflow_step_request
+    import capo_migrationhuborchestrator.types.create_workflow_step_response
+    import capo_migrationhuborchestrator.types.delete_migration_workflow_request
+    import capo_migrationhuborchestrator.types.delete_migration_workflow_response
+    import capo_migrationhuborchestrator.types.delete_template_request
+    import capo_migrationhuborchestrator.types.delete_template_response
+    import capo_migrationhuborchestrator.types.delete_workflow_step_group_request
+    import capo_migrationhuborchestrator.types.delete_workflow_step_group_response
+    import capo_migrationhuborchestrator.types.delete_workflow_step_request
+    import capo_migrationhuborchestrator.types.delete_workflow_step_response
+    import capo_migrationhuborchestrator.types.get_migration_workflow_request
+    import capo_migrationhuborchestrator.types.get_migration_workflow_response
+    import capo_migrationhuborchestrator.types.get_migration_workflow_template_request
+    import capo_migrationhuborchestrator.types.get_migration_workflow_template_response
+    import capo_migrationhuborchestrator.types.get_template_step_group_request
+    import capo_migrationhuborchestrator.types.get_template_step_group_response
+    import capo_migrationhuborchestrator.types.get_template_step_request
+    import capo_migrationhuborchestrator.types.get_template_step_response
+    import capo_migrationhuborchestrator.types.get_workflow_step_group_request
+    import capo_migrationhuborchestrator.types.get_workflow_step_group_response
+    import capo_migrationhuborchestrator.types.get_workflow_step_request
+    import capo_migrationhuborchestrator.types.get_workflow_step_response
+    import capo_migrationhuborchestrator.types.list_migration_workflow_templates_request
+    import capo_migrationhuborchestrator.types.list_migration_workflow_templates_response
+    import capo_migrationhuborchestrator.types.list_migration_workflows_request
+    import capo_migrationhuborchestrator.types.list_migration_workflows_response
+    import capo_migrationhuborchestrator.types.list_plugins_request
+    import capo_migrationhuborchestrator.types.list_plugins_response
     import capo_migrationhuborchestrator.types.list_tags_for_resource_request
     import capo_migrationhuborchestrator.types.list_tags_for_resource_response
+    import capo_migrationhuborchestrator.types.list_template_step_groups_request
+    import capo_migrationhuborchestrator.types.list_template_step_groups_response
+    import capo_migrationhuborchestrator.types.list_template_steps_request
+    import capo_migrationhuborchestrator.types.list_template_steps_response
+    import capo_migrationhuborchestrator.types.list_workflow_step_groups_request
+    import capo_migrationhuborchestrator.types.list_workflow_step_groups_response
+    import capo_migrationhuborchestrator.types.list_workflow_steps_request
+    import capo_migrationhuborchestrator.types.list_workflow_steps_response
+    import capo_migrationhuborchestrator.types.max_results
+    import capo_migrationhuborchestrator.types.migration_workflow_description
+    import capo_migrationhuborchestrator.types.migration_workflow_id
+    import capo_migrationhuborchestrator.types.migration_workflow_name
+    import capo_migrationhuborchestrator.types.migration_workflow_status_enum
+    import capo_migrationhuborchestrator.types.migration_workflow_summary
+    import capo_migrationhuborchestrator.types.next_token
+    import capo_migrationhuborchestrator.types.plugin_summary
     import capo_migrationhuborchestrator.types.resource_arn
+    import capo_migrationhuborchestrator.types.retry_workflow_step_request
+    import capo_migrationhuborchestrator.types.retry_workflow_step_response
+    import capo_migrationhuborchestrator.types.start_migration_workflow_request
+    import capo_migrationhuborchestrator.types.start_migration_workflow_response
+    import capo_migrationhuborchestrator.types.step_action_type
+    import capo_migrationhuborchestrator.types.step_description
+    import capo_migrationhuborchestrator.types.step_group_description
+    import capo_migrationhuborchestrator.types.step_group_id
+    import capo_migrationhuborchestrator.types.step_group_name
+    import capo_migrationhuborchestrator.types.step_id
+    import capo_migrationhuborchestrator.types.step_input_parameters
+    import capo_migrationhuborchestrator.types.step_name
+    import capo_migrationhuborchestrator.types.step_status
+    import capo_migrationhuborchestrator.types.stop_migration_workflow_request
+    import capo_migrationhuborchestrator.types.stop_migration_workflow_response
+    import capo_migrationhuborchestrator.types.string_list
+    import capo_migrationhuborchestrator.types.string_map
     import capo_migrationhuborchestrator.types.tag_key_list
     import capo_migrationhuborchestrator.types.tag_map
     import capo_migrationhuborchestrator.types.tag_resource_request
     import capo_migrationhuborchestrator.types.tag_resource_response
+    import capo_migrationhuborchestrator.types.template_id
+    import capo_migrationhuborchestrator.types.template_name
+    import capo_migrationhuborchestrator.types.template_source
+    import capo_migrationhuborchestrator.types.template_step_group_summary
+    import capo_migrationhuborchestrator.types.template_step_summary
+    import capo_migrationhuborchestrator.types.template_summary
     import capo_migrationhuborchestrator.types.untag_resource_request
     import capo_migrationhuborchestrator.types.untag_resource_response
+    import capo_migrationhuborchestrator.types.update_migration_workflow_request
+    import capo_migrationhuborchestrator.types.update_migration_workflow_response
+    import capo_migrationhuborchestrator.types.update_template_request
+    import capo_migrationhuborchestrator.types.update_template_response
+    import capo_migrationhuborchestrator.types.update_workflow_step_group_request
+    import capo_migrationhuborchestrator.types.update_workflow_step_group_response
+    import capo_migrationhuborchestrator.types.update_workflow_step_request
+    import capo_migrationhuborchestrator.types.update_workflow_step_response
+    import capo_migrationhuborchestrator.types.workflow_step_automation_configuration
+    import capo_migrationhuborchestrator.types.workflow_step_group_summary
+    import capo_migrationhuborchestrator.types.workflow_step_output_list
+    import capo_migrationhuborchestrator.types.workflow_step_summary
 
 
 class MigrationHubOrchestratorClientConfig(TypedDict, total=False, closed=True):
@@ -304,6 +394,1893 @@ class MigrationHubOrchestratorClient:
         )
         response.response.close()
         return response.output
+
+    def create_workflow(
+        self,
+        name: str,
+        template_id: str,
+        input_parameters: "capo_migrationhuborchestrator.types.step_input_parameters.StepInputParameters",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+        description: Optional[str] = None,
+        application_configuration_id: Optional[str] = None,
+        step_targets: Optional[
+            "capo_migrationhuborchestrator.types.string_list.StringList"
+        ] = None,
+        tags: Optional[
+            "capo_migrationhuborchestrator.types.string_map.StringMap"
+        ] = None,
+    ) -> "capo_migrationhuborchestrator.types.create_migration_workflow_response.CreateMigrationWorkflowResponse":
+        """<p>Create a workflow to orchestrate your migrations.</p>
+
+        Args:
+            name: <p>The name of the migration workflow.</p>
+            description: <p>The description of the migration workflow.</p>
+            template_id: <p>The ID of the template.</p>
+            application_configuration_id: <p>The configuration ID of the application configured in Application Discovery Service.</p>
+            input_parameters: <p>The input parameters required to create a migration workflow.</p>
+            step_targets: <p>The servers on which a step will be run.</p>
+            tags: <p>The tags to add on a migration workflow.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.create_migration_workflow_request.CreateMigrationWorkflowRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.create_migration_workflow_response.CreateMigrationWorkflowResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.create_workflow
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.create_workflow.create_workflow(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.create_migration_workflow_request.CreateMigrationWorkflowRequest = {
+            "name": name,
+            "template_id": template_id,
+            "input_parameters": input_parameters,
+        }
+        if description is not None:
+            input_["description"] = description
+        if application_configuration_id is not None:
+            input_["application_configuration_id"] = application_configuration_id
+        if step_targets is not None:
+            input_["step_targets"] = step_targets
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_workflow(
+        self,
+        id: "capo_migrationhuborchestrator.types.migration_workflow_id.MigrationWorkflowId",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+    ) -> "capo_migrationhuborchestrator.types.get_migration_workflow_response.GetMigrationWorkflowResponse":
+        """<p>Get migration workflow.</p>
+
+        Args:
+            id: <p>The ID of the migration workflow.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource is not available.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.get_migration_workflow_request.GetMigrationWorkflowRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.get_migration_workflow_response.GetMigrationWorkflowResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.get_workflow
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.get_workflow.get_workflow(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.get_migration_workflow_request.GetMigrationWorkflowRequest = {
+            "id": id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_workflow(
+        self,
+        id: "capo_migrationhuborchestrator.types.migration_workflow_id.MigrationWorkflowId",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+        name: Optional[str] = None,
+        description: Optional[str] = None,
+        input_parameters: Optional[
+            "capo_migrationhuborchestrator.types.step_input_parameters.StepInputParameters"
+        ] = None,
+        step_targets: Optional[
+            "capo_migrationhuborchestrator.types.string_list.StringList"
+        ] = None,
+    ) -> "capo_migrationhuborchestrator.types.update_migration_workflow_response.UpdateMigrationWorkflowResponse":
+        """<p>Update a migration workflow.</p>
+
+        Args:
+            id: <p>The ID of the migration workflow.</p>
+            name: <p>The name of the migration workflow.</p>
+            description: <p>The description of the migration workflow.</p>
+            input_parameters: <p>The input parameters required to update a migration workflow.</p>
+            step_targets: <p>The servers on which a step will be run.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource is not available.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.update_migration_workflow_request.UpdateMigrationWorkflowRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.update_migration_workflow_response.UpdateMigrationWorkflowResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.update_workflow
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.update_workflow.update_workflow(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.update_migration_workflow_request.UpdateMigrationWorkflowRequest = {
+            "id": id
+        }
+        if name is not None:
+            input_["name"] = name
+        if description is not None:
+            input_["description"] = description
+        if input_parameters is not None:
+            input_["input_parameters"] = input_parameters
+        if step_targets is not None:
+            input_["step_targets"] = step_targets
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_workflow(
+        self,
+        id: "capo_migrationhuborchestrator.types.migration_workflow_id.MigrationWorkflowId",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+    ) -> "capo_migrationhuborchestrator.types.delete_migration_workflow_response.DeleteMigrationWorkflowResponse":
+        """<p>Delete a migration workflow. You must pause a running workflow in Migration Hub Orchestrator console to delete it.</p>
+
+        Args:
+            id: <p>The ID of the migration workflow you want to delete.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource is not available.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.delete_migration_workflow_request.DeleteMigrationWorkflowRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.delete_migration_workflow_response.DeleteMigrationWorkflowResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.delete_workflow
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.delete_workflow.delete_workflow(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.delete_migration_workflow_request.DeleteMigrationWorkflowRequest = {
+            "id": id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_workflows(
+        self,
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+        max_results: Optional[
+            "capo_migrationhuborchestrator.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_migrationhuborchestrator.types.next_token.NextToken"
+        ] = None,
+        template_id: Optional[
+            "capo_migrationhuborchestrator.types.template_id.TemplateId"
+        ] = None,
+        ads_application_configuration_name: Optional[
+            "capo_migrationhuborchestrator.types.application_configuration_name.ApplicationConfigurationName"
+        ] = None,
+        status: Optional[
+            "capo_migrationhuborchestrator.types.migration_workflow_status_enum.MigrationWorkflowStatusEnum"
+        ] = None,
+        name: Optional[str] = None,
+    ) -> "capo_migrationhuborchestrator.types.list_migration_workflows_response.ListMigrationWorkflowsResponse":
+        """<p>List the migration workflows.</p>
+
+        Args:
+            max_results: <p>The maximum number of results that can be returned.</p>
+            next_token: <p>The pagination token.</p>
+            template_id: <p>The ID of the template.</p>
+            ads_application_configuration_name: <p>The name of the application configured in Application Discovery Service.</p>
+            status: <p>The status of the migration workflow.</p>
+            name: <p>The name of the migration workflow.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource is not available.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.list_migration_workflows_request.ListMigrationWorkflowsRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.list_migration_workflows_response.ListMigrationWorkflowsResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.list_workflows
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.list_workflows.list_workflows(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.list_migration_workflows_request.ListMigrationWorkflowsRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if template_id is not None:
+            input_["template_id"] = template_id
+        if ads_application_configuration_name is not None:
+            input_["ads_application_configuration_name"] = (
+                ads_application_configuration_name
+            )
+        if status is not None:
+            input_["status"] = status
+        if name is not None:
+            input_["name"] = name
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_workflows(
+        self,
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+        max_results: Optional[
+            "capo_migrationhuborchestrator.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_migrationhuborchestrator.types.next_token.NextToken"
+        ] = None,
+        template_id: Optional[
+            "capo_migrationhuborchestrator.types.template_id.TemplateId"
+        ] = None,
+        ads_application_configuration_name: Optional[
+            "capo_migrationhuborchestrator.types.application_configuration_name.ApplicationConfigurationName"
+        ] = None,
+        status: Optional[
+            "capo_migrationhuborchestrator.types.migration_workflow_status_enum.MigrationWorkflowStatusEnum"
+        ] = None,
+        name: Optional[str] = None,
+    ) -> "Iterator[capo_migrationhuborchestrator.types.migration_workflow_summary.MigrationWorkflowSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_workflows(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                template_id=template_id,
+                ads_application_configuration_name=ads_application_configuration_name,
+                status=status,
+                name=name,
+            )
+            _page = _resolve_path(_response, ("migration_workflow_summary",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def start_workflow(
+        self,
+        id: "capo_migrationhuborchestrator.types.migration_workflow_id.MigrationWorkflowId",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+    ) -> "capo_migrationhuborchestrator.types.start_migration_workflow_response.StartMigrationWorkflowResponse":
+        """<p>Start a migration workflow.</p>
+
+        Args:
+            id: <p>The ID of the migration workflow.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource is not available.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.start_migration_workflow_request.StartMigrationWorkflowRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.start_migration_workflow_response.StartMigrationWorkflowResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.start_workflow
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.start_workflow.start_workflow(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.start_migration_workflow_request.StartMigrationWorkflowRequest = {
+            "id": id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def stop_workflow(
+        self,
+        id: "capo_migrationhuborchestrator.types.migration_workflow_id.MigrationWorkflowId",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+    ) -> "capo_migrationhuborchestrator.types.stop_migration_workflow_response.StopMigrationWorkflowResponse":
+        """<p>Stop an ongoing migration workflow.</p>
+
+        Args:
+            id: <p>The ID of the migration workflow.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource is not available.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.stop_migration_workflow_request.StopMigrationWorkflowRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.stop_migration_workflow_response.StopMigrationWorkflowResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.stop_workflow
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.stop_workflow.stop_workflow(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.stop_migration_workflow_request.StopMigrationWorkflowRequest = {
+            "id": id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def create_template(
+        self,
+        template_name: str,
+        template_source: "capo_migrationhuborchestrator.types.template_source.TemplateSource",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+        template_description: Optional[str] = None,
+        client_token: Optional[
+            "capo_migrationhuborchestrator.types.client_token.ClientToken"
+        ] = None,
+        tags: Optional["capo_migrationhuborchestrator.types.tag_map.TagMap"] = None,
+    ) -> "capo_migrationhuborchestrator.types.create_template_response.CreateTemplateResponse":
+        r"""<p>Creates a migration workflow template.</p>
+
+        Args:
+            template_name: <p>The name of the migration workflow template.</p>
+            template_description: <p>A description of the migration workflow template.</p>
+            template_source: <p>The source of the migration workflow template.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://smithy.io/2.0/spec/behavior-traits.html#idempotencytoken-trait\">Idempotency</a> in the Smithy documentation.</p>
+            tags: <p>The tags to add to the migration workflow template.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.conflict_exception.ConflictException: <p>This exception is thrown when an attempt to update or delete a resource would cause an inconsistent state.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.create_template_request.CreateTemplateRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.create_template_response.CreateTemplateResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.create_template
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.create_template.create_template(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.create_template_request.CreateTemplateRequest = {
+            "template_name": template_name,
+            "template_source": template_source,
+        }
+        if template_description is not None:
+            input_["template_description"] = template_description
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_template(
+        self,
+        id: "capo_migrationhuborchestrator.types.template_id.TemplateId",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+    ) -> "capo_migrationhuborchestrator.types.get_migration_workflow_template_response.GetMigrationWorkflowTemplateResponse":
+        """<p>Get the template you want to use for creating a migration workflow.</p>
+
+        Args:
+            id: <p>The ID of the template.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource is not available.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.get_migration_workflow_template_request.GetMigrationWorkflowTemplateRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.get_migration_workflow_template_response.GetMigrationWorkflowTemplateResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.get_template
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.get_template.get_template(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.get_migration_workflow_template_request.GetMigrationWorkflowTemplateRequest = {
+            "id": id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_template(
+        self,
+        id: "capo_migrationhuborchestrator.types.template_id.TemplateId",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+        template_name: Optional[str] = None,
+        template_description: Optional[str] = None,
+        client_token: Optional[
+            "capo_migrationhuborchestrator.types.client_token.ClientToken"
+        ] = None,
+    ) -> "capo_migrationhuborchestrator.types.update_template_response.UpdateTemplateResponse":
+        """<p>Updates a migration workflow template.</p>
+
+        Args:
+            id: <p>The ID of the request to update a migration workflow template.</p>
+            template_name: <p>The name of the migration workflow template to update.</p>
+            template_description: <p>The description of the migration workflow template to update.</p>
+            client_token: <p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource is not available.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.update_template_request.UpdateTemplateRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.update_template_response.UpdateTemplateResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.update_template
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.update_template.update_template(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.update_template_request.UpdateTemplateRequest = {
+            "id": id
+        }
+        if template_name is not None:
+            input_["template_name"] = template_name
+        if template_description is not None:
+            input_["template_description"] = template_description
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_template(
+        self,
+        id: "capo_migrationhuborchestrator.types.template_id.TemplateId",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+    ) -> "capo_migrationhuborchestrator.types.delete_template_response.DeleteTemplateResponse":
+        """<p>Deletes a migration workflow template.</p>
+
+        Args:
+            id: <p>The ID of the request to delete a migration workflow template.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource is not available.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.delete_template_request.DeleteTemplateRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.delete_template_response.DeleteTemplateResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.delete_template
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.delete_template.delete_template(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.delete_template_request.DeleteTemplateRequest = {
+            "id": id
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_templates(
+        self,
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+        max_results: Optional[
+            "capo_migrationhuborchestrator.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_migrationhuborchestrator.types.next_token.NextToken"
+        ] = None,
+        name: Optional[
+            "capo_migrationhuborchestrator.types.template_name.TemplateName"
+        ] = None,
+    ) -> "capo_migrationhuborchestrator.types.list_migration_workflow_templates_response.ListMigrationWorkflowTemplatesResponse":
+        """<p>List the templates available in Migration Hub Orchestrator to create a migration workflow.</p>
+
+        Args:
+            max_results: <p>The maximum number of results that can be returned.</p>
+            next_token: <p>The pagination token.</p>
+            name: <p>The name of the template.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.list_migration_workflow_templates_request.ListMigrationWorkflowTemplatesRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.list_migration_workflow_templates_response.ListMigrationWorkflowTemplatesResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.list_templates
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.list_templates.list_templates(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.list_migration_workflow_templates_request.ListMigrationWorkflowTemplatesRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if name is not None:
+            input_["name"] = name
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_templates(
+        self,
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+        max_results: Optional[
+            "capo_migrationhuborchestrator.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_migrationhuborchestrator.types.next_token.NextToken"
+        ] = None,
+        name: Optional[
+            "capo_migrationhuborchestrator.types.template_name.TemplateName"
+        ] = None,
+    ) -> (
+        "Iterator[capo_migrationhuborchestrator.types.template_summary.TemplateSummary]"
+    ):
+        _token = next_token
+        while True:
+            _response = self.list_templates(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                name=name,
+            )
+            _page = _resolve_path(_response, ("template_summary",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def list_plugins(
+        self,
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+        max_results: Optional[
+            "capo_migrationhuborchestrator.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_migrationhuborchestrator.types.next_token.NextToken"
+        ] = None,
+    ) -> (
+        "capo_migrationhuborchestrator.types.list_plugins_response.ListPluginsResponse"
+    ):
+        """<p>List AWS Migration Hub Orchestrator plugins.</p>
+
+        Args:
+            max_results: <p>The maximum number of plugins that can be returned.</p>
+            next_token: <p>The pagination token.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.list_plugins_request.ListPluginsRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.list_plugins_response.ListPluginsResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.list_plugins
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.list_plugins.list_plugins(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.list_plugins_request.ListPluginsRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_plugins(
+        self,
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+        max_results: Optional[
+            "capo_migrationhuborchestrator.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_migrationhuborchestrator.types.next_token.NextToken"
+        ] = None,
+    ) -> "Iterator[capo_migrationhuborchestrator.types.plugin_summary.PluginSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_plugins(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("plugins",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def get_template_step(
+        self,
+        id: "capo_migrationhuborchestrator.types.step_id.StepId",
+        template_id: "capo_migrationhuborchestrator.types.template_id.TemplateId",
+        step_group_id: "capo_migrationhuborchestrator.types.step_group_id.StepGroupId",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+    ) -> "capo_migrationhuborchestrator.types.get_template_step_response.GetTemplateStepResponse":
+        """<p>Get a specific step in a template.</p>
+
+        Args:
+            id: <p>The ID of the step.</p>
+            template_id: <p>The ID of the template.</p>
+            step_group_id: <p>The ID of the step group.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource is not available.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.get_template_step_request.GetTemplateStepRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.get_template_step_response.GetTemplateStepResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.get_template_step
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.get_template_step.get_template_step(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.get_template_step_request.GetTemplateStepRequest = {
+            "id": id,
+            "template_id": template_id,
+            "step_group_id": step_group_id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_template_steps(
+        self,
+        template_id: "capo_migrationhuborchestrator.types.template_id.TemplateId",
+        step_group_id: "capo_migrationhuborchestrator.types.step_group_id.StepGroupId",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+        max_results: Optional[
+            "capo_migrationhuborchestrator.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_migrationhuborchestrator.types.next_token.NextToken"
+        ] = None,
+    ) -> "capo_migrationhuborchestrator.types.list_template_steps_response.ListTemplateStepsResponse":
+        """<p>List the steps in a template.</p>
+
+        Args:
+            max_results: <p>The maximum number of results that can be returned.</p>
+            next_token: <p>The pagination token.</p>
+            template_id: <p>The ID of the template.</p>
+            step_group_id: <p>The ID of the step group.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource is not available.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.list_template_steps_request.ListTemplateStepsRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.list_template_steps_response.ListTemplateStepsResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.list_template_steps
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.list_template_steps.list_template_steps(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.list_template_steps_request.ListTemplateStepsRequest = {
+            "template_id": template_id,
+            "step_group_id": step_group_id,
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_template_steps(
+        self,
+        template_id: "capo_migrationhuborchestrator.types.template_id.TemplateId",
+        step_group_id: "capo_migrationhuborchestrator.types.step_group_id.StepGroupId",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+        max_results: Optional[
+            "capo_migrationhuborchestrator.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_migrationhuborchestrator.types.next_token.NextToken"
+        ] = None,
+    ) -> "Iterator[capo_migrationhuborchestrator.types.template_step_summary.TemplateStepSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_template_steps(
+                template_id,
+                step_group_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("template_step_summary_list",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def get_template_step_group(
+        self,
+        template_id: "capo_migrationhuborchestrator.types.template_id.TemplateId",
+        id: "capo_migrationhuborchestrator.types.step_group_id.StepGroupId",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+    ) -> "capo_migrationhuborchestrator.types.get_template_step_group_response.GetTemplateStepGroupResponse":
+        """<p>Get a step group in a template.</p>
+
+        Args:
+            template_id: <p>The ID of the template.</p>
+            id: <p>The ID of the step group.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource is not available.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.get_template_step_group_request.GetTemplateStepGroupRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.get_template_step_group_response.GetTemplateStepGroupResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.get_template_step_group
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.get_template_step_group.get_template_step_group(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.get_template_step_group_request.GetTemplateStepGroupRequest = {
+            "template_id": template_id,
+            "id": id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_template_step_groups(
+        self,
+        template_id: "capo_migrationhuborchestrator.types.template_id.TemplateId",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+        max_results: Optional[
+            "capo_migrationhuborchestrator.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_migrationhuborchestrator.types.next_token.NextToken"
+        ] = None,
+    ) -> "capo_migrationhuborchestrator.types.list_template_step_groups_response.ListTemplateStepGroupsResponse":
+        """<p>List the step groups in a template.</p>
+
+        Args:
+            max_results: <p>The maximum number of results that can be returned.</p>
+            next_token: <p>The pagination token.</p>
+            template_id: <p>The ID of the template.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource is not available.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.list_template_step_groups_request.ListTemplateStepGroupsRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.list_template_step_groups_response.ListTemplateStepGroupsResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.list_template_step_groups
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.list_template_step_groups.list_template_step_groups(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.list_template_step_groups_request.ListTemplateStepGroupsRequest = {
+            "template_id": template_id
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_template_step_groups(
+        self,
+        template_id: "capo_migrationhuborchestrator.types.template_id.TemplateId",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+        max_results: Optional[
+            "capo_migrationhuborchestrator.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_migrationhuborchestrator.types.next_token.NextToken"
+        ] = None,
+    ) -> "Iterator[capo_migrationhuborchestrator.types.template_step_group_summary.TemplateStepGroupSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_template_step_groups(
+                template_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("template_step_group_summary",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def create_workflow_step(
+        self,
+        name: "capo_migrationhuborchestrator.types.migration_workflow_name.MigrationWorkflowName",
+        step_group_id: "capo_migrationhuborchestrator.types.step_group_id.StepGroupId",
+        workflow_id: "capo_migrationhuborchestrator.types.migration_workflow_id.MigrationWorkflowId",
+        step_action_type: "capo_migrationhuborchestrator.types.step_action_type.StepActionType",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+        description: Optional[
+            "capo_migrationhuborchestrator.types.migration_workflow_description.MigrationWorkflowDescription"
+        ] = None,
+        workflow_step_automation_configuration: Optional[
+            "capo_migrationhuborchestrator.types.workflow_step_automation_configuration.WorkflowStepAutomationConfiguration"
+        ] = None,
+        step_target: Optional[
+            "capo_migrationhuborchestrator.types.string_list.StringList"
+        ] = None,
+        outputs: Optional[
+            "capo_migrationhuborchestrator.types.workflow_step_output_list.WorkflowStepOutputList"
+        ] = None,
+        previous: Optional[
+            "capo_migrationhuborchestrator.types.string_list.StringList"
+        ] = None,
+        next: Optional[
+            "capo_migrationhuborchestrator.types.string_list.StringList"
+        ] = None,
+    ) -> "capo_migrationhuborchestrator.types.create_workflow_step_response.CreateWorkflowStepResponse":
+        """<p>Create a step in the migration workflow.</p>
+
+        Args:
+            name: <p>The name of the step.</p>
+            step_group_id: <p>The ID of the step group.</p>
+            workflow_id: <p>The ID of the migration workflow.</p>
+            step_action_type: <p>The action type of the step. You must run and update the status of a manual step for the workflow to continue after the completion of the step.</p>
+            description: <p>The description of the step.</p>
+            workflow_step_automation_configuration: <p>The custom script to run tests on source or target environments.</p>
+            step_target: <p>The servers on which a step will be run.</p>
+            outputs: <p>The key value pairs added for the expected output.</p>
+            previous: <p>The previous step.</p>
+            next: <p>The next step.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.create_workflow_step_request.CreateWorkflowStepRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.create_workflow_step_response.CreateWorkflowStepResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.create_workflow_step
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.create_workflow_step.create_workflow_step(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.create_workflow_step_request.CreateWorkflowStepRequest = {
+            "name": name,
+            "step_group_id": step_group_id,
+            "workflow_id": workflow_id,
+            "step_action_type": step_action_type,
+        }
+        if description is not None:
+            input_["description"] = description
+        if workflow_step_automation_configuration is not None:
+            input_["workflow_step_automation_configuration"] = (
+                workflow_step_automation_configuration
+            )
+        if step_target is not None:
+            input_["step_target"] = step_target
+        if outputs is not None:
+            input_["outputs"] = outputs
+        if previous is not None:
+            input_["previous"] = previous
+        if next is not None:
+            input_["next"] = next
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_workflow_step(
+        self,
+        workflow_id: "capo_migrationhuborchestrator.types.migration_workflow_id.MigrationWorkflowId",
+        step_group_id: "capo_migrationhuborchestrator.types.step_group_id.StepGroupId",
+        id: "capo_migrationhuborchestrator.types.step_id.StepId",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+    ) -> "capo_migrationhuborchestrator.types.get_workflow_step_response.GetWorkflowStepResponse":
+        """<p>Get a step in the migration workflow.</p>
+
+        Args:
+            workflow_id: <p>The ID of the migration workflow.</p>
+            step_group_id: <p>The ID of the step group.</p>
+            id: <p>The ID of the step.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource is not available.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.get_workflow_step_request.GetWorkflowStepRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.get_workflow_step_response.GetWorkflowStepResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.get_workflow_step
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.get_workflow_step.get_workflow_step(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.get_workflow_step_request.GetWorkflowStepRequest = {
+            "workflow_id": workflow_id,
+            "step_group_id": step_group_id,
+            "id": id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_workflow_step(
+        self,
+        id: "capo_migrationhuborchestrator.types.step_id.StepId",
+        step_group_id: "capo_migrationhuborchestrator.types.step_group_id.StepGroupId",
+        workflow_id: "capo_migrationhuborchestrator.types.migration_workflow_id.MigrationWorkflowId",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+        name: Optional["capo_migrationhuborchestrator.types.step_name.StepName"] = None,
+        description: Optional[
+            "capo_migrationhuborchestrator.types.step_description.StepDescription"
+        ] = None,
+        step_action_type: Optional[
+            "capo_migrationhuborchestrator.types.step_action_type.StepActionType"
+        ] = None,
+        workflow_step_automation_configuration: Optional[
+            "capo_migrationhuborchestrator.types.workflow_step_automation_configuration.WorkflowStepAutomationConfiguration"
+        ] = None,
+        step_target: Optional[
+            "capo_migrationhuborchestrator.types.string_list.StringList"
+        ] = None,
+        outputs: Optional[
+            "capo_migrationhuborchestrator.types.workflow_step_output_list.WorkflowStepOutputList"
+        ] = None,
+        previous: Optional[
+            "capo_migrationhuborchestrator.types.string_list.StringList"
+        ] = None,
+        next: Optional[
+            "capo_migrationhuborchestrator.types.string_list.StringList"
+        ] = None,
+        status: Optional[
+            "capo_migrationhuborchestrator.types.step_status.StepStatus"
+        ] = None,
+    ) -> "capo_migrationhuborchestrator.types.update_workflow_step_response.UpdateWorkflowStepResponse":
+        """<p>Update a step in a migration workflow.</p>
+
+        Args:
+            id: <p>The ID of the step.</p>
+            step_group_id: <p>The ID of the step group.</p>
+            workflow_id: <p>The ID of the migration workflow.</p>
+            name: <p>The name of the step.</p>
+            description: <p>The description of the step.</p>
+            step_action_type: <p>The action type of the step. You must run and update the status of a manual step for the workflow to continue after the completion of the step.</p>
+            workflow_step_automation_configuration: <p>The custom script to run tests on the source and target environments.</p>
+            step_target: <p>The servers on which a step will be run.</p>
+            outputs: <p>The outputs of a step.</p>
+            previous: <p>The previous step.</p>
+            next: <p>The next step.</p>
+            status: <p>The status of the step.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.update_workflow_step_request.UpdateWorkflowStepRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.update_workflow_step_response.UpdateWorkflowStepResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.update_workflow_step
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.update_workflow_step.update_workflow_step(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.update_workflow_step_request.UpdateWorkflowStepRequest = {
+            "id": id,
+            "step_group_id": step_group_id,
+            "workflow_id": workflow_id,
+        }
+        if name is not None:
+            input_["name"] = name
+        if description is not None:
+            input_["description"] = description
+        if step_action_type is not None:
+            input_["step_action_type"] = step_action_type
+        if workflow_step_automation_configuration is not None:
+            input_["workflow_step_automation_configuration"] = (
+                workflow_step_automation_configuration
+            )
+        if step_target is not None:
+            input_["step_target"] = step_target
+        if outputs is not None:
+            input_["outputs"] = outputs
+        if previous is not None:
+            input_["previous"] = previous
+        if next is not None:
+            input_["next"] = next
+        if status is not None:
+            input_["status"] = status
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_workflow_step(
+        self,
+        id: "capo_migrationhuborchestrator.types.step_id.StepId",
+        step_group_id: "capo_migrationhuborchestrator.types.step_group_id.StepGroupId",
+        workflow_id: "capo_migrationhuborchestrator.types.migration_workflow_id.MigrationWorkflowId",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+    ) -> "capo_migrationhuborchestrator.types.delete_workflow_step_response.DeleteWorkflowStepResponse":
+        """<p>Delete a step in a migration workflow. Pause the workflow to delete a running step.</p>
+
+        Args:
+            id: <p>The ID of the step you want to delete.</p>
+            step_group_id: <p>The ID of the step group that contains the step you want to delete.</p>
+            workflow_id: <p>The ID of the migration workflow.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource is not available.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.delete_workflow_step_request.DeleteWorkflowStepRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.delete_workflow_step_response.DeleteWorkflowStepResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.delete_workflow_step
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.delete_workflow_step.delete_workflow_step(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.delete_workflow_step_request.DeleteWorkflowStepRequest = {
+            "id": id,
+            "step_group_id": step_group_id,
+            "workflow_id": workflow_id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_workflow_steps(
+        self,
+        workflow_id: "capo_migrationhuborchestrator.types.migration_workflow_id.MigrationWorkflowId",
+        step_group_id: "capo_migrationhuborchestrator.types.step_group_id.StepGroupId",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+        next_token: Optional[
+            "capo_migrationhuborchestrator.types.next_token.NextToken"
+        ] = None,
+        max_results: Optional[
+            "capo_migrationhuborchestrator.types.max_results.MaxResults"
+        ] = None,
+    ) -> "capo_migrationhuborchestrator.types.list_workflow_steps_response.ListWorkflowStepsResponse":
+        """<p>List the steps in a workflow.</p>
+
+        Args:
+            next_token: <p>The pagination token.</p>
+            max_results: <p>The maximum number of results that can be returned.</p>
+            workflow_id: <p>The ID of the migration workflow.</p>
+            step_group_id: <p>The ID of the step group.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.list_workflow_steps_request.ListWorkflowStepsRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.list_workflow_steps_response.ListWorkflowStepsResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.list_workflow_steps
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.list_workflow_steps.list_workflow_steps(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.list_workflow_steps_request.ListWorkflowStepsRequest = {
+            "workflow_id": workflow_id,
+            "step_group_id": step_group_id,
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_workflow_steps(
+        self,
+        workflow_id: "capo_migrationhuborchestrator.types.migration_workflow_id.MigrationWorkflowId",
+        step_group_id: "capo_migrationhuborchestrator.types.step_group_id.StepGroupId",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+        next_token: Optional[
+            "capo_migrationhuborchestrator.types.next_token.NextToken"
+        ] = None,
+        max_results: Optional[
+            "capo_migrationhuborchestrator.types.max_results.MaxResults"
+        ] = None,
+    ) -> "Iterator[capo_migrationhuborchestrator.types.workflow_step_summary.WorkflowStepSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_workflow_steps(
+                workflow_id,
+                step_group_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("workflow_steps_summary",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def retry_workflow_step(
+        self,
+        workflow_id: "capo_migrationhuborchestrator.types.migration_workflow_id.MigrationWorkflowId",
+        step_group_id: "capo_migrationhuborchestrator.types.step_group_id.StepGroupId",
+        id: "capo_migrationhuborchestrator.types.step_id.StepId",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+    ) -> "capo_migrationhuborchestrator.types.retry_workflow_step_response.RetryWorkflowStepResponse":
+        """<p>Retry a failed step in a migration workflow.</p>
+
+        Args:
+            workflow_id: <p>The ID of the migration workflow.</p>
+            step_group_id: <p>The ID of the step group.</p>
+            id: <p>The ID of the step.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource is not available.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.retry_workflow_step_request.RetryWorkflowStepRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.retry_workflow_step_response.RetryWorkflowStepResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.retry_workflow_step
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.retry_workflow_step.retry_workflow_step(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.retry_workflow_step_request.RetryWorkflowStepRequest = {
+            "workflow_id": workflow_id,
+            "step_group_id": step_group_id,
+            "id": id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def create_workflow_step_group(
+        self,
+        workflow_id: "capo_migrationhuborchestrator.types.migration_workflow_id.MigrationWorkflowId",
+        name: "capo_migrationhuborchestrator.types.step_group_name.StepGroupName",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+        description: Optional[
+            "capo_migrationhuborchestrator.types.step_group_description.StepGroupDescription"
+        ] = None,
+        next: Optional[
+            "capo_migrationhuborchestrator.types.string_list.StringList"
+        ] = None,
+        previous: Optional[
+            "capo_migrationhuborchestrator.types.string_list.StringList"
+        ] = None,
+    ) -> "capo_migrationhuborchestrator.types.create_workflow_step_group_response.CreateWorkflowStepGroupResponse":
+        """<p>Create a step group in a migration workflow.</p>
+
+        Args:
+            workflow_id: <p>The ID of the migration workflow that will contain the step group.</p>
+            name: <p>The name of the step group.</p>
+            description: <p>The description of the step group.</p>
+            next: <p>The next step group.</p>
+            previous: <p>The previous step group.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.create_workflow_step_group_request.CreateWorkflowStepGroupRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.create_workflow_step_group_response.CreateWorkflowStepGroupResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.create_workflow_step_group
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.create_workflow_step_group.create_workflow_step_group(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.create_workflow_step_group_request.CreateWorkflowStepGroupRequest = {
+            "workflow_id": workflow_id,
+            "name": name,
+        }
+        if description is not None:
+            input_["description"] = description
+        if next is not None:
+            input_["next"] = next
+        if previous is not None:
+            input_["previous"] = previous
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_workflow_step_group(
+        self,
+        id: "capo_migrationhuborchestrator.types.step_group_id.StepGroupId",
+        workflow_id: "capo_migrationhuborchestrator.types.migration_workflow_id.MigrationWorkflowId",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+    ) -> "capo_migrationhuborchestrator.types.get_workflow_step_group_response.GetWorkflowStepGroupResponse":
+        """<p>Get the step group of a migration workflow.</p>
+
+        Args:
+            id: <p>The ID of the step group.</p>
+            workflow_id: <p>The ID of the migration workflow.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource is not available.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.get_workflow_step_group_request.GetWorkflowStepGroupRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.get_workflow_step_group_response.GetWorkflowStepGroupResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.get_workflow_step_group
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.get_workflow_step_group.get_workflow_step_group(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.get_workflow_step_group_request.GetWorkflowStepGroupRequest = {
+            "id": id,
+            "workflow_id": workflow_id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_workflow_step_group(
+        self,
+        workflow_id: "capo_migrationhuborchestrator.types.migration_workflow_id.MigrationWorkflowId",
+        id: "capo_migrationhuborchestrator.types.step_group_id.StepGroupId",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+        name: Optional[
+            "capo_migrationhuborchestrator.types.step_group_name.StepGroupName"
+        ] = None,
+        description: Optional[
+            "capo_migrationhuborchestrator.types.step_group_description.StepGroupDescription"
+        ] = None,
+        next: Optional[
+            "capo_migrationhuborchestrator.types.string_list.StringList"
+        ] = None,
+        previous: Optional[
+            "capo_migrationhuborchestrator.types.string_list.StringList"
+        ] = None,
+    ) -> "capo_migrationhuborchestrator.types.update_workflow_step_group_response.UpdateWorkflowStepGroupResponse":
+        """<p>Update the step group in a migration workflow.</p>
+
+        Args:
+            workflow_id: <p>The ID of the migration workflow.</p>
+            id: <p>The ID of the step group.</p>
+            name: <p>The name of the step group.</p>
+            description: <p>The description of the step group.</p>
+            next: <p>The next step group.</p>
+            previous: <p>The previous step group.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource is not available.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.update_workflow_step_group_request.UpdateWorkflowStepGroupRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.update_workflow_step_group_response.UpdateWorkflowStepGroupResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.update_workflow_step_group
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.update_workflow_step_group.update_workflow_step_group(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.update_workflow_step_group_request.UpdateWorkflowStepGroupRequest = {
+            "workflow_id": workflow_id,
+            "id": id,
+        }
+        if name is not None:
+            input_["name"] = name
+        if description is not None:
+            input_["description"] = description
+        if next is not None:
+            input_["next"] = next
+        if previous is not None:
+            input_["previous"] = previous
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_workflow_step_group(
+        self,
+        workflow_id: "capo_migrationhuborchestrator.types.migration_workflow_id.MigrationWorkflowId",
+        id: "capo_migrationhuborchestrator.types.step_group_id.StepGroupId",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+    ) -> "capo_migrationhuborchestrator.types.delete_workflow_step_group_response.DeleteWorkflowStepGroupResponse":
+        """<p>Delete a step group in a migration workflow.</p>
+
+        Args:
+            workflow_id: <p>The ID of the migration workflow.</p>
+            id: <p>The ID of the step group you want to delete.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource is not available.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.delete_workflow_step_group_request.DeleteWorkflowStepGroupRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.delete_workflow_step_group_response.DeleteWorkflowStepGroupResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.delete_workflow_step_group
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.delete_workflow_step_group.delete_workflow_step_group(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.delete_workflow_step_group_request.DeleteWorkflowStepGroupRequest = {
+            "workflow_id": workflow_id,
+            "id": id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_workflow_step_groups(
+        self,
+        workflow_id: "capo_migrationhuborchestrator.types.migration_workflow_id.MigrationWorkflowId",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+        next_token: Optional[
+            "capo_migrationhuborchestrator.types.next_token.NextToken"
+        ] = None,
+        max_results: Optional[
+            "capo_migrationhuborchestrator.types.max_results.MaxResults"
+        ] = None,
+    ) -> "capo_migrationhuborchestrator.types.list_workflow_step_groups_response.ListWorkflowStepGroupsResponse":
+        """<p>List the step groups in a migration workflow.</p>
+
+        Args:
+            next_token: <p>The pagination token.</p>
+            max_results: <p>The maximum number of results that can be returned.</p>
+            workflow_id: <p>The ID of the migration workflow.</p>
+
+        Raises:
+            capo_migrationhuborchestrator.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_migrationhuborchestrator.errors.internal_server_exception.InternalServerException: <p>An internal error has occurred.</p>
+            capo_migrationhuborchestrator.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource is not available.</p>
+            capo_migrationhuborchestrator.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_migrationhuborchestrator.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an AWS service.</p>
+            capo_migrationhuborchestrator.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_migrationhuborchestrator.types.list_workflow_step_groups_request.ListWorkflowStepGroupsRequest]",
+        ) -> OperationResponse[
+            "capo_migrationhuborchestrator.types.list_workflow_step_groups_response.ListWorkflowStepGroupsResponse"
+        ]:
+            import capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.list_workflow_step_groups
+
+            output, http_response = (
+                capo_migrationhuborchestrator._operations.aws_migration_hub_orchestrator.list_workflow_step_groups.list_workflow_step_groups(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_migrationhuborchestrator.types.list_workflow_step_groups_request.ListWorkflowStepGroupsRequest = {
+            "workflow_id": workflow_id
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_workflow_step_groups(
+        self,
+        workflow_id: "capo_migrationhuborchestrator.types.migration_workflow_id.MigrationWorkflowId",
+        *,
+        config_overrides: Optional[MigrationHubOrchestratorClientConfig] = None,
+        next_token: Optional[
+            "capo_migrationhuborchestrator.types.next_token.NextToken"
+        ] = None,
+        max_results: Optional[
+            "capo_migrationhuborchestrator.types.max_results.MaxResults"
+        ] = None,
+    ) -> "Iterator[capo_migrationhuborchestrator.types.workflow_step_group_summary.WorkflowStepGroupSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_workflow_step_groups(
+                workflow_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("workflow_step_groups_summary",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def __enter__(self) -> Self:
         return self

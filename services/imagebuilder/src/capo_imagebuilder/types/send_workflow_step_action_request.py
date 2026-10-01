@@ -18,17 +18,17 @@ class SendWorkflowStepActionRequest(TypedDict, closed=True):
     step_execution_id: (
         "capo_imagebuilder.types.workflow_step_execution_id.WorkflowStepExecutionId"
     )
-    """<p>Uniquely identifies the workflow step that sent the step action.</p>"""
+    """<p>Uniquely identifies the waiting workflow step that you send the action to. To get this identifier, call <a>ListWaitingWorkflowSteps</a>.</p>"""
     image_build_version_arn: (
         "capo_imagebuilder.types.image_build_version_arn.ImageBuildVersionArn"
     )
-    """<p>The Amazon Resource Name (ARN) of the image build version to send action for.</p>"""
+    """<p>The Amazon Resource Name (ARN) of the image build version associated with the workflow step execution. This value must match the image that owns the waiting step. If the ARN does not correspond to the image running the workflow, then the request fails with a validation error.</p>"""
     action: "capo_imagebuilder.types.workflow_step_action_type.WorkflowStepActionType"
-    """<p>The action for the image creation process to take while a workflow <code>WaitForAction</code> step waits for an asynchronous action to complete.</p>"""
+    """<p>The action to perform on the paused workflow step. <code>RESUME</code> completes the waiting step, and the workflow continues. <code>STOP</code> fails the step, and the step's <code>onFailure</code> setting determines whether the workflow continues or aborts. The workflow step must be in a waiting state to accept an action. The request fails if the step has already timed out or been actioned.</p>"""
     reason: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
-    """<p>The reason why this action is sent.</p>"""
+    """<p>The reason for the action. This value is stored with the step execution record and is accessible in subsequent workflow steps via step output references.</p>"""
     client_token: "capo_imagebuilder.types.client_token.ClientToken"
-    r"""<p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>"""
+    r"""<p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>"""
 
 
 # --- restJson1 ser/de ---

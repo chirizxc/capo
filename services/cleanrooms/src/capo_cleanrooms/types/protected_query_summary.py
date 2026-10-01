@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import datetime
 
     import capo_cleanrooms.types.account_id
+    import capo_cleanrooms.types.intermediate_table_output_configuration
     import capo_cleanrooms.types.membership_arn
     import capo_cleanrooms.types.protected_query_status
     import capo_cleanrooms.types.receiver_configurations_list
@@ -35,6 +36,10 @@ class ProtectedQuerySummary(TypedDict, closed=True):
         "capo_cleanrooms.types.account_id.AccountId"
     ]
     """<p>The account ID of the member that pays for the query compute costs.</p>"""
+    intermediate_table_configuration: NotRequired[
+        "capo_cleanrooms.types.intermediate_table_output_configuration.IntermediateTableOutputConfiguration"
+    ]
+    """<p>The intermediate table configuration, present when the protected query was triggered by a populate operation.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -58,6 +63,14 @@ def serialize_json(value: ProtectedQuerySummary) -> dict:
     )
     if "query_compute_payer_account_id" in value:
         out["queryComputePayerAccountId"] = value["query_compute_payer_account_id"]
+    if "intermediate_table_configuration" in value:
+        import capo_cleanrooms.types.intermediate_table_output_configuration
+
+        out["intermediateTableConfiguration"] = (
+            capo_cleanrooms.types.intermediate_table_output_configuration.serialize_json(
+                value["intermediate_table_configuration"]
+            )
+        )
     return out
 
 
@@ -99,4 +112,12 @@ def deserialize_json(data: dict) -> ProtectedQuerySummary:
         out["receiver_configurations"] = []
     if data.get("queryComputePayerAccountId") is not None:
         out["query_compute_payer_account_id"] = data["queryComputePayerAccountId"]
+    if data.get("intermediateTableConfiguration") is not None:
+        import capo_cleanrooms.types.intermediate_table_output_configuration
+
+        out["intermediate_table_configuration"] = (
+            capo_cleanrooms.types.intermediate_table_output_configuration.deserialize_json(
+                data["intermediateTableConfiguration"]
+            )
+        )
     return out

@@ -1,8 +1,13 @@
 """Generated from Smithy shape ``com.amazonaws.sustainability#DimensionValueList``."""
 
-from typing import TypeAlias
+from typing import TYPE_CHECKING, TypeAlias
 
-DimensionValueList: TypeAlias = list["str"]
+if TYPE_CHECKING:
+    import capo_sustainability.types.dimension_value
+
+DimensionValueList: TypeAlias = list[
+    "capo_sustainability.types.dimension_value.DimensionValue"
+]
 
 
 # --- restJson1 ser/de ---

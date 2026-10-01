@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     import capo_resiliencehubv2.types.entity_name
     import capo_resiliencehubv2.types.multi_az_targets
     import capo_resiliencehubv2.types.multi_region_targets
+    import capo_resiliencehubv2.types.organization_id
 
 
 class PolicySummary(TypedDict, closed=True):
@@ -34,6 +35,12 @@ class PolicySummary(TypedDict, closed=True):
         "capo_resiliencehubv2.types.data_recovery_targets.DataRecoveryTargets"
     ]
     """<p>The data recovery targets defined in the policy.</p>"""
+    sharing_enabled: NotRequired["bool"]
+    """<p>Specifies whether cross-account sharing is enabled.</p>"""
+    organization_id: NotRequired[
+        "capo_resiliencehubv2.types.organization_id.OrganizationId"
+    ]
+    """<p>The identifier of the organization this policy is shared with.</p>"""
     associated_service_count: NotRequired["int"]
     """<p>The number of services associated with this policy.</p>"""
     created_at: NotRequired["datetime.datetime"]
@@ -77,6 +84,10 @@ def serialize_json(value: PolicySummary) -> dict:
                 value["data_recovery"]
             )
         )
+    if "sharing_enabled" in value:
+        out["sharingEnabled"] = value["sharing_enabled"]
+    if "organization_id" in value:
+        out["organizationId"] = value["organization_id"]
     if "associated_service_count" in value:
         out["associatedServiceCount"] = value["associated_service_count"]
     if "created_at" in value:
@@ -134,6 +145,10 @@ def deserialize_json(data: dict) -> PolicySummary:
                 data["dataRecovery"]
             )
         )
+    if data.get("sharingEnabled") is not None:
+        out["sharing_enabled"] = data["sharingEnabled"]
+    if data.get("organizationId") is not None:
+        out["organization_id"] = data["organizationId"]
     if data.get("associatedServiceCount") is not None:
         out["associated_service_count"] = data["associatedServiceCount"]
     if data.get("createdAt") is not None:

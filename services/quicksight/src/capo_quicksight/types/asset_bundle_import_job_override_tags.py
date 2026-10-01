@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     import capo_quicksight.types.asset_bundle_import_job_data_source_override_tags_list
     import capo_quicksight.types.asset_bundle_import_job_folder_override_tags_list
     import capo_quicksight.types.asset_bundle_import_job_theme_override_tags_list
+    import capo_quicksight.types.asset_bundle_import_job_topic_v2_override_tags_list
     import capo_quicksight.types.asset_bundle_import_job_vpc_connection_override_tags_list
 
 
@@ -43,6 +44,10 @@ class AssetBundleImportJobOverrideTags(TypedDict, closed=True):
         "capo_quicksight.types.asset_bundle_import_job_folder_override_tags_list.AssetBundleImportJobFolderOverrideTagsList"
     ]
     """<p>A list of tag overrides for any <code>Folder</code> resources that are present in the asset bundle that is imported.</p>"""
+    topics_v2: NotRequired[
+        "capo_quicksight.types.asset_bundle_import_job_topic_v2_override_tags_list.AssetBundleImportJobTopicV2OverrideTagsList"
+    ]
+    """<p>A list of tag overrides for any <code>Topic</code> resources that are present in the asset bundle that is imported.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -104,6 +109,14 @@ def serialize_json(value: AssetBundleImportJobOverrideTags) -> dict:
                 value["folders"]
             )
         )
+    if "topics_v2" in value:
+        import capo_quicksight.types.asset_bundle_import_job_topic_v2_override_tags_list
+
+        out["TopicsV2"] = (
+            capo_quicksight.types.asset_bundle_import_job_topic_v2_override_tags_list.serialize_json(
+                value["topics_v2"]
+            )
+        )
     return out
 
 
@@ -163,6 +176,14 @@ def deserialize_json(data: dict) -> AssetBundleImportJobOverrideTags:
         out["folders"] = (
             capo_quicksight.types.asset_bundle_import_job_folder_override_tags_list.deserialize_json(
                 data["Folders"]
+            )
+        )
+    if data.get("TopicsV2") is not None:
+        import capo_quicksight.types.asset_bundle_import_job_topic_v2_override_tags_list
+
+        out["topics_v2"] = (
+            capo_quicksight.types.asset_bundle_import_job_topic_v2_override_tags_list.deserialize_json(
+                data["TopicsV2"]
             )
         )
     return out

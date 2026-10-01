@@ -22,6 +22,7 @@ import capo_ecs.errors.unsupported_feature_exception
 import capo_ecs.types.create_express_gateway_service_request
 import capo_ecs.types.create_express_gateway_service_response
 import capo_ecs.types.ecs_express_gateway_service
+import capo_ecs.types.express_cpu_architecture
 import capo_ecs.types.express_gateway_container
 import capo_ecs.types.express_gateway_scaling_target
 import capo_ecs.types.express_gateway_service_network_configuration

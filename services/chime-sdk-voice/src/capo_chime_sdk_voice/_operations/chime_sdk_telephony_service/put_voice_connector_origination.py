@@ -12,6 +12,7 @@ from typing_extensions import Never
 import capo_chime_sdk_voice._auth._signers
 import capo_chime_sdk_voice._auth._sigv4
 import capo_chime_sdk_voice._protocol.eventstream
+import capo_chime_sdk_voice.errors.access_denied_exception
 import capo_chime_sdk_voice.errors.bad_request_exception
 import capo_chime_sdk_voice.errors.forbidden_exception
 import capo_chime_sdk_voice.errors.not_found_exception
@@ -35,6 +36,10 @@ def handle_error(response: zapros.Response) -> Never:
     data = json.loads(response.read())
     code, message = parse_error_metadata_json(response, data)
     match code:
+        case "AccessDeniedException":
+            raise capo_chime_sdk_voice.errors.access_denied_exception.AccessDeniedException.from_json(
+                data, message
+            )
         case "BadRequestException":
             raise capo_chime_sdk_voice.errors.bad_request_exception.BadRequestException.from_json(
                 data, message

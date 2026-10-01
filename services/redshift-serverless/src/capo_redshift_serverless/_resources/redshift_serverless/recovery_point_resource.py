@@ -219,6 +219,7 @@ class RecoveryPointResource:
         workgroup_name: "capo_redshift_serverless.types.workgroup_name.WorkgroupName",
         *,
         config_overrides: Optional[RedshiftServerlessClientConfig] = None,
+        maintain_integration: Optional[bool] = None,
     ) -> "capo_redshift_serverless.types.restore_from_recovery_point_response.RestoreFromRecoveryPointResponse":
         """<p>Restore the data from a recovery point.</p>
 
@@ -226,6 +227,7 @@ class RecoveryPointResource:
             recovery_point_id: <p>The unique identifier of the recovery point to restore from.</p>
             namespace_name: <p>The name of the namespace to restore data into.</p>
             workgroup_name: <p>The name of the workgroup used to restore data.</p>
+            maintain_integration: <p>If <code>true</code>, maintain existing data sharing, zero-ETL and S3 event integrations when restoring. Otherwise, integrations will not be maintained after the restore operation. Integrations are only maintained when restored to the same serverless namespace.</p> <p>Default: true</p>
 
         Raises:
             capo_redshift_serverless.errors.conflict_exception.ConflictException: <p>The submitted action has conflicts.</p>
@@ -255,6 +257,8 @@ class RecoveryPointResource:
             "namespace_name": namespace_name,
             "workgroup_name": workgroup_name,
         }
+        if maintain_integration is not None:
+            input_["maintain_integration"] = maintain_integration
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -529,6 +533,7 @@ class AsyncRecoveryPointResource:
         workgroup_name: "capo_redshift_serverless.types.workgroup_name.WorkgroupName",
         *,
         config_overrides: Optional[AsyncRedshiftServerlessClientConfig] = None,
+        maintain_integration: Optional[bool] = None,
     ) -> "capo_redshift_serverless.types.restore_from_recovery_point_response.RestoreFromRecoveryPointResponse":
         """<p>Restore the data from a recovery point.</p>
 
@@ -536,6 +541,7 @@ class AsyncRecoveryPointResource:
             recovery_point_id: <p>The unique identifier of the recovery point to restore from.</p>
             namespace_name: <p>The name of the namespace to restore data into.</p>
             workgroup_name: <p>The name of the workgroup used to restore data.</p>
+            maintain_integration: <p>If <code>true</code>, maintain existing data sharing, zero-ETL and S3 event integrations when restoring. Otherwise, integrations will not be maintained after the restore operation. Integrations are only maintained when restored to the same serverless namespace.</p> <p>Default: true</p>
 
         Raises:
             capo_redshift_serverless.errors.conflict_exception.ConflictException: <p>The submitted action has conflicts.</p>
@@ -566,6 +572,8 @@ class AsyncRecoveryPointResource:
             "namespace_name": namespace_name,
             "workgroup_name": workgroup_name,
         }
+        if maintain_integration is not None:
+            input_["maintain_integration"] = maintain_integration
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

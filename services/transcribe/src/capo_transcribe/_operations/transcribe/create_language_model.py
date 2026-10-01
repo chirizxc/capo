@@ -19,6 +19,7 @@ import capo_transcribe.types.base_model_name
 import capo_transcribe.types.clm_language_code
 import capo_transcribe.types.create_language_model_request
 import capo_transcribe.types.create_language_model_response
+import capo_transcribe.types.encryption_configuration
 import capo_transcribe.types.input_data_config
 import capo_transcribe.types.model_status
 import capo_transcribe.types.tag_list

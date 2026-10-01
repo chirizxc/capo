@@ -17,6 +17,7 @@ import capo_transcribe.errors.internal_failure_exception
 import capo_transcribe.errors.limit_exceeded_exception
 import capo_transcribe.errors.not_found_exception
 import capo_transcribe.types.date_time
+import capo_transcribe.types.encryption_configuration
 import capo_transcribe.types.language_code
 import capo_transcribe.types.phrases
 import capo_transcribe.types.update_vocabulary_request

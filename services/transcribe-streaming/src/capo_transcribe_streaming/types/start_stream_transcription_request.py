@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     import capo_transcribe_streaming.types.pii_entity_types
     import capo_transcribe_streaming.types.session_id
     import capo_transcribe_streaming.types.session_resume_window
+    import capo_transcribe_streaming.types.transcript_format
     import capo_transcribe_streaming.types.vocabulary_filter_method
     import capo_transcribe_streaming.types.vocabulary_filter_name
     import capo_transcribe_streaming.types.vocabulary_filter_names
@@ -109,3 +110,7 @@ class StartStreamTranscriptionRequest(TypedDict, closed=True):
         "capo_transcribe_streaming.types.session_resume_window.SessionResumeWindow"
     ]
     """<p>Specify the time window, in minutes, during which your transcription session can be resumed, measured from the stream start time. This optional parameter accepts integer values from 1 to 300 (5 hours).</p> <p> For example, if your stream starts at 1 PM and you specify a <code>SessionResumeWindow</code> of 30 minutes, you can reconnect to the session as many times as you want until 1:30 PM. </p>"""
+    transcript_format: NotRequired[
+        "capo_transcribe_streaming.types.transcript_format.TranscriptFormat"
+    ]
+    """<p>Specify how numbers, dates, and other alphanumeric entities are rendered in your transcription results.</p> <ul> <li> <p> <code>WRITTEN</code> renders these entities in their standard written form (for example, <code>$50</code>, <code>10:30 AM</code>, and <code>101</code>).</p> </li> <li> <p> <code>SPOKEN</code> renders these entities as words, exactly as they were spoken (for example, <code>fifty dollars</code>, <code>ten thirty a m</code>, and <code>one oh one</code>).</p> </li> </ul> <p>If you don't specify a value, Amazon Transcribe uses <code>WRITTEN</code> by default.</p>"""

@@ -18,7 +18,12 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.error_details_list
     import capo_bedrock_agentcore.types.evaluation_job_results
     import capo_bedrock_agentcore.types.evaluator_list
+    import capo_bedrock_agentcore.types.execution_summary_clustering_result_content
+    import capo_bedrock_agentcore.types.failure_analysis_result_content
+    import capo_bedrock_agentcore.types.insight_list
+    import capo_bedrock_agentcore.types.kms_key_arn
     import capo_bedrock_agentcore.types.output_config
+    import capo_bedrock_agentcore.types.user_intent_clustering_result_content
 
 
 class GetBatchEvaluationResponse(TypedDict, closed=True):
@@ -40,6 +45,8 @@ class GetBatchEvaluationResponse(TypedDict, closed=True):
     """<p>The timestamp when the batch evaluation was created.</p>"""
     evaluators: NotRequired["capo_bedrock_agentcore.types.evaluator_list.EvaluatorList"]
     """<p>The list of evaluators applied during the batch evaluation.</p>"""
+    insights: NotRequired["capo_bedrock_agentcore.types.insight_list.InsightList"]
+    """<p>The list of insight analyses applied during the batch evaluation.</p>"""
     data_source_config: NotRequired[
         "capo_bedrock_agentcore.types.data_source_config.DataSourceConfig"
     ]
@@ -52,6 +59,18 @@ class GetBatchEvaluationResponse(TypedDict, closed=True):
         "capo_bedrock_agentcore.types.evaluation_job_results.EvaluationJobResults"
     ]
     """<p>The aggregated evaluation results, including session completion counts and evaluator score summaries.</p>"""
+    failure_analysis_result: NotRequired[
+        "capo_bedrock_agentcore.types.failure_analysis_result_content.FailureAnalysisResultContent"
+    ]
+    """<p>The failure analysis results from insights, containing categorized failure clusters with root causes and recommendations.</p>"""
+    user_intent_result: NotRequired[
+        "capo_bedrock_agentcore.types.user_intent_clustering_result_content.UserIntentClusteringResultContent"
+    ]
+    """<p>The user intent clustering results from insights, containing grouped user intents across evaluated sessions.</p>"""
+    execution_summary_result: NotRequired[
+        "capo_bedrock_agentcore.types.execution_summary_clustering_result_content.ExecutionSummaryClusteringResultContent"
+    ]
+    """<p>The execution summary clustering results from insights, containing grouped execution patterns across evaluated sessions.</p>"""
     error_details: NotRequired[
         "capo_bedrock_agentcore.types.error_details_list.ErrorDetailsList"
     ]
@@ -62,6 +81,8 @@ class GetBatchEvaluationResponse(TypedDict, closed=True):
     """<p>The description of the batch evaluation.</p>"""
     updated_at: NotRequired["datetime.datetime"]
     """<p>The timestamp when the batch evaluation was last updated.</p>"""
+    kms_key_arn: NotRequired["capo_bedrock_agentcore.types.kms_key_arn.KmsKeyArn"]
+    """<p>The ARN of the KMS key used to encrypt evaluation data.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -86,6 +107,12 @@ def serialize_json(value: GetBatchEvaluationResponse) -> dict:
         out["evaluators"] = capo_bedrock_agentcore.types.evaluator_list.serialize_json(
             value["evaluators"]
         )
+    if "insights" in value:
+        import capo_bedrock_agentcore.types.insight_list
+
+        out["insights"] = capo_bedrock_agentcore.types.insight_list.serialize_json(
+            value["insights"]
+        )
     if "data_source_config" in value:
         import capo_bedrock_agentcore.types.data_source_config
 
@@ -108,6 +135,30 @@ def serialize_json(value: GetBatchEvaluationResponse) -> dict:
                 value["evaluation_results"]
             )
         )
+    if "failure_analysis_result" in value:
+        import capo_bedrock_agentcore.types.failure_analysis_result_content
+
+        out["failureAnalysisResult"] = (
+            capo_bedrock_agentcore.types.failure_analysis_result_content.serialize_json(
+                value["failure_analysis_result"]
+            )
+        )
+    if "user_intent_result" in value:
+        import capo_bedrock_agentcore.types.user_intent_clustering_result_content
+
+        out["userIntentResult"] = (
+            capo_bedrock_agentcore.types.user_intent_clustering_result_content.serialize_json(
+                value["user_intent_result"]
+            )
+        )
+    if "execution_summary_result" in value:
+        import capo_bedrock_agentcore.types.execution_summary_clustering_result_content
+
+        out["executionSummaryResult"] = (
+            capo_bedrock_agentcore.types.execution_summary_clustering_result_content.serialize_json(
+                value["execution_summary_result"]
+            )
+        )
     if "error_details" in value:
         import capo_bedrock_agentcore.types.error_details_list
 
@@ -124,6 +175,8 @@ def serialize_json(value: GetBatchEvaluationResponse) -> dict:
         out["updatedAt"] = capo_bedrock_agentcore._protocol.serialize.fmt_date_time(
             value["updated_at"]
         )
+    if "kms_key_arn" in value:
+        out["kmsKeyArn"] = value["kms_key_arn"]
     return out
 
 
@@ -173,6 +226,12 @@ def deserialize_json(data: dict) -> GetBatchEvaluationResponse:
                 data["evaluators"]
             )
         )
+    if data.get("insights") is not None:
+        import capo_bedrock_agentcore.types.insight_list
+
+        out["insights"] = capo_bedrock_agentcore.types.insight_list.deserialize_json(
+            data["insights"]
+        )
     if data.get("dataSourceConfig") is not None:
         import capo_bedrock_agentcore.types.data_source_config
 
@@ -197,6 +256,30 @@ def deserialize_json(data: dict) -> GetBatchEvaluationResponse:
                 data["evaluationResults"]
             )
         )
+    if data.get("failureAnalysisResult") is not None:
+        import capo_bedrock_agentcore.types.failure_analysis_result_content
+
+        out["failure_analysis_result"] = (
+            capo_bedrock_agentcore.types.failure_analysis_result_content.deserialize_json(
+                data["failureAnalysisResult"]
+            )
+        )
+    if data.get("userIntentResult") is not None:
+        import capo_bedrock_agentcore.types.user_intent_clustering_result_content
+
+        out["user_intent_result"] = (
+            capo_bedrock_agentcore.types.user_intent_clustering_result_content.deserialize_json(
+                data["userIntentResult"]
+            )
+        )
+    if data.get("executionSummaryResult") is not None:
+        import capo_bedrock_agentcore.types.execution_summary_clustering_result_content
+
+        out["execution_summary_result"] = (
+            capo_bedrock_agentcore.types.execution_summary_clustering_result_content.deserialize_json(
+                data["executionSummaryResult"]
+            )
+        )
     if data.get("errorDetails") is not None:
         import capo_bedrock_agentcore.types.error_details_list
 
@@ -213,4 +296,6 @@ def deserialize_json(data: dict) -> GetBatchEvaluationResponse:
         out["updated_at"] = datetime.datetime.fromisoformat(
             data["updatedAt"].replace("Z", "+00:00")
         )
+    if data.get("kmsKeyArn") is not None:
+        out["kms_key_arn"] = data["kmsKeyArn"]
     return out

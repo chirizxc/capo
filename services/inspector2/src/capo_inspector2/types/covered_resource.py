@@ -10,6 +10,11 @@ if TYPE_CHECKING:
     import capo_inspector2.types.account_id
     import capo_inspector2.types.coverage_resource_type
     import capo_inspector2.types.date_time_timestamp
+    import capo_inspector2.types.provider
+    import capo_inspector2.types.provider_account_id
+    import capo_inspector2.types.provider_org_id
+    import capo_inspector2.types.provider_partition
+    import capo_inspector2.types.provider_region
     import capo_inspector2.types.resource_id
     import capo_inspector2.types.resource_scan_metadata
     import capo_inspector2.types.scan_mode
@@ -38,6 +43,20 @@ class CoveredResource(TypedDict, closed=True):
     """<p>The date and time the resource was last checked for vulnerabilities.</p>"""
     scan_mode: NotRequired["capo_inspector2.types.scan_mode.ScanMode"]
     """<p>The scan method that is applied to the instance.</p>"""
+    provider: NotRequired["capo_inspector2.types.provider.Provider"]
+    """<p>The cloud provider of the covered resource.</p>"""
+    provider_account_id: NotRequired[
+        "capo_inspector2.types.provider_account_id.ProviderAccountId"
+    ]
+    """<p>The cloud provider account ID of the covered resource.</p>"""
+    provider_org_id: NotRequired["capo_inspector2.types.provider_org_id.ProviderOrgId"]
+    """<p>The cloud provider organization ID of the covered resource.</p>"""
+    provider_region: NotRequired["capo_inspector2.types.provider_region.ProviderRegion"]
+    """<p>The cloud provider region of the covered resource.</p>"""
+    provider_partition: NotRequired[
+        "capo_inspector2.types.provider_partition.ProviderPartition"
+    ]
+    """<p>The cloud provider partition of the covered resource.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -69,6 +88,16 @@ def serialize_json(value: CoveredResource) -> dict:
         )
     if "scan_mode" in value:
         out["scanMode"] = value["scan_mode"]
+    if "provider" in value:
+        out["provider"] = value["provider"]
+    if "provider_account_id" in value:
+        out["providerAccountId"] = value["provider_account_id"]
+    if "provider_org_id" in value:
+        out["providerOrgId"] = value["provider_org_id"]
+    if "provider_region" in value:
+        out["providerRegion"] = value["provider_region"]
+    if "provider_partition" in value:
+        out["providerPartition"] = value["provider_partition"]
     return out
 
 
@@ -114,4 +143,14 @@ def deserialize_json(data: dict) -> CoveredResource:
         )
     if data.get("scanMode") is not None:
         out["scan_mode"] = data["scanMode"]
+    if data.get("provider") is not None:
+        out["provider"] = data["provider"]
+    if data.get("providerAccountId") is not None:
+        out["provider_account_id"] = data["providerAccountId"]
+    if data.get("providerOrgId") is not None:
+        out["provider_org_id"] = data["providerOrgId"]
+    if data.get("providerRegion") is not None:
+        out["provider_region"] = data["providerRegion"]
+    if data.get("providerPartition") is not None:
+        out["provider_partition"] = data["providerPartition"]
     return out

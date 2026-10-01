@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.agent_runtime_id
+    import capo_bedrock_agentcore_control.types.agent_runtime_version
     import capo_bedrock_agentcore_control.types.client_token
 
 
@@ -14,6 +15,10 @@ class DeleteAgentRuntimeRequest(TypedDict, closed=True):
         "capo_bedrock_agentcore_control.types.agent_runtime_id.AgentRuntimeId"
     )
     """<p>The unique identifier of the AgentCore Runtime to delete.</p>"""
+    agent_runtime_version: NotRequired[
+        "capo_bedrock_agentcore_control.types.agent_runtime_version.AgentRuntimeVersion"
+    ]
+    """<p>The version of the AgentCore Runtime to delete. When you provide this value, only that version is deleted. When you omit it, the entire AgentCore Runtime and all of its versions are deleted.</p>"""
     client_token: NotRequired[
         "capo_bedrock_agentcore_control.types.client_token.ClientToken"
     ]

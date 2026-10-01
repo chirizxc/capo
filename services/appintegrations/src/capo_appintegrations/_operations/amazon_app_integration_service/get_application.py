@@ -20,6 +20,7 @@ import capo_appintegrations.errors.throttling_exception
 import capo_appintegrations.types.application_config
 import capo_appintegrations.types.application_source_config
 import capo_appintegrations.types.application_type
+import capo_appintegrations.types.auth_config
 import capo_appintegrations.types.get_application_request
 import capo_appintegrations.types.get_application_response
 import capo_appintegrations.types.iframe_config

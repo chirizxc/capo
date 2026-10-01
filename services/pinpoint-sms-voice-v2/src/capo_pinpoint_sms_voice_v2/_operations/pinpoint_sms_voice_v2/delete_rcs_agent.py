@@ -19,6 +19,7 @@ import capo_pinpoint_sms_voice_v2.errors.throttling_exception
 import capo_pinpoint_sms_voice_v2.errors.validation_exception
 import capo_pinpoint_sms_voice_v2.types.delete_rcs_agent_request
 import capo_pinpoint_sms_voice_v2.types.delete_rcs_agent_result
+import capo_pinpoint_sms_voice_v2.types.rcs_event_type_list
 from capo_pinpoint_sms_voice_v2._protocol.errors import parse_error_metadata_json
 from capo_pinpoint_sms_voice_v2._rule_engine._endpoint_rule_set import (
     EndpointParams,

@@ -12,7 +12,7 @@ class CancelLifecycleExecutionResponse(TypedDict, closed=True):
     lifecycle_execution_id: NotRequired[
         "capo_imagebuilder.types.lifecycle_execution_id.LifecycleExecutionId"
     ]
-    """<p>The unique identifier for the image lifecycle runtime instance that was canceled.</p>"""
+    """<p>The unique identifier of the lifecycle execution that the cancellation request applies to. The cancellation completes asynchronously.</p>"""
 
 
 # --- restJson1 ser/de ---

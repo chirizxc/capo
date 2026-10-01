@@ -1,0 +1,17 @@
+"""Generated from Smithy shape ``com.amazonaws.appconfig#StringList``."""
+
+from typing import TYPE_CHECKING, TypeAlias
+
+if TYPE_CHECKING:
+    import capo_appconfig.types.attribute_string
+
+StringList: TypeAlias = list["capo_appconfig.types.attribute_string.AttributeString"]
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: StringList) -> list:
+    return list(value)
+
+
+def deserialize_json(data: list) -> StringList:
+    return [item for item in data if item is not None]

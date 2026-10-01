@@ -5,16 +5,17 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
-    import capo_appconfig.types.id
+    import capo_appconfig.types.long_name
     import capo_appconfig.types.max_results
+    import capo_appconfig.types.name
     import capo_appconfig.types.next_token
     import capo_appconfig.types.query_name
 
 
 class ListHostedConfigurationVersionsRequest(TypedDict, closed=True):
-    application_id: "capo_appconfig.types.id.Id"
+    application_id: "capo_appconfig.types.name.Name"
     """<p>The application ID.</p>"""
-    configuration_profile_id: "capo_appconfig.types.id.Id"
+    configuration_profile_id: "capo_appconfig.types.long_name.LongName"
     """<p>The configuration profile ID.</p>"""
     max_results: NotRequired["capo_appconfig.types.max_results.MaxResults"]
     """<p>The maximum number of items to return for this call. If <code>MaxResults</code> is not provided in the call, AppConfig returns the maximum of 50. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>"""

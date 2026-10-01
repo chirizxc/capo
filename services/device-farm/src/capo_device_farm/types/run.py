@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     import capo_device_farm.types.execution_result
     import capo_device_farm.types.execution_result_code
     import capo_device_farm.types.execution_status
+    import capo_device_farm.types.insights_types
     import capo_device_farm.types.integer
     import capo_device_farm.types.job_timeout_minutes
     import capo_device_farm.types.location
@@ -26,6 +27,7 @@ if TYPE_CHECKING:
     import capo_device_farm.types.name
     import capo_device_farm.types.network_profile
     import capo_device_farm.types.radios
+    import capo_device_farm.types.run_insights
     import capo_device_farm.types.skip_app_resign
     import capo_device_farm.types.string
     import capo_device_farm.types.test_type
@@ -123,6 +125,10 @@ class Run(TypedDict, closed=True):
         "capo_device_farm.types.environment_variables.EnvironmentVariables"
     ]
     """<p>Environment variables associated with the run.</p>"""
+    insights_types: NotRequired["capo_device_farm.types.insights_types.InsightsTypes"]
+    """<p>The types of insights requested for the run.</p>"""
+    insights: NotRequired["capo_device_farm.types.run_insights.RunInsights"]
+    """<p>The insights for the run, including the report status and job-level metrics. This field contains data only if you specified <code>insightsTypes</code> when you scheduled the run.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -287,6 +293,20 @@ def serialize_aws_json_1_1(value: Run) -> dict:
             capo_device_farm.types.environment_variables.serialize_aws_json_1_1(
                 value["environment_variables"]
             )
+        )
+    if "insights_types" in value:
+        import capo_device_farm.types.insights_types
+
+        out["insightsTypes"] = (
+            capo_device_farm.types.insights_types.serialize_aws_json_1_1(
+                value["insights_types"]
+            )
+        )
+    if "insights" in value:
+        import capo_device_farm.types.run_insights
+
+        out["insights"] = capo_device_farm.types.run_insights.serialize_aws_json_1_1(
+            value["insights"]
         )
     return out
 
@@ -460,5 +480,19 @@ def deserialize_aws_json_1_1(data: dict) -> Run:
             capo_device_farm.types.environment_variables.deserialize_aws_json_1_1(
                 data["environmentVariables"]
             )
+        )
+    if data.get("insightsTypes") is not None:
+        import capo_device_farm.types.insights_types
+
+        out["insights_types"] = (
+            capo_device_farm.types.insights_types.deserialize_aws_json_1_1(
+                data["insightsTypes"]
+            )
+        )
+    if data.get("insights") is not None:
+        import capo_device_farm.types.run_insights
+
+        out["insights"] = capo_device_farm.types.run_insights.deserialize_aws_json_1_1(
+            data["insights"]
         )
     return out

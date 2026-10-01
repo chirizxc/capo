@@ -7,11 +7,11 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_glue.types.integration_integer
     import capo_glue.types.integration_resource_property_filter_list
-    import capo_glue.types.string1024
+    import capo_glue.types.string4096
 
 
 class ListIntegrationResourcePropertiesRequest(TypedDict, closed=True):
-    marker: NotRequired["capo_glue.types.string1024.String1024"]
+    marker: NotRequired["capo_glue.types.string4096.String4096"]
     """<p>This is the pagination token for next page, initial value is <code>null</code>.</p>"""
     filters: NotRequired[
         "capo_glue.types.integration_resource_property_filter_list.IntegrationResourcePropertyFilterList"

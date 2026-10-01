@@ -7,14 +7,28 @@ from typing_extensions import TypedDict
 from capo_cleanrooms.errors import DeserializationError, SerializationError
 
 if TYPE_CHECKING:
+    import capo_cleanrooms.types.configured_table_association_schema_type_properties
     import capo_cleanrooms.types.id_mapping_table_schema_type_properties
+    import capo_cleanrooms.types.intermediate_table_schema_type_properties
 
 
 class _SchemaTypeProperties_idMappingTable(TypedDict, closed=True):
     idMappingTable: "capo_cleanrooms.types.id_mapping_table_schema_type_properties.IdMappingTableSchemaTypeProperties"
 
 
-SchemaTypeProperties: TypeAlias = _SchemaTypeProperties_idMappingTable
+class _SchemaTypeProperties_intermediateTable(TypedDict, closed=True):
+    intermediateTable: "capo_cleanrooms.types.intermediate_table_schema_type_properties.IntermediateTableSchemaTypeProperties"
+
+
+class _SchemaTypeProperties_configuredTableAssociation(TypedDict, closed=True):
+    configuredTableAssociation: "capo_cleanrooms.types.configured_table_association_schema_type_properties.ConfiguredTableAssociationSchemaTypeProperties"
+
+
+SchemaTypeProperties: TypeAlias = (
+    _SchemaTypeProperties_idMappingTable
+    | _SchemaTypeProperties_intermediateTable
+    | _SchemaTypeProperties_configuredTableAssociation
+)
 
 
 # --- restJson1 ser/de ---
@@ -25,6 +39,22 @@ def serialize_json(value: SchemaTypeProperties) -> dict:
         return {
             "idMappingTable": capo_cleanrooms.types.id_mapping_table_schema_type_properties.serialize_json(
                 value["idMappingTable"]
+            )
+        }
+    elif "intermediateTable" in value:
+        import capo_cleanrooms.types.intermediate_table_schema_type_properties
+
+        return {
+            "intermediateTable": capo_cleanrooms.types.intermediate_table_schema_type_properties.serialize_json(
+                value["intermediateTable"]
+            )
+        }
+    elif "configuredTableAssociation" in value:
+        import capo_cleanrooms.types.configured_table_association_schema_type_properties
+
+        return {
+            "configuredTableAssociation": capo_cleanrooms.types.configured_table_association_schema_type_properties.serialize_json(
+                value["configuredTableAssociation"]
             )
         }
     else:
@@ -38,6 +68,22 @@ def deserialize_json(data: dict) -> SchemaTypeProperties:
         return {
             "idMappingTable": capo_cleanrooms.types.id_mapping_table_schema_type_properties.deserialize_json(
                 data["idMappingTable"]
+            )
+        }
+    elif data.get("intermediateTable") is not None:
+        import capo_cleanrooms.types.intermediate_table_schema_type_properties
+
+        return {
+            "intermediateTable": capo_cleanrooms.types.intermediate_table_schema_type_properties.deserialize_json(
+                data["intermediateTable"]
+            )
+        }
+    elif data.get("configuredTableAssociation") is not None:
+        import capo_cleanrooms.types.configured_table_association_schema_type_properties
+
+        return {
+            "configuredTableAssociation": capo_cleanrooms.types.configured_table_association_schema_type_properties.deserialize_json(
+                data["configuredTableAssociation"]
             )
         }
     else:

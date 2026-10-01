@@ -22,6 +22,7 @@ if TYPE_CHECKING:
     import capo_amp.types.describe_scraper_request
     import capo_amp.types.describe_scraper_response
     import capo_amp.types.destination
+    import capo_amp.types.exporter_list
     import capo_amp.types.idempotency_token
     import capo_amp.types.list_scrapers_request
     import capo_amp.types.list_scrapers_response
@@ -59,17 +60,19 @@ class Scraper:
             "capo_amp.types.idempotency_token.IdempotencyToken"
         ] = None,
         tags: Optional["capo_amp.types.tag_map.TagMap"] = None,
+        exporters: Optional["capo_amp.types.exporter_list.ExporterList"] = None,
     ) -> "capo_amp.types.create_scraper_response.CreateScraperResponse":
-        r"""<p>The <code>CreateScraper</code> operation creates a scraper to collect metrics. A scraper pulls metrics from Prometheus-compatible sources and sends them to your Amazon Managed Service for Prometheus workspace. You can configure scrapers to collect metrics from Amazon EKS clusters, Amazon MSK clusters, or from VPC-based sources that support DNS-based service discovery. Scrapers are flexible, and can be configured to control what metrics are collected, the frequency of collection, what transformations are applied to the metrics, and more.</p> <p>An IAM role will be created for you that Amazon Managed Service for Prometheus uses to access the metrics in your source. You must configure this role with a policy that allows it to scrape metrics from your source. For Amazon EKS sources, see <a href=\"https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-collector-how-to.html#AMP-collector-eks-setup\">Configuring your Amazon EKS cluster</a> in the <i>Amazon Managed Service for Prometheus User Guide</i>.</p> <p>The <code>scrapeConfiguration</code> parameter contains the base-64 encoded YAML configuration for the scraper.</p> <p>When creating a scraper, the service creates a <code>Network Interface</code> in each <b>Availability Zone</b> that are passed into <code>CreateScraper</code> through subnets. These network interfaces are used to connect to your source within the VPC for scraping metrics.</p> <note> <p>For more information about collectors, including what metrics are collected, and how to configure the scraper, see <a href=\"https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-collector-how-to.html\">Using an Amazon Web Services managed collector</a> in the <i>Amazon Managed Service for Prometheus User Guide</i>.</p> </note>
+        r"""<p>Creates a scraper to collect metrics from Prometheus-compatible sources. The scraper sends the collected metrics to Amazon Managed Service for Prometheus workspaces or CloudWatch datasets. You can configure scrapers to collect metrics from Amazon EKS clusters, Amazon MSK clusters, or from VPC-based sources that support DNS-based service discovery. Scrapers are flexible. You can configure a scraper to control which metrics to collect, the frequency of collection, which transformations to apply to the metrics, and more.</p> <p>An IAM role will be created for you that Amazon Managed Service for Prometheus uses to access the metrics in your source. You must configure this role with a policy that allows it to scrape metrics from your source. For Amazon EKS sources, see <a href=\"https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-collector-how-to.html#AMP-collector-eks-setup\">Configuring your Amazon EKS cluster</a> in the <i>Amazon Managed Service for Prometheus User Guide</i>.</p> <p>The <code>scrapeConfiguration</code> parameter contains the base-64 encoded YAML configuration for the scraper.</p> <p>When creating a scraper, the service creates a <code>Network Interface</code> in each <b>Availability Zone</b> that are passed into <code>CreateScraper</code> through subnets. These network interfaces are used to connect to your source within the VPC for scraping metrics.</p> <note> <p>For more information about collectors, including what metrics are collected, and how to configure the scraper, see <a href=\"https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-collector-how-to.html\">Using an Amazon Web Services managed collector</a> in the <i>Amazon Managed Service for Prometheus User Guide</i>.</p> </note>
 
         Args:
             alias: <p>(optional) An alias to associate with the scraper. This is for your use, and does not need to be unique.</p>
             scrape_configuration: <p>The configuration file to use in the new scraper. For more information, see <a href=\"https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-collector-how-to.html#AMP-collector-configuration\">Scraper configuration</a> in the <i>Amazon Managed Service for Prometheus User Guide</i>.</p>
             source: <p>The Amazon EKS or Amazon Web Services cluster from which the scraper will collect metrics.</p>
-            destination: <p>The Amazon Managed Service for Prometheus workspace to send metrics to.</p>
+            destination: <p>The destination where the scraper sends the collected metrics. Valid destinations are Amazon Managed Service for Prometheus workspaces and CloudWatch datasets.</p>
             role_configuration: <p>Use this structure to enable cross-account access, so that you can use a target account to access Prometheus metrics from source accounts.</p>
             client_token: <p>(Optional) A unique, case-sensitive identifier that you can provide to ensure the idempotency of the request.</p>
             tags: <p>(Optional) The list of tag keys and values to associate with the scraper.</p>
+            exporters: <p>The exporter configurations for the scraper. You can configure at most one Amazon OpenSearch Service domain. If you don't specify a value, the scraper is created without an exporter configuration.</p>
 
         Raises:
             capo_amp.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -119,6 +122,8 @@ class Scraper:
         input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
+        if exporters is not None:
+            input_["exporters"] = exporters
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -196,6 +201,7 @@ class Scraper:
         client_token: Optional[
             "capo_amp.types.idempotency_token.IdempotencyToken"
         ] = None,
+        exporters: Optional["capo_amp.types.exporter_list.ExporterList"] = None,
     ) -> "capo_amp.types.update_scraper_response.UpdateScraperResponse":
         r"""<p>Updates an existing scraper.</p> <p>You can't use this function to update the source from which the scraper is collecting metrics. To change the source, delete the scraper and create a new one.</p>
 
@@ -203,9 +209,10 @@ class Scraper:
             scraper_id: <p>The ID of the scraper to update.</p>
             alias: <p>The new alias of the scraper.</p>
             scrape_configuration: <p>Contains the base-64 encoded YAML configuration for the scraper.</p> <note> <p>For more information about configuring a scraper, see <a href=\"https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-collector-how-to.html\">Using an Amazon Web Services managed collector</a> in the <i>Amazon Managed Service for Prometheus User Guide</i>.</p> </note>
-            destination: <p>The new Amazon Managed Service for Prometheus workspace to send metrics to.</p>
+            destination: <p>The new destination where the scraper sends metrics. Valid destinations are Amazon Managed Service for Prometheus workspaces and CloudWatch datasets.</p>
             role_configuration: <p>Use this structure to enable cross-account access, so that you can use a target account to access Prometheus metrics from source accounts.</p>
             client_token: <p>A unique identifier that you can provide to ensure the idempotency of the request. Case-sensitive.</p>
+            exporters: <p>The exporter configurations for the scraper. You can configure at most one Amazon OpenSearch Service domain. If you don't specify a value, the existing exporter configuration remains unchanged.</p>
 
         Raises:
             capo_amp.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -252,6 +259,8 @@ class Scraper:
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
+        if exporters is not None:
+            input_["exporters"] = exporters
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -403,17 +412,19 @@ class AsyncScraper:
             "capo_amp.types.idempotency_token.IdempotencyToken"
         ] = None,
         tags: Optional["capo_amp.types.tag_map.TagMap"] = None,
+        exporters: Optional["capo_amp.types.exporter_list.ExporterList"] = None,
     ) -> "capo_amp.types.create_scraper_response.CreateScraperResponse":
-        r"""<p>The <code>CreateScraper</code> operation creates a scraper to collect metrics. A scraper pulls metrics from Prometheus-compatible sources and sends them to your Amazon Managed Service for Prometheus workspace. You can configure scrapers to collect metrics from Amazon EKS clusters, Amazon MSK clusters, or from VPC-based sources that support DNS-based service discovery. Scrapers are flexible, and can be configured to control what metrics are collected, the frequency of collection, what transformations are applied to the metrics, and more.</p> <p>An IAM role will be created for you that Amazon Managed Service for Prometheus uses to access the metrics in your source. You must configure this role with a policy that allows it to scrape metrics from your source. For Amazon EKS sources, see <a href=\"https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-collector-how-to.html#AMP-collector-eks-setup\">Configuring your Amazon EKS cluster</a> in the <i>Amazon Managed Service for Prometheus User Guide</i>.</p> <p>The <code>scrapeConfiguration</code> parameter contains the base-64 encoded YAML configuration for the scraper.</p> <p>When creating a scraper, the service creates a <code>Network Interface</code> in each <b>Availability Zone</b> that are passed into <code>CreateScraper</code> through subnets. These network interfaces are used to connect to your source within the VPC for scraping metrics.</p> <note> <p>For more information about collectors, including what metrics are collected, and how to configure the scraper, see <a href=\"https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-collector-how-to.html\">Using an Amazon Web Services managed collector</a> in the <i>Amazon Managed Service for Prometheus User Guide</i>.</p> </note>
+        r"""<p>Creates a scraper to collect metrics from Prometheus-compatible sources. The scraper sends the collected metrics to Amazon Managed Service for Prometheus workspaces or CloudWatch datasets. You can configure scrapers to collect metrics from Amazon EKS clusters, Amazon MSK clusters, or from VPC-based sources that support DNS-based service discovery. Scrapers are flexible. You can configure a scraper to control which metrics to collect, the frequency of collection, which transformations to apply to the metrics, and more.</p> <p>An IAM role will be created for you that Amazon Managed Service for Prometheus uses to access the metrics in your source. You must configure this role with a policy that allows it to scrape metrics from your source. For Amazon EKS sources, see <a href=\"https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-collector-how-to.html#AMP-collector-eks-setup\">Configuring your Amazon EKS cluster</a> in the <i>Amazon Managed Service for Prometheus User Guide</i>.</p> <p>The <code>scrapeConfiguration</code> parameter contains the base-64 encoded YAML configuration for the scraper.</p> <p>When creating a scraper, the service creates a <code>Network Interface</code> in each <b>Availability Zone</b> that are passed into <code>CreateScraper</code> through subnets. These network interfaces are used to connect to your source within the VPC for scraping metrics.</p> <note> <p>For more information about collectors, including what metrics are collected, and how to configure the scraper, see <a href=\"https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-collector-how-to.html\">Using an Amazon Web Services managed collector</a> in the <i>Amazon Managed Service for Prometheus User Guide</i>.</p> </note>
 
         Args:
             alias: <p>(optional) An alias to associate with the scraper. This is for your use, and does not need to be unique.</p>
             scrape_configuration: <p>The configuration file to use in the new scraper. For more information, see <a href=\"https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-collector-how-to.html#AMP-collector-configuration\">Scraper configuration</a> in the <i>Amazon Managed Service for Prometheus User Guide</i>.</p>
             source: <p>The Amazon EKS or Amazon Web Services cluster from which the scraper will collect metrics.</p>
-            destination: <p>The Amazon Managed Service for Prometheus workspace to send metrics to.</p>
+            destination: <p>The destination where the scraper sends the collected metrics. Valid destinations are Amazon Managed Service for Prometheus workspaces and CloudWatch datasets.</p>
             role_configuration: <p>Use this structure to enable cross-account access, so that you can use a target account to access Prometheus metrics from source accounts.</p>
             client_token: <p>(Optional) A unique, case-sensitive identifier that you can provide to ensure the idempotency of the request.</p>
             tags: <p>(Optional) The list of tag keys and values to associate with the scraper.</p>
+            exporters: <p>The exporter configurations for the scraper. You can configure at most one Amazon OpenSearch Service domain. If you don't specify a value, the scraper is created without an exporter configuration.</p>
 
         Raises:
             capo_amp.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -464,6 +475,8 @@ class AsyncScraper:
         input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
+        if exporters is not None:
+            input_["exporters"] = exporters
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -542,6 +555,7 @@ class AsyncScraper:
         client_token: Optional[
             "capo_amp.types.idempotency_token.IdempotencyToken"
         ] = None,
+        exporters: Optional["capo_amp.types.exporter_list.ExporterList"] = None,
     ) -> "capo_amp.types.update_scraper_response.UpdateScraperResponse":
         r"""<p>Updates an existing scraper.</p> <p>You can't use this function to update the source from which the scraper is collecting metrics. To change the source, delete the scraper and create a new one.</p>
 
@@ -549,9 +563,10 @@ class AsyncScraper:
             scraper_id: <p>The ID of the scraper to update.</p>
             alias: <p>The new alias of the scraper.</p>
             scrape_configuration: <p>Contains the base-64 encoded YAML configuration for the scraper.</p> <note> <p>For more information about configuring a scraper, see <a href=\"https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-collector-how-to.html\">Using an Amazon Web Services managed collector</a> in the <i>Amazon Managed Service for Prometheus User Guide</i>.</p> </note>
-            destination: <p>The new Amazon Managed Service for Prometheus workspace to send metrics to.</p>
+            destination: <p>The new destination where the scraper sends metrics. Valid destinations are Amazon Managed Service for Prometheus workspaces and CloudWatch datasets.</p>
             role_configuration: <p>Use this structure to enable cross-account access, so that you can use a target account to access Prometheus metrics from source accounts.</p>
             client_token: <p>A unique identifier that you can provide to ensure the idempotency of the request. Case-sensitive.</p>
+            exporters: <p>The exporter configurations for the scraper. You can configure at most one Amazon OpenSearch Service domain. If you don't specify a value, the existing exporter configuration remains unchanged.</p>
 
         Raises:
             capo_amp.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
@@ -599,6 +614,8 @@ class AsyncScraper:
         if client_token is None:
             client_token = str(uuid.uuid4())
         input_["client_token"] = client_token
+        if exporters is not None:
+            input_["exporters"] = exporters
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

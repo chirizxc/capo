@@ -17,10 +17,12 @@ import capo_geo_places.errors.throttling_exception
 import capo_geo_places.errors.validation_exception
 import capo_geo_places.types.autocomplete_additional_feature_list
 import capo_geo_places.types.autocomplete_filter
+import capo_geo_places.types.autocomplete_intended_use
 import capo_geo_places.types.autocomplete_request
 import capo_geo_places.types.autocomplete_response
 import capo_geo_places.types.autocomplete_result_item_list
 import capo_geo_places.types.position
+import capo_geo_places.types.postal_code_mode
 from capo_geo_places._protocol.errors import parse_error_metadata_json
 from capo_geo_places._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_geo_places._services._pipeline import AsyncOperationOptions, OperationOptions

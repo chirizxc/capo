@@ -24,7 +24,7 @@ class SelectionCriteria(TypedDict, closed=True):
     min_storage_bytes_percentage: NotRequired[
         "capo_s3_control.types.min_storage_bytes_percentage.MinStorageBytesPercentage"
     ]
-    """<p>The minimum number of storage bytes percentage whose metrics will be selected.</p> <note> <p>You must choose a value greater than or equal to <code>1.0</code>.</p> </note>"""
+    """<p>The minimum percentage of total bucket storage that a prefix must hold for its metrics to be included.</p>"""
 
 
 # --- restXml ser/de ---

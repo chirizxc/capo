@@ -21,6 +21,7 @@ import capo_amp.errors.validation_exception
 import capo_amp.types.create_scraper_request
 import capo_amp.types.create_scraper_response
 import capo_amp.types.destination
+import capo_amp.types.exporter_list
 import capo_amp.types.role_configuration
 import capo_amp.types.scrape_configuration
 import capo_amp.types.scraper_status

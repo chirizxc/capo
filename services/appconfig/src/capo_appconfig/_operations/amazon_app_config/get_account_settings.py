@@ -15,6 +15,7 @@ import capo_appconfig.errors.bad_request_exception
 import capo_appconfig.errors.internal_server_exception
 import capo_appconfig.types.account_settings
 import capo_appconfig.types.deletion_protection_settings
+import capo_appconfig.types.vended_metrics_settings
 from capo_appconfig._protocol.errors import parse_error_metadata_json
 from capo_appconfig._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_appconfig._services._pipeline import AsyncOperationOptions, OperationOptions

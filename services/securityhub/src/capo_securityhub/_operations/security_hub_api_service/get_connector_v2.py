@@ -18,6 +18,7 @@ import capo_securityhub.errors.internal_server_exception
 import capo_securityhub.errors.resource_not_found_exception
 import capo_securityhub.errors.throttling_exception
 import capo_securityhub.errors.validation_exception
+import capo_securityhub.types.enablement_status
 import capo_securityhub.types.get_connector_v2_request
 import capo_securityhub.types.get_connector_v2_response
 import capo_securityhub.types.health_check

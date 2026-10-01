@@ -22,7 +22,7 @@ class StartRunBatchResponse(TypedDict, closed=True):
     uuid: NotRequired["capo_omics.types.batch_uuid.BatchUuid"]
     """<p>The universally unique identifier (UUID) for the run batch.</p>"""
     tags: NotRequired["capo_omics.types.tag_map.TagMap"]
-    """<p>AWS tags associated with the run batch.</p>"""
+    """<p>Amazon Web Services tags associated with the run batch.</p>"""
 
 
 # --- restJson1 ser/de ---

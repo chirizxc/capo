@@ -134,6 +134,8 @@ def build_request(
                 ),
             )
         )
+    if "test_run_id" in input_:
+        params.append(("testRunId", input_["test_run_id"]))
     params.append(("maxResults", str(input_.get("max_results", 100))))
     if "next_token" in input_:
         params.append(("nextToken", input_["next_token"]))

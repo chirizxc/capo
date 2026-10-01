@@ -1,0 +1,39 @@
+"""Generated from Smithy shape ``com.amazonaws.cloudwatchomni#DeleteAccessProfileInput``."""
+
+from typing import TYPE_CHECKING
+
+from typing_extensions import TypedDict
+
+from capo_cloudwatchomni.errors import DeserializationError
+
+if TYPE_CHECKING:
+    import capo_cloudwatchomni.types.profile_id
+    import capo_cloudwatchomni.types.space_id
+
+
+class DeleteAccessProfileInput(TypedDict, closed=True):
+    space_id: "capo_cloudwatchomni.types.space_id.SpaceId"
+    """The unique ID of the space."""
+    profile_id: "capo_cloudwatchomni.types.profile_id.ProfileId"
+    """The unique ID of the access profile to delete."""
+
+
+# --- rpcv2Cbor ser/de ---
+def serialize_cbor(value: DeleteAccessProfileInput) -> dict:
+    out: dict = {}
+    out["spaceId"] = value["space_id"]
+    out["profileId"] = value["profile_id"]
+    return out
+
+
+def deserialize_cbor(data: dict) -> DeleteAccessProfileInput:
+    out: DeleteAccessProfileInput = {}  # type: ignore[typeddict-item]
+    if data.get("spaceId") is not None:
+        out["space_id"] = data["spaceId"]
+    else:
+        raise DeserializationError("DeleteAccessProfileInput.space_id required")
+    if data.get("profileId") is not None:
+        out["profile_id"] = data["profileId"]
+    else:
+        raise DeserializationError("DeleteAccessProfileInput.profile_id required")
+    return out

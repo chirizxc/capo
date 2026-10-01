@@ -11,13 +11,14 @@ if TYPE_CHECKING:
     import capo_chime_sdk_voice.types.non_empty_string
     import capo_chime_sdk_voice.types.string
     import capo_chime_sdk_voice.types.voice_connector_aws_region
+    import capo_chime_sdk_voice.types.voice_connector_id
     import capo_chime_sdk_voice.types.voice_connector_integration_type
     import capo_chime_sdk_voice.types.voice_connector_name
 
 
 class VoiceConnector(TypedDict, closed=True):
     voice_connector_id: NotRequired[
-        "capo_chime_sdk_voice.types.non_empty_string.NonEmptyString"
+        "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId"
     ]
     """<p>The Voice Connector's ID.</p>"""
     aws_region: NotRequired[
@@ -49,7 +50,7 @@ class VoiceConnector(TypedDict, closed=True):
     ]
     """<p>The connectors for use with Connect Customer.</p>"""
     network_type: NotRequired["capo_chime_sdk_voice.types.network_type.NetworkType"]
-    """<p>The type of network of the Voice Connector. Either IPv4 only or dual-stack (IPv4 and IPv6).</p>"""
+    """<p>The type of network for the Voice Connector.</p>"""
 
 
 # --- restJson1 ser/de ---

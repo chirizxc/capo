@@ -2,6 +2,7 @@
 
 from typing import Literal, TypeAlias, cast
 
+"""The level of FHIR validation to apply."""
 ValidationLevel: TypeAlias = Literal[
     "strict",
     "structure-only",

@@ -11,7 +11,9 @@ from typing_extensions import Never
 import capo_codedeploy._auth._signers
 import capo_codedeploy._auth._sigv4
 import capo_codedeploy._protocol.eventstream
+import capo_codedeploy.errors.application_does_not_exist_exception
 import capo_codedeploy.errors.deployment_does_not_exist_exception
+import capo_codedeploy.errors.deployment_group_does_not_exist_exception
 import capo_codedeploy.errors.deployment_id_required_exception
 import capo_codedeploy.errors.deployment_not_started_exception
 import capo_codedeploy.errors.invalid_deployment_id_exception
@@ -34,8 +36,16 @@ def handle_error(response: zapros.Response) -> Never:
     data = json.loads(response.read())
     code, message = parse_error_metadata_json(response, data)
     match code:
+        case "ApplicationDoesNotExistException":
+            raise capo_codedeploy.errors.application_does_not_exist_exception.ApplicationDoesNotExistException.from_aws_json_1_1(
+                data, message
+            )
         case "DeploymentDoesNotExistException":
             raise capo_codedeploy.errors.deployment_does_not_exist_exception.DeploymentDoesNotExistException.from_aws_json_1_1(
+                data, message
+            )
+        case "DeploymentGroupDoesNotExistException":
+            raise capo_codedeploy.errors.deployment_group_does_not_exist_exception.DeploymentGroupDoesNotExistException.from_aws_json_1_1(
                 data, message
             )
         case "DeploymentIdRequiredException":

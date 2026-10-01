@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     import capo_iot.types.aws_arn
     import capo_iot.types.created_at_date
     import capo_iot.types.http_url_destination_summary
+    import capo_iot.types.influx_db_destination_summary
     import capo_iot.types.last_updated_at_date
     import capo_iot.types.string
     import capo_iot.types.topic_rule_destination_status
@@ -37,6 +38,10 @@ class TopicRuleDestinationSummary(TypedDict, closed=True):
         "capo_iot.types.vpc_destination_summary.VpcDestinationSummary"
     ]
     """<p>Information about the virtual private cloud (VPC) connection.</p>"""
+    influx_db_summary: NotRequired[
+        "capo_iot.types.influx_db_destination_summary.InfluxDBDestinationSummary"
+    ]
+    """<p>A summary of an InfluxDB topic rule destination, as returned by <code>ListTopicRuleDestinations</code>.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -80,6 +85,14 @@ def serialize_json(value: TopicRuleDestinationSummary) -> dict:
                 value["vpc_destination_summary"]
             )
         )
+    if "influx_db_summary" in value:
+        import capo_iot.types.influx_db_destination_summary
+
+        out["influxDBSummary"] = (
+            capo_iot.types.influx_db_destination_summary.serialize_json(
+                value["influx_db_summary"]
+            )
+        )
     return out
 
 
@@ -121,6 +134,14 @@ def deserialize_json(data: dict) -> TopicRuleDestinationSummary:
         out["vpc_destination_summary"] = (
             capo_iot.types.vpc_destination_summary.deserialize_json(
                 data["vpcDestinationSummary"]
+            )
+        )
+    if data.get("influxDBSummary") is not None:
+        import capo_iot.types.influx_db_destination_summary
+
+        out["influx_db_summary"] = (
+            capo_iot.types.influx_db_destination_summary.deserialize_json(
+                data["influxDBSummary"]
             )
         )
     return out

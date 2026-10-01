@@ -22,6 +22,7 @@ import capo_s3.types.checksum_algorithm
 import capo_s3.types.checksum_type
 import capo_s3.types.metadata
 import capo_s3.types.object_canned_acl
+import capo_s3.types.object_lock_event_hold
 import capo_s3.types.object_lock_legal_hold_status
 import capo_s3.types.object_lock_mode
 import capo_s3.types.object_lock_retain_until_date
@@ -261,6 +262,7 @@ def build_request(
     import capo_s3._protocol.serialize
     import capo_s3.types.checksum_algorithm
     import capo_s3.types.object_canned_acl
+    import capo_s3.types.object_lock_event_hold
     import capo_s3.types.object_lock_legal_hold_status
     import capo_s3.types.object_lock_mode
     import capo_s3.types.request_payer
@@ -384,6 +386,20 @@ def build_request(
             capo_s3.types.object_lock_legal_hold_status.to_xml_text(
                 input_["object_lock_legal_hold_status"]
             )
+        )
+    if "object_lock_event_hold" in input_:
+        headers["x-amz-object-lock-event-hold"] = (
+            capo_s3.types.object_lock_event_hold.to_xml_text(
+                input_["object_lock_event_hold"]
+            )
+        )
+    if "object_lock_event_hold_duration_days" in input_:
+        headers["x-amz-object-lock-event-hold-duration-days"] = str(
+            input_["object_lock_event_hold_duration_days"]
+        )
+    if "object_lock_event_hold_duration_years" in input_:
+        headers["x-amz-object-lock-event-hold-duration-years"] = str(
+            input_["object_lock_event_hold_duration_years"]
         )
     if "expected_bucket_owner" in input_:
         headers["x-amz-expected-bucket-owner"] = input_["expected_bucket_owner"]
@@ -452,6 +468,7 @@ async def async_build_request(
     import capo_s3._protocol.serialize
     import capo_s3.types.checksum_algorithm
     import capo_s3.types.object_canned_acl
+    import capo_s3.types.object_lock_event_hold
     import capo_s3.types.object_lock_legal_hold_status
     import capo_s3.types.object_lock_mode
     import capo_s3.types.request_payer
@@ -575,6 +592,20 @@ async def async_build_request(
             capo_s3.types.object_lock_legal_hold_status.to_xml_text(
                 input_["object_lock_legal_hold_status"]
             )
+        )
+    if "object_lock_event_hold" in input_:
+        headers["x-amz-object-lock-event-hold"] = (
+            capo_s3.types.object_lock_event_hold.to_xml_text(
+                input_["object_lock_event_hold"]
+            )
+        )
+    if "object_lock_event_hold_duration_days" in input_:
+        headers["x-amz-object-lock-event-hold-duration-days"] = str(
+            input_["object_lock_event_hold_duration_days"]
+        )
+    if "object_lock_event_hold_duration_years" in input_:
+        headers["x-amz-object-lock-event-hold-duration-years"] = str(
+            input_["object_lock_event_hold_duration_years"]
         )
     if "expected_bucket_owner" in input_:
         headers["x-amz-expected-bucket-owner"] = input_["expected_bucket_owner"]

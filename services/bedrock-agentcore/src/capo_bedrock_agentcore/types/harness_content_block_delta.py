@@ -9,6 +9,7 @@ from capo_bedrock_agentcore.errors import DeserializationError, SerializationErr
 if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.harness_reasoning_content_block_delta
     import capo_bedrock_agentcore.types.harness_tool_result_blocks_delta
+    import capo_bedrock_agentcore.types.harness_tool_result_metadata_block_delta
     import capo_bedrock_agentcore.types.harness_tool_use_block_delta
     import capo_bedrock_agentcore.types.sensitive_text
 
@@ -29,11 +30,16 @@ class _HarnessContentBlockDelta_reasoningContent(TypedDict, closed=True):
     reasoningContent: "capo_bedrock_agentcore.types.harness_reasoning_content_block_delta.HarnessReasoningContentBlockDelta"
 
 
+class _HarnessContentBlockDelta_toolResultMetadata(TypedDict, closed=True):
+    toolResultMetadata: "capo_bedrock_agentcore.types.harness_tool_result_metadata_block_delta.HarnessToolResultMetadataBlockDelta"
+
+
 HarnessContentBlockDelta: TypeAlias = (
     _HarnessContentBlockDelta_text
     | _HarnessContentBlockDelta_toolUse
     | _HarnessContentBlockDelta_toolResult
     | _HarnessContentBlockDelta_reasoningContent
+    | _HarnessContentBlockDelta_toolResultMetadata
 )
 
 
@@ -65,6 +71,14 @@ def serialize_json(value: HarnessContentBlockDelta) -> dict:
                 value["reasoningContent"]
             )
         }
+    elif "toolResultMetadata" in value:
+        import capo_bedrock_agentcore.types.harness_tool_result_metadata_block_delta
+
+        return {
+            "toolResultMetadata": capo_bedrock_agentcore.types.harness_tool_result_metadata_block_delta.serialize_json(
+                value["toolResultMetadata"]
+            )
+        }
     else:
         raise SerializationError("HarnessContentBlockDelta: no variant present")
 
@@ -94,6 +108,14 @@ def deserialize_json(data: dict) -> HarnessContentBlockDelta:
         return {
             "reasoningContent": capo_bedrock_agentcore.types.harness_reasoning_content_block_delta.deserialize_json(
                 data["reasoningContent"]
+            )
+        }
+    elif data.get("toolResultMetadata") is not None:
+        import capo_bedrock_agentcore.types.harness_tool_result_metadata_block_delta
+
+        return {
+            "toolResultMetadata": capo_bedrock_agentcore.types.harness_tool_result_metadata_block_delta.deserialize_json(
+                data["toolResultMetadata"]
             )
         }
     else:

@@ -37,7 +37,7 @@ class ImageScanFinding(TypedDict, closed=True):
     remediation: NotRequired["capo_imagebuilder.types.remediation.Remediation"]
     """<p>An object that contains the details about how to remediate the finding.</p>"""
     severity: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
-    """<p>The severity of the finding.</p>"""
+    r"""<p>The severity of the finding. For more information, see <a href=\"https://docs.aws.amazon.com/inspector/latest/user/findings-understanding-severity.html\">Severity levels for Amazon Inspector findings</a> in the <i>Amazon Inspector User Guide</i>.</p>"""
     first_observed_at: NotRequired[
         "capo_imagebuilder.types.date_time_timestamp.DateTimeTimestamp"
     ]
@@ -61,7 +61,7 @@ class ImageScanFinding(TypedDict, closed=True):
     fix_available: NotRequired[
         "capo_imagebuilder.types.non_empty_string.NonEmptyString"
     ]
-    """<p>Details about whether a fix is available for any of the packages that are identified in the finding through a version update.</p>"""
+    """<p>Details about whether a fix is available for any of the packages that are identified in the finding through a version update. Valid values include:</p> <ul> <li> <p> <code>YES</code> – A fix is available for all of the packages identified in the finding.</p> </li> <li> <p> <code>NO</code> – No fix is available.</p> </li> <li> <p> <code>PARTIAL</code> – A fix is available for some, but not all, of the packages identified in the finding.</p> </li> </ul>"""
 
 
 # --- restJson1 ser/de ---

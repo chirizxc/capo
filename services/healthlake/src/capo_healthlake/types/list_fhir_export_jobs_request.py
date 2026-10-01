@@ -8,11 +8,11 @@ from capo_healthlake.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_healthlake.types.datastore_id
+    import capo_healthlake.types.health_lake_timestamp
     import capo_healthlake.types.job_name
     import capo_healthlake.types.job_status
     import capo_healthlake.types.max_results_integer
     import capo_healthlake.types.next_token
-    import capo_healthlake.types.timestamp
 
 
 class ListFHIRExportJobsRequest(TypedDict, closed=True):
@@ -28,9 +28,13 @@ class ListFHIRExportJobsRequest(TypedDict, closed=True):
     """<p>Limits the response to the export job with the specified job name. </p>"""
     job_status: NotRequired["capo_healthlake.types.job_status.JobStatus"]
     """<p>Limits the response to export jobs with the specified job status. </p>"""
-    submitted_before: NotRequired["capo_healthlake.types.timestamp.Timestamp"]
+    submitted_before: NotRequired[
+        "capo_healthlake.types.health_lake_timestamp.HealthLakeTimestamp"
+    ]
     """<p>Limits the response to FHIR export jobs submitted before a user- specified date.</p>"""
-    submitted_after: NotRequired["capo_healthlake.types.timestamp.Timestamp"]
+    submitted_after: NotRequired[
+        "capo_healthlake.types.health_lake_timestamp.HealthLakeTimestamp"
+    ]
     """<p>Limits the response to FHIR export jobs submitted after a user-specified date.</p>"""
 
 
@@ -51,16 +55,20 @@ def serialize_aws_json_1_0(value: ListFHIRExportJobsRequest) -> dict:
             value["job_status"]
         )
     if "submitted_before" in value:
-        import capo_healthlake.types.timestamp
+        import capo_healthlake.types.health_lake_timestamp
 
-        out["SubmittedBefore"] = capo_healthlake.types.timestamp.serialize_aws_json_1_0(
-            value["submitted_before"]
+        out["SubmittedBefore"] = (
+            capo_healthlake.types.health_lake_timestamp.serialize_aws_json_1_0(
+                value["submitted_before"]
+            )
         )
     if "submitted_after" in value:
-        import capo_healthlake.types.timestamp
+        import capo_healthlake.types.health_lake_timestamp
 
-        out["SubmittedAfter"] = capo_healthlake.types.timestamp.serialize_aws_json_1_0(
-            value["submitted_after"]
+        out["SubmittedAfter"] = (
+            capo_healthlake.types.health_lake_timestamp.serialize_aws_json_1_0(
+                value["submitted_after"]
+            )
         )
     return out
 
@@ -84,18 +92,18 @@ def deserialize_aws_json_1_0(data: dict) -> ListFHIRExportJobsRequest:
             data["JobStatus"]
         )
     if data.get("SubmittedBefore") is not None:
-        import capo_healthlake.types.timestamp
+        import capo_healthlake.types.health_lake_timestamp
 
         out["submitted_before"] = (
-            capo_healthlake.types.timestamp.deserialize_aws_json_1_0(
+            capo_healthlake.types.health_lake_timestamp.deserialize_aws_json_1_0(
                 data["SubmittedBefore"]
             )
         )
     if data.get("SubmittedAfter") is not None:
-        import capo_healthlake.types.timestamp
+        import capo_healthlake.types.health_lake_timestamp
 
         out["submitted_after"] = (
-            capo_healthlake.types.timestamp.deserialize_aws_json_1_0(
+            capo_healthlake.types.health_lake_timestamp.deserialize_aws_json_1_0(
                 data["SubmittedAfter"]
             )
         )

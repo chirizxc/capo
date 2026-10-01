@@ -13,9 +13,9 @@ if TYPE_CHECKING:
 
 class DeregisterNotificationHubResponse(TypedDict, closed=True):
     notification_hub_region: "capo_notifications.types.region.Region"
-    """<p>The <code>NotificationConfiguration</code> Region.</p>"""
+    """<p>The <code>NotificationHub</code> Region.</p>"""
     status_summary: "capo_notifications.types.notification_hub_status_summary.NotificationHubStatusSummary"
-    """<p> <code>NotificationConfiguration</code> status information.</p>"""
+    """<p> <code>NotificationHub</code> status information.</p>"""
 
 
 # --- restJson1 ser/de ---

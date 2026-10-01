@@ -12,10 +12,12 @@ import capo_transcribe._auth._signers
 import capo_transcribe._auth._sigv4
 import capo_transcribe._protocol.eventstream
 import capo_transcribe.errors.bad_request_exception
+import capo_transcribe.errors.conflict_exception
 import capo_transcribe.errors.internal_failure_exception
 import capo_transcribe.errors.limit_exceeded_exception
 import capo_transcribe.errors.not_found_exception
 import capo_transcribe.types.date_time
+import capo_transcribe.types.encryption_configuration
 import capo_transcribe.types.language_code
 import capo_transcribe.types.update_vocabulary_filter_request
 import capo_transcribe.types.update_vocabulary_filter_response
@@ -32,6 +34,10 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "BadRequestException":
             raise capo_transcribe.errors.bad_request_exception.BadRequestException.from_aws_json_1_1(
+                data, message
+            )
+        case "ConflictException":
+            raise capo_transcribe.errors.conflict_exception.ConflictException.from_aws_json_1_1(
                 data, message
             )
         case "InternalFailureException":

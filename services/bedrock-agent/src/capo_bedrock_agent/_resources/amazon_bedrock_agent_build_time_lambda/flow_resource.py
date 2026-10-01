@@ -28,6 +28,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agent.types.flow_summary
     import capo_bedrock_agent.types.get_flow_request
     import capo_bedrock_agent.types.get_flow_response
+    import capo_bedrock_agent.types.included_data
     import capo_bedrock_agent.types.kms_key_arn
     import capo_bedrock_agent.types.list_flows_request
     import capo_bedrock_agent.types.list_flows_response
@@ -137,11 +138,15 @@ class FlowResource:
         flow_identifier: "capo_bedrock_agent.types.flow_identifier.FlowIdentifier",
         *,
         config_overrides: Optional[BedrockAgentClientConfig] = None,
+        included_data: Optional[
+            "capo_bedrock_agent.types.included_data.IncludedData"
+        ] = None,
     ) -> "capo_bedrock_agent.types.get_flow_response.GetFlowResponse":
         r"""<p>Retrieves information about a flow. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-manage.html\">Manage a flow in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p>
 
         Args:
             flow_identifier: <p>The unique identifier of the flow.</p>
+            included_data: <p>Controls the scope of data returned. Set to <code>METADATA_ONLY</code> to return only resource metadata. Set to <code>ALL_DATA</code> or omit this field to return the full response.</p>
 
         Raises:
             capo_bedrock_agent.errors.access_denied_exception.AccessDeniedException: <p>The request is denied because of missing access permissions.</p>
@@ -170,6 +175,8 @@ class FlowResource:
         input_: capo_bedrock_agent.types.get_flow_request.GetFlowRequest = {
             "flow_identifier": flow_identifier
         }
+        if included_data is not None:
+            input_["included_data"] = included_data
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -494,11 +501,15 @@ class AsyncFlowResource:
         flow_identifier: "capo_bedrock_agent.types.flow_identifier.FlowIdentifier",
         *,
         config_overrides: Optional[AsyncBedrockAgentClientConfig] = None,
+        included_data: Optional[
+            "capo_bedrock_agent.types.included_data.IncludedData"
+        ] = None,
     ) -> "capo_bedrock_agent.types.get_flow_response.GetFlowResponse":
         r"""<p>Retrieves information about a flow. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/flows-manage.html\">Manage a flow in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p>
 
         Args:
             flow_identifier: <p>The unique identifier of the flow.</p>
+            included_data: <p>Controls the scope of data returned. Set to <code>METADATA_ONLY</code> to return only resource metadata. Set to <code>ALL_DATA</code> or omit this field to return the full response.</p>
 
         Raises:
             capo_bedrock_agent.errors.access_denied_exception.AccessDeniedException: <p>The request is denied because of missing access permissions.</p>
@@ -528,6 +539,8 @@ class AsyncFlowResource:
         input_: capo_bedrock_agent.types.get_flow_request.GetFlowRequest = {
             "flow_identifier": flow_identifier
         }
+        if included_data is not None:
+            input_["included_data"] = included_data
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

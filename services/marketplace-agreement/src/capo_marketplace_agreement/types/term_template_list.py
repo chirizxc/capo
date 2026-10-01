@@ -1,0 +1,37 @@
+"""Generated from Smithy shape ``com.amazonaws.marketplaceagreement#TermTemplateList``."""
+
+from typing import TYPE_CHECKING, TypeAlias
+
+if TYPE_CHECKING:
+    import capo_marketplace_agreement.types.term_template
+
+TermTemplateList: TypeAlias = list[
+    "capo_marketplace_agreement.types.term_template.TermTemplate"
+]
+
+
+# --- awsJson1_0 ser/de ---
+def serialize_aws_json_1_0(value: TermTemplateList) -> list:
+    import capo_marketplace_agreement.types.term_template
+
+    out: list = []
+    for item in value:
+        out.append(
+            capo_marketplace_agreement.types.term_template.serialize_aws_json_1_0(item)
+        )
+    return out
+
+
+def deserialize_aws_json_1_0(data: list) -> TermTemplateList:
+    import capo_marketplace_agreement.types.term_template
+
+    out: TermTemplateList = []
+    for item in data:
+        if item is None:
+            continue
+        out.append(
+            capo_marketplace_agreement.types.term_template.deserialize_aws_json_1_0(
+                item
+            )
+        )
+    return out

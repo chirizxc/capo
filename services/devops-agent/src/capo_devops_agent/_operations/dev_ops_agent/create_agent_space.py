@@ -21,6 +21,7 @@ import capo_devops_agent.errors.service_quota_exceeded_exception
 import capo_devops_agent.errors.throttling_exception
 import capo_devops_agent.errors.validation_exception
 import capo_devops_agent.types.agent_space
+import capo_devops_agent.types.agent_space_preferences
 import capo_devops_agent.types.create_agent_space_input
 import capo_devops_agent.types.create_agent_space_output
 import capo_devops_agent.types.tags

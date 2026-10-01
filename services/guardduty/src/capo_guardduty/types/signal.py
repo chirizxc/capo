@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_guardduty.types.activities
     import capo_guardduty.types.actor_ids
     import capo_guardduty.types.double
     import capo_guardduty.types.endpoint_ids
@@ -48,6 +49,8 @@ class Signal(TypedDict, closed=True):
     """<p>Information about the endpoint IDs associated with this signal.</p>"""
     signal_indicators: NotRequired["capo_guardduty.types.indicators.Indicators"]
     """<p>Contains information about the indicators associated with the signals.</p>"""
+    activities: NotRequired["capo_guardduty.types.activities.Activities"]
+    """<p>Contains information about the activities, such as API calls, that were observed for this signal.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -123,6 +126,12 @@ def serialize_json(value: Signal) -> dict:
         out["signalIndicators"] = capo_guardduty.types.indicators.serialize_json(
             value["signal_indicators"]
         )
+    if "activities" in value:
+        import capo_guardduty.types.activities
+
+        out["activities"] = capo_guardduty.types.activities.serialize_json(
+            value["activities"]
+        )
     return out
 
 
@@ -189,5 +198,11 @@ def deserialize_json(data: dict) -> Signal:
 
         out["signal_indicators"] = capo_guardduty.types.indicators.deserialize_json(
             data["signalIndicators"]
+        )
+    if data.get("activities") is not None:
+        import capo_guardduty.types.activities
+
+        out["activities"] = capo_guardduty.types.activities.deserialize_json(
+            data["activities"]
         )
     return out

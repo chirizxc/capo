@@ -23,6 +23,7 @@ import capo_s3.types.if_modified_since
 import capo_s3.types.if_unmodified_since
 import capo_s3.types.last_modified
 import capo_s3.types.metadata
+import capo_s3.types.object_lock_event_hold
 import capo_s3.types.object_lock_legal_hold_status
 import capo_s3.types.object_lock_mode
 import capo_s3.types.object_lock_retain_until_date
@@ -183,6 +184,20 @@ def handle_response(
                 response.headers["x-amz-object-lock-legal-hold"]
             )
         )
+    if "x-amz-object-lock-event-hold" in response.headers:
+        out["object_lock_event_hold"] = (
+            capo_s3.types.object_lock_event_hold.from_xml_text(
+                response.headers["x-amz-object-lock-event-hold"]
+            )
+        )
+    if "x-amz-object-lock-event-hold-duration-days" in response.headers:
+        out["object_lock_event_hold_duration_days"] = int(
+            response.headers["x-amz-object-lock-event-hold-duration-days"]
+        )
+    if "x-amz-object-lock-event-hold-duration-years" in response.headers:
+        out["object_lock_event_hold_duration_years"] = int(
+            response.headers["x-amz-object-lock-event-hold-duration-years"]
+        )
     out["metadata"] = {
         k[11:]: v
         for k, v in response.headers.items()
@@ -310,6 +325,20 @@ async def async_handle_response(
             capo_s3.types.object_lock_legal_hold_status.from_xml_text(
                 response.headers["x-amz-object-lock-legal-hold"]
             )
+        )
+    if "x-amz-object-lock-event-hold" in response.headers:
+        out["object_lock_event_hold"] = (
+            capo_s3.types.object_lock_event_hold.from_xml_text(
+                response.headers["x-amz-object-lock-event-hold"]
+            )
+        )
+    if "x-amz-object-lock-event-hold-duration-days" in response.headers:
+        out["object_lock_event_hold_duration_days"] = int(
+            response.headers["x-amz-object-lock-event-hold-duration-days"]
+        )
+    if "x-amz-object-lock-event-hold-duration-years" in response.headers:
+        out["object_lock_event_hold_duration_years"] = int(
+            response.headers["x-amz-object-lock-event-hold-duration-years"]
         )
     out["metadata"] = {
         k[11:]: v

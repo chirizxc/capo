@@ -35,22 +35,28 @@ from capo_qbusiness._services._pipeline import (
 )
 
 if TYPE_CHECKING:
+    import capo_qbusiness.types.action_configuration_list
     import capo_qbusiness.types.action_execution
     import capo_qbusiness.types.action_summary
     import capo_qbusiness.types.amazon_resource_name
+    import capo_qbusiness.types.application
     import capo_qbusiness.types.application_id
+    import capo_qbusiness.types.application_name
     import capo_qbusiness.types.associate_permission_request
     import capo_qbusiness.types.associate_permission_response
     import capo_qbusiness.types.attachment
     import capo_qbusiness.types.attachment_id
+    import capo_qbusiness.types.attachments_configuration
     import capo_qbusiness.types.attachments_input
     import capo_qbusiness.types.attribute_filter
     import capo_qbusiness.types.auth_challenge_response
+    import capo_qbusiness.types.auto_subscription_configuration
     import capo_qbusiness.types.batch_delete_document_request
     import capo_qbusiness.types.batch_delete_document_response
     import capo_qbusiness.types.batch_put_document_request
     import capo_qbusiness.types.batch_put_document_response
     import capo_qbusiness.types.blocked_phrases_configuration_update
+    import capo_qbusiness.types.browser_extension_configuration
     import capo_qbusiness.types.cancel_subscription_request
     import capo_qbusiness.types.cancel_subscription_response
     import capo_qbusiness.types.chat_input
@@ -64,23 +70,50 @@ if TYPE_CHECKING:
     import capo_qbusiness.types.chat_sync_output
     import capo_qbusiness.types.check_document_access_request
     import capo_qbusiness.types.check_document_access_response
+    import capo_qbusiness.types.client_ids_for_oidc
     import capo_qbusiness.types.client_token
     import capo_qbusiness.types.content_source
     import capo_qbusiness.types.conversation
     import capo_qbusiness.types.conversation_id
     import capo_qbusiness.types.create_anonymous_web_experience_url_request
     import capo_qbusiness.types.create_anonymous_web_experience_url_response
+    import capo_qbusiness.types.create_application_request
+    import capo_qbusiness.types.create_application_response
     import capo_qbusiness.types.create_chat_response_configuration_request
     import capo_qbusiness.types.create_chat_response_configuration_response
+    import capo_qbusiness.types.create_data_accessor_request
+    import capo_qbusiness.types.create_data_accessor_response
+    import capo_qbusiness.types.create_data_source_request
+    import capo_qbusiness.types.create_data_source_response
+    import capo_qbusiness.types.create_index_request
+    import capo_qbusiness.types.create_index_response
+    import capo_qbusiness.types.create_plugin_request
+    import capo_qbusiness.types.create_plugin_response
+    import capo_qbusiness.types.create_retriever_request
+    import capo_qbusiness.types.create_retriever_response
     import capo_qbusiness.types.create_subscription_request
     import capo_qbusiness.types.create_subscription_response
     import capo_qbusiness.types.create_user_request
     import capo_qbusiness.types.create_user_response
+    import capo_qbusiness.types.create_web_experience_request
+    import capo_qbusiness.types.create_web_experience_response
     import capo_qbusiness.types.creator_mode_configuration
+    import capo_qbusiness.types.custom_plugin_configuration
+    import capo_qbusiness.types.customization_configuration
+    import capo_qbusiness.types.data_accessor
+    import capo_qbusiness.types.data_accessor_authentication_detail
+    import capo_qbusiness.types.data_accessor_id
+    import capo_qbusiness.types.data_accessor_name
+    import capo_qbusiness.types.data_source
+    import capo_qbusiness.types.data_source_configuration
     import capo_qbusiness.types.data_source_id
     import capo_qbusiness.types.data_source_ids
+    import capo_qbusiness.types.data_source_name
     import capo_qbusiness.types.data_source_sync_job
     import capo_qbusiness.types.data_source_sync_job_status
+    import capo_qbusiness.types.data_source_vpc_configuration
+    import capo_qbusiness.types.delete_application_request
+    import capo_qbusiness.types.delete_application_response
     import capo_qbusiness.types.delete_attachment_request
     import capo_qbusiness.types.delete_attachment_response
     import capo_qbusiness.types.delete_chat_controls_configuration_request
@@ -89,50 +122,96 @@ if TYPE_CHECKING:
     import capo_qbusiness.types.delete_chat_response_configuration_response
     import capo_qbusiness.types.delete_conversation_request
     import capo_qbusiness.types.delete_conversation_response
+    import capo_qbusiness.types.delete_data_accessor_request
+    import capo_qbusiness.types.delete_data_accessor_response
+    import capo_qbusiness.types.delete_data_source_request
+    import capo_qbusiness.types.delete_data_source_response
     import capo_qbusiness.types.delete_documents
     import capo_qbusiness.types.delete_group_request
     import capo_qbusiness.types.delete_group_response
+    import capo_qbusiness.types.delete_index_request
+    import capo_qbusiness.types.delete_index_response
+    import capo_qbusiness.types.delete_plugin_request
+    import capo_qbusiness.types.delete_plugin_response
+    import capo_qbusiness.types.delete_retriever_request
+    import capo_qbusiness.types.delete_retriever_response
     import capo_qbusiness.types.delete_user_request
     import capo_qbusiness.types.delete_user_response
+    import capo_qbusiness.types.delete_web_experience_request
+    import capo_qbusiness.types.delete_web_experience_response
+    import capo_qbusiness.types.description
     import capo_qbusiness.types.disassociate_permission_request
     import capo_qbusiness.types.disassociate_permission_response
     import capo_qbusiness.types.display_name
+    import capo_qbusiness.types.document_attribute_configurations
     import capo_qbusiness.types.document_details
+    import capo_qbusiness.types.document_enrichment_configuration
     import capo_qbusiness.types.document_id
     import capo_qbusiness.types.documents
+    import capo_qbusiness.types.encryption_configuration
     import capo_qbusiness.types.execution_id
+    import capo_qbusiness.types.get_application_request
+    import capo_qbusiness.types.get_application_response
     import capo_qbusiness.types.get_chat_controls_configuration_request
     import capo_qbusiness.types.get_chat_controls_configuration_response
     import capo_qbusiness.types.get_chat_response_configuration_request
     import capo_qbusiness.types.get_chat_response_configuration_response
+    import capo_qbusiness.types.get_data_accessor_request
+    import capo_qbusiness.types.get_data_accessor_response
+    import capo_qbusiness.types.get_data_source_request
+    import capo_qbusiness.types.get_data_source_response
     import capo_qbusiness.types.get_document_content_request
     import capo_qbusiness.types.get_document_content_response
     import capo_qbusiness.types.get_group_request
     import capo_qbusiness.types.get_group_response
+    import capo_qbusiness.types.get_index_request
+    import capo_qbusiness.types.get_index_response
     import capo_qbusiness.types.get_media_request
     import capo_qbusiness.types.get_media_response
+    import capo_qbusiness.types.get_plugin_request
+    import capo_qbusiness.types.get_plugin_response
     import capo_qbusiness.types.get_policy_request
     import capo_qbusiness.types.get_policy_response
+    import capo_qbusiness.types.get_retriever_request
+    import capo_qbusiness.types.get_retriever_response
     import capo_qbusiness.types.get_user_request
     import capo_qbusiness.types.get_user_response
+    import capo_qbusiness.types.get_web_experience_request
+    import capo_qbusiness.types.get_web_experience_response
     import capo_qbusiness.types.group_members
     import capo_qbusiness.types.group_name
     import capo_qbusiness.types.group_summary
     import capo_qbusiness.types.hallucination_reduction_configuration
+    import capo_qbusiness.types.iam_identity_provider_arn
+    import capo_qbusiness.types.identity_provider_configuration
+    import capo_qbusiness.types.identity_type
+    import capo_qbusiness.types.index
+    import capo_qbusiness.types.index_capacity_configuration
     import capo_qbusiness.types.index_id
+    import capo_qbusiness.types.index_name
+    import capo_qbusiness.types.index_type
+    import capo_qbusiness.types.instance_arn
     import capo_qbusiness.types.integer
+    import capo_qbusiness.types.list_applications_request
+    import capo_qbusiness.types.list_applications_response
     import capo_qbusiness.types.list_attachments_request
     import capo_qbusiness.types.list_attachments_response
     import capo_qbusiness.types.list_chat_response_configurations_request
     import capo_qbusiness.types.list_chat_response_configurations_response
     import capo_qbusiness.types.list_conversations_request
     import capo_qbusiness.types.list_conversations_response
+    import capo_qbusiness.types.list_data_accessors_request
+    import capo_qbusiness.types.list_data_accessors_response
     import capo_qbusiness.types.list_data_source_sync_jobs_request
     import capo_qbusiness.types.list_data_source_sync_jobs_response
+    import capo_qbusiness.types.list_data_sources_request
+    import capo_qbusiness.types.list_data_sources_response
     import capo_qbusiness.types.list_documents_request
     import capo_qbusiness.types.list_documents_response
     import capo_qbusiness.types.list_groups_request
     import capo_qbusiness.types.list_groups_response
+    import capo_qbusiness.types.list_indices_request
+    import capo_qbusiness.types.list_indices_response
     import capo_qbusiness.types.list_messages_request
     import capo_qbusiness.types.list_messages_response
     import capo_qbusiness.types.list_plugin_actions_request
@@ -141,43 +220,70 @@ if TYPE_CHECKING:
     import capo_qbusiness.types.list_plugin_type_actions_response
     import capo_qbusiness.types.list_plugin_type_metadata_request
     import capo_qbusiness.types.list_plugin_type_metadata_response
+    import capo_qbusiness.types.list_plugins_request
+    import capo_qbusiness.types.list_plugins_response
+    import capo_qbusiness.types.list_retrievers_request
+    import capo_qbusiness.types.list_retrievers_response
     import capo_qbusiness.types.list_subscriptions_request
     import capo_qbusiness.types.list_subscriptions_response
     import capo_qbusiness.types.list_tags_for_resource_request
     import capo_qbusiness.types.list_tags_for_resource_response
+    import capo_qbusiness.types.list_web_experiences_request
+    import capo_qbusiness.types.list_web_experiences_response
     import capo_qbusiness.types.max_results
     import capo_qbusiness.types.max_results_integer_for_get_topic_configurations
+    import capo_qbusiness.types.max_results_integer_for_list_applications
     import capo_qbusiness.types.max_results_integer_for_list_attachments
     import capo_qbusiness.types.max_results_integer_for_list_conversations
+    import capo_qbusiness.types.max_results_integer_for_list_data_accessors
+    import capo_qbusiness.types.max_results_integer_for_list_data_sources
     import capo_qbusiness.types.max_results_integer_for_list_data_sources_sync_jobs
     import capo_qbusiness.types.max_results_integer_for_list_documents
     import capo_qbusiness.types.max_results_integer_for_list_groups_request
+    import capo_qbusiness.types.max_results_integer_for_list_indices
     import capo_qbusiness.types.max_results_integer_for_list_messages
     import capo_qbusiness.types.max_results_integer_for_list_plugin_actions
     import capo_qbusiness.types.max_results_integer_for_list_plugin_type_actions
     import capo_qbusiness.types.max_results_integer_for_list_plugin_type_metadata
+    import capo_qbusiness.types.max_results_integer_for_list_plugins
+    import capo_qbusiness.types.max_results_integer_for_list_retrievers_request
     import capo_qbusiness.types.max_results_integer_for_list_subscriptions
+    import capo_qbusiness.types.max_results_integer_for_list_web_experiences_request
+    import capo_qbusiness.types.media_extraction_configuration
     import capo_qbusiness.types.media_id
     import capo_qbusiness.types.membership_type
     import capo_qbusiness.types.message
     import capo_qbusiness.types.message_id
     import capo_qbusiness.types.message_usefulness_feedback
     import capo_qbusiness.types.next_token
+    import capo_qbusiness.types.next_token1500
     import capo_qbusiness.types.orchestration_configuration
     import capo_qbusiness.types.output_format
     import capo_qbusiness.types.permission_conditions
+    import capo_qbusiness.types.personalization_configuration
+    import capo_qbusiness.types.plugin
+    import capo_qbusiness.types.plugin_auth_configuration
     import capo_qbusiness.types.plugin_id
+    import capo_qbusiness.types.plugin_name
+    import capo_qbusiness.types.plugin_state
     import capo_qbusiness.types.plugin_type
     import capo_qbusiness.types.plugin_type_metadata_summary
     import capo_qbusiness.types.principal_role_arn
     import capo_qbusiness.types.put_feedback_request
     import capo_qbusiness.types.put_group_request
     import capo_qbusiness.types.put_group_response
+    import capo_qbusiness.types.q_apps_configuration
     import capo_qbusiness.types.q_iam_actions
     import capo_qbusiness.types.query_text
+    import capo_qbusiness.types.quick_sight_configuration
     import capo_qbusiness.types.relevant_content
     import capo_qbusiness.types.response_configurations
     import capo_qbusiness.types.response_scope
+    import capo_qbusiness.types.retriever
+    import capo_qbusiness.types.retriever_configuration
+    import capo_qbusiness.types.retriever_id
+    import capo_qbusiness.types.retriever_name
+    import capo_qbusiness.types.retriever_type
     import capo_qbusiness.types.role_arn
     import capo_qbusiness.types.search_relevant_content_request
     import capo_qbusiness.types.search_relevant_content_response
@@ -192,6 +298,7 @@ if TYPE_CHECKING:
     import capo_qbusiness.types.subscription_id
     import capo_qbusiness.types.subscription_principal
     import capo_qbusiness.types.subscription_type
+    import capo_qbusiness.types.sync_schedule
     import capo_qbusiness.types.system_message_id
     import capo_qbusiness.types.tag_keys
     import capo_qbusiness.types.tag_resource_request
@@ -202,19 +309,41 @@ if TYPE_CHECKING:
     import capo_qbusiness.types.topic_configurations
     import capo_qbusiness.types.untag_resource_request
     import capo_qbusiness.types.untag_resource_response
+    import capo_qbusiness.types.update_application_request
+    import capo_qbusiness.types.update_application_response
     import capo_qbusiness.types.update_chat_controls_configuration_request
     import capo_qbusiness.types.update_chat_controls_configuration_response
     import capo_qbusiness.types.update_chat_response_configuration_request
     import capo_qbusiness.types.update_chat_response_configuration_response
+    import capo_qbusiness.types.update_data_accessor_request
+    import capo_qbusiness.types.update_data_accessor_response
+    import capo_qbusiness.types.update_data_source_request
+    import capo_qbusiness.types.update_data_source_response
+    import capo_qbusiness.types.update_index_request
+    import capo_qbusiness.types.update_index_response
+    import capo_qbusiness.types.update_plugin_request
+    import capo_qbusiness.types.update_plugin_response
+    import capo_qbusiness.types.update_retriever_request
+    import capo_qbusiness.types.update_retriever_response
     import capo_qbusiness.types.update_subscription_request
     import capo_qbusiness.types.update_subscription_response
     import capo_qbusiness.types.update_user_request
     import capo_qbusiness.types.update_user_response
+    import capo_qbusiness.types.update_web_experience_request
+    import capo_qbusiness.types.update_web_experience_response
+    import capo_qbusiness.types.url
     import capo_qbusiness.types.user_aliases
     import capo_qbusiness.types.user_groups
     import capo_qbusiness.types.user_id
     import capo_qbusiness.types.user_message
+    import capo_qbusiness.types.web_experience
+    import capo_qbusiness.types.web_experience_auth_configuration
     import capo_qbusiness.types.web_experience_id
+    import capo_qbusiness.types.web_experience_origins
+    import capo_qbusiness.types.web_experience_sample_prompts_control_mode
+    import capo_qbusiness.types.web_experience_subtitle
+    import capo_qbusiness.types.web_experience_title
+    import capo_qbusiness.types.web_experience_welcome_message
 
 
 class AsyncQBusinessClientConfig(TypedDict, total=False, closed=True):
@@ -3651,6 +3780,2539 @@ class AsyncQBusinessClient:
         )
         await response.response.aclose()
         return response.output
+
+    async def create_application(
+        self,
+        display_name: "capo_qbusiness.types.application_name.ApplicationName",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        role_arn: Optional["capo_qbusiness.types.role_arn.RoleArn"] = None,
+        identity_type: Optional[
+            "capo_qbusiness.types.identity_type.IdentityType"
+        ] = None,
+        iam_identity_provider_arn: Optional[
+            "capo_qbusiness.types.iam_identity_provider_arn.IAMIdentityProviderArn"
+        ] = None,
+        identity_center_instance_arn: Optional[
+            "capo_qbusiness.types.instance_arn.InstanceArn"
+        ] = None,
+        client_ids_for_oidc: Optional[
+            "capo_qbusiness.types.client_ids_for_oidc.ClientIdsForOIDC"
+        ] = None,
+        description: Optional["capo_qbusiness.types.description.Description"] = None,
+        encryption_configuration: Optional[
+            "capo_qbusiness.types.encryption_configuration.EncryptionConfiguration"
+        ] = None,
+        tags: Optional["capo_qbusiness.types.tags.Tags"] = None,
+        client_token: Optional["capo_qbusiness.types.client_token.ClientToken"] = None,
+        attachments_configuration: Optional[
+            "capo_qbusiness.types.attachments_configuration.AttachmentsConfiguration"
+        ] = None,
+        q_apps_configuration: Optional[
+            "capo_qbusiness.types.q_apps_configuration.QAppsConfiguration"
+        ] = None,
+        personalization_configuration: Optional[
+            "capo_qbusiness.types.personalization_configuration.PersonalizationConfiguration"
+        ] = None,
+        quick_sight_configuration: Optional[
+            "capo_qbusiness.types.quick_sight_configuration.QuickSightConfiguration"
+        ] = None,
+    ) -> "capo_qbusiness.types.create_application_response.CreateApplicationResponse":
+        r"""<p>Creates an Amazon Q Business application.</p> <note> <p>There are new tiers for Amazon Q Business. Not all features in Amazon Q Business Pro are also available in Amazon Q Business Lite. For information on what's included in Amazon Q Business Lite and what's included in Amazon Q Business Pro, see <a href=\"https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/tiers.html#user-sub-tiers\">Amazon Q Business tiers</a>. You must use the Amazon Q Business console to assign subscription tiers to users. </p> <p>An Amazon Q Apps service linked role will be created if it's absent in the Amazon Web Services account when <code>QAppsConfiguration</code> is enabled in the request. For more information, see <a href=\"https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/using-service-linked-roles-qapps.html\"> Using service-linked roles for Q Apps</a>.</p> <p>When you create an application, Amazon Q Business may securely transmit data for processing from your selected Amazon Web Services region, but within your geography. For more information, see <a href=\"https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/cross-region-inference.html\">Cross region inference in Amazon Q Business</a>.</p> </note>
+
+        Args:
+            display_name: <p>A name for the Amazon Q Business application. </p>
+            role_arn: <p> The Amazon Resource Name (ARN) of an IAM role with permissions to access your Amazon CloudWatch logs and metrics. If this property is not specified, Amazon Q Business will create a <a href=\"https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/using-service-linked-roles.html#slr-permissions\">service linked role (SLR)</a> and use it as the application's role.</p>
+            identity_type: <p>The authentication type being used by a Amazon Q Business application.</p>
+            iam_identity_provider_arn: <p>The Amazon Resource Name (ARN) of an identity provider being used by an Amazon Q Business application.</p>
+            identity_center_instance_arn: <p> The Amazon Resource Name (ARN) of the IAM Identity Center instance you are either creating for—or connecting to—your Amazon Q Business application.</p>
+            client_ids_for_oidc: <p>The OIDC client ID for a Amazon Q Business application.</p>
+            description: <p>A description for the Amazon Q Business application. </p>
+            encryption_configuration: <p>The identifier of the KMS key that is used to encrypt your data. Amazon Q Business doesn't support asymmetric keys.</p>
+            tags: <p>A list of key-value pairs that identify or categorize your Amazon Q Business application. You can also use tags to help control access to the application. Tag keys and values can consist of Unicode letters, digits, white space, and any of the following symbols: _ . : / = + - @.</p>
+            client_token: <p>A token that you provide to identify the request to create your Amazon Q Business application.</p>
+            attachments_configuration: <p>An option to allow end users to upload files directly during chat.</p>
+            q_apps_configuration: <p>An option to allow end users to create and use Amazon Q Apps in the web experience.</p>
+            personalization_configuration: <p>Configuration information about chat response personalization. For more information, see <a href=\"https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/personalizing-chat-responses.html\">Personalizing chat responses</a> </p>
+            quick_sight_configuration: <p>The Amazon Quick Suite configuration for an Amazon Q Business application that uses Quick Suite for authentication. This configuration is required if your application uses Quick Suite as the identity provider. For more information, see <a href=\"https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/create-quicksight-integrated-application.html\">Creating an Amazon Quick Suite integrated application</a>.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.conflict_exception.ConflictException: <p>You are trying to perform an action that conflicts with the current status of your resource. Fix any inconsistencies with your resources and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded the set limits for your Amazon Q Business service. </p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.create_application_request.CreateApplicationRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.create_application_response.CreateApplicationResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.create_application
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.create_application.async_create_application(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.create_application_request.CreateApplicationRequest = {
+            "display_name": display_name
+        }
+        if role_arn is not None:
+            input_["role_arn"] = role_arn
+        if identity_type is not None:
+            input_["identity_type"] = identity_type
+        if iam_identity_provider_arn is not None:
+            input_["iam_identity_provider_arn"] = iam_identity_provider_arn
+        if identity_center_instance_arn is not None:
+            input_["identity_center_instance_arn"] = identity_center_instance_arn
+        if client_ids_for_oidc is not None:
+            input_["client_ids_for_oidc"] = client_ids_for_oidc
+        if description is not None:
+            input_["description"] = description
+        if encryption_configuration is not None:
+            input_["encryption_configuration"] = encryption_configuration
+        if tags is not None:
+            input_["tags"] = tags
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if attachments_configuration is not None:
+            input_["attachments_configuration"] = attachments_configuration
+        if q_apps_configuration is not None:
+            input_["q_apps_configuration"] = q_apps_configuration
+        if personalization_configuration is not None:
+            input_["personalization_configuration"] = personalization_configuration
+        if quick_sight_configuration is not None:
+            input_["quick_sight_configuration"] = quick_sight_configuration
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_application(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+    ) -> "capo_qbusiness.types.get_application_response.GetApplicationResponse":
+        """<p>Gets information about an existing Amazon Q Business application.</p>
+
+        Args:
+            application_id: <p>The identifier of the Amazon Q Business application.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.get_application_request.GetApplicationRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.get_application_response.GetApplicationResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.get_application
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.get_application.async_get_application(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.get_application_request.GetApplicationRequest = {
+            "application_id": application_id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_application(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        identity_center_instance_arn: Optional[
+            "capo_qbusiness.types.instance_arn.InstanceArn"
+        ] = None,
+        display_name: Optional[
+            "capo_qbusiness.types.application_name.ApplicationName"
+        ] = None,
+        description: Optional["capo_qbusiness.types.description.Description"] = None,
+        role_arn: Optional["capo_qbusiness.types.role_arn.RoleArn"] = None,
+        attachments_configuration: Optional[
+            "capo_qbusiness.types.attachments_configuration.AttachmentsConfiguration"
+        ] = None,
+        q_apps_configuration: Optional[
+            "capo_qbusiness.types.q_apps_configuration.QAppsConfiguration"
+        ] = None,
+        personalization_configuration: Optional[
+            "capo_qbusiness.types.personalization_configuration.PersonalizationConfiguration"
+        ] = None,
+        auto_subscription_configuration: Optional[
+            "capo_qbusiness.types.auto_subscription_configuration.AutoSubscriptionConfiguration"
+        ] = None,
+    ) -> "capo_qbusiness.types.update_application_response.UpdateApplicationResponse":
+        r"""<p>Updates an existing Amazon Q Business application.</p> <note> <p>Amazon Q Business applications may securely transmit data for processing across Amazon Web Services Regions within your geography. For more information, see <a href=\"https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/cross-region-inference.html\">Cross region inference in Amazon Q Business</a>.</p> </note> <note> <p>An Amazon Q Apps service-linked role will be created if it's absent in the Amazon Web Services account when <code>QAppsConfiguration</code> is enabled in the request. For more information, see <a href=\"https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/using-service-linked-roles-qapps.html\">Using service-linked roles for Q Apps</a>. </p> </note>
+
+        Args:
+            application_id: <p>The identifier of the Amazon Q Business application.</p>
+            identity_center_instance_arn: <p> The Amazon Resource Name (ARN) of the IAM Identity Center instance you are either creating for—or connecting to—your Amazon Q Business application.</p>
+            display_name: <p>A name for the Amazon Q Business application.</p>
+            description: <p>A description for the Amazon Q Business application.</p>
+            role_arn: <p>An Amazon Web Services Identity and Access Management (IAM) role that gives Amazon Q Business permission to access Amazon CloudWatch logs and metrics.</p>
+            attachments_configuration: <p>An option to allow end users to upload files directly during chat.</p>
+            q_apps_configuration: <p>An option to allow end users to create and use Amazon Q Apps in the web experience.</p>
+            personalization_configuration: <p>Configuration information about chat response personalization. For more information, see <a href=\"https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/personalizing-chat-responses.html\">Personalizing chat responses</a>.</p>
+            auto_subscription_configuration: <p>An option to enable updating the default subscription type assigned to an Amazon Q Business application using IAM identity federation for user management.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.conflict_exception.ConflictException: <p>You are trying to perform an action that conflicts with the current status of your resource. Fix any inconsistencies with your resources and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.update_application_request.UpdateApplicationRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.update_application_response.UpdateApplicationResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.update_application
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.update_application.async_update_application(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.update_application_request.UpdateApplicationRequest = {
+            "application_id": application_id
+        }
+        if identity_center_instance_arn is not None:
+            input_["identity_center_instance_arn"] = identity_center_instance_arn
+        if display_name is not None:
+            input_["display_name"] = display_name
+        if description is not None:
+            input_["description"] = description
+        if role_arn is not None:
+            input_["role_arn"] = role_arn
+        if attachments_configuration is not None:
+            input_["attachments_configuration"] = attachments_configuration
+        if q_apps_configuration is not None:
+            input_["q_apps_configuration"] = q_apps_configuration
+        if personalization_configuration is not None:
+            input_["personalization_configuration"] = personalization_configuration
+        if auto_subscription_configuration is not None:
+            input_["auto_subscription_configuration"] = auto_subscription_configuration
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_application(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+    ) -> "capo_qbusiness.types.delete_application_response.DeleteApplicationResponse":
+        """<p>Deletes an Amazon Q Business application.</p>
+
+        Args:
+            application_id: <p>The identifier of the Amazon Q Business application.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.conflict_exception.ConflictException: <p>You are trying to perform an action that conflicts with the current status of your resource. Fix any inconsistencies with your resources and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.delete_application_request.DeleteApplicationRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.delete_application_response.DeleteApplicationResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.delete_application
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.delete_application.async_delete_application(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.delete_application_request.DeleteApplicationRequest = {
+            "application_id": application_id
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_applications(
+        self,
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        next_token: Optional["capo_qbusiness.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_qbusiness.types.max_results_integer_for_list_applications.MaxResultsIntegerForListApplications"
+        ] = None,
+    ) -> "capo_qbusiness.types.list_applications_response.ListApplicationsResponse":
+        r"""<p>Lists Amazon Q Business applications.</p> <note> <p>Amazon Q Business applications may securely transmit data for processing across Amazon Web Services Regions within your geography. For more information, see <a href=\"https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/cross-region-inference.html\">Cross region inference in Amazon Q Business</a>.</p> </note>
+
+        Args:
+            next_token: <p>If the <code>maxResults</code> response was incomplete because there is more data to retrieve, Amazon Q Business returns a pagination token in the response. You can use this pagination token to retrieve the next set of Amazon Q Business applications.</p>
+            max_results: <p>The maximum number of Amazon Q Business applications to return.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.list_applications_request.ListApplicationsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.list_applications_response.ListApplicationsResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.list_applications
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.list_applications.async_list_applications(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.list_applications_request.ListApplicationsRequest = {}
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_applications(
+        self,
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        next_token: Optional["capo_qbusiness.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_qbusiness.types.max_results_integer_for_list_applications.MaxResultsIntegerForListApplications"
+        ] = None,
+    ) -> "AsyncIterator[capo_qbusiness.types.application.Application]":
+        _token = next_token
+        while True:
+            _response = await self.list_applications(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("applications",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def create_data_accessor(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        principal: "capo_qbusiness.types.principal_role_arn.PrincipalRoleArn",
+        action_configurations: "capo_qbusiness.types.action_configuration_list.ActionConfigurationList",
+        display_name: "capo_qbusiness.types.data_accessor_name.DataAccessorName",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        client_token: Optional["capo_qbusiness.types.client_token.ClientToken"] = None,
+        authentication_detail: Optional[
+            "capo_qbusiness.types.data_accessor_authentication_detail.DataAccessorAuthenticationDetail"
+        ] = None,
+        tags: Optional["capo_qbusiness.types.tags.Tags"] = None,
+    ) -> (
+        "capo_qbusiness.types.create_data_accessor_response.CreateDataAccessorResponse"
+    ):
+        """<p>Creates a new data accessor for an ISV to access data from a Amazon Q Business application. The data accessor is an entity that represents the ISV's access to the Amazon Q Business application's data. It includes the IAM role ARN for the ISV, a friendly name, and a set of action configurations that define the specific actions the ISV is allowed to perform and any associated data filters. When the data accessor is created, an IAM Identity Center application is also created to manage the ISV's identity and authentication for accessing the Amazon Q Business application.</p>
+
+        Args:
+            application_id: <p>The unique identifier of the Amazon Q Business application.</p>
+            principal: <p>The Amazon Resource Name (ARN) of the IAM role for the ISV that will be accessing the data.</p>
+            action_configurations: <p>A list of action configurations specifying the allowed actions and any associated filters.</p>
+            client_token: <p>A unique, case-sensitive identifier you provide to ensure idempotency of the request.</p>
+            display_name: <p>A friendly name for the data accessor.</p>
+            authentication_detail: <p>The authentication configuration details for the data accessor. This specifies how the ISV will authenticate when accessing data through this data accessor.</p>
+            tags: <p>The tags to associate with the data accessor.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.conflict_exception.ConflictException: <p>You are trying to perform an action that conflicts with the current status of your resource. Fix any inconsistencies with your resources and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded the set limits for your Amazon Q Business service. </p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.create_data_accessor_request.CreateDataAccessorRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.create_data_accessor_response.CreateDataAccessorResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.create_data_accessor
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.create_data_accessor.async_create_data_accessor(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.create_data_accessor_request.CreateDataAccessorRequest = {
+            "application_id": application_id,
+            "principal": principal,
+            "action_configurations": action_configurations,
+            "display_name": display_name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if authentication_detail is not None:
+            input_["authentication_detail"] = authentication_detail
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_data_accessor(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        data_accessor_id: "capo_qbusiness.types.data_accessor_id.DataAccessorId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+    ) -> "capo_qbusiness.types.get_data_accessor_response.GetDataAccessorResponse":
+        """<p>Retrieves information about a specified data accessor. This operation returns details about the data accessor, including its display name, unique identifier, Amazon Resource Name (ARN), the associated Amazon Q Business application and IAM Identity Center application, the IAM role for the ISV, the action configurations, and the timestamps for when the data accessor was created and last updated.</p>
+
+        Args:
+            application_id: <p>The unique identifier of the Amazon Q Business application.</p>
+            data_accessor_id: <p>The unique identifier of the data accessor to retrieve.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.get_data_accessor_request.GetDataAccessorRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.get_data_accessor_response.GetDataAccessorResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.get_data_accessor
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.get_data_accessor.async_get_data_accessor(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.get_data_accessor_request.GetDataAccessorRequest = {
+            "application_id": application_id,
+            "data_accessor_id": data_accessor_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_data_accessor(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        data_accessor_id: "capo_qbusiness.types.data_accessor_id.DataAccessorId",
+        action_configurations: "capo_qbusiness.types.action_configuration_list.ActionConfigurationList",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        authentication_detail: Optional[
+            "capo_qbusiness.types.data_accessor_authentication_detail.DataAccessorAuthenticationDetail"
+        ] = None,
+        display_name: Optional[
+            "capo_qbusiness.types.data_accessor_name.DataAccessorName"
+        ] = None,
+    ) -> (
+        "capo_qbusiness.types.update_data_accessor_response.UpdateDataAccessorResponse"
+    ):
+        """<p>Updates an existing data accessor. This operation allows modifying the action configurations (the allowed actions and associated filters) and the display name of the data accessor. It does not allow changing the IAM role associated with the data accessor or other core properties of the data accessor.</p>
+
+        Args:
+            application_id: <p>The unique identifier of the Amazon Q Business application.</p>
+            data_accessor_id: <p>The unique identifier of the data accessor to update.</p>
+            action_configurations: <p>The updated list of action configurations specifying the allowed actions and any associated filters.</p>
+            authentication_detail: <p>The updated authentication configuration details for the data accessor. This specifies how the ISV will authenticate when accessing data through this data accessor.</p>
+            display_name: <p>The updated friendly name for the data accessor.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.conflict_exception.ConflictException: <p>You are trying to perform an action that conflicts with the current status of your resource. Fix any inconsistencies with your resources and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.update_data_accessor_request.UpdateDataAccessorRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.update_data_accessor_response.UpdateDataAccessorResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.update_data_accessor
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.update_data_accessor.async_update_data_accessor(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.update_data_accessor_request.UpdateDataAccessorRequest = {
+            "application_id": application_id,
+            "data_accessor_id": data_accessor_id,
+            "action_configurations": action_configurations,
+        }
+        if authentication_detail is not None:
+            input_["authentication_detail"] = authentication_detail
+        if display_name is not None:
+            input_["display_name"] = display_name
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_data_accessor(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        data_accessor_id: "capo_qbusiness.types.data_accessor_id.DataAccessorId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+    ) -> (
+        "capo_qbusiness.types.delete_data_accessor_response.DeleteDataAccessorResponse"
+    ):
+        """<p>Deletes a specified data accessor. This operation permanently removes the data accessor and its associated IAM Identity Center application. Any access granted to the ISV through this data accessor will be revoked.</p>
+
+        Args:
+            application_id: <p>The unique identifier of the Amazon Q Business application.</p>
+            data_accessor_id: <p>The unique identifier of the data accessor to delete.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.conflict_exception.ConflictException: <p>You are trying to perform an action that conflicts with the current status of your resource. Fix any inconsistencies with your resources and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.delete_data_accessor_request.DeleteDataAccessorRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.delete_data_accessor_response.DeleteDataAccessorResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.delete_data_accessor
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.delete_data_accessor.async_delete_data_accessor(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.delete_data_accessor_request.DeleteDataAccessorRequest = {
+            "application_id": application_id,
+            "data_accessor_id": data_accessor_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_data_accessors(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        next_token: Optional[
+            "capo_qbusiness.types.next_token1500.NextToken1500"
+        ] = None,
+        max_results: Optional[
+            "capo_qbusiness.types.max_results_integer_for_list_data_accessors.MaxResultsIntegerForListDataAccessors"
+        ] = None,
+    ) -> "capo_qbusiness.types.list_data_accessors_response.ListDataAccessorsResponse":
+        """<p>Lists the data accessors for a Amazon Q Business application. This operation returns a paginated list of data accessor summaries, including the friendly name, unique identifier, ARN, associated IAM role, and creation/update timestamps for each data accessor.</p>
+
+        Args:
+            application_id: <p>The unique identifier of the Amazon Q Business application.</p>
+            next_token: <p>The token for the next set of results. (You received this token from a previous call.)</p>
+            max_results: <p>The maximum number of results to return in a single call.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.list_data_accessors_request.ListDataAccessorsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.list_data_accessors_response.ListDataAccessorsResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.list_data_accessors
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.list_data_accessors.async_list_data_accessors(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.list_data_accessors_request.ListDataAccessorsRequest = {
+            "application_id": application_id
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_data_accessors(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        next_token: Optional[
+            "capo_qbusiness.types.next_token1500.NextToken1500"
+        ] = None,
+        max_results: Optional[
+            "capo_qbusiness.types.max_results_integer_for_list_data_accessors.MaxResultsIntegerForListDataAccessors"
+        ] = None,
+    ) -> "AsyncIterator[capo_qbusiness.types.data_accessor.DataAccessor]":
+        _token = next_token
+        while True:
+            _response = await self.list_data_accessors(
+                application_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("data_accessors",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def create_index(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        display_name: "capo_qbusiness.types.index_name.IndexName",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        description: Optional["capo_qbusiness.types.description.Description"] = None,
+        type: Optional["capo_qbusiness.types.index_type.IndexType"] = None,
+        tags: Optional["capo_qbusiness.types.tags.Tags"] = None,
+        capacity_configuration: Optional[
+            "capo_qbusiness.types.index_capacity_configuration.IndexCapacityConfiguration"
+        ] = None,
+        client_token: Optional["capo_qbusiness.types.client_token.ClientToken"] = None,
+    ) -> "capo_qbusiness.types.create_index_response.CreateIndexResponse":
+        r"""<p>Creates an Amazon Q Business index.</p> <p>To determine if index creation has completed, check the <code>Status</code> field returned from a call to <code>DescribeIndex</code>. The <code>Status</code> field is set to <code>ACTIVE</code> when the index is ready to use.</p> <p>Once the index is active, you can index your documents using the <a href=\"https://docs.aws.amazon.com/amazonq/latest/api-reference/API_BatchPutDocument.html\"> <code>BatchPutDocument</code> </a> API or the <a href=\"https://docs.aws.amazon.com/amazonq/latest/api-reference/API_CreateDataSource.html\"> <code>CreateDataSource</code> </a> API.</p>
+
+        Args:
+            application_id: <p>The identifier of the Amazon Q Business application using the index.</p>
+            display_name: <p>A name for the Amazon Q Business index.</p>
+            description: <p>A description for the Amazon Q Business index.</p>
+            type: <p>The index type that's suitable for your needs. For more information on what's included in each type of index, see <a href=\"https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/tiers.html#index-tiers\">Amazon Q Business tiers</a>.</p>
+            tags: <p>A list of key-value pairs that identify or categorize the index. You can also use tags to help control access to the index. Tag keys and values can consist of Unicode letters, digits, white space, and any of the following symbols: _ . : / = + - @.</p>
+            capacity_configuration: <p>The capacity units you want to provision for your index. You can add and remove capacity to fit your usage needs.</p>
+            client_token: <p>A token that you provide to identify the request to create an index. Multiple calls to the <code>CreateIndex</code> API with the same client token will create only one index.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.conflict_exception.ConflictException: <p>You are trying to perform an action that conflicts with the current status of your resource. Fix any inconsistencies with your resources and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded the set limits for your Amazon Q Business service. </p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.create_index_request.CreateIndexRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.create_index_response.CreateIndexResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.create_index
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.create_index.async_create_index(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.create_index_request.CreateIndexRequest = {
+            "application_id": application_id,
+            "display_name": display_name,
+        }
+        if description is not None:
+            input_["description"] = description
+        if type is not None:
+            input_["type"] = type
+        if tags is not None:
+            input_["tags"] = tags
+        if capacity_configuration is not None:
+            input_["capacity_configuration"] = capacity_configuration
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_index(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        index_id: "capo_qbusiness.types.index_id.IndexId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+    ) -> "capo_qbusiness.types.get_index_response.GetIndexResponse":
+        """<p>Gets information about an existing Amazon Q Business index.</p>
+
+        Args:
+            application_id: <p>The identifier of the Amazon Q Business application connected to the index.</p>
+            index_id: <p>The identifier of the Amazon Q Business index you want information on.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.get_index_request.GetIndexRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.get_index_response.GetIndexResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.get_index
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.get_index.async_get_index(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.get_index_request.GetIndexRequest = {
+            "application_id": application_id,
+            "index_id": index_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_index(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        index_id: "capo_qbusiness.types.index_id.IndexId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        display_name: Optional[
+            "capo_qbusiness.types.application_name.ApplicationName"
+        ] = None,
+        description: Optional["capo_qbusiness.types.description.Description"] = None,
+        capacity_configuration: Optional[
+            "capo_qbusiness.types.index_capacity_configuration.IndexCapacityConfiguration"
+        ] = None,
+        document_attribute_configurations: Optional[
+            "capo_qbusiness.types.document_attribute_configurations.DocumentAttributeConfigurations"
+        ] = None,
+    ) -> "capo_qbusiness.types.update_index_response.UpdateIndexResponse":
+        r"""<p>Updates an Amazon Q Business index.</p>
+
+        Args:
+            application_id: <p>The identifier of the Amazon Q Business application connected to the index.</p>
+            index_id: <p>The identifier of the Amazon Q Business index.</p>
+            display_name: <p>The name of the Amazon Q Business index.</p>
+            description: <p>The description of the Amazon Q Business index.</p>
+            capacity_configuration: <p>The storage capacity units you want to provision for your Amazon Q Business index. You can add and remove capacity to fit your usage needs.</p>
+            document_attribute_configurations: <p>Configuration information for document metadata or fields. Document metadata are fields or attributes associated with your documents. For example, the company department name associated with each document. For more information, see <a href=\"https://docs.aws.amazon.com/amazonq/latest/business-use-dg/doc-attributes-types.html#doc-attributes\">Understanding document attributes</a>.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.conflict_exception.ConflictException: <p>You are trying to perform an action that conflicts with the current status of your resource. Fix any inconsistencies with your resources and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded the set limits for your Amazon Q Business service. </p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.update_index_request.UpdateIndexRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.update_index_response.UpdateIndexResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.update_index
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.update_index.async_update_index(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.update_index_request.UpdateIndexRequest = {
+            "application_id": application_id,
+            "index_id": index_id,
+        }
+        if display_name is not None:
+            input_["display_name"] = display_name
+        if description is not None:
+            input_["description"] = description
+        if capacity_configuration is not None:
+            input_["capacity_configuration"] = capacity_configuration
+        if document_attribute_configurations is not None:
+            input_["document_attribute_configurations"] = (
+                document_attribute_configurations
+            )
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_index(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        index_id: "capo_qbusiness.types.index_id.IndexId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+    ) -> "capo_qbusiness.types.delete_index_response.DeleteIndexResponse":
+        """<p>Deletes an Amazon Q Business index.</p>
+
+        Args:
+            application_id: <p>The identifier of the Amazon Q Business application the Amazon Q Business index is linked to.</p>
+            index_id: <p>The identifier of the Amazon Q Business index.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.conflict_exception.ConflictException: <p>You are trying to perform an action that conflicts with the current status of your resource. Fix any inconsistencies with your resources and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.delete_index_request.DeleteIndexRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.delete_index_response.DeleteIndexResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.delete_index
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.delete_index.async_delete_index(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.delete_index_request.DeleteIndexRequest = {
+            "application_id": application_id,
+            "index_id": index_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_indices(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        next_token: Optional["capo_qbusiness.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_qbusiness.types.max_results_integer_for_list_indices.MaxResultsIntegerForListIndices"
+        ] = None,
+    ) -> "capo_qbusiness.types.list_indices_response.ListIndicesResponse":
+        """<p>Lists the Amazon Q Business indices you have created.</p>
+
+        Args:
+            application_id: <p>The identifier of the Amazon Q Business application connected to the index.</p>
+            next_token: <p>If the maxResults response was incomplete because there is more data to retrieve, Amazon Q Business returns a pagination token in the response. You can use this pagination token to retrieve the next set of Amazon Q Business indices.</p>
+            max_results: <p>The maximum number of indices to return.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.list_indices_request.ListIndicesRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.list_indices_response.ListIndicesResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.list_indices
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.list_indices.async_list_indices(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.list_indices_request.ListIndicesRequest = {
+            "application_id": application_id
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_indices(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        next_token: Optional["capo_qbusiness.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_qbusiness.types.max_results_integer_for_list_indices.MaxResultsIntegerForListIndices"
+        ] = None,
+    ) -> "AsyncIterator[capo_qbusiness.types.index.Index]":
+        _token = next_token
+        while True:
+            _response = await self.list_indices(
+                application_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("indices",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def create_data_source(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        index_id: "capo_qbusiness.types.index_id.IndexId",
+        display_name: "capo_qbusiness.types.data_source_name.DataSourceName",
+        configuration: "capo_qbusiness.types.data_source_configuration.DataSourceConfiguration",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        vpc_configuration: Optional[
+            "capo_qbusiness.types.data_source_vpc_configuration.DataSourceVpcConfiguration"
+        ] = None,
+        description: Optional["capo_qbusiness.types.description.Description"] = None,
+        tags: Optional["capo_qbusiness.types.tags.Tags"] = None,
+        sync_schedule: Optional[
+            "capo_qbusiness.types.sync_schedule.SyncSchedule"
+        ] = None,
+        role_arn: Optional["capo_qbusiness.types.role_arn.RoleArn"] = None,
+        client_token: Optional["capo_qbusiness.types.client_token.ClientToken"] = None,
+        document_enrichment_configuration: Optional[
+            "capo_qbusiness.types.document_enrichment_configuration.DocumentEnrichmentConfiguration"
+        ] = None,
+        media_extraction_configuration: Optional[
+            "capo_qbusiness.types.media_extraction_configuration.MediaExtractionConfiguration"
+        ] = None,
+    ) -> "capo_qbusiness.types.create_data_source_response.CreateDataSourceResponse":
+        r"""<p>Creates a data source connector for an Amazon Q Business application.</p> <p> <code>CreateDataSource</code> is a synchronous operation. The operation returns 200 if the data source was successfully created. Otherwise, an exception is raised.</p>
+
+        Args:
+            application_id: <p> The identifier of the Amazon Q Business application the data source will be attached to.</p>
+            index_id: <p>The identifier of the index that you want to use with the data source connector.</p>
+            display_name: <p>A name for the data source connector.</p>
+            configuration: <p>Configuration information to connect your data source repository to Amazon Q Business. Use this parameter to provide a JSON schema with configuration information specific to your data source connector.</p> <p>Each data source has a JSON schema provided by Amazon Q Business that you must use. For example, the Amazon S3 and Web Crawler connectors require the following JSON schemas:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/s3-api.html\">Amazon S3 JSON schema</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/web-crawler-api.html\">Web Crawler JSON schema</a> </p> </li> </ul> <p>You can find configuration templates for your specific data source using the following steps:</p> <ol> <li> <p>Navigate to the <a href=\"https://docs.aws.amazon.com/amazonq/latest/business-use-dg/connectors-list.html\">Supported connectors</a> page in the Amazon Q Business User Guide, and select the data source of your choice.</p> </li> <li> <p>Then, from your specific data source connector page, select <b>Using the API</b>. You will find the JSON schema for your data source, including parameter descriptions, in this section.</p> </li> </ol>
+            vpc_configuration: <p>Configuration information for an Amazon VPC (Virtual Private Cloud) to connect to your data source. For more information, see <a href=\"https://docs.aws.amazon.com/amazonq/latest/business-use-dg/connector-vpc.html\">Using Amazon VPC with Amazon Q Business connectors</a>.</p>
+            description: <p>A description for the data source connector.</p>
+            tags: <p>A list of key-value pairs that identify or categorize the data source connector. You can also use tags to help control access to the data source connector. Tag keys and values can consist of Unicode letters, digits, white space, and any of the following symbols: _ . : / = + - @.</p>
+            sync_schedule: <p>Sets the frequency for Amazon Q Business to check the documents in your data source repository and update your index. If you don't set a schedule, Amazon Q Business won't periodically update the index.</p> <p>Specify a <code>cron-</code> format schedule string or an empty string to indicate that the index is updated on demand. You can't specify the <code>Schedule</code> parameter when the <code>Type</code> parameter is set to <code>CUSTOM</code>. If you do, you receive a <code>ValidationException</code> exception. </p>
+            role_arn: <p>The Amazon Resource Name (ARN) of an IAM role with permission to access the data source and required resources. This field is required for all connector types except custom connectors, where it is optional.</p>
+            client_token: <p>A token you provide to identify a request to create a data source connector. Multiple calls to the <code>CreateDataSource</code> API with the same client token will create only one data source connector. </p>
+            media_extraction_configuration: <p>The configuration for extracting information from media in documents during ingestion.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.conflict_exception.ConflictException: <p>You are trying to perform an action that conflicts with the current status of your resource. Fix any inconsistencies with your resources and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded the set limits for your Amazon Q Business service. </p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.create_data_source_request.CreateDataSourceRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.create_data_source_response.CreateDataSourceResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.create_data_source
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.create_data_source.async_create_data_source(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.create_data_source_request.CreateDataSourceRequest = {
+            "application_id": application_id,
+            "index_id": index_id,
+            "display_name": display_name,
+            "configuration": configuration,
+        }
+        if vpc_configuration is not None:
+            input_["vpc_configuration"] = vpc_configuration
+        if description is not None:
+            input_["description"] = description
+        if tags is not None:
+            input_["tags"] = tags
+        if sync_schedule is not None:
+            input_["sync_schedule"] = sync_schedule
+        if role_arn is not None:
+            input_["role_arn"] = role_arn
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if document_enrichment_configuration is not None:
+            input_["document_enrichment_configuration"] = (
+                document_enrichment_configuration
+            )
+        if media_extraction_configuration is not None:
+            input_["media_extraction_configuration"] = media_extraction_configuration
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_data_source(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        index_id: "capo_qbusiness.types.index_id.IndexId",
+        data_source_id: "capo_qbusiness.types.data_source_id.DataSourceId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+    ) -> "capo_qbusiness.types.get_data_source_response.GetDataSourceResponse":
+        """<p>Gets information about an existing Amazon Q Business data source connector.</p>
+
+        Args:
+            application_id: <p>The identifier of the Amazon Q Business application.</p>
+            index_id: <p>The identfier of the index used with the data source connector.</p>
+            data_source_id: <p>The identifier of the data source connector.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.get_data_source_request.GetDataSourceRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.get_data_source_response.GetDataSourceResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.get_data_source
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.get_data_source.async_get_data_source(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.get_data_source_request.GetDataSourceRequest = {
+            "application_id": application_id,
+            "index_id": index_id,
+            "data_source_id": data_source_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_data_source(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        index_id: "capo_qbusiness.types.index_id.IndexId",
+        data_source_id: "capo_qbusiness.types.data_source_id.DataSourceId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        display_name: Optional[
+            "capo_qbusiness.types.data_source_name.DataSourceName"
+        ] = None,
+        configuration: Optional[
+            "capo_qbusiness.types.data_source_configuration.DataSourceConfiguration"
+        ] = None,
+        vpc_configuration: Optional[
+            "capo_qbusiness.types.data_source_vpc_configuration.DataSourceVpcConfiguration"
+        ] = None,
+        description: Optional["capo_qbusiness.types.description.Description"] = None,
+        sync_schedule: Optional[
+            "capo_qbusiness.types.sync_schedule.SyncSchedule"
+        ] = None,
+        role_arn: Optional["capo_qbusiness.types.role_arn.RoleArn"] = None,
+        document_enrichment_configuration: Optional[
+            "capo_qbusiness.types.document_enrichment_configuration.DocumentEnrichmentConfiguration"
+        ] = None,
+        media_extraction_configuration: Optional[
+            "capo_qbusiness.types.media_extraction_configuration.MediaExtractionConfiguration"
+        ] = None,
+    ) -> "capo_qbusiness.types.update_data_source_response.UpdateDataSourceResponse":
+        """<p>Updates an existing Amazon Q Business data source connector.</p>
+
+        Args:
+            application_id: <p> The identifier of the Amazon Q Business application the data source is attached to.</p>
+            index_id: <p>The identifier of the index attached to the data source connector.</p>
+            data_source_id: <p>The identifier of the data source connector.</p>
+            display_name: <p>A name of the data source connector.</p>
+            description: <p>The description of the data source connector.</p>
+            sync_schedule: <p>The chosen update frequency for your data source.</p>
+            role_arn: <p>The Amazon Resource Name (ARN) of an IAM role with permission to access the data source and required resources.</p>
+            media_extraction_configuration: <p>The configuration for extracting information from media in documents for your data source.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.conflict_exception.ConflictException: <p>You are trying to perform an action that conflicts with the current status of your resource. Fix any inconsistencies with your resources and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.update_data_source_request.UpdateDataSourceRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.update_data_source_response.UpdateDataSourceResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.update_data_source
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.update_data_source.async_update_data_source(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.update_data_source_request.UpdateDataSourceRequest = {
+            "application_id": application_id,
+            "index_id": index_id,
+            "data_source_id": data_source_id,
+        }
+        if display_name is not None:
+            input_["display_name"] = display_name
+        if configuration is not None:
+            input_["configuration"] = configuration
+        if vpc_configuration is not None:
+            input_["vpc_configuration"] = vpc_configuration
+        if description is not None:
+            input_["description"] = description
+        if sync_schedule is not None:
+            input_["sync_schedule"] = sync_schedule
+        if role_arn is not None:
+            input_["role_arn"] = role_arn
+        if document_enrichment_configuration is not None:
+            input_["document_enrichment_configuration"] = (
+                document_enrichment_configuration
+            )
+        if media_extraction_configuration is not None:
+            input_["media_extraction_configuration"] = media_extraction_configuration
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_data_source(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        index_id: "capo_qbusiness.types.index_id.IndexId",
+        data_source_id: "capo_qbusiness.types.data_source_id.DataSourceId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+    ) -> "capo_qbusiness.types.delete_data_source_response.DeleteDataSourceResponse":
+        """<p>Deletes an Amazon Q Business data source connector. While the data source is being deleted, the <code>Status</code> field returned by a call to the <code>DescribeDataSource</code> API is set to <code>DELETING</code>. </p>
+
+        Args:
+            application_id: <p>The identifier of the Amazon Q Business application used with the data source connector.</p>
+            index_id: <p>The identifier of the index used with the data source connector.</p>
+            data_source_id: <p>The identifier of the data source connector that you want to delete. </p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.conflict_exception.ConflictException: <p>You are trying to perform an action that conflicts with the current status of your resource. Fix any inconsistencies with your resources and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.delete_data_source_request.DeleteDataSourceRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.delete_data_source_response.DeleteDataSourceResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.delete_data_source
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.delete_data_source.async_delete_data_source(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.delete_data_source_request.DeleteDataSourceRequest = {
+            "application_id": application_id,
+            "index_id": index_id,
+            "data_source_id": data_source_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_data_sources(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        index_id: "capo_qbusiness.types.index_id.IndexId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        next_token: Optional["capo_qbusiness.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_qbusiness.types.max_results_integer_for_list_data_sources.MaxResultsIntegerForListDataSources"
+        ] = None,
+    ) -> "capo_qbusiness.types.list_data_sources_response.ListDataSourcesResponse":
+        """<p>Lists the Amazon Q Business data source connectors that you have created.</p>
+
+        Args:
+            application_id: <p>The identifier of the Amazon Q Business application linked to the data source connectors.</p>
+            index_id: <p>The identifier of the index used with one or more data source connectors.</p>
+            next_token: <p>If the <code>maxResults</code> response was incomplete because there is more data to retrieve, Amazon Q Business returns a pagination token in the response. You can use this pagination token to retrieve the next set of Amazon Q Business data source connectors.</p>
+            max_results: <p>The maximum number of data source connectors to return.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.list_data_sources_request.ListDataSourcesRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.list_data_sources_response.ListDataSourcesResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.list_data_sources
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.list_data_sources.async_list_data_sources(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.list_data_sources_request.ListDataSourcesRequest = {
+            "application_id": application_id,
+            "index_id": index_id,
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_data_sources(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        index_id: "capo_qbusiness.types.index_id.IndexId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        next_token: Optional["capo_qbusiness.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_qbusiness.types.max_results_integer_for_list_data_sources.MaxResultsIntegerForListDataSources"
+        ] = None,
+    ) -> "AsyncIterator[capo_qbusiness.types.data_source.DataSource]":
+        _token = next_token
+        while True:
+            _response = await self.list_data_sources(
+                application_id,
+                index_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("data_sources",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def create_plugin(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        display_name: "capo_qbusiness.types.plugin_name.PluginName",
+        type: "capo_qbusiness.types.plugin_type.PluginType",
+        auth_configuration: "capo_qbusiness.types.plugin_auth_configuration.PluginAuthConfiguration",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        server_url: Optional["capo_qbusiness.types.url.Url"] = None,
+        custom_plugin_configuration: Optional[
+            "capo_qbusiness.types.custom_plugin_configuration.CustomPluginConfiguration"
+        ] = None,
+        tags: Optional["capo_qbusiness.types.tags.Tags"] = None,
+        client_token: Optional["capo_qbusiness.types.client_token.ClientToken"] = None,
+    ) -> "capo_qbusiness.types.create_plugin_response.CreatePluginResponse":
+        """<p>Creates an Amazon Q Business plugin.</p>
+
+        Args:
+            application_id: <p>The identifier of the application that will contain the plugin.</p>
+            display_name: <p>A the name for your plugin.</p>
+            type: <p>The type of plugin you want to create.</p>
+            server_url: <p>The source URL used for plugin configuration.</p>
+            custom_plugin_configuration: <p>Contains configuration for a custom plugin.</p>
+            tags: <p>A list of key-value pairs that identify or categorize the data source connector. You can also use tags to help control access to the data source connector. Tag keys and values can consist of Unicode letters, digits, white space, and any of the following symbols: _ . : / = + - @.</p>
+            client_token: <p>A token that you provide to identify the request to create your Amazon Q Business plugin.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.conflict_exception.ConflictException: <p>You are trying to perform an action that conflicts with the current status of your resource. Fix any inconsistencies with your resources and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded the set limits for your Amazon Q Business service. </p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.create_plugin_request.CreatePluginRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.create_plugin_response.CreatePluginResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.create_plugin
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.create_plugin.async_create_plugin(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.create_plugin_request.CreatePluginRequest = {
+            "application_id": application_id,
+            "display_name": display_name,
+            "type": type,
+            "auth_configuration": auth_configuration,
+        }
+        if server_url is not None:
+            input_["server_url"] = server_url
+        if custom_plugin_configuration is not None:
+            input_["custom_plugin_configuration"] = custom_plugin_configuration
+        if tags is not None:
+            input_["tags"] = tags
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_plugin(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        plugin_id: "capo_qbusiness.types.plugin_id.PluginId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+    ) -> "capo_qbusiness.types.get_plugin_response.GetPluginResponse":
+        """<p>Gets information about an existing Amazon Q Business plugin.</p>
+
+        Args:
+            application_id: <p>The identifier of the application which contains the plugin.</p>
+            plugin_id: <p>The identifier of the plugin.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.get_plugin_request.GetPluginRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.get_plugin_response.GetPluginResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.get_plugin
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.get_plugin.async_get_plugin(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.get_plugin_request.GetPluginRequest = {
+            "application_id": application_id,
+            "plugin_id": plugin_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_plugin(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        plugin_id: "capo_qbusiness.types.plugin_id.PluginId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        display_name: Optional["capo_qbusiness.types.plugin_name.PluginName"] = None,
+        state: Optional["capo_qbusiness.types.plugin_state.PluginState"] = None,
+        server_url: Optional["capo_qbusiness.types.url.Url"] = None,
+        custom_plugin_configuration: Optional[
+            "capo_qbusiness.types.custom_plugin_configuration.CustomPluginConfiguration"
+        ] = None,
+        auth_configuration: Optional[
+            "capo_qbusiness.types.plugin_auth_configuration.PluginAuthConfiguration"
+        ] = None,
+    ) -> "capo_qbusiness.types.update_plugin_response.UpdatePluginResponse":
+        """<p>Updates an Amazon Q Business plugin.</p>
+
+        Args:
+            application_id: <p>The identifier of the application the plugin is attached to.</p>
+            plugin_id: <p>The identifier of the plugin.</p>
+            display_name: <p>The name of the plugin.</p>
+            state: <p>The status of the plugin. </p>
+            server_url: <p>The source URL used for plugin configuration.</p>
+            custom_plugin_configuration: <p>The configuration for a custom plugin.</p>
+            auth_configuration: <p>The authentication configuration the plugin is using.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.conflict_exception.ConflictException: <p>You are trying to perform an action that conflicts with the current status of your resource. Fix any inconsistencies with your resources and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded the set limits for your Amazon Q Business service. </p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.update_plugin_request.UpdatePluginRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.update_plugin_response.UpdatePluginResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.update_plugin
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.update_plugin.async_update_plugin(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.update_plugin_request.UpdatePluginRequest = {
+            "application_id": application_id,
+            "plugin_id": plugin_id,
+        }
+        if display_name is not None:
+            input_["display_name"] = display_name
+        if state is not None:
+            input_["state"] = state
+        if server_url is not None:
+            input_["server_url"] = server_url
+        if custom_plugin_configuration is not None:
+            input_["custom_plugin_configuration"] = custom_plugin_configuration
+        if auth_configuration is not None:
+            input_["auth_configuration"] = auth_configuration
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_plugin(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        plugin_id: "capo_qbusiness.types.plugin_id.PluginId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+    ) -> "capo_qbusiness.types.delete_plugin_response.DeletePluginResponse":
+        """<p>Deletes an Amazon Q Business plugin.</p>
+
+        Args:
+            application_id: <p>The identifier the application attached to the Amazon Q Business plugin.</p>
+            plugin_id: <p>The identifier of the plugin being deleted.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.conflict_exception.ConflictException: <p>You are trying to perform an action that conflicts with the current status of your resource. Fix any inconsistencies with your resources and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.delete_plugin_request.DeletePluginRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.delete_plugin_response.DeletePluginResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.delete_plugin
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.delete_plugin.async_delete_plugin(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.delete_plugin_request.DeletePluginRequest = {
+            "application_id": application_id,
+            "plugin_id": plugin_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_plugins(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        next_token: Optional["capo_qbusiness.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_qbusiness.types.max_results_integer_for_list_plugins.MaxResultsIntegerForListPlugins"
+        ] = None,
+    ) -> "capo_qbusiness.types.list_plugins_response.ListPluginsResponse":
+        """<p>Lists configured Amazon Q Business plugins.</p>
+
+        Args:
+            application_id: <p>The identifier of the application the plugin is attached to.</p>
+            next_token: <p>If the <code>maxResults</code> response was incomplete because there is more data to retrieve, Amazon Q Business returns a pagination token in the response. You can use this pagination token to retrieve the next set of plugins.</p>
+            max_results: <p>The maximum number of documents to return.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.list_plugins_request.ListPluginsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.list_plugins_response.ListPluginsResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.list_plugins
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.list_plugins.async_list_plugins(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.list_plugins_request.ListPluginsRequest = {
+            "application_id": application_id
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_plugins(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        next_token: Optional["capo_qbusiness.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_qbusiness.types.max_results_integer_for_list_plugins.MaxResultsIntegerForListPlugins"
+        ] = None,
+    ) -> "AsyncIterator[capo_qbusiness.types.plugin.Plugin]":
+        _token = next_token
+        while True:
+            _response = await self.list_plugins(
+                application_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("plugins",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def create_retriever(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        type: "capo_qbusiness.types.retriever_type.RetrieverType",
+        display_name: "capo_qbusiness.types.retriever_name.RetrieverName",
+        configuration: "capo_qbusiness.types.retriever_configuration.RetrieverConfiguration",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        role_arn: Optional["capo_qbusiness.types.role_arn.RoleArn"] = None,
+        client_token: Optional["capo_qbusiness.types.client_token.ClientToken"] = None,
+        tags: Optional["capo_qbusiness.types.tags.Tags"] = None,
+    ) -> "capo_qbusiness.types.create_retriever_response.CreateRetrieverResponse":
+        """<p>Adds a retriever to your Amazon Q Business application.</p>
+
+        Args:
+            application_id: <p>The identifier of your Amazon Q Business application.</p>
+            type: <p>The type of retriever you are using.</p>
+            display_name: <p>The name of your retriever.</p>
+            role_arn: <p>The ARN of an IAM role used by Amazon Q Business to access the basic authentication credentials stored in a Secrets Manager secret.</p>
+            client_token: <p>A token that you provide to identify the request to create your Amazon Q Business application retriever.</p>
+            tags: <p>A list of key-value pairs that identify or categorize the retriever. You can also use tags to help control access to the retriever. Tag keys and values can consist of Unicode letters, digits, white space, and any of the following symbols: _ . : / = + - @.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.conflict_exception.ConflictException: <p>You are trying to perform an action that conflicts with the current status of your resource. Fix any inconsistencies with your resources and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded the set limits for your Amazon Q Business service. </p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.create_retriever_request.CreateRetrieverRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.create_retriever_response.CreateRetrieverResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.create_retriever
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.create_retriever.async_create_retriever(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.create_retriever_request.CreateRetrieverRequest = {
+            "application_id": application_id,
+            "type": type,
+            "display_name": display_name,
+            "configuration": configuration,
+        }
+        if role_arn is not None:
+            input_["role_arn"] = role_arn
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_retriever(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        retriever_id: "capo_qbusiness.types.retriever_id.RetrieverId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+    ) -> "capo_qbusiness.types.get_retriever_response.GetRetrieverResponse":
+        """<p>Gets information about an existing retriever used by an Amazon Q Business application.</p>
+
+        Args:
+            application_id: <p>The identifier of the Amazon Q Business application using the retriever.</p>
+            retriever_id: <p>The identifier of the retriever.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.get_retriever_request.GetRetrieverRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.get_retriever_response.GetRetrieverResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.get_retriever
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.get_retriever.async_get_retriever(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.get_retriever_request.GetRetrieverRequest = {
+            "application_id": application_id,
+            "retriever_id": retriever_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_retriever(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        retriever_id: "capo_qbusiness.types.retriever_id.RetrieverId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        configuration: Optional[
+            "capo_qbusiness.types.retriever_configuration.RetrieverConfiguration"
+        ] = None,
+        display_name: Optional[
+            "capo_qbusiness.types.retriever_name.RetrieverName"
+        ] = None,
+        role_arn: Optional["capo_qbusiness.types.role_arn.RoleArn"] = None,
+    ) -> "capo_qbusiness.types.update_retriever_response.UpdateRetrieverResponse":
+        """<p>Updates the retriever used for your Amazon Q Business application.</p>
+
+        Args:
+            application_id: <p>The identifier of your Amazon Q Business application.</p>
+            retriever_id: <p>The identifier of your retriever.</p>
+            display_name: <p>The name of your retriever.</p>
+            role_arn: <p>The Amazon Resource Name (ARN) of an IAM role with permission to access the retriever and required resources. </p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.conflict_exception.ConflictException: <p>You are trying to perform an action that conflicts with the current status of your resource. Fix any inconsistencies with your resources and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded the set limits for your Amazon Q Business service. </p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.update_retriever_request.UpdateRetrieverRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.update_retriever_response.UpdateRetrieverResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.update_retriever
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.update_retriever.async_update_retriever(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.update_retriever_request.UpdateRetrieverRequest = {
+            "application_id": application_id,
+            "retriever_id": retriever_id,
+        }
+        if configuration is not None:
+            input_["configuration"] = configuration
+        if display_name is not None:
+            input_["display_name"] = display_name
+        if role_arn is not None:
+            input_["role_arn"] = role_arn
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_retriever(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        retriever_id: "capo_qbusiness.types.retriever_id.RetrieverId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+    ) -> "capo_qbusiness.types.delete_retriever_response.DeleteRetrieverResponse":
+        """<p>Deletes the retriever used by an Amazon Q Business application.</p>
+
+        Args:
+            application_id: <p>The identifier of the Amazon Q Business application using the retriever.</p>
+            retriever_id: <p>The identifier of the retriever being deleted.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.conflict_exception.ConflictException: <p>You are trying to perform an action that conflicts with the current status of your resource. Fix any inconsistencies with your resources and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.delete_retriever_request.DeleteRetrieverRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.delete_retriever_response.DeleteRetrieverResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.delete_retriever
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.delete_retriever.async_delete_retriever(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.delete_retriever_request.DeleteRetrieverRequest = {
+            "application_id": application_id,
+            "retriever_id": retriever_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_retrievers(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        next_token: Optional["capo_qbusiness.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_qbusiness.types.max_results_integer_for_list_retrievers_request.MaxResultsIntegerForListRetrieversRequest"
+        ] = None,
+    ) -> "capo_qbusiness.types.list_retrievers_response.ListRetrieversResponse":
+        """<p>Lists the retriever used by an Amazon Q Business application.</p>
+
+        Args:
+            application_id: <p>The identifier of the Amazon Q Business application using the retriever.</p>
+            next_token: <p>If the number of retrievers returned exceeds <code>maxResults</code>, Amazon Q Business returns a next token as a pagination token to retrieve the next set of retrievers.</p>
+            max_results: <p>The maximum number of retrievers returned.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.list_retrievers_request.ListRetrieversRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.list_retrievers_response.ListRetrieversResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.list_retrievers
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.list_retrievers.async_list_retrievers(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.list_retrievers_request.ListRetrieversRequest = {
+            "application_id": application_id
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_retrievers(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        next_token: Optional["capo_qbusiness.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_qbusiness.types.max_results_integer_for_list_retrievers_request.MaxResultsIntegerForListRetrieversRequest"
+        ] = None,
+    ) -> "AsyncIterator[capo_qbusiness.types.retriever.Retriever]":
+        _token = next_token
+        while True:
+            _response = await self.list_retrievers(
+                application_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("retrievers",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def create_web_experience(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        title: Optional[
+            "capo_qbusiness.types.web_experience_title.WebExperienceTitle"
+        ] = None,
+        subtitle: Optional[
+            "capo_qbusiness.types.web_experience_subtitle.WebExperienceSubtitle"
+        ] = None,
+        welcome_message: Optional[
+            "capo_qbusiness.types.web_experience_welcome_message.WebExperienceWelcomeMessage"
+        ] = None,
+        sample_prompts_control_mode: Optional[
+            "capo_qbusiness.types.web_experience_sample_prompts_control_mode.WebExperienceSamplePromptsControlMode"
+        ] = None,
+        origins: Optional[
+            "capo_qbusiness.types.web_experience_origins.WebExperienceOrigins"
+        ] = None,
+        role_arn: Optional["capo_qbusiness.types.role_arn.RoleArn"] = None,
+        tags: Optional["capo_qbusiness.types.tags.Tags"] = None,
+        client_token: Optional["capo_qbusiness.types.client_token.ClientToken"] = None,
+        identity_provider_configuration: Optional[
+            "capo_qbusiness.types.identity_provider_configuration.IdentityProviderConfiguration"
+        ] = None,
+        browser_extension_configuration: Optional[
+            "capo_qbusiness.types.browser_extension_configuration.BrowserExtensionConfiguration"
+        ] = None,
+        customization_configuration: Optional[
+            "capo_qbusiness.types.customization_configuration.CustomizationConfiguration"
+        ] = None,
+    ) -> "capo_qbusiness.types.create_web_experience_response.CreateWebExperienceResponse":
+        r"""<p>Creates an Amazon Q Business web experience.</p>
+
+        Args:
+            application_id: <p>The identifier of the Amazon Q Business web experience.</p>
+            title: <p>The title for your Amazon Q Business web experience.</p>
+            subtitle: <p>A subtitle to personalize your Amazon Q Business web experience.</p>
+            welcome_message: <p>The customized welcome message for end users of an Amazon Q Business web experience.</p>
+            sample_prompts_control_mode: <p>Determines whether sample prompts are enabled in the web experience for an end user.</p>
+            origins: <p>Sets the website domain origins that are allowed to embed the Amazon Q Business web experience. The <i>domain origin</i> refers to the base URL for accessing a website including the protocol (<code>http/https</code>), the domain name, and the port number (if specified). </p> <note> <p>You must only submit a <i>base URL</i> and not a full path. For example, <code>https://docs.aws.amazon.com</code>.</p> </note>
+            role_arn: <p>The Amazon Resource Name (ARN) of the service role attached to your web experience.</p> <note> <p>The <code>roleArn</code> parameter is required when your Amazon Q Business application is created with IAM Identity Center. It is not required for SAML-based applications.</p> </note>
+            tags: <p>A list of key-value pairs that identify or categorize your Amazon Q Business web experience. You can also use tags to help control access to the web experience. Tag keys and values can consist of Unicode letters, digits, white space, and any of the following symbols: _ . : / = + - @.</p>
+            client_token: <p>A token you provide to identify a request to create an Amazon Q Business web experience. </p>
+            identity_provider_configuration: <p>Information about the identity provider (IdP) used to authenticate end users of an Amazon Q Business web experience.</p>
+            browser_extension_configuration: <p>The browser extension configuration for an Amazon Q Business web experience.</p> <note> <p> For Amazon Q Business application using external OIDC-compliant identity providers (IdPs). The IdP administrator must add the browser extension sign-in redirect URLs to the IdP application. For more information, see <a href=\"https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/browser-extensions.html\">Configure external OIDC identity provider for your browser extensions.</a>. </p> </note>
+            customization_configuration: <p>Sets the custom logo, favicon, font, and color used in the Amazon Q web experience. </p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.conflict_exception.ConflictException: <p>You are trying to perform an action that conflicts with the current status of your resource. Fix any inconsistencies with your resources and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded the set limits for your Amazon Q Business service. </p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.create_web_experience_request.CreateWebExperienceRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.create_web_experience_response.CreateWebExperienceResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.create_web_experience
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.create_web_experience.async_create_web_experience(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.create_web_experience_request.CreateWebExperienceRequest = {
+            "application_id": application_id
+        }
+        if title is not None:
+            input_["title"] = title
+        if subtitle is not None:
+            input_["subtitle"] = subtitle
+        if welcome_message is not None:
+            input_["welcome_message"] = welcome_message
+        if sample_prompts_control_mode is not None:
+            input_["sample_prompts_control_mode"] = sample_prompts_control_mode
+        if origins is not None:
+            input_["origins"] = origins
+        if role_arn is not None:
+            input_["role_arn"] = role_arn
+        if tags is not None:
+            input_["tags"] = tags
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if identity_provider_configuration is not None:
+            input_["identity_provider_configuration"] = identity_provider_configuration
+        if browser_extension_configuration is not None:
+            input_["browser_extension_configuration"] = browser_extension_configuration
+        if customization_configuration is not None:
+            input_["customization_configuration"] = customization_configuration
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_web_experience(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        web_experience_id: "capo_qbusiness.types.web_experience_id.WebExperienceId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+    ) -> "capo_qbusiness.types.get_web_experience_response.GetWebExperienceResponse":
+        """<p>Gets information about an existing Amazon Q Business web experience.</p>
+
+        Args:
+            application_id: <p>The identifier of the Amazon Q Business application linked to the web experience.</p>
+            web_experience_id: <p>The identifier of the Amazon Q Business web experience. </p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.get_web_experience_request.GetWebExperienceRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.get_web_experience_response.GetWebExperienceResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.get_web_experience
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.get_web_experience.async_get_web_experience(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.get_web_experience_request.GetWebExperienceRequest = {
+            "application_id": application_id,
+            "web_experience_id": web_experience_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_web_experience(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        web_experience_id: "capo_qbusiness.types.web_experience_id.WebExperienceId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        role_arn: Optional["capo_qbusiness.types.role_arn.RoleArn"] = None,
+        authentication_configuration: Optional[
+            "capo_qbusiness.types.web_experience_auth_configuration.WebExperienceAuthConfiguration"
+        ] = None,
+        title: Optional[
+            "capo_qbusiness.types.web_experience_title.WebExperienceTitle"
+        ] = None,
+        subtitle: Optional[
+            "capo_qbusiness.types.web_experience_subtitle.WebExperienceSubtitle"
+        ] = None,
+        welcome_message: Optional[
+            "capo_qbusiness.types.web_experience_welcome_message.WebExperienceWelcomeMessage"
+        ] = None,
+        sample_prompts_control_mode: Optional[
+            "capo_qbusiness.types.web_experience_sample_prompts_control_mode.WebExperienceSamplePromptsControlMode"
+        ] = None,
+        identity_provider_configuration: Optional[
+            "capo_qbusiness.types.identity_provider_configuration.IdentityProviderConfiguration"
+        ] = None,
+        origins: Optional[
+            "capo_qbusiness.types.web_experience_origins.WebExperienceOrigins"
+        ] = None,
+        browser_extension_configuration: Optional[
+            "capo_qbusiness.types.browser_extension_configuration.BrowserExtensionConfiguration"
+        ] = None,
+        customization_configuration: Optional[
+            "capo_qbusiness.types.customization_configuration.CustomizationConfiguration"
+        ] = None,
+    ) -> "capo_qbusiness.types.update_web_experience_response.UpdateWebExperienceResponse":
+        r"""<p>Updates an Amazon Q Business web experience. </p>
+
+        Args:
+            application_id: <p>The identifier of the Amazon Q Business application attached to the web experience.</p>
+            web_experience_id: <p>The identifier of the Amazon Q Business web experience.</p>
+            role_arn: <p>The Amazon Resource Name (ARN) of the role with permission to access the Amazon Q Business web experience and required resources.</p>
+            authentication_configuration: <p>The authentication configuration of the Amazon Q Business web experience.</p>
+            title: <p>The title of the Amazon Q Business web experience.</p>
+            subtitle: <p>The subtitle of the Amazon Q Business web experience.</p>
+            welcome_message: <p>A customized welcome message for an end user in an Amazon Q Business web experience.</p>
+            sample_prompts_control_mode: <p>Determines whether sample prompts are enabled in the web experience for an end user.</p>
+            identity_provider_configuration: <p>Information about the identity provider (IdP) used to authenticate end users of an Amazon Q Business web experience.</p>
+            origins: <p>Updates the website domain origins that are allowed to embed the Amazon Q Business web experience. The <i>domain origin</i> refers to the <i>base URL</i> for accessing a website including the protocol (<code>http/https</code>), the domain name, and the port number (if specified).</p> <note> <ul> <li> <p>Any values except <code>null</code> submitted as part of this update will replace all previous values.</p> </li> <li> <p>You must only submit a <i>base URL</i> and not a full path. For example, <code>https://docs.aws.amazon.com</code>.</p> </li> </ul> </note>
+            browser_extension_configuration: <p>The browser extension configuration for an Amazon Q Business web experience.</p> <note> <p> For Amazon Q Business application using external OIDC-compliant identity providers (IdPs). The IdP administrator must add the browser extension sign-in redirect URLs to the IdP application. For more information, see <a href=\"https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/browser-extensions.html\">Configure external OIDC identity provider for your browser extensions.</a>. </p> </note>
+            customization_configuration: <p>Updates the custom logo, favicon, font, and color used in the Amazon Q web experience. </p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.conflict_exception.ConflictException: <p>You are trying to perform an action that conflicts with the current status of your resource. Fix any inconsistencies with your resources and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.update_web_experience_request.UpdateWebExperienceRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.update_web_experience_response.UpdateWebExperienceResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.update_web_experience
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.update_web_experience.async_update_web_experience(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.update_web_experience_request.UpdateWebExperienceRequest = {
+            "application_id": application_id,
+            "web_experience_id": web_experience_id,
+        }
+        if role_arn is not None:
+            input_["role_arn"] = role_arn
+        if authentication_configuration is not None:
+            input_["authentication_configuration"] = authentication_configuration
+        if title is not None:
+            input_["title"] = title
+        if subtitle is not None:
+            input_["subtitle"] = subtitle
+        if welcome_message is not None:
+            input_["welcome_message"] = welcome_message
+        if sample_prompts_control_mode is not None:
+            input_["sample_prompts_control_mode"] = sample_prompts_control_mode
+        if identity_provider_configuration is not None:
+            input_["identity_provider_configuration"] = identity_provider_configuration
+        if origins is not None:
+            input_["origins"] = origins
+        if browser_extension_configuration is not None:
+            input_["browser_extension_configuration"] = browser_extension_configuration
+        if customization_configuration is not None:
+            input_["customization_configuration"] = customization_configuration
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_web_experience(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        web_experience_id: "capo_qbusiness.types.web_experience_id.WebExperienceId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+    ) -> "capo_qbusiness.types.delete_web_experience_response.DeleteWebExperienceResponse":
+        """<p>Deletes an Amazon Q Business web experience.</p>
+
+        Args:
+            application_id: <p>The identifier of the Amazon Q Business application linked to the Amazon Q Business web experience.</p>
+            web_experience_id: <p>The identifier of the Amazon Q Business web experience being deleted.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.conflict_exception.ConflictException: <p>You are trying to perform an action that conflicts with the current status of your resource. Fix any inconsistencies with your resources and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.delete_web_experience_request.DeleteWebExperienceRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.delete_web_experience_response.DeleteWebExperienceResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.delete_web_experience
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.delete_web_experience.async_delete_web_experience(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.delete_web_experience_request.DeleteWebExperienceRequest = {
+            "application_id": application_id,
+            "web_experience_id": web_experience_id,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_web_experiences(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        next_token: Optional["capo_qbusiness.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_qbusiness.types.max_results_integer_for_list_web_experiences_request.MaxResultsIntegerForListWebExperiencesRequest"
+        ] = None,
+    ) -> (
+        "capo_qbusiness.types.list_web_experiences_response.ListWebExperiencesResponse"
+    ):
+        """<p>Lists one or more Amazon Q Business Web Experiences.</p>
+
+        Args:
+            application_id: <p>The identifier of the Amazon Q Business application linked to the listed web experiences.</p>
+            next_token: <p>If the <code>maxResults</code> response was incomplete because there is more data to retrieve, Amazon Q Business returns a pagination token in the response. You can use this pagination token to retrieve the next set of Amazon Q Business conversations.</p>
+            max_results: <p>The maximum number of Amazon Q Business Web Experiences to return.</p>
+
+        Raises:
+            capo_qbusiness.errors.access_denied_exception.AccessDeniedException: <p> You don't have access to perform this action. Make sure you have the required permission policies and user accounts and try again.</p>
+            capo_qbusiness.errors.internal_server_exception.InternalServerException: <p>An issue occurred with the internal server used for your Amazon Q Business service. Wait some minutes and try again, or contact <a href=\"http://aws.amazon.com/contact-us/\">Support</a> for help.</p>
+            capo_qbusiness.errors.resource_not_found_exception.ResourceNotFoundException: <p>The application or plugin resource you want to use doesn’t exist. Make sure you have provided the correct resource and try again.</p>
+            capo_qbusiness.errors.throttling_exception.ThrottlingException: <p>The request was denied due to throttling. Reduce the number of requests and try again.</p>
+            capo_qbusiness.errors.validation_exception.ValidationException: <p>The input doesn't meet the constraints set by the Amazon Q Business service. Provide the correct input and try again.</p>
+            capo_qbusiness.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_qbusiness.types.list_web_experiences_request.ListWebExperiencesRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_qbusiness.types.list_web_experiences_response.ListWebExperiencesResponse"
+        ]:
+            import capo_qbusiness._operations.expert_q.list_web_experiences
+
+            (
+                output,
+                http_response,
+            ) = await capo_qbusiness._operations.expert_q.list_web_experiences.async_list_web_experiences(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_qbusiness.types.list_web_experiences_request.ListWebExperiencesRequest = {
+            "application_id": application_id
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_web_experiences(
+        self,
+        application_id: "capo_qbusiness.types.application_id.ApplicationId",
+        *,
+        config_overrides: Optional[AsyncQBusinessClientConfig] = None,
+        next_token: Optional["capo_qbusiness.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_qbusiness.types.max_results_integer_for_list_web_experiences_request.MaxResultsIntegerForListWebExperiencesRequest"
+        ] = None,
+    ) -> "AsyncIterator[capo_qbusiness.types.web_experience.WebExperience]":
+        _token = next_token
+        while True:
+            _response = await self.list_web_experiences(
+                application_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("web_experiences",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def __aenter__(self) -> Self:
         return self

@@ -12,6 +12,7 @@ ResourceTypeForTagging: TypeAlias = Literal[
     "OpsMetadata",
     "Automation",
     "Association",
+    "CloudConnector",
 ]
 
 

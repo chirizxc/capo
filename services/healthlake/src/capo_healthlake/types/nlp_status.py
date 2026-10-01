@@ -4,8 +4,8 @@ from typing import Literal, TypeAlias, cast
 
 NlpStatus: TypeAlias = Literal[
     "ENABLED",
-    "DISABLED",
     "ENABLING",
+    "DISABLED",
     "DISABLING",
 ]
 

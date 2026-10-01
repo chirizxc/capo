@@ -21,7 +21,7 @@ class StartExportRequest(TypedDict, closed=True):
     s3_bucket_owner: NotRequired["capo_mgn.types.account_id.AccountID"]
     """<p>Start export request s3 bucket owner.</p>"""
     tags: NotRequired["capo_mgn.types.tags_map.TagsMap"]
-    """<p>Start import request tags.</p>"""
+    """<p>Start export request tags.</p>"""
 
 
 # --- restJson1 ser/de ---

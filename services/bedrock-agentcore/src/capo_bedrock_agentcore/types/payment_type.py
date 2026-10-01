@@ -3,7 +3,10 @@
 from typing import Literal, TypeAlias, cast
 
 """<p>Payment type enum.</p>"""
-PaymentType: TypeAlias = Literal["CRYPTO_X402",]
+PaymentType: TypeAlias = Literal[
+    "CRYPTO_X402",
+    "MPP",
+]
 
 
 # --- restJson1 ser/de ---

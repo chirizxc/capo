@@ -8,6 +8,7 @@ from capo_sts._protocol.xml import Element
 from capo_sts.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_sts.types.minimum_session_token_size_type
     import capo_sts.types.policy_descriptor_type
     import capo_sts.types.root_duration_seconds_type
     import capo_sts.types.target_principal_type
@@ -22,6 +23,9 @@ class AssumeRootRequest(TypedDict, closed=True):
         "capo_sts.types.root_duration_seconds_type.RootDurationSecondsType"
     ]
     """<p>The duration, in seconds, of the privileged session. The value can range from 0 seconds up to the maximum session duration of 900 seconds (15 minutes). If you specify a value higher than this setting, the operation fails.</p> <p>By default, the value is set to <code>900</code> seconds.</p>"""
+    minimum_session_token_size: NotRequired[
+        "capo_sts.types.minimum_session_token_size_type.minimumSessionTokenSizeType"
+    ]
 
 
 # --- awsQuery ser/de ---
@@ -37,6 +41,13 @@ def serialize_query(
     )
     if "duration_seconds" in value:
         pairs.append((f"{key_prefix}DurationSeconds", str(value["duration_seconds"])))
+    if "minimum_session_token_size" in value:
+        pairs.append(
+            (
+                f"{key_prefix}MinimumSessionTokenSize",
+                str(value["minimum_session_token_size"]),
+            )
+        )
 
 
 def deserialize_query(el: Element) -> AssumeRootRequest:
@@ -60,4 +71,9 @@ def deserialize_query(el: Element) -> AssumeRootRequest:
     child_duration_seconds = el.find("DurationSeconds")
     if child_duration_seconds is not None:
         out["duration_seconds"] = int(child_duration_seconds.text or "")
+    child_minimum_session_token_size = el.find("MinimumSessionTokenSize")
+    if child_minimum_session_token_size is not None:
+        out["minimum_session_token_size"] = int(
+            child_minimum_session_token_size.text or ""
+        )
     return out

@@ -19,6 +19,7 @@ import capo_sesv2.errors.message_rejected
 import capo_sesv2.errors.not_found_exception
 import capo_sesv2.errors.sending_paused_exception
 import capo_sesv2.errors.too_many_requests_exception
+import capo_sesv2.types.configuration_overrides
 import capo_sesv2.types.destination
 import capo_sesv2.types.email_address_list
 import capo_sesv2.types.email_content

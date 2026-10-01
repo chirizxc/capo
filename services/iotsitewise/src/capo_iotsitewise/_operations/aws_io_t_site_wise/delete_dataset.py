@@ -119,6 +119,8 @@ def build_request(
     url = endpoint.url.rstrip("/") + "/datasets/{datasetId}"
     url = url.replace("{datasetId}", quote(input_["dataset_id"], safe=""))
     params: list[tuple[str, str]] = []
+    if "workspace_name" in input_:
+        params.append(("workspaceName", input_["workspace_name"]))
     if "client_token" in input_:
         params.append(("clientToken", input_["client_token"]))
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}

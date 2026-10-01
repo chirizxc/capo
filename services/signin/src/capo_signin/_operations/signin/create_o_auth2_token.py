@@ -110,6 +110,7 @@ def build_request(
             Endpoint=options.endpoint,
             Region=options.region,
             IsControlPlane=False,
+            IsOAuthEndpoint=options.is_o_auth_endpoint,
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + "/v1/token"

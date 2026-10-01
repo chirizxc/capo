@@ -7,7 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 from capo_devops_agent.errors import DeserializationError
 
 if TYPE_CHECKING:
-    import capo_devops_agent.types.agent_space_id
+    import capo_devops_agent.types.agent_space_identifier
     import capo_devops_agent.types.backlog_task_description
     import capo_devops_agent.types.backlog_task_title
     import capo_devops_agent.types.priority
@@ -16,7 +16,9 @@ if TYPE_CHECKING:
 
 
 class CreateBacklogTaskRequest(TypedDict, closed=True):
-    agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId"
+    agent_space_id: (
+        "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier"
+    )
     """<p>The unique identifier for the agent space where the task will be created</p>"""
     reference: NotRequired["capo_devops_agent.types.reference_input.ReferenceInput"]
     """<p>Optional reference information for the task</p>"""

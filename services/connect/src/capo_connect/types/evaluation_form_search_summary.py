@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_connect.types.arn
     import capo_connect.types.boolean
     import capo_connect.types.contact_interaction_type
+    import capo_connect.types.evaluation_form_ai_version
     import capo_connect.types.evaluation_form_description
     import capo_connect.types.evaluation_form_language_code
     import capo_connect.types.evaluation_form_title
@@ -63,6 +64,10 @@ class EvaluationFormSearchSummary(TypedDict, closed=True):
     """<p>The contact interaction type for this evaluation form.</p>"""
     tags: NotRequired["capo_connect.types.tag_map.TagMap"]
     r"""<p>The tags used to organize, track, or control access for this resource. For example, { \"Tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>"""
+    ai_version: NotRequired[
+        "capo_connect.types.evaluation_form_ai_version.EvaluationFormAIVersion"
+    ]
+    """<p>The AI version to use for the evaluation form. This specifies which AI model version is used for automated evaluations.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -122,6 +127,8 @@ def serialize_json(value: EvaluationFormSearchSummary) -> dict:
         import capo_connect.types.tag_map
 
         out["Tags"] = capo_connect.types.tag_map.serialize_json(value["tags"])
+    if "ai_version" in value:
+        out["AIVersion"] = value["ai_version"]
     return out
 
 
@@ -223,4 +230,6 @@ def deserialize_json(data: dict) -> EvaluationFormSearchSummary:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])
+    if data.get("AIVersion") is not None:
+        out["ai_version"] = data["AIVersion"]
     return out

@@ -5,12 +5,13 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import datetime
+
     import capo_wellarchitected.types.aws_account_id
     import capo_wellarchitected.types.profile_arn
     import capo_wellarchitected.types.profile_description
     import capo_wellarchitected.types.profile_name
     import capo_wellarchitected.types.profile_version
-    import capo_wellarchitected.types.timestamp
 
 
 class ProfileSummary(TypedDict, closed=True):
@@ -27,8 +28,10 @@ class ProfileSummary(TypedDict, closed=True):
     ]
     """<p>The profile description.</p>"""
     owner: NotRequired["capo_wellarchitected.types.aws_account_id.AwsAccountId"]
-    created_at: NotRequired["capo_wellarchitected.types.timestamp.Timestamp"]
-    updated_at: NotRequired["capo_wellarchitected.types.timestamp.Timestamp"]
+    created_at: NotRequired["datetime.datetime"]
+    """<p>The date and time when the profile was created.</p>"""
+    updated_at: NotRequired["datetime.datetime"]
+    """<p>The date and time when the profile was last updated.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -45,15 +48,15 @@ def serialize_json(value: ProfileSummary) -> dict:
     if "owner" in value:
         out["Owner"] = value["owner"]
     if "created_at" in value:
-        import capo_wellarchitected.types.timestamp
+        import capo_wellarchitected.types._prelude.timestamp
 
-        out["CreatedAt"] = capo_wellarchitected.types.timestamp.serialize_json(
+        out["CreatedAt"] = capo_wellarchitected.types._prelude.timestamp.serialize_json(
             value["created_at"]
         )
     if "updated_at" in value:
-        import capo_wellarchitected.types.timestamp
+        import capo_wellarchitected.types._prelude.timestamp
 
-        out["UpdatedAt"] = capo_wellarchitected.types.timestamp.serialize_json(
+        out["UpdatedAt"] = capo_wellarchitected.types._prelude.timestamp.serialize_json(
             value["updated_at"]
         )
     return out
@@ -72,15 +75,19 @@ def deserialize_json(data: dict) -> ProfileSummary:
     if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
     if data.get("CreatedAt") is not None:
-        import capo_wellarchitected.types.timestamp
+        import capo_wellarchitected.types._prelude.timestamp
 
-        out["created_at"] = capo_wellarchitected.types.timestamp.deserialize_json(
-            data["CreatedAt"]
+        out["created_at"] = (
+            capo_wellarchitected.types._prelude.timestamp.deserialize_json(
+                data["CreatedAt"]
+            )
         )
     if data.get("UpdatedAt") is not None:
-        import capo_wellarchitected.types.timestamp
+        import capo_wellarchitected.types._prelude.timestamp
 
-        out["updated_at"] = capo_wellarchitected.types.timestamp.deserialize_json(
-            data["UpdatedAt"]
+        out["updated_at"] = (
+            capo_wellarchitected.types._prelude.timestamp.deserialize_json(
+                data["UpdatedAt"]
+            )
         )
     return out

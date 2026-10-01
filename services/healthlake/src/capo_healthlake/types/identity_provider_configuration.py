@@ -8,8 +8,8 @@ from capo_healthlake.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_healthlake.types.authorization_strategy
-    import capo_healthlake.types.boolean
     import capo_healthlake.types.configuration_metadata
+    import capo_healthlake.types.health_lake_boolean
     import capo_healthlake.types.lambda_arn
 
 
@@ -17,8 +17,10 @@ class IdentityProviderConfiguration(TypedDict, closed=True):
     authorization_strategy: (
         "capo_healthlake.types.authorization_strategy.AuthorizationStrategy"
     )
-    """<p>The authorization strategy selected when the HealthLake data store is created.</p> <note> <p>HealthLake provides support for both SMART on FHIR V1 and V2 as described below.</p> <ul> <li> <p> <code>SMART_ON_FHIR_V1</code> – Support for only SMART on FHIR V1, which includes <code>read</code> (read/search) and <code>write</code> (create/update/delete) permissions.</p> </li> <li> <p> <code>SMART_ON_FHIR</code> – Support for both SMART on FHIR V1 and V2, which includes <code>create</code>, <code>read</code>, <code>update</code>, <code>delete</code>, and <code>search</code> permissions.</p> </li> <li> <p> <code>AWS_AUTH</code> – The default HealthLake authorization strategy; not affiliated with SMART on FHIR.</p> </li> </ul> </note>"""
-    fine_grained_authorization_enabled: "capo_healthlake.types.boolean.Boolean"
+    """<p>The authorization strategy selected when the HealthLake data store is created.</p> <note> <p>HealthLake provides support for both SMART on FHIR V1 and V2 as described below.</p> <ul> <li> <p> <code>SMART_ON_FHIR_V1</code> – Support for only SMART on FHIR V1, which includes <code>read</code> (read/search) and <code>write</code> (create/update/delete) permissions.</p> </li> <li> <p> <code>SMART_ON_FHIR</code> – Support for both SMART on FHIR V1 and V2, which includes <code>create</code>, <code>read</code>, <code>update</code>, <code>delete</code>, and <code>search</code> permissions.</p> </li> <li> <p> <code>Amazon Web Services_AUTH</code> – The default HealthLake authorization strategy; not affiliated with SMART on FHIR.</p> </li> </ul> </note>"""
+    fine_grained_authorization_enabled: (
+        "capo_healthlake.types.health_lake_boolean.HealthLakeBoolean"
+    )
     """<p>The parameter to enable SMART on FHIR fine-grained authorization for the data store.</p>"""
     metadata: NotRequired[
         "capo_healthlake.types.configuration_metadata.ConfigurationMetadata"

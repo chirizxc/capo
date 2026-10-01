@@ -19,6 +19,21 @@ async def main():
         print(response["tags"])
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_snow_device_management import AsyncSnowDeviceManagementClient
+
+
+async def main():
+    async with AsyncSnowDeviceManagementClient() as snow_device_management:
+        # Example: paginate over list_devices
+        async for item in snow_device_management.iter_list_devices():
+            print(item)
+```
+
 ## Error Handling
 
 The SDK raises exceptions for errors returned by the API. Catch them to handle failures gracefully.

@@ -36,7 +36,7 @@ class WorkflowExecutionMetadata(TypedDict, closed=True):
     ]
     """<p>The runtime output message from the workflow, if applicable.</p>"""
     total_step_count: "capo_imagebuilder.types.workflow_step_count.WorkflowStepCount"
-    """<p>The total number of steps in the workflow. This should equal the sum of the step counts for steps that succeeded, were skipped, and failed.</p>"""
+    """<p>The total number of steps that the workflow document defines for this runtime instance of the workflow. Image Builder sets this count before any steps run. The sum of succeeded, skipped, and failed steps only reaches this total if every step finishes in one of those states.</p>"""
     total_steps_succeeded: (
         "capo_imagebuilder.types.workflow_step_count.WorkflowStepCount"
     )
@@ -52,7 +52,7 @@ class WorkflowExecutionMetadata(TypedDict, closed=True):
     parallel_group: NotRequired["capo_imagebuilder.types.parallel_group.ParallelGroup"]
     """<p>The name of the test group that included the test workflow resource at runtime.</p>"""
     retried: NotRequired["capo_imagebuilder.types.nullable_boolean.NullableBoolean"]
-    """<p>Indicates retry status for this runtime instance of the workflow.</p>"""
+    """<p>Indicates whether a retry of the image build superseded this runtime instance of the workflow. When you retry a failed image build, Image Builder sets this flag to <code>true</code> on the original workflow executions that the retry re-ran.</p>"""
 
 
 # --- restJson1 ser/de ---

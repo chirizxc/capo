@@ -9,6 +9,7 @@ from capo_s3vectors.errors import DeserializationError
 if TYPE_CHECKING:
     import capo_s3vectors.types.index_arn
     import capo_s3vectors.types.index_name
+    import capo_s3vectors.types.query_vectors_next_token
     import capo_s3vectors.types.top_k
     import capo_s3vectors.types.vector_bucket_name
     import capo_s3vectors.types.vector_data
@@ -33,6 +34,10 @@ class QueryVectorsInput(TypedDict, closed=True):
     """<p>Indicates whether to include metadata in the response. The default value is <code>false</code>.</p>"""
     return_distance: "bool"
     """<p>Indicates whether to include the computed distance in the response. The default value is <code>false</code>.</p>"""
+    next_token: NotRequired[
+        "capo_s3vectors.types.query_vectors_next_token.QueryVectorsNextToken"
+    ]
+    """<p>Pagination token from a previous request. The value of this field is empty for an initial request.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -54,6 +59,8 @@ def serialize_json(value: QueryVectorsInput) -> dict:
         out["filter"] = value["filter"]
     out["returnMetadata"] = value.get("return_metadata", False)
     out["returnDistance"] = value.get("return_distance", False)
+    if "next_token" in value:
+        out["nextToken"] = value["next_token"]
     return out
 
 
@@ -87,4 +94,6 @@ def deserialize_json(data: dict) -> QueryVectorsInput:
         out["return_distance"] = data["returnDistance"]
     else:
         out["return_distance"] = False
+    if data.get("nextToken") is not None:
+        out["next_token"] = data["nextToken"]
     return out

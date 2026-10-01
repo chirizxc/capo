@@ -11,6 +11,7 @@ from typing_extensions import Never
 import capo_connect._auth._signers
 import capo_connect._auth._sigv4
 import capo_connect._protocol.eventstream
+import capo_connect.errors.access_denied_exception
 import capo_connect.errors.internal_service_exception
 import capo_connect.errors.invalid_parameter_exception
 import capo_connect.errors.invalid_request_exception
@@ -21,6 +22,7 @@ import capo_connect.types.attributes
 import capo_connect.types.connection_data
 import capo_connect.types.contact_references
 import capo_connect.types.participant_details
+import capo_connect.types.segment_attributes
 import capo_connect.types.start_web_rtc_contact_request
 import capo_connect.types.start_web_rtc_contact_response
 from capo_connect._protocol.errors import parse_error_metadata_json
@@ -33,6 +35,10 @@ def handle_error(response: zapros.Response) -> Never:
     data = json.loads(response.read())
     code, message = parse_error_metadata_json(response, data)
     match code:
+        case "AccessDeniedException":
+            raise capo_connect.errors.access_denied_exception.AccessDeniedException.from_json(
+                data, message
+            )
         case "InternalServiceException":
             raise capo_connect.errors.internal_service_exception.InternalServiceException.from_json(
                 data, message

@@ -26,25 +26,25 @@ def test_for_region_us_east_1_with_fips_enabled_a():
     """For region us-east-1 with FIPS enabled and DualStack enabled"""
     params = EndpointParams(Region='us-east-1', UseFIPS=True, UseDualStack=True)
     result = resolve(params)
-    assert result.url == 'https://maps.geo-fips.us-east-1.api.aws/v2'
+    assert result.url == 'https://maps.geo-fips.us-east-1.api.aws'
 
 def test_for_region_us_east_1_with_fips_enabled_a():
     """For region us-east-1 with FIPS enabled and DualStack disabled"""
     params = EndpointParams(Region='us-east-1', UseFIPS=True, UseDualStack=False)
     result = resolve(params)
-    assert result.url == 'https://maps.geo-fips.us-east-1.amazonaws.com/v2'
+    assert result.url == 'https://maps.geo-fips.us-east-1.amazonaws.com'
 
 def test_for_region_us_east_1_with_fips_disabled_():
     """For region us-east-1 with FIPS disabled and DualStack enabled"""
     params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=True)
     result = resolve(params)
-    assert result.url == 'https://maps.geo.us-east-1.api.aws/v2'
+    assert result.url == 'https://maps.geo.us-east-1.api.aws'
 
 def test_for_region_us_east_1_with_fips_disabled_():
     """For region us-east-1 with FIPS disabled and DualStack disabled"""
     params = EndpointParams(Region='us-east-1', UseFIPS=False, UseDualStack=False)
     result = resolve(params)
-    assert result.url == 'https://maps.geo.us-east-1.amazonaws.com/v2'
+    assert result.url == 'https://maps.geo.us-east-1.amazonaws.com'
 
 def test_for_region_cn_northwest_1_with_fips_enab():
     """For region cn-northwest-1 with FIPS enabled and DualStack enabled"""
@@ -134,25 +134,25 @@ def test_for_region_us_gov_west_1_with_fips_enabl():
     """For region us-gov-west-1 with FIPS enabled and DualStack enabled"""
     params = EndpointParams(Region='us-gov-west-1', UseFIPS=True, UseDualStack=True)
     result = resolve(params)
-    assert result.url == 'https://maps.geo-fips.us-gov-west-1.api.aws/v2'
+    assert result.url == 'https://maps.geo-fips.us-gov-west-1.api.aws'
 
 def test_for_region_us_gov_west_1_with_fips_enabl():
     """For region us-gov-west-1 with FIPS enabled and DualStack disabled"""
     params = EndpointParams(Region='us-gov-west-1', UseFIPS=True, UseDualStack=False)
     result = resolve(params)
-    assert result.url == 'https://maps.geo-fips.us-gov-west-1.amazonaws.com/v2'
+    assert result.url == 'https://maps.geo-fips.us-gov-west-1.amazonaws.com'
 
 def test_for_region_us_gov_west_1_with_fips_disab():
     """For region us-gov-west-1 with FIPS disabled and DualStack enabled"""
     params = EndpointParams(Region='us-gov-west-1', UseFIPS=False, UseDualStack=True)
     result = resolve(params)
-    assert result.url == 'https://maps.geo.us-gov-west-1.api.aws/v2'
+    assert result.url == 'https://maps.geo.us-gov-west-1.api.aws'
 
 def test_for_region_us_gov_west_1_with_fips_disab():
     """For region us-gov-west-1 with FIPS disabled and DualStack disabled"""
     params = EndpointParams(Region='us-gov-west-1', UseFIPS=False, UseDualStack=False)
     result = resolve(params)
-    assert result.url == 'https://maps.geo.us-gov-west-1.amazonaws.com/v2'
+    assert result.url == 'https://maps.geo.us-gov-west-1.amazonaws.com'
 
 def test_missing_region():
     """Missing region"""

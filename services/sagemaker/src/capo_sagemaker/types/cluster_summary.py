@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_sagemaker.types.cluster_arn
+    import capo_sagemaker.types.cluster_image_version_status
     import capo_sagemaker.types.cluster_name
     import capo_sagemaker.types.cluster_status
     import capo_sagemaker.types.timestamp
@@ -25,6 +26,10 @@ class ClusterSummary(TypedDict, closed=True):
         "capo_sagemaker.types.training_plan_arns.TrainingPlanArns"
     ]
     r"""<p>A list of Amazon Resource Names (ARNs) of the training plans associated with this cluster.</p> <p>For more information about how to reserve GPU capacity for your SageMaker HyperPod clusters using Amazon SageMaker Training Plan, see <code> <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingPlan.html\">CreateTrainingPlan</a> </code>.</p>"""
+    image_version_status: NotRequired[
+        "capo_sagemaker.types.cluster_image_version_status.ClusterImageVersionStatus"
+    ]
+    """<p>The aggregate status of the image version across the cluster's instance groups.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -56,6 +61,14 @@ def serialize_aws_json_1_1(value: ClusterSummary) -> dict:
                 value["training_plan_arns"]
             )
         )
+    if "image_version_status" in value:
+        import capo_sagemaker.types.cluster_image_version_status
+
+        out["ImageVersionStatus"] = (
+            capo_sagemaker.types.cluster_image_version_status.serialize_aws_json_1_1(
+                value["image_version_status"]
+            )
+        )
     return out
 
 
@@ -85,6 +98,14 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterSummary:
         out["training_plan_arns"] = (
             capo_sagemaker.types.training_plan_arns.deserialize_aws_json_1_1(
                 data["TrainingPlanArns"]
+            )
+        )
+    if data.get("ImageVersionStatus") is not None:
+        import capo_sagemaker.types.cluster_image_version_status
+
+        out["image_version_status"] = (
+            capo_sagemaker.types.cluster_image_version_status.deserialize_aws_json_1_1(
+                data["ImageVersionStatus"]
             )
         )
     return out

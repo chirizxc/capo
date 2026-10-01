@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_mediaconnect.types.maintenance_configuration
+    import capo_mediaconnect.types.router_content_quality_analysis_configuration
     import capo_mediaconnect.types.router_input_arn
     import capo_mediaconnect.types.router_input_configuration
     import capo_mediaconnect.types.router_input_tier
@@ -36,6 +37,10 @@ class UpdateRouterInputRequest(TypedDict, closed=True):
         "capo_mediaconnect.types.maintenance_configuration.MaintenanceConfiguration"
     ]
     """<p>The updated maintenance configuration settings for the router input, including any changes to preferred maintenance windows and schedules.</p>"""
+    content_quality_analysis_configuration: NotRequired[
+        "capo_mediaconnect.types.router_content_quality_analysis_configuration.RouterContentQualityAnalysisConfiguration"
+    ]
+    """<p>The content quality analysis configuration for the router input.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -81,6 +86,14 @@ def serialize_json(value: UpdateRouterInputRequest) -> dict:
                 value["maintenance_configuration"]
             )
         )
+    if "content_quality_analysis_configuration" in value:
+        import capo_mediaconnect.types.router_content_quality_analysis_configuration
+
+        out["contentQualityAnalysisConfiguration"] = (
+            capo_mediaconnect.types.router_content_quality_analysis_configuration.serialize_json(
+                value["content_quality_analysis_configuration"]
+            )
+        )
     return out
 
 
@@ -124,6 +137,14 @@ def deserialize_json(data: dict) -> UpdateRouterInputRequest:
         out["maintenance_configuration"] = (
             capo_mediaconnect.types.maintenance_configuration.deserialize_json(
                 data["maintenanceConfiguration"]
+            )
+        )
+    if data.get("contentQualityAnalysisConfiguration") is not None:
+        import capo_mediaconnect.types.router_content_quality_analysis_configuration
+
+        out["content_quality_analysis_configuration"] = (
+            capo_mediaconnect.types.router_content_quality_analysis_configuration.deserialize_json(
+                data["contentQualityAnalysisConfiguration"]
             )
         )
     return out

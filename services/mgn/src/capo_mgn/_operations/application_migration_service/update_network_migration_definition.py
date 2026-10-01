@@ -14,6 +14,7 @@ import capo_mgn._protocol.eventstream
 import capo_mgn.errors.access_denied_exception
 import capo_mgn.errors.resource_not_found_exception
 import capo_mgn.errors.validation_exception
+import capo_mgn.types.cidr_mappings_list
 import capo_mgn.types.network_migration_definition
 import capo_mgn.types.scope_tags_map
 import capo_mgn.types.source_configuration_list

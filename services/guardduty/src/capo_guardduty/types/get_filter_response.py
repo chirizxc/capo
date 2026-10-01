@@ -9,8 +9,10 @@ if TYPE_CHECKING:
     import capo_guardduty.types.filter_description
     import capo_guardduty.types.filter_name
     import capo_guardduty.types.filter_rank
+    import capo_guardduty.types.filter_version
     import capo_guardduty.types.finding_criteria
     import capo_guardduty.types.tag_map
+    import capo_guardduty.types.timestamp
 
 
 class GetFilterResponse(TypedDict, closed=True):
@@ -30,6 +32,12 @@ class GetFilterResponse(TypedDict, closed=True):
     """<p>Represents the criteria to be used in the filter for querying findings.</p>"""
     tags: NotRequired["capo_guardduty.types.tag_map.TagMap"]
     """<p>The tags of the filter resource.</p>"""
+    created_at: NotRequired["capo_guardduty.types.timestamp.Timestamp"]
+    """<p>The timestamp when the filter was created. This field is not available for filters that were created before the lifecycle metadata feature was enabled (legacy filters).</p>"""
+    updated_at: NotRequired["capo_guardduty.types.timestamp.Timestamp"]
+    """<p>The timestamp when the filter was last updated. For legacy filters, this field is present only after the filter has been updated at least once since the lifecycle metadata feature was enabled.</p>"""
+    version: NotRequired["capo_guardduty.types.filter_version.FilterVersion"]
+    """<p>The version of the filter. Every time the filter is updated, the version increments by 1. This field is not available for legacy filters that were created before the lifecycle metadata feature was enabled.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -57,6 +65,20 @@ def serialize_json(value: GetFilterResponse) -> dict:
         import capo_guardduty.types.tag_map
 
         out["tags"] = capo_guardduty.types.tag_map.serialize_json(value["tags"])
+    if "created_at" in value:
+        import capo_guardduty.types.timestamp
+
+        out["createdAt"] = capo_guardduty.types.timestamp.serialize_json(
+            value["created_at"]
+        )
+    if "updated_at" in value:
+        import capo_guardduty.types.timestamp
+
+        out["updatedAt"] = capo_guardduty.types.timestamp.serialize_json(
+            value["updated_at"]
+        )
+    if "version" in value:
+        out["version"] = value["version"]
     return out
 
 
@@ -86,4 +108,18 @@ def deserialize_json(data: dict) -> GetFilterResponse:
         import capo_guardduty.types.tag_map
 
         out["tags"] = capo_guardduty.types.tag_map.deserialize_json(data["tags"])
+    if data.get("createdAt") is not None:
+        import capo_guardduty.types.timestamp
+
+        out["created_at"] = capo_guardduty.types.timestamp.deserialize_json(
+            data["createdAt"]
+        )
+    if data.get("updatedAt") is not None:
+        import capo_guardduty.types.timestamp
+
+        out["updated_at"] = capo_guardduty.types.timestamp.deserialize_json(
+            data["updatedAt"]
+        )
+    if data.get("version") is not None:
+        out["version"] = data["version"]
     return out

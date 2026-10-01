@@ -20,13 +20,13 @@ import capo_ssm.errors.invalid_automation_execution_parameters_exception
 import capo_ssm.errors.invalid_target
 import capo_ssm.types.alarm_configuration
 import capo_ssm.types.automation_parameter_map
+import capo_ssm.types.automation_targets
 import capo_ssm.types.execution_mode
 import capo_ssm.types.start_automation_execution_request
 import capo_ssm.types.start_automation_execution_result
 import capo_ssm.types.tag_list
 import capo_ssm.types.target_locations
 import capo_ssm.types.target_maps
-import capo_ssm.types.targets
 from capo_ssm._protocol.errors import parse_error_metadata_json
 from capo_ssm._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_ssm._services._pipeline import AsyncOperationOptions, OperationOptions

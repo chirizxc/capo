@@ -11,13 +11,21 @@ from capo_bedrock_agentcore_control.errors import (
 
 if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.bedrock_evaluator_model_config
+    import capo_bedrock_agentcore_control.types.open_responses_evaluator_model_config
 
 
 class _EvaluatorModelConfig_bedrockEvaluatorModelConfig(TypedDict, closed=True):
     bedrockEvaluatorModelConfig: "capo_bedrock_agentcore_control.types.bedrock_evaluator_model_config.BedrockEvaluatorModelConfig"
 
 
-EvaluatorModelConfig: TypeAlias = _EvaluatorModelConfig_bedrockEvaluatorModelConfig
+class _EvaluatorModelConfig_responsesEvaluatorModelConfig(TypedDict, closed=True):
+    responsesEvaluatorModelConfig: "capo_bedrock_agentcore_control.types.open_responses_evaluator_model_config.OpenResponsesEvaluatorModelConfig"
+
+
+EvaluatorModelConfig: TypeAlias = (
+    _EvaluatorModelConfig_bedrockEvaluatorModelConfig
+    | _EvaluatorModelConfig_responsesEvaluatorModelConfig
+)
 
 
 # --- restJson1 ser/de ---
@@ -28,6 +36,14 @@ def serialize_json(value: EvaluatorModelConfig) -> dict:
         return {
             "bedrockEvaluatorModelConfig": capo_bedrock_agentcore_control.types.bedrock_evaluator_model_config.serialize_json(
                 value["bedrockEvaluatorModelConfig"]
+            )
+        }
+    elif "responsesEvaluatorModelConfig" in value:
+        import capo_bedrock_agentcore_control.types.open_responses_evaluator_model_config
+
+        return {
+            "responsesEvaluatorModelConfig": capo_bedrock_agentcore_control.types.open_responses_evaluator_model_config.serialize_json(
+                value["responsesEvaluatorModelConfig"]
             )
         }
     else:
@@ -41,6 +57,14 @@ def deserialize_json(data: dict) -> EvaluatorModelConfig:
         return {
             "bedrockEvaluatorModelConfig": capo_bedrock_agentcore_control.types.bedrock_evaluator_model_config.deserialize_json(
                 data["bedrockEvaluatorModelConfig"]
+            )
+        }
+    elif data.get("responsesEvaluatorModelConfig") is not None:
+        import capo_bedrock_agentcore_control.types.open_responses_evaluator_model_config
+
+        return {
+            "responsesEvaluatorModelConfig": capo_bedrock_agentcore_control.types.open_responses_evaluator_model_config.deserialize_json(
+                data["responsesEvaluatorModelConfig"]
             )
         }
     else:

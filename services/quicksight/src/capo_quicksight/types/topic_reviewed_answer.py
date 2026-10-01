@@ -9,7 +9,7 @@ from capo_quicksight.errors import DeserializationError
 if TYPE_CHECKING:
     import capo_quicksight.types.answer_id
     import capo_quicksight.types.arn
-    import capo_quicksight.types.limited_string
+    import capo_quicksight.types.limited_sensitive_string
     import capo_quicksight.types.topic_ir
     import capo_quicksight.types.topic_template
     import capo_quicksight.types.topic_visual
@@ -22,7 +22,7 @@ class TopicReviewedAnswer(TypedDict, closed=True):
     """<p>The answer ID of the reviewed answer.</p>"""
     dataset_arn: "capo_quicksight.types.arn.Arn"
     """<p>The Dataset ARN for the <code>TopicReviewedAnswer</code>.</p>"""
-    question: "capo_quicksight.types.limited_string.LimitedString"
+    question: "capo_quicksight.types.limited_sensitive_string.LimitedSensitiveString"
     """<p>The question for the <code>TopicReviewedAnswer</code>.</p>"""
     mir: NotRequired["capo_quicksight.types.topic_ir.TopicIR"]
     """<p>The mir for the <code>TopicReviewedAnswer</code>.</p>"""

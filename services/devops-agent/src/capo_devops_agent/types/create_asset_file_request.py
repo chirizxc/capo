@@ -7,14 +7,16 @@ from typing_extensions import NotRequired, TypedDict
 from capo_devops_agent.errors import DeserializationError
 
 if TYPE_CHECKING:
-    import capo_devops_agent.types.agent_space_id
+    import capo_devops_agent.types.agent_space_identifier
     import capo_devops_agent.types.asset_file_body
     import capo_devops_agent.types.asset_file_path
     import capo_devops_agent.types.resource_id
 
 
 class CreateAssetFileRequest(TypedDict, closed=True):
-    agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId"
+    agent_space_id: (
+        "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier"
+    )
     """<p>The unique identifier for the agent space containing the asset</p>"""
     asset_id: "capo_devops_agent.types.resource_id.ResourceId"
     """<p>The unique identifier of the asset to create the file in</p>"""

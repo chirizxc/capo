@@ -14,9 +14,9 @@ from capo_elementalinference import AsyncElementalInferenceClient
 
 async def main():
     async with AsyncElementalInferenceClient() as elemental_inference:
-        # Example: call the list_tags_for_resource operation
-        response = await elemental_inference.list_tags_for_resource()
-        print(response["tags"])
+        # Example: call the get_fixture operation
+        response = await elemental_inference.get_fixture()
+        print(response["fixture_id"])
 ```
 
 ## Pagination
@@ -29,8 +29,8 @@ from capo_elementalinference import AsyncElementalInferenceClient
 
 async def main():
     async with AsyncElementalInferenceClient() as elemental_inference:
-        # Example: paginate over list_dictionaries
-        async for item in elemental_inference.iter_list_dictionaries():
+        # Example: paginate over search_fixtures
+        async for item in elemental_inference.iter_search_fixtures():
             print(item)
 ```
 
@@ -46,7 +46,7 @@ from capo_elementalinference.error import AccessDeniedException
 async def main():
     async with AsyncElementalInferenceClient() as elemental_inference:
         try:
-            await elemental_inference.list_tags_for_resource()
+            await elemental_inference.get_fixture()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -65,11 +65,11 @@ from capo_elementalinference import AsyncElementalInferenceClient
 async def main():
     async with AsyncElementalInferenceClient() as elemental_inference:
         # Default: 3 attempts for every operation
-        response = await elemental_inference.list_tags_for_resource()
+        response = await elemental_inference.get_fixture()
 
         # Override per operation
-        response = await elemental_inference.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
+        response = await elemental_inference.get_fixture(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await elemental_inference.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
+        response = await elemental_inference.get_fixture(config_overrides={"retry_max_attempts": 1})
 ```

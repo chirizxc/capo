@@ -37,6 +37,8 @@ class CreatePolicyRequest(TypedDict, closed=True):
         "capo_resiliencehubv2.types.data_recovery_targets.DataRecoveryTargets"
     ]
     """<p>The data recovery targets for the resilience policy.</p>"""
+    sharing_enabled: NotRequired["bool"]
+    """<p>Specifies whether cross-account sharing is enabled for the policy. Only a delegated administrator or the management account can enable sharing.</p>"""
     kms_key_id: NotRequired["capo_resiliencehubv2.types.kms_key_id.KmsKeyId"]
     tags: NotRequired["capo_resiliencehubv2.types.tag_map.TagMap"]
     client_token: NotRequired["capo_resiliencehubv2.types.client_token.ClientToken"]
@@ -78,6 +80,8 @@ def serialize_json(value: CreatePolicyRequest) -> dict:
                 value["data_recovery"]
             )
         )
+    if "sharing_enabled" in value:
+        out["sharingEnabled"] = value["sharing_enabled"]
     if "kms_key_id" in value:
         out["kmsKeyId"] = value["kms_key_id"]
     if "tags" in value:
@@ -127,6 +131,8 @@ def deserialize_json(data: dict) -> CreatePolicyRequest:
                 data["dataRecovery"]
             )
         )
+    if data.get("sharingEnabled") is not None:
+        out["sharing_enabled"] = data["sharingEnabled"]
     if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
     if data.get("tags") is not None:

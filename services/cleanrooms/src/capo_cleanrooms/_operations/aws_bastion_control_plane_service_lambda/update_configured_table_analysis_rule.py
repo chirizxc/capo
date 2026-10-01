@@ -16,6 +16,7 @@ import capo_cleanrooms.errors.access_denied_exception
 import capo_cleanrooms.errors.conflict_exception
 import capo_cleanrooms.errors.internal_server_exception
 import capo_cleanrooms.errors.resource_not_found_exception
+import capo_cleanrooms.errors.service_quota_exceeded_exception
 import capo_cleanrooms.errors.throttling_exception
 import capo_cleanrooms.errors.validation_exception
 import capo_cleanrooms.types.configured_table_analysis_rule
@@ -47,6 +48,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "ResourceNotFoundException":
             raise capo_cleanrooms.errors.resource_not_found_exception.ResourceNotFoundException.from_json(
+                data, message
+            )
+        case "ServiceQuotaExceededException":
+            raise capo_cleanrooms.errors.service_quota_exceeded_exception.ServiceQuotaExceededException.from_json(
                 data, message
             )
         case "ThrottlingException":

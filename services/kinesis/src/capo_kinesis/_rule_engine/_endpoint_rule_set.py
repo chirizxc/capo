@@ -23,21 +23,29 @@ class EndpointParams:
         UseFIPS: bool | None = None,
         Region: str | None = None,
         Endpoint: str | None = None,
+        OperationType: str | None = None,
         StreamId: str | None = None,
         StreamARN: str | None = None,
-        OperationType: str | None = None,
         ConsumerARN: str | None = None,
         ResourceARN: str | None = None,
+        ChannelARN: str | None = None,
+        AccountId: str | None = None,
+        AccountIdEndpointMode: str | None = None,
     ):
         self.UseDualStack = UseDualStack if UseDualStack is not None else False
         self.UseFIPS = UseFIPS if UseFIPS is not None else False
         self.Region = Region if Region is not None else None
         self.Endpoint = Endpoint if Endpoint is not None else None
+        self.OperationType = OperationType if OperationType is not None else None
         self.StreamId = StreamId if StreamId is not None else None
         self.StreamARN = StreamARN if StreamARN is not None else None
-        self.OperationType = OperationType if OperationType is not None else None
         self.ConsumerARN = ConsumerARN if ConsumerARN is not None else None
         self.ResourceARN = ResourceARN if ResourceARN is not None else None
+        self.ChannelARN = ChannelARN if ChannelARN is not None else None
+        self.AccountId = AccountId if AccountId is not None else None
+        self.AccountIdEndpointMode = (
+            AccountIdEndpointMode if AccountIdEndpointMode is not None else None
+        )
 
 
 def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
@@ -1178,30 +1186,50 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                                                         interpolate("", p, _locals),
                                                     )
                                                 ):
+                                                    if not (
+                                                        string_equals(
+                                                            _locals["arnType"],
+                                                            interpolate(
+                                                                "stream", p, _locals
+                                                            ),
+                                                        )
+                                                    ):
+                                                        if not (
+                                                            string_equals(
+                                                                _locals["arnType"],
+                                                                interpolate(
+                                                                    "channel",
+                                                                    p,
+                                                                    _locals,
+                                                                ),
+                                                            )
+                                                        ):
+                                                            raise EndpointError(
+                                                                interpolate(
+                                                                    "Invalid ARN: Unsupported resource type `{arnType}`. Expected: stream or channel",
+                                                                    p,
+                                                                    _locals,
+                                                                )
+                                                            )
                                                     if string_equals(
-                                                        _locals["arnType"],
+                                                        get_attr(
+                                                            _locals["PartitionResult"],
+                                                            interpolate(
+                                                                "name", p, _locals
+                                                            ),
+                                                        ),
                                                         interpolate(
-                                                            "stream", p, _locals
+                                                            "{arn#partition}",
+                                                            p,
+                                                            _locals,
                                                         ),
                                                     ):
-                                                        if string_equals(
-                                                            get_attr(
-                                                                _locals[
-                                                                    "PartitionResult"
-                                                                ],
+                                                        if p.OperationType is not None:
+                                                            if string_equals(
+                                                                _locals["arnType"],
                                                                 interpolate(
-                                                                    "name", p, _locals
+                                                                    "stream", p, _locals
                                                                 ),
-                                                            ),
-                                                            interpolate(
-                                                                "{arn#partition}",
-                                                                p,
-                                                                _locals,
-                                                            ),
-                                                        ):
-                                                            if (
-                                                                p.OperationType
-                                                                is not None
                                                             ):
                                                                 if p.UseFIPS is True:
                                                                     if (
@@ -1329,23 +1357,192 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                                                                     properties={},
                                                                     headers={},
                                                                 )
-                                                            raise EndpointError(
+                                                            if string_equals(
+                                                                _locals["arnType"],
                                                                 interpolate(
-                                                                    "Operation Type is not set. Please contact service team for resolution.",
+                                                                    "channel",
                                                                     p,
                                                                     _locals,
+                                                                ),
+                                                            ):
+                                                                _locals[
+                                                                    "resourceId"
+                                                                ] = get_attr(
+                                                                    _locals["arn"],
+                                                                    interpolate(
+                                                                        "resourceId[1]",
+                                                                        p,
+                                                                        _locals,
+                                                                    ),
                                                                 )
-                                                            )
+                                                                if (
+                                                                    _locals[
+                                                                        "resourceId"
+                                                                    ]
+                                                                    is not None
+                                                                ):
+                                                                    if is_valid_host_label(
+                                                                        _locals[
+                                                                            "resourceId"
+                                                                        ],
+                                                                        False,
+                                                                    ):
+                                                                        if (
+                                                                            p.UseFIPS
+                                                                            is True
+                                                                        ):
+                                                                            if (
+                                                                                p.UseDualStack
+                                                                                is True
+                                                                            ):
+                                                                                if (
+                                                                                    get_attr(
+                                                                                        _locals[
+                                                                                            "PartitionResult"
+                                                                                        ],
+                                                                                        interpolate(
+                                                                                            "supportsFIPS",
+                                                                                            p,
+                                                                                            _locals,
+                                                                                        ),
+                                                                                    )
+                                                                                    is True
+                                                                                ):
+                                                                                    if (
+                                                                                        get_attr(
+                                                                                            _locals[
+                                                                                                "PartitionResult"
+                                                                                            ],
+                                                                                            interpolate(
+                                                                                                "supportsDualStack",
+                                                                                                p,
+                                                                                                _locals,
+                                                                                            ),
+                                                                                        )
+                                                                                        is True
+                                                                                    ):
+                                                                                        return Endpoint(
+                                                                                            url=interpolate(
+                                                                                                "https://{resourceId}.{OperationType}-kinesis-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                                                p,
+                                                                                                _locals,
+                                                                                            ),
+                                                                                            properties={},
+                                                                                            headers={},
+                                                                                        )
+                                                                                    raise EndpointError(
+                                                                                        interpolate(
+                                                                                            "DualStack is enabled, but this partition does not support DualStack.",
+                                                                                            p,
+                                                                                            _locals,
+                                                                                        )
+                                                                                    )
+                                                                                raise EndpointError(
+                                                                                    interpolate(
+                                                                                        "FIPS is enabled, but this partition does not support FIPS.",
+                                                                                        p,
+                                                                                        _locals,
+                                                                                    )
+                                                                                )
+                                                                        if (
+                                                                            p.UseFIPS
+                                                                            is True
+                                                                        ):
+                                                                            if (
+                                                                                get_attr(
+                                                                                    _locals[
+                                                                                        "PartitionResult"
+                                                                                    ],
+                                                                                    interpolate(
+                                                                                        "supportsFIPS",
+                                                                                        p,
+                                                                                        _locals,
+                                                                                    ),
+                                                                                )
+                                                                                is True
+                                                                            ):
+                                                                                return Endpoint(
+                                                                                    url=interpolate(
+                                                                                        "https://{resourceId}.{OperationType}-kinesis-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                                        p,
+                                                                                        _locals,
+                                                                                    ),
+                                                                                    properties={},
+                                                                                    headers={},
+                                                                                )
+                                                                            raise EndpointError(
+                                                                                interpolate(
+                                                                                    "FIPS is enabled but this partition does not support FIPS",
+                                                                                    p,
+                                                                                    _locals,
+                                                                                )
+                                                                            )
+                                                                        if (
+                                                                            p.UseDualStack
+                                                                            is True
+                                                                        ):
+                                                                            if (
+                                                                                get_attr(
+                                                                                    _locals[
+                                                                                        "PartitionResult"
+                                                                                    ],
+                                                                                    interpolate(
+                                                                                        "supportsDualStack",
+                                                                                        p,
+                                                                                        _locals,
+                                                                                    ),
+                                                                                )
+                                                                                is True
+                                                                            ):
+                                                                                return Endpoint(
+                                                                                    url=interpolate(
+                                                                                        "https://{resourceId}.{OperationType}-kinesis.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                                        p,
+                                                                                        _locals,
+                                                                                    ),
+                                                                                    properties={},
+                                                                                    headers={},
+                                                                                )
+                                                                            raise EndpointError(
+                                                                                interpolate(
+                                                                                    "DualStack is enabled but this partition does not support DualStack",
+                                                                                    p,
+                                                                                    _locals,
+                                                                                )
+                                                                            )
+                                                                        return Endpoint(
+                                                                            url=interpolate(
+                                                                                "https://{resourceId}.{OperationType}-kinesis.{Region}.{PartitionResult#dnsSuffix}",
+                                                                                p,
+                                                                                _locals,
+                                                                            ),
+                                                                            properties={},
+                                                                            headers={},
+                                                                        )
+                                                                    raise EndpointError(
+                                                                        interpolate(
+                                                                            "Invalid ARN: Invalid channel id.",
+                                                                            p,
+                                                                            _locals,
+                                                                        )
+                                                                    )
+                                                                raise EndpointError(
+                                                                    interpolate(
+                                                                        "Invalid ARN: Missing channel id.",
+                                                                        p,
+                                                                        _locals,
+                                                                    )
+                                                                )
                                                         raise EndpointError(
                                                             interpolate(
-                                                                "Partition: {arn#partition} from ARN doesn't match with partition name: {PartitionResult#name}.",
+                                                                "Operation Type is not set. Please contact service team for resolution.",
                                                                 p,
                                                                 _locals,
                                                             )
                                                         )
                                                     raise EndpointError(
                                                         interpolate(
-                                                            "Invalid ARN: Kinesis ARNs don't support `{arnType}` arn types.",
+                                                            "Partition: {arn#partition} from ARN doesn't match with partition name: {PartitionResult#name}.",
                                                             p,
                                                             _locals,
                                                         )
@@ -1379,6 +1576,543 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                                     "Invalid ARN: Failed to parse ARN.", p, _locals
                                 )
                             )
+    _locals: dict[str, Any] = {}
+    if p.ChannelARN is not None:
+        if not (p.Endpoint is not None):
+            if p.Region is not None:
+                _locals["PartitionResult"] = aws_partition(p.Region)
+                if _locals["PartitionResult"] is not None:
+                    if not (
+                        string_equals(
+                            get_attr(
+                                _locals["PartitionResult"],
+                                interpolate("name", p, _locals),
+                            ),
+                            interpolate("aws-iso", p, _locals),
+                        )
+                    ):
+                        if not (
+                            string_equals(
+                                get_attr(
+                                    _locals["PartitionResult"],
+                                    interpolate("name", p, _locals),
+                                ),
+                                interpolate("aws-iso-b", p, _locals),
+                            )
+                        ):
+                            _locals["arn"] = aws_parse_arn(p.ChannelARN)
+                            if _locals["arn"] is not None:
+                                if is_valid_host_label(
+                                    get_attr(
+                                        _locals["arn"],
+                                        interpolate("accountId", p, _locals),
+                                    ),
+                                    False,
+                                ):
+                                    if is_valid_host_label(
+                                        get_attr(
+                                            _locals["arn"],
+                                            interpolate("region", p, _locals),
+                                        ),
+                                        False,
+                                    ):
+                                        if string_equals(
+                                            get_attr(
+                                                _locals["arn"],
+                                                interpolate("service", p, _locals),
+                                            ),
+                                            interpolate("kinesis", p, _locals),
+                                        ):
+                                            _locals["arnType"] = get_attr(
+                                                _locals["arn"],
+                                                interpolate(
+                                                    "resourceId[0]", p, _locals
+                                                ),
+                                            )
+                                            if _locals["arnType"] is not None:
+                                                if not (
+                                                    string_equals(
+                                                        _locals["arnType"],
+                                                        interpolate("", p, _locals),
+                                                    )
+                                                ):
+                                                    if string_equals(
+                                                        _locals["arnType"],
+                                                        interpolate(
+                                                            "channel", p, _locals
+                                                        ),
+                                                    ):
+                                                        if string_equals(
+                                                            get_attr(
+                                                                _locals[
+                                                                    "PartitionResult"
+                                                                ],
+                                                                interpolate(
+                                                                    "name", p, _locals
+                                                                ),
+                                                            ),
+                                                            interpolate(
+                                                                "{arn#partition}",
+                                                                p,
+                                                                _locals,
+                                                            ),
+                                                        ):
+                                                            if (
+                                                                p.OperationType
+                                                                is not None
+                                                            ):
+                                                                _locals["channelId"] = (
+                                                                    get_attr(
+                                                                        _locals["arn"],
+                                                                        interpolate(
+                                                                            "resourceId[1]",
+                                                                            p,
+                                                                            _locals,
+                                                                        ),
+                                                                    )
+                                                                )
+                                                                if (
+                                                                    _locals["channelId"]
+                                                                    is not None
+                                                                ):
+                                                                    if is_valid_host_label(
+                                                                        _locals[
+                                                                            "channelId"
+                                                                        ],
+                                                                        False,
+                                                                    ):
+                                                                        if not (
+                                                                            string_equals(
+                                                                                p.OperationType,
+                                                                                interpolate(
+                                                                                    "data",
+                                                                                    p,
+                                                                                    _locals,
+                                                                                ),
+                                                                            )
+                                                                        ):
+                                                                            if (
+                                                                                p.UseFIPS
+                                                                                is True
+                                                                            ):
+                                                                                if (
+                                                                                    p.UseDualStack
+                                                                                    is True
+                                                                                ):
+                                                                                    if (
+                                                                                        get_attr(
+                                                                                            _locals[
+                                                                                                "PartitionResult"
+                                                                                            ],
+                                                                                            interpolate(
+                                                                                                "supportsFIPS",
+                                                                                                p,
+                                                                                                _locals,
+                                                                                            ),
+                                                                                        )
+                                                                                        is True
+                                                                                    ):
+                                                                                        if (
+                                                                                            get_attr(
+                                                                                                _locals[
+                                                                                                    "PartitionResult"
+                                                                                                ],
+                                                                                                interpolate(
+                                                                                                    "supportsDualStack",
+                                                                                                    p,
+                                                                                                    _locals,
+                                                                                                ),
+                                                                                            )
+                                                                                            is True
+                                                                                        ):
+                                                                                            return Endpoint(
+                                                                                                url=interpolate(
+                                                                                                    "https://{channelId}.{OperationType}-kinesis-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                                                    p,
+                                                                                                    _locals,
+                                                                                                ),
+                                                                                                properties={},
+                                                                                                headers={},
+                                                                                            )
+                                                                                        raise EndpointError(
+                                                                                            interpolate(
+                                                                                                "DualStack is enabled, but this partition does not support DualStack.",
+                                                                                                p,
+                                                                                                _locals,
+                                                                                            )
+                                                                                        )
+                                                                                    raise EndpointError(
+                                                                                        interpolate(
+                                                                                            "FIPS is enabled, but this partition does not support FIPS.",
+                                                                                            p,
+                                                                                            _locals,
+                                                                                        )
+                                                                                    )
+                                                                            if (
+                                                                                p.UseFIPS
+                                                                                is True
+                                                                            ):
+                                                                                if (
+                                                                                    get_attr(
+                                                                                        _locals[
+                                                                                            "PartitionResult"
+                                                                                        ],
+                                                                                        interpolate(
+                                                                                            "supportsFIPS",
+                                                                                            p,
+                                                                                            _locals,
+                                                                                        ),
+                                                                                    )
+                                                                                    is True
+                                                                                ):
+                                                                                    return Endpoint(
+                                                                                        url=interpolate(
+                                                                                            "https://{channelId}.{OperationType}-kinesis-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                                            p,
+                                                                                            _locals,
+                                                                                        ),
+                                                                                        properties={},
+                                                                                        headers={},
+                                                                                    )
+                                                                                raise EndpointError(
+                                                                                    interpolate(
+                                                                                        "FIPS is enabled but this partition does not support FIPS",
+                                                                                        p,
+                                                                                        _locals,
+                                                                                    )
+                                                                                )
+                                                                            if (
+                                                                                p.UseDualStack
+                                                                                is True
+                                                                            ):
+                                                                                if (
+                                                                                    get_attr(
+                                                                                        _locals[
+                                                                                            "PartitionResult"
+                                                                                        ],
+                                                                                        interpolate(
+                                                                                            "supportsDualStack",
+                                                                                            p,
+                                                                                            _locals,
+                                                                                        ),
+                                                                                    )
+                                                                                    is True
+                                                                                ):
+                                                                                    return Endpoint(
+                                                                                        url=interpolate(
+                                                                                            "https://{channelId}.{OperationType}-kinesis.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                                            p,
+                                                                                            _locals,
+                                                                                        ),
+                                                                                        properties={},
+                                                                                        headers={},
+                                                                                    )
+                                                                                raise EndpointError(
+                                                                                    interpolate(
+                                                                                        "DualStack is enabled but this partition does not support DualStack",
+                                                                                        p,
+                                                                                        _locals,
+                                                                                    )
+                                                                                )
+                                                                            return Endpoint(
+                                                                                url=interpolate(
+                                                                                    "https://{channelId}.{OperationType}-kinesis.{Region}.{PartitionResult#dnsSuffix}",
+                                                                                    p,
+                                                                                    _locals,
+                                                                                ),
+                                                                                properties={},
+                                                                                headers={},
+                                                                            )
+                                                                        raise EndpointError(
+                                                                            interpolate(
+                                                                                "ChannelARN does not support the `data` operation type.",
+                                                                                p,
+                                                                                _locals,
+                                                                            )
+                                                                        )
+                                                                    raise EndpointError(
+                                                                        interpolate(
+                                                                            "Invalid ARN: Invalid channel id.",
+                                                                            p,
+                                                                            _locals,
+                                                                        )
+                                                                    )
+                                                                raise EndpointError(
+                                                                    interpolate(
+                                                                        "Invalid ARN: Missing channel id.",
+                                                                        p,
+                                                                        _locals,
+                                                                    )
+                                                                )
+                                                            raise EndpointError(
+                                                                interpolate(
+                                                                    "Operation Type is not set. Please contact service team for resolution.",
+                                                                    p,
+                                                                    _locals,
+                                                                )
+                                                            )
+                                                        raise EndpointError(
+                                                            interpolate(
+                                                                "Partition: {arn#partition} from ARN doesn't match with partition name: {PartitionResult#name}.",
+                                                                p,
+                                                                _locals,
+                                                            )
+                                                        )
+                                                    raise EndpointError(
+                                                        interpolate(
+                                                            "Invalid ARN: ChannelARN only supports `channel` arn types, found: `{arnType}`.",
+                                                            p,
+                                                            _locals,
+                                                        )
+                                                    )
+                                            raise EndpointError(
+                                                interpolate(
+                                                    "Invalid ARN: No ARN type specified",
+                                                    p,
+                                                    _locals,
+                                                )
+                                            )
+                                        raise EndpointError(
+                                            interpolate(
+                                                "Invalid ARN: The ARN was not for the Kinesis service, found: {arn#service}.",
+                                                p,
+                                                _locals,
+                                            )
+                                        )
+                                    raise EndpointError(
+                                        interpolate(
+                                            "Invalid ARN: Invalid region.", p, _locals
+                                        )
+                                    )
+                                raise EndpointError(
+                                    interpolate(
+                                        "Invalid ARN: Invalid account id.", p, _locals
+                                    )
+                                )
+                            raise EndpointError(
+                                interpolate(
+                                    "Invalid ARN: Failed to parse ARN.", p, _locals
+                                )
+                            )
+    _locals: dict[str, Any] = {}
+    if not (p.Endpoint is not None):
+        if p.AccountIdEndpointMode is not None:
+            if not (
+                string_equals(
+                    p.AccountIdEndpointMode, interpolate("disabled", p, _locals)
+                )
+            ):
+                if p.AccountId is not None:
+                    if p.Region is not None:
+                        _locals["PartitionResult"] = aws_partition(p.Region)
+                        if _locals["PartitionResult"] is not None:
+                            if not (
+                                string_equals(
+                                    get_attr(
+                                        _locals["PartitionResult"],
+                                        interpolate("name", p, _locals),
+                                    ),
+                                    interpolate("aws-iso", p, _locals),
+                                )
+                            ):
+                                if not (
+                                    string_equals(
+                                        get_attr(
+                                            _locals["PartitionResult"],
+                                            interpolate("name", p, _locals),
+                                        ),
+                                        interpolate("aws-iso-b", p, _locals),
+                                    )
+                                ):
+                                    if is_valid_host_label(p.AccountId, False):
+                                        if p.OperationType is not None:
+                                            if p.UseFIPS is True:
+                                                if p.UseDualStack is True:
+                                                    if (
+                                                        get_attr(
+                                                            _locals["PartitionResult"],
+                                                            interpolate(
+                                                                "supportsFIPS",
+                                                                p,
+                                                                _locals,
+                                                            ),
+                                                        )
+                                                        is True
+                                                    ):
+                                                        if (
+                                                            get_attr(
+                                                                _locals[
+                                                                    "PartitionResult"
+                                                                ],
+                                                                interpolate(
+                                                                    "supportsDualStack",
+                                                                    p,
+                                                                    _locals,
+                                                                ),
+                                                            )
+                                                            is True
+                                                        ):
+                                                            return Endpoint(
+                                                                url=interpolate(
+                                                                    "https://{AccountId}.{OperationType}-kinesis-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    p,
+                                                                    _locals,
+                                                                ),
+                                                                properties={
+                                                                    "metricValues": [
+                                                                        interpolate(
+                                                                            "O",
+                                                                            p,
+                                                                            _locals,
+                                                                        )
+                                                                    ]
+                                                                },
+                                                                headers={},
+                                                            )
+                                                        raise EndpointError(
+                                                            interpolate(
+                                                                "DualStack is enabled, but this partition does not support DualStack.",
+                                                                p,
+                                                                _locals,
+                                                            )
+                                                        )
+                                                    raise EndpointError(
+                                                        interpolate(
+                                                            "FIPS is enabled, but this partition does not support FIPS.",
+                                                            p,
+                                                            _locals,
+                                                        )
+                                                    )
+                                            if p.UseFIPS is True:
+                                                if (
+                                                    get_attr(
+                                                        _locals["PartitionResult"],
+                                                        interpolate(
+                                                            "supportsFIPS", p, _locals
+                                                        ),
+                                                    )
+                                                    is True
+                                                ):
+                                                    return Endpoint(
+                                                        url=interpolate(
+                                                            "https://{AccountId}.{OperationType}-kinesis-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                            p,
+                                                            _locals,
+                                                        ),
+                                                        properties={
+                                                            "metricValues": [
+                                                                interpolate(
+                                                                    "O", p, _locals
+                                                                )
+                                                            ]
+                                                        },
+                                                        headers={},
+                                                    )
+                                                raise EndpointError(
+                                                    interpolate(
+                                                        "FIPS is enabled but this partition does not support FIPS",
+                                                        p,
+                                                        _locals,
+                                                    )
+                                                )
+                                            if p.UseDualStack is True:
+                                                if (
+                                                    get_attr(
+                                                        _locals["PartitionResult"],
+                                                        interpolate(
+                                                            "supportsDualStack",
+                                                            p,
+                                                            _locals,
+                                                        ),
+                                                    )
+                                                    is True
+                                                ):
+                                                    return Endpoint(
+                                                        url=interpolate(
+                                                            "https://{AccountId}.{OperationType}-kinesis.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                            p,
+                                                            _locals,
+                                                        ),
+                                                        properties={
+                                                            "metricValues": [
+                                                                interpolate(
+                                                                    "O", p, _locals
+                                                                )
+                                                            ]
+                                                        },
+                                                        headers={},
+                                                    )
+                                                raise EndpointError(
+                                                    interpolate(
+                                                        "DualStack is enabled but this partition does not support DualStack",
+                                                        p,
+                                                        _locals,
+                                                    )
+                                                )
+                                            return Endpoint(
+                                                url=interpolate(
+                                                    "https://{AccountId}.{OperationType}-kinesis.{Region}.{PartitionResult#dnsSuffix}",
+                                                    p,
+                                                    _locals,
+                                                ),
+                                                properties={
+                                                    "metricValues": [
+                                                        interpolate("O", p, _locals)
+                                                    ]
+                                                },
+                                                headers={},
+                                            )
+                                        raise EndpointError(
+                                            interpolate(
+                                                "Operation Type is not set. Please contact service team for resolution.",
+                                                p,
+                                                _locals,
+                                            )
+                                        )
+                                    raise EndpointError(
+                                        interpolate("Invalid account id.", p, _locals)
+                                    )
+    _locals: dict[str, Any] = {}
+    if not (p.Endpoint is not None):
+        if p.AccountIdEndpointMode is not None:
+            if string_equals(
+                p.AccountIdEndpointMode, interpolate("required", p, _locals)
+            ):
+                if p.Region is not None:
+                    _locals["PartitionResult"] = aws_partition(p.Region)
+                    if _locals["PartitionResult"] is not None:
+                        if not (
+                            string_equals(
+                                get_attr(
+                                    _locals["PartitionResult"],
+                                    interpolate("name", p, _locals),
+                                ),
+                                interpolate("aws-iso", p, _locals),
+                            )
+                        ):
+                            if not (
+                                string_equals(
+                                    get_attr(
+                                        _locals["PartitionResult"],
+                                        interpolate("name", p, _locals),
+                                    ),
+                                    interpolate("aws-iso-b", p, _locals),
+                                )
+                            ):
+                                raise EndpointError(
+                                    interpolate(
+                                        "AccountIdEndpointMode is required but no AccountID was provided or able to be loaded",
+                                        p,
+                                        _locals,
+                                    )
+                                )
+                        raise EndpointError(
+                            interpolate(
+                                "Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this partition",
+                                p,
+                                _locals,
+                            )
+                        )
     _locals: dict[str, Any] = {}
     if p.Endpoint is not None:
         if p.UseFIPS is True:

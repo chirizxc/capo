@@ -18,6 +18,7 @@ import capo_geo_places.errors.validation_exception
 import capo_geo_places.types.position
 import capo_geo_places.types.search_nearby_additional_feature_list
 import capo_geo_places.types.search_nearby_filter
+import capo_geo_places.types.search_nearby_intended_use
 import capo_geo_places.types.search_nearby_request
 import capo_geo_places.types.search_nearby_response
 import capo_geo_places.types.search_nearby_result_item_list

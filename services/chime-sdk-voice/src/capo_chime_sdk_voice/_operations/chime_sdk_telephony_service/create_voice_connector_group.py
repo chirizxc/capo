@@ -14,11 +14,13 @@ import capo_chime_sdk_voice._protocol.eventstream
 import capo_chime_sdk_voice.errors.access_denied_exception
 import capo_chime_sdk_voice.errors.bad_request_exception
 import capo_chime_sdk_voice.errors.forbidden_exception
+import capo_chime_sdk_voice.errors.not_found_exception
 import capo_chime_sdk_voice.errors.resource_limit_exceeded_exception
 import capo_chime_sdk_voice.errors.service_failure_exception
 import capo_chime_sdk_voice.errors.service_unavailable_exception
 import capo_chime_sdk_voice.errors.throttled_client_exception
 import capo_chime_sdk_voice.errors.unauthorized_client_exception
+import capo_chime_sdk_voice.types.call_distribution_type
 import capo_chime_sdk_voice.types.create_voice_connector_group_request
 import capo_chime_sdk_voice.types.create_voice_connector_group_response
 import capo_chime_sdk_voice.types.voice_connector_group
@@ -46,6 +48,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "ForbiddenException":
             raise capo_chime_sdk_voice.errors.forbidden_exception.ForbiddenException.from_json(
+                data, message
+            )
+        case "NotFoundException":
+            raise capo_chime_sdk_voice.errors.not_found_exception.NotFoundException.from_json(
                 data, message
             )
         case "ResourceLimitExceededException":

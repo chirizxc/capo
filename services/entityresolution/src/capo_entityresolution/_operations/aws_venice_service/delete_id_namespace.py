@@ -14,6 +14,7 @@ import capo_entityresolution._auth._sigv4
 import capo_entityresolution._protocol.eventstream
 import capo_entityresolution.errors.access_denied_exception
 import capo_entityresolution.errors.internal_server_exception
+import capo_entityresolution.errors.resource_not_found_exception
 import capo_entityresolution.errors.throttling_exception
 import capo_entityresolution.errors.validation_exception
 import capo_entityresolution.types.delete_id_namespace_input
@@ -40,6 +41,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "InternalServerException":
             raise capo_entityresolution.errors.internal_server_exception.InternalServerException.from_json(
+                data, message
+            )
+        case "ResourceNotFoundException":
+            raise capo_entityresolution.errors.resource_not_found_exception.ResourceNotFoundException.from_json(
                 data, message
             )
         case "ThrottlingException":

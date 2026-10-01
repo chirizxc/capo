@@ -24,6 +24,7 @@ import capo_pcs.types.create_compute_node_group_request
 import capo_pcs.types.create_compute_node_group_response
 import capo_pcs.types.custom_launch_template
 import capo_pcs.types.instance_list
+import capo_pcs.types.node_lifecycle_actions_request
 import capo_pcs.types.purchase_option
 import capo_pcs.types.request_tag_map
 import capo_pcs.types.scaling_configuration_request

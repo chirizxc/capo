@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from collections.abc import AsyncIterator, Iterator
 from typing import Any, cast
 from urllib.parse import quote
 
@@ -11,6 +12,7 @@ from typing_extensions import Never
 
 import capo_mediastore_data._auth._signers
 import capo_mediastore_data._auth._sigv4
+import capo_mediastore_data._body
 import capo_mediastore_data._protocol.eventstream
 import capo_mediastore_data.errors.container_not_found_exception
 import capo_mediastore_data.errors.internal_server_error
@@ -89,7 +91,9 @@ def get_signer(
             )
             if sigv4_config is not None:
                 return capo_mediastore_data._auth._signers.SigV4Signer(
-                    options.credentials_provider, auth_scheme=sigv4_config
+                    options.credentials_provider,
+                    auth_scheme=sigv4_config,
+                    unsigned_payload=True,
                 )
     raise RuntimeError("Auth was not resolved")
 
@@ -130,6 +134,79 @@ def build_request(
             )
         )
     body = input_["body"]
+    if isinstance(body, capo_mediastore_data._body.Body):
+        body = cast(capo_mediastore_data._body.Body[Iterator[bytes]], body)
+        stream = body.stream
+        if stream is None:
+            rebuilt = body.rebuild()
+            if rebuilt is None:
+                raise RuntimeError("streaming body could not be rebuilt")
+            stream, _ = rebuilt
+        if "content-length" not in [header.lower() for header in headers]:
+            headers["Content-Length"] = str(body.length)
+        body = stream
+    if isinstance(body, capo_mediastore_data._iter.StaticAnyIterator):
+        body = cast(bytes, body.content)
+    if not isinstance(body, bytes) and "content-length" not in [
+        header.lower() for header in headers
+    ]:
+        raise ValueError("Content-Length is required for streaming input")
+    signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
+    normalized_url = zapros.URL(url)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
+    return zapros.Request(
+        normalized_url, "PUT", headers=headers, body=body, context={"signer": signer}
+    )
+
+
+async def async_build_request(
+    options: OperationOptions | AsyncOperationOptions,
+    input_: capo_mediastore_data.types.put_object_request.PutObjectRequest,
+) -> zapros.Request:
+    endpoint = resolve(
+        EndpointParams(
+            Region=options.region,
+            UseDualStack=options.use_dual_stack,
+            UseFIPS=options.use_fips,
+            Endpoint=options.endpoint,
+        )
+    )  # noqa: F841
+    import capo_mediastore_data.types.storage_class
+    import capo_mediastore_data.types.upload_availability
+
+    url = endpoint.url.rstrip("/") + "/{Path+}"
+    url = url.replace("{Path+}", quote(input_["path"], safe="/"))
+    params: list[tuple[str, str]] = []
+    headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
+    if "content_type" in input_:
+        headers["Content-Type"] = input_["content_type"]
+    if "cache_control" in input_:
+        headers["Cache-Control"] = input_["cache_control"]
+    if "storage_class" in input_:
+        headers["x-amz-storage-class"] = (
+            capo_mediastore_data.types.storage_class.serialize_json(
+                input_["storage_class"]
+            )
+        )
+    if "upload_availability" in input_:
+        headers["x-amz-upload-availability"] = (
+            capo_mediastore_data.types.upload_availability.serialize_json(
+                input_["upload_availability"]
+            )
+        )
+    body = input_["body"]
+    if isinstance(body, capo_mediastore_data._body.Body):
+        body = cast(capo_mediastore_data._body.Body[AsyncIterator[bytes]], body)
+        stream = body.stream
+        if stream is None:
+            rebuilt = await body.arebuild()
+            if rebuilt is None:
+                raise RuntimeError("streaming body could not be rebuilt")
+            stream, _ = rebuilt
+        if "content-length" not in [header.lower() for header in headers]:
+            headers["Content-Length"] = str(body.length)
+        body = stream
     if isinstance(body, capo_mediastore_data._iter.StaticAnyIterator):
         body = cast(bytes, body.content)
     if not isinstance(body, bytes) and "content-length" not in [
@@ -168,7 +245,9 @@ async def async_put_object(
 ) -> tuple[
     capo_mediastore_data.types.put_object_response.PutObjectResponse, zapros.Response
 ]:
-    response = await options.client.handler.ahandle(build_request(options, input_))
+    response = await options.client.handler.ahandle(
+        await async_build_request(options, input_)
+    )
     try:
         if response.status >= 300:
             await response.aread()

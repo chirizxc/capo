@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 class DescribeMetadataModelMessage(TypedDict, closed=True):
     selection_rules: "capo_database_migration_service.types.string.String"
-    r"""<p>The JSON string that specifies which metadata model to retrieve. Only one selection rule with \"rule-action\": \"explicit\" can be provided. For more information, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TableMapping.SelectionTransformation.Selections.html\">Selection Rules</a> in the DMS User Guide.</p>"""
+    r"""<p>A JSON string that identifies the metadata model to retrieve. For the selection rule format and examples, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/sc-selection-rules.html\">Selection rules in DMS Schema Conversion</a>.</p> <p>Usage:</p> <ul> <li> <p>Accepts source or target selection rules depending on the <code>Origin</code> parameter. The <code>server-name</code> in the object locator must match the corresponding data provider.</p> </li> <li> <p>Supports only <code>explicit</code> rule actions.</p> </li> <li> <p>Exactly one rule is allowed.</p> </li> </ul>"""
     migration_project_identifier: "capo_database_migration_service.types.migration_project_identifier.MigrationProjectIdentifier"
     """<p>The migration project name or Amazon Resource Name (ARN).</p>"""
     origin: "capo_database_migration_service.types.origin_type_value.OriginTypeValue"

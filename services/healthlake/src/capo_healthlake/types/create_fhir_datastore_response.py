@@ -23,7 +23,7 @@ class CreateFHIRDatastoreResponse(TypedDict, closed=True):
     datastore_endpoint: (
         "capo_healthlake.types.bounded_length_string.BoundedLengthString"
     )
-    """<p>The AWS endpoint created for the data store.</p>"""
+    """<p>The Amazon Web Services endpoint created for the data store.</p>"""
 
 
 # --- awsJson1_0 ser/de ---

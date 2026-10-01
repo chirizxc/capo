@@ -12,8 +12,11 @@ from typing_extensions import Never
 import capo_cloudwatch._auth._signers
 import capo_cloudwatch._auth._sigv4
 import capo_cloudwatch._protocol.eventstream
+import capo_cloudwatch.errors.validation_exception
+import capo_cloudwatch.types.o_tel_enrichment_metric_selector_list
 import capo_cloudwatch.types.start_o_tel_enrichment_input
 import capo_cloudwatch.types.start_o_tel_enrichment_output
+import capo_cloudwatch.types.timestamp
 from capo_cloudwatch._protocol.errors import parse_error_metadata_json
 from capo_cloudwatch._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_cloudwatch._services._pipeline import AsyncOperationOptions, OperationOptions
@@ -24,6 +27,10 @@ def handle_error(response: zapros.Response) -> Never:
     data = json.loads(response.read())
     code, message = parse_error_metadata_json(response, data)
     match code:
+        case "ValidationException":
+            raise capo_cloudwatch.errors.validation_exception.ValidationException.from_aws_json_1_0(
+                data, message
+            )
         case _:
             raise UnknownServiceError(code=code, message=message, response=response)
 
@@ -31,14 +38,18 @@ def handle_error(response: zapros.Response) -> Never:
 def handle_response(
     response: zapros.Response,
 ) -> capo_cloudwatch.types.start_o_tel_enrichment_output.StartOTelEnrichmentOutput:
-    out: capo_cloudwatch.types.start_o_tel_enrichment_output.StartOTelEnrichmentOutput = {}  # type: ignore[typeddict-item]
+    out: capo_cloudwatch.types.start_o_tel_enrichment_output.StartOTelEnrichmentOutput = capo_cloudwatch.types.start_o_tel_enrichment_output.deserialize_aws_json_1_0(
+        json.loads(response.read())
+    )
     return out
 
 
 async def async_handle_response(
     response: zapros.Response,
 ) -> capo_cloudwatch.types.start_o_tel_enrichment_output.StartOTelEnrichmentOutput:
-    out: capo_cloudwatch.types.start_o_tel_enrichment_output.StartOTelEnrichmentOutput = {}  # type: ignore[typeddict-item]
+    out: capo_cloudwatch.types.start_o_tel_enrichment_output.StartOTelEnrichmentOutput = capo_cloudwatch.types.start_o_tel_enrichment_output.deserialize_aws_json_1_0(
+        json.loads(await response.aread())
+    )
     return out
 
 

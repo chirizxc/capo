@@ -11,6 +11,7 @@ AssociationFilterKey: TypeAlias = Literal[
     "LastExecutedAfter",
     "AssociationName",
     "ResourceGroupName",
+    "CloudConnectorId",
 ]
 
 

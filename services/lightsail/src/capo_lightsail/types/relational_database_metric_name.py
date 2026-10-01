@@ -9,6 +9,8 @@ RelationalDatabaseMetricName: TypeAlias = Literal[
     "FreeStorageSpace",
     "NetworkReceiveThroughput",
     "NetworkTransmitThroughput",
+    "FreeableMemory",
+    "SwapUsage",
 ]
 
 

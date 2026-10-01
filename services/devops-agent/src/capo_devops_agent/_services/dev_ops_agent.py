@@ -24,10 +24,12 @@ from capo_devops_agent._pagination import resolve_path as _resolve_path
 from capo_devops_agent._resources.dev_ops_agent.agent_space_resource import (
     AgentSpaceResource,
 )
+from capo_devops_agent._resources.dev_ops_agent.asset_resource import AssetResource
 from capo_devops_agent._resources.dev_ops_agent.private_connection_resource import (
     PrivateConnectionResource,
 )
 from capo_devops_agent._resources.dev_ops_agent.service_resource import ServiceResource
+from capo_devops_agent._resources.dev_ops_agent.trigger_resource import TriggerResource
 from capo_devops_agent._services._aws_config import aws_config
 from capo_devops_agent._services._pipeline import (
     Interceptor,
@@ -41,7 +43,13 @@ from capo_devops_agent._services._pipeline import (
 if TYPE_CHECKING:
     import capo_devops_agent.types.agent_space
     import capo_devops_agent.types.agent_space_id
+    import capo_devops_agent.types.agent_space_identifier
     import capo_devops_agent.types.agent_space_name
+    import capo_devops_agent.types.agent_space_preferences
+    import capo_devops_agent.types.approval_action_type
+    import capo_devops_agent.types.approval_id
+    import capo_devops_agent.types.approval_pattern
+    import capo_devops_agent.types.approval_reason
     import capo_devops_agent.types.asset
     import capo_devops_agent.types.asset_content
     import capo_devops_agent.types.asset_file_body
@@ -54,6 +62,7 @@ if TYPE_CHECKING:
     import capo_devops_agent.types.associate_service_input
     import capo_devops_agent.types.associate_service_output
     import capo_devops_agent.types.association
+    import capo_devops_agent.types.association_capabilities
     import capo_devops_agent.types.association_id
     import capo_devops_agent.types.auth_flow
     import capo_devops_agent.types.backlog_task_description
@@ -72,6 +81,8 @@ if TYPE_CHECKING:
     import capo_devops_agent.types.create_chat_response
     import capo_devops_agent.types.create_private_connection_input
     import capo_devops_agent.types.create_private_connection_output
+    import capo_devops_agent.types.create_trigger_request
+    import capo_devops_agent.types.create_trigger_response
     import capo_devops_agent.types.delete_agent_space_input
     import capo_devops_agent.types.delete_agent_space_output
     import capo_devops_agent.types.delete_asset_file_request
@@ -80,6 +91,8 @@ if TYPE_CHECKING:
     import capo_devops_agent.types.delete_asset_response
     import capo_devops_agent.types.delete_private_connection_input
     import capo_devops_agent.types.delete_private_connection_output
+    import capo_devops_agent.types.delete_trigger_request
+    import capo_devops_agent.types.delete_trigger_response
     import capo_devops_agent.types.deregister_service_input
     import capo_devops_agent.types.deregister_service_output
     import capo_devops_agent.types.describe_private_connection_input
@@ -111,6 +124,8 @@ if TYPE_CHECKING:
     import capo_devops_agent.types.get_recommendation_response
     import capo_devops_agent.types.get_service_input
     import capo_devops_agent.types.get_service_output
+    import capo_devops_agent.types.get_trigger_request
+    import capo_devops_agent.types.get_trigger_response
     import capo_devops_agent.types.goal
     import capo_devops_agent.types.goal_schedule_input
     import capo_devops_agent.types.goal_status
@@ -151,6 +166,8 @@ if TYPE_CHECKING:
     import capo_devops_agent.types.list_services_output
     import capo_devops_agent.types.list_tags_for_resource_request
     import capo_devops_agent.types.list_tags_for_resource_response
+    import capo_devops_agent.types.list_triggers_request
+    import capo_devops_agent.types.list_triggers_response
     import capo_devops_agent.types.list_webhooks_input
     import capo_devops_agent.types.list_webhooks_output
     import capo_devops_agent.types.locale
@@ -187,10 +204,17 @@ if TYPE_CHECKING:
     import capo_devops_agent.types.task_sort_order
     import capo_devops_agent.types.task_status
     import capo_devops_agent.types.task_type
+    import capo_devops_agent.types.trigger
+    import capo_devops_agent.types.trigger_action
+    import capo_devops_agent.types.trigger_condition
+    import capo_devops_agent.types.trigger_status
+    import capo_devops_agent.types.trigger_type
     import capo_devops_agent.types.untag_resource_request
     import capo_devops_agent.types.untag_resource_response
     import capo_devops_agent.types.update_agent_space_input
     import capo_devops_agent.types.update_agent_space_output
+    import capo_devops_agent.types.update_approval_action_request
+    import capo_devops_agent.types.update_approval_action_response
     import capo_devops_agent.types.update_asset_file_request
     import capo_devops_agent.types.update_asset_file_response
     import capo_devops_agent.types.update_asset_request
@@ -207,6 +231,8 @@ if TYPE_CHECKING:
     import capo_devops_agent.types.update_private_connection_certificate_output
     import capo_devops_agent.types.update_recommendation_request
     import capo_devops_agent.types.update_recommendation_response
+    import capo_devops_agent.types.update_trigger_request
+    import capo_devops_agent.types.update_trigger_response
     import capo_devops_agent.types.user_type
     import capo_devops_agent.types.validate_aws_associations_input
     import capo_devops_agent.types.validate_aws_associations_output
@@ -275,8 +301,10 @@ class DevOpsAgentClient:
 
         # resources
         self.agent_space_resource = AgentSpaceResource(self)
+        self.asset_resource = AssetResource(self)
         self.private_connection_resource = PrivateConnectionResource(self)
         self.service_resource = ServiceResource(self)
+        self.trigger_resource = TriggerResource(self)
 
     def operation_options(
         self, config_overrides: Optional[DevOpsAgentClientConfig] = None
@@ -305,7 +333,7 @@ class DevOpsAgentClient:
 
     def create_asset(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         asset_type: "capo_devops_agent.types.asset_type.AssetType",
         content: "capo_devops_agent.types.asset_content.AssetContent",
         *,
@@ -319,7 +347,7 @@ class DevOpsAgentClient:
             agent_space_id: <p>The unique identifier for the agent space where the asset will be created</p>
             asset_type: <p>The type of asset to create</p>
             metadata: <p>The metadata describing this asset</p>
-            content: <p>The content for the asset. Provide a single file or a zip bundle.</p>
+            content: <p>The content for the asset. Provide a single file, a zip bundle, or a sourceUrl to import from an external source.</p>
             client_token: <p>A unique, case-sensitive identifier used for idempotent asset creation</p>
 
         Raises:
@@ -371,7 +399,7 @@ class DevOpsAgentClient:
 
     def create_asset_file(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         asset_id: "capo_devops_agent.types.resource_id.ResourceId",
         path: "capo_devops_agent.types.asset_file_path.AssetFilePath",
         content: "capo_devops_agent.types.asset_file_body.AssetFileBody",
@@ -440,7 +468,7 @@ class DevOpsAgentClient:
 
     def create_backlog_task(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         task_type: "capo_devops_agent.types.task_type.TaskType",
         title: "capo_devops_agent.types.backlog_task_title.BacklogTaskTitle",
         priority: "capo_devops_agent.types.priority.Priority",
@@ -519,7 +547,7 @@ class DevOpsAgentClient:
 
     def create_chat(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
         user_id: Optional["capo_devops_agent.types.resource_id.ResourceId"] = None,
@@ -528,6 +556,7 @@ class DevOpsAgentClient:
         """<p>Creates a new chat execution in the specified agent space</p>
 
         Args:
+            agent_space_id: <p>The unique identifier for the agent space where the chat will be created.</p>
             user_id: <p>The user identifier for the chat. This field is deprecated and will be ignored — the service resolves user identity from the authenticated session.</p>
             user_type: <p>The authentication type of the user</p>
 
@@ -575,9 +604,78 @@ class DevOpsAgentClient:
         response.response.close()
         return response.output
 
+    def create_trigger(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
+        type: "capo_devops_agent.types.trigger_type.TriggerType",
+        condition: "capo_devops_agent.types.trigger_condition.TriggerCondition",
+        action: "capo_devops_agent.types.trigger_action.TriggerAction",
+        *,
+        config_overrides: Optional[DevOpsAgentClientConfig] = None,
+        status: Optional["capo_devops_agent.types.trigger_status.TriggerStatus"] = None,
+        client_token: Optional[str] = None,
+    ) -> "capo_devops_agent.types.create_trigger_response.CreateTriggerResponse":
+        """<p>Creates a new Trigger in the specified agent space</p>
+
+        Args:
+            agent_space_id: <p>The unique identifier for the agent space where the Trigger will be created</p>
+            type: <p>How the new Trigger fires</p>
+            condition: <p>The condition that fires the new Trigger</p>
+            action: <p>The action the new Trigger performs when it fires</p>
+            status: <p>The initial status of the Trigger</p>
+            client_token: <p>A unique, case-sensitive identifier used for idempotent Trigger creation</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_devops_agent.types.create_trigger_request.CreateTriggerRequest]",
+        ) -> OperationResponse[
+            "capo_devops_agent.types.create_trigger_response.CreateTriggerResponse"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.create_trigger
+
+            output, http_response = (
+                capo_devops_agent._operations.dev_ops_agent.create_trigger.create_trigger(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.create_trigger_request.CreateTriggerRequest = {
+            "agent_space_id": agent_space_id,
+            "type": type,
+            "condition": condition,
+            "action": action,
+        }
+        if status is not None:
+            input_["status"] = status
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def delete_asset(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         asset_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
@@ -631,7 +729,7 @@ class DevOpsAgentClient:
 
     def delete_asset_file(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         asset_id: "capo_devops_agent.types.resource_id.ResourceId",
         path: "capo_devops_agent.types.asset_file_path.AssetFilePath",
         *,
@@ -676,6 +774,60 @@ class DevOpsAgentClient:
             "agent_space_id": agent_space_id,
             "asset_id": asset_id,
             "path": path,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_trigger(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
+        trigger_id: "capo_devops_agent.types.resource_id.ResourceId",
+        *,
+        config_overrides: Optional[DevOpsAgentClientConfig] = None,
+    ) -> "capo_devops_agent.types.delete_trigger_response.DeleteTriggerResponse":
+        """<p>Deletes a Trigger from the specified agent space</p>
+
+        Args:
+            agent_space_id: <p>The unique identifier for the agent space containing the Trigger</p>
+            trigger_id: <p>The unique identifier of the Trigger to delete</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_devops_agent.types.delete_trigger_request.DeleteTriggerRequest]",
+        ) -> OperationResponse[
+            "capo_devops_agent.types.delete_trigger_response.DeleteTriggerResponse"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.delete_trigger
+
+            output, http_response = (
+                capo_devops_agent._operations.dev_ops_agent.delete_trigger.delete_trigger(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.delete_trigger_request.DeleteTriggerRequest = {
+            "agent_space_id": agent_space_id,
+            "trigger_id": trigger_id,
         }
 
         response = execute_pipeline(
@@ -731,7 +883,7 @@ class DevOpsAgentClient:
 
     def get_asset(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         asset_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
@@ -789,7 +941,7 @@ class DevOpsAgentClient:
 
     def get_asset_content(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         asset_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
@@ -847,7 +999,7 @@ class DevOpsAgentClient:
 
     def get_asset_file(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         asset_id: "capo_devops_agent.types.resource_id.ResourceId",
         path: "capo_devops_agent.types.asset_file_path.AssetFilePath",
         *,
@@ -908,7 +1060,7 @@ class DevOpsAgentClient:
 
     def get_backlog_task(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         task_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
@@ -962,7 +1114,7 @@ class DevOpsAgentClient:
 
     def get_recommendation(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         recommendation_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
@@ -1020,9 +1172,63 @@ class DevOpsAgentClient:
         response.response.close()
         return response.output
 
+    def get_trigger(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
+        trigger_id: "capo_devops_agent.types.resource_id.ResourceId",
+        *,
+        config_overrides: Optional[DevOpsAgentClientConfig] = None,
+    ) -> "capo_devops_agent.types.get_trigger_response.GetTriggerResponse":
+        """<p>Gets a Trigger from the specified agent space</p>
+
+        Args:
+            agent_space_id: <p>The unique identifier for the agent space containing the Trigger</p>
+            trigger_id: <p>The unique identifier of the Trigger to retrieve</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_devops_agent.types.get_trigger_request.GetTriggerRequest]",
+        ) -> OperationResponse[
+            "capo_devops_agent.types.get_trigger_response.GetTriggerResponse"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.get_trigger
+
+            output, http_response = (
+                capo_devops_agent._operations.dev_ops_agent.get_trigger.get_trigger(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.get_trigger_request.GetTriggerRequest = {
+            "agent_space_id": agent_space_id,
+            "trigger_id": trigger_id,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def list_asset_files(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         asset_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
@@ -1088,7 +1294,7 @@ class DevOpsAgentClient:
 
     def iter_list_asset_files(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         asset_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
@@ -1115,7 +1321,7 @@ class DevOpsAgentClient:
 
     def list_assets(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
         asset_type: Optional["capo_devops_agent.types.asset_type.AssetType"] = None,
@@ -1186,7 +1392,7 @@ class DevOpsAgentClient:
 
     def iter_list_assets(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
         asset_type: Optional["capo_devops_agent.types.asset_type.AssetType"] = None,
@@ -1291,7 +1497,7 @@ class DevOpsAgentClient:
 
     def list_asset_versions(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         asset_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
@@ -1355,7 +1561,7 @@ class DevOpsAgentClient:
 
     def iter_list_asset_versions(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         asset_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
@@ -1382,7 +1588,7 @@ class DevOpsAgentClient:
 
     def list_backlog_tasks(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
         filter: Optional["capo_devops_agent.types.task_filter.TaskFilter"] = None,
@@ -1455,7 +1661,7 @@ class DevOpsAgentClient:
 
     def iter_list_backlog_tasks(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
         filter: Optional["capo_devops_agent.types.task_filter.TaskFilter"] = None,
@@ -1486,7 +1692,7 @@ class DevOpsAgentClient:
 
     def list_chats(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
         user_id: Optional["capo_devops_agent.types.resource_id.ResourceId"] = None,
@@ -1496,6 +1702,7 @@ class DevOpsAgentClient:
         """<p>Retrieves a paginated list of the user's recent chat executions</p>
 
         Args:
+            agent_space_id: <p>The unique identifier for the agent space to list chats from.</p>
             user_id: <p>The user identifier to list chats for. This field is deprecated and will be ignored — the service resolves user identity from the authenticated session.</p>
             max_results: <p>Maximum number of results to return</p>
             next_token: <p>Token for pagination</p>
@@ -1548,7 +1755,7 @@ class DevOpsAgentClient:
 
     def list_executions(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         task_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
@@ -1610,7 +1817,7 @@ class DevOpsAgentClient:
 
     def iter_list_executions(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         task_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
@@ -1635,7 +1842,7 @@ class DevOpsAgentClient:
 
     def list_goals(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
         status: Optional["capo_devops_agent.types.goal_status.GoalStatus"] = None,
@@ -1702,7 +1909,7 @@ class DevOpsAgentClient:
 
     def iter_list_goals(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
         status: Optional["capo_devops_agent.types.goal_status.GoalStatus"] = None,
@@ -1729,7 +1936,7 @@ class DevOpsAgentClient:
 
     def list_journal_records(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         execution_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
@@ -1799,7 +2006,7 @@ class DevOpsAgentClient:
 
     def iter_list_journal_records(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         execution_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
@@ -1881,7 +2088,7 @@ class DevOpsAgentClient:
 
     def list_recommendations(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
         task_id: Optional["capo_devops_agent.types.resource_id.ResourceId"] = None,
@@ -2009,10 +2216,98 @@ class DevOpsAgentClient:
         response.response.close()
         return response.output
 
+    def list_triggers(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
+        *,
+        config_overrides: Optional[DevOpsAgentClientConfig] = None,
+        status: Optional["capo_devops_agent.types.trigger_status.TriggerStatus"] = None,
+        next_token: Optional["capo_devops_agent.types.next_token.NextToken"] = None,
+        max_results: Optional[int] = None,
+    ) -> "capo_devops_agent.types.list_triggers_response.ListTriggersResponse":
+        """<p>Lists Triggers in the specified agent space</p>
+
+        Args:
+            agent_space_id: <p>The unique identifier for the agent space whose Triggers should be listed</p>
+            status: <p>Filter results to Triggers in this status</p>
+            next_token: <p>Pagination token from a previous response to retrieve the next page of results</p>
+            max_results: <p>The maximum number of results to return in a single response</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_devops_agent.types.list_triggers_request.ListTriggersRequest]",
+        ) -> OperationResponse[
+            "capo_devops_agent.types.list_triggers_response.ListTriggersResponse"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.list_triggers
+
+            output, http_response = (
+                capo_devops_agent._operations.dev_ops_agent.list_triggers.list_triggers(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.list_triggers_request.ListTriggersRequest = {
+            "agent_space_id": agent_space_id
+        }
+        if status is not None:
+            input_["status"] = status
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_triggers(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
+        *,
+        config_overrides: Optional[DevOpsAgentClientConfig] = None,
+        status: Optional["capo_devops_agent.types.trigger_status.TriggerStatus"] = None,
+        next_token: Optional["capo_devops_agent.types.next_token.NextToken"] = None,
+        max_results: Optional[int] = None,
+    ) -> "Iterator[capo_devops_agent.types.trigger.Trigger]":
+        _token = next_token
+        while True:
+            _response = self.list_triggers(
+                agent_space_id,
+                config_overrides=config_overrides,
+                status=status,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("items",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     @contextmanager
     def send_message(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         execution_id: "capo_devops_agent.types.chat_execution_id.ChatExecutionId",
         content: "capo_devops_agent.types.message_content.MessageContent",
         *,
@@ -2022,6 +2317,7 @@ class DevOpsAgentClient:
         ] = None,
         user_id: Optional["capo_devops_agent.types.resource_id.ResourceId"] = None,
         asset_ids: Optional["capo_devops_agent.types.asset_id_list.AssetIdList"] = None,
+        model_tier: Optional[str] = None,
     ) -> "Generator[capo_devops_agent.types.send_message_response.SendMessageResponse]":
         """<p>Sends a chat message and streams the response for the specified agent space execution</p>
 
@@ -2032,6 +2328,7 @@ class DevOpsAgentClient:
             context: <p>Optional context for the message</p>
             user_id: <p>User identifier. This field is deprecated and will be ignored — the service resolves user identity from the authenticated session.</p>
             asset_ids: <p>Optional list of asset identifiers to attach to the message</p>
+            model_tier: <p>Optional model tier selection. Valid values: smart, balanced, fast. Absent or unrecognized values default to balanced.</p>
 
         Raises:
             capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
@@ -2072,6 +2369,8 @@ class DevOpsAgentClient:
             input_["user_id"] = user_id
         if asset_ids is not None:
             input_["asset_ids"] = asset_ids
+        if model_tier is not None:
+            input_["model_tier"] = model_tier
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -2191,9 +2490,86 @@ class DevOpsAgentClient:
         response.response.close()
         return response.output
 
+    def update_approval_action(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
+        approval_id: "capo_devops_agent.types.approval_id.ApprovalId",
+        action: "capo_devops_agent.types.approval_action_type.ApprovalActionType",
+        *,
+        config_overrides: Optional[DevOpsAgentClientConfig] = None,
+        final_pattern: Optional[
+            "capo_devops_agent.types.approval_pattern.ApprovalPattern"
+        ] = None,
+        reason: Optional[
+            "capo_devops_agent.types.approval_reason.ApprovalReason"
+        ] = None,
+        ttl_seconds: Optional[int] = None,
+        single_use: Optional[bool] = None,
+    ) -> "capo_devops_agent.types.update_approval_action_response.UpdateApprovalActionResponse":
+        """<p>Updates an approval request with the terminal decision (APPROVED or REJECTED). A single operation handles both verbs via the action enum.</p>
+
+        Args:
+            agent_space_id: <p>The agent space identifier — multi-tenant workspace scope. Bound from the request URI.</p>
+            approval_id: <p>Identifier of the approval request being resolved. A UUID. Bound from the request URI.</p>
+            action: <p>The action to take on the approval request — APPROVED or REJECTED.</p>
+            final_pattern: <p>The finalized pattern (tool + argumentPins) that scopes the approval. Required when `action` is APPROVED; must be absent when `action` is REJECTED. The pattern narrows, and must not widen, the invocation originally requested by the agent. This cross-field invariant is enforced by service-side validation.</p>
+            reason: <p>Optional free-text rationale for the decision. Permitted when `action` is REJECTED; ignored when `action` is APPROVED.</p>
+            ttl_seconds: <p>Approval lifetime in seconds, starting from when the decision is submitted. Required when `action` is APPROVED AND `singleUse` is false; must be absent when `action` is REJECTED or when `singleUse` is true (a single-use approval backs one executed action and the redemption window collapses). Cross-field invariants are enforced by service-side validation; the @range bound here is the operation-boundary check that always applies (a maximum of 4 hours).</p>
+            single_use: <p>Whether the approved action backs a single executed tool call (true) or is reusable within ttlSeconds (false). Required when `action` is APPROVED; must be absent when `action` is REJECTED. When true, ttlSeconds must be absent (the redemption window collapses to the single use). When false, ttlSeconds is required and bounds the reuse window. Cross-field invariants are enforced by service-side validation.</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_devops_agent.types.update_approval_action_request.UpdateApprovalActionRequest]",
+        ) -> OperationResponse[
+            "capo_devops_agent.types.update_approval_action_response.UpdateApprovalActionResponse"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.update_approval_action
+
+            output, http_response = (
+                capo_devops_agent._operations.dev_ops_agent.update_approval_action.update_approval_action(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.update_approval_action_request.UpdateApprovalActionRequest = {
+            "agent_space_id": agent_space_id,
+            "approval_id": approval_id,
+            "action": action,
+        }
+        if final_pattern is not None:
+            input_["final_pattern"] = final_pattern
+        if reason is not None:
+            input_["reason"] = reason
+        if ttl_seconds is not None:
+            input_["ttl_seconds"] = ttl_seconds
+        if single_use is not None:
+            input_["single_use"] = single_use
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def update_asset(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         asset_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
@@ -2207,7 +2583,7 @@ class DevOpsAgentClient:
             agent_space_id: <p>The unique identifier for the agent space containing the asset</p>
             asset_id: <p>The unique identifier of the asset to update</p>
             metadata: <p>Metadata fields to update. Only the fields present in this document are updated. Omitted fields retain their current values.</p>
-            content: <p>Optional content to set or replace. A single file adds or replaces one file; a zip replaces all files.</p>
+            content: <p>Optional content update. A single file adds or replaces one file; a zip replaces all files; a sourceUrl re-syncs from the original source.</p>
             client_token: <p>A unique, case-sensitive identifier used for idempotent asset update</p>
 
         Raises:
@@ -2260,7 +2636,7 @@ class DevOpsAgentClient:
 
     def update_asset_file(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         asset_id: "capo_devops_agent.types.resource_id.ResourceId",
         path: "capo_devops_agent.types.asset_file_path.AssetFilePath",
         *,
@@ -2332,7 +2708,7 @@ class DevOpsAgentClient:
 
     def update_backlog_task(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         task_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
@@ -2397,7 +2773,7 @@ class DevOpsAgentClient:
 
     def update_goal(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         goal_id: str,
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
@@ -2462,7 +2838,7 @@ class DevOpsAgentClient:
 
     def update_recommendation(
         self,
-        agent_space_id: "capo_devops_agent.types.agent_space_id.AgentSpaceId",
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
         recommendation_id: "capo_devops_agent.types.resource_id.ResourceId",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
@@ -2529,6 +2905,69 @@ class DevOpsAgentClient:
         response.response.close()
         return response.output
 
+    def update_trigger(
+        self,
+        agent_space_id: "capo_devops_agent.types.agent_space_identifier.AgentSpaceIdentifier",
+        trigger_id: "capo_devops_agent.types.resource_id.ResourceId",
+        *,
+        config_overrides: Optional[DevOpsAgentClientConfig] = None,
+        status: Optional["capo_devops_agent.types.trigger_status.TriggerStatus"] = None,
+        client_token: Optional[str] = None,
+    ) -> "capo_devops_agent.types.update_trigger_response.UpdateTriggerResponse":
+        """<p>Updates the status of an existing Trigger</p>
+
+        Args:
+            agent_space_id: <p>The unique identifier for the agent space containing the Trigger</p>
+            trigger_id: <p>The unique identifier of the Trigger to update</p>
+            status: <p>The new status for the Trigger</p>
+            client_token: <p>A unique, case-sensitive identifier used for idempotent Trigger update</p>
+
+        Raises:
+            capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
+            capo_devops_agent.errors.conflict_exception.ConflictException: <p>The request conflicts with the current state of the resource.</p>
+            capo_devops_agent.errors.content_size_exceeded_exception.ContentSizeExceededException: <p>This exception is thrown when the content size exceeds the allowed limit.</p>
+            capo_devops_agent.errors.internal_server_exception.InternalServerException: <p>This exception is thrown when an unexpected error occurs in the processing of a request.</p>
+            capo_devops_agent.errors.invalid_parameter_exception.InvalidParameterException: <p>One or more parameters provided in the request are invalid.</p>
+            capo_devops_agent.errors.resource_not_found_exception.ResourceNotFoundException: <p>The requested resource could not be found.</p>
+            capo_devops_agent.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would exceed the service quota limit.</p>
+            capo_devops_agent.errors.throttling_exception.ThrottlingException: <p>The request was throttled due to too many requests. Please slow down and try again.</p>
+            capo_devops_agent.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by the service.</p>
+            capo_devops_agent.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_devops_agent.types.update_trigger_request.UpdateTriggerRequest]",
+        ) -> OperationResponse[
+            "capo_devops_agent.types.update_trigger_response.UpdateTriggerResponse"
+        ]:
+            import capo_devops_agent._operations.dev_ops_agent.update_trigger
+
+            output, http_response = (
+                capo_devops_agent._operations.dev_ops_agent.update_trigger.update_trigger(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_devops_agent.types.update_trigger_request.UpdateTriggerRequest = {
+            "agent_space_id": agent_space_id,
+            "trigger_id": trigger_id,
+        }
+        if status is not None:
+            input_["status"] = status
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def create_agent_space(
         self,
         name: "capo_devops_agent.types.agent_space_name.AgentSpaceName",
@@ -2539,6 +2978,9 @@ class DevOpsAgentClient:
         kms_key_arn: Optional["capo_devops_agent.types.kms_key_arn.KmsKeyArn"] = None,
         client_token: Optional[str] = None,
         tags: Optional["capo_devops_agent.types.tags.Tags"] = None,
+        preferences: Optional[
+            "capo_devops_agent.types.agent_space_preferences.AgentSpacePreferences"
+        ] = None,
     ) -> "capo_devops_agent.types.create_agent_space_output.CreateAgentSpaceOutput":
         """<p>Creates a new AgentSpace with the specified name and description. Duplicate space names are allowed.</p>
 
@@ -2549,6 +2991,7 @@ class DevOpsAgentClient:
             kms_key_arn: <p>The ARN of the AWS Key Management Service (AWS KMS) customer managed key that's used to encrypt resources.</p>
             client_token: <p>Client-provided token to ensure request idempotency. When the same token is provided in subsequent calls, the same response is returned within a 8-hour window.</p>
             tags: <p>Tags to add to the AgentSpace at creation time.</p>
+            preferences: <p>The preferences to configure on the agent space. Preferences not provided take their default values.</p>
 
         Raises:
             capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
@@ -2592,6 +3035,8 @@ class DevOpsAgentClient:
         input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
+        if preferences is not None:
+            input_["preferences"] = preferences
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -2662,6 +3107,9 @@ class DevOpsAgentClient:
         ] = None,
         description: Optional["capo_devops_agent.types.description.Description"] = None,
         locale: Optional["capo_devops_agent.types.locale.Locale"] = None,
+        preferences: Optional[
+            "capo_devops_agent.types.agent_space_preferences.AgentSpacePreferences"
+        ] = None,
     ) -> "capo_devops_agent.types.update_agent_space_output.UpdateAgentSpaceOutput":
         """<p>Updates the information of an existing AgentSpace.</p>
 
@@ -2670,6 +3118,7 @@ class DevOpsAgentClient:
             name: <p>The updated name of the AgentSpace.</p>
             description: <p>The updated description of the AgentSpace.</p>
             locale: <p>The updated locale for the AgentSpace, which determines the language used in agent responses.</p>
+            preferences: <p>The preferences to configure on the agent space. When provided, this replaces the full set of configured preferences; preferences not included revert to their default values. When omitted, the current preferences are left unchanged.</p>
 
         Raises:
             capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
@@ -2708,6 +3157,8 @@ class DevOpsAgentClient:
             input_["description"] = description
         if locale is not None:
             input_["locale"] = locale
+        if preferences is not None:
+            input_["preferences"] = preferences
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -3095,6 +3546,9 @@ class DevOpsAgentClient:
         configuration: "capo_devops_agent.types.service_configuration.ServiceConfiguration",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
+        capabilities: Optional[
+            "capo_devops_agent.types.association_capabilities.AssociationCapabilities"
+        ] = None,
     ) -> "capo_devops_agent.types.associate_service_output.AssociateServiceOutput":
         """<p>Adds a specific service association to an AgentSpace. It overwrites the existing association of the same service. Returns 201 Created on success.</p>
 
@@ -3102,6 +3556,7 @@ class DevOpsAgentClient:
             agent_space_id: <p>The unique identifier of the AgentSpace</p>
             service_id: <p>The unique identifier of the service.</p>
             configuration: <p>The configuration that directs how AgentSpace interacts with the given service.</p>
+            capabilities: <p>Enabled capabilities for this association.</p>
 
         Raises:
             capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
@@ -3136,6 +3591,8 @@ class DevOpsAgentClient:
             "service_id": service_id,
             "configuration": configuration,
         }
+        if capabilities is not None:
+            input_["capabilities"] = capabilities
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -3206,6 +3663,9 @@ class DevOpsAgentClient:
         configuration: "capo_devops_agent.types.service_configuration.ServiceConfiguration",
         *,
         config_overrides: Optional[DevOpsAgentClientConfig] = None,
+        capabilities: Optional[
+            "capo_devops_agent.types.association_capabilities.AssociationCapabilities"
+        ] = None,
     ) -> "capo_devops_agent.types.update_association_output.UpdateAssociationOutput":
         """<p>Partially updates the configuration of an existing service association for an AgentSpace. Present fields are fully replaced; absent fields are left unchanged. Returns 200 OK on success.</p>
 
@@ -3213,6 +3673,7 @@ class DevOpsAgentClient:
             agent_space_id: <p>The unique identifier of the AgentSpace</p>
             association_id: <p>The unique identifier of the given association.</p>
             configuration: <p>The configuration that directs how AgentSpace interacts with the given service. The entire configuration is replaced on update.</p>
+            capabilities: <p>Enabled capabilities for this association.</p>
 
         Raises:
             capo_devops_agent.errors.access_denied_exception.AccessDeniedException: <p>Access to the requested resource is denied due to insufficient permissions.</p>
@@ -3247,6 +3708,8 @@ class DevOpsAgentClient:
             "association_id": association_id,
             "configuration": configuration,
         }
+        if capabilities is not None:
+            input_["capabilities"] = capabilities
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),

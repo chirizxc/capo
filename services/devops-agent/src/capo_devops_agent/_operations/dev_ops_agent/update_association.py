@@ -22,6 +22,7 @@ import capo_devops_agent.errors.service_quota_exceeded_exception
 import capo_devops_agent.errors.throttling_exception
 import capo_devops_agent.errors.validation_exception
 import capo_devops_agent.types.association
+import capo_devops_agent.types.association_capabilities
 import capo_devops_agent.types.generic_webhook
 import capo_devops_agent.types.service_configuration
 import capo_devops_agent.types.update_association_input

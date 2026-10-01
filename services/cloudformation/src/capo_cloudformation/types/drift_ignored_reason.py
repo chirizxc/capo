@@ -7,6 +7,7 @@ from capo_cloudformation._protocol.xml import Element
 DriftIgnoredReason: TypeAlias = Literal[
     "MANAGED_BY_AWS",
     "WRITE_ONLY_PROPERTY",
+    "SENSITIVE_PROPERTY",
 ]
 
 

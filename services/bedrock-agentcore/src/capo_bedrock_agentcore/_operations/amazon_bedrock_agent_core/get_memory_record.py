@@ -138,6 +138,8 @@ def build_request(
     url = url.replace("{memoryId}", quote(input_["memory_id"], safe=""))
     url = url.replace("{memoryRecordId}", quote(input_["memory_record_id"], safe=""))
     params: list[tuple[str, str]] = []
+    if "namespace" in input_:
+        params.append(("namespace", input_["namespace"]))
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))

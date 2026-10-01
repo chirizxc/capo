@@ -8,6 +8,7 @@ from capo_eks.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_eks.types.boolean
+    import capo_eks.types.rollback_config
     import capo_eks.types.string
 
 
@@ -19,7 +20,9 @@ class UpdateClusterVersionRequest(TypedDict, closed=True):
     client_request_token: NotRequired["capo_eks.types.string.String"]
     """<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>"""
     force: "capo_eks.types.boolean.Boolean"
-    """<p>Set this value to <code>true</code> to override upgrade-blocking readiness checks when updating a cluster.</p>"""
+    """<p>Set this value to <code>true</code> to override upgrade-blocking or rollback-blocking readiness checks when updating a cluster.</p>"""
+    rollback_config: NotRequired["capo_eks.types.rollback_config.RollbackConfig"]
+    """<p>The rollback configuration for the cluster version rollback.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -29,6 +32,12 @@ def serialize_json(value: UpdateClusterVersionRequest) -> dict:
     if "client_request_token" in value:
         out["clientRequestToken"] = value["client_request_token"]
     out["force"] = value.get("force", False)
+    if "rollback_config" in value:
+        import capo_eks.types.rollback_config
+
+        out["rollbackConfig"] = capo_eks.types.rollback_config.serialize_json(
+            value["rollback_config"]
+        )
     return out
 
 
@@ -44,4 +53,10 @@ def deserialize_json(data: dict) -> UpdateClusterVersionRequest:
         out["force"] = data["force"]
     else:
         out["force"] = False
+    if data.get("rollbackConfig") is not None:
+        import capo_eks.types.rollback_config
+
+        out["rollback_config"] = capo_eks.types.rollback_config.deserialize_json(
+            data["rollbackConfig"]
+        )
     return out

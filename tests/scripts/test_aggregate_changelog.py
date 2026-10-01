@@ -1,9 +1,10 @@
 # tests/scripts/test_aggregate_changelog.py
 import subprocess
-import tempfile
-from pathlib import Path
-from datetime import date
 import sys
+import tempfile
+from datetime import date
+from pathlib import Path
+
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "scripts"))
 
 from aggregate_changelog import changed_services, generate_root_changelog
@@ -32,11 +33,7 @@ def test_changed_services_diffs_working_tree_vs_head(tmp_path):
 
 def test_generate_root_changelog():
     """Test root changelog generation"""
-    changed_packages = {
-        "dynamodb": "0.2.0",
-        "s3": "0.3.1",
-        "lambda": "0.4.0"
-    }
+    changed_packages = {"dynamodb": "0.2.0", "s3": "0.3.1", "lambda": "0.4.0"}
 
     with tempfile.TemporaryDirectory() as tmpdir:
         changelog_path = Path(tmpdir) / "CHANGELOG.md"

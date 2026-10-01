@@ -14,6 +14,7 @@ import capo_cloudformation._protocol.eventstream
 import capo_cloudformation.errors.token_already_exists_exception
 import capo_cloudformation.types.delete_stack_input
 import capo_cloudformation.types.deletion_mode
+import capo_cloudformation.types.deployment_config
 import capo_cloudformation.types.retain_resources
 from capo_cloudformation._protocol.errors import (
     find_error_element,

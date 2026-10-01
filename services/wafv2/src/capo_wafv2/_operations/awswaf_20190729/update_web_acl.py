@@ -31,6 +31,7 @@ import capo_wafv2.types.challenge_config
 import capo_wafv2.types.custom_response_bodies
 import capo_wafv2.types.data_protection_config
 import capo_wafv2.types.default_action
+import capo_wafv2.types.monetization_config
 import capo_wafv2.types.on_source_d_do_s_protection_config
 import capo_wafv2.types.rules
 import capo_wafv2.types.scope

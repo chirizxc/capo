@@ -3,7 +3,12 @@
 from typing import Literal, TypeAlias, cast
 
 """<p>Third-party provider type.</p>"""
-Provider: TypeAlias = Literal["GITHUB",]
+Provider: TypeAlias = Literal[
+    "GITHUB",
+    "GITLAB",
+    "BITBUCKET",
+    "CONFLUENCE",
+]
 
 
 # --- restJson1 ser/de ---

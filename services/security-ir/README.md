@@ -19,6 +19,21 @@ async def main():
         print(response["tags"])
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_security_ir import AsyncSecurityIRClient
+
+
+async def main():
+    async with AsyncSecurityIRClient() as security_ir:
+        # Example: paginate over list_cases
+        async for item in security_ir.iter_list_cases():
+            print(item)
+```
+
 ## Error Handling
 
 The SDK raises exceptions for errors returned by the API. Catch them to handle failures gracefully.

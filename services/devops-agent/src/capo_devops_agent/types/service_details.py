@@ -17,6 +17,8 @@ if TYPE_CHECKING:
     import capo_devops_agent.types.new_relic_service_details
     import capo_devops_agent.types.pager_duty_details
     import capo_devops_agent.types.registered_azure_identity_details
+    import capo_devops_agent.types.remote_agent_service_details
+    import capo_devops_agent.types.remote_agent_sig_v4_service_details
     import capo_devops_agent.types.service_now_service_details
 
 
@@ -78,6 +80,16 @@ class _ServiceDetails_mcpserversigv4(TypedDict, closed=True):
     mcpserversigv4: "capo_devops_agent.types.mcp_server_sig_v4_service_details.MCPServerSigV4ServiceDetails"
 
 
+class _ServiceDetails_remoteagent(TypedDict, closed=True):
+    remoteagent: (
+        "capo_devops_agent.types.remote_agent_service_details.RemoteAgentServiceDetails"
+    )
+
+
+class _ServiceDetails_remoteagentsigv4(TypedDict, closed=True):
+    remoteagentsigv4: "capo_devops_agent.types.remote_agent_sig_v4_service_details.RemoteAgentSigV4ServiceDetails"
+
+
 ServiceDetails: TypeAlias = (
     _ServiceDetails_dynatrace
     | _ServiceDetails_servicenow
@@ -91,6 +103,8 @@ ServiceDetails: TypeAlias = (
     | _ServiceDetails_pagerduty
     | _ServiceDetails_azureidentity
     | _ServiceDetails_mcpserversigv4
+    | _ServiceDetails_remoteagent
+    | _ServiceDetails_remoteagentsigv4
 )
 
 
@@ -192,6 +206,22 @@ def serialize_json(value: ServiceDetails) -> dict:
                 value["mcpserversigv4"]
             )
         }
+    elif "remoteagent" in value:
+        import capo_devops_agent.types.remote_agent_service_details
+
+        return {
+            "remoteagent": capo_devops_agent.types.remote_agent_service_details.serialize_json(
+                value["remoteagent"]
+            )
+        }
+    elif "remoteagentsigv4" in value:
+        import capo_devops_agent.types.remote_agent_sig_v4_service_details
+
+        return {
+            "remoteagentsigv4": capo_devops_agent.types.remote_agent_sig_v4_service_details.serialize_json(
+                value["remoteagentsigv4"]
+            )
+        }
     else:
         raise SerializationError("ServiceDetails: no variant present")
 
@@ -291,6 +321,22 @@ def deserialize_json(data: dict) -> ServiceDetails:
         return {
             "mcpserversigv4": capo_devops_agent.types.mcp_server_sig_v4_service_details.deserialize_json(
                 data["mcpserversigv4"]
+            )
+        }
+    elif data.get("remoteagent") is not None:
+        import capo_devops_agent.types.remote_agent_service_details
+
+        return {
+            "remoteagent": capo_devops_agent.types.remote_agent_service_details.deserialize_json(
+                data["remoteagent"]
+            )
+        }
+    elif data.get("remoteagentsigv4") is not None:
+        import capo_devops_agent.types.remote_agent_sig_v4_service_details
+
+        return {
+            "remoteagentsigv4": capo_devops_agent.types.remote_agent_sig_v4_service_details.deserialize_json(
+                data["remoteagentsigv4"]
             )
         }
     else:

@@ -1,0 +1,46 @@
+"""Generated from Smithy shape ``com.amazonaws.directconnect#DisassociateConnectionsFromResiliencyGroupResult``."""
+
+from typing import TYPE_CHECKING
+
+from typing_extensions import NotRequired, TypedDict
+
+if TYPE_CHECKING:
+    import capo_direct_connect.types.resiliency_group_association_list
+
+
+class DisassociateConnectionsFromResiliencyGroupResult(TypedDict, closed=True):
+    resiliency_group_associations: NotRequired[
+        "capo_direct_connect.types.resiliency_group_association_list.ResiliencyGroupAssociationList"
+    ]
+    """<p>The connection associations for the resiliency group.</p>"""
+
+
+# --- awsJson1_1 ser/de ---
+def serialize_aws_json_1_1(
+    value: DisassociateConnectionsFromResiliencyGroupResult,
+) -> dict:
+    out: dict = {}
+    if "resiliency_group_associations" in value:
+        import capo_direct_connect.types.resiliency_group_association_list
+
+        out["resiliencyGroupAssociations"] = (
+            capo_direct_connect.types.resiliency_group_association_list.serialize_aws_json_1_1(
+                value["resiliency_group_associations"]
+            )
+        )
+    return out
+
+
+def deserialize_aws_json_1_1(
+    data: dict,
+) -> DisassociateConnectionsFromResiliencyGroupResult:
+    out: DisassociateConnectionsFromResiliencyGroupResult = {}  # type: ignore[typeddict-item]
+    if data.get("resiliencyGroupAssociations") is not None:
+        import capo_direct_connect.types.resiliency_group_association_list
+
+        out["resiliency_group_associations"] = (
+            capo_direct_connect.types.resiliency_group_association_list.deserialize_aws_json_1_1(
+                data["resiliencyGroupAssociations"]
+            )
+        )
+    return out

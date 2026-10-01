@@ -5,6 +5,7 @@ from typing import Literal, TypeAlias, cast
 PlatformCapability: TypeAlias = Literal[
     "EC2",
     "FARGATE",
+    "MANAGED_INSTANCES",
 ]
 
 

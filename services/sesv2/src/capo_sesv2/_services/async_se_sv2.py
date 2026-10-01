@@ -33,6 +33,8 @@ if TYPE_CHECKING:
     import capo_sesv2.types.amazon_resource_name
     import capo_sesv2.types.archive_arn
     import capo_sesv2.types.archiving_options
+    import capo_sesv2.types.associate_email_identity_certificate_request
+    import capo_sesv2.types.associate_email_identity_certificate_response
     import capo_sesv2.types.attributes_data
     import capo_sesv2.types.batch_get_metric_data_queries
     import capo_sesv2.types.batch_get_metric_data_request
@@ -44,6 +46,8 @@ if TYPE_CHECKING:
     import capo_sesv2.types.campaign_id
     import capo_sesv2.types.cancel_export_job_request
     import capo_sesv2.types.cancel_export_job_response
+    import capo_sesv2.types.certificate_arn
+    import capo_sesv2.types.configuration_overrides
     import capo_sesv2.types.configuration_set_name
     import capo_sesv2.types.contact_language
     import capo_sesv2.types.contact_list_name
@@ -108,6 +112,8 @@ if TYPE_CHECKING:
     import capo_sesv2.types.description
     import capo_sesv2.types.destination
     import capo_sesv2.types.details
+    import capo_sesv2.types.disassociate_email_identity_certificate_request
+    import capo_sesv2.types.disassociate_email_identity_certificate_response
     import capo_sesv2.types.dkim_signing_attributes
     import capo_sesv2.types.dkim_signing_attributes_origin
     import capo_sesv2.types.domain
@@ -181,6 +187,7 @@ if TYPE_CHECKING:
     import capo_sesv2.types.get_tenant_response
     import capo_sesv2.types.https_policy
     import capo_sesv2.types.identity
+    import capo_sesv2.types.identity_certificate
     import capo_sesv2.types.import_data_source
     import capo_sesv2.types.import_destination
     import capo_sesv2.types.import_destination_type
@@ -204,6 +211,8 @@ if TYPE_CHECKING:
     import capo_sesv2.types.list_domain_deliverability_campaigns_response
     import capo_sesv2.types.list_email_identities_request
     import capo_sesv2.types.list_email_identities_response
+    import capo_sesv2.types.list_email_identity_certificates_request
+    import capo_sesv2.types.list_email_identity_certificates_response
     import capo_sesv2.types.list_email_templates_request
     import capo_sesv2.types.list_email_templates_response
     import capo_sesv2.types.list_export_jobs_request
@@ -233,6 +242,7 @@ if TYPE_CHECKING:
     import capo_sesv2.types.mail_type
     import capo_sesv2.types.max_delivery_seconds
     import capo_sesv2.types.max_items
+    import capo_sesv2.types.message_security_options
     import capo_sesv2.types.message_tag_list
     import capo_sesv2.types.multi_region_endpoint
     import capo_sesv2.types.next_token
@@ -243,10 +253,13 @@ if TYPE_CHECKING:
     import capo_sesv2.types.policy
     import capo_sesv2.types.policy_name
     import capo_sesv2.types.pool_name
+    import capo_sesv2.types.pricing_plan
     import capo_sesv2.types.put_account_dedicated_ip_warmup_attributes_request
     import capo_sesv2.types.put_account_dedicated_ip_warmup_attributes_response
     import capo_sesv2.types.put_account_details_request
     import capo_sesv2.types.put_account_details_response
+    import capo_sesv2.types.put_account_pricing_attributes_request
+    import capo_sesv2.types.put_account_pricing_attributes_response
     import capo_sesv2.types.put_account_sending_attributes_request
     import capo_sesv2.types.put_account_sending_attributes_response
     import capo_sesv2.types.put_account_suppression_attributes_request
@@ -335,6 +348,8 @@ if TYPE_CHECKING:
     import capo_sesv2.types.untag_resource_response
     import capo_sesv2.types.update_configuration_set_event_destination_request
     import capo_sesv2.types.update_configuration_set_event_destination_response
+    import capo_sesv2.types.update_configuration_set_request
+    import capo_sesv2.types.update_configuration_set_response
     import capo_sesv2.types.update_contact_list_request
     import capo_sesv2.types.update_contact_list_response
     import capo_sesv2.types.update_contact_request
@@ -447,6 +462,60 @@ class AsyncSESv2Client:
             ),
         )
         return interceptors_, options_
+
+    async def associate_email_identity_certificate(
+        self,
+        email_identity: "capo_sesv2.types.identity.Identity",
+        certificate_arn: "capo_sesv2.types.certificate_arn.CertificateArn",
+        *,
+        config_overrides: Optional[AsyncSESv2ClientConfig] = None,
+        from_address: Optional["capo_sesv2.types.email_address.EmailAddress"] = None,
+    ) -> "capo_sesv2.types.associate_email_identity_certificate_response.AssociateEmailIdentityCertificateResponse":
+        """<p>Associates an S/MIME certificate with an email identity. After the certificate is active, Amazon SES API v2 can add an S/MIME signature to messages that you send from the associated address when signing is enabled on the configuration set used to send the message.</p> <p>The certificate is an X.509 certificate that you manage in Certificate Manager (ACM). You identify it by its Amazon Resource Name (ARN).</p> <ul> <li> <p>If the email identity is a domain, you must specify a <code>FromAddress</code> that belongs to that domain or one of its subdomains. The certificate applies to messages sent from that address.</p> </li> <li> <p>If the email identity is an email address, <code>FromAddress</code> is optional. If you specify it, it must exactly match the email identity.</p> </li> </ul> <p>When the association is created, the certificate begins provisioning and its status is <code>PROVISIONING</code>. The status changes to <code>ACTIVE</code> when the certificate is ready to use for signing. Each email address can have only one certificate association. If an association already exists for the address, this operation returns an error, unless the existing association is in the <code>DEPROVISIONING</code> state.</p>
+
+        Args:
+            email_identity: <p>The email identity, either an email address or a domain, to associate the certificate with.</p>
+            from_address: <p>The email address that the certificate applies to. This value is required when the email identity is a domain, and the address must belong to that domain or one of its subdomains. When the email identity is an email address, this value is optional. If you specify it, it must exactly match the email identity.</p>
+            certificate_arn: <p>The Amazon Resource Name (ARN) of the Certificate Manager (ACM) certificate to associate with the email identity.</p>
+
+        Raises:
+            capo_sesv2.errors.already_exists_exception.AlreadyExistsException: <p>The resource specified in your request already exists.</p>
+            capo_sesv2.errors.bad_request_exception.BadRequestException: <p>The input you provided is invalid.</p>
+            capo_sesv2.errors.not_found_exception.NotFoundException: <p>The resource you attempted to access doesn't exist.</p>
+            capo_sesv2.errors.too_many_requests_exception.TooManyRequestsException: <p>Too many requests have been made to the operation.</p>
+            capo_sesv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_sesv2.types.associate_email_identity_certificate_request.AssociateEmailIdentityCertificateRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_sesv2.types.associate_email_identity_certificate_response.AssociateEmailIdentityCertificateResponse"
+        ]:
+            import capo_sesv2._operations.simple_email_service_v2.associate_email_identity_certificate
+
+            (
+                output,
+                http_response,
+            ) = await capo_sesv2._operations.simple_email_service_v2.associate_email_identity_certificate.async_associate_email_identity_certificate(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_sesv2.types.associate_email_identity_certificate_request.AssociateEmailIdentityCertificateRequest = {
+            "email_identity": email_identity,
+            "certificate_arn": certificate_arn,
+        }
+        if from_address is not None:
+            input_["from_address"] = from_address
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
 
     async def batch_get_metric_data(
         self,
@@ -572,6 +641,9 @@ class AsyncSESv2Client:
         archiving_options: Optional[
             "capo_sesv2.types.archiving_options.ArchivingOptions"
         ] = None,
+        message_security_options: Optional[
+            "capo_sesv2.types.message_security_options.MessageSecurityOptions"
+        ] = None,
     ) -> "capo_sesv2.types.create_configuration_set_response.CreateConfigurationSetResponse":
         """<p>Create a configuration set. <i>Configuration sets</i> are groups of rules that you can apply to the emails that you send. You apply a configuration set to an email by specifying the name of the configuration set when you call the Amazon SES API v2. When you apply a configuration set to an email, all of the rules in that configuration set are applied to the email. </p>
 
@@ -585,6 +657,7 @@ class AsyncSESv2Client:
             suppression_options: <p>An object that contains information about the suppression list preferences for the configuration set. You can optionally include a <code>SuppressionScope</code> to override the tenant or account suppression scope for emails sent using this configuration set.</p>
             vdm_options: <p>An object that defines the VDM options for emails that you send using the configuration set.</p>
             archiving_options: <p>An object that defines the MailManager archiving options for emails that you send using the configuration set.</p>
+            message_security_options: <p>The message security options to apply to the configuration set, such as the signing scheme used for messages that you send with the configuration set.</p>
 
         Raises:
             capo_sesv2.errors.already_exists_exception.AlreadyExistsException: <p>The resource specified in your request already exists.</p>
@@ -631,6 +704,8 @@ class AsyncSESv2Client:
             input_["vdm_options"] = vdm_options
         if archiving_options is not None:
             input_["archiving_options"] = archiving_options
+        if message_security_options is not None:
+            input_["message_security_options"] = message_security_options
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1287,7 +1362,7 @@ class AsyncSESv2Client:
         config_overrides: Optional[AsyncSESv2ClientConfig] = None,
         tags: Optional["capo_sesv2.types.tag_list.TagList"] = None,
     ) -> "capo_sesv2.types.create_multi_region_endpoint_response.CreateMultiRegionEndpointResponse":
-        """<p>Creates a multi-region endpoint (global-endpoint).</p> <p>The primary region is going to be the AWS-Region where the operation is executed. The secondary region has to be provided in request's parameters. From the data flow standpoint there is no difference between primary and secondary regions - sending traffic will be split equally between the two. The primary region is the region where the resource has been created and where it can be managed. </p>
+        """<p>Creates a multi-region endpoint (global-endpoint).</p> <p>The primary region is going to be the AWS-Region where the operation is executed. The secondary region has to be provided in request's parameters. From the data flow standpoint there is no difference between primary and secondary regions - sending traffic is divided between the two. The primary region is the region where the resource has been created and where it can be managed. </p>
 
         Args:
             endpoint_name: <p>The name of the multi-region endpoint (global-endpoint).</p>
@@ -2050,6 +2125,56 @@ class AsyncSESv2Client:
             "tenant_name": tenant_name,
             "resource_arn": resource_arn,
         }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def disassociate_email_identity_certificate(
+        self,
+        email_identity: "capo_sesv2.types.identity.Identity",
+        *,
+        config_overrides: Optional[AsyncSESv2ClientConfig] = None,
+        from_address: Optional["capo_sesv2.types.email_address.EmailAddress"] = None,
+    ) -> "capo_sesv2.types.disassociate_email_identity_certificate_response.DisassociateEmailIdentityCertificateResponse":
+        """<p>Removes the association between an S/MIME certificate and an email identity. After the association is removed, Amazon SES API v2 stops adding an S/MIME signature to messages sent from that address.</p> <p>If the email identity is a domain, specify the <code>FromAddress</code> whose certificate association you want to remove.</p> <p>This operation is idempotent. If the specified email identity exists but there's no matching certificate association, the operation succeeds without making any changes. Amazon SES API v2 returns a <code>NotFoundException</code> only when the specified email identity doesn't exist.</p>
+
+        Args:
+            email_identity: <p>The email identity whose certificate association you want to remove.</p>
+            from_address: <p>The email address whose certificate association you want to remove. This value is required when the email identity is a domain. When the email identity is an email address, this value is optional.</p>
+
+        Raises:
+            capo_sesv2.errors.bad_request_exception.BadRequestException: <p>The input you provided is invalid.</p>
+            capo_sesv2.errors.not_found_exception.NotFoundException: <p>The resource you attempted to access doesn't exist.</p>
+            capo_sesv2.errors.too_many_requests_exception.TooManyRequestsException: <p>Too many requests have been made to the operation.</p>
+            capo_sesv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_sesv2.types.disassociate_email_identity_certificate_request.DisassociateEmailIdentityCertificateRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_sesv2.types.disassociate_email_identity_certificate_response.DisassociateEmailIdentityCertificateResponse"
+        ]:
+            import capo_sesv2._operations.simple_email_service_v2.disassociate_email_identity_certificate
+
+            (
+                output,
+                http_response,
+            ) = await capo_sesv2._operations.simple_email_service_v2.disassociate_email_identity_certificate.async_disassociate_email_identity_certificate(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_sesv2.types.disassociate_email_identity_certificate_request.DisassociateEmailIdentityCertificateRequest = {
+            "email_identity": email_identity
+        }
+        if from_address is not None:
+            input_["from_address"] = from_address
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -3823,6 +3948,83 @@ class AsyncSESv2Client:
             if not _token:
                 break
 
+    async def list_email_identity_certificates(
+        self,
+        email_identity: "capo_sesv2.types.identity.Identity",
+        *,
+        config_overrides: Optional[AsyncSESv2ClientConfig] = None,
+        next_token: Optional["capo_sesv2.types.next_token.NextToken"] = None,
+        page_size: Optional["capo_sesv2.types.max_items.MaxItems"] = None,
+    ) -> "capo_sesv2.types.list_email_identity_certificates_response.ListEmailIdentityCertificatesResponse":
+        """<p>Lists the S/MIME certificates that are associated with the specified email identity. The results include certificates in all states, such as <code>PROVISIONING</code>, <code>ACTIVE</code>, <code>INACTIVE</code>, <code>DEPROVISIONING</code>, and <code>FAILED</code>.</p> <p>If a certificate has passed its expiration time, it's returned with a status of <code>FAILED</code>.</p> <p>We recommend using pagination to ensure that the operation returns quickly and successfully. When there are more results than fit in a single response, the response includes a <code>NextToken</code> value that you use in a subsequent call to retrieve the next set of results.</p>
+
+        Args:
+            email_identity: <p>The email identity whose certificate associations you want to list.</p>
+            next_token: <p>A token returned from a previous call to <code>ListEmailIdentityCertificates</code> to indicate the position in the list of certificates.</p>
+            page_size: <p>The number of results to show in a single call to <code>ListEmailIdentityCertificates</code>. If the number of results is larger than the number you specified in this parameter, then the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p>
+
+        Raises:
+            capo_sesv2.errors.bad_request_exception.BadRequestException: <p>The input you provided is invalid.</p>
+            capo_sesv2.errors.not_found_exception.NotFoundException: <p>The resource you attempted to access doesn't exist.</p>
+            capo_sesv2.errors.too_many_requests_exception.TooManyRequestsException: <p>Too many requests have been made to the operation.</p>
+            capo_sesv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_sesv2.types.list_email_identity_certificates_request.ListEmailIdentityCertificatesRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_sesv2.types.list_email_identity_certificates_response.ListEmailIdentityCertificatesResponse"
+        ]:
+            import capo_sesv2._operations.simple_email_service_v2.list_email_identity_certificates
+
+            (
+                output,
+                http_response,
+            ) = await capo_sesv2._operations.simple_email_service_v2.list_email_identity_certificates.async_list_email_identity_certificates(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_sesv2.types.list_email_identity_certificates_request.ListEmailIdentityCertificatesRequest = {
+            "email_identity": email_identity
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if page_size is not None:
+            input_["page_size"] = page_size
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_email_identity_certificates(
+        self,
+        email_identity: "capo_sesv2.types.identity.Identity",
+        *,
+        config_overrides: Optional[AsyncSESv2ClientConfig] = None,
+        next_token: Optional["capo_sesv2.types.next_token.NextToken"] = None,
+        page_size: Optional["capo_sesv2.types.max_items.MaxItems"] = None,
+    ) -> "AsyncIterator[capo_sesv2.types.identity_certificate.IdentityCertificate]":
+        _token = next_token
+        while True:
+            _response = await self.list_email_identity_certificates(
+                email_identity,
+                config_overrides=config_overrides,
+                next_token=_token,
+                page_size=page_size,
+            )
+            _page = _resolve_path(_response, ("certificates",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     async def list_email_templates(
         self,
         *,
@@ -4771,6 +4973,52 @@ class AsyncSESv2Client:
             )
         if production_access_enabled is not None:
             input_["production_access_enabled"] = production_access_enabled
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def put_account_pricing_attributes(
+        self,
+        plan: "capo_sesv2.types.pricing_plan.PricingPlan",
+        *,
+        config_overrides: Optional[AsyncSESv2ClientConfig] = None,
+    ) -> "capo_sesv2.types.put_account_pricing_attributes_response.PutAccountPricingAttributesResponse":
+        r"""<p>Set the pricing plan for your Amazon SES account.</p>
+
+        Args:
+            plan: <p>The pricing plan to apply to your Amazon SES account. For details about each plan, see <a href=\"http://aws.amazon.com/ses/pricing/\">Amazon SES Pricing</a>. Can be one of the following:</p> <ul> <li> <p> <code>NONE</code> </p> </li> <li> <p> <code>ESSENTIALS</code> </p> </li> <li> <p> <code>PRO</code> </p> </li> <li> <p> <code>ENTERPRISE</code> </p> </li> </ul>
+
+        Raises:
+            capo_sesv2.errors.bad_request_exception.BadRequestException: <p>The input you provided is invalid.</p>
+            capo_sesv2.errors.conflict_exception.ConflictException: <p>If there is already an ongoing account details update under review.</p>
+            capo_sesv2.errors.too_many_requests_exception.TooManyRequestsException: <p>Too many requests have been made to the operation.</p>
+            capo_sesv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_sesv2.types.put_account_pricing_attributes_request.PutAccountPricingAttributesRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_sesv2.types.put_account_pricing_attributes_response.PutAccountPricingAttributesResponse"
+        ]:
+            import capo_sesv2._operations.simple_email_service_v2.put_account_pricing_attributes
+
+            (
+                output,
+                http_response,
+            ) = await capo_sesv2._operations.simple_email_service_v2.put_account_pricing_attributes.async_put_account_pricing_attributes(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_sesv2.types.put_account_pricing_attributes_request.PutAccountPricingAttributesRequest = {
+            "plan": plan
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -5923,6 +6171,9 @@ class AsyncSESv2Client:
         ] = None,
         endpoint_id: Optional["capo_sesv2.types.endpoint_id.EndpointId"] = None,
         tenant_name: Optional["capo_sesv2.types.tenant_name.TenantName"] = None,
+        configuration_overrides: Optional[
+            "capo_sesv2.types.configuration_overrides.ConfigurationOverrides"
+        ] = None,
     ) -> "capo_sesv2.types.send_bulk_email_response.SendBulkEmailResponse":
         r"""<p>Composes an email message to multiple destinations.</p>
 
@@ -5938,6 +6189,7 @@ class AsyncSESv2Client:
             configuration_set_name: <p>The name of the configuration set to use when sending the email.</p>
             endpoint_id: <p>The ID of the multi-region endpoint (global-endpoint).</p>
             tenant_name: <p>The name of the tenant through which this bulk email will be sent.</p> <note> <p> The email sending operation will only succeed if all referenced resources (identities, configuration sets, and templates) are associated with this tenant. </p> </note>
+            configuration_overrides: <p>An object that overrides, for the messages in this request only, settings that would otherwise apply to them. The overrides apply to every message in the request. Each setting that you don't override keeps the value that already applies.</p>
 
         Raises:
             capo_sesv2.errors.account_suspended_exception.AccountSuspendedException: <p>The message can't be sent because the account's ability to send email has been permanently restricted.</p>
@@ -5993,6 +6245,8 @@ class AsyncSESv2Client:
             input_["endpoint_id"] = endpoint_id
         if tenant_name is not None:
             input_["tenant_name"] = tenant_name
+        if configuration_overrides is not None:
+            input_["configuration_overrides"] = configuration_overrides
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -6091,6 +6345,9 @@ class AsyncSESv2Client:
         list_management_options: Optional[
             "capo_sesv2.types.list_management_options.ListManagementOptions"
         ] = None,
+        configuration_overrides: Optional[
+            "capo_sesv2.types.configuration_overrides.ConfigurationOverrides"
+        ] = None,
     ) -> "capo_sesv2.types.send_email_response.SendEmailResponse":
         r"""<p>Sends an email message. You can use the Amazon SES API v2 to send the following types of messages:</p> <ul> <li> <p> <b>Simple</b> – A standard email message. When you create this type of message, you specify the sender, the recipient, and the message body, and Amazon SES assembles the message for you.</p> </li> <li> <p> <b>Raw</b> – A raw, MIME-formatted email message. When you send this type of email, you have to specify all of the message headers, as well as the message body. You can use this message type to send messages that contain attachments. The message that you specify has to be a valid MIME message.</p> </li> <li> <p> <b>Templated</b> – A message that contains personalization tags. When you send this type of email, Amazon SES API v2 automatically replaces the tags with values that you specify.</p> </li> </ul>
 
@@ -6107,6 +6364,7 @@ class AsyncSESv2Client:
             endpoint_id: <p>The ID of the multi-region endpoint (global-endpoint).</p>
             tenant_name: <p>The name of the tenant through which this email will be sent.</p> <note> <p>The email sending operation will only succeed if all referenced resources (identities, configuration sets, and templates) are associated with this tenant. </p> </note>
             list_management_options: <p>An object used to specify a list or topic to which an email belongs, which will be used when a contact chooses to unsubscribe.</p>
+            configuration_overrides: <p>An object that overrides, for this message only, settings that would otherwise apply to it. Each setting that you don't override keeps the value that already applies.</p>
 
         Raises:
             capo_sesv2.errors.account_suspended_exception.AccountSuspendedException: <p>The message can't be sent because the account's ability to send email has been permanently restricted.</p>
@@ -6165,6 +6423,8 @@ class AsyncSESv2Client:
             input_["tenant_name"] = tenant_name
         if list_management_options is not None:
             input_["list_management_options"] = list_management_options
+        if configuration_overrides is not None:
+            input_["configuration_overrides"] = configuration_overrides
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -6314,6 +6574,58 @@ class AsyncSESv2Client:
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
         }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_configuration_set(
+        self,
+        configuration_set_name: "capo_sesv2.types.configuration_set_name.ConfigurationSetName",
+        *,
+        config_overrides: Optional[AsyncSESv2ClientConfig] = None,
+        message_security_options: Optional[
+            "capo_sesv2.types.message_security_options.MessageSecurityOptions"
+        ] = None,
+    ) -> "capo_sesv2.types.update_configuration_set_response.UpdateConfigurationSetResponse":
+        """<p>Updates an existing configuration set.</p> <p>This operation performs a partial update. Only the attributes that you include in the request are updated; any omitted attribute is left unchanged.</p>
+
+        Args:
+            configuration_set_name: <p>The name of the configuration set to update.</p>
+            message_security_options: <p>The security options that apply to the MIME message itself for messages sent with the configuration set.</p>
+
+        Raises:
+            capo_sesv2.errors.bad_request_exception.BadRequestException: <p>The input you provided is invalid.</p>
+            capo_sesv2.errors.not_found_exception.NotFoundException: <p>The resource you attempted to access doesn't exist.</p>
+            capo_sesv2.errors.too_many_requests_exception.TooManyRequestsException: <p>Too many requests have been made to the operation.</p>
+            capo_sesv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_sesv2.types.update_configuration_set_request.UpdateConfigurationSetRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_sesv2.types.update_configuration_set_response.UpdateConfigurationSetResponse"
+        ]:
+            import capo_sesv2._operations.simple_email_service_v2.update_configuration_set
+
+            (
+                output,
+                http_response,
+            ) = await capo_sesv2._operations.simple_email_service_v2.update_configuration_set.async_update_configuration_set(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_sesv2.types.update_configuration_set_request.UpdateConfigurationSetRequest = {
+            "configuration_set_name": configuration_set_name
+        }
+        if message_security_options is not None:
+            input_["message_security_options"] = message_security_options
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

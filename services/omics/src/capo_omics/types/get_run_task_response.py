@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     import capo_omics.types.task_status
     import capo_omics.types.task_status_message
     import capo_omics.types.task_timestamp
+    import capo_omics.types.task_uuid
 
 
 class GetRunTaskResponse(TypedDict, closed=True):
@@ -56,6 +57,8 @@ class GetRunTaskResponse(TypedDict, closed=True):
     """<p>The reason a task has failed.</p>"""
     image_details: NotRequired["capo_omics.types.image_details.ImageDetails"]
     """<p>Details about the container image that this task uses.</p>"""
+    uuid: NotRequired["capo_omics.types.task_uuid.TaskUuid"]
+    """<p>The universally unique identifier (UUID) for the workflow task.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -109,6 +112,8 @@ def serialize_json(value: GetRunTaskResponse) -> dict:
         out["imageDetails"] = capo_omics.types.image_details.serialize_json(
             value["image_details"]
         )
+    if "uuid" in value:
+        out["uuid"] = value["uuid"]
     return out
 
 
@@ -162,4 +167,6 @@ def deserialize_json(data: dict) -> GetRunTaskResponse:
         out["image_details"] = capo_omics.types.image_details.deserialize_json(
             data["imageDetails"]
         )
+    if data.get("uuid") is not None:
+        out["uuid"] = data["uuid"]
     return out

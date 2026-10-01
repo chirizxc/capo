@@ -2,10 +2,11 @@
 
 from typing import Literal, TypeAlias, cast
 
-"""<p>The data retention mode for the account. Valid values are:</p> <ul> <li> <p> <code>default</code> – The standard data handling for the model applies.</p> </li> <li> <p> <code>none</code> – Zero data retention.</p> </li> <li> <p> <code>provider_data_share</code> – Data may be shared with the model provider.</p> </li> <li> <p> <code>inherit</code> – No data retention mode is set at this scope.</p> </li> </ul>"""
+"""<p>The data retention mode for the account. Valid values are:</p> <ul> <li> <p> <code>default</code> – The standard data handling for the model applies.</p> </li> <li> <p> <code>none</code> – Zero data retention.</p> </li> <li> <p> <code>aws_review</code> – Amazon Web Services may review the request data. The data is not shared with the model provider. A model must support this mode to be invoked under it.</p> </li> <li> <p> <code>provider_data_share</code> – Data may be shared with the model provider.</p> </li> <li> <p> <code>inherit</code> – No data retention mode is set at this scope.</p> </li> </ul>"""
 DataRetentionMode: TypeAlias = Literal[
     "default",
     "none",
+    "aws_review",
     "provider_data_share",
     "inherit",
 ]

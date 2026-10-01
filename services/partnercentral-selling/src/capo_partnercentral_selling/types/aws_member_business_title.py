@@ -9,6 +9,7 @@ AwsMemberBusinessTitle: TypeAlias = Literal[
     "PDM",
     "PSM",
     "ISVSM",
+    "Signatory",
 ]
 
 

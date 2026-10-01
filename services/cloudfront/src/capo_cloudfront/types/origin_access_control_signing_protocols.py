@@ -4,7 +4,10 @@ from typing import Literal, TypeAlias, cast
 
 from capo_cloudfront._protocol.xml import Element, SubElement
 
-OriginAccessControlSigningProtocols: TypeAlias = Literal["sigv4",]
+OriginAccessControlSigningProtocols: TypeAlias = Literal[
+    "sigv4",
+    "sigv4a",
+]
 
 
 # --- restXml ser/de ---

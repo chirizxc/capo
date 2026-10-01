@@ -10,10 +10,12 @@ if TYPE_CHECKING:
     import capo_gameliftstreams.types.arn
     import capo_gameliftstreams.types.connection_timeout_seconds
     import capo_gameliftstreams.types.description
+    import capo_gameliftstreams.types.display_configuration
     import capo_gameliftstreams.types.environment_variables
     import capo_gameliftstreams.types.export_files_metadata
     import capo_gameliftstreams.types.file_location_uri
     import capo_gameliftstreams.types.game_launch_arg_list
+    import capo_gameliftstreams.types.iam_role_arn
     import capo_gameliftstreams.types.id
     import capo_gameliftstreams.types.location_name
     import capo_gameliftstreams.types.performance_stats_configuration
@@ -94,6 +96,12 @@ class GetStreamSessionOutput(TypedDict, closed=True):
         "capo_gameliftstreams.types.export_files_metadata.ExportFilesMetadata"
     ]
     """<p>Provides details about the stream session's exported files. </p>"""
+    role_arn: NotRequired["capo_gameliftstreams.types.iam_role_arn.IamRoleArn"]
+    """<p>The ARN of the AWS Identity and Access Management (IAM) role that Amazon GameLift Streams assumes on behalf of your application during the stream session.</p>"""
+    display_configuration: NotRequired[
+        "capo_gameliftstreams.types.display_configuration.DisplayConfiguration"
+    ]
+    """<p>The configuration for the stream session's virtual monitor.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -187,6 +195,16 @@ def serialize_json(value: GetStreamSessionOutput) -> dict:
         out["ExportFilesMetadata"] = (
             capo_gameliftstreams.types.export_files_metadata.serialize_json(
                 value["export_files_metadata"]
+            )
+        )
+    if "role_arn" in value:
+        out["RoleArn"] = value["role_arn"]
+    if "display_configuration" in value:
+        import capo_gameliftstreams.types.display_configuration
+
+        out["DisplayConfiguration"] = (
+            capo_gameliftstreams.types.display_configuration.serialize_json(
+                value["display_configuration"]
             )
         )
     return out
@@ -286,6 +304,16 @@ def deserialize_json(data: dict) -> GetStreamSessionOutput:
         out["export_files_metadata"] = (
             capo_gameliftstreams.types.export_files_metadata.deserialize_json(
                 data["ExportFilesMetadata"]
+            )
+        )
+    if data.get("RoleArn") is not None:
+        out["role_arn"] = data["RoleArn"]
+    if data.get("DisplayConfiguration") is not None:
+        import capo_gameliftstreams.types.display_configuration
+
+        out["display_configuration"] = (
+            capo_gameliftstreams.types.display_configuration.deserialize_json(
+                data["DisplayConfiguration"]
             )
         )
     return out

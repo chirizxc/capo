@@ -28,6 +28,7 @@ import capo_bedrock_agent_runtime.types.knowledge_base_retrieval_configuration
 import capo_bedrock_agent_runtime.types.knowledge_base_retrieval_results
 import capo_bedrock_agent_runtime.types.retrieve_request
 import capo_bedrock_agent_runtime.types.retrieve_response
+import capo_bedrock_agent_runtime.types.user_context
 from capo_bedrock_agent_runtime._protocol.errors import parse_error_metadata_json
 from capo_bedrock_agent_runtime._rule_engine._endpoint_rule_set import (
     EndpointParams,

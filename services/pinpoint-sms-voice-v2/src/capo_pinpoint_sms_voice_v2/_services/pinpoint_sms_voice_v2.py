@@ -101,6 +101,8 @@ if TYPE_CHECKING:
     import capo_pinpoint_sms_voice_v2.types.delete_protect_configuration_rule_set_number_override_result
     import capo_pinpoint_sms_voice_v2.types.delete_rcs_agent_request
     import capo_pinpoint_sms_voice_v2.types.delete_rcs_agent_result
+    import capo_pinpoint_sms_voice_v2.types.delete_rcs_message_spend_limit_override_request
+    import capo_pinpoint_sms_voice_v2.types.delete_rcs_message_spend_limit_override_result
     import capo_pinpoint_sms_voice_v2.types.delete_registration_attachment_request
     import capo_pinpoint_sms_voice_v2.types.delete_registration_attachment_result
     import capo_pinpoint_sms_voice_v2.types.delete_registration_field_value_request
@@ -178,6 +180,7 @@ if TYPE_CHECKING:
     import capo_pinpoint_sms_voice_v2.types.get_resource_policy_request
     import capo_pinpoint_sms_voice_v2.types.get_resource_policy_result
     import capo_pinpoint_sms_voice_v2.types.iam_role_arn
+    import capo_pinpoint_sms_voice_v2.types.iam_role_arn_or_unset
     import capo_pinpoint_sms_voice_v2.types.iso_country_code
     import capo_pinpoint_sms_voice_v2.types.iso_country_code_list
     import capo_pinpoint_sms_voice_v2.types.keyword
@@ -187,6 +190,9 @@ if TYPE_CHECKING:
     import capo_pinpoint_sms_voice_v2.types.keyword_message
     import capo_pinpoint_sms_voice_v2.types.kinesis_firehose_destination
     import capo_pinpoint_sms_voice_v2.types.language_code
+    import capo_pinpoint_sms_voice_v2.types.list_available_phone_numbers_max_results
+    import capo_pinpoint_sms_voice_v2.types.list_available_phone_numbers_request
+    import capo_pinpoint_sms_voice_v2.types.list_available_phone_numbers_result
     import capo_pinpoint_sms_voice_v2.types.list_notify_countries_request
     import capo_pinpoint_sms_voice_v2.types.list_notify_countries_result
     import capo_pinpoint_sms_voice_v2.types.list_pool_origination_identities_request
@@ -223,6 +229,7 @@ if TYPE_CHECKING:
     import capo_pinpoint_sms_voice_v2.types.notify_use_case_list
     import capo_pinpoint_sms_voice_v2.types.number_capability
     import capo_pinpoint_sms_voice_v2.types.number_capability_list
+    import capo_pinpoint_sms_voice_v2.types.number_preference_list
     import capo_pinpoint_sms_voice_v2.types.opt_out_list_name
     import capo_pinpoint_sms_voice_v2.types.opt_out_list_name_list
     import capo_pinpoint_sms_voice_v2.types.opt_out_list_name_or_arn
@@ -259,6 +266,12 @@ if TYPE_CHECKING:
     import capo_pinpoint_sms_voice_v2.types.rcs_agent_filter_list
     import capo_pinpoint_sms_voice_v2.types.rcs_agent_id_list
     import capo_pinpoint_sms_voice_v2.types.rcs_agent_id_or_arn
+    import capo_pinpoint_sms_voice_v2.types.rcs_event_type_list
+    import capo_pinpoint_sms_voice_v2.types.rcs_fallback_configuration
+    import capo_pinpoint_sms_voice_v2.types.rcs_message_content
+    import capo_pinpoint_sms_voice_v2.types.rcs_message_origination_identity
+    import capo_pinpoint_sms_voice_v2.types.rcs_message_traffic_type
+    import capo_pinpoint_sms_voice_v2.types.rcs_time_to_live
     import capo_pinpoint_sms_voice_v2.types.registration_association_filter_list
     import capo_pinpoint_sms_voice_v2.types.registration_attachment_filter_list
     import capo_pinpoint_sms_voice_v2.types.registration_attachment_id_list
@@ -283,6 +296,7 @@ if TYPE_CHECKING:
     import capo_pinpoint_sms_voice_v2.types.requestable_number_type
     import capo_pinpoint_sms_voice_v2.types.resource_id_or_arn
     import capo_pinpoint_sms_voice_v2.types.resource_policy
+    import capo_pinpoint_sms_voice_v2.types.searchable_number_type
     import capo_pinpoint_sms_voice_v2.types.section_path
     import capo_pinpoint_sms_voice_v2.types.section_path_list
     import capo_pinpoint_sms_voice_v2.types.select_choice_list
@@ -294,6 +308,8 @@ if TYPE_CHECKING:
     import capo_pinpoint_sms_voice_v2.types.send_notify_text_message_result
     import capo_pinpoint_sms_voice_v2.types.send_notify_voice_message_request
     import capo_pinpoint_sms_voice_v2.types.send_notify_voice_message_result
+    import capo_pinpoint_sms_voice_v2.types.send_rcs_message_request
+    import capo_pinpoint_sms_voice_v2.types.send_rcs_message_result
     import capo_pinpoint_sms_voice_v2.types.send_text_message_request
     import capo_pinpoint_sms_voice_v2.types.send_text_message_result
     import capo_pinpoint_sms_voice_v2.types.send_voice_message_request
@@ -314,6 +330,8 @@ if TYPE_CHECKING:
     import capo_pinpoint_sms_voice_v2.types.set_media_message_spend_limit_override_result
     import capo_pinpoint_sms_voice_v2.types.set_notify_message_spend_limit_override_request
     import capo_pinpoint_sms_voice_v2.types.set_notify_message_spend_limit_override_result
+    import capo_pinpoint_sms_voice_v2.types.set_rcs_message_spend_limit_override_request
+    import capo_pinpoint_sms_voice_v2.types.set_rcs_message_spend_limit_override_result
     import capo_pinpoint_sms_voice_v2.types.set_text_message_spend_limit_override_request
     import capo_pinpoint_sms_voice_v2.types.set_text_message_spend_limit_override_result
     import capo_pinpoint_sms_voice_v2.types.set_voice_message_spend_limit_override_request
@@ -331,6 +349,8 @@ if TYPE_CHECKING:
     import capo_pinpoint_sms_voice_v2.types.text_value
     import capo_pinpoint_sms_voice_v2.types.time_to_live
     import capo_pinpoint_sms_voice_v2.types.two_way_channel_arn
+    import capo_pinpoint_sms_voice_v2.types.two_way_media_s3_bucket_name_or_unset
+    import capo_pinpoint_sms_voice_v2.types.two_way_media_s3_key_prefix
     import capo_pinpoint_sms_voice_v2.types.untag_resource_request
     import capo_pinpoint_sms_voice_v2.types.untag_resource_result
     import capo_pinpoint_sms_voice_v2.types.update_event_destination_request
@@ -1243,10 +1263,10 @@ class PinpointSMSVoiceV2Client:
             "capo_pinpoint_sms_voice_v2.types.client_token.ClientToken"
         ] = None,
     ) -> "capo_pinpoint_sms_voice_v2.types.create_registration_attachment_result.CreateRegistrationAttachmentResult":
-        """<p>Create a new registration attachment to use for uploading a file or a URL to a file. The maximum file size is 500KB and valid file extensions are PDF, JPEG and PNG. For example, many sender ID registrations require a signed “letter of authorization” (LOA) to be submitted.</p> <p>Use either <code>AttachmentUrl</code> or <code>AttachmentBody</code> to upload your attachment. If both are specified then an exception is returned.</p>
+        """<p>Create a new registration attachment to use for uploading a file or a URL to a file. The maximum file size is 5MB and valid file extensions are PDF, JPEG and PNG. For example, many sender ID registrations require a signed “letter of authorization” (LOA) to be submitted.</p> <p>Use either <code>AttachmentUrl</code> or <code>AttachmentBody</code> to upload your attachment. If both are specified then an exception is returned.</p>
 
         Args:
-            attachment_body: <p>The registration file to upload. The maximum file size is 500KB and valid file extensions are PDF, JPEG and PNG.</p>
+            attachment_body: <p>The registration file to upload. The maximum file size is 5MB and valid file extensions are PDF, JPEG and PNG.</p>
             attachment_url: <p>Registration files have to be stored in an Amazon S3 bucket. The URI to use when sending is in the format <code>s3://BucketName/FileName</code>.</p>
             tags: <p>An array of tags (key and value pairs) to associate with the registration attachment.</p>
             client_token: <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don't specify a client token, a randomly generated token is used for the request to ensure idempotency.</p>
@@ -2113,6 +2133,44 @@ class PinpointSMSVoiceV2Client:
         input_: capo_pinpoint_sms_voice_v2.types.delete_rcs_agent_request.DeleteRcsAgentRequest = {
             "rcs_agent_id": rcs_agent_id
         }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_rcs_message_spend_limit_override(
+        self, *, config_overrides: Optional[PinpointSMSVoiceV2ClientConfig] = None
+    ) -> "capo_pinpoint_sms_voice_v2.types.delete_rcs_message_spend_limit_override_result.DeleteRcsMessageSpendLimitOverrideResult":
+        """<p>Deletes an account-level monthly spending limit override for sending RCS messages. Deleting a spend limit override sets the <code>EnforcedLimit</code> to equal the <code>MaxLimit</code>, which is set by Amazon Web Services.</p>
+
+        Raises:
+            capo_pinpoint_sms_voice_v2.errors.access_denied_exception.AccessDeniedException: <p>The request was denied because you don't have sufficient permissions to access the resource.</p>
+            capo_pinpoint_sms_voice_v2.errors.internal_server_exception.InternalServerException: <p>The API encountered an unexpected error and couldn't complete the request. You might be able to successfully issue the request again in the future.</p>
+            capo_pinpoint_sms_voice_v2.errors.throttling_exception.ThrottlingException: <p>An error that occurred because too many requests were sent during a certain amount of time.</p>
+            capo_pinpoint_sms_voice_v2.errors.validation_exception.ValidationException: <p>A validation exception for a field.</p>
+            capo_pinpoint_sms_voice_v2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_pinpoint_sms_voice_v2.types.delete_rcs_message_spend_limit_override_request.DeleteRcsMessageSpendLimitOverrideRequest]",
+        ) -> OperationResponse[
+            "capo_pinpoint_sms_voice_v2.types.delete_rcs_message_spend_limit_override_result.DeleteRcsMessageSpendLimitOverrideResult"
+        ]:
+            import capo_pinpoint_sms_voice_v2._operations.pinpoint_sms_voice_v2.delete_rcs_message_spend_limit_override
+
+            output, http_response = (
+                capo_pinpoint_sms_voice_v2._operations.pinpoint_sms_voice_v2.delete_rcs_message_spend_limit_override.delete_rcs_message_spend_limit_override(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_pinpoint_sms_voice_v2.types.delete_rcs_message_spend_limit_override_request.DeleteRcsMessageSpendLimitOverrideRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -4259,6 +4317,90 @@ class PinpointSMSVoiceV2Client:
         response.response.close()
         return response.output
 
+    def list_available_phone_numbers(
+        self,
+        iso_country_code: "capo_pinpoint_sms_voice_v2.types.iso_country_code.IsoCountryCode",
+        number_capabilities: "capo_pinpoint_sms_voice_v2.types.number_capability_list.NumberCapabilityList",
+        number_type: "capo_pinpoint_sms_voice_v2.types.searchable_number_type.SearchableNumberType",
+        *,
+        config_overrides: Optional[PinpointSMSVoiceV2ClientConfig] = None,
+        registration_id: Optional[
+            "capo_pinpoint_sms_voice_v2.types.registration_id_or_arn.RegistrationIdOrArn"
+        ] = None,
+        number_preference: Optional[
+            "capo_pinpoint_sms_voice_v2.types.number_preference_list.NumberPreferenceList"
+        ] = None,
+        next_token: Optional[
+            "capo_pinpoint_sms_voice_v2.types.next_token.NextToken"
+        ] = None,
+        max_results: Optional[
+            "capo_pinpoint_sms_voice_v2.types.list_available_phone_numbers_max_results.ListAvailablePhoneNumbersMaxResults"
+        ] = None,
+    ) -> "capo_pinpoint_sms_voice_v2.types.list_available_phone_numbers_result.ListAvailablePhoneNumbersResult":
+        """Search available phone numbers from aggregator inventory, optionally filtered by pattern. If NumberPreference is omitted, returns unfiltered available numbers. Returns empty list (not an exception) when no numbers match. ResourceNotFoundException is thrown only for invalid RegistrationId (campaign not found).
+
+        Args:
+            iso_country_code: <p>The two-character code, in ISO 3166-1 alpha-2 format, for the country or region in which to search for available phone numbers. This operation currently supports only <code>US</code>.</p>
+            number_capabilities: <p>The capabilities to filter by, such as SMS. Only phone numbers that support all of the specified capabilities are returned.</p>
+            number_type: <p>The type of phone number to search for.</p>
+            registration_id: <p>The registration associated with the request. A registration is required for regulated number types. You can specify either:</p> <ul> <li> <p>The unique identifier of the registration.</p> </li> <li> <p>The Amazon Resource Name (ARN) of the registration.</p> </li> </ul>
+            number_preference: Optional. If omitted, returns unfiltered available numbers. Max 1 element for List API.
+            next_token: <p>The token returned from a previous request to retrieve the next page of results.</p>
+            max_results: <p>The maximum number of results to return per page. If you don't specify a value, the default is 10.</p>
+
+        Raises:
+            capo_pinpoint_sms_voice_v2.errors.access_denied_exception.AccessDeniedException: <p>The request was denied because you don't have sufficient permissions to access the resource.</p>
+            capo_pinpoint_sms_voice_v2.errors.conflict_exception.ConflictException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time or it could be that the requested action isn't valid for the current state or configuration of the resource.</p>
+            capo_pinpoint_sms_voice_v2.errors.internal_server_exception.InternalServerException: <p>The API encountered an unexpected error and couldn't complete the request. You might be able to successfully issue the request again in the future.</p>
+            capo_pinpoint_sms_voice_v2.errors.resource_not_found_exception.ResourceNotFoundException: <p>A requested resource couldn't be found.</p>
+            capo_pinpoint_sms_voice_v2.errors.throttling_exception.ThrottlingException: <p>An error that occurred because too many requests were sent during a certain amount of time.</p>
+            capo_pinpoint_sms_voice_v2.errors.validation_exception.ValidationException: <p>A validation exception for a field.</p>
+            capo_pinpoint_sms_voice_v2.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            ListAvailablePhoneNumbers
+            Search for available TEN_DLC phone numbers in the US that start with a specific area code.
+
+            >>> client.list_available_phone_numbers(iso_country_code='US', number_capabilities=['SMS'], number_type='TEN_DLC', registration_id='reg-1234567890abcdef0', number_preference=[{'PreferenceType': ['StartsWith'], 'Filter': ['+1206']}], max_results=10)
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_pinpoint_sms_voice_v2.types.list_available_phone_numbers_request.ListAvailablePhoneNumbersRequest]",
+        ) -> OperationResponse[
+            "capo_pinpoint_sms_voice_v2.types.list_available_phone_numbers_result.ListAvailablePhoneNumbersResult"
+        ]:
+            import capo_pinpoint_sms_voice_v2._operations.pinpoint_sms_voice_v2.list_available_phone_numbers
+
+            output, http_response = (
+                capo_pinpoint_sms_voice_v2._operations.pinpoint_sms_voice_v2.list_available_phone_numbers.list_available_phone_numbers(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_pinpoint_sms_voice_v2.types.list_available_phone_numbers_request.ListAvailablePhoneNumbersRequest = {
+            "iso_country_code": iso_country_code,
+            "number_capabilities": number_capabilities,
+            "number_type": number_type,
+        }
+        if registration_id is not None:
+            input_["registration_id"] = registration_id
+        if number_preference is not None:
+            input_["number_preference"] = number_preference
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def list_notify_countries(
         self,
         *,
@@ -5041,6 +5183,9 @@ class PinpointSMSVoiceV2Client:
         registration_id: Optional[
             "capo_pinpoint_sms_voice_v2.types.registration_id_or_arn.RegistrationIdOrArn"
         ] = None,
+        number_preference: Optional[
+            "capo_pinpoint_sms_voice_v2.types.number_preference_list.NumberPreferenceList"
+        ] = None,
         international_sending_enabled: Optional[bool] = None,
         deletion_protection_enabled: Optional[bool] = None,
         tags: Optional["capo_pinpoint_sms_voice_v2.types.tag_list.TagList"] = None,
@@ -5058,6 +5203,7 @@ class PinpointSMSVoiceV2Client:
             opt_out_list_name: <p>The name of the OptOutList to associate with the phone number. You can use the OptOutListName or OptOutListArn.</p> <important> <p>If you are using a shared End User Messaging SMS resource then you must use the full Amazon Resource Name(ARN).</p> </important>
             pool_id: <p>The pool to associated with the phone number. You can use the PoolId or PoolArn. </p> <important> <p>If you are using a shared End User Messaging SMS resource then you must use the full Amazon Resource Name(ARN).</p> </important>
             registration_id: <p>Use this field to attach your phone number for an external registration process.</p>
+            number_preference: <p>An optional selection preference used to request a specific phone number, such as a number that starts with, ends with, or contains a particular digit pattern. You can specify at most one preference. Number preferences apply only to <code>TEN_DLC</code> requests in the <code>US</code>.</p>
             international_sending_enabled: <p>By default this is set to false. When set to true the international sending of phone number is Enabled. </p>
             deletion_protection_enabled: <p>By default this is set to false. When set to true the phone number can't be deleted.</p>
             tags: <p>An array of tags (key and value pairs) to associate with the requested phone number. </p>
@@ -5101,6 +5247,8 @@ class PinpointSMSVoiceV2Client:
             input_["pool_id"] = pool_id
         if registration_id is not None:
             input_["registration_id"] = registration_id
+        if number_preference is not None:
+            input_["number_preference"] = number_preference
         if international_sending_enabled is not None:
             input_["international_sending_enabled"] = international_sending_enabled
         if deletion_protection_enabled is not None:
@@ -5137,7 +5285,7 @@ class PinpointSMSVoiceV2Client:
         """<p>Request a new sender ID that doesn't require registration. </p>
 
         Args:
-            sender_id: <p>The sender ID string to request.</p>
+            sender_id: <p>The sender ID string to request. The sender ID can be 1-11 alphanumeric characters including letters (A-Z, a-z), numbers (0-9), or hyphens (-). The sender ID must contain at least one letter and cannot start or end with a hyphen.</p>
             iso_country_code: <p>The two-character code, in ISO 3166-1 alpha-2 format, for the country or region.</p>
             message_types: <p>The type of message. Valid values are TRANSACTIONAL for messages that are critical or time-sensitive and PROMOTIONAL for messages that aren't critical or time-sensitive.</p>
             deletion_protection_enabled: <p>By default this is set to false. When set to true the sender ID can't be deleted.</p>
@@ -5565,6 +5713,116 @@ class PinpointSMSVoiceV2Client:
         response.response.close()
         return response.output
 
+    def send_rcs_message(
+        self,
+        destination_phone_number: "capo_pinpoint_sms_voice_v2.types.phone_number.PhoneNumber",
+        origination_identity: "capo_pinpoint_sms_voice_v2.types.rcs_message_origination_identity.RcsMessageOriginationIdentity",
+        *,
+        config_overrides: Optional[PinpointSMSVoiceV2ClientConfig] = None,
+        rcs_message_content: Optional[
+            "capo_pinpoint_sms_voice_v2.types.rcs_message_content.RcsMessageContent"
+        ] = None,
+        time_to_live: Optional[
+            "capo_pinpoint_sms_voice_v2.types.rcs_time_to_live.RcsTimeToLive"
+        ] = None,
+        message_traffic_type: Optional[
+            "capo_pinpoint_sms_voice_v2.types.rcs_message_traffic_type.RcsMessageTrafficType"
+        ] = None,
+        fallback_configuration: Optional[
+            "capo_pinpoint_sms_voice_v2.types.rcs_fallback_configuration.RcsFallbackConfiguration"
+        ] = None,
+        protect_configuration_id: Optional[
+            "capo_pinpoint_sms_voice_v2.types.protect_configuration_id_or_arn.ProtectConfigurationIdOrArn"
+        ] = None,
+        configuration_set_name: Optional[
+            "capo_pinpoint_sms_voice_v2.types.configuration_set_name_or_arn.ConfigurationSetNameOrArn"
+        ] = None,
+        max_price: Optional[
+            "capo_pinpoint_sms_voice_v2.types.max_price.MaxPrice"
+        ] = None,
+        dry_run: Optional[bool] = None,
+        context: Optional[
+            "capo_pinpoint_sms_voice_v2.types.context_map.ContextMap"
+        ] = None,
+        message_feedback_enabled: Optional[bool] = None,
+    ) -> (
+        "capo_pinpoint_sms_voice_v2.types.send_rcs_message_result.SendRcsMessageResult"
+    ):
+        """<p>Creates a new RCS message and sends it to a recipient's phone number. RCS messages support rich content including text, files, rich cards, and carousels with interactive suggested actions.</p>
+
+        Args:
+            destination_phone_number: <p>The destination phone number in E.164 format.</p>
+            origination_identity: <p>The origination identity of the message. This can be either the RcsAgentId, RcsAgentArn, PoolId, or PoolArn.</p>
+            rcs_message_content: <p>The content of the RCS message. Contains the message content (text, file, rich card, or carousel) and optional message-level suggested actions.</p>
+            time_to_live: <p>The duration in seconds that the RCS message is valid for delivery. If the message cannot be delivered within this duration, it is considered expired. Valid values are 1 to 172800 (48 hours). If a FallbackConfiguration is provided, the fallback is triggered when the duration expires without delivery confirmation.</p>
+            message_traffic_type: <p>The traffic type of the RCS message. Valid values are AUTHENTICATION, TRANSACTION, PROMOTION, SERVICE_REQUEST, and ACKNOWLEDGEMENT. This field is reserved for future use.</p>
+            fallback_configuration: <p>Configuration for SMS or MMS fallback when RCS delivery fails. If provided, the service sends a fallback message via the specified channel when the RCS message fails or the TimeToLive expires.</p>
+            protect_configuration_id: <p>The unique identifier of the protect configuration to use.</p>
+            configuration_set_name: <p>The name of the configuration set to use. This can be either the ConfigurationSetName or ConfigurationSetArn.</p>
+            max_price: <p>The maximum amount that you want to spend, in US dollars, per each RCS message.</p>
+            dry_run: <p>When set to true, the message is checked and validated, but isn't sent to the end recipient.</p>
+            context: <p>You can specify custom data in this field. If you do, that data is logged to the event destination.</p>
+            message_feedback_enabled: <p>Set to true to enable message feedback for the message. When a user receives the message you need to update the message status using <a>PutMessageFeedback</a>.</p>
+
+        Raises:
+            capo_pinpoint_sms_voice_v2.errors.access_denied_exception.AccessDeniedException: <p>The request was denied because you don't have sufficient permissions to access the resource.</p>
+            capo_pinpoint_sms_voice_v2.errors.conflict_exception.ConflictException: <p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time or it could be that the requested action isn't valid for the current state or configuration of the resource.</p>
+            capo_pinpoint_sms_voice_v2.errors.internal_server_exception.InternalServerException: <p>The API encountered an unexpected error and couldn't complete the request. You might be able to successfully issue the request again in the future.</p>
+            capo_pinpoint_sms_voice_v2.errors.resource_not_found_exception.ResourceNotFoundException: <p>A requested resource couldn't be found.</p>
+            capo_pinpoint_sms_voice_v2.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request would cause a service quota to be exceeded.</p>
+            capo_pinpoint_sms_voice_v2.errors.throttling_exception.ThrottlingException: <p>An error that occurred because too many requests were sent during a certain amount of time.</p>
+            capo_pinpoint_sms_voice_v2.errors.validation_exception.ValidationException: <p>A validation exception for a field.</p>
+            capo_pinpoint_sms_voice_v2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_pinpoint_sms_voice_v2.types.send_rcs_message_request.SendRcsMessageRequest]",
+        ) -> OperationResponse[
+            "capo_pinpoint_sms_voice_v2.types.send_rcs_message_result.SendRcsMessageResult"
+        ]:
+            import capo_pinpoint_sms_voice_v2._operations.pinpoint_sms_voice_v2.send_rcs_message
+
+            output, http_response = (
+                capo_pinpoint_sms_voice_v2._operations.pinpoint_sms_voice_v2.send_rcs_message.send_rcs_message(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_pinpoint_sms_voice_v2.types.send_rcs_message_request.SendRcsMessageRequest = {
+            "destination_phone_number": destination_phone_number,
+            "origination_identity": origination_identity,
+        }
+        if rcs_message_content is not None:
+            input_["rcs_message_content"] = rcs_message_content
+        if time_to_live is not None:
+            input_["time_to_live"] = time_to_live
+        if message_traffic_type is not None:
+            input_["message_traffic_type"] = message_traffic_type
+        if fallback_configuration is not None:
+            input_["fallback_configuration"] = fallback_configuration
+        if protect_configuration_id is not None:
+            input_["protect_configuration_id"] = protect_configuration_id
+        if configuration_set_name is not None:
+            input_["configuration_set_name"] = configuration_set_name
+        if max_price is not None:
+            input_["max_price"] = max_price
+        if dry_run is not None:
+            input_["dry_run"] = dry_run
+        if context is not None:
+            input_["context"] = context
+        if message_feedback_enabled is not None:
+            input_["message_feedback_enabled"] = message_feedback_enabled
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def send_text_message(
         self,
         destination_phone_number: "capo_pinpoint_sms_voice_v2.types.phone_number.PhoneNumber",
@@ -5605,7 +5863,7 @@ class PinpointSMSVoiceV2Client:
 
         Args:
             destination_phone_number: <p>The destination phone number in E.164 format.</p>
-            origination_identity: <p>The origination identity of the message. This can be either the PhoneNumber, PhoneNumberId, PhoneNumberArn, SenderId, SenderIdArn, PoolId, or PoolArn.</p> <important> <p>If you are using a shared End User Messaging SMS resource then you must use the full Amazon Resource Name(ARN).</p> </important>
+            origination_identity: <p>The origination identity of the message. This can be either the PhoneNumber, PhoneNumberId, PhoneNumberArn, RcsAgentId, RcsAgentArn, SenderId, SenderIdArn, PoolId, or PoolArn.</p> <important> <p>If you are using a shared End User Messaging SMS resource then you must use the full Amazon Resource Name(ARN).</p> </important>
             message_body: <p>The body of the text message.</p>
             message_type: <p>The type of message. Valid values are for messages that are critical or time-sensitive and PROMOTIONAL for messages that aren't critical or time-sensitive.</p>
             keyword: <p>When you register a short code in the US, you must specify a program name. If you don’t have a US short code, omit this attribute.</p>
@@ -6081,6 +6339,52 @@ class PinpointSMSVoiceV2Client:
         response.response.close()
         return response.output
 
+    def set_rcs_message_spend_limit_override(
+        self,
+        monthly_limit: "capo_pinpoint_sms_voice_v2.types.monthly_limit.MonthlyLimit",
+        *,
+        config_overrides: Optional[PinpointSMSVoiceV2ClientConfig] = None,
+    ) -> "capo_pinpoint_sms_voice_v2.types.set_rcs_message_spend_limit_override_result.SetRcsMessageSpendLimitOverrideResult":
+        """<p>Sets an account level monthly spend limit override for sending RCS messages. The requested spend limit must be less than or equal to the <code>MaxLimit</code>, which is set by Amazon Web Services.</p>
+
+        Args:
+            monthly_limit: <p>The new monthly limit to enforce on RCS message spending.</p>
+
+        Raises:
+            capo_pinpoint_sms_voice_v2.errors.access_denied_exception.AccessDeniedException: <p>The request was denied because you don't have sufficient permissions to access the resource.</p>
+            capo_pinpoint_sms_voice_v2.errors.internal_server_exception.InternalServerException: <p>The API encountered an unexpected error and couldn't complete the request. You might be able to successfully issue the request again in the future.</p>
+            capo_pinpoint_sms_voice_v2.errors.throttling_exception.ThrottlingException: <p>An error that occurred because too many requests were sent during a certain amount of time.</p>
+            capo_pinpoint_sms_voice_v2.errors.validation_exception.ValidationException: <p>A validation exception for a field.</p>
+            capo_pinpoint_sms_voice_v2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_pinpoint_sms_voice_v2.types.set_rcs_message_spend_limit_override_request.SetRcsMessageSpendLimitOverrideRequest]",
+        ) -> OperationResponse[
+            "capo_pinpoint_sms_voice_v2.types.set_rcs_message_spend_limit_override_result.SetRcsMessageSpendLimitOverrideResult"
+        ]:
+            import capo_pinpoint_sms_voice_v2._operations.pinpoint_sms_voice_v2.set_rcs_message_spend_limit_override
+
+            output, http_response = (
+                capo_pinpoint_sms_voice_v2._operations.pinpoint_sms_voice_v2.set_rcs_message_spend_limit_override.set_rcs_message_spend_limit_override(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_pinpoint_sms_voice_v2.types.set_rcs_message_spend_limit_override_request.SetRcsMessageSpendLimitOverrideRequest = {
+            "monthly_limit": monthly_limit
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def set_text_message_spend_limit_override(
         self,
         monthly_limit: "capo_pinpoint_sms_voice_v2.types.monthly_limit.MonthlyLimit",
@@ -6428,8 +6732,8 @@ class PinpointSMSVoiceV2Client:
 
         Args:
             notify_configuration_id: <p>The identifier of the notify configuration to update. The NotifyConfigurationId can be found using the <a>DescribeNotifyConfigurations</a> operation.</p>
-            default_template_id: The template ID to set as the default, or the special value UNSET_DEFAULT_TEMPLATE to clear the current default template.
-            pool_id: The pool ID or ARN to associate, or the special value UNSET_DEFAULT_POOL_FOR_NOTIFY to clear the current default pool.
+            default_template_id: <p>The default template identifier to associate with the notify configuration. If specified, this template is used when sending messages without an explicit template identifier. Pass the special value <code>UNSET_DEFAULT_TEMPLATE</code> to clear the current default template from the notify configuration.</p>
+            pool_id: <p>The pool identifier or Amazon Resource Name (ARN) to associate with the notify configuration. Pass the special value <code>UNSET_DEFAULT_POOL_FOR_NOTIFY</code> to clear the current default pool from the notify configuration.</p>
             enabled_countries: <p>An array of two-character ISO country codes, in ISO 3166-1 alpha-2 format, that are enabled for the notify configuration.</p>
             enabled_channels: <p>An array of channels to enable for the notify configuration. Supported values include <code>SMS</code> and <code>VOICE</code>.</p>
             deletion_protection_enabled: <p>When set to true the notify configuration can't be deleted.</p>
@@ -6772,6 +7076,18 @@ class PinpointSMSVoiceV2Client:
             "capo_pinpoint_sms_voice_v2.types.iam_role_arn.IamRoleArn"
         ] = None,
         two_way_enabled: Optional[bool] = None,
+        two_way_media_s3_bucket_name: Optional[
+            "capo_pinpoint_sms_voice_v2.types.two_way_media_s3_bucket_name_or_unset.TwoWayMediaS3BucketNameOrUnset"
+        ] = None,
+        two_way_media_s3_key_prefix: Optional[
+            "capo_pinpoint_sms_voice_v2.types.two_way_media_s3_key_prefix.TwoWayMediaS3KeyPrefix"
+        ] = None,
+        two_way_media_s3_role: Optional[
+            "capo_pinpoint_sms_voice_v2.types.iam_role_arn_or_unset.IamRoleArnOrUnset"
+        ] = None,
+        two_way_rcs_events_enabled: Optional[
+            "capo_pinpoint_sms_voice_v2.types.rcs_event_type_list.RcsEventTypeList"
+        ] = None,
     ) -> (
         "capo_pinpoint_sms_voice_v2.types.update_rcs_agent_result.UpdateRcsAgentResult"
     ):
@@ -6785,6 +7101,10 @@ class PinpointSMSVoiceV2Client:
             two_way_channel_arn: <p>The Amazon Resource Name (ARN) of the two way channel.</p>
             two_way_channel_role: <p>An optional IAM Role Arn for a service to assume, to be able to post inbound SMS messages.</p>
             two_way_enabled: <p>By default this is set to false. When set to true you can receive incoming text messages from your end recipients.</p>
+            two_way_media_s3_bucket_name: <p>The name of the S3 bucket where inbound RCS media files are stored. Two-way messaging must be enabled on the agent. To remove the media configuration, pass the sentinel value <code>UNSET_RCS_MEDIA_CONFIGURATION</code> for both this field and TwoWayMediaS3Role.</p>
+            two_way_media_s3_key_prefix: <p>The key prefix used for inbound RCS media objects in the S3 bucket.</p>
+            two_way_media_s3_role: <p>The ARN of the IAM role used to write inbound RCS media files to the S3 bucket. The role must have <code>s3:PutObject</code> permission on the bucket and a trust policy allowing <code>sms-voice.amazonaws.com</code> to assume it. To remove the media configuration, pass the sentinel value <code>UNSET_RCS_MEDIA_CONFIGURATION</code> for both this field and TwoWayMediaS3BucketName.</p>
+            two_way_rcs_events_enabled: <p>The list of RCS event types to enable for two-way messaging. Pass an empty list to disable all event types. The special value <code>ALL</code> enables all current and future event types and must be the sole element if used.</p>
 
         Raises:
             capo_pinpoint_sms_voice_v2.errors.access_denied_exception.AccessDeniedException: <p>The request was denied because you don't have sufficient permissions to access the resource.</p>
@@ -6826,6 +7146,14 @@ class PinpointSMSVoiceV2Client:
             input_["two_way_channel_role"] = two_way_channel_role
         if two_way_enabled is not None:
             input_["two_way_enabled"] = two_way_enabled
+        if two_way_media_s3_bucket_name is not None:
+            input_["two_way_media_s3_bucket_name"] = two_way_media_s3_bucket_name
+        if two_way_media_s3_key_prefix is not None:
+            input_["two_way_media_s3_key_prefix"] = two_way_media_s3_key_prefix
+        if two_way_media_s3_role is not None:
+            input_["two_way_media_s3_role"] = two_way_media_s3_role
+        if two_way_rcs_events_enabled is not None:
+            input_["two_way_rcs_events_enabled"] = two_way_rcs_events_enabled
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),

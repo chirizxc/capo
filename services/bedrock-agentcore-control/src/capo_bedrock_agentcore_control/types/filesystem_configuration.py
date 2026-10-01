@@ -10,6 +10,7 @@ from capo_bedrock_agentcore_control.errors import (
 )
 
 if TYPE_CHECKING:
+    import capo_bedrock_agentcore_control.types.capacity_provider_volume_configuration
     import capo_bedrock_agentcore_control.types.efs_access_point_configuration
     import capo_bedrock_agentcore_control.types.s3_files_access_point_configuration
     import capo_bedrock_agentcore_control.types.session_storage_configuration
@@ -27,10 +28,15 @@ class _FilesystemConfiguration_efsAccessPoint(TypedDict, closed=True):
     efsAccessPoint: "capo_bedrock_agentcore_control.types.efs_access_point_configuration.EfsAccessPointConfiguration"
 
 
+class _FilesystemConfiguration_capacityProviderVolume(TypedDict, closed=True):
+    capacityProviderVolume: "capo_bedrock_agentcore_control.types.capacity_provider_volume_configuration.CapacityProviderVolumeConfiguration"
+
+
 FilesystemConfiguration: TypeAlias = (
     _FilesystemConfiguration_sessionStorage
     | _FilesystemConfiguration_s3FilesAccessPoint
     | _FilesystemConfiguration_efsAccessPoint
+    | _FilesystemConfiguration_capacityProviderVolume
 )
 
 
@@ -60,6 +66,14 @@ def serialize_json(value: FilesystemConfiguration) -> dict:
                 value["efsAccessPoint"]
             )
         }
+    elif "capacityProviderVolume" in value:
+        import capo_bedrock_agentcore_control.types.capacity_provider_volume_configuration
+
+        return {
+            "capacityProviderVolume": capo_bedrock_agentcore_control.types.capacity_provider_volume_configuration.serialize_json(
+                value["capacityProviderVolume"]
+            )
+        }
     else:
         raise SerializationError("FilesystemConfiguration: no variant present")
 
@@ -87,6 +101,14 @@ def deserialize_json(data: dict) -> FilesystemConfiguration:
         return {
             "efsAccessPoint": capo_bedrock_agentcore_control.types.efs_access_point_configuration.deserialize_json(
                 data["efsAccessPoint"]
+            )
+        }
+    elif data.get("capacityProviderVolume") is not None:
+        import capo_bedrock_agentcore_control.types.capacity_provider_volume_configuration
+
+        return {
+            "capacityProviderVolume": capo_bedrock_agentcore_control.types.capacity_provider_volume_configuration.deserialize_json(
+                data["capacityProviderVolume"]
             )
         }
     else:

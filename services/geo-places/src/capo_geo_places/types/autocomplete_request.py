@@ -30,13 +30,13 @@ class AutocompleteRequest(TypedDict, closed=True):
     postal_code_mode: NotRequired[
         "capo_geo_places.types.postal_code_mode.PostalCodeMode"
     ]
-    """<p>The <code>PostalCodeMode</code> affects how postal code results are returned. If a postal code spans multiple localities and this value is empty, partial district or locality information may be returned under a single postal code result entry. If it's populated with the value <code>EnumerateSpannedLocalities</code>, all cities in that postal code are returned.</p>"""
+    """<p>The <code>PostalCodeMode</code> affects how postal code results are returned. If a postal code spans multiple localities and this value is empty, partial district or locality information may be returned under a single postal code result entry. If it's populated with the value <code>EnumerateSpannedLocalities</code>, all cities in that postal code are returned. If it's populated with the value <code>EnumerateSpannedDistricts</code>, all combinations of the postal code with the corresponding district and city names are returned.</p>"""
     additional_features: NotRequired[
         "capo_geo_places.types.autocomplete_additional_feature_list.AutocompleteAdditionalFeatureList"
     ]
     """<p>A list of optional additional parameters that can be requested for each result.</p>"""
     language: NotRequired["capo_geo_places.types.language_tag.LanguageTag"]
-    r"""<p>A list of <a href=\"https://en.wikipedia.org/wiki/IETF_language_tag\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry.</p>"""
+    r"""<p>A list of <a href=\"https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry\">BCP 47</a> compliant language codes for the results to be rendered in. If there is no data for the result in the requested language, data will be returned in the default language for the entry.</p>"""
     political_view: NotRequired["capo_geo_places.types.country_code.CountryCode"]
     """<p>The alpha-2 or alpha-3 character code for the political view of a country. The political view applies to the results of the request to represent unresolved territorial claims through the point of view of the specified country.</p> <p>The following political views are currently supported:</p> <ul> <li> <p> <code>ARG</code>: Argentina's view on the Southern Patagonian Ice Field and Tierra Del Fuego, including the Falkland Islands, South Georgia, and South Sandwich Islands</p> </li> <li> <p> <code>EGY</code>: Egypt's view on Bir Tawil</p> </li> <li> <p> <code>IND</code>: India's view on Gilgit-Baltistan</p> </li> <li> <p> <code>KEN</code>: Kenya's view on the Ilemi Triangle</p> </li> <li> <p> <code>MAR</code>: Morocco's view on Western Sahara</p> </li> <li> <p> <code>RUS</code>: Russia's view on Crimea</p> </li> <li> <p> <code>SDN</code>: Sudan's view on the Halaib Triangle</p> </li> <li> <p> <code>SRB</code>: Serbia's view on Kosovo, Vukovar, and Sarengrad Islands</p> </li> <li> <p> <code>SUR</code>: Suriname's view on the Courantyne Headwaters and Lawa Headwaters</p> </li> <li> <p> <code>SYR</code>: Syria's view on the Golan Heights</p> </li> <li> <p> <code>TUR</code>: Turkey's view on Cyprus and Northern Cyprus</p> </li> <li> <p> <code>TZA</code>: Tanzania's view on Lake Malawi</p> </li> <li> <p> <code>URY</code>: Uruguay's view on Rincon de Artigas</p> </li> <li> <p> <code>VNM</code>: Vietnam's view on the Paracel Islands and Spratly Islands</p> </li> </ul>"""
     intended_use: NotRequired[
@@ -66,7 +66,11 @@ def serialize_json(value: AutocompleteRequest) -> dict:
             value["filter"]
         )
     if "postal_code_mode" in value:
-        out["PostalCodeMode"] = value["postal_code_mode"]
+        import capo_geo_places.types.postal_code_mode
+
+        out["PostalCodeMode"] = capo_geo_places.types.postal_code_mode.serialize_json(
+            value["postal_code_mode"]
+        )
     if "additional_features" in value:
         import capo_geo_places.types.autocomplete_additional_feature_list
 
@@ -80,7 +84,13 @@ def serialize_json(value: AutocompleteRequest) -> dict:
     if "political_view" in value:
         out["PoliticalView"] = value["political_view"]
     if "intended_use" in value:
-        out["IntendedUse"] = value["intended_use"]
+        import capo_geo_places.types.autocomplete_intended_use
+
+        out["IntendedUse"] = (
+            capo_geo_places.types.autocomplete_intended_use.serialize_json(
+                value["intended_use"]
+            )
+        )
     return out
 
 
@@ -105,7 +115,13 @@ def deserialize_json(data: dict) -> AutocompleteRequest:
             data["Filter"]
         )
     if data.get("PostalCodeMode") is not None:
-        out["postal_code_mode"] = data["PostalCodeMode"]
+        import capo_geo_places.types.postal_code_mode
+
+        out["postal_code_mode"] = (
+            capo_geo_places.types.postal_code_mode.deserialize_json(
+                data["PostalCodeMode"]
+            )
+        )
     if data.get("AdditionalFeatures") is not None:
         import capo_geo_places.types.autocomplete_additional_feature_list
 
@@ -119,5 +135,11 @@ def deserialize_json(data: dict) -> AutocompleteRequest:
     if data.get("PoliticalView") is not None:
         out["political_view"] = data["PoliticalView"]
     if data.get("IntendedUse") is not None:
-        out["intended_use"] = data["IntendedUse"]
+        import capo_geo_places.types.autocomplete_intended_use
+
+        out["intended_use"] = (
+            capo_geo_places.types.autocomplete_intended_use.deserialize_json(
+                data["IntendedUse"]
+            )
+        )
     return out

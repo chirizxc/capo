@@ -2,13 +2,14 @@
 
 from typing import TYPE_CHECKING
 
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 from capo_bedrock_agentcore_control.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.credentials_provider_configurations
     import capo_bedrock_agentcore_control.types.date_timestamp
+    import capo_bedrock_agentcore_control.types.payment_connector_authorization_url
     import capo_bedrock_agentcore_control.types.payment_connector_id
     import capo_bedrock_agentcore_control.types.payment_connector_name
     import capo_bedrock_agentcore_control.types.payment_connector_status
@@ -35,6 +36,10 @@ class CreatePaymentConnectorResponse(TypedDict, closed=True):
     """<p>The timestamp when the payment connector was created.</p>"""
     status: "capo_bedrock_agentcore_control.types.payment_connector_status.PaymentConnectorStatus"
     """<p>The current status of the payment connector. Possible values include <code>CREATING</code>, <code>READY</code>, <code>UPDATING</code>, <code>DELETING</code>, <code>CREATE_FAILED</code>, <code>UPDATE_FAILED</code>, and <code>DELETE_FAILED</code>.</p>"""
+    authorization_url: NotRequired[
+        "capo_bedrock_agentcore_control.types.payment_connector_authorization_url.PaymentConnectorAuthorizationUrl"
+    ]
+    """<p>The URL that the user must open to complete OAuth consent. This field is only present when the payment connector status is <code>PENDING_AUTHENTICATION</code>.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -71,6 +76,8 @@ def serialize_json(value: CreatePaymentConnectorResponse) -> dict:
             value["status"]
         )
     )
+    if "authorization_url" in value:
+        out["authorizationUrl"] = value["authorization_url"]
     return out
 
 
@@ -134,4 +141,6 @@ def deserialize_json(data: dict) -> CreatePaymentConnectorResponse:
         )
     else:
         raise DeserializationError("CreatePaymentConnectorResponse.status required")
+    if data.get("authorizationUrl") is not None:
+        out["authorization_url"] = data["authorizationUrl"]
     return out

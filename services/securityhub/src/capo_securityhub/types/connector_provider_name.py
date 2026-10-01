@@ -5,6 +5,7 @@ from typing import Literal, TypeAlias, cast
 ConnectorProviderName: TypeAlias = Literal[
     "JIRA_CLOUD",
     "SERVICENOW",
+    "AZURE",
 ]
 
 

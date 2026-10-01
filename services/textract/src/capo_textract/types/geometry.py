@@ -16,7 +16,7 @@ class Geometry(TypedDict, closed=True):
     polygon: NotRequired["capo_textract.types.polygon.Polygon"]
     """<p>Within the bounding box, a fine-grained polygon around the recognized item.</p>"""
     rotation_angle: NotRequired["capo_textract.types.angle.Angle"]
-    """<p>Provides a numerical value corresponding to the rotation of the text.</p>"""
+    """<p>Provides a numerical value corresponding to the rotation of the WORD block. Possible values are 0, 90, 180, and 270.</p>"""
 
 
 # --- awsJson1_1 ser/de ---

@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     import capo_ssm.types.platform_type
     import capo_ssm.types.resource_type
     import capo_ssm.types.source_id
+    import capo_ssm.types.source_location
     import capo_ssm.types.source_type
     import capo_ssm.types.status_name
     import capo_ssm.types.string
@@ -69,7 +70,9 @@ class InstanceInformation(TypedDict, closed=True):
     source_id: NotRequired["capo_ssm.types.source_id.SourceId"]
     """<p>The ID of the source resource. For IoT Greengrass devices, <code>SourceId</code> is the Thing name. </p>"""
     source_type: NotRequired["capo_ssm.types.source_type.SourceType"]
-    """<p>The type of the source resource. For IoT Greengrass devices, <code>SourceType</code> is <code>AWS::IoT::Thing</code>. </p>"""
+    """<p>The type of the source resource. For IoT Greengrass devices, <code>SourceType</code> is <code>AWS::IoT::Thing</code>. For Azure Virtual Machines, <code>SourceType</code> is <code>Microsoft.Compute/virtualMachines</code>.</p>"""
+    source_location: NotRequired["capo_ssm.types.source_location.SourceLocation"]
+    """<p>The location of the source resource in the third-party cloud environment.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -159,6 +162,8 @@ def serialize_aws_json_1_1(value: InstanceInformation) -> dict:
         out["SourceType"] = capo_ssm.types.source_type.serialize_aws_json_1_1(
             value["source_type"]
         )
+    if "source_location" in value:
+        out["SourceLocation"] = value["source_location"]
     return out
 
 
@@ -248,4 +253,6 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceInformation:
         out["source_type"] = capo_ssm.types.source_type.deserialize_aws_json_1_1(
             data["SourceType"]
         )
+    if data.get("SourceLocation") is not None:
+        out["source_location"] = data["SourceLocation"]
     return out

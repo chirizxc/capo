@@ -29,7 +29,7 @@ if TYPE_CHECKING:
     import capo_imagebuilder.types.resource_name
     import capo_imagebuilder.types.role_name_or_arn
     import capo_imagebuilder.types.tag_map
-    import capo_imagebuilder.types.version_number
+    import capo_imagebuilder.types.version_number_with_build
     import capo_imagebuilder.types.workflow_configuration_list
 
 
@@ -40,8 +40,10 @@ class Image(TypedDict, closed=True):
     """<p>Specifies whether this image produces an AMI or a container image.</p>"""
     name: NotRequired["capo_imagebuilder.types.resource_name.ResourceName"]
     """<p>The name of the image.</p>"""
-    version: NotRequired["capo_imagebuilder.types.version_number.VersionNumber"]
-    """<p>The semantic version of the image.</p> <note> <p>The semantic version has four nodes: <major>.<minor>.<patch>/<build>. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>"""
+    version: NotRequired[
+        "capo_imagebuilder.types.version_number_with_build.VersionNumberWithBuild"
+    ]
+    """<p>The semantic version of the image.</p> <note> <p>The semantic version has four nodes: <major>.<minor>.<patch>/<build>. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes, you can assign any positive integer value, including zero. The upper limit is 2^30-1, or 1073741823, for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> <p> <b>Filtering:</b> You can use wildcards (x) to specify the most recent versions or nodes when selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>"""
     platform: NotRequired["capo_imagebuilder.types.platform.Platform"]
     """<p>The image operating system platform, such as Linux or Windows.</p>"""
     enhanced_image_metadata_enabled: NotRequired[
@@ -61,9 +63,9 @@ class Image(TypedDict, closed=True):
     source_pipeline_name: NotRequired[
         "capo_imagebuilder.types.resource_name.ResourceName"
     ]
-    """<p>The name of the image pipeline that created this image.</p>"""
+    """<p>The name of the image pipeline that created this image. Image Builder doesn't return this field for new images. Use <code>sourcePipelineArn</code> instead.</p>"""
     source_pipeline_arn: NotRequired["capo_imagebuilder.types.arn.Arn"]
-    """<p>The Amazon Resource Name (ARN) of the image pipeline that created this image.</p>"""
+    """<p>The Amazon Resource Name (ARN) of the image pipeline that created this image. This field is only present for images that a pipeline execution created.</p>"""
     infrastructure_configuration: NotRequired[
         "capo_imagebuilder.types.infrastructure_configuration.InfrastructureConfiguration"
     ]
@@ -75,7 +77,7 @@ class Image(TypedDict, closed=True):
     image_tests_configuration: NotRequired[
         "capo_imagebuilder.types.image_tests_configuration.ImageTestsConfiguration"
     ]
-    """<p>The image tests that ran when that Image Builder created this image.</p>"""
+    """<p>The image test settings that Image Builder used when it created this image.</p>"""
     date_created: NotRequired["capo_imagebuilder.types.date_time.DateTime"]
     """<p>The date on which Image Builder created this image.</p>"""
     output_resources: NotRequired[
@@ -93,7 +95,7 @@ class Image(TypedDict, closed=True):
     image_scanning_configuration: NotRequired[
         "capo_imagebuilder.types.image_scanning_configuration.ImageScanningConfiguration"
     ]
-    """<p>Contains settings for vulnerability scans.</p>"""
+    """<p>Settings for the vulnerability scans that Amazon Inspector runs for this image. For AMI output, Amazon Inspector scans the test instance during image creation. For container output, Amazon Inspector scans the container image in its Amazon ECR repository.</p>"""
     deprecation_time: NotRequired[
         "capo_imagebuilder.types.date_time_timestamp.DateTimeTimestamp"
     ]
@@ -109,7 +111,7 @@ class Image(TypedDict, closed=True):
     workflows: NotRequired[
         "capo_imagebuilder.types.workflow_configuration_list.WorkflowConfigurationList"
     ]
-    """<p>Contains the build and test workflows that are associated with the image.</p>"""
+    """<p>The build, test, and distribution workflow configurations that are associated with the image.</p>"""
     logging_configuration: NotRequired[
         "capo_imagebuilder.types.image_logging_configuration.ImageLoggingConfiguration"
     ]

@@ -2,10 +2,12 @@
 
 from typing import Literal, TypeAlias, cast
 
+"""<p>The type of a knowledge base.</p>"""
 KnowledgeBaseType: TypeAlias = Literal[
     "VECTOR",
     "KENDRA",
     "SQL",
+    "MANAGED",
 ]
 
 

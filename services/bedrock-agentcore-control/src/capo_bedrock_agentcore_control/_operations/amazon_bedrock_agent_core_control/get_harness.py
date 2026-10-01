@@ -123,6 +123,8 @@ def build_request(
     url = endpoint.url.rstrip("/") + "/harnesses/{harnessId}"
     url = url.replace("{harnessId}", quote(input_["harness_id"], safe=""))
     params: list[tuple[str, str]] = []
+    if "harness_version" in input_:
+        params.append(("harnessVersion", input_["harness_version"]))
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))

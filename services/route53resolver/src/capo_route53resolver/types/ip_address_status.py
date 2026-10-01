@@ -5,6 +5,7 @@ from typing import Literal, TypeAlias, cast
 IpAddressStatus: TypeAlias = Literal[
     "CREATING",
     "FAILED_CREATION",
+    "FAILED_CREATION_INSUFFICIENT_EC2_CAPACITY_IN_OUTPOST",
     "ATTACHING",
     "ATTACHED",
     "REMAP_DETACHING",

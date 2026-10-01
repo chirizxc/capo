@@ -2,6 +2,7 @@
 
 from typing import Literal, TypeAlias, cast
 
+"""<p>The criticality classification of a dependency.</p>"""
 DependencyCriticality: TypeAlias = Literal[
     "HARD",
     "SOFT",

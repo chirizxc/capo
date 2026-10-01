@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 from capo_quicksight.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_quicksight.types.description_sensitive_string
     import capo_quicksight.types.filter_class
     import capo_quicksight.types.limited_string
     import capo_quicksight.types.named_filter_type
@@ -21,7 +22,7 @@ if TYPE_CHECKING:
 
 class TopicFilter(TypedDict, closed=True):
     filter_description: NotRequired[
-        "capo_quicksight.types.limited_string.LimitedString"
+        "capo_quicksight.types.description_sensitive_string.DescriptionSensitiveString"
     ]
     """<p>A description of the filter used to select items for a topic.</p>"""
     filter_class: NotRequired["capo_quicksight.types.filter_class.FilterClass"]

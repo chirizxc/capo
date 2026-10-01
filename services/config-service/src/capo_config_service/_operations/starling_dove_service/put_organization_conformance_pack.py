@@ -23,6 +23,7 @@ import capo_config_service.types.conformance_pack_input_parameters
 import capo_config_service.types.excluded_accounts
 import capo_config_service.types.put_organization_conformance_pack_request
 import capo_config_service.types.put_organization_conformance_pack_response
+import capo_config_service.types.tags_list
 from capo_config_service._protocol.errors import parse_error_metadata_json
 from capo_config_service._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_config_service._services._pipeline import (

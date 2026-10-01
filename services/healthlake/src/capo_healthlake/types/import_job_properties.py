@@ -8,6 +8,7 @@ from capo_healthlake.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_healthlake.types.datastore_id
+    import capo_healthlake.types.health_lake_timestamp
     import capo_healthlake.types.iam_role_arn
     import capo_healthlake.types.input_data_config
     import capo_healthlake.types.job_id
@@ -16,7 +17,6 @@ if TYPE_CHECKING:
     import capo_healthlake.types.job_status
     import capo_healthlake.types.message
     import capo_healthlake.types.output_data_config
-    import capo_healthlake.types.timestamp
     import capo_healthlake.types.validation_level
 
 
@@ -27,9 +27,11 @@ class ImportJobProperties(TypedDict, closed=True):
     """<p>The import job name.</p>"""
     job_status: "capo_healthlake.types.job_status.JobStatus"
     """<p>The import job status.</p>"""
-    submit_time: "capo_healthlake.types.timestamp.Timestamp"
+    submit_time: "capo_healthlake.types.health_lake_timestamp.HealthLakeTimestamp"
     """<p>The time the import job was submitted for processing.</p>"""
-    end_time: NotRequired["capo_healthlake.types.timestamp.Timestamp"]
+    end_time: NotRequired[
+        "capo_healthlake.types.health_lake_timestamp.HealthLakeTimestamp"
+    ]
     """<p>The time the import job was completed.</p>"""
     datastore_id: "capo_healthlake.types.datastore_id.DatastoreId"
     """<p>The data store identifier. </p>"""
@@ -43,7 +45,7 @@ class ImportJobProperties(TypedDict, closed=True):
     ]
     """<p>Displays the progress of the import job, including total resources scanned, total resources imported, and total size of data imported.</p>"""
     data_access_role_arn: NotRequired["capo_healthlake.types.iam_role_arn.IamRoleArn"]
-    """<p>The Amazon Resource Name (ARN) that grants AWS HealthLake access to the input data.</p>"""
+    """<p>The Amazon Resource Name (ARN) that grants HealthLake access to the input data.</p>"""
     message: NotRequired["capo_healthlake.types.message.Message"]
     """<p>An explanation of any errors that might have occurred during the FHIR import job.</p>"""
     validation_level: NotRequired[
@@ -63,16 +65,20 @@ def serialize_aws_json_1_0(value: ImportJobProperties) -> dict:
     out["JobStatus"] = capo_healthlake.types.job_status.serialize_aws_json_1_0(
         value["job_status"]
     )
-    import capo_healthlake.types.timestamp
+    import capo_healthlake.types.health_lake_timestamp
 
-    out["SubmitTime"] = capo_healthlake.types.timestamp.serialize_aws_json_1_0(
-        value["submit_time"]
+    out["SubmitTime"] = (
+        capo_healthlake.types.health_lake_timestamp.serialize_aws_json_1_0(
+            value["submit_time"]
+        )
     )
     if "end_time" in value:
-        import capo_healthlake.types.timestamp
+        import capo_healthlake.types.health_lake_timestamp
 
-        out["EndTime"] = capo_healthlake.types.timestamp.serialize_aws_json_1_0(
-            value["end_time"]
+        out["EndTime"] = (
+            capo_healthlake.types.health_lake_timestamp.serialize_aws_json_1_0(
+                value["end_time"]
+            )
         )
     out["DatastoreId"] = value["datastore_id"]
     import capo_healthlake.types.input_data_config
@@ -130,18 +136,22 @@ def deserialize_aws_json_1_0(data: dict) -> ImportJobProperties:
     else:
         raise DeserializationError("ImportJobProperties.job_status required")
     if data.get("SubmitTime") is not None:
-        import capo_healthlake.types.timestamp
+        import capo_healthlake.types.health_lake_timestamp
 
-        out["submit_time"] = capo_healthlake.types.timestamp.deserialize_aws_json_1_0(
-            data["SubmitTime"]
+        out["submit_time"] = (
+            capo_healthlake.types.health_lake_timestamp.deserialize_aws_json_1_0(
+                data["SubmitTime"]
+            )
         )
     else:
         raise DeserializationError("ImportJobProperties.submit_time required")
     if data.get("EndTime") is not None:
-        import capo_healthlake.types.timestamp
+        import capo_healthlake.types.health_lake_timestamp
 
-        out["end_time"] = capo_healthlake.types.timestamp.deserialize_aws_json_1_0(
-            data["EndTime"]
+        out["end_time"] = (
+            capo_healthlake.types.health_lake_timestamp.deserialize_aws_json_1_0(
+                data["EndTime"]
+            )
         )
     if data.get("DatastoreId") is not None:
         out["datastore_id"] = data["DatastoreId"]

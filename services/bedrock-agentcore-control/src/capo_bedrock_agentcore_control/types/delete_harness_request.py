@@ -16,6 +16,8 @@ class DeleteHarnessRequest(TypedDict, closed=True):
         "capo_bedrock_agentcore_control.types.client_token.ClientToken"
     ]
     """<p>A unique, case-sensitive identifier to ensure idempotency of the request.</p>"""
+    delete_managed_memory: NotRequired["bool"]
+    """<p>Whether to delete the managed memory on harness deletion. Default: true. If false, the memory is disassociated and becomes a regular customer-owned resource.</p>"""
 
 
 # --- restJson1 ser/de ---

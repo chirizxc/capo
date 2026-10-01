@@ -15,12 +15,12 @@ class DescribeConfigRulesRequest(TypedDict, closed=True):
         "capo_config_service.types.config_rule_names.ConfigRuleNames"
     ]
     """<p>The names of the Config rules for which you want details. If you do not specify any names, Config returns details for all your rules.</p>"""
-    next_token: NotRequired["capo_config_service.types.string.String"]
-    """<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>"""
     filters: NotRequired[
         "capo_config_service.types.describe_config_rules_filters.DescribeConfigRulesFilters"
     ]
     r"""<p>Returns a list of Detective or Proactive Config rules. By default, this API returns an unfiltered list. For more information on Detective or Proactive Config rules, see <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config-rules.html\"> <b>Evaluation Mode</b> </a> in the <i>Config Developer Guide</i>.</p>"""
+    next_token: NotRequired["capo_config_service.types.string.String"]
+    """<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -34,8 +34,6 @@ def serialize_aws_json_1_1(value: DescribeConfigRulesRequest) -> dict:
                 value["config_rule_names"]
             )
         )
-    if "next_token" in value:
-        out["NextToken"] = value["next_token"]
     if "filters" in value:
         import capo_config_service.types.describe_config_rules_filters
 
@@ -44,6 +42,8 @@ def serialize_aws_json_1_1(value: DescribeConfigRulesRequest) -> dict:
                 value["filters"]
             )
         )
+    if "next_token" in value:
+        out["NextToken"] = value["next_token"]
     return out
 
 
@@ -57,8 +57,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeConfigRulesRequest:
                 data["ConfigRuleNames"]
             )
         )
-    if data.get("NextToken") is not None:
-        out["next_token"] = data["NextToken"]
     if data.get("Filters") is not None:
         import capo_config_service.types.describe_config_rules_filters
 
@@ -67,4 +65,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeConfigRulesRequest:
                 data["Filters"]
             )
         )
+    if data.get("NextToken") is not None:
+        out["next_token"] = data["NextToken"]
     return out

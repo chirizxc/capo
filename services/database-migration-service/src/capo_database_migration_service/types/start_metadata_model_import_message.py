@@ -17,11 +17,11 @@ class StartMetadataModelImportMessage(TypedDict, closed=True):
     migration_project_identifier: "capo_database_migration_service.types.migration_project_identifier.MigrationProjectIdentifier"
     """<p>The migration project name or Amazon Resource Name (ARN).</p>"""
     selection_rules: "capo_database_migration_service.types.string.String"
-    """<p>A value that specifies the database objects to import.</p>"""
+    r"""<p>A JSON string that identifies the metadata models to import from the data provider. For the selection rule format and examples, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/sc-selection-rules.html\">Selection rules in DMS Schema Conversion</a>.</p> <p>Usage:</p> <ul> <li> <p>Accepts source or target selection rules depending on the <code>Origin</code> parameter. The <code>server-name</code> in the object locator must match the corresponding data provider.</p> </li> <li> <p>Supports <code>explicit</code>, <code>include</code>, and <code>exclude</code> rule actions.</p> </li> </ul>"""
     origin: "capo_database_migration_service.types.origin_type_value.OriginTypeValue"
-    """<p>Whether to load metadata to the source or target database.</p>"""
+    """<p>Specifies the metadata tree to import into.</p> <note> <p>You cannot import from a virtual target data provider.</p> </note>"""
     refresh: "capo_database_migration_service.types.boolean.Boolean"
-    """<p>If <code>true</code>, DMS loads metadata for the specified objects from the source database.</p>"""
+    """<p>Specifies whether to refresh the selected metadata models from the data provider.</p> <p>When <code>true</code>, the import reloads the selected metadata models with current definitions and removes their existing subtree.</p> <p>When <code>false</code> (default), the import loads the full subtree that has not yet been loaded into the metadata tree.</p>"""
 
 
 # --- awsJson1_1 ser/de ---

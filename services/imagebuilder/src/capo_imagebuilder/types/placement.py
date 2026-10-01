@@ -17,11 +17,11 @@ class Placement(TypedDict, closed=True):
     tenancy: NotRequired["capo_imagebuilder.types.tenancy_type.TenancyType"]
     """<p>The tenancy of the instance. An instance with a tenancy of <code>dedicated</code> runs on single-tenant hardware. An instance with a tenancy of <code>host</code> runs on a Dedicated Host.</p> <p>If tenancy is set to <code>host</code>, then you can optionally specify one target for placement – either host ID or host resource group ARN. If automatic placement is enabled for your host, and you don't specify any placement target, Amazon EC2 will try to find an available host for your build and test instances.</p>"""
     host_id: NotRequired["capo_imagebuilder.types.non_empty_string.NonEmptyString"]
-    """<p>The ID of the Dedicated Host on which build and test instances run. This only applies if <code>tenancy</code> is <code>host</code>. If you specify the host ID, you must not specify the resource group ARN. If you specify both, Image Builder returns an error.</p>"""
+    """<p>The ID of the Dedicated Host on which build and test instances run. This only applies if <code>tenancy</code> is <code>host</code>.</p>"""
     host_resource_group_arn: NotRequired[
         "capo_imagebuilder.types.non_empty_string.NonEmptyString"
     ]
-    """<p>The Amazon Resource Name (ARN) of the host resource group in which to launch build and test instances. This only applies if <code>tenancy</code> is <code>host</code>. If you specify the resource group ARN, you must not specify the host ID. If you specify both, Image Builder returns an error.</p>"""
+    """<p>The Amazon Resource Name (ARN) of the host resource group in which to launch build and test instances. This only applies if <code>tenancy</code> is <code>host</code>.</p>"""
 
 
 # --- restJson1 ser/de ---

@@ -19,7 +19,7 @@ class TelemetryRule(TypedDict, closed=True):
     resource_type: NotRequired[
         "capo_observabilityadmin.types.resource_type.ResourceType"
     ]
-    r"""<p> The type of Amazon Web Services resource to configure telemetry for (e.g., \"AWS::EC2::VPC\", \"AWS::EKS::Cluster\", \"AWS::WAFv2::WebACL\"). </p>"""
+    """<p> The type of Amazon Web Services resource to configure telemetry for (for example, <code>AWS::EC2::VPC</code>, <code>AWS::EKS::Cluster</code>, <code>AWS::ElasticLoadBalancingV2::LoadBalancer</code>, or <code>AWS::Bedrock::KnowledgeBase</code>). </p>"""
     telemetry_type: "capo_observabilityadmin.types.telemetry_type.TelemetryType"
     """<p> The type of telemetry to collect (Logs, Metrics, or Traces). </p>"""
     telemetry_source_types: NotRequired[

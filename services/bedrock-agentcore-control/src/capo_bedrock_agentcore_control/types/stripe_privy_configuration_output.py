@@ -21,20 +21,20 @@ class StripePrivyConfigurationOutput(TypedDict, closed=True):
     app_secret_json_key: NotRequired[
         "capo_bedrock_agentcore_control.types.secret_json_key_type.SecretJsonKeyType"
     ]
-    """<p>The JSON key used to extract the app secret value from the AWS Secrets Manager secret.</p>"""
+    """<p>The JSON key used to extract the app secret value from the Amazon Web Services Secrets Manager secret.</p>"""
     app_secret_source: NotRequired[
         "capo_bedrock_agentcore_control.types.secret_source_type.SecretSourceType"
     ]
-    """<p>The source type of the app secret. Either <code>MANAGED</code> if the secret is managed by the service, or <code>EXTERNAL</code> if managed by the user in AWS Secrets Manager.</p>"""
+    """<p>The source type of the app secret. Either <code>MANAGED</code> if the secret is managed by the service, or <code>EXTERNAL</code> if managed by the user in Amazon Web Services Secrets Manager.</p>"""
     authorization_private_key_arn: "capo_bedrock_agentcore_control.types.secret.Secret"
     authorization_private_key_json_key: NotRequired[
         "capo_bedrock_agentcore_control.types.secret_json_key_type.SecretJsonKeyType"
     ]
-    """<p>The JSON key used to extract the authorization private key value from the AWS Secrets Manager secret.</p>"""
+    """<p>The JSON key used to extract the authorization private key value from the Amazon Web Services Secrets Manager secret.</p>"""
     authorization_private_key_source: NotRequired[
         "capo_bedrock_agentcore_control.types.secret_source_type.SecretSourceType"
     ]
-    """<p>The source type of the authorization private key. Either <code>MANAGED</code> if the secret is managed by the service, or <code>EXTERNAL</code> if managed by the user in AWS Secrets Manager.</p>"""
+    """<p>The source type of the authorization private key. Either <code>MANAGED</code> if the secret is managed by the service, or <code>EXTERNAL</code> if managed by the user in Amazon Web Services Secrets Manager.</p>"""
     authorization_id: "capo_bedrock_agentcore_control.types.stripe_privy_authorization_id_type.StripePrivyAuthorizationIdType"
     """<p>The authorization ID for the Stripe Privy integration.</p>"""
 

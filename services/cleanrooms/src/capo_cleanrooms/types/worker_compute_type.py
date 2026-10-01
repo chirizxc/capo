@@ -5,6 +5,7 @@ from typing import Literal, TypeAlias, cast
 WorkerComputeType: TypeAlias = Literal[
     "CR.1X",
     "CR.4X",
+    "CR.8X",
 ]
 
 

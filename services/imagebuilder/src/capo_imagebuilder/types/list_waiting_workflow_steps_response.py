@@ -13,7 +13,7 @@ class ListWaitingWorkflowStepsResponse(TypedDict, closed=True):
     steps: NotRequired[
         "capo_imagebuilder.types.workflow_step_execution_list.WorkflowStepExecutionList"
     ]
-    """<p>An array of the workflow steps that are waiting for action in your Amazon Web Services account.</p>"""
+    """<p>An array of the workflow steps that are waiting for action in your Amazon Web Services account. Each step is paused at a <code>WaitForAction</code> step, and remains in the list until you respond with <a>SendWorkflowStepAction</a> or the wait times out.</p>"""
     next_token: NotRequired["capo_imagebuilder.types.pagination_token.PaginationToken"]
     """<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service hasn't included in this request. Use this token with the next request to retrieve additional objects.</p>"""
 

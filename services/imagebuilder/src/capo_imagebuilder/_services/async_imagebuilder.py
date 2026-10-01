@@ -30,6 +30,7 @@ from capo_imagebuilder._services._pipeline import (
 
 if TYPE_CHECKING:
     import capo_imagebuilder.types.additional_instance_configuration
+    import capo_imagebuilder.types.ami_watermarks_list
     import capo_imagebuilder.types.boolean
     import capo_imagebuilder.types.cancel_image_creation_request
     import capo_imagebuilder.types.cancel_image_creation_response
@@ -386,22 +387,28 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.cancel_image_creation_response.CancelImageCreationResponse":
-        r"""<p>CancelImageCreation cancels the creation of Image. This operation can only be used on images in a non-terminal state.</p>
+        r"""<p>Cancels the creation of an image. This operation can only be used on images in a non-terminal state. Cancellation is asynchronous: the request returns immediately, then Image Builder stops the running build and moves the image to the <code>CANCELLED</code> state. Output resources that the build already created, such as AMIs and snapshots, aren't removed.</p>
 
         Args:
             image_build_version_arn: <p>The Amazon Resource Name (ARN) of the image that you want to cancel creation for.</p>
-            client_token: <p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            client_token: <p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.idempotent_parameter_mismatch_exception.IdempotentParameterMismatchException: <p>You have specified a client token for an operation using parameter values that differ from a previous request that used the same client token.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_in_use_exception.ResourceInUseException: <p>The resource that you are trying to operate on is currently in use. Review the message details and retry later.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Cancel an image build
+            The following example cancels a build that is in progress for the specified image build version.
+
+            >>> await client.cancel_image_creation(image_build_version_arn='arn:aws:imagebuilder:us-west-2:111122223333:image/my-example-recipe/1.0.0/1', client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLE77777')
         """
 
         async def _handler(
@@ -440,22 +447,28 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.cancel_lifecycle_execution_response.CancelLifecycleExecutionResponse":
-        r"""<p>Cancel a specific image lifecycle policy runtime instance.</p>
+        r"""<p>Cancels a lifecycle execution – a single run of lifecycle actions that a lifecycle policy or a <a>StartResourceStateUpdate</a> request started. You can only cancel an execution that hasn't reached a terminal state. Cancellation is asynchronous and doesn't undo completed lifecycle actions.</p>
 
         Args:
             lifecycle_execution_id: <p>Identifies the specific runtime instance of the image lifecycle to cancel.</p>
-            client_token: <p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            client_token: <p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.idempotent_parameter_mismatch_exception.IdempotentParameterMismatchException: <p>You have specified a client token for an operation using parameter values that differ from a previous request that used the same client token.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_in_use_exception.ResourceInUseException: <p>The resource that you are trying to operate on is currently in use. Review the message details and retry later.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Cancel a lifecycle execution
+            The following example cancels the scheduled resource state update associated with the specified lifecycle execution ID before it runs.
+
+            >>> await client.cancel_lifecycle_execution(lifecycle_execution_id='lce-401aefc3-a829-46f6-8fc2-91497988a503', client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLE97531')
         """
 
         async def _handler(
@@ -514,36 +527,46 @@ class AsyncimagebuilderClient:
         tags: Optional["capo_imagebuilder.types.tag_map.TagMap"] = None,
         dry_run: Optional["capo_imagebuilder.types.boolean.Boolean"] = None,
     ) -> "capo_imagebuilder.types.create_component_response.CreateComponentResponse":
-        r"""<p>Creates a new component that can be used to build, validate, test, and assess your image. The component is based on a YAML document that you specify using exactly one of the following methods:</p> <ul> <li> <p>Inline, using the <code>data</code> property in the request body.</p> </li> <li> <p>A URL that points to a YAML document file stored in Amazon S3, using the <code>uri</code> property in the request body.</p> </li> </ul>
+        r"""<p>Creates a new component that can be used to build, validate, test, and assess your image. The component is based on a YAML document that you specify using exactly one of the following methods:</p> <ul> <li> <p>Inline, using the <code>data</code> property in the request body.</p> </li> <li> <p>A URL that points to a YAML document file stored in Amazon S3, using the <code>uri</code> property in the request body.</p> </li> </ul> <p>Image Builder determines the component type from the document. If the document contains a single phase named <code>test</code>, the component type is <code>TEST</code>. Otherwise, the component type is <code>BUILD</code>.</p>
 
         Args:
-            name: <p>The name of the component.</p>
-            semantic_version: <p>The semantic version of the component. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: <major>.<minor>.<patch>/<build>. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> </note>
+            name: <p>The name of the component. Image Builder generates the component ARN from a normalized form of the name, so names that differ only in case, spaces, or underscores count as the same name. If a component with the same name and semantic version already exists in your account in the same Amazon Web Services Region, the request creates a new build version for it. If the content is also identical to the latest build version, the request fails because the component already exists.</p>
+            semantic_version: <p>The semantic version of the component. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: <major>.<minor>.<patch>/<build>. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes, you can assign any positive integer value, including zero. The upper limit is 2^30-1, or 1073741823, for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> </note>
             description: <p>Describes the contents of the component.</p>
             change_description: <p>The change description of the component. Describes what change has been made in this version, or what makes this version different from other versions of the component.</p>
             platform: <p>The operating system platform of the component.</p>
             supported_os_versions: <p>The operating system (OS) version supported by the component. If the OS information is available, a prefix match is performed against the base image OS version during image recipe creation.</p>
             data: <p>Component <code>data</code> contains inline YAML document content for the component. Alternatively, you can specify the <code>uri</code> of a YAML document file stored in Amazon S3. However, you cannot specify both properties.</p>
-            uri: <p>The <code>uri</code> of a YAML component document file. This must be an S3 URL (<code>s3://bucket/key</code>), and the requester must have permission to access the S3 bucket it points to. If you use Amazon S3, you can specify component content up to your service quota.</p> <p>Alternatively, you can specify the YAML document inline, using the component <code>data</code> property. You cannot specify both properties.</p>
-            kms_key_id: <p>The Amazon Resource Name (ARN) that uniquely identifies the KMS key used to encrypt this component. This can be either the Key ARN or the Alias ARN. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN\">Key identifiers (KeyId)</a> in the <i>Key Management Service Developer Guide</i>.</p>
+            uri: <p>The <code>uri</code> of a YAML component document file. This must be an S3 URL (<code>s3://bucket/key</code>), and you must have permission to access the S3 bucket it points to. If you use Amazon S3, you can specify component content up to your service quota for component size, which is 64 KB by default.</p> <p>Alternatively, you can specify the YAML document inline, using the component <code>data</code> property. You cannot specify both properties.</p>
+            kms_key_id: <p>The Amazon Resource Name (ARN) that uniquely identifies the KMS key used to encrypt this component. This can be either the Key ARN or the Alias ARN. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN\">Key identifiers (KeyId)</a> in the <i>Key Management Service Developer Guide</i>. If you don't specify a key, Image Builder encrypts the component data with a KMS key that Image Builder owns.</p>
             tags: <p>The tags that apply to the component.</p>
-            client_token: <p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
-            dry_run: <p>Validates the required permissions for the operation and the request parameters, without actually making the request, and provides an error response. Upon a successful request, the error response is <code>DryRunOperationException</code>.</p>
+            client_token: <p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            dry_run: <p>Validates the required permissions and request parameters without performing the operation. If validation succeeds, the operation returns a <code>DryRunOperationException</code> error response.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.dry_run_operation_exception.DryRunOperationException: <p>The dry run operation of the resource was successful, and no resources or mutations were actually performed due to the dry run flag in the request.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.idempotent_parameter_mismatch_exception.IdempotentParameterMismatchException: <p>You have specified a client token for an operation using parameter values that differ from a previous request that used the same client token.</p>
-            capo_imagebuilder.errors.invalid_parameter_combination_exception.InvalidParameterCombinationException: <p>You have specified two or more mutually exclusive parameters. Review the error message for details.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_parameter_combination_exception.InvalidParameterCombinationException: <p>You have specified a combination of parameters that isn't valid. For example, two mutually exclusive parameters, or a parameter without its required companion parameter. Review the error message for details.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.invalid_version_number_exception.InvalidVersionNumberException: <p>Your version number is out of bounds or does not follow the required syntax.</p>
             capo_imagebuilder.errors.resource_in_use_exception.ResourceInUseException: <p>The resource that you are trying to operate on is currently in use. Review the message details and retry later.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded the number of permitted resources or operations for this service. For service quotas, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/imagebuilder.html#limits_imagebuilder\">EC2 Image Builder endpoints and quotas</a>.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Create a component from a document stored in Amazon S3
+            The following example creates a component from a YAML definition document that's stored in an Amazon S3 bucket. The definition document for this component includes an AppVersion parameter that recipes can set when they include the component.
+
+            >>> await client.create_component(name='my-example-parameterized-component', semantic_version='1.0.0', description='Installs a configurable version of my application', platform='Linux', uri='s3://amzn-s3-demo-bucket/components/install-my-app.yaml', client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLE10101')
+            Create a component from an inline document
+            The following example creates a build component from a YAML document provided inline in the request.
+
+            >>> await client.create_component(name='my-example-component', semantic_version='1.0.0', description='Installs the latest version of my application', platform='Linux', data='name: InstallMyApp\ndescription: Installs my application\nschemaVersion: 1.0\nphases:\n  - name: build\n    steps:\n      - name: InstallApp\n        action: ExecuteBash\n        inputs:\n          commands:\n            - sudo yum -y install my-app\n', client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLE11111')
         """
 
         async def _handler(
@@ -627,40 +650,53 @@ class AsyncimagebuilderClient:
         kms_key_id: Optional[
             "capo_imagebuilder.types.non_empty_string.NonEmptyString"
         ] = None,
+        dry_run: Optional["capo_imagebuilder.types.boolean.Boolean"] = None,
     ) -> "capo_imagebuilder.types.create_container_recipe_response.CreateContainerRecipeResponse":
         r"""<p>Creates a new container recipe. Container recipes define how images are configured, tested, and assessed.</p>
 
         Args:
             container_type: <p>The type of container to create.</p>
-            name: <p>The name of the container recipe.</p>
+            name: <p>The name of the container recipe. The recipe name, combined with the semantic version, must be unique to your account in each Amazon Web Services Region. Image Builder generates the container recipe ARN from a normalized form of the name, so names that differ only in case, spaces, or underscores count as the same name.</p>
             description: <p>The description of the container recipe.</p>
-            semantic_version: <p>The semantic version of the container recipe. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: <major>.<minor>.<patch>/<build>. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> </note>
-            components: <p>The components included in the container recipe.</p>
+            semantic_version: <p>The semantic version of the container recipe. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: <major>.<minor>.<patch>/<build>. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes, you can assign any positive integer value, including zero. The upper limit is 2^30-1, or 1073741823, for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> </note>
+            components: <p>The components included in the container recipe. You can specify each component only one time in a recipe.</p>
             instance_configuration: <p>A group of options that can be used to configure an instance for building and testing container images.</p>
-            dockerfile_template_data: <p>The Dockerfile template used to build your image as an inline data blob.</p>
-            dockerfile_template_uri: <p>The Amazon S3 URI for the Dockerfile that will be used to build your container image.</p>
-            platform_override: <p>Specifies the operating system platform when you use a custom base image.</p>
-            image_os_version_override: <p>Specifies the operating system version for the base image.</p>
-            parent_image: <p>The base image for the container recipe.</p>
+            dockerfile_template_data: <p>The Dockerfile template used to build your image, as an inline data blob. You must specify exactly one of the <code>dockerfileTemplateData</code> or <code>dockerfileTemplateUri</code> properties. For the contextual variables that the template can include, see <a href=\"https://docs.aws.amazon.com/imagebuilder/latest/userguide/create-container-recipes.html\">Create a new version of a container recipe</a> in the <i>EC2 Image Builder User Guide</i>.</p>
+            dockerfile_template_uri: <p>The Amazon S3 URI for the Dockerfile template that is used to build your container image. You must have permission to read the object. Image Builder reads the object once, when it creates the recipe, and stores its content in the recipe. Later changes to the S3 object don't affect the recipe. You must specify exactly one of the <code>dockerfileTemplateData</code> or <code>dockerfileTemplateUri</code> properties.</p>
+            platform_override: <p>Specifies the operating system platform when you use a custom base image. Container recipes support only the Linux and Windows platforms.</p>
+            image_os_version_override: <p>Specifies the operating system version for the base image. Use this property only when the base image is a container image from a registry. When the base image is an Image Builder image, the operating system version comes from the parent image.</p>
+            parent_image: <p>The base image for the container recipe. This can be an Image Builder image resource ARN or a container image URI from a registry, for example <code>amazonlinux:latest</code>.</p>
             tags: <p>Tags that are attached to the container recipe.</p>
             working_directory: <p>The working directory for use during build and test workflows.</p>
-            target_repository: <p>The destination repository for the container image.</p>
+            target_repository: <p>The destination repository for the container image. The Amazon ECR repository must already exist in the Amazon Web Services Region where the build runs.</p>
             kms_key_id: <p>The Amazon Resource Name (ARN) that uniquely identifies which KMS key is used to encrypt the Dockerfile template. This can be either the Key ARN or the Alias ARN. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN\">Key identifiers (KeyId)</a> in the <i>Key Management Service Developer Guide</i>.</p>
-            client_token: <p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            client_token: <p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            dry_run: <p>Validates the required permissions and request parameters without performing the operation. If validation succeeds, the operation returns a <code>DryRunOperationException</code> error response.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
+            capo_imagebuilder.errors.dry_run_operation_exception.DryRunOperationException: <p>The dry run operation of the resource was successful, and no resources or mutations were actually performed due to the dry run flag in the request.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.idempotent_parameter_mismatch_exception.IdempotentParameterMismatchException: <p>You have specified a client token for an operation using parameter values that differ from a previous request that used the same client token.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.invalid_version_number_exception.InvalidVersionNumberException: <p>Your version number is out of bounds or does not follow the required syntax.</p>
             capo_imagebuilder.errors.resource_already_exists_exception.ResourceAlreadyExistsException: <p>The resource that you are trying to create already exists.</p>
             capo_imagebuilder.errors.resource_in_use_exception.ResourceInUseException: <p>The resource that you are trying to operate on is currently in use. Review the message details and retry later.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded the number of permitted resources or operations for this service. For service quotas, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/imagebuilder.html#limits_imagebuilder\">EC2 Image Builder endpoints and quotas</a>.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Create a container recipe with a custom build instance configuration
+            The following example creates a container recipe that customizes the Amazon EC2 instance that builds the container image. The build instance launches from an Amazon ECS-optimized instance image and uses a 40 GiB gp3 volume.
+
+            >>> await client.create_container_recipe(container_type='DOCKER', name='my-example-container-recipe', semantic_version='1.1.0', description='A container recipe that builds on an ECS-optimized instance image with a larger build volume', parent_image='amazonlinux:latest', components=[{'componentArn': 'arn:aws:imagebuilder:us-west-2:111122223333:component/my-example-container-component/1.0.0/1'}], instance_configuration={'image': 'ami-1234567890abcdef0', 'blockDeviceMappings': [{'deviceName': '/dev/xvda', 'ebs': {'volumeSize': 40, 'volumeType': 'gp3', 'deleteOnTermination': True}}]}, dockerfile_template_data='FROM {{{ imagebuilder:parentImage }}}\n{{{ imagebuilder:environments }}}\n{{{ imagebuilder:components }}}\n', target_repository={'service': 'ECR', 'repositoryName': 'my-example-container-repo'}, client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLE40404')
+            Create a container recipe with an inline Dockerfile template
+            The following example creates a Docker container recipe that applies one build component, using the latest Amazon Linux container image as the parent and an existing ECR repository as the target.
+
+            >>> await client.create_container_recipe(container_type='DOCKER', name='my-example-container-recipe', semantic_version='1.0.0', parent_image='amazonlinux:latest', components=[{'componentArn': 'arn:aws:imagebuilder:us-west-2:111122223333:component/my-example-container-component/1.0.0/1'}], dockerfile_template_data='FROM {{{ imagebuilder:parentImage }}}\n{{{ imagebuilder:environments }}}\n{{{ imagebuilder:components }}}\n', target_repository={'service': 'ECR', 'repositoryName': 'my-example-container-repo'}, client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLE99999')
         """
 
         async def _handler(
@@ -707,6 +743,8 @@ class AsyncimagebuilderClient:
             input_["working_directory"] = working_directory
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
+        if dry_run is not None:
+            input_["dry_run"] = dry_run
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -727,29 +765,42 @@ class AsyncimagebuilderClient:
             "capo_imagebuilder.types.non_empty_string.NonEmptyString"
         ] = None,
         tags: Optional["capo_imagebuilder.types.tag_map.TagMap"] = None,
+        dry_run: Optional["capo_imagebuilder.types.boolean.Boolean"] = None,
     ) -> "capo_imagebuilder.types.create_distribution_configuration_response.CreateDistributionConfigurationResponse":
-        r"""<p>Creates a new distribution configuration. Distribution configurations define and configure the outputs of your pipeline.</p>
+        r"""<p>Creates a new distribution configuration. Distribution configurations define and configure the outputs for your images, including the target Regions, accounts, and settings for each Region.</p>
 
         Args:
-            name: <p>The name of the distribution configuration.</p>
+            name: <p>The name of the distribution configuration. Distribution configuration names must be unique to your account in each Amazon Web Services Region. Image Builder generates the distribution configuration ARN from a normalized form of the name, so names that differ only in case, spaces, or underscores count as the same name.</p>
             description: <p>The description of the distribution configuration.</p>
-            distributions: <p>The distributions of the distribution configuration.</p>
+            distributions: <p>The distribution settings for the configuration. Each entry defines how output images are distributed in one target Amazon Web Services Region. A Region can appear at most once in the list.</p>
             tags: <p>The tags of the distribution configuration.</p>
-            client_token: <p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            client_token: <p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            dry_run: <p>Validates the required permissions and request parameters without performing the operation. If validation succeeds, the operation returns a <code>DryRunOperationException</code> error response.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
+            capo_imagebuilder.errors.dry_run_operation_exception.DryRunOperationException: <p>The dry run operation of the resource was successful, and no resources or mutations were actually performed due to the dry run flag in the request.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.idempotent_parameter_mismatch_exception.IdempotentParameterMismatchException: <p>You have specified a client token for an operation using parameter values that differ from a previous request that used the same client token.</p>
-            capo_imagebuilder.errors.invalid_parameter_combination_exception.InvalidParameterCombinationException: <p>You have specified two or more mutually exclusive parameters. Review the error message for details.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_parameter_combination_exception.InvalidParameterCombinationException: <p>You have specified a combination of parameters that isn't valid. For example, two mutually exclusive parameters, or a parameter without its required companion parameter. Review the error message for details.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_already_exists_exception.ResourceAlreadyExistsException: <p>The resource that you are trying to create already exists.</p>
             capo_imagebuilder.errors.resource_in_use_exception.ResourceInUseException: <p>The resource that you are trying to operate on is currently in use. Review the message details and retry later.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded the number of permitted resources or operations for this service. For service quotas, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/imagebuilder.html#limits_imagebuilder\">EC2 Image Builder endpoints and quotas</a>.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Create a distribution configuration
+            The following example creates a distribution configuration that distributes the output AMI to two Regions. The AMI name includes the build date, so that repeated builds create unique AMI names.
+
+            >>> await client.create_distribution_configuration(name='my-example-distribution', description='Copies the output AMI to a second Region', distributions=[{'region': 'us-west-2', 'amiDistributionConfiguration': {'name': 'my-example-image-{{ imagebuilder:buildDate }}'}}, {'region': 'us-east-1', 'amiDistributionConfiguration': {'name': 'my-example-image-{{ imagebuilder:buildDate }}'}}], client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLE44444')
+            Create a distribution configuration with launch permissions and a launch template update
+            The following example creates a distribution configuration that distributes the output AMI to two Regions. In us-east-1, it shares the AMI with another AWS account. In us-west-2, it sets the new AMI as the default version of your launch template.
+
+            >>> await client.create_distribution_configuration(name='my-example-distribution', description='Distributes the output AMI to two Regions and shares it with another account', distributions=[{'region': 'us-west-2', 'amiDistributionConfiguration': {'name': 'my-example-image-{{ imagebuilder:buildDate }}'}, 'launchTemplateConfigurations': [{'launchTemplateId': 'lt-1234567890abcdef0', 'setDefaultVersion': True}]}, {'region': 'us-east-1', 'amiDistributionConfiguration': {'name': 'my-example-image-{{ imagebuilder:buildDate }}', 'launchPermission': {'userIds': ['444455556666']}}}], client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLE56789')
         """
 
         async def _handler(
@@ -777,6 +828,8 @@ class AsyncimagebuilderClient:
             input_["description"] = description
         if tags is not None:
             input_["tags"] = tags
+        if dry_run is not None:
+            input_["dry_run"] = dry_run
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -821,33 +874,43 @@ class AsyncimagebuilderClient:
             "capo_imagebuilder.types.image_logging_configuration.ImageLoggingConfiguration"
         ] = None,
     ) -> "capo_imagebuilder.types.create_image_response.CreateImageResponse":
-        r"""<p>Creates a new image. This request will create a new image along with all of the configured output resources defined in the distribution configuration. You must specify exactly one recipe for your image, using either a ContainerRecipeArn or an ImageRecipeArn.</p>
+        r"""<p>Creates a new image along with all configured output resources defined in the distribution configuration. You must specify exactly one recipe for your image, using either a <code>containerRecipeArn</code> or an <code>imageRecipeArn</code>.</p> <p>The response returns as soon as Image Builder creates the new image resource. The image build process runs asynchronously. To check its progress, call <a href=\"https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_GetImage.html\">GetImage</a> and check the image status.</p>
 
         Args:
-            image_recipe_arn: <p>The Amazon Resource Name (ARN) of the image recipe that defines how images are configured, tested, and assessed.</p>
-            container_recipe_arn: <p>The Amazon Resource Name (ARN) of the container recipe that defines how images are configured and tested.</p>
-            distribution_configuration_arn: <p>The Amazon Resource Name (ARN) of the distribution configuration that defines and configures the outputs of your pipeline.</p>
+            image_recipe_arn: <p>The Amazon Resource Name (ARN) of the image recipe that defines how images are configured, tested, and assessed. You must specify either this property or <code>containerRecipeArn</code>, but not both.</p>
+            container_recipe_arn: <p>The Amazon Resource Name (ARN) of the container recipe that defines how images are configured and tested. You must specify either this property or <code>imageRecipeArn</code>, but not both.</p>
+            distribution_configuration_arn: <p>The Amazon Resource Name (ARN) of the distribution configuration that defines and configures the outputs of the image build. If you don't specify a distribution configuration, Image Builder creates the output image only in the account and Amazon Web Services Region where the build runs.</p>
             infrastructure_configuration_arn: <p>The Amazon Resource Name (ARN) of the infrastructure configuration that defines the environment in which your image will be built and tested.</p>
-            image_tests_configuration: <p>The image tests configuration of the image.</p>
-            enhanced_image_metadata_enabled: <p>Collects additional information about the image being created, including the operating system (OS) version and package list. This information is used to enhance the overall experience of using EC2 Image Builder. Enabled by default.</p>
+            image_tests_configuration: <p>Settings that determine whether Image Builder runs tests on the image after building it. Image tests are enabled by default.</p>
+            enhanced_image_metadata_enabled: <p>Specifies whether to collect additional information about the image being created, including the operating system (OS) version and package list. Defaults to <code>true</code>.</p>
             tags: <p>The tags of the image.</p>
-            client_token: <p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
-            image_scanning_configuration: <p>Contains settings for vulnerability scans.</p>
-            workflows: <p>Contains an array of workflow configuration objects.</p>
-            execution_role: <p>The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image Builder access to perform workflow actions.</p>
-            logging_configuration: <p>Define logging configuration for the image build process.</p>
+            client_token: <p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            image_scanning_configuration: <p>Settings for vulnerability scans that Amazon Inspector runs during image creation. For AMI output, Amazon Inspector scans the test instance. For container output, Amazon Inspector scans the container image that Image Builder pushes to the Amazon ECR repository specified in <code>ecrConfiguration</code>.</p>
+            workflows: <p>The array of workflow configuration objects for the build. If you specify workflows, they replace the default workflows that Image Builder otherwise runs for the build, and you must also provide an <code>executionRole</code>.</p>
+            execution_role: <p>The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image Builder access to perform workflow actions. This property is required if you specify <code>workflows</code>. If you don't provide a role, Image Builder uses the Image Builder service-linked role in your account, and creates it if it doesn't exist.</p>
+            logging_configuration: <p>The CloudWatch Logs log group where Image Builder sends the image build logs. If you specify a log group name outside of the <code>/aws/imagebuilder/</code> namespace, you must also provide an <code>executionRole</code> that has permission to write to that log group.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.idempotent_parameter_mismatch_exception.IdempotentParameterMismatchException: <p>You have specified a client token for an operation using parameter values that differ from a previous request that used the same client token.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_in_use_exception.ResourceInUseException: <p>The resource that you are trying to operate on is currently in use. Review the message details and retry later.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded the number of permitted resources or operations for this service. For service quotas, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/imagebuilder.html#limits_imagebuilder\">EC2 Image Builder endpoints and quotas</a>.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Create an image
+            The following example creates a new image from the specified image recipe and infrastructure configuration.
+
+            >>> await client.create_image(image_recipe_arn='arn:aws:imagebuilder:us-west-2:111122223333:image-recipe/my-example-recipe/1.0.0', infrastructure_configuration_arn='arn:aws:imagebuilder:us-west-2:111122223333:infrastructure-configuration/my-example-infrastructure', client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLEeeeee')
+            Create an image with custom build and parallel test workflows
+            The following example creates an image that uses your custom build and test workflows. It uses the Image Builder service-linked role as the execution role. Both test workflows are in the same parallel group, so they can run at the same time after the build workflow completes.
+
+            >>> await client.create_image(image_recipe_arn='arn:aws:imagebuilder:us-west-2:111122223333:image-recipe/my-example-recipe/1.0.0', infrastructure_configuration_arn='arn:aws:imagebuilder:us-west-2:111122223333:infrastructure-configuration/my-example-infrastructure', workflows=[{'workflowArn': 'arn:aws:imagebuilder:us-west-2:111122223333:workflow/build/my-example-workflow/1.0.0/1'}, {'workflowArn': 'arn:aws:imagebuilder:us-west-2:111122223333:workflow/test/my-example-integration-tests/1.0.0/1', 'parallelGroup': 'post-build-tests'}, {'workflowArn': 'arn:aws:imagebuilder:us-west-2:111122223333:workflow/test/my-example-compliance-tests/1.0.0/1', 'parallelGroup': 'post-build-tests'}], execution_role='arn:aws:iam::111122223333:role/aws-service-role/imagebuilder.amazonaws.com/AWSServiceRoleForImageBuilder', client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLE01234')
         """
 
         async def _handler(
@@ -942,40 +1005,53 @@ class AsyncimagebuilderClient:
         logging_configuration: Optional[
             "capo_imagebuilder.types.pipeline_logging_configuration.PipelineLoggingConfiguration"
         ] = None,
+        dry_run: Optional["capo_imagebuilder.types.boolean.Boolean"] = None,
     ) -> "capo_imagebuilder.types.create_image_pipeline_response.CreateImagePipelineResponse":
-        r"""<p>Creates a new image pipeline. Image pipelines enable you to automate the creation and distribution of images.</p>
+        r"""<p>Creates a new image pipeline. Use image pipelines to automate the creation and distribution of images. You must specify exactly one recipe for the pipeline, using either a <code>containerRecipeArn</code> or an <code>imageRecipeArn</code>.</p>
 
         Args:
-            name: <p>The name of the image pipeline.</p>
+            name: <p>The name of the image pipeline. Pipeline names must be unique to your account in each Amazon Web Services Region. Image Builder generates the pipeline ARN from a normalized form of the name, so names that differ only in case, spaces, or underscores count as the same name.</p>
             description: <p>The description of the image pipeline.</p>
-            image_recipe_arn: <p>The Amazon Resource Name (ARN) of the image recipe that will be used to configure images created by this image pipeline.</p>
-            container_recipe_arn: <p>The Amazon Resource Name (ARN) of the container recipe that is used to configure images created by this container pipeline.</p>
-            infrastructure_configuration_arn: <p>The Amazon Resource Name (ARN) of the infrastructure configuration that will be used to build images created by this image pipeline.</p>
-            distribution_configuration_arn: <p>The Amazon Resource Name (ARN) of the distribution configuration that will be used to configure and distribute images created by this image pipeline.</p>
-            image_tests_configuration: <p>The image test configuration of the image pipeline.</p>
-            enhanced_image_metadata_enabled: <p>Collects additional information about the image being created, including the operating system (OS) version and package list. This information is used to enhance the overall experience of using EC2 Image Builder. Enabled by default.</p>
-            schedule: <p>The schedule of the image pipeline.</p>
-            status: <p>The status of the image pipeline.</p>
+            image_recipe_arn: <p>The Amazon Resource Name (ARN) of the image recipe that configures images created by this image pipeline. You must specify either this property or <code>containerRecipeArn</code>, but not both.</p>
+            container_recipe_arn: <p>The Amazon Resource Name (ARN) of the container recipe that is used to configure images created by this container pipeline. You must specify either this property or <code>imageRecipeArn</code>, but not both.</p>
+            infrastructure_configuration_arn: <p>The Amazon Resource Name (ARN) of the infrastructure configuration that builds images created by this image pipeline.</p>
+            distribution_configuration_arn: <p>The Amazon Resource Name (ARN) of the distribution configuration that configures and distributes images created by this image pipeline.</p>
+            image_tests_configuration: <p>Specifies the test settings that Image Builder applies to images that this pipeline creates. If you don't provide test settings, Image Builder stores a default configuration with image tests enabled.</p>
+            enhanced_image_metadata_enabled: <p>Specifies whether to collect additional information about the image being created, including the operating system (OS) version and package list. Defaults to <code>true</code>.</p>
+            schedule: <p>The schedule of the image pipeline. If you don't provide a schedule, the pipeline runs only when you call <a>StartImagePipelineExecution</a>.</p>
+            status: <p>The status of the image pipeline. If you don't specify a status, it defaults to <code>ENABLED</code>. A disabled pipeline doesn't run on its schedule, but you can still start builds manually.</p>
             tags: <p>The tags of the image pipeline.</p>
-            image_tags: <p>The tags to be applied to the images produced by this pipeline.</p>
-            client_token: <p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
-            image_scanning_configuration: <p>Contains settings for vulnerability scans.</p>
-            workflows: <p>Contains an array of workflow configuration objects.</p>
+            image_tags: <p>The tags that Image Builder applies to the Image Builder image resource that this pipeline's scheduled executions create. These tags don't apply to the output AMI. To tag output AMIs, use <code>amiTags</code> in the pipeline's distribution configuration.</p>
+            client_token: <p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            image_scanning_configuration: <p>Contains settings for vulnerability scans that Amazon Inspector runs against the test instance during image creation.</p>
+            workflows: <p>The array of workflow configuration objects for builds that this pipeline starts. You must also specify <code>executionRole</code> when you provide workflows.</p>
             execution_role: <p>The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image Builder access to perform workflow actions.</p>
-            logging_configuration: <p>Define logging configuration for the image build process.</p>
+            logging_configuration: <p>Specifies the logging configuration for the image pipeline. Use this to define custom CloudWatch Logs log groups for your pipeline execution logs and image build logs. The service manages log groups with names starting with <code>/aws/imagebuilder/</code> using the service-linked role. For custom log group names outside of this prefix, you must also provide an <code>executionRole</code>.</p>
+            dry_run: <p>Validates the required permissions and request parameters without performing the operation. If validation succeeds, the operation returns a <code>DryRunOperationException</code> error response.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
+            capo_imagebuilder.errors.dry_run_operation_exception.DryRunOperationException: <p>The dry run operation of the resource was successful, and no resources or mutations were actually performed due to the dry run flag in the request.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.idempotent_parameter_mismatch_exception.IdempotentParameterMismatchException: <p>You have specified a client token for an operation using parameter values that differ from a previous request that used the same client token.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_already_exists_exception.ResourceAlreadyExistsException: <p>The resource that you are trying to create already exists.</p>
             capo_imagebuilder.errors.resource_in_use_exception.ResourceInUseException: <p>The resource that you are trying to operate on is currently in use. Review the message details and retry later.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded the number of permitted resources or operations for this service. For service quotas, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/imagebuilder.html#limits_imagebuilder\">EC2 Image Builder endpoints and quotas</a>.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Create an image pipeline
+            The following example creates a pipeline that builds a new image version every Sunday at 9:00 AM UTC, if the base image or components have updates.
+
+            >>> await client.create_image_pipeline(name='my-example-pipeline', description='Builds a new version of my image every Sunday', image_recipe_arn='arn:aws:imagebuilder:us-west-2:111122223333:image-recipe/my-example-recipe/1.0.0', infrastructure_configuration_arn='arn:aws:imagebuilder:us-west-2:111122223333:infrastructure-configuration/my-example-infrastructure', distribution_configuration_arn='arn:aws:imagebuilder:us-west-2:111122223333:distribution-configuration/my-example-distribution', schedule={'scheduleExpression': 'cron(0 9 ? * SUN *)', 'pipelineExecutionStartCondition': 'EXPRESSION_MATCH_AND_DEPENDENCY_UPDATES_AVAILABLE'}, status='ENABLED', client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLE55555')
+            Create an image pipeline with scanning, custom workflows, and an auto-disable policy
+            The following example creates a pipeline that uses your custom build workflow and enables image scanning. The schedule evaluates its cron expression in the America/Los_Angeles time zone. The auto-disable policy disables the pipeline after 3 consecutive failed scheduled builds.
+
+            >>> await client.create_image_pipeline(name='my-example-pipeline', description='Builds a scanned image with my custom build workflow on Sunday mornings when dependency updates are available', image_recipe_arn='arn:aws:imagebuilder:us-west-2:111122223333:image-recipe/my-example-recipe/1.1.0', infrastructure_configuration_arn='arn:aws:imagebuilder:us-west-2:111122223333:infrastructure-configuration/my-example-infrastructure', distribution_configuration_arn='arn:aws:imagebuilder:us-west-2:111122223333:distribution-configuration/my-example-distribution', workflows=[{'workflowArn': 'arn:aws:imagebuilder:us-west-2:111122223333:workflow/build/my-example-workflow/1.0.0/1'}], execution_role='arn:aws:iam::111122223333:role/aws-service-role/imagebuilder.amazonaws.com/AWSServiceRoleForImageBuilder', image_scanning_configuration={'imageScanningEnabled': True}, schedule={'scheduleExpression': 'cron(0 9 ? * SUN *)', 'timezone': 'America/Los_Angeles', 'pipelineExecutionStartCondition': 'EXPRESSION_MATCH_AND_DEPENDENCY_UPDATES_AVAILABLE', 'autoDisablePolicy': {'failureCount': 3}}, status='ENABLED', client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLE30303')
         """
 
         async def _handler(
@@ -1027,6 +1103,8 @@ class AsyncimagebuilderClient:
             input_["execution_role"] = execution_role
         if logging_configuration is not None:
             input_["logging_configuration"] = logging_configuration
+        if dry_run is not None:
+            input_["dry_run"] = dry_run
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1061,37 +1139,54 @@ class AsyncimagebuilderClient:
             "capo_imagebuilder.types.additional_instance_configuration.AdditionalInstanceConfiguration"
         ] = None,
         ami_tags: Optional["capo_imagebuilder.types.tag_map.TagMap"] = None,
+        ami_watermarks: Optional[
+            "capo_imagebuilder.types.ami_watermarks_list.AmiWatermarksList"
+        ] = None,
+        dry_run: Optional["capo_imagebuilder.types.boolean.Boolean"] = None,
     ) -> (
         "capo_imagebuilder.types.create_image_recipe_response.CreateImageRecipeResponse"
     ):
         r"""<p>Creates a new image recipe. Image recipes define how images are configured, tested, and assessed.</p>
 
         Args:
-            name: <p>The name of the image recipe.</p>
+            name: <p>The name of the image recipe. The recipe name, combined with the semantic version, must be unique to your account in each Amazon Web Services Region. Image Builder generates the image recipe ARN from a normalized form of the name, so names that differ only in case, spaces, or underscores count as the same name.</p>
             description: <p>The description of the image recipe.</p>
-            semantic_version: <p>The semantic version of the image recipe. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: <major>.<minor>.<patch>/<build>. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> </note>
-            components: <p>The components included in the image recipe.</p>
-            parent_image: <p>The base image for customizations specified in the image recipe. You can specify the parent image using one of the following options:</p> <ul> <li> <p>AMI ID</p> </li> <li> <p>Image Builder image Amazon Resource Name (ARN)</p> </li> <li> <p>Amazon Web Services Systems Manager (SSM) Parameter Store Parameter, prefixed by <code>ssm:</code>, followed by the parameter name or ARN.</p> </li> <li> <p>Amazon Web Services Marketplace product ID</p> </li> </ul> <p>If you enter an AMI ID or an SSM parameter that contains the AMI ID, you must have access to the AMI, and the AMI must be in the source Region.</p>
-            block_device_mappings: <p>The block device mappings of the image recipe.</p>
+            semantic_version: <p>The semantic version of the image recipe. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: <major>.<minor>.<patch>/<build>. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes, you can assign any positive integer value, including zero. The upper limit is 2^30-1, or 1073741823, for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> </note>
+            components: <p>The components included in the image recipe. Components are optional. A recipe with no components bakes the base image without additional customization. You can specify each component only one time in a recipe. Components with a status of <code>DEPRECATED</code> or <code>DISABLED</code> can't be added to new recipes.</p>
+            parent_image: <p>The base image for customizations specified in the image recipe. You can specify the parent image using one of the following options:</p> <ul> <li> <p>AMI ID</p> </li> <li> <p>Image Builder image Amazon Resource Name (ARN)</p> </li> <li> <p>Amazon Web Services Systems Manager (SSM) Parameter Store Parameter, prefixed by <code>ssm:</code>, followed by the parameter name or ARN.</p> </li> <li> <p>Amazon Web Services Marketplace product ID</p> </li> </ul> <p>If you enter an AMI ID or an SSM parameter that contains the AMI ID, you must have access to the AMI. The AMI must also be in the Region where you're creating the recipe.</p>
+            block_device_mappings: <p>The block device mappings that Image Builder applies to the build instance and the output AMI. For example, you can override the size of the base image's root volume or attach additional EBS volumes.</p>
             tags: <p>The tags of the image recipe.</p>
-            working_directory: <p>The working directory used during build and test workflows.</p>
-            additional_instance_configuration: <p>Specify additional settings and launch scripts for your build instances.</p>
+            working_directory: <p>The working directory used during build and test workflows. If you don't specify a working directory, Image Builder uses <code>/tmp</code> for Linux and macOS build instances, and <code>C:/</code> for Windows build instances.</p>
+            additional_instance_configuration: <p>The additional settings and launch scripts for your build instances.</p>
             ami_tags: <p>Tags that are applied to the AMI that Image Builder creates during the Build phase prior to image distribution.</p>
-            client_token: <p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            ami_watermarks: <p>The AMI watermark names to attach to the output AMI from this recipe. AMI watermarks are lineage markers. They automatically propagate to derivative AMIs when the source AMI is copied or distributed across Regions or accounts.</p> <note> <p>AMI watermarks are supported only for image recipes. AMIs with watermarks cannot be made public.</p> </note>
+            client_token: <p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            dry_run: <p>Validates the required permissions and request parameters without performing the operation. If validation succeeds, the operation returns a <code>DryRunOperationException</code> error response.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
+            capo_imagebuilder.errors.dry_run_operation_exception.DryRunOperationException: <p>The dry run operation of the resource was successful, and no resources or mutations were actually performed due to the dry run flag in the request.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.idempotent_parameter_mismatch_exception.IdempotentParameterMismatchException: <p>You have specified a client token for an operation using parameter values that differ from a previous request that used the same client token.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.invalid_version_number_exception.InvalidVersionNumberException: <p>Your version number is out of bounds or does not follow the required syntax.</p>
             capo_imagebuilder.errors.resource_already_exists_exception.ResourceAlreadyExistsException: <p>The resource that you are trying to create already exists.</p>
             capo_imagebuilder.errors.resource_in_use_exception.ResourceInUseException: <p>The resource that you are trying to operate on is currently in use. Review the message details and retry later.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded the number of permitted resources or operations for this service. For service quotas, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/imagebuilder.html#limits_imagebuilder\">EC2 Image Builder endpoints and quotas</a>.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Create an image recipe
+            The following example creates an image recipe that applies a custom component on top of the latest Amazon Linux 2023 base image.
+
+            >>> await client.create_image_recipe(name='my-example-recipe', semantic_version='1.0.0', description='An image recipe that installs my application on Amazon Linux 2023', parent_image='arn:aws:imagebuilder:us-west-2:aws:image/amazon-linux-2023-x86/x.x.x', components=[{'componentArn': 'arn:aws:imagebuilder:us-west-2:111122223333:component/my-example-component/1.0.0/1'}], client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLE22222')
+            Create an image recipe with component parameters and block device mappings
+            The following example creates an image recipe that configures its components and storage. The AppVersion component parameter selects the application version to install. The block device mapping increases the root volume to an encrypted 30 GiB gp3 volume.
+
+            >>> await client.create_image_recipe(name='my-example-recipe', semantic_version='1.1.0', description='Installs a specific version of my application on Amazon Linux 2023 with a larger encrypted root volume', parent_image='arn:aws:imagebuilder:us-west-2:aws:image/amazon-linux-2023-x86/x.x.x', components=[{'componentArn': 'arn:aws:imagebuilder:us-west-2:111122223333:component/my-example-parameterized-component/1.0.0/1', 'parameters': [{'name': 'AppVersion', 'value': ['2.5.0']}]}], block_device_mappings=[{'deviceName': '/dev/xvda', 'ebs': {'volumeSize': 30, 'volumeType': 'gp3', 'encrypted': True, 'deleteOnTermination': True}}], client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLE20202')
         """
 
         async def _handler(
@@ -1132,6 +1227,10 @@ class AsyncimagebuilderClient:
             )
         if ami_tags is not None:
             input_["ami_tags"] = ami_tags
+        if ami_watermarks is not None:
+            input_["ami_watermarks"] = ami_watermarks
+        if dry_run is not None:
+            input_["dry_run"] = dry_run
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1178,38 +1277,51 @@ class AsyncimagebuilderClient:
         ] = None,
         tags: Optional["capo_imagebuilder.types.tag_map.TagMap"] = None,
         placement: Optional["capo_imagebuilder.types.placement.Placement"] = None,
+        dry_run: Optional["capo_imagebuilder.types.boolean.Boolean"] = None,
     ) -> "capo_imagebuilder.types.create_infrastructure_configuration_response.CreateInfrastructureConfigurationResponse":
         r"""<p>Creates a new infrastructure configuration. An infrastructure configuration defines the environment in which your image will be built and tested.</p>
 
         Args:
-            name: <p>The name of the infrastructure configuration.</p>
+            name: <p>The name of the infrastructure configuration. Infrastructure configuration names must be unique to your account in each Amazon Web Services Region. Image Builder generates the infrastructure configuration ARN from a normalized form of the name, so names that differ only in case, spaces, or underscores count as the same name.</p>
             description: <p>The description of the infrastructure configuration.</p>
-            instance_types: <p>The instance types of the infrastructure configuration. You can specify one or more instance types to use for this build. The service will pick one of these instance types based on availability.</p>
-            instance_profile_name: <p>The instance profile to associate with the instance used to customize your Amazon EC2 AMI.</p>
+            instance_types: <p>The instance types of the infrastructure configuration. You can specify one or more instance types to use for this build. Image Builder picks one of these instance types based on availability. If you don't specify instance types, Image Builder selects compatible instance types automatically. If you specify a Dedicated Host, Image Builder uses only instance types that the host supports.</p>
+            instance_profile_name: <p>The instance profile to associate with the instance used to customize your Amazon EC2 AMI. The instance profile must exist in your account.</p>
             security_group_ids: <p>The security group IDs to associate with the instance used to customize your Amazon EC2 AMI.</p>
-            subnet_id: <p>The subnet ID in which to place the instance used to customize your Amazon EC2 AMI.</p>
-            logging: <p>The logging configuration of the infrastructure configuration.</p>
+            subnet_id: <p>The subnet ID in which to place the instance used to customize your Amazon EC2 AMI. If you specify <code>subnetId</code>, you must also specify one or more security group IDs in <code>securityGroupIds</code>. Otherwise, the request fails.</p>
+            logging: <p>The logging configuration of the infrastructure configuration. When you configure S3 logs, Image Builder writes logs from the build and test process to the specified bucket under the key prefix.</p>
             key_pair: <p>The key pair of the infrastructure configuration. You can use this to log on to and debug the instance used to create your image.</p>
-            terminate_instance_on_failure: <p>The terminate instance on failure setting of the infrastructure configuration. Set to false if you want Image Builder to retain the instance used to configure your AMI if the build or test phase of your workflow fails.</p>
-            sns_topic_arn: <p>The Amazon Resource Name (ARN) for the SNS topic to which we send image build event notifications.</p> <note> <p>EC2 Image Builder is unable to send notifications to SNS topics that are encrypted using keys from other accounts. The key that is used to encrypt the SNS topic must reside in the account that the Image Builder service runs under.</p> </note>
-            resource_tags: <p>The metadata tags to assign to the Amazon EC2 instance that Image Builder launches during the build process. Tags are formatted as key value pairs.</p>
-            instance_metadata_options: <p>The instance metadata options that you can set for the HTTP requests that pipeline builds use to launch EC2 build and test instances.</p>
+            terminate_instance_on_failure: <p>Specifies whether to terminate the instance on failure. Set to false if you want Image Builder to retain the instance used to configure your AMI if the build or test phase of your workflow fails. Defaults to <code>true</code>.</p>
+            sns_topic_arn: <p>The Amazon Resource Name (ARN) of the SNS topic to which Image Builder sends image build event notifications. Specify a standard topic. Image Builder doesn't support FIFO topics. Image Builder validates the topic when you create or update the configuration. You must have permission to publish to the topic.</p> <note> <p>EC2 Image Builder can't send notifications to SNS topics that are encrypted using keys from other accounts. If your SNS topic is encrypted, the key must be owned by the same account that owns your Image Builder resources.</p> </note>
+            resource_tags: <p>The metadata tags to assign to the Amazon EC2 instance that Image Builder launches during the build process. Tags are formatted as key value pairs. Tag keys can't begin with <code>aws:</code> or match one of the following reserved keys: <code>CreatedBy</code>, <code>Ec2ImageBuilderArn</code>, <code>Name</code>, or <code>Tags</code>.</p>
+            instance_metadata_options: <p>The instance metadata service (IMDS) settings that Image Builder applies to the EC2 build and test instances it launches during image creation. If you don't set these options, the EC2 launch defaults for the instance apply. For more information about instance metadata options, see one of the following links:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-options.html\">Configure the instance metadata options</a> in the <i> <i>Amazon EC2 User Guide</i> </i> for Linux instances.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/configuring-instance-metadata-options.html\">Configure the instance metadata options</a> in the <i> <i>Amazon EC2 Windows Guide</i> </i> for Windows instances.</p> </li> </ul>
             tags: <p>The metadata tags to assign to the infrastructure configuration resource that Image Builder creates as output. Tags are formatted as key value pairs.</p>
-            placement: <p>The instance placement settings that define where the instances that are launched from your image will run.</p>
-            client_token: <p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            placement: <p>The instance placement settings that define where the build and test instances that Image Builder launches during image creation run. These settings don't affect instances that you launch from the output image.</p>
+            client_token: <p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            dry_run: <p>Validates the required permissions and request parameters without performing the operation. If validation succeeds, the operation returns a <code>DryRunOperationException</code> error response.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
+            capo_imagebuilder.errors.dry_run_operation_exception.DryRunOperationException: <p>The dry run operation of the resource was successful, and no resources or mutations were actually performed due to the dry run flag in the request.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.idempotent_parameter_mismatch_exception.IdempotentParameterMismatchException: <p>You have specified a client token for an operation using parameter values that differ from a previous request that used the same client token.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_already_exists_exception.ResourceAlreadyExistsException: <p>The resource that you are trying to create already exists.</p>
             capo_imagebuilder.errors.resource_in_use_exception.ResourceInUseException: <p>The resource that you are trying to operate on is currently in use. Review the message details and retry later.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded the number of permitted resources or operations for this service. For service quotas, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/imagebuilder.html#limits_imagebuilder\">EC2 Image Builder endpoints and quotas</a>.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Create an infrastructure configuration
+            The following example creates an infrastructure configuration that gives Image Builder a choice of two instance types for its build and test instances.
+
+            >>> await client.create_infrastructure_configuration(name='my-example-infrastructure', description='An infrastructure configuration for Amazon Linux builds', instance_profile_name='EC2InstanceProfileForImageBuilder', instance_types=['t3.medium', 't3.large'], terminate_instance_on_failure=True, client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLE33333')
+            Create an infrastructure configuration with instance placement and metadata options
+            The following example creates an infrastructure configuration. It places your build and test instances in a single Availability Zone and requires IMDSv2 for instance metadata requests. It also applies resource tags to the resources that Image Builder creates during the build.
+
+            >>> await client.create_infrastructure_configuration(name='my-example-infrastructure', description='An infrastructure configuration that pins build instances to one Availability Zone and requires IMDSv2', instance_profile_name='my-example-instance-role', placement={'availabilityZone': 'us-west-2a'}, instance_metadata_options={'httpTokens': 'required', 'httpPutResponseHopLimit': 2}, resource_tags={'CostCenter': '12345', 'Environment': 'test'}, terminate_instance_on_failure=True, client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLE98765')
         """
 
         async def _handler(
@@ -1257,6 +1369,8 @@ class AsyncimagebuilderClient:
             input_["tags"] = tags
         if placement is not None:
             input_["placement"] = placement
+        if dry_run is not None:
+            input_["dry_run"] = dry_run
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1283,32 +1397,45 @@ class AsyncimagebuilderClient:
             "capo_imagebuilder.types.lifecycle_policy_status.LifecyclePolicyStatus"
         ] = None,
         tags: Optional["capo_imagebuilder.types.tag_map.TagMap"] = None,
+        dry_run: Optional["capo_imagebuilder.types.boolean.Boolean"] = None,
     ) -> "capo_imagebuilder.types.create_lifecycle_policy_response.CreateLifecyclePolicyResponse":
-        r"""<p>Create a lifecycle policy resource.</p>
+        r"""<p>Creates a lifecycle policy resource.</p>
 
         Args:
-            name: <p>The name of the lifecycle policy to create.</p>
+            name: <p>The name of the lifecycle policy to create. Policy names must be unique to your account in each Amazon Web Services Region. Image Builder generates the policy ARN from a normalized form of the name, so names that differ only in case, spaces, or underscores count as the same name. You can't change the name after creation.</p>
             description: <p>Optional description for the lifecycle policy.</p>
-            status: <p>Indicates whether the lifecycle policy resource is enabled.</p>
-            execution_role: <p>The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image Builder access to run lifecycle actions.</p>
-            resource_type: <p>The type of Image Builder resource that the lifecycle policy applies to.</p>
-            policy_details: <p>Configuration details for the lifecycle policy rules.</p>
-            resource_selection: <p>Selection criteria for the resources that the lifecycle policy applies to. </p>
+            status: <p>Indicates whether the lifecycle policy resource is enabled. If you don't specify a status, it defaults to <code>ENABLED</code>. Only enabled policies run on their schedule.</p>
+            execution_role: <p>The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image Builder access to run lifecycle actions. You must have permission to pass the role, and the role's trust policy must allow the Image Builder service principal to assume it.</p>
+            resource_type: <p>The type of Image Builder resource that the lifecycle policy applies to. The resource type determines the allowed rule actions: policies for AMI-based Image Builder images support <code>DELETE</code>, <code>DEPRECATE</code>, and <code>DISABLE</code>, and policies for container-based Image Builder images support only <code>DELETE</code>. You can't change the resource type after creation.</p>
+            policy_details: <p>Configuration details for the lifecycle policy rules. A policy can contain at most one rule per action type: one <code>DELETE</code>, one <code>DEPRECATE</code>, and one <code>DISABLE</code>.</p>
+            resource_selection: <p>Selection criteria for the resources that the lifecycle policy applies to. You must specify exactly one selection criteria: either recipes or a tag map, not both.</p>
             tags: <p>Tags to apply to the lifecycle policy resource.</p>
-            client_token: <p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            client_token: <p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            dry_run: <p>Validates the required permissions and request parameters without performing the operation. If validation succeeds, the operation returns a <code>DryRunOperationException</code> error response.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
+            capo_imagebuilder.errors.dry_run_operation_exception.DryRunOperationException: <p>The dry run operation of the resource was successful, and no resources or mutations were actually performed due to the dry run flag in the request.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.idempotent_parameter_mismatch_exception.IdempotentParameterMismatchException: <p>You have specified a client token for an operation using parameter values that differ from a previous request that used the same client token.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_already_exists_exception.ResourceAlreadyExistsException: <p>The resource that you are trying to create already exists.</p>
             capo_imagebuilder.errors.resource_in_use_exception.ResourceInUseException: <p>The resource that you are trying to operate on is currently in use. Review the message details and retry later.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded the number of permitted resources or operations for this service. For service quotas, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/imagebuilder.html#limits_imagebuilder\">EC2 Image Builder endpoints and quotas</a>.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Create a lifecycle policy
+            The following example creates a lifecycle policy that deletes AMI-based images six months after they were created, selecting the images that match the specified resource tags.
+
+            >>> await client.create_lifecycle_policy(name='my-example-lifecycle-policy', execution_role='arn:aws:iam::111122223333:role/my-example-lifecycle-role', resource_type='AMI_IMAGE', policy_details=[{'action': {'type': 'DELETE'}, 'filter': {'type': 'AGE', 'value': 6, 'unit': 'MONTHS'}}], resource_selection={'tagMap': {'Environment': 'test'}}, client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLE13579')
+            Create a lifecycle policy with exclusion rules
+            The following example creates a lifecycle policy that deletes images created from the specified recipe version after six months. The policy excludes images whose AMIs launched an instance within the last 30 days or are tagged to be retained.
+
+            >>> await client.create_lifecycle_policy(name='my-example-lifecycle-policy', execution_role='arn:aws:iam::111122223333:role/my-example-lifecycle-role', resource_type='AMI_IMAGE', policy_details=[{'action': {'type': 'DELETE'}, 'filter': {'type': 'AGE', 'value': 6, 'unit': 'MONTHS'}, 'exclusionRules': {'amis': {'lastLaunched': {'value': 30, 'unit': 'DAYS'}, 'tagMap': {'Retention': 'keep'}}}}], resource_selection={'recipes': [{'name': 'my-example-recipe', 'semanticVersion': '1.0.0'}]}, client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLE43210')
         """
 
         async def _handler(
@@ -1341,6 +1468,8 @@ class AsyncimagebuilderClient:
             input_["status"] = status
         if tags is not None:
             input_["tags"] = tags
+        if dry_run is not None:
+            input_["dry_run"] = dry_run
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1374,35 +1503,41 @@ class AsyncimagebuilderClient:
         tags: Optional["capo_imagebuilder.types.tag_map.TagMap"] = None,
         dry_run: Optional["capo_imagebuilder.types.boolean.Boolean"] = None,
     ) -> "capo_imagebuilder.types.create_workflow_response.CreateWorkflowResponse":
-        r"""<p>Create a new workflow or a new version of an existing workflow.</p>
+        r"""<p>Creates a new workflow or a new version of an existing workflow. If a workflow with the same name and semantic version already exists, and your request changes its configuration, Image Builder creates a new build version. If the configuration is identical to the latest build version, the request fails because that workflow configuration already exists.</p>
 
         Args:
-            name: <p>The name of the workflow to create.</p>
-            semantic_version: <p>The semantic version of this workflow resource. The semantic version syntax adheres to the following rules.</p> <note> <p>The semantic version has four nodes: <major>.<minor>.<patch>/<build>. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> </note>
+            name: <p>The name of the workflow to create. Image Builder generates the workflow ARN from a normalized form of the name, so names that differ only in case, spaces, or underscores count as the same name. If a workflow with the same name and semantic version already exists in your account in the same Amazon Web Services Region, the request creates a new build version for it. If the content is also identical to the latest build version, the request fails because the workflow already exists.</p>
+            semantic_version: <p>The semantic version of this workflow resource. The semantic version syntax adheres to the following rules.</p> <note> <p>The semantic version has four nodes: <major>.<minor>.<patch>/<build>. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes, you can assign any positive integer value, including zero. The upper limit is 2^30-1, or 1073741823, for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> </note>
             description: <p>Describes the workflow.</p>
             change_description: <p>Describes what change has been made in this version of the workflow, or what makes this version different from other versions of the workflow.</p>
-            data: <p>Contains the UTF-8 encoded YAML document content for the workflow. Alternatively, you can specify the <code>uri</code> of a YAML document file stored in Amazon S3. However, you cannot specify both properties.</p>
-            uri: <p>The <code>uri</code> of a YAML component document file. This must be an S3 URL (<code>s3://bucket/key</code>), and the requester must have permission to access the S3 bucket it points to. If you use Amazon S3, you can specify component content up to your service quota.</p> <p>Alternatively, you can specify the YAML document inline, using the component <code>data</code> property. You cannot specify both properties.</p>
-            kms_key_id: <p>The Amazon Resource Name (ARN) that uniquely identifies the KMS key used to encrypt this workflow resource. This can be either the Key ARN or the Alias ARN. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN\">Key identifiers (KeyId)</a> in the <i>Key Management Service Developer Guide</i>.</p>
+            data: <p>The UTF-8 encoded YAML document content for the workflow, up to 16,000 characters. For larger documents, store the document in Amazon S3 and specify the <code>uri</code> property instead. You must specify exactly one of the <code>data</code> or <code>uri</code> properties.</p>
+            uri: <p>The <code>uri</code> of a YAML workflow document file stored in Amazon S3. This must be an S3 URL (<code>s3://bucket/key</code>), and you must have permission to access the S3 bucket it points to. A workflow document that you provide from Amazon S3 can be up to your service quota for workflow size.</p> <p>Alternatively, you can specify the YAML document inline, using the workflow <code>data</code> property. You must specify exactly one of the <code>data</code> or <code>uri</code> properties.</p>
+            kms_key_id: <p>The Amazon Resource Name (ARN) that uniquely identifies the KMS key used to encrypt this workflow resource. This can be either the Key ARN or the Alias ARN. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN\">Key identifiers (KeyId)</a> in the <i>Key Management Service Developer Guide</i>. If you don't specify a key, Image Builder encrypts the workflow document with a KMS key that Image Builder owns.</p>
             tags: <p>Tags that apply to the workflow resource.</p>
-            client_token: <p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
-            type: <p>The phase in the image build process for which the workflow resource is responsible.</p>
-            dry_run: <p>Validates the required permissions for the operation and the request parameters, without actually making the request, and provides an error response. Upon a successful request, the error response is <code>DryRunOperationException</code>.</p>
+            client_token: <p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            type: <p>The image creation stage that this workflow applies to. Image Builder validates the workflow document steps against the stage you specify.</p>
+            dry_run: <p>Validates the required permissions and request parameters without performing the operation. If validation succeeds, the operation returns a <code>DryRunOperationException</code> error response.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.dry_run_operation_exception.DryRunOperationException: <p>The dry run operation of the resource was successful, and no resources or mutations were actually performed due to the dry run flag in the request.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.idempotent_parameter_mismatch_exception.IdempotentParameterMismatchException: <p>You have specified a client token for an operation using parameter values that differ from a previous request that used the same client token.</p>
-            capo_imagebuilder.errors.invalid_parameter_combination_exception.InvalidParameterCombinationException: <p>You have specified two or more mutually exclusive parameters. Review the error message for details.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_parameter_combination_exception.InvalidParameterCombinationException: <p>You have specified a combination of parameters that isn't valid. For example, two mutually exclusive parameters, or a parameter without its required companion parameter. Review the error message for details.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.invalid_version_number_exception.InvalidVersionNumberException: <p>Your version number is out of bounds or does not follow the required syntax.</p>
             capo_imagebuilder.errors.resource_in_use_exception.ResourceInUseException: <p>The resource that you are trying to operate on is currently in use. Review the message details and retry later.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded the number of permitted resources or operations for this service. For service quotas, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/imagebuilder.html#limits_imagebuilder\">EC2 Image Builder endpoints and quotas</a>.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Create a build workflow from an inline document
+            The following example creates a build workflow from a YAML workflow document provided inline in the request.
+
+            >>> await client.create_workflow(name='my-example-workflow', semantic_version='1.0.0', description='Workflow to build an AMI', type='BUILD', data='name: my-example-workflow\ndescription: Workflow to build an AMI\nschemaVersion: 1.0\nsteps:\n  - name: LaunchBuildInstance\n    action: LaunchInstance\n    onFailure: Abort\n    inputs:\n      waitFor: ssmAgent\n  - name: ApplyBuildComponents\n    action: ExecuteComponents\n    onFailure: Abort\n    inputs:\n      instanceId.$: $.stepOutputs.LaunchBuildInstance.instanceId\n  - name: CreateOutputAMI\n    action: CreateImage\n    onFailure: Abort\n    inputs:\n      instanceId.$: $.stepOutputs.LaunchBuildInstance.instanceId\n  - name: TerminateBuildInstance\n    action: TerminateInstance\n    onFailure: Continue\n    inputs:\n      instanceId.$: $.stepOutputs.LaunchBuildInstance.instanceId\n', client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLE54321')
         """
 
         async def _handler(
@@ -1456,20 +1591,26 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.delete_component_response.DeleteComponentResponse":
-        """<p>Deletes a component build version.</p>
+        """<p>Deletes a component build version. The request fails with <code>ResourceDependencyException</code> if an image recipe or container recipe references this component version. It also fails if the component build version is shared with other accounts.</p>
 
         Args:
             component_build_version_arn: <p>The Amazon Resource Name (ARN) of the component build version to delete.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_dependency_exception.ResourceDependencyException: <p>You have attempted to mutate or delete a resource with a dependency that prohibits this action. See the error message for more details.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Delete a component build version
+            The following example deletes the specified component build version.
+
+            >>> await client.delete_component(component_build_version_arn='arn:aws:imagebuilder:us-west-2:111122223333:component/my-example-component/1.0.0/1')
         """
 
         async def _handler(
@@ -1506,20 +1647,26 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.delete_container_recipe_response.DeleteContainerRecipeResponse":
-        """<p>Deletes a container recipe.</p>
+        """<p>Deletes a container recipe. The request fails with <code>ResourceDependencyException</code> if the recipe is shared with other accounts, or if an image pipeline references it.</p>
 
         Args:
             container_recipe_arn: <p>The Amazon Resource Name (ARN) of the container recipe to delete.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_dependency_exception.ResourceDependencyException: <p>You have attempted to mutate or delete a resource with a dependency that prohibits this action. See the error message for more details.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Delete a container recipe
+            The following example deletes the specified container recipe.
+
+            >>> await client.delete_container_recipe(container_recipe_arn='arn:aws:imagebuilder:us-west-2:111122223333:container-recipe/my-example-container-recipe/1.0.0')
         """
 
         async def _handler(
@@ -1556,20 +1703,26 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.delete_distribution_configuration_response.DeleteDistributionConfigurationResponse":
-        """<p>Deletes a distribution configuration.</p>
+        """<p>Deletes a distribution configuration. You can't delete a configuration that an image pipeline still references. The request fails with <code>ResourceDependencyException</code>. Update or delete the referencing pipelines first.</p>
 
         Args:
             distribution_configuration_arn: <p>The Amazon Resource Name (ARN) of the distribution configuration to delete.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_dependency_exception.ResourceDependencyException: <p>You have attempted to mutate or delete a resource with a dependency that prohibits this action. See the error message for more details.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Delete a distribution configuration
+            The following example deletes the specified distribution configuration.
+
+            >>> await client.delete_distribution_configuration(distribution_configuration_arn='arn:aws:imagebuilder:us-west-2:111122223333:distribution-configuration/my-example-distribution-configuration')
         """
 
         async def _handler(
@@ -1606,20 +1759,26 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.delete_image_response.DeleteImageResponse":
-        r"""<p>Deletes an Image Builder image resource. This does not delete any EC2 AMIs or ECR container images that are created during the image build process. You must clean those up separately, using the appropriate Amazon EC2 or Amazon ECR console actions, or API or CLI commands.</p> <ul> <li> <p>To deregister an EC2 Linux AMI, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/deregister-ami.html\">Deregister your Linux AMI</a> in the <i> <i>Amazon EC2 User Guide</i> </i>.</p> </li> <li> <p>To deregister an EC2 Windows AMI, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/deregister-ami.html\">Deregister your Windows AMI</a> in the <i> <i>Amazon EC2 Windows Guide</i> </i>.</p> </li> <li> <p>To delete a container image from Amazon ECR, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/delete_image.html\">Deleting an image</a> in the <i>Amazon ECR User Guide</i>.</p> </li> </ul>
+        r"""<p>Deletes an Image Builder image resource. This does not delete any EC2 AMIs or ECR container images that are created during the image build process. You must clean those up separately, using the appropriate Amazon EC2 or Amazon ECR console actions, or API or CLI commands.</p> <p>The request fails with <code>ResourceDependencyException</code> if the image is shared with other accounts, or if other resources depend on it. It also fails while the image build is still running. Cancel an in-progress build with <a>CancelImageCreation</a> before you delete the image.</p> <ul> <li> <p>To deregister an EC2 Linux AMI, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/deregister-ami.html\">Deregister your Linux AMI</a> in the <i> <i>Amazon EC2 User Guide</i> </i>.</p> </li> <li> <p>To deregister an EC2 Windows AMI, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/deregister-ami.html\">Deregister your Windows AMI</a> in the <i> <i>Amazon EC2 Windows Guide</i> </i>.</p> </li> <li> <p>To delete a container image from Amazon ECR, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/delete_image.html\">Deleting an image</a> in the <i>Amazon ECR User Guide</i>.</p> </li> </ul>
 
         Args:
             image_build_version_arn: <p>The Amazon Resource Name (ARN) of the Image Builder image resource to delete.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_dependency_exception.ResourceDependencyException: <p>You have attempted to mutate or delete a resource with a dependency that prohibits this action. See the error message for more details.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Delete an image build version
+            The following example deletes the Image Builder image record for the specified build version - EC2 AMIs or ECR container images that the build created aren't removed.
+
+            >>> await client.delete_image(image_build_version_arn='arn:aws:imagebuilder:us-west-2:111122223333:image/my-example-recipe/1.0.0/1')
         """
 
         async def _handler(
@@ -1656,20 +1815,26 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.delete_image_pipeline_response.DeleteImagePipelineResponse":
-        """<p>Deletes an image pipeline.</p>
+        """<p>Deletes an image pipeline. Images that the pipeline created aren't deleted - remove those separately with <a>DeleteImage</a>. You can delete a pipeline while a build that it started is still running. The build continues independently.</p>
 
         Args:
             image_pipeline_arn: <p>The Amazon Resource Name (ARN) of the image pipeline to delete.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_dependency_exception.ResourceDependencyException: <p>You have attempted to mutate or delete a resource with a dependency that prohibits this action. See the error message for more details.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Delete an image pipeline
+            The following example deletes an image pipeline.
+
+            >>> await client.delete_image_pipeline(image_pipeline_arn='arn:aws:imagebuilder:us-west-2:111122223333:image-pipeline/my-example-pipeline')
         """
 
         async def _handler(
@@ -1714,14 +1879,20 @@ class AsyncimagebuilderClient:
             image_recipe_arn: <p>The Amazon Resource Name (ARN) of the image recipe to delete.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_dependency_exception.ResourceDependencyException: <p>You have attempted to mutate or delete a resource with a dependency that prohibits this action. See the error message for more details.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Delete an image recipe
+            The following example deletes the specified image recipe version.
+
+            >>> await client.delete_image_recipe(image_recipe_arn='arn:aws:imagebuilder:us-west-2:111122223333:image-recipe/my-example-recipe/1.0.0')
         """
 
         async def _handler(
@@ -1758,20 +1929,26 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.delete_infrastructure_configuration_response.DeleteInfrastructureConfigurationResponse":
-        """<p>Deletes an infrastructure configuration.</p>
+        """<p>Deletes an infrastructure configuration. You can't delete a configuration that an image pipeline still references. The request fails with <code>ResourceDependencyException</code>. Update or delete the referencing pipelines first.</p>
 
         Args:
             infrastructure_configuration_arn: <p>The Amazon Resource Name (ARN) of the infrastructure configuration to delete.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_dependency_exception.ResourceDependencyException: <p>You have attempted to mutate or delete a resource with a dependency that prohibits this action. See the error message for more details.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Delete an infrastructure configuration
+            The following example deletes the infrastructure configuration with the specified ARN.
+
+            >>> await client.delete_infrastructure_configuration(infrastructure_configuration_arn='arn:aws:imagebuilder:us-west-2:111122223333:infrastructure-configuration/my-example-infrastructure')
         """
 
         async def _handler(
@@ -1808,20 +1985,26 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.delete_lifecycle_policy_response.DeleteLifecyclePolicyResponse":
-        """<p>Delete the specified lifecycle policy resource.</p>
+        """<p>Deletes the specified lifecycle policy resource. Deleting the policy removes its schedule, so no further lifecycle runs occur for that policy. If a lifecycle execution is in progress for the policy, Image Builder cancels it. Deletion doesn't revert actions that the policy already applied to your resources.</p>
 
         Args:
             lifecycle_policy_arn: <p>The Amazon Resource Name (ARN) of the lifecycle policy resource to delete.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_dependency_exception.ResourceDependencyException: <p>You have attempted to mutate or delete a resource with a dependency that prohibits this action. See the error message for more details.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Delete a lifecycle policy
+            The following example deletes the specified lifecycle policy.
+
+            >>> await client.delete_lifecycle_policy(lifecycle_policy_arn='arn:aws:imagebuilder:us-west-2:111122223333:lifecycle-policy/my-example-lifecycle-policy')
         """
 
         async def _handler(
@@ -1858,20 +2041,26 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.delete_workflow_response.DeleteWorkflowResponse":
-        """<p>Deletes a specific workflow resource.</p>
+        """<p>Deletes a specific workflow resource. You can't delete a workflow build version while an image pipeline references it. The request fails with <code>ResourceDependencyException</code>.</p>
 
         Args:
             workflow_build_version_arn: <p>The Amazon Resource Name (ARN) of the workflow resource to delete.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_dependency_exception.ResourceDependencyException: <p>You have attempted to mutate or delete a resource with a dependency that prohibits this action. See the error message for more details.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Delete a workflow build version
+            The following example deletes the workflow build version that the ARN specifies.
+
+            >>> await client.delete_workflow(workflow_build_version_arn='arn:aws:imagebuilder:us-west-2:111122223333:workflow/build/my-example-workflow/1.0.0/1')
         """
 
         async def _handler(
@@ -1915,30 +2104,36 @@ class AsyncimagebuilderClient:
             "capo_imagebuilder.types.image_logging_configuration.ImageLoggingConfiguration"
         ] = None,
     ) -> "capo_imagebuilder.types.distribute_image_response.DistributeImageResponse":
-        r"""<p>DistributeImage distributes existing AMIs to additional regions and accounts without rebuilding the image.</p>
+        r"""<p>Distributes an existing AMI to target Regions and accounts without running the full image build process. This operation only runs the distribution phase on an image that has already been built.</p>
 
         Args:
-            source_image: <p>The source image Amazon Resource Name (ARN) to distribute.</p>
-            distribution_configuration_arn: <p>The Amazon Resource Name (ARN) of the distribution configuration to use.</p>
-            execution_role: <p>The IAM role to use for the distribution.</p>
-            tags: <p>The tags to apply to the distributed image.</p>
-            client_token: <p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            source_image: <p>The source image to distribute. You can specify the source in any of the following formats:</p> <ul> <li> <p>An AMI ID.</p> </li> <li> <p>An Amazon Web Services Systems Manager Parameter Store reference, prefixed by <code>ssm:</code>, followed by the parameter name or ARN.</p> </li> <li> <p>An Image Builder image Amazon Resource Name (ARN). An image version ARN resolves to the latest available build version.</p> </li> </ul> <p>Whichever format you use, the source must resolve to an AMI in the current Amazon Web Services Region.</p>
+            distribution_configuration_arn: <p>The Amazon Resource Name (ARN) of the distribution configuration. The configuration defines target Regions, accounts, and AMI settings. The distribution configuration must be in the same Region as this operation.</p>
+            execution_role: <p>The name or Amazon Resource Name (ARN) of the IAM role that Image Builder assumes to distribute the image.</p>
+            tags: <p>The tags to apply to the new Image Builder image resource that this operation creates. To tag the output AMIs, use <code>amiTags</code> in the distribution configuration.</p>
+            client_token: <p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
             logging_configuration: <p>The logging configuration for the distribution.</p>
 
         Raises:
             capo_imagebuilder.errors.access_denied_exception.AccessDeniedException: <p>You do not have permissions to perform the requested operation.</p>
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.idempotent_parameter_mismatch_exception.IdempotentParameterMismatchException: <p>You have specified a client token for an operation using parameter values that differ from a previous request that used the same client token.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_in_use_exception.ResourceInUseException: <p>The resource that you are trying to operate on is currently in use. Review the message details and retry later.</p>
             capo_imagebuilder.errors.resource_not_found_exception.ResourceNotFoundException: <p>At least one of the resources referenced by your request does not exist.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded the number of permitted resources or operations for this service. For service quotas, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/imagebuilder.html#limits_imagebuilder\">EC2 Image Builder endpoints and quotas</a>.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.too_many_requests_exception.TooManyRequestsException: <p>You have attempted too many requests for the specific operation.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Distribute an existing AMI
+            The following example distributes an AMI that you own to the targets defined in the specified distribution configuration. It returns the ARN of a new Image Builder image resource that you can use with GetImage to monitor distribution progress.
+
+            >>> await client.distribute_image(source_image='ami-1234567890abcdef0', distribution_configuration_arn='arn:aws:imagebuilder:us-west-2:111122223333:distribution-configuration/my-example-distribution-configuration', execution_role='arn:aws:iam::111122223333:role/aws-service-role/imagebuilder.amazonaws.com/AWSServiceRoleForImageBuilder', client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLE86420')
         """
 
         async def _handler(
@@ -1982,19 +2177,25 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.get_component_response.GetComponentResponse":
-        r"""<p>Gets a component object.</p>
+        """<p>Retrieves a component object.</p>
 
         Args:
-            component_build_version_arn: <p>The Amazon Resource Name (ARN) of the component that you want to get. Regex requires the suffix <code>/\d+$</code>.</p>
+            component_build_version_arn: <p>The Amazon Resource Name (ARN) of the component that you want to get. You can specify a build version ARN, or a component version ARN. The version can use the <code>x</code> wildcard in trailing positions, for example <code>1.0.x</code> or <code>1.x.x</code>. Version ARNs resolve to the latest available matching component build version.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Get the details of a component build version
+            The following example retrieves a component build version. The data field in the response contains the YAML document that defines the component.
+
+            >>> await client.get_component(component_build_version_arn='arn:aws:imagebuilder:us-west-2:111122223333:component/my-example-component/1.0.0/1')
         """
 
         async def _handler(
@@ -2031,19 +2232,25 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.get_component_policy_response.GetComponentPolicyResponse":
-        """<p>Gets a component policy.</p>
+        """<p>Retrieves a component policy.</p>
 
         Args:
             component_arn: <p>The Amazon Resource Name (ARN) of the component whose policy you want to retrieve.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_not_found_exception.ResourceNotFoundException: <p>At least one of the resources referenced by your request does not exist.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Get the resource policy for a component
+            The following example retrieves the resource policy that's applied to a component that the owner shared with another account.
+
+            >>> await client.get_component_policy(component_arn='arn:aws:imagebuilder:us-west-2:111122223333:component/my-shared-component/1.0.0/1')
         """
 
         async def _handler(
@@ -2086,13 +2293,19 @@ class AsyncimagebuilderClient:
             container_recipe_arn: <p>The Amazon Resource Name (ARN) of the container recipe to retrieve.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Get the details of a container recipe
+            The following example retrieves the details of the specified container recipe.
+
+            >>> await client.get_container_recipe(container_recipe_arn='arn:aws:imagebuilder:us-west-2:111122223333:container-recipe/my-example-container-recipe/1.0.0')
         """
 
         async def _handler(
@@ -2135,13 +2348,19 @@ class AsyncimagebuilderClient:
             container_recipe_arn: <p>The Amazon Resource Name (ARN) of the container recipe for the policy being requested.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_not_found_exception.ResourceNotFoundException: <p>At least one of the resources referenced by your request does not exist.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Get the policy attached to a container recipe
+            The following example retrieves the resource policy for a container recipe that you shared with another AWS account. The policy property contains the resource-based policy document as a JSON-encoded string.
+
+            >>> await client.get_container_recipe_policy(container_recipe_arn='arn:aws:imagebuilder:us-west-2:111122223333:container-recipe/my-example-container-recipe-shared/1.0.0')
         """
 
         async def _handler(
@@ -2178,19 +2397,25 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.get_distribution_configuration_response.GetDistributionConfigurationResponse":
-        """<p>Gets a distribution configuration.</p>
+        """<p>Retrieves a distribution configuration.</p>
 
         Args:
             distribution_configuration_arn: <p>The Amazon Resource Name (ARN) of the distribution configuration that you want to retrieve.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Get the details of a distribution configuration
+            The following example retrieves a distribution configuration that distributes the output AMI to two Regions.
+
+            >>> await client.get_distribution_configuration(distribution_configuration_arn='arn:aws:imagebuilder:us-west-2:111122223333:distribution-configuration/my-example-distribution')
         """
 
         async def _handler(
@@ -2227,19 +2452,25 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.get_image_response.GetImageResponse":
-        """<p>Gets an image.</p>
+        """<p>Retrieves an image.</p>
 
         Args:
-            image_build_version_arn: <p>The Amazon Resource Name (ARN) of the image that you want to get.</p>
+            image_build_version_arn: <p>The Amazon Resource Name (ARN) of the image that you want to get. You can specify a full build version ARN, or a version ARN with or without wildcards (<code>x.x.x</code>, <code>1.x.x</code>, or <code>1.0.x</code>). A version or wildcard ARN resolves to the latest matching build version that has reached <code>AVAILABLE</code> status. Builds that were later deprecated, disabled, or deleted don't resolve. To get an image in any other state, such as a failed or in-progress build, specify the full build version ARN.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Check the status of an image build
+            The following example retrieves an image build version to check its status while the build is running. The response is shortened to show a subset of the fields that Image Builder returns.
+
+            >>> await client.get_image(image_build_version_arn='arn:aws:imagebuilder:us-west-2:111122223333:image/my-example-recipe/1.0.0/1')
         """
 
         async def _handler(
@@ -2276,19 +2507,25 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.get_image_pipeline_response.GetImagePipelineResponse":
-        """<p>Gets an image pipeline.</p>
+        """<p>Retrieves an image pipeline.</p>
 
         Args:
             image_pipeline_arn: <p>The Amazon Resource Name (ARN) of the image pipeline that you want to retrieve.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Get the details of an image pipeline
+            The following example retrieves an image pipeline that builds a new image every Sunday, including the image tests configuration and schedule start condition defaults that Image Builder applied at creation.
+
+            >>> await client.get_image_pipeline(image_pipeline_arn='arn:aws:imagebuilder:us-west-2:111122223333:image-pipeline/my-example-pipeline')
         """
 
         async def _handler(
@@ -2325,19 +2562,25 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.get_image_policy_response.GetImagePolicyResponse":
-        """<p>Gets an image policy.</p>
+        """<p>Retrieves an image policy.</p>
 
         Args:
             image_arn: <p>The Amazon Resource Name (ARN) of the image whose policy you want to retrieve.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_not_found_exception.ResourceNotFoundException: <p>At least one of the resources referenced by your request does not exist.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Retrieve the resource policy for an image
+            The following example retrieves the resource policy for an image build version that was shared with account 444455556666.
+
+            >>> await client.get_image_policy(image_arn='arn:aws:imagebuilder:us-west-2:111122223333:image/my-example-recipe/1.0.0/1')
         """
 
         async def _handler(
@@ -2374,19 +2617,25 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.get_image_recipe_response.GetImageRecipeResponse":
-        """<p>Gets an image recipe.</p>
+        """<p>Retrieves an image recipe.</p>
 
         Args:
-            image_recipe_arn: <p>The Amazon Resource Name (ARN) of the image recipe that you want to retrieve.</p>
+            image_recipe_arn: <p>The Amazon Resource Name (ARN) of the image recipe that you want to retrieve. You can use the <code>x</code> wildcard in trailing version positions to retrieve the latest matching version, for example <code>x.x.x</code> or <code>1.x.x</code>.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Get the details of an image recipe
+            The following example retrieves the full definition of an image recipe, including the components it applies and the base image it builds on.
+
+            >>> await client.get_image_recipe(image_recipe_arn='arn:aws:imagebuilder:us-west-2:111122223333:image-recipe/my-example-app-recipe/1.0.0')
         """
 
         async def _handler(
@@ -2423,19 +2672,25 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.get_image_recipe_policy_response.GetImageRecipePolicyResponse":
-        """<p>Gets an image recipe policy.</p>
+        """<p>Retrieves an image recipe policy.</p>
 
         Args:
             image_recipe_arn: <p>The Amazon Resource Name (ARN) of the image recipe whose policy you want to retrieve.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_not_found_exception.ResourceNotFoundException: <p>At least one of the resources referenced by your request does not exist.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Get the resource policy for an image recipe
+            The following example retrieves the resource policy that's applied to the specified image recipe.
+
+            >>> await client.get_image_recipe_policy(image_recipe_arn='arn:aws:imagebuilder:us-west-2:111122223333:image-recipe/my-example-recipe/1.0.0')
         """
 
         async def _handler(
@@ -2472,19 +2727,25 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.get_infrastructure_configuration_response.GetInfrastructureConfigurationResponse":
-        """<p>Gets an infrastructure configuration.</p>
+        """<p>Retrieves an infrastructure configuration.</p>
 
         Args:
             infrastructure_configuration_arn: <p>The Amazon Resource Name (ARN) of the infrastructure configuration that you want to retrieve.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Get the details of an infrastructure configuration
+            The following example retrieves an infrastructure configuration that specifies the instance types, instance profile, and instance metadata options that Image Builder uses for build and test instances.
+
+            >>> await client.get_infrastructure_configuration(infrastructure_configuration_arn='arn:aws:imagebuilder:us-west-2:111122223333:infrastructure-configuration/my-example-infrastructure-configuration')
         """
 
         async def _handler(
@@ -2521,19 +2782,25 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.get_lifecycle_execution_response.GetLifecycleExecutionResponse":
-        """<p>Get the runtime information that was logged for a specific runtime instance of the lifecycle policy.</p>
+        """<p>Retrieves runtime information for a lifecycle execution – a single run of lifecycle actions that a lifecycle policy or a <a>StartResourceStateUpdate</a> request started.</p>
 
         Args:
-            lifecycle_execution_id: <p>Use the unique identifier for a runtime instance of the lifecycle policy to get runtime details.</p>
+            lifecycle_execution_id: <p>The unique identifier for a runtime instance of the lifecycle policy.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Get the details of a lifecycle execution
+            The following example retrieves the runtime status of the specified lifecycle execution. If the execution was started by StartResourceStateUpdate rather than a lifecycle policy run, the response doesn't include the lifecyclePolicyArn field.
+
+            >>> await client.get_lifecycle_execution(lifecycle_execution_id='lce-401aefc3-a829-46f6-8fc2-91497988a503')
         """
 
         async def _handler(
@@ -2570,19 +2837,25 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.get_lifecycle_policy_response.GetLifecyclePolicyResponse":
-        """<p>Get details for the specified image lifecycle policy.</p>
+        """<p>Retrieves details for the specified image lifecycle policy.</p>
 
         Args:
             lifecycle_policy_arn: <p>Specifies the Amazon Resource Name (ARN) of the image lifecycle policy resource to get.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Get the details of a lifecycle policy
+            The following example retrieves the full definition of the specified lifecycle policy.
+
+            >>> await client.get_lifecycle_policy(lifecycle_policy_arn='arn:aws:imagebuilder:us-west-2:111122223333:lifecycle-policy/my-example-lifecycle-policy')
         """
 
         async def _handler(
@@ -2623,19 +2896,19 @@ class AsyncimagebuilderClient:
             "capo_imagebuilder.types.marketplace_resource_location.MarketplaceResourceLocation"
         ] = None,
     ) -> "capo_imagebuilder.types.get_marketplace_resource_response.GetMarketplaceResourceResponse":
-        """<p>Verify the subscription and perform resource dependency checks on the requested Amazon Web Services Marketplace resource. For Amazon Web Services Marketplace components, the response contains fields to download the components and their artifacts.</p>
+        """<p>Verifies the subscription and performs resource dependency checks on the requested Amazon Web Services Marketplace resource. The caller must be entitled to the resource. For Amazon Web Services Marketplace components, the response contains fields to download the components and their artifacts.</p>
 
         Args:
             resource_type: <p>Specifies which type of Amazon Web Services Marketplace resource Image Builder retrieves.</p>
             resource_arn: <p>The Amazon Resource Name (ARN) that uniquely identifies an Amazon Web Services Marketplace resource.</p>
-            resource_location: <p>The bucket path that you can specify to download the resource from Amazon S3.</p>
+            resource_location: <p>The Amazon S3 location of the component artifact to retrieve, in <code>s3://bucket/key</code> form.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
@@ -2677,19 +2950,25 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.get_workflow_response.GetWorkflowResponse":
-        """<p>Get a workflow resource object.</p>
+        """<p>Retrieves a workflow resource object.</p>
 
         Args:
-            workflow_build_version_arn: <p>The Amazon Resource Name (ARN) of the workflow resource that you want to get.</p>
+            workflow_build_version_arn: <p>The Amazon Resource Name (ARN) of the workflow resource that you want to get. You can specify a build version ARN, or a version ARN with or without wildcards (<code>x</code>) in its version segments. Image Builder resolves version and wildcard ARNs to the most recent matching build version.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Get the details of a workflow build version
+            The following example retrieves a workflow build version. The response includes the YAML workflow document in the data field and the parameters that Image Builder extracted from it when the workflow was created.
+
+            >>> await client.get_workflow(workflow_build_version_arn='arn:aws:imagebuilder:us-west-2:111122223333:workflow/build/my-example-workflow/1.0.0/1')
         """
 
         async def _handler(
@@ -2726,19 +3005,25 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.get_workflow_execution_response.GetWorkflowExecutionResponse":
-        """<p>Get the runtime information that was logged for a specific runtime instance of the workflow.</p>
+        """<p>Retrieves runtime information for a specific runtime instance of the workflow.</p>
 
         Args:
             workflow_execution_id: <p>Use the unique identifier for a runtime instance of the workflow to get runtime details.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Get the runtime details for a workflow execution
+            The following example retrieves runtime status and step counts for the build workflow that ran for an image build version, using the workflow execution ID returned by ListWorkflowExecutions.
+
+            >>> await client.get_workflow_execution(workflow_execution_id='wf-165b1cb6-3a62-4618-a021-94ddcbe32908')
         """
 
         async def _handler(
@@ -2775,19 +3060,25 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.get_workflow_step_execution_response.GetWorkflowStepExecutionResponse":
-        """<p>Get the runtime information that was logged for a specific runtime instance of the workflow step.</p>
+        """<p>Retrieves runtime information for a specific runtime instance of the workflow step.</p>
 
         Args:
-            step_execution_id: <p>Use the unique identifier for a specific runtime instance of the workflow step to get runtime details for that step.</p>
+            step_execution_id: <p>The unique identifier for the runtime instance of the workflow step that you want to get runtime details for. To get the identifiers for the steps that ran in a workflow, call <a>ListWorkflowStepExecutions</a>.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Get the runtime details of a workflow step
+            The following example retrieves runtime details for the step that launched the build instance during an image build, with the step's input parameters and output values returned as JSON-encoded strings.
+
+            >>> await client.get_workflow_step_execution(step_execution_id='step-2e6fef0d-657c-4b7e-8706-ff24da9afa01')
         """
 
         async def _handler(
@@ -2843,34 +3134,40 @@ class AsyncimagebuilderClient:
         ] = None,
         tags: Optional["capo_imagebuilder.types.tag_map.TagMap"] = None,
     ) -> "capo_imagebuilder.types.import_component_response.ImportComponentResponse":
-        r"""<p>Imports a component and transforms its data into a component document.</p>
+        r"""<p>Imports a component and transforms its data into a component document. For the <code>SHELL</code> format, Image Builder wraps your script in a component document with a single step that runs the script.</p>
 
         Args:
-            name: <p>The name of the component.</p>
-            semantic_version: <p>The semantic version of the component. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: <major>.<minor>.<patch>/<build>. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>
+            name: <p>The name of the component. Image Builder generates the component ARN from a normalized form of the name, so names that differ only in case, spaces, or underscores count as the same name. If a component with the same name and semantic version already exists in your account in the same Amazon Web Services Region, the request creates a new build version for it. If the content is also identical to the latest build version, the request fails because the component already exists.</p>
+            semantic_version: <p>The semantic version of the component. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: <major>.<minor>.<patch>/<build>. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes, you can assign any positive integer value, including zero. The upper limit is 2^30-1, or 1073741823, for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> </note>
             description: <p>The description of the component. Describes the contents of the component.</p>
             change_description: <p>The change description of the component. This description indicates the change that has been made in this version, or what makes this version different from other versions of the component.</p>
             type: <p>The type of the component denotes whether the component is used to build the image, or only to test it.</p>
             format: <p>The format of the resource that you want to import as a component.</p>
             platform: <p>The platform of the component.</p>
-            data: <p>The data of the component. Used to specify the data inline. Either <code>data</code> or <code>uri</code> can be used to specify the data within the component.</p>
-            uri: <p>The uri of the component. Must be an Amazon S3 URL and the requester must have permission to access the Amazon S3 bucket. If you use Amazon S3, you can specify component content up to your service quota. Either <code>data</code> or <code>uri</code> can be used to specify the data within the component.</p>
-            kms_key_id: <p>The Amazon Resource Name (ARN) that uniquely identifies the KMS key used to encrypt this component. This can be either the Key ARN or the Alias ARN. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN\">Key identifiers (KeyId)</a> in the <i>Key Management Service Developer Guide</i>.</p>
+            data: <p>The data of the component. For the <code>SHELL</code> format, this is the plain script content. You must specify exactly one of the <code>data</code> or <code>uri</code> properties. For scripts that exceed the inline length constraint, use the <code>uri</code> property.</p>
+            uri: <p>The uri of the component. Must be an Amazon S3 URL and you must have permission to access the Amazon S3 bucket. If you use Amazon S3, you can specify component content up to your service quota. Either <code>data</code> or <code>uri</code> can be used to specify the data within the component.</p>
+            kms_key_id: <p>The Amazon Resource Name (ARN) of the KMS key that is used to encrypt this component. This can be either the Key ARN or the Alias ARN. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN\">Key identifiers (KeyId)</a> in the <i>Key Management Service Developer Guide</i>. If you don't specify a key, Image Builder encrypts the component data with a KMS key that Image Builder owns.</p>
             tags: <p>The tags of the component.</p>
-            client_token: <p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            client_token: <p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.idempotent_parameter_mismatch_exception.IdempotentParameterMismatchException: <p>You have specified a client token for an operation using parameter values that differ from a previous request that used the same client token.</p>
-            capo_imagebuilder.errors.invalid_parameter_combination_exception.InvalidParameterCombinationException: <p>You have specified two or more mutually exclusive parameters. Review the error message for details.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_parameter_combination_exception.InvalidParameterCombinationException: <p>You have specified a combination of parameters that isn't valid. For example, two mutually exclusive parameters, or a parameter without its required companion parameter. Review the error message for details.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.invalid_version_number_exception.InvalidVersionNumberException: <p>Your version number is out of bounds or does not follow the required syntax.</p>
             capo_imagebuilder.errors.resource_in_use_exception.ResourceInUseException: <p>The resource that you are trying to operate on is currently in use. Review the message details and retry later.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Import a component from a shell script
+            The following example imports a plain shell script as a Linux build component.
+
+            >>> await client.import_component(name='my-example-imported-component', semantic_version='1.0.0', description='Installs my application from an imported shell script', type='BUILD', format='SHELL', platform='Linux', data='sudo yum update -y\nsudo yum -y install my-app\n', client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLE88888')
         """
 
         async def _handler(
@@ -2946,30 +3243,36 @@ class AsyncimagebuilderClient:
             "capo_imagebuilder.types.windows_configuration.WindowsConfiguration"
         ] = None,
     ) -> "capo_imagebuilder.types.import_disk_image_response.ImportDiskImageResponse":
-        r"""<p>Import a Windows operating system image from a verified Microsoft ISO disk file. The following disk images are supported:</p> <ul> <li> <p>Windows 11 Enterprise</p> </li> </ul>
+        r"""<p>Imports a Windows operating system image from a verified Microsoft ISO disk file. The following disk images are supported:</p> <ul> <li> <p>Windows 11 Enterprise</p> </li> </ul> <p>The response returns as soon as Image Builder creates the new image resource in the <code>PENDING</code> state. The conversion from ISO file to AMI then runs asynchronously on an EC2 instance that Image Builder launches with the specified infrastructure configuration.</p>
 
         Args:
-            name: <p>The name of the image resource that's created from the import.</p>
+            name: <p>The name of the image resource that's created from the import. Image Builder generates the image ARN from a normalized form of the name, so names that differ only in case, spaces, or underscores count as the same name. If an image with the same name and semantic version already exists in your account in the same Amazon Web Services Region, the import creates a new build version for it.</p>
             semantic_version: <p>The semantic version to attach to the image that's created during the import process. This version follows the semantic version syntax.</p>
             description: <p>The description for your disk image import.</p>
             platform: <p>The operating system platform for the imported image. Allowed values include the following: <code>Windows</code>.</p>
-            os_version: <p>The operating system version for the imported image. Allowed values include the following: <code>Microsoft Windows 11</code>.</p>
-            execution_role: <p>The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image Builder access to perform workflow actions to import an image from a Microsoft ISO file.</p>
+            os_version: <p>The operating system version for the imported image. The only supported value is <code>Microsoft Windows 11</code>.</p>
+            execution_role: <p>The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image Builder access to perform workflow actions to import an image from a Microsoft ISO file. If you don't provide a role, Image Builder uses the Image Builder service-linked role in your account, and creates it if it doesn't exist.</p>
             infrastructure_configuration_arn: <p>The Amazon Resource Name (ARN) of the infrastructure configuration resource that's used for launching the EC2 instance on which the ISO image is built.</p>
-            uri: <p>The <code>uri</code> of the ISO disk file that's stored in Amazon S3.</p>
-            logging_configuration: <p>Define logging configuration for the image build process.</p>
+            uri: <p>The <code>uri</code> of the ISO disk file that's stored in Amazon S3, in <code>s3://bucket/key</code> format. The key must end with the <code>.iso</code>, <code>.ISO</code>, or <code>.Iso</code> extension, and the bucket must be owned by the account that makes the request.</p>
+            logging_configuration: <p>The CloudWatch Logs log group where Image Builder sends the import logs. If you specify a log group name outside of the <code>/aws/imagebuilder/</code> namespace, you must also provide an <code>executionRole</code> that has permission to write to that log group.</p>
             tags: <p>Tags that are attached to image resources created from the import.</p>
             register_image_options: <p>Configures Secure Boot and UEFI settings for the imported image.</p>
             windows_configuration: <p>Specifies Windows settings for ISO imports.</p>
-            client_token: <p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            client_token: <p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
 
         Raises:
             capo_imagebuilder.errors.access_denied_exception.AccessDeniedException: <p>You do not have permissions to perform the requested operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.too_many_requests_exception.TooManyRequestsException: <p>You have attempted too many requests for the specific operation.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Import a Windows 11 ISO disk image
+            The following example starts an image build that converts a Windows 11 ISO disk file stored in Amazon S3 into an AMI; the imageBuildVersionArn in the response identifies the Image Builder image resource that tracks the build, not the output AMI.
+
+            >>> await client.import_disk_image(name='my-example-imported-image', semantic_version='1.0.0', platform='Windows', os_version='Microsoft Windows 11', uri='s3://amzn-s3-demo-bucket/Win11_23H2_English_x64.iso', infrastructure_configuration_arn='arn:aws:imagebuilder:us-west-2:111122223333:infrastructure-configuration/my-example-infrastructure', client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLE12345')
         """
 
         async def _handler(
@@ -3036,24 +3339,30 @@ class AsyncimagebuilderClient:
         ] = None,
         tags: Optional["capo_imagebuilder.types.tag_map.TagMap"] = None,
     ) -> "capo_imagebuilder.types.import_vm_image_response.ImportVmImageResponse":
-        r"""<p>When you export your virtual machine (VM) from its virtualization environment, that process creates a set of one or more disk container files that act as snapshots of your VM’s environment, settings, and data. The Amazon EC2 API <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ImportImage.html\">ImportImage</a> action uses those files to import your VM and create an AMI. To import using the CLI command, see <a href=\"https://docs.aws.amazon.com/cli/latest/reference/ec2/import-image.html\">import-image</a> </p> <p>You can reference the task ID from the VM import to pull in the AMI that the import created as the base image for your Image Builder recipe.</p>
+        r"""<p>Creates an Image Builder image resource from an Amazon EC2 VM import task. The response returns as soon as Image Builder creates the image resource in the <code>PENDING</code> state. Image Builder then monitors the import task asynchronously. When the task completes, Image Builder records the AMI that it produced as the new image's output resource and marks the image <code>AVAILABLE</code>. You can then use the imported image as the base image for your recipes.</p> <p>To create the VM import task, use the Amazon EC2 API <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ImportImage.html\">ImportImage</a> operation, or the <a href=\"https://docs.aws.amazon.com/cli/latest/reference/ec2/import-image.html\">import-image</a> CLI command.</p>
 
         Args:
-            name: <p>The name of the base image that is created by the import process.</p>
-            semantic_version: <p>The semantic version to attach to the base image that was created during the import process. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: <major>.<minor>.<patch>/<build>. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> </note>
+            name: <p>The name of the base image that is created by the import process. Image Builder generates the image ARN from a normalized form of the name, so names that differ only in case, spaces, or underscores count as the same name. If an image with the same name and semantic version already exists in your account in the same Amazon Web Services Region, the import creates a new build version for it.</p>
+            semantic_version: <p>The semantic version to attach to the base image that was created during the import process. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: <major>.<minor>.<patch>/<build>. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes, you can assign any positive integer value, including zero. The upper limit is 2^30-1, or 1073741823, for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> </note>
             description: <p>The description for the base image that is created by the import process.</p>
             platform: <p>The operating system platform for the imported VM.</p>
             os_version: <p>The operating system version for the imported VM.</p>
-            vm_import_task_id: <p>The <code>importTaskId</code> (API) or <code>ImportTaskId</code> (CLI) from the Amazon EC2 VM import process. Image Builder retrieves information from the import process to pull in the AMI that is created from the VM source as the base image for your recipe.</p>
-            logging_configuration: <p>Define logging configuration for the image build process.</p>
+            vm_import_task_id: <p>The <code>importTaskId</code> (API) or <code>ImportTaskId</code> (CLI) from the Amazon EC2 VM import process. The import task doesn't need to be complete when you call ImportVmImage - Image Builder monitors the task and finishes creating the image when the task completes.</p>
+            logging_configuration: <p>The CloudWatch Logs log group where Image Builder sends the import logs. For ImportVmImage, the log group name must be within the <code>/aws/imagebuilder/</code> namespace.</p>
             tags: <p>Tags that are attached to the import resources.</p>
-            client_token: <p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            client_token: <p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
 
         Raises:
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Import a virtual machine as an Image Builder image
+            The following example registers the output of an EC2 VM Import/Export task (import-ami) as a new Image Builder image, so you can use the imported virtual machine as a base image.
+
+            >>> await client.import_vm_image(name='my-example-imported-image', semantic_version='1.0.0', platform='Linux', os_version='Amazon Linux 2', vm_import_task_id='import-ami-1234567890abcdef0', client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLE00000')
         """
 
         async def _handler(
@@ -3110,22 +3419,28 @@ class AsyncimagebuilderClient:
             "capo_imagebuilder.types.pagination_token.PaginationToken"
         ] = None,
     ) -> "capo_imagebuilder.types.list_component_build_versions_response.ListComponentBuildVersionsResponse":
-        """<p>Returns the list of component build versions for the specified component version Amazon Resource Name (ARN).</p>
+        """<p>Returns a list of component build versions for the specified component version ARN. You can only list build versions for components that your account owns. Deprecated build versions aren't included in the results.</p>
 
         Args:
-            component_version_arn: <p>The component version Amazon Resource Name (ARN) whose versions you want to list.</p>
-            max_results: <p>Specify the maximum number of items to return in a request.</p>
-            next_token: <p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>
+            component_version_arn: <p>The component version ARN whose build versions you want to list. The ARN must specify an exact version, without a build number suffix. If you don't specify an ARN, Image Builder returns build versions for the components that your account owns.</p>
+            max_results: <p>The maximum number of items to return in a single request.</p>
+            next_token: <p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.invalid_pagination_token_exception.InvalidPaginationTokenException: <p>You have provided an invalid pagination token in your request.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List the build versions of a component
+            The following example lists the build versions that exist for version 1.0.0 of the specified component. The list returns the most recent build version first.
+
+            >>> await client.list_component_build_versions(component_version_arn='arn:aws:imagebuilder:us-west-2:111122223333:component/my-example-component/1.0.0')
         """
 
         async def _handler(
@@ -3203,24 +3518,30 @@ class AsyncimagebuilderClient:
             "capo_imagebuilder.types.pagination_token.PaginationToken"
         ] = None,
     ) -> "capo_imagebuilder.types.list_components_response.ListComponentsResponse":
-        """<p>Returns the list of components that can be filtered by name, or by using the listed <code>filters</code> to streamline results. Newly created components can take up to two minutes to appear in the ListComponents API Results.</p> <note> <p>The semantic version has four nodes: <major>.<minor>.<patch>/<build>. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>
+        """<p>Returns the list of components that you have access to. By default, the response doesn't include components in the <code>DEPRECATED</code> state. To list deprecated components, use the <code>status</code> filter with the value <code>DEPRECATED</code>.</p> <note> <p>The semantic version has four nodes: <major>.<minor>.<patch>/<build>. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Filtering:</b> You can use wildcards (x) to specify the most recent versions or nodes when selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>
 
         Args:
-            owner: <p>Filters results based on the type of owner for the component. By default, this request returns a list of components that your account owns. To see results for other types of owners, you can specify components that Amazon manages, third party components, or components that other accounts have shared with you.</p>
-            filters: <p>Use the following filters to streamline results:</p> <ul> <li> <p> <code>description</code> </p> </li> <li> <p> <code>name</code> </p> </li> <li> <p> <code>platform</code> </p> </li> <li> <p> <code>supportedOsVersion</code> </p> </li> <li> <p> <code>type</code> </p> </li> <li> <p> <code>version</code> </p> </li> </ul>
-            by_name: <p>Returns the list of components for the specified name.</p>
-            max_results: <p>Specify the maximum number of items to return in a request.</p>
-            next_token: <p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>
+            owner: <p>Filters results based on the type of owner for the component. By default, this request returns a list of components that your account owns. To see results for other types of owners, you can specify components that Amazon manages, components from the Amazon Web Services Marketplace, third party components, or components that other accounts have shared with you.</p>
+            filters: <p>Use the following filters to streamline results:</p> <ul> <li> <p> <code>description</code> </p> </li> <li> <p> <code>name</code> </p> </li> <li> <p> <code>platform</code> </p> </li> <li> <p> <code>productCodes</code> </p> </li> <li> <p> <code>status</code> </p> </li> <li> <p> <code>supportedOsVersion</code> </p> </li> <li> <p> <code>type</code> </p> </li> <li> <p> <code>version</code> </p> </li> </ul>
+            by_name: <p>Specifies whether to return one entry per component name, with all versions of each component aggregated. Defaults to <code>false</code>, which returns one entry per component version. You can't combine this option with the <code>version</code> filter.</p>
+            max_results: <p>The maximum number of items to return in a single request.</p>
+            next_token: <p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.invalid_pagination_token_exception.InvalidPaginationTokenException: <p>You have provided an invalid pagination token in your request.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List components that you own
+            The following example lists the component versions that your account owns, filtered to components for the Linux platform.
+
+            >>> await client.list_components(owner='Self', filters=[{'name': 'platform', 'values': ['Linux']}])
         """
 
         async def _handler(
@@ -3306,20 +3627,26 @@ class AsyncimagebuilderClient:
         """<p>Returns a list of container recipes.</p>
 
         Args:
-            owner: <p>Returns container recipes belonging to the specified owner, that have been shared with you. You can omit this field to return container recipes belonging to your account.</p>
+            owner: <p>Returns container recipes belonging to the specified owner, that have been shared with you. You can omit this field to return container recipes belonging to your account. For container recipes, the valid owner values are <code>Self</code>, <code>Shared</code>, and <code>Amazon</code>.</p>
             filters: <p>Use the following filters to streamline results:</p> <ul> <li> <p> <code>containerType</code> </p> </li> <li> <p> <code>name</code> </p> </li> <li> <p> <code>parentImage</code> </p> </li> <li> <p> <code>platform</code> </p> </li> </ul>
-            max_results: <p>Specify the maximum number of items to return in a request.</p>
-            next_token: <p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>
+            max_results: <p>The maximum number of items to return in a single request.</p>
+            next_token: <p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.invalid_pagination_token_exception.InvalidPaginationTokenException: <p>You have provided an invalid pagination token in your request.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List the container recipes you own
+            The following example lists the container recipes that you own.
+
+            >>> await client.list_container_recipes(owner='Self')
         """
 
         async def _handler(
@@ -3401,18 +3728,24 @@ class AsyncimagebuilderClient:
 
         Args:
             filters: <p>You can filter on <code>name</code> to streamline results.</p>
-            max_results: <p>Specify the maximum number of items to return in a request.</p>
-            next_token: <p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>
+            max_results: <p>The maximum number of items to return in a single request.</p>
+            next_token: <p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.invalid_pagination_token_exception.InvalidPaginationTokenException: <p>You have provided an invalid pagination token in your request.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List distribution configurations that match a name filter
+            The following example lists the distribution configurations whose name matches the filter value.
+
+            >>> await client.list_distribution_configurations(filters=[{'name': 'name', 'values': ['my-example-distribution-configuration']}])
         """
 
         async def _handler(
@@ -3494,20 +3827,26 @@ class AsyncimagebuilderClient:
         """<p>Returns a list of image build versions.</p>
 
         Args:
-            image_version_arn: <p>The Amazon Resource Name (ARN) of the image whose build versions you want to retrieve.</p>
+            image_version_arn: <p>The Amazon Resource Name (ARN) of the image version whose build versions you want to retrieve. The ARN must specify an exact version (<code><major>.<minor>.<patch></code>) - wildcards aren't allowed. This parameter is optional. If you don't specify it, Image Builder returns build versions for all of the images in your account.</p>
             filters: <p>Use the following filters to streamline results:</p> <ul> <li> <p> <code>name</code> </p> </li> <li> <p> <code>osVersion</code> </p> </li> <li> <p> <code>platform</code> </p> </li> <li> <p> <code>type</code> </p> </li> <li> <p> <code>version</code> </p> </li> </ul>
-            max_results: <p>Specify the maximum number of items to return in a request.</p>
-            next_token: <p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>
+            max_results: <p>The maximum number of items to return in a single request.</p>
+            next_token: <p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.invalid_pagination_token_exception.InvalidPaginationTokenException: <p>You have provided an invalid pagination token in your request.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List the build versions of an image
+            The following example lists the build versions that exist for version 1.0.0 of the specified image, with the output AMI that each build produced.
+
+            >>> await client.list_image_build_versions(image_version_arn='arn:aws:imagebuilder:us-west-2:111122223333:image/my-example-recipe/1.0.0')
         """
 
         async def _handler(
@@ -3589,23 +3928,29 @@ class AsyncimagebuilderClient:
     ) -> (
         "capo_imagebuilder.types.list_image_packages_response.ListImagePackagesResponse"
     ):
-        """<p>List the Packages that are associated with an Image Build Version, as determined by Amazon Web Services Systems Manager Inventory at build time.</p>
+        """<p>Lists the packages that are associated with an image build version, as determined by Amazon Web Services Systems Manager Inventory at build time.</p>
 
         Args:
-            image_build_version_arn: <p>Filter results for the ListImagePackages request by the Image Build Version ARN</p>
-            max_results: <p>Specify the maximum number of items to return in a request.</p>
-            next_token: <p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>
+            image_build_version_arn: <p>The Amazon Resource Name (ARN) of the image build version whose packages you want to list. The value must be a full build version ARN.</p>
+            max_results: <p>The maximum number of items to return in a single request.</p>
+            next_token: <p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.invalid_pagination_token_exception.InvalidPaginationTokenException: <p>You have provided an invalid pagination token in your request.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_not_found_exception.ResourceNotFoundException: <p>At least one of the resources referenced by your request does not exist.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List the packages in an image build version
+            The following example lists the operating system packages that Image Builder detected in the specified image build version.
+
+            >>> await client.list_image_packages(image_build_version_arn='arn:aws:imagebuilder:us-west-2:111122223333:image/my-example-recipe/1.0.0/1')
         """
 
         async def _handler(
@@ -3685,19 +4030,25 @@ class AsyncimagebuilderClient:
         Args:
             image_pipeline_arn: <p>The Amazon Resource Name (ARN) of the image pipeline whose images you want to view.</p>
             filters: <p>Use the following filters to streamline results:</p> <ul> <li> <p> <code>name</code> </p> </li> <li> <p> <code>version</code> </p> </li> </ul>
-            max_results: <p>Specify the maximum number of items to return in a request.</p>
-            next_token: <p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>
+            max_results: <p>The maximum number of items to return in a single request.</p>
+            next_token: <p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.invalid_pagination_token_exception.InvalidPaginationTokenException: <p>You have provided an invalid pagination token in your request.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_not_found_exception.ResourceNotFoundException: <p>At least one of the resources referenced by your request does not exist.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List the images that an image pipeline created
+            The following example lists the images that the specified pipeline created, including a build that is still in progress.
+
+            >>> await client.list_image_pipeline_images(image_pipeline_arn='arn:aws:imagebuilder:us-west-2:111122223333:image-pipeline/my-example-pipeline')
         """
 
         async def _handler(
@@ -3779,18 +4130,24 @@ class AsyncimagebuilderClient:
 
         Args:
             filters: <p>Use the following filters to streamline results:</p> <ul> <li> <p> <code>description</code> </p> </li> <li> <p> <code>distributionConfigurationArn</code> </p> </li> <li> <p> <code>imageRecipeArn</code> </p> </li> <li> <p> <code>infrastructureConfigurationArn</code> </p> </li> <li> <p> <code>name</code> </p> </li> <li> <p> <code>status</code> </p> </li> </ul>
-            max_results: <p>Specify the maximum number of items to return in a request.</p>
-            next_token: <p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>
+            max_results: <p>The maximum number of items to return in a single request.</p>
+            next_token: <p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.invalid_pagination_token_exception.InvalidPaginationTokenException: <p>You have provided an invalid pagination token in your request.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List image pipelines filtered by name
+            The following example lists the image pipelines in your account, using a filter to match a specific pipeline name.
+
+            >>> await client.list_image_pipelines(filters=[{'name': 'name', 'values': ['my-example-pipeline']}])
         """
 
         async def _handler(
@@ -3870,18 +4227,24 @@ class AsyncimagebuilderClient:
         Args:
             owner: <p>You can specify the recipe owner to filter results by that owner. By default, this request will only show image recipes owned by your account. To filter by a different owner, specify one of the <code>Valid Values</code> that are listed for this parameter.</p>
             filters: <p>Use the following filters to streamline results:</p> <ul> <li> <p> <code>name</code> </p> </li> <li> <p> <code>parentImage</code> </p> </li> <li> <p> <code>platform</code> </p> </li> </ul>
-            max_results: <p>Specify the maximum number of items to return in a request.</p>
-            next_token: <p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>
+            max_results: <p>The maximum number of items to return in a single request.</p>
+            next_token: <p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.invalid_pagination_token_exception.InvalidPaginationTokenException: <p>You have provided an invalid pagination token in your request.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List the image recipes that you own
+            The following example lists the image recipes that you own.
+
+            >>> await client.list_image_recipes(owner='Self')
         """
 
         async def _handler(
@@ -3966,25 +4329,31 @@ class AsyncimagebuilderClient:
             "capo_imagebuilder.types.nullable_boolean.NullableBoolean"
         ] = None,
     ) -> "capo_imagebuilder.types.list_images_response.ListImagesResponse":
-        """<p>Returns the list of images that you have access to. Newly created images can take up to two minutes to appear in the ListImages API Results.</p>
+        """<p>Returns the list of images that you have access to.</p>
 
         Args:
-            owner: <p>The owner defines which images you want to list. By default, this request will only show images owned by your account. You can use this field to specify if you want to view images owned by yourself, by Amazon, or those images that have been shared with you by other customers.</p>
+            owner: <p>Filters the list to images owned by you, by Amazon, or shared with you by other accounts. By default, only your account's images are returned.</p>
             filters: <p>Use the following filters to streamline results:</p> <ul> <li> <p> <code>name</code> </p> </li> <li> <p> <code>osVersion</code> </p> </li> <li> <p> <code>platform</code> </p> </li> <li> <p> <code>type</code> </p> </li> <li> <p> <code>version</code> </p> </li> </ul>
-            by_name: <p>Requests a list of images with a specific recipe name.</p>
-            max_results: <p>Specify the maximum number of items to return in a request.</p>
-            next_token: <p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>
-            include_deprecated: <p>Includes deprecated images in the response list.</p>
+            by_name: <p>Specifies whether to return one entry per image name, with all versions of each image aggregated. Defaults to <code>false</code>, which returns one entry per image version. You can't combine this option with the <code>version</code> filter.</p>
+            max_results: <p>The maximum number of items to return in a single request.</p>
+            next_token: <p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>
+            include_deprecated: <p>Specifies whether to include deprecated Amazon-managed images in the results. Deprecated images that you own are always returned. Defaults to <code>false</code>.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.invalid_pagination_token_exception.InvalidPaginationTokenException: <p>You have provided an invalid pagination token in your request.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List images that you own
+            The following example lists the image versions that you own. Setting byName to false returns each image version as its own entry, instead of grouping build versions under their image name.
+
+            >>> await client.list_images(owner='Self', by_name=False)
         """
 
         async def _handler(
@@ -4069,20 +4438,27 @@ class AsyncimagebuilderClient:
             "capo_imagebuilder.types.pagination_token.PaginationToken"
         ] = None,
     ) -> "capo_imagebuilder.types.list_image_scan_finding_aggregations_response.ListImageScanFindingAggregationsResponse":
-        """<p>Returns a list of image scan aggregations for your account. You can filter by the type of key that Image Builder uses to group results. For example, if you want to get a list of findings by severity level for one of your pipelines, you might specify your pipeline with the <code>imagePipelineArn</code> filter. If you don't specify a filter, Image Builder returns an aggregation for your account.</p> <p>To streamline results, you can use the following filters in your request:</p> <ul> <li> <p> <code>accountId</code> </p> </li> <li> <p> <code>imageBuildVersionArn</code> </p> </li> <li> <p> <code>imagePipelineArn</code> </p> </li> <li> <p> <code>vulnerabilityId</code> </p> </li> </ul>
+        """<p>Returns a list of image scan aggregations for your account. You can filter by the type of key that Image Builder uses to group results. For example, if you want to get a list of findings by severity level for one of your pipelines, you might specify your pipeline with the <code>imagePipelineArn</code> filter. If you don't specify a filter, Image Builder returns an aggregation for your account.</p> <p>To streamline results, you can use the following filters in your request:</p> <ul> <li> <p> <code>imageBuildVersionArn</code> </p> </li> <li> <p> <code>imagePipelineArn</code> </p> </li> <li> <p> <code>vulnerabilityId</code> </p> </li> </ul>
 
         Args:
-            next_token: <p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>
+            filter: <p>A filter name and value pair that determines the type of aggregation that Image Builder returns. Use one of the following filter names:</p> <ul> <li> <p> <code>imageBuildVersionArn</code> </p> </li> <li> <p> <code>imagePipelineArn</code> </p> </li> <li> <p> <code>vulnerabilityId</code> </p> </li> </ul> <p>If you don't specify a filter, Image Builder returns an aggregation for your account.</p>
+            next_token: <p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.invalid_pagination_token_exception.InvalidPaginationTokenException: <p>You have provided an invalid pagination token in your request.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List image scan finding aggregations for an image pipeline
+            The following example aggregates vulnerability findings for images that the specified pipeline created, with counts grouped by severity level.
+
+            >>> await client.list_image_scan_finding_aggregations(filter={'name': 'imagePipelineArn', 'values': ['arn:aws:imagebuilder:us-west-2:111122223333:image-pipeline/my-example-pipeline']})
         """
 
         async def _handler(
@@ -4152,22 +4528,28 @@ class AsyncimagebuilderClient:
             "capo_imagebuilder.types.pagination_token.PaginationToken"
         ] = None,
     ) -> "capo_imagebuilder.types.list_image_scan_findings_response.ListImageScanFindingsResponse":
-        """<p>Returns a list of image scan findings for your account.</p>
+        """<p>Returns a list of image scan findings for your account. Amazon Inspector generates the findings when it scans images that have scanning enabled.</p>
 
         Args:
-            filters: <p>An array of name value pairs that you can use to filter your results. You can use the following filters to streamline results:</p> <ul> <li> <p> <code>imageBuildVersionArn</code> </p> </li> <li> <p> <code>imagePipelineArn</code> </p> </li> <li> <p> <code>vulnerabilityId</code> </p> </li> <li> <p> <code>severity</code> </p> </li> </ul> <p>If you don't request a filter, then all findings in your account are listed.</p>
-            max_results: <p>Specify the maximum number of items to return in a request.</p>
-            next_token: <p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>
+            filters: <p>An array of name value pairs that you can use to filter your results. You can use the following filters to streamline results:</p> <ul> <li> <p> <code>imageBuildVersionArn</code> – Filters findings by the image build version that was scanned.</p> </li> <li> <p> <code>imagePipelineArn</code> – Filters findings by the pipeline that created the scanned image.</p> </li> <li> <p> <code>vulnerabilityId</code> – Filters findings by vulnerability ID, for example a CVE ID.</p> </li> <li> <p> <code>severity</code> – Filters findings by severity level.</p> </li> </ul> <p>If you don't request a filter, then all findings in your account are listed.</p>
+            max_results: <p>The maximum number of items to return in a single request.</p>
+            next_token: <p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.invalid_pagination_token_exception.InvalidPaginationTokenException: <p>You have provided an invalid pagination token in your request.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List vulnerability findings for an image build
+            The following example lists the vulnerability findings that Amazon Inspector detected for the specified image build version.
+
+            >>> await client.list_image_scan_findings(filters=[{'name': 'imageBuildVersionArn', 'values': ['arn:aws:imagebuilder:us-west-2:111122223333:image/my-example-recipe/1.0.0/1']}])
         """
 
         async def _handler(
@@ -4247,18 +4629,24 @@ class AsyncimagebuilderClient:
 
         Args:
             filters: <p>You can filter on <code>name</code> to streamline results.</p>
-            max_results: <p>Specify the maximum number of items to return in a request.</p>
-            next_token: <p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>
+            max_results: <p>The maximum number of items to return in a single request.</p>
+            next_token: <p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.invalid_pagination_token_exception.InvalidPaginationTokenException: <p>You have provided an invalid pagination token in your request.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List infrastructure configurations by name
+            The following example lists your infrastructure configurations, filtered to a specific resource name.
+
+            >>> await client.list_infrastructure_configurations(filters=[{'name': 'name', 'values': ['my-example-infrastructure-configuration']}])
         """
 
         async def _handler(
@@ -4337,23 +4725,29 @@ class AsyncimagebuilderClient:
             "capo_imagebuilder.types.pagination_token.PaginationToken"
         ] = None,
     ) -> "capo_imagebuilder.types.list_lifecycle_execution_resources_response.ListLifecycleExecutionResourcesResponse":
-        """<p>List resources that the runtime instance of the image lifecycle identified for lifecycle actions.</p>
+        """<p>Lists resources that the runtime instance of the image lifecycle identified for lifecycle actions.</p>
 
         Args:
-            lifecycle_execution_id: <p>Use the unique identifier for a runtime instance of the lifecycle policy to get runtime details.</p>
-            parent_resource_id: <p>You can leave this empty to get a list of Image Builder resources that were identified for lifecycle actions.</p> <p>To get a list of associated resources that are impacted for an individual resource (the parent), specify its Amazon Resource Name (ARN). Associated resources are produced from your image and distributed when you run a build, such as AMIs or container images stored in ECR repositories.</p>
-            max_results: <p>Specify the maximum number of items to return in a request.</p>
-            next_token: <p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>
+            lifecycle_execution_id: <p>The unique identifier for a runtime instance of the lifecycle policy.</p>
+            parent_resource_id: <p>The Amazon Resource Name (ARN) of an image build version to get the output resources for, such as AMIs or container images in Amazon ECR. You can get this value from the <code>resourceId</code> in the top-level response. If you leave this property empty, the response lists the Image Builder resources that the lifecycle execution identified for lifecycle actions. If the image build version that you specify in <code>parentResourceId</code> wasn't part of this lifecycle execution, the response contains an empty list.</p>
+            max_results: <p>The maximum number of items to return in a single request.</p>
+            next_token: <p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.invalid_pagination_token_exception.InvalidPaginationTokenException: <p>You have provided an invalid pagination token in your request.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List the resources that a lifecycle execution acted on
+            The following example lists the resources that the specified lifecycle execution acted on. For a scheduled resource state update that hasn't started to apply changes yet, the resources list is empty.
+
+            >>> await client.list_lifecycle_execution_resources(lifecycle_execution_id='lce-401aefc3-a829-46f6-8fc2-91497988a503')
         """
 
         async def _handler(
@@ -4433,22 +4827,28 @@ class AsyncimagebuilderClient:
             "capo_imagebuilder.types.pagination_token.PaginationToken"
         ] = None,
     ) -> "capo_imagebuilder.types.list_lifecycle_executions_response.ListLifecycleExecutionsResponse":
-        """<p>Get the lifecycle runtime history for the specified resource.</p>
+        """<p>Retrieves the lifecycle runtime history for the specified resource.</p>
 
         Args:
-            max_results: <p>Specify the maximum number of items to return in a request.</p>
-            next_token: <p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>
-            resource_arn: <p>The Amazon Resource Name (ARN) of the resource for which to get a list of lifecycle runtime instances.</p>
+            max_results: <p>The maximum number of items to return in a single request.</p>
+            next_token: <p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>
+            resource_arn: <p>The Amazon Resource Name (ARN) of the resource for which to list lifecycle executions. Specify a lifecycle policy ARN to list its executions, or an image build version ARN to list the executions that <a>StartResourceStateUpdate</a> started for that image. Other ARN types aren't valid for this request.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.invalid_pagination_token_exception.InvalidPaginationTokenException: <p>You have provided an invalid pagination token in your request.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List lifecycle executions for an image build version
+            The following example lists the lifecycle executions that have run against the specified image build version. The execution shown was started with StartResourceStateUpdate rather than a lifecycle policy, so it has no lifecyclePolicyArn.
+
+            >>> await client.list_lifecycle_executions(resource_arn='arn:aws:imagebuilder:us-west-2:111122223333:image/my-example-recipe/1.0.0/1')
         """
 
         async def _handler(
@@ -4524,22 +4924,28 @@ class AsyncimagebuilderClient:
             "capo_imagebuilder.types.pagination_token.PaginationToken"
         ] = None,
     ) -> "capo_imagebuilder.types.list_lifecycle_policies_response.ListLifecyclePoliciesResponse":
-        """<p>Get a list of lifecycle policies in your Amazon Web Services account.</p>
+        """<p>Retrieves a list of lifecycle policies in your Amazon Web Services account.</p>
 
         Args:
-            filters: <p>Streamline results based on one of the following values: <code>Name</code>, <code>Status</code>.</p>
-            max_results: <p>Specify the maximum number of items to return in a request.</p>
-            next_token: <p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>
+            filters: <p>Use the following filters to streamline results: <code>name</code>, <code>resourceType</code>, and <code>status</code>. Filter names are matched exactly as shown.</p>
+            max_results: <p>The maximum number of items to return in a single request.</p>
+            next_token: <p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.invalid_pagination_token_exception.InvalidPaginationTokenException: <p>You have provided an invalid pagination token in your request.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List enabled lifecycle policies
+            The following example lists the lifecycle policies in your account that have ENABLED status.
+
+            >>> await client.list_lifecycle_policies(filters=[{'name': 'status', 'values': ['ENABLED']}])
         """
 
         async def _handler(
@@ -4615,8 +5021,14 @@ class AsyncimagebuilderClient:
         Raises:
             capo_imagebuilder.errors.invalid_parameter_exception.InvalidParameterException: <p>The specified parameter is invalid. Review the available parameters for the API request.</p>
             capo_imagebuilder.errors.resource_not_found_exception.ResourceNotFoundException: <p>At least one of the resources referenced by your request does not exist.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List the tags for a resource
+            The following example lists the tags that are assigned to an existing component build version.
+
+            >>> await client.list_tags_for_resource(resource_arn='arn:aws:imagebuilder:us-west-2:111122223333:component/my-example-component/1.0.0/1')
         """
 
         async def _handler(
@@ -4658,21 +5070,27 @@ class AsyncimagebuilderClient:
             "capo_imagebuilder.types.pagination_token.PaginationToken"
         ] = None,
     ) -> "capo_imagebuilder.types.list_waiting_workflow_steps_response.ListWaitingWorkflowStepsResponse":
-        """<p>Get a list of workflow steps that are waiting for action for workflows in your Amazon Web Services account.</p>
+        """<p>Lists the workflow steps in your Amazon Web Services account that have paused at a <code>WaitForAction</code> step, and are waiting for you to respond. To send a response, call <a>SendWorkflowStepAction</a>.</p>
 
         Args:
-            max_results: <p>Specify the maximum number of items to return in a request.</p>
-            next_token: <p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>
+            max_results: <p>The maximum number of items to return in a single request.</p>
+            next_token: <p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.invalid_pagination_token_exception.InvalidPaginationTokenException: <p>You have provided an invalid pagination token in your request.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List workflow steps that are waiting for an action
+            The following example lists the workflow steps in your account that are paused at a WaitForAction step, waiting for you to resume or stop the workflow with SendWorkflowStepAction.
+
+            >>> await client.list_waiting_workflow_steps(max_results=25)
         """
 
         async def _handler(
@@ -4747,19 +5165,25 @@ class AsyncimagebuilderClient:
         """<p>Returns a list of build versions for a specific workflow resource.</p>
 
         Args:
-            workflow_version_arn: <p>The Amazon Resource Name (ARN) of the workflow resource for which to get a list of build versions.</p>
-            max_results: <p>Specify the maximum number of items to return in a request.</p>
-            next_token: <p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>
+            workflow_version_arn: <p>The Amazon Resource Name (ARN) of the workflow resource for which to get a list of build versions. The version segments can contain wildcards (<code>x</code>) to match multiple versions of the workflow. If you don't specify an ARN, the response lists build versions for all of the workflows in your account.</p>
+            max_results: <p>The maximum number of items to return in a single request.</p>
+            next_token: <p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.invalid_pagination_token_exception.InvalidPaginationTokenException: <p>You have provided an invalid pagination token in your request.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List the build versions of a workflow
+            The following example lists the build versions that exist for version 1.0.0 of the specified workflow, with the most recent build version first and the change description for each build version showing what changed.
+
+            >>> await client.list_workflow_build_versions(workflow_version_arn='arn:aws:imagebuilder:us-west-2:111122223333:workflow/build/my-example-workflow/1.0.0')
         """
 
         async def _handler(
@@ -4838,19 +5262,25 @@ class AsyncimagebuilderClient:
         """<p>Returns a list of workflow runtime instance metadata objects for a specific image build version.</p>
 
         Args:
-            max_results: <p>Specify the maximum number of items to return in a request.</p>
-            next_token: <p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>
+            max_results: <p>The maximum number of items to return in a single request.</p>
+            next_token: <p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>
             image_build_version_arn: <p>List all workflow runtime instances for the specified image build version resource ARN.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.invalid_pagination_token_exception.InvalidPaginationTokenException: <p>You have provided an invalid pagination token in your request.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List the workflow runtime instances for an image build version
+            The following example lists the workflow runtime instances that ran for the specified image build version, which was built with the Image Builder default build and test workflows.
+
+            >>> await client.list_workflow_executions(image_build_version_arn='arn:aws:imagebuilder:us-west-2:111122223333:image/my-example-recipe/1.0.0/1')
         """
 
         async def _handler(
@@ -4926,24 +5356,30 @@ class AsyncimagebuilderClient:
             "capo_imagebuilder.types.pagination_token.PaginationToken"
         ] = None,
     ) -> "capo_imagebuilder.types.list_workflows_response.ListWorkflowsResponse":
-        """<p>Lists workflow build versions based on filtering parameters.</p>
+        """<p>Lists workflow versions based on filtering parameters. To list the build versions of a specific workflow version, call <a>ListWorkflowBuildVersions</a>.</p>
 
         Args:
-            owner: <p>Used to get a list of workflow build version filtered by the identity of the creator.</p>
-            filters: <p>Used to streamline search results.</p>
-            by_name: <p>Specify all or part of the workflow name to streamline results.</p>
-            max_results: <p>Specify the maximum number of items to return in a request.</p>
-            next_token: <p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>
+            owner: <p>Filters results based on the workflow owner. By default, this request returns the workflows that your account owns (<code>Self</code>). Specify <code>Amazon</code> to list the workflows that Image Builder manages. Image Builder rejects the <code>Shared</code> and <code>ThirdParty</code> owner values for workflows, and <code>AWSMarketplace</code> returns no results.</p>
+            filters: <p>Filters to narrow the list of workflows. You can filter on <code>name</code>, <code>version</code>, <code>description</code>, and <code>type</code>.</p>
+            by_name: <p>Specifies whether to return one entry per workflow name, with all versions of each workflow aggregated. Defaults to <code>false</code>, which returns one entry per workflow version. You can't combine this option with the <code>version</code> filter.</p>
+            max_results: <p>The maximum number of items to return in a single request.</p>
+            next_token: <p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.invalid_pagination_token_exception.InvalidPaginationTokenException: <p>You have provided an invalid pagination token in your request.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List workflows that you own
+            The following example lists the workflow versions that you own.
+
+            >>> await client.list_workflows(owner='Self')
         """
 
         async def _handler(
@@ -5028,19 +5464,25 @@ class AsyncimagebuilderClient:
         """<p>Returns runtime data for each step in a runtime instance of the workflow that you specify in the request.</p>
 
         Args:
-            max_results: <p>Specify the maximum number of items to return in a request.</p>
-            next_token: <p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>
+            max_results: <p>The maximum number of items to return in a single request.</p>
+            next_token: <p>A token to specify where to start paginating. Use the <code>nextToken</code> value from a previously truncated response.</p>
             workflow_execution_id: <p>The unique identifier that Image Builder assigned to keep track of runtime details when it ran the workflow.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.invalid_pagination_token_exception.InvalidPaginationTokenException: <p>You have provided an invalid pagination token in your request.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            List the steps that ran in a workflow execution
+            The following example lists runtime details for each step in the specified runtime instance of a workflow, in this case the build workflow from an image build.
+
+            >>> await client.list_workflow_step_executions(workflow_execution_id='wf-165b1cb6-3a62-4618-a021-94ddcbe32908')
         """
 
         async def _handler(
@@ -5109,22 +5551,28 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.put_component_policy_response.PutComponentPolicyResponse":
-        r"""<p>Applies a policy to a component. We recommend that you call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html\">CreateResourceShare</a> to share resources. If you call the Image Builder API <code>PutComponentPolicy</code>, you must also call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html\">PromoteResourceShareCreatedFromPolicy</a> in order for the resource to be visible to all principals with whom the resource is shared.</p>
+        r"""<p>Applies a policy to a component. The preferred way to share resources is with the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html\">CreateResourceShare</a>. If you use the PutComponentPolicy operation instead, you must also call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html\">PromoteResourceShareCreatedFromPolicy</a>. Otherwise, the resource isn't visible to the principals that it's shared with.</p>
 
         Args:
             component_arn: <p>The Amazon Resource Name (ARN) of the component that this policy should be applied to.</p>
             policy: <p>The policy to apply.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>The value that you provided for the specified parameter is invalid.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_not_found_exception.ResourceNotFoundException: <p>At least one of the resources referenced by your request does not exist.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Share a component with another account
+            The following example applies a resource policy that grants another account permission to get and list the component.
+
+            >>> await client.put_component_policy(component_arn='arn:aws:imagebuilder:us-west-2:111122223333:component/my-shared-component/1.0.0/1', policy='{"Version": "2012-10-17", "Statement": [{"Effect": "Allow", "Principal": {"AWS": "arn:aws:iam::444455556666:root"}, "Action": ["imagebuilder:GetComponent", "imagebuilder:ListComponents"], "Resource": ["arn:aws:imagebuilder:us-west-2:111122223333:component/my-shared-component/1.0.0/1"]}]}')
         """
 
         async def _handler(
@@ -5163,22 +5611,28 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.put_container_recipe_policy_response.PutContainerRecipePolicyResponse":
-        """<p>Applies a policy to a container image. We recommend that you call the RAM API CreateResourceShare (https://docs.aws.amazon.com//ram/latest/APIReference/API_CreateResourceShare.html) to share resources. If you call the Image Builder API <code>PutContainerImagePolicy</code>, you must also call the RAM API PromoteResourceShareCreatedFromPolicy (https://docs.aws.amazon.com//ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html) in order for the resource to be visible to all principals with whom the resource is shared.</p>
+        r"""<p>Applies a policy to a container recipe. The preferred way to share resources is with the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html\">CreateResourceShare</a>. If you use the PutContainerRecipePolicy operation instead, you must also call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html\">PromoteResourceShareCreatedFromPolicy</a>. Otherwise, the resource isn't visible to the principals that it's shared with.</p>
 
         Args:
             container_recipe_arn: <p>The Amazon Resource Name (ARN) of the container recipe that this policy should be applied to.</p>
             policy: <p>The policy to apply to the container recipe.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>The value that you provided for the specified parameter is invalid.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_not_found_exception.ResourceNotFoundException: <p>At least one of the resources referenced by your request does not exist.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Share a container recipe with another account
+            The following example applies a resource policy that grants another AWS account permission to view and use the specified container recipe.
+
+            >>> await client.put_container_recipe_policy(container_recipe_arn='arn:aws:imagebuilder:us-west-2:111122223333:container-recipe/my-example-container-recipe-shared/1.0.0', policy='{"Version": "2012-10-17", "Statement": [{"Sid": "AllowSharedAccountContainerRecipeAccess", "Effect": "Allow", "Principal": {"AWS": "arn:aws:iam::444455556666:root"}, "Action": ["imagebuilder:GetContainerRecipe", "imagebuilder:ListContainerRecipes"], "Resource": "arn:aws:imagebuilder:us-west-2:111122223333:container-recipe/my-example-container-recipe-shared/1.0.0"}]}')
         """
 
         async def _handler(
@@ -5217,22 +5671,28 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.put_image_policy_response.PutImagePolicyResponse":
-        r"""<p>Applies a policy to an image. We recommend that you call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html\">CreateResourceShare</a> to share resources. If you call the Image Builder API <code>PutImagePolicy</code>, you must also call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html\">PromoteResourceShareCreatedFromPolicy</a> in order for the resource to be visible to all principals with whom the resource is shared.</p>
+        r"""<p>Applies a policy to an image. The preferred way to share resources is with the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html\">CreateResourceShare</a>. If you use the PutImagePolicy operation instead, you must also call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html\">PromoteResourceShareCreatedFromPolicy</a>. Otherwise, the resource isn't visible to the principals that it's shared with.</p>
 
         Args:
             image_arn: <p>The Amazon Resource Name (ARN) of the image that this policy should be applied to.</p>
-            policy: <p>The policy to apply.</p>
+            policy: <p>The resource policy to apply to the image, as a JSON policy document. Image Builder validates the policy with Amazon Web Services RAM before applying it, and rejects invalid policies with <code>InvalidParameterValueException</code>.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>The value that you provided for the specified parameter is invalid.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_not_found_exception.ResourceNotFoundException: <p>At least one of the resources referenced by your request does not exist.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Share an image with another AWS account
+            The following example applies a resource policy to an image build version that grants another AWS account permission to view the image.
+
+            >>> await client.put_image_policy(image_arn='arn:aws:imagebuilder:us-west-2:111122223333:image/my-example-recipe/1.0.0/1', policy='{"Version": "2012-10-17", "Statement": [{"Effect": "Allow", "Principal": {"AWS": "arn:aws:iam::444455556666:root"}, "Action": ["imagebuilder:GetImage", "imagebuilder:ListImages"], "Resource": ["arn:aws:imagebuilder:us-west-2:111122223333:image/my-example-recipe/1.0.0/1"]}]}')
         """
 
         async def _handler(
@@ -5271,22 +5731,28 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.put_image_recipe_policy_response.PutImageRecipePolicyResponse":
-        r"""<p>Applies a policy to an image recipe. We recommend that you call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html\">CreateResourceShare</a> to share resources. If you call the Image Builder API <code>PutImageRecipePolicy</code>, you must also call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html\">PromoteResourceShareCreatedFromPolicy</a> in order for the resource to be visible to all principals with whom the resource is shared.</p>
+        r"""<p>Applies a policy to an image recipe. The preferred way to share resources is with the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html\">CreateResourceShare</a>. If you use the PutImageRecipePolicy operation instead, you must also call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html\">PromoteResourceShareCreatedFromPolicy</a>. Otherwise, the resource isn't visible to the principals that it's shared with.</p>
 
         Args:
             image_recipe_arn: <p>The Amazon Resource Name (ARN) of the image recipe that this policy should be applied to.</p>
             policy: <p>The policy to apply.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>The value that you provided for the specified parameter is invalid.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_not_found_exception.ResourceNotFoundException: <p>At least one of the resources referenced by your request does not exist.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Share an image recipe with another account
+            The following example applies a resource policy that grants another AWS account permission to view the specified image recipe.
+
+            >>> await client.put_image_recipe_policy(image_recipe_arn='arn:aws:imagebuilder:us-west-2:111122223333:image-recipe/my-example-recipe/1.0.0', policy='{"Version": "2012-10-17", "Statement": [{"Effect": "Allow", "Principal": {"AWS": "arn:aws:iam::444455556666:root"}, "Action": ["imagebuilder:GetImageRecipe", "imagebuilder:ListImageRecipes"], "Resource": "arn:aws:imagebuilder:us-west-2:111122223333:image-recipe/my-example-recipe/1.0.0"}]}')
         """
 
         async def _handler(
@@ -5325,22 +5791,28 @@ class AsyncimagebuilderClient:
         *,
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
     ) -> "capo_imagebuilder.types.retry_image_response.RetryImageResponse":
-        r"""<p>RetryImage retries an image distribution without rebuilding the image.</p>
+        r"""<p>Retries a failed or canceled image build without rebuilding the phases that already completed. The image re-runs asynchronously in place: the same build version returns to the test or distribution phase where it failed and continues from there. No new image build version is created. Retry is only supported for AMI-based images.</p>
 
         Args:
-            image_build_version_arn: <p>The source image Amazon Resource Name (ARN) to retry.</p>
-            client_token: <p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            image_build_version_arn: <p>The Amazon Resource Name (ARN) of the image build version that you want to retry. The image must be in the <code>FAILED</code> or <code>CANCELLED</code> state.</p>
+            client_token: <p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.idempotent_parameter_mismatch_exception.IdempotentParameterMismatchException: <p>You have specified a client token for an operation using parameter values that differ from a previous request that used the same client token.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_in_use_exception.ResourceInUseException: <p>The resource that you are trying to operate on is currently in use. Review the message details and retry later.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Retry an image build
+            The following example retries a cancelled image build, which resumes in place from the phase where it stopped.
+
+            >>> await client.retry_image(image_build_version_arn='arn:aws:imagebuilder:us-west-2:111122223333:image/my-example-recipe/1.0.0/1', client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLEfffff')
         """
 
         async def _handler(
@@ -5384,27 +5856,33 @@ class AsyncimagebuilderClient:
             "capo_imagebuilder.types.non_empty_string.NonEmptyString"
         ] = None,
     ) -> "capo_imagebuilder.types.send_workflow_step_action_response.SendWorkflowStepActionResponse":
-        r"""<p>Pauses or resumes image creation when the associated workflow runs a <code>WaitForAction</code> step.</p>
+        r"""<p>Sends an action to a workflow step that has paused at a <code>WaitForAction</code> step, so that image creation can continue. To find the steps that are waiting for an action, call <a>ListWaitingWorkflowSteps</a>.</p>
 
         Args:
-            step_execution_id: <p>Uniquely identifies the workflow step that sent the step action.</p>
-            image_build_version_arn: <p>The Amazon Resource Name (ARN) of the image build version to send action for.</p>
-            action: <p>The action for the image creation process to take while a workflow <code>WaitForAction</code> step waits for an asynchronous action to complete.</p>
-            reason: <p>The reason why this action is sent.</p>
-            client_token: <p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            step_execution_id: <p>Uniquely identifies the waiting workflow step that you send the action to. To get this identifier, call <a>ListWaitingWorkflowSteps</a>.</p>
+            image_build_version_arn: <p>The Amazon Resource Name (ARN) of the image build version associated with the workflow step execution. This value must match the image that owns the waiting step. If the ARN does not correspond to the image running the workflow, then the request fails with a validation error.</p>
+            action: <p>The action to perform on the paused workflow step. <code>RESUME</code> completes the waiting step, and the workflow continues. <code>STOP</code> fails the step, and the step's <code>onFailure</code> setting determines whether the workflow continues or aborts. The workflow step must be in a waiting state to accept an action. The request fails if the step has already timed out or been actioned.</p>
+            reason: <p>The reason for the action. This value is stored with the step execution record and is accessible in subsequent workflow steps via step output references.</p>
+            client_token: <p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.idempotent_parameter_mismatch_exception.IdempotentParameterMismatchException: <p>You have specified a client token for an operation using parameter values that differ from a previous request that used the same client token.</p>
             capo_imagebuilder.errors.invalid_parameter_value_exception.InvalidParameterValueException: <p>The value that you provided for the specified parameter is invalid.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_in_use_exception.ResourceInUseException: <p>The resource that you are trying to operate on is currently in use. Review the message details and retry later.</p>
             capo_imagebuilder.errors.resource_not_found_exception.ResourceNotFoundException: <p>At least one of the resources referenced by your request does not exist.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Stop a workflow step that is waiting for action
+            The following example sends the STOP action to a workflow step that has paused the image build, identified by the step execution ID that ListWaitingWorkflowSteps returns.
+
+            >>> await client.send_workflow_step_action(step_execution_id='step-8eb24d7a-036e-46b5-94a3-90a5d8b5ac4a', image_build_version_arn='arn:aws:imagebuilder:us-west-2:111122223333:image/my-example-wait-recipe/1.0.0/1', action='STOP', client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLE67890')
         """
 
         async def _handler(
@@ -5448,24 +5926,30 @@ class AsyncimagebuilderClient:
         config_overrides: Optional[AsyncimagebuilderClientConfig] = None,
         tags: Optional["capo_imagebuilder.types.tag_map.TagMap"] = None,
     ) -> "capo_imagebuilder.types.start_image_pipeline_execution_response.StartImagePipelineExecutionResponse":
-        r"""<p>Manually triggers a pipeline to create an image.</p>
+        r"""<p>Manually triggers a pipeline to create an image. You can start a build this way whether the pipeline is enabled or disabled. The response returns as soon as Image Builder creates the new image resource and queues the build. Use the returned <code>imageBuildVersionArn</code> with <a>GetImage</a> to track build progress.</p>
 
         Args:
             image_pipeline_arn: <p>The Amazon Resource Name (ARN) of the image pipeline that you want to manually invoke.</p>
-            client_token: <p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
-            tags: <p>Specify tags for Image Builder to apply to the image resource that's created When it starts pipeline execution.</p>
+            client_token: <p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            tags: <p>The tags for Image Builder to apply to the image resource that's created when pipeline execution starts.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.idempotent_parameter_mismatch_exception.IdempotentParameterMismatchException: <p>You have specified a client token for an operation using parameter values that differ from a previous request that used the same client token.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_in_use_exception.ResourceInUseException: <p>The resource that you are trying to operate on is currently in use. Review the message details and retry later.</p>
             capo_imagebuilder.errors.resource_not_found_exception.ResourceNotFoundException: <p>At least one of the resources referenced by your request does not exist.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Start a pipeline build manually
+            The following example starts a build for the specified pipeline. The response returns the ARN of the new image build version.
+
+            >>> await client.start_image_pipeline_execution(image_pipeline_arn='arn:aws:imagebuilder:us-west-2:111122223333:image-pipeline/my-example-pipeline', client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLE66666')
         """
 
         async def _handler(
@@ -5519,28 +6003,34 @@ class AsyncimagebuilderClient:
             "capo_imagebuilder.types.date_time_timestamp.DateTimeTimestamp"
         ] = None,
     ) -> "capo_imagebuilder.types.start_resource_state_update_response.StartResourceStateUpdateResponse":
-        r"""<p>Begin asynchronous resource state update for lifecycle changes to the specified image resources.</p>
+        r"""<p>Begins an ad-hoc state change for the specified image build version. This is a one-time operation - if you schedule the update, it runs only once. If the request includes underlying resources, or schedules the update far enough in the future, Image Builder runs the update as an asynchronous lifecycle execution and returns its identifier. Otherwise, for target states other than <code>DELETED</code>, the state change applies immediately. If a request that starts a lifecycle execution arrives while the image already has one in progress, Image Builder rejects it.</p>
 
         Args:
-            resource_arn: <p>The Amazon Resource Name (ARN) of the Image Builder resource that is updated. The state update might also impact associated resources.</p>
-            state: <p>Indicates the lifecycle action to take for this request.</p>
-            execution_role: <p>The name or Amazon Resource Name (ARN) of the IAM role that’s used to update image state.</p>
-            include_resources: <p>A list of image resources to update state for.</p>
-            exclusion_rules: <p>Skip action on the image resource and associated resources if specified exclusion rules are met.</p>
-            update_at: <p>The timestamp that indicates when resources are updated by a lifecycle action.</p>
-            client_token: <p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            resource_arn: <p>The Amazon Resource Name (ARN) of the image build version to update. The image must be in one of these terminal states: <code>AVAILABLE</code>, <code>DEPRECATED</code>, <code>DISABLED</code>, <code>FAILED</code>, or <code>CANCELLED</code>. Images with <code>FAILED</code> or <code>CANCELLED</code> status can transition only to <code>DELETED</code>.</p>
+            state: <p>Specifies the lifecycle action to take for this request. For AMI-based images, valid values are <code>AVAILABLE</code>, <code>DEPRECATED</code>, <code>DISABLED</code>, and <code>DELETED</code>. For container-based images, only <code>DELETED</code> is supported.</p>
+            execution_role: <p>The name or Amazon Resource Name (ARN) of the IAM role that's used to update image state. You must provide this property together with <code>includeResources</code>. Neither is valid without the other.</p>
+            include_resources: <p>Specifies which underlying resources to update, in addition to the Image Builder image resource itself. Snapshots and containers are only valid for the <code>DELETED</code> state. To set an image to <code>DELETED</code>, you must include its underlying resources. To delete only the Image Builder image record, use the <a>DeleteImage</a> operation instead.</p>
+            exclusion_rules: <p>Rules that Image Builder evaluates against each of the image's AMIs. Matching AMIs and their snapshots are skipped. Exclusion rules only take effect when the request includes AMIs. If the target state is <code>DELETED</code> and any resource was skipped, the Image Builder image resource itself is also retained. For the <code>DEPRECATED</code> and <code>DISABLED</code> target states, Image Builder updates the image resource's state regardless of exclusions.</p>
+            update_at: <p>The timestamp that indicates when resources are updated by a lifecycle action. This property is valid only when the target status is <code>DEPRECATED</code>, and the value must be a future time. If you don't specify a value, Image Builder begins the state update right away. For a scheduled deprecation, included AMIs get their EC2 deprecation time set immediately, and Image Builder schedules the image resource to transition to <code>DEPRECATED</code> at that time.</p>
+            client_token: <p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.idempotent_parameter_mismatch_exception.IdempotentParameterMismatchException: <p>You have specified a client token for an operation using parameter values that differ from a previous request that used the same client token.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_in_use_exception.ResourceInUseException: <p>The resource that you are trying to operate on is currently in use. Review the message details and retry later.</p>
             capo_imagebuilder.errors.resource_not_found_exception.ResourceNotFoundException: <p>At least one of the resources referenced by your request does not exist.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Schedule an image build version for deprecation
+            The following example schedules the specified image build version and its AMI to move to the DEPRECATED state at the requested future time. It returns the ID of the lifecycle execution that applies the update.
+
+            >>> await client.start_resource_state_update(resource_arn='arn:aws:imagebuilder:us-west-2:111122223333:image/my-example-recipe/1.0.0/1', state={'status': 'DEPRECATED'}, execution_role='arn:aws:iam::111122223333:role/my-example-state-update-role', include_resources={'amis': True}, update_at='2026-09-11T21:20:00Z', client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLE24680')
         """
 
         async def _handler(
@@ -5597,8 +6087,14 @@ class AsyncimagebuilderClient:
         Raises:
             capo_imagebuilder.errors.invalid_parameter_exception.InvalidParameterException: <p>The specified parameter is invalid. Review the available parameters for the API request.</p>
             capo_imagebuilder.errors.resource_not_found_exception.ResourceNotFoundException: <p>At least one of the resources referenced by your request does not exist.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Add tags to a component build version
+            The following example adds two tags to a component build version.
+
+            >>> await client.tag_resource(resource_arn='arn:aws:imagebuilder:us-west-2:111122223333:component/my-example-tagged-component/1.0.0/1', tags={'Environment': 'Production', 'CostCenter': '12345'})
         """
 
         async def _handler(
@@ -5646,8 +6142,14 @@ class AsyncimagebuilderClient:
         Raises:
             capo_imagebuilder.errors.invalid_parameter_exception.InvalidParameterException: <p>The specified parameter is invalid. Review the available parameters for the API request.</p>
             capo_imagebuilder.errors.resource_not_found_exception.ResourceNotFoundException: <p>At least one of the resources referenced by your request does not exist.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Remove a tag from a resource
+            The following example removes the CostCenter tag key from the specified component build version.
+
+            >>> await client.untag_resource(resource_arn='arn:aws:imagebuilder:us-west-2:111122223333:component/my-example-tagged-component/1.0.0/1', tag_keys=['CostCenter'])
         """
 
         async def _handler(
@@ -5690,25 +6192,31 @@ class AsyncimagebuilderClient:
             "capo_imagebuilder.types.non_empty_string.NonEmptyString"
         ] = None,
     ) -> "capo_imagebuilder.types.update_distribution_configuration_response.UpdateDistributionConfigurationResponse":
-        r"""<p>Updates a new distribution configuration. Distribution configurations define and configure the outputs of your pipeline.</p>
+        r"""<p>Updates a distribution configuration. Distribution configurations define and configure the outputs for your images, including the target Regions, accounts, and settings for each Region.</p> <note> <p>This operation doesn't support selective updates. The request replaces the stored configuration, so include every setting that you want to keep.</p> </note>
 
         Args:
             distribution_configuration_arn: <p>The Amazon Resource Name (ARN) of the distribution configuration that you want to update.</p>
             description: <p>The description of the distribution configuration.</p>
-            distributions: <p>The distributions of the distribution configuration.</p>
-            client_token: <p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            distributions: <p>The distribution settings for the configuration. Each entry defines how output images are distributed in one target Amazon Web Services Region. A Region can appear at most once in the list. This list replaces the configuration's existing distributions entirely.</p>
+            client_token: <p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.idempotent_parameter_mismatch_exception.IdempotentParameterMismatchException: <p>You have specified a client token for an operation using parameter values that differ from a previous request that used the same client token.</p>
-            capo_imagebuilder.errors.invalid_parameter_combination_exception.InvalidParameterCombinationException: <p>You have specified two or more mutually exclusive parameters. Review the error message for details.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_parameter_combination_exception.InvalidParameterCombinationException: <p>You have specified a combination of parameters that isn't valid. For example, two mutually exclusive parameters, or a parameter without its required companion parameter. Review the error message for details.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_in_use_exception.ResourceInUseException: <p>The resource that you are trying to operate on is currently in use. Review the message details and retry later.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Update a distribution configuration
+            The following example replaces the distribution settings for the specified configuration with a single distribution that names the output AMI with the build date.
+
+            >>> await client.update_distribution_configuration(distribution_configuration_arn='arn:aws:imagebuilder:us-west-2:111122223333:distribution-configuration/my-example-distribution', distributions=[{'region': 'us-west-2', 'amiDistributionConfiguration': {'name': 'my-example-image-{{ imagebuilder:buildDate }}'}}], client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLEccccc')
         """
 
         async def _handler(
@@ -5786,36 +6294,42 @@ class AsyncimagebuilderClient:
         ] = None,
         image_tags: Optional["capo_imagebuilder.types.tag_map.TagMap"] = None,
     ) -> "capo_imagebuilder.types.update_image_pipeline_response.UpdateImagePipelineResponse":
-        r"""<p>Updates an image pipeline. Image pipelines enable you to automate the creation and distribution of images. You must specify exactly one recipe for your image, using either a <code>containerRecipeArn</code> or an <code>imageRecipeArn</code>.</p> <note> <p>UpdateImagePipeline does not support selective updates for the pipeline. You must specify all of the required properties in the update request, not just the properties that have changed.</p> </note>
+        r"""<p>Updates an image pipeline. Use image pipelines to automate the creation and distribution of images. You must specify exactly one recipe for your image, using either a <code>containerRecipeArn</code> or an <code>imageRecipeArn</code>. The recipe must be the same type, image or container, as the pipeline's current recipe.</p> <note> <p>UpdateImagePipeline does not support selective updates. The request replaces the pipeline's entire configuration, so include every setting that you want to keep. Any optional property that you omit is removed or reset to its default.</p> </note>
 
         Args:
             image_pipeline_arn: <p>The Amazon Resource Name (ARN) of the image pipeline that you want to update.</p>
             description: <p>The description of the image pipeline.</p>
-            image_recipe_arn: <p>The Amazon Resource Name (ARN) of the image recipe that will be used to configure images updated by this image pipeline.</p>
-            container_recipe_arn: <p>The Amazon Resource Name (ARN) of the container pipeline to update.</p>
-            infrastructure_configuration_arn: <p>The Amazon Resource Name (ARN) of the infrastructure configuration that Image Builder uses to build images that this image pipeline has updated.</p>
-            distribution_configuration_arn: <p>The Amazon Resource Name (ARN) of the distribution configuration that Image Builder uses to configure and distribute images that this image pipeline has updated.</p>
-            image_tests_configuration: <p>The image test configuration of the image pipeline.</p>
-            enhanced_image_metadata_enabled: <p>Collects additional information about the image being created, including the operating system (OS) version and package list. This information is used to enhance the overall experience of using EC2 Image Builder. Enabled by default.</p>
-            schedule: <p>The schedule of the image pipeline.</p>
-            status: <p>The status of the image pipeline.</p>
-            client_token: <p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
-            image_scanning_configuration: <p>Contains settings for vulnerability scans.</p>
-            workflows: <p>Contains the workflows to run for the pipeline.</p>
-            logging_configuration: <p>Update logging configuration for the output image that's created when the pipeline runs.</p>
-            execution_role: <p>The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image Builder access to perform workflow actions.</p>
-            image_tags: <p>The tags to be applied to the images produced by this pipeline.</p>
+            image_recipe_arn: <p>The Amazon Resource Name (ARN) of the image recipe that configures images created by this image pipeline. You must specify either this property or <code>containerRecipeArn</code>, but not both.</p>
+            container_recipe_arn: <p>The Amazon Resource Name (ARN) of the container recipe that is used to configure images created by this container pipeline. You must specify either this property or <code>imageRecipeArn</code>, but not both.</p>
+            infrastructure_configuration_arn: <p>The Amazon Resource Name (ARN) of the infrastructure configuration that Image Builder uses to build images created by this image pipeline.</p>
+            distribution_configuration_arn: <p>The Amazon Resource Name (ARN) of the distribution configuration that Image Builder uses to configure and distribute images created by this image pipeline.</p>
+            image_tests_configuration: <p>Specifies the test settings that Image Builder applies to images that this pipeline creates. If you don't provide test settings, Image Builder stores a default configuration with image tests enabled.</p>
+            enhanced_image_metadata_enabled: <p>Specifies whether to collect additional information about the image being created, including the operating system (OS) version and package list. Defaults to <code>true</code>.</p>
+            schedule: <p>The schedule of the image pipeline. Because the update replaces the entire configuration, omitting this property removes any existing schedule. The pipeline then runs only when you call <a>StartImagePipelineExecution</a>.</p>
+            status: <p>The status of the image pipeline. Defaults to <code>ENABLED</code> when omitted. To keep a pipeline disabled, include this property set to <code>DISABLED</code> in your update request.</p>
+            client_token: <p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            image_scanning_configuration: <p>Contains settings for vulnerability scans that Amazon Inspector runs against the test instance during image creation.</p>
+            workflows: <p>The array of workflow configuration objects for builds that this pipeline starts. You must also specify <code>executionRole</code> when you provide workflows.</p>
+            logging_configuration: <p>Specifies the logging configuration for the image pipeline. Use this to define custom CloudWatch Logs log groups for your pipeline execution logs and image build logs. The service manages log groups with names starting with <code>/aws/imagebuilder/</code> using the service-linked role. For custom log group names outside of this prefix, you must also provide an <code>executionRole</code>.</p>
+            execution_role: <p>The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image Builder access to perform workflow actions. If you omit this property, the pipeline reverts to the Image Builder service-linked role.</p>
+            image_tags: <p>The tags that Image Builder applies to the Image Builder image resource that this pipeline's scheduled executions create. These tags don't apply to the output AMI. To tag output AMIs, use <code>amiTags</code> in the pipeline's distribution configuration.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.idempotent_parameter_mismatch_exception.IdempotentParameterMismatchException: <p>You have specified a client token for an operation using parameter values that differ from a previous request that used the same client token.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_in_use_exception.ResourceInUseException: <p>The resource that you are trying to operate on is currently in use. Review the message details and retry later.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Update an image pipeline
+            The following example changes the pipeline's schedule to build every day at 6:00 AM UTC.
+
+            >>> await client.update_image_pipeline(image_pipeline_arn='arn:aws:imagebuilder:us-west-2:111122223333:image-pipeline/my-example-pipeline', image_recipe_arn='arn:aws:imagebuilder:us-west-2:111122223333:image-recipe/my-example-recipe/1.0.0', infrastructure_configuration_arn='arn:aws:imagebuilder:us-west-2:111122223333:infrastructure-configuration/my-example-infrastructure', schedule={'scheduleExpression': 'cron(0 6 * * ? *)', 'pipelineExecutionStartCondition': 'EXPRESSION_MATCH_AND_DEPENDENCY_UPDATES_AVAILABLE'}, status='ENABLED', client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLEddddd')
         """
 
         async def _handler(
@@ -5911,34 +6425,40 @@ class AsyncimagebuilderClient:
         ] = None,
         placement: Optional["capo_imagebuilder.types.placement.Placement"] = None,
     ) -> "capo_imagebuilder.types.update_infrastructure_configuration_response.UpdateInfrastructureConfigurationResponse":
-        r"""<p>Updates a new infrastructure configuration. An infrastructure configuration defines the environment in which your image will be built and tested.</p>
+        r"""<p>Updates an infrastructure configuration. An infrastructure configuration defines the environment in which Image Builder builds and tests your image.</p> <note> <p>This operation doesn't support selective updates. The request replaces the configuration, so include every setting that you want to keep. Omitted optional properties are cleared.</p> </note>
 
         Args:
             infrastructure_configuration_arn: <p>The Amazon Resource Name (ARN) of the infrastructure configuration that you want to update.</p>
             description: <p>The description of the infrastructure configuration.</p>
-            instance_types: <p>The instance types of the infrastructure configuration. You can specify one or more instance types to use for this build. The service will pick one of these instance types based on availability.</p>
-            instance_profile_name: <p>The instance profile to associate with the instance used to customize your Amazon EC2 AMI.</p>
+            instance_types: <p>The instance types of the infrastructure configuration. You can specify one or more instance types to use for this build. Image Builder picks one of these instance types based on availability. If you don't specify instance types, Image Builder selects compatible instance types automatically. If you specify a Dedicated Host, Image Builder uses only instance types that the host supports.</p>
+            instance_profile_name: <p>The instance profile to associate with the instance used to customize your Amazon EC2 AMI. The instance profile must exist in your account.</p>
             security_group_ids: <p>The security group IDs to associate with the instance used to customize your Amazon EC2 AMI.</p>
-            subnet_id: <p>The subnet ID to place the instance used to customize your Amazon EC2 AMI in.</p>
-            logging: <p>The logging configuration of the infrastructure configuration.</p>
+            subnet_id: <p>The subnet ID in which to place the instance used to customize your Amazon EC2 AMI. If you specify <code>subnetId</code>, you must also specify one or more security group IDs in <code>securityGroupIds</code>. Otherwise, the request fails.</p>
+            logging: <p>The logging configuration of the infrastructure configuration. When you configure S3 logs, Image Builder writes logs from the build and test process to the specified bucket under the key prefix.</p>
             key_pair: <p>The key pair of the infrastructure configuration. You can use this to log on to and debug the instance used to create your image.</p>
-            terminate_instance_on_failure: <p>The terminate instance on failure setting of the infrastructure configuration. Set to false if you want Image Builder to retain the instance used to configure your AMI if the build or test phase of your workflow fails.</p>
-            sns_topic_arn: <p>The Amazon Resource Name (ARN) for the SNS topic to which we send image build event notifications.</p> <note> <p>EC2 Image Builder is unable to send notifications to SNS topics that are encrypted using keys from other accounts. The key that is used to encrypt the SNS topic must reside in the account that the Image Builder service runs under.</p> </note>
-            resource_tags: <p>The tags attached to the resource created by Image Builder.</p>
-            instance_metadata_options: <p>The instance metadata options that you can set for the HTTP requests that pipeline builds use to launch EC2 build and test instances. For more information about instance metadata options, see one of the following links:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-options.html\">Configure the instance metadata options</a> in the <i> <i>Amazon EC2 User Guide</i> </i> for Linux instances.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/configuring-instance-metadata-options.html\">Configure the instance metadata options</a> in the <i> <i>Amazon EC2 Windows Guide</i> </i> for Windows instances.</p> </li> </ul>
-            placement: <p>The instance placement settings that define where the instances that are launched from your image will run.</p>
-            client_token: <p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            terminate_instance_on_failure: <p>Specifies whether to terminate the instance on failure. Set to false if you want Image Builder to retain the instance used to configure your AMI if the build or test phase of your workflow fails. Defaults to <code>true</code>.</p>
+            sns_topic_arn: <p>The Amazon Resource Name (ARN) of the SNS topic to which Image Builder sends image build event notifications. Specify a standard topic. Image Builder doesn't support FIFO topics. Image Builder validates the topic when you create or update the configuration. You must have permission to publish to the topic.</p> <note> <p>EC2 Image Builder can't send notifications to SNS topics that are encrypted using keys from other accounts. If your SNS topic is encrypted, the key must be owned by the same account that owns your Image Builder resources.</p> </note>
+            resource_tags: <p>The metadata tags to assign to the Amazon EC2 instance that Image Builder launches during the build process. Tags are formatted as key value pairs. Tag keys can't begin with <code>aws:</code> or match one of the following reserved keys: <code>CreatedBy</code>, <code>Ec2ImageBuilderArn</code>, <code>Name</code>, or <code>Tags</code>.</p>
+            instance_metadata_options: <p>The instance metadata service (IMDS) settings that Image Builder applies to the EC2 build and test instances it launches during image creation. If you don't set these options, the EC2 launch defaults for the instance apply. For more information about instance metadata options, see one of the following links:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-options.html\">Configure the instance metadata options</a> in the <i> <i>Amazon EC2 User Guide</i> </i> for Linux instances.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/configuring-instance-metadata-options.html\">Configure the instance metadata options</a> in the <i> <i>Amazon EC2 Windows Guide</i> </i> for Windows instances.</p> </li> </ul>
+            placement: <p>The instance placement settings that define where the build and test instances that Image Builder launches during image creation run. These settings don't affect instances that you launch from the output image.</p>
+            client_token: <p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.idempotent_parameter_mismatch_exception.IdempotentParameterMismatchException: <p>You have specified a client token for an operation using parameter values that differ from a previous request that used the same client token.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_in_use_exception.ResourceInUseException: <p>The resource that you are trying to operate on is currently in use. Review the message details and retry later.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Update an infrastructure configuration
+            The following example updates an infrastructure configuration to use larger instance types and to keep the build instance running when the image build fails.
+
+            >>> await client.update_infrastructure_configuration(infrastructure_configuration_arn='arn:aws:imagebuilder:us-west-2:111122223333:infrastructure-configuration/my-example-infrastructure', description='An infrastructure configuration for Amazon Linux builds', instance_profile_name='EC2InstanceProfileForImageBuilder', instance_types=['t3.large', 't3.xlarge'], terminate_instance_on_failure=False, client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLEbbbbb')
         """
 
         async def _handler(
@@ -6010,29 +6530,35 @@ class AsyncimagebuilderClient:
             "capo_imagebuilder.types.lifecycle_policy_status.LifecyclePolicyStatus"
         ] = None,
     ) -> "capo_imagebuilder.types.update_lifecycle_policy_response.UpdateLifecyclePolicyResponse":
-        r"""<p>Update the specified lifecycle policy.</p>
+        r"""<p>Updates the specified lifecycle policy. The request replaces the existing policy configuration rather than merging changes, so re-specify every setting that you want to keep. The <code>resourceType</code> must match the existing policy's value.</p>
 
         Args:
             lifecycle_policy_arn: <p>The Amazon Resource Name (ARN) of the lifecycle policy resource.</p>
-            description: <p>Optional description for the lifecycle policy.</p>
-            status: <p>Indicates whether the lifecycle policy resource is enabled.</p>
-            execution_role: <p>The name or Amazon Resource Name (ARN) of the IAM role that Image Builder uses to update the lifecycle policy.</p>
-            resource_type: <p>The type of image resource that the lifecycle policy applies to.</p>
+            description: <p>Optional description for the lifecycle policy. Because the update replaces the entire configuration, omitting this property removes any existing description.</p>
+            status: <p>Indicates whether the lifecycle policy resource is enabled. Defaults to <code>ENABLED</code> when omitted, so updating a disabled policy without setting this property re-enables it.</p>
+            execution_role: <p>The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image Builder access to run lifecycle actions.</p>
+            resource_type: <p>The type of image resource that the lifecycle policy applies to. The value must match the policy's existing resource type. You can't change the resource type of an existing lifecycle policy.</p>
             policy_details: <p>The configuration details for a lifecycle policy resource.</p>
-            resource_selection: <p>Selection criteria for resources that the lifecycle policy applies to.</p>
-            client_token: <p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
+            resource_selection: <p>Selection criteria for resources that the lifecycle policy applies to. You must specify exactly one selection criteria: either recipes or a tag map, not both.</p>
+            client_token: <p>A unique, case-sensitive identifier you provide to ensure that the operation runs no more than one time. If you retry a request with the same client token, Image Builder returns the original response without running the operation again. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>
 
         Raises:
-            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the specific operation.</p>
-            capo_imagebuilder.errors.client_exception.ClientException: <p>These errors are usually caused by a client action, such as using an action or resource on behalf of a user that doesn't have permissions to use the action or resource, or specifying an invalid resource identifier.</p>
+            capo_imagebuilder.errors.call_rate_limit_exceeded_exception.CallRateLimitExceededException: <p>You have exceeded the permitted request rate for the Amazon EC2 APIs that Image Builder calls on your behalf. Retry with an increasing or variable delay between requests.</p>
+            capo_imagebuilder.errors.client_exception.ClientException: <p>A generic client error. This error usually indicates that the request failed a validation check, such as when a downstream service rejects a configured value.</p>
             capo_imagebuilder.errors.forbidden_exception.ForbiddenException: <p>You are not authorized to perform the requested operation.</p>
             capo_imagebuilder.errors.idempotent_parameter_mismatch_exception.IdempotentParameterMismatchException: <p>You have specified a client token for an operation using parameter values that differ from a previous request that used the same client token.</p>
-            capo_imagebuilder.errors.invalid_parameter_combination_exception.InvalidParameterCombinationException: <p>You have specified two or more mutually exclusive parameters. Review the error message for details.</p>
-            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>You have requested an action that that the service doesn't support.</p>
+            capo_imagebuilder.errors.invalid_parameter_combination_exception.InvalidParameterCombinationException: <p>You have specified a combination of parameters that isn't valid. For example, two mutually exclusive parameters, or a parameter without its required companion parameter. Review the error message for details.</p>
+            capo_imagebuilder.errors.invalid_request_exception.InvalidRequestException: <p>The request is malformed or otherwise invalid. Verify the request and try again.</p>
             capo_imagebuilder.errors.resource_in_use_exception.ResourceInUseException: <p>The resource that you are trying to operate on is currently in use. Review the message details and retry later.</p>
-            capo_imagebuilder.errors.service_exception.ServiceException: <p>This exception is thrown when the service encounters an unrecoverable exception.</p>
+            capo_imagebuilder.errors.service_exception.ServiceException: <p>An internal server error occurred while Image Builder processed the request. Retrying the request may succeed.</p>
             capo_imagebuilder.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service is unable to process your request at this time.</p>
             capo_imagebuilder.errors.UnknownServiceError: The service returned an error code this client does not model.
+
+        Examples:
+            Update a lifecycle policy
+            The following example updates a lifecycle policy to delete AMI images and their associated snapshots after 12 months, retaining the 3 most recent images.
+
+            >>> await client.update_lifecycle_policy(lifecycle_policy_arn='arn:aws:imagebuilder:us-west-2:111122223333:lifecycle-policy/my-example-policy', description='Deletes AMI images and their snapshots after 12 months, retaining the 3 most recent', status='ENABLED', execution_role='arn:aws:iam::111122223333:role/my-example-lifecycle-role', resource_type='AMI_IMAGE', policy_details=[{'action': {'type': 'DELETE', 'includeResources': {'amis': True, 'snapshots': True}}, 'filter': {'type': 'AGE', 'value': 12, 'unit': 'MONTHS', 'retainAtLeast': 3}}], resource_selection={'tagMap': {'environment': 'production'}}, client_token='a1b2c3d4-5678-90ab-cdef-EXAMPLEaaaaa')
         """
 
         async def _handler(

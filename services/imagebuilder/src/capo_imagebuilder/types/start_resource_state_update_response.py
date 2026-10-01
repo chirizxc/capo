@@ -13,7 +13,7 @@ class StartResourceStateUpdateResponse(TypedDict, closed=True):
     lifecycle_execution_id: NotRequired[
         "capo_imagebuilder.types.lifecycle_execution_id.LifecycleExecutionId"
     ]
-    """<p>Identifies the lifecycle runtime instance that started the resource state update.</p>"""
+    """<p>Identifies the lifecycle execution that performs the resource state update. Image Builder only returns this field when it started a lifecycle execution for the update. Use it with <a>GetLifecycleExecution</a> to track progress.</p>"""
     resource_arn: NotRequired[
         "capo_imagebuilder.types.image_build_version_arn.ImageBuildVersionArn"
     ]

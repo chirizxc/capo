@@ -17,6 +17,7 @@ import capo_connect.errors.internal_service_exception
 import capo_connect.errors.invalid_parameter_exception
 import capo_connect.errors.invalid_request_exception
 import capo_connect.errors.resource_not_found_exception
+import capo_connect.errors.throttling_exception
 import capo_connect.errors.user_not_found_exception
 import capo_connect.types.credentials
 import capo_connect.types.get_federation_token_request
@@ -49,6 +50,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "ResourceNotFoundException":
             raise capo_connect.errors.resource_not_found_exception.ResourceNotFoundException.from_json(
+                data, message
+            )
+        case "ThrottlingException":
+            raise capo_connect.errors.throttling_exception.ThrottlingException.from_json(
                 data, message
             )
         case "UserNotFoundException":

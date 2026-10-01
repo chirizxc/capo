@@ -9,6 +9,7 @@ from capo_ec2._protocol.xml import Element
 if TYPE_CHECKING:
     import capo_ec2.types.block_device_mapping_request_list
     import capo_ec2.types.boolean
+    import capo_ec2.types.boot_mode_override_values
     import capo_ec2.types.image_description_request
     import capo_ec2.types.image_name_request
     import capo_ec2.types.instance_id
@@ -24,7 +25,11 @@ class CreateImageRequest(TypedDict, closed=True):
     snapshot_location: NotRequired[
         "capo_ec2.types.snapshot_location_enum.SnapshotLocationEnum"
     ]
-    """<note> <p>Only supported for instances in Local Zones. If the source instance is not in a Local Zone, omit this parameter.</p> </note> <p>The Amazon S3 location where the snapshots will be stored.</p> <ul> <li> <p>To create local snapshots in the same Local Zone as the source instance, specify <code>local</code>.</p> </li> <li> <p>To create regional snapshots in the parent Region of the Local Zone, specify <code>regional</code> or omit this parameter.</p> </li> </ul> <p>Default: <code>regional</code> </p>"""
+    """<note> <p>Only supported for instances in Local Zones and for instances on Outposts that support local snapshots. If the source instance is not in one of these locations, omit this parameter.</p> </note> <p>The Amazon S3 location where the snapshots will be stored.</p> <ul> <li> <p>To create local snapshots in the same Local Zone or on the same Outpost as the source instance, specify <code>local</code>.</p> </li> <li> <p>To create regional snapshots in the parent Region of the Local Zone or Outpost, specify <code>regional</code>.</p> </li> </ul> <p>If the source instance is in a Local Zone and you omit this parameter, regional snapshots are created in the parent Region of the Local Zone.</p> <p>If the source instance is on an Outpost that supports local snapshots, this parameter is required. If you omit it, the request fails with an <code>InvalidParameterValue</code> error.</p> <p>Default: <code>regional</code> (for instances in Local Zones only)</p>"""
+    boot_mode_override: NotRequired[
+        "capo_ec2.types.boot_mode_override_values.BootModeOverrideValues"
+    ]
+    r"""<p>The boot mode of the new image, which overrides the default boot mode. By default, if you do not specify this parameter, the new image inherits the <code>boot-mode</code> from the source instance.</p> <p>A value of <code>uefi</code> indicates that the image only supports UEFI boot mode. You can specify this parameter only if the <code>current-instance-boot-mode</code> of the source instance is <code>uefi</code>. To find the <code>boot-mode</code> or <code>current-instance-boot-mode</code> of an instance, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html\">DescribeInstances</a>.</p> <note> <p>The operating system contained in the AMI must be configured to support the specified boot mode.</p> </note> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-boot.html\">Instance launch behavior with Amazon EC2 boot modes</a> in the <i>Amazon EC2 User Guide</i>.</p>"""
     dry_run: NotRequired["capo_ec2.types.boolean.Boolean"]
     """<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>"""
     instance_id: NotRequired["capo_ec2.types.instance_id.InstanceId"]
@@ -59,6 +64,12 @@ def serialize_ec2_query(
 
         capo_ec2.types.snapshot_location_enum.serialize_ec2_query(
             value["snapshot_location"], pairs, f"{key_prefix}SnapshotLocation"
+        )
+    if "boot_mode_override" in value:
+        import capo_ec2.types.boot_mode_override_values
+
+        capo_ec2.types.boot_mode_override_values.serialize_ec2_query(
+            value["boot_mode_override"], pairs, f"{key_prefix}BootModeOverride"
         )
     if "dry_run" in value:
         pairs.append((f"{key_prefix}DryRun", "true" if value["dry_run"] else "false"))
@@ -98,6 +109,15 @@ def deserialize_ec2_query(el: Element) -> CreateImageRequest:
         out["snapshot_location"] = (
             capo_ec2.types.snapshot_location_enum.deserialize_ec2_query(
                 child_snapshot_location
+            )
+        )
+    child_boot_mode_override = el.find("BootModeOverride")
+    if child_boot_mode_override is not None:
+        import capo_ec2.types.boot_mode_override_values
+
+        out["boot_mode_override"] = (
+            capo_ec2.types.boot_mode_override_values.deserialize_ec2_query(
+                child_boot_mode_override
             )
         )
     child_dry_run = el.find("dryRun")

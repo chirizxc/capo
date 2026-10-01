@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     import capo_observabilityadmin.types.cloudtrail_parameters
     import capo_observabilityadmin.types.destination_type
     import capo_observabilityadmin.types.elb_load_balancer_logging_parameters
+    import capo_observabilityadmin.types.kms_key_arn
     import capo_observabilityadmin.types.log_delivery_parameters
     import capo_observabilityadmin.types.msk_monitoring_parameters
     import capo_observabilityadmin.types.retention_period_in_days
@@ -45,11 +46,13 @@ class TelemetryDestinationConfiguration(TypedDict, closed=True):
     log_delivery_parameters: NotRequired[
         "capo_observabilityadmin.types.log_delivery_parameters.LogDeliveryParameters"
     ]
-    """<p>Configuration parameters specific to Amazon Bedrock AgentCore logging when Amazon Bedrock AgentCore is the resource type.</p>"""
+    """<p>The configuration parameters for log delivery when the resource type supports configurable log types, such as Amazon Bedrock Knowledge Bases or Elastic Load Balancing Application Load Balancers.</p>"""
     msk_monitoring_parameters: NotRequired[
         "capo_observabilityadmin.types.msk_monitoring_parameters.MskMonitoringParameters"
     ]
     """<p> Configuration parameters specific to MSK monitoring when MSK is the resource type. </p>"""
+    kms_key_arn: NotRequired["capo_observabilityadmin.types.kms_key_arn.KmsKeyArn"]
+    """<p> The Amazon Resource Name (ARN) of the customer-managed Amazon Web Services KMS key used to encrypt the log groups created during telemetry rule remediation. </p>"""
 
 
 # --- restJson1 ser/de ---
@@ -115,6 +118,8 @@ def serialize_json(value: TelemetryDestinationConfiguration) -> dict:
                 value["msk_monitoring_parameters"]
             )
         )
+    if "kms_key_arn" in value:
+        out["KmsKeyArn"] = value["kms_key_arn"]
     return out
 
 
@@ -180,4 +185,6 @@ def deserialize_json(data: dict) -> TelemetryDestinationConfiguration:
                 data["MskMonitoringParameters"]
             )
         )
+    if data.get("KmsKeyArn") is not None:
+        out["kms_key_arn"] = data["KmsKeyArn"]
     return out

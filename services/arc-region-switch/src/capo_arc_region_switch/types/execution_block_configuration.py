@@ -22,6 +22,7 @@ if TYPE_CHECKING:
     import capo_arc_region_switch.types.parallel_execution_block_configuration
     import capo_arc_region_switch.types.rds_create_cross_region_replica_configuration
     import capo_arc_region_switch.types.rds_promote_read_replica_configuration
+    import capo_arc_region_switch.types.rds_switchover_read_replica_configuration
     import capo_arc_region_switch.types.region_switch_plan_configuration
     import capo_arc_region_switch.types.route53_health_check_configuration
 
@@ -104,6 +105,12 @@ class _ExecutionBlockConfiguration_neptuneGlobalDatabaseConfig(TypedDict, closed
     neptuneGlobalDatabaseConfig: "capo_arc_region_switch.types.neptune_global_database_configuration.NeptuneGlobalDatabaseConfiguration"
 
 
+class _ExecutionBlockConfiguration_rdsSwitchoverReadReplicaConfig(
+    TypedDict, closed=True
+):
+    rdsSwitchoverReadReplicaConfig: "capo_arc_region_switch.types.rds_switchover_read_replica_configuration.RdsSwitchoverReadReplicaConfiguration"
+
+
 ExecutionBlockConfiguration: TypeAlias = (
     _ExecutionBlockConfiguration_customActionLambdaConfig
     | _ExecutionBlockConfiguration_ec2AsgCapacityIncreaseConfig
@@ -122,6 +129,7 @@ ExecutionBlockConfiguration: TypeAlias = (
     | _ExecutionBlockConfiguration_auroraServerlessScalingConfig
     | _ExecutionBlockConfiguration_auroraProvisionedScalingConfig
     | _ExecutionBlockConfiguration_neptuneGlobalDatabaseConfig
+    | _ExecutionBlockConfiguration_rdsSwitchoverReadReplicaConfig
 )
 
 
@@ -263,6 +271,14 @@ def serialize_aws_json_1_0(value: ExecutionBlockConfiguration) -> dict:
                 value["neptuneGlobalDatabaseConfig"]
             )
         }
+    elif "rdsSwitchoverReadReplicaConfig" in value:
+        import capo_arc_region_switch.types.rds_switchover_read_replica_configuration
+
+        return {
+            "rdsSwitchoverReadReplicaConfig": capo_arc_region_switch.types.rds_switchover_read_replica_configuration.serialize_aws_json_1_0(
+                value["rdsSwitchoverReadReplicaConfig"]
+            )
+        }
     else:
         raise SerializationError("ExecutionBlockConfiguration: no variant present")
 
@@ -402,6 +418,14 @@ def deserialize_aws_json_1_0(data: dict) -> ExecutionBlockConfiguration:
         return {
             "neptuneGlobalDatabaseConfig": capo_arc_region_switch.types.neptune_global_database_configuration.deserialize_aws_json_1_0(
                 data["neptuneGlobalDatabaseConfig"]
+            )
+        }
+    elif data.get("rdsSwitchoverReadReplicaConfig") is not None:
+        import capo_arc_region_switch.types.rds_switchover_read_replica_configuration
+
+        return {
+            "rdsSwitchoverReadReplicaConfig": capo_arc_region_switch.types.rds_switchover_read_replica_configuration.deserialize_aws_json_1_0(
+                data["rdsSwitchoverReadReplicaConfig"]
             )
         }
     else:

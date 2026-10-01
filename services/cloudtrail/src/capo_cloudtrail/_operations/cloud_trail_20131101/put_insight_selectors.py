@@ -12,6 +12,7 @@ import capo_cloudtrail._auth._signers
 import capo_cloudtrail._auth._sigv4
 import capo_cloudtrail._protocol.eventstream
 import capo_cloudtrail.errors.cloud_trail_arn_invalid_exception
+import capo_cloudtrail.errors.conflict_exception
 import capo_cloudtrail.errors.insufficient_encryption_policy_exception
 import capo_cloudtrail.errors.insufficient_s3_bucket_policy_exception
 import capo_cloudtrail.errors.invalid_home_region_exception
@@ -42,6 +43,10 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "CloudTrailARNInvalidException":
             raise capo_cloudtrail.errors.cloud_trail_arn_invalid_exception.CloudTrailARNInvalidException.from_aws_json_1_1(
+                data, message
+            )
+        case "ConflictException":
+            raise capo_cloudtrail.errors.conflict_exception.ConflictException.from_aws_json_1_1(
                 data, message
             )
         case "InsufficientEncryptionPolicyException":

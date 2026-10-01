@@ -6,6 +6,7 @@ from typing import Literal, TypeAlias, cast
 M2tsScte35Control: TypeAlias = Literal[
     "NONE",
     "PASSTHROUGH",
+    "SCTE_35_WITHOUT_IDR",
 ]
 
 

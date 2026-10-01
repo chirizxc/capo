@@ -19,6 +19,8 @@ import capo_odb.errors.validation_exception
 import capo_odb.types.autonomous_database_wallet_file
 import capo_odb.types.create_autonomous_database_wallet_input
 import capo_odb.types.create_autonomous_database_wallet_output
+import capo_odb.types.wallet_password_source
+import capo_odb.types.wallet_password_source_configuration_input
 import capo_odb.types.wallet_type
 from capo_odb._protocol.errors import parse_error_metadata_json
 from capo_odb._rule_engine._endpoint_rule_set import EndpointParams, resolve

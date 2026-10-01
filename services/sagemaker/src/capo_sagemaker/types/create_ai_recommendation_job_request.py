@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_sagemaker.types.ai_adapter_source
     import capo_sagemaker.types.ai_entity_name
     import capo_sagemaker.types.ai_model_source
     import capo_sagemaker.types.ai_recommendation_allow_optimization
@@ -50,6 +51,10 @@ class CreateAIRecommendationJobRequest(TypedDict, closed=True):
         "capo_sagemaker.types.ai_recommendation_compute_spec.AIRecommendationComputeSpec"
     ]
     """<p>The compute resource specification for the recommendation job. You can specify up to 3 instance types to consider, and optionally provide capacity reservation configuration.</p>"""
+    adapter_source: NotRequired[
+        "capo_sagemaker.types.ai_adapter_source.AIAdapterSource"
+    ]
+    """<p>The LoRA adapter source for the recommendation job. Specify either a list of model package ARNs or Amazon S3 URIs for your LoRA adapters. When this parameter is absent, the recommendation job runs without LoRA adapter support.</p>"""
     tags: NotRequired["capo_sagemaker.types.tag_list.TagList"]
     """<p>The metadata that you apply to Amazon Web Services resources to help you categorize and organize them.</p>"""
 
@@ -103,6 +108,14 @@ def serialize_aws_json_1_1(value: CreateAIRecommendationJobRequest) -> dict:
         out["ComputeSpec"] = (
             capo_sagemaker.types.ai_recommendation_compute_spec.serialize_aws_json_1_1(
                 value["compute_spec"]
+            )
+        )
+    if "adapter_source" in value:
+        import capo_sagemaker.types.ai_adapter_source
+
+        out["AdapterSource"] = (
+            capo_sagemaker.types.ai_adapter_source.serialize_aws_json_1_1(
+                value["adapter_source"]
             )
         )
     if "tags" in value:
@@ -162,6 +175,14 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAIRecommendationJobRequest:
         out["compute_spec"] = (
             capo_sagemaker.types.ai_recommendation_compute_spec.deserialize_aws_json_1_1(
                 data["ComputeSpec"]
+            )
+        )
+    if data.get("AdapterSource") is not None:
+        import capo_sagemaker.types.ai_adapter_source
+
+        out["adapter_source"] = (
+            capo_sagemaker.types.ai_adapter_source.deserialize_aws_json_1_1(
+                data["AdapterSource"]
             )
         )
     if data.get("Tags") is not None:

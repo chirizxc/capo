@@ -7,6 +7,9 @@ from typing_extensions import NotRequired, TypedDict
 from capo_marketplace_discovery.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import datetime
+
+    import capo_marketplace_discovery.types.amazon_machine_image_ebs_volume
     import capo_marketplace_discovery.types.amazon_machine_image_operating_system_list
     import capo_marketplace_discovery.types.amazon_machine_image_recommendation
     import capo_marketplace_discovery.types.fulfillment_option_type
@@ -35,6 +38,20 @@ class AmazonMachineImageFulfillmentOption(TypedDict, closed=True):
     """<p>Release notes describing changes in this version of the fulfillment option.</p>"""
     usage_instructions: NotRequired["str"]
     """<p>Instructions on how to deploy and use this fulfillment option.</p>"""
+    available_from_time: NotRequired["datetime.datetime"]
+    """<p>The date and time when the AMI became available for fulfillment.</p>"""
+    access_url_template: NotRequired["str"]
+    """<p>The URL pattern for accessing the product when an instance is running.</p>"""
+    architecture: "str"
+    """<p>The architecture of the AMI, such as <code>x86_64</code>.</p>"""
+    ami_alias: NotRequired["str"]
+    """<p>The alias of the AMI associated with this fulfillment option.</p>"""
+    ebs_volume: NotRequired[
+        "capo_marketplace_discovery.types.amazon_machine_image_ebs_volume.AmazonMachineImageEbsVolume"
+    ]
+    """<p>The supported Amazon EBS volume configuration for the AMI.</p>"""
+    short_description: NotRequired["str"]
+    """<p>A short description of the fulfillment option.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -71,6 +88,29 @@ def serialize_json(value: AmazonMachineImageFulfillmentOption) -> dict:
         out["releaseNotes"] = value["release_notes"]
     if "usage_instructions" in value:
         out["usageInstructions"] = value["usage_instructions"]
+    if "available_from_time" in value:
+        import capo_marketplace_discovery.types._prelude.timestamp
+
+        out["availableFromTime"] = (
+            capo_marketplace_discovery.types._prelude.timestamp.serialize_json(
+                value["available_from_time"]
+            )
+        )
+    if "access_url_template" in value:
+        out["accessUrlTemplate"] = value["access_url_template"]
+    out["architecture"] = value["architecture"]
+    if "ami_alias" in value:
+        out["amiAlias"] = value["ami_alias"]
+    if "ebs_volume" in value:
+        import capo_marketplace_discovery.types.amazon_machine_image_ebs_volume
+
+        out["ebsVolume"] = (
+            capo_marketplace_discovery.types.amazon_machine_image_ebs_volume.serialize_json(
+                value["ebs_volume"]
+            )
+        )
+    if "short_description" in value:
+        out["shortDescription"] = value["short_description"]
     return out
 
 
@@ -132,4 +172,32 @@ def deserialize_json(data: dict) -> AmazonMachineImageFulfillmentOption:
         out["release_notes"] = data["releaseNotes"]
     if data.get("usageInstructions") is not None:
         out["usage_instructions"] = data["usageInstructions"]
+    if data.get("availableFromTime") is not None:
+        import capo_marketplace_discovery.types._prelude.timestamp
+
+        out["available_from_time"] = (
+            capo_marketplace_discovery.types._prelude.timestamp.deserialize_json(
+                data["availableFromTime"]
+            )
+        )
+    if data.get("accessUrlTemplate") is not None:
+        out["access_url_template"] = data["accessUrlTemplate"]
+    if data.get("architecture") is not None:
+        out["architecture"] = data["architecture"]
+    else:
+        raise DeserializationError(
+            "AmazonMachineImageFulfillmentOption.architecture required"
+        )
+    if data.get("amiAlias") is not None:
+        out["ami_alias"] = data["amiAlias"]
+    if data.get("ebsVolume") is not None:
+        import capo_marketplace_discovery.types.amazon_machine_image_ebs_volume
+
+        out["ebs_volume"] = (
+            capo_marketplace_discovery.types.amazon_machine_image_ebs_volume.deserialize_json(
+                data["ebsVolume"]
+            )
+        )
+    if data.get("shortDescription") is not None:
+        out["short_description"] = data["shortDescription"]
     return out

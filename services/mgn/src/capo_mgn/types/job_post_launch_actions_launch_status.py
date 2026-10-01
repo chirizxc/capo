@@ -13,11 +13,11 @@ if TYPE_CHECKING:
 
 class JobPostLaunchActionsLaunchStatus(TypedDict, closed=True):
     ssm_document: NotRequired["capo_mgn.types.ssm_document.SsmDocument"]
-    """<p>AWS Systems Manager's Document of the of the Job Post Launch Actions.</p>"""
+    """<p>AWS Systems Manager's Document of the Job Post Launch Actions.</p>"""
     ssm_document_type: NotRequired["capo_mgn.types.ssm_document_type.SsmDocumentType"]
     """<p>AWS Systems Manager Document type.</p>"""
     execution_id: NotRequired["capo_mgn.types.bounded_string.BoundedString"]
-    """<p>AWS Systems Manager Document's execution ID of the of the Job Post Launch Actions.</p>"""
+    """<p>AWS Systems Manager Document's execution ID of the Job Post Launch Actions.</p>"""
     execution_status: NotRequired[
         "capo_mgn.types.post_launch_action_execution_status.PostLaunchActionExecutionStatus"
     ]

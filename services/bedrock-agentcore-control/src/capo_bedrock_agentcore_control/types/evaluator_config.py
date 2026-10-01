@@ -11,6 +11,7 @@ from capo_bedrock_agentcore_control.errors import (
 
 if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.code_based_evaluator_config
+    import capo_bedrock_agentcore_control.types.derived_evaluator_config
     import capo_bedrock_agentcore_control.types.llm_as_a_judge_evaluator_config
 
 
@@ -22,7 +23,13 @@ class _EvaluatorConfig_codeBased(TypedDict, closed=True):
     codeBased: "capo_bedrock_agentcore_control.types.code_based_evaluator_config.CodeBasedEvaluatorConfig"
 
 
-EvaluatorConfig: TypeAlias = _EvaluatorConfig_llmAsAJudge | _EvaluatorConfig_codeBased
+class _EvaluatorConfig_derived(TypedDict, closed=True):
+    derived: "capo_bedrock_agentcore_control.types.derived_evaluator_config.DerivedEvaluatorConfig"
+
+
+EvaluatorConfig: TypeAlias = (
+    _EvaluatorConfig_llmAsAJudge | _EvaluatorConfig_codeBased | _EvaluatorConfig_derived
+)
 
 
 # --- restJson1 ser/de ---
@@ -41,6 +48,14 @@ def serialize_json(value: EvaluatorConfig) -> dict:
         return {
             "codeBased": capo_bedrock_agentcore_control.types.code_based_evaluator_config.serialize_json(
                 value["codeBased"]
+            )
+        }
+    elif "derived" in value:
+        import capo_bedrock_agentcore_control.types.derived_evaluator_config
+
+        return {
+            "derived": capo_bedrock_agentcore_control.types.derived_evaluator_config.serialize_json(
+                value["derived"]
             )
         }
     else:
@@ -62,6 +77,14 @@ def deserialize_json(data: dict) -> EvaluatorConfig:
         return {
             "codeBased": capo_bedrock_agentcore_control.types.code_based_evaluator_config.deserialize_json(
                 data["codeBased"]
+            )
+        }
+    elif data.get("derived") is not None:
+        import capo_bedrock_agentcore_control.types.derived_evaluator_config
+
+        return {
+            "derived": capo_bedrock_agentcore_control.types.derived_evaluator_config.deserialize_json(
+                data["derived"]
             )
         }
     else:

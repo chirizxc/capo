@@ -5,11 +5,11 @@ from typing import TYPE_CHECKING
 from typing_extensions import TypedDict
 
 if TYPE_CHECKING:
-    import capo_appconfig.types.id
+    import capo_appconfig.types.name
 
 
 class DeleteApplicationRequest(TypedDict, closed=True):
-    application_id: "capo_appconfig.types.id.Id"
+    application_id: "capo_appconfig.types.name.Name"
     """<p>The ID of the application to delete.</p>"""
 
 

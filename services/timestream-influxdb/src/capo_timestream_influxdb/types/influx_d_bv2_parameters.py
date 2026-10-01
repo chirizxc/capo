@@ -46,7 +46,7 @@ class InfluxDBv2Parameters(TypedDict, closed=True):
     query_initial_memory_bytes: NotRequired["int"]
     """<p>Initial bytes of memory allocated for a query.</p> <p>Default: 0</p>"""
     query_max_memory_bytes: NotRequired["int"]
-    """<p>Maximum number of queries allowed in execution queue. When queue limit is reached, new queries are rejected. Setting to 0 allows an unlimited number of queries in the queue.</p> <p>Default: 0</p>"""
+    """<p>Maximum total bytes of memory allowed for all running queries. When this limit is reached, new queries are rejected. Setting to 0 allows unlimited memory usage.</p> <p>Default: 0</p>"""
     query_memory_bytes: NotRequired["int"]
     """<p>Maximum bytes of memory allowed for a single query. Must be greater or equal to queryInitialMemoryBytes.</p> <p>Default: 0</p>"""
     session_length: NotRequired["int"]

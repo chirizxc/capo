@@ -5,6 +5,8 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import datetime
+
     import capo_wellarchitected.types.aws_account_id
     import capo_wellarchitected.types.lens_alias
     import capo_wellarchitected.types.lens_arn
@@ -13,7 +15,6 @@ if TYPE_CHECKING:
     import capo_wellarchitected.types.lens_status
     import capo_wellarchitected.types.lens_type
     import capo_wellarchitected.types.lens_version
-    import capo_wellarchitected.types.timestamp
 
 
 class LensSummary(TypedDict, closed=True):
@@ -26,8 +27,10 @@ class LensSummary(TypedDict, closed=True):
     description: NotRequired[
         "capo_wellarchitected.types.lens_description.LensDescription"
     ]
-    created_at: NotRequired["capo_wellarchitected.types.timestamp.Timestamp"]
-    updated_at: NotRequired["capo_wellarchitected.types.timestamp.Timestamp"]
+    created_at: NotRequired["datetime.datetime"]
+    """<p>The date and time when the lens was created.</p>"""
+    updated_at: NotRequired["datetime.datetime"]
+    """<p>The date and time when the lens was last updated.</p>"""
     lens_version: NotRequired["capo_wellarchitected.types.lens_version.LensVersion"]
     """<p>The version of the lens.</p>"""
     owner: NotRequired["capo_wellarchitected.types.aws_account_id.AwsAccountId"]
@@ -53,15 +56,15 @@ def serialize_json(value: LensSummary) -> dict:
     if "description" in value:
         out["Description"] = value["description"]
     if "created_at" in value:
-        import capo_wellarchitected.types.timestamp
+        import capo_wellarchitected.types._prelude.timestamp
 
-        out["CreatedAt"] = capo_wellarchitected.types.timestamp.serialize_json(
+        out["CreatedAt"] = capo_wellarchitected.types._prelude.timestamp.serialize_json(
             value["created_at"]
         )
     if "updated_at" in value:
-        import capo_wellarchitected.types.timestamp
+        import capo_wellarchitected.types._prelude.timestamp
 
-        out["UpdatedAt"] = capo_wellarchitected.types.timestamp.serialize_json(
+        out["UpdatedAt"] = capo_wellarchitected.types._prelude.timestamp.serialize_json(
             value["updated_at"]
         )
     if "lens_version" in value:
@@ -94,16 +97,20 @@ def deserialize_json(data: dict) -> LensSummary:
     if data.get("Description") is not None:
         out["description"] = data["Description"]
     if data.get("CreatedAt") is not None:
-        import capo_wellarchitected.types.timestamp
+        import capo_wellarchitected.types._prelude.timestamp
 
-        out["created_at"] = capo_wellarchitected.types.timestamp.deserialize_json(
-            data["CreatedAt"]
+        out["created_at"] = (
+            capo_wellarchitected.types._prelude.timestamp.deserialize_json(
+                data["CreatedAt"]
+            )
         )
     if data.get("UpdatedAt") is not None:
-        import capo_wellarchitected.types.timestamp
+        import capo_wellarchitected.types._prelude.timestamp
 
-        out["updated_at"] = capo_wellarchitected.types.timestamp.deserialize_json(
-            data["UpdatedAt"]
+        out["updated_at"] = (
+            capo_wellarchitected.types._prelude.timestamp.deserialize_json(
+                data["UpdatedAt"]
+            )
         )
     if data.get("LensVersion") is not None:
         out["lens_version"] = data["LensVersion"]

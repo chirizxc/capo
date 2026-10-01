@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     import capo_config_service.types.delivery_s3_key_prefix
     import capo_config_service.types.excluded_accounts
     import capo_config_service.types.organization_conformance_pack_name
+    import capo_config_service.types.tags_list
     import capo_config_service.types.template_body
     import capo_config_service.types.template_s3_uri
 
@@ -41,6 +42,8 @@ class PutOrganizationConformancePackRequest(TypedDict, closed=True):
         "capo_config_service.types.excluded_accounts.ExcludedAccounts"
     ]
     """<p>A list of Amazon Web Services accounts to be excluded from an organization conformance pack while deploying a conformance pack.</p>"""
+    tags: NotRequired["capo_config_service.types.tags_list.TagsList"]
+    """<p>The tags for the organization conformance pack. Each tag consists of a key and an optional value, both of which you define.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -70,6 +73,12 @@ def serialize_aws_json_1_1(value: PutOrganizationConformancePackRequest) -> dict
             capo_config_service.types.excluded_accounts.serialize_aws_json_1_1(
                 value["excluded_accounts"]
             )
+        )
+    if "tags" in value:
+        import capo_config_service.types.tags_list
+
+        out["Tags"] = capo_config_service.types.tags_list.serialize_aws_json_1_1(
+            value["tags"]
         )
     return out
 
@@ -107,5 +116,11 @@ def deserialize_aws_json_1_1(data: dict) -> PutOrganizationConformancePackReques
             capo_config_service.types.excluded_accounts.deserialize_aws_json_1_1(
                 data["ExcludedAccounts"]
             )
+        )
+    if data.get("Tags") is not None:
+        import capo_config_service.types.tags_list
+
+        out["tags"] = capo_config_service.types.tags_list.deserialize_aws_json_1_1(
+            data["Tags"]
         )
     return out

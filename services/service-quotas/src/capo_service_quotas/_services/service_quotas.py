@@ -541,6 +541,7 @@ class ServiceQuotasClient:
         Raises:
             capo_service_quotas.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient permission to perform this action.</p>
             capo_service_quotas.errors.illegal_argument_exception.IllegalArgumentException: <p>Invalid input was provided.</p>
+            capo_service_quotas.errors.invalid_pagination_token_exception.InvalidPaginationTokenException: <p>Invalid input was provided.</p>
             capo_service_quotas.errors.no_such_resource_exception.NoSuchResourceException: <p>The specified resource does not exist.</p>
             capo_service_quotas.errors.service_exception.ServiceException: <p>Something went wrong.</p>
             capo_service_quotas.errors.too_many_requests_exception.TooManyRequestsException: <p>Due to throttling, the request was denied. Slow down the rate of request calls, or request an increase for this quota.</p>

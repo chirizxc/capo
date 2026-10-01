@@ -19,6 +19,21 @@ async def main():
         print(response["collection_details"])
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_opensearchserverless import AsyncOpenSearchServerlessClient
+
+
+async def main():
+    async with AsyncOpenSearchServerlessClient() as open_search_serverless:
+        # Example: paginate over list_access_policies
+        async for item in open_search_serverless.iter_list_access_policies():
+            print(item)
+```
+
 ## Error Handling
 
 The SDK raises exceptions for errors returned by the API. Catch them to handle failures gracefully.

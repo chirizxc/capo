@@ -5,7 +5,10 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_acm.types.acme_account_id
+    import capo_acm.types.arn
     import capo_acm.types.certificate_export
+    import capo_acm.types.certificate_key_pair_origin
     import capo_acm.types.certificate_managed_by
     import capo_acm.types.certificate_status
     import capo_acm.types.certificate_type
@@ -47,6 +50,14 @@ class AcmCertificateMetadata(TypedDict, closed=True):
     """<p>Identifies the Amazon Web Services service that manages the certificate issued by ACM.</p>"""
     validation_method: NotRequired["capo_acm.types.validation_method.ValidationMethod"]
     """<p>Specifies the domain validation method.</p>"""
+    certificate_key_pair_origin: NotRequired[
+        "capo_acm.types.certificate_key_pair_origin.CertificateKeyPairOrigin"
+    ]
+    """<p>The origin of the certificate's key pair.</p>"""
+    acme_endpoint_arn: NotRequired["capo_acm.types.arn.Arn"]
+    """<p>The ARN of the ACME endpoint used to issue the certificate.</p>"""
+    acme_account_id: NotRequired["capo_acm.types.acme_account_id.AcmeAccountId"]
+    """<p>The ACME account identifier associated with the certificate.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -126,6 +137,18 @@ def serialize_aws_json_1_1(value: AcmCertificateMetadata) -> dict:
                 value["validation_method"]
             )
         )
+    if "certificate_key_pair_origin" in value:
+        import capo_acm.types.certificate_key_pair_origin
+
+        out["CertificateKeyPairOrigin"] = (
+            capo_acm.types.certificate_key_pair_origin.serialize_aws_json_1_1(
+                value["certificate_key_pair_origin"]
+            )
+        )
+    if "acme_endpoint_arn" in value:
+        out["AcmeEndpointArn"] = value["acme_endpoint_arn"]
+    if "acme_account_id" in value:
+        out["AcmeAccountId"] = value["acme_account_id"]
     return out
 
 
@@ -209,4 +232,16 @@ def deserialize_aws_json_1_1(data: dict) -> AcmCertificateMetadata:
                 data["ValidationMethod"]
             )
         )
+    if data.get("CertificateKeyPairOrigin") is not None:
+        import capo_acm.types.certificate_key_pair_origin
+
+        out["certificate_key_pair_origin"] = (
+            capo_acm.types.certificate_key_pair_origin.deserialize_aws_json_1_1(
+                data["CertificateKeyPairOrigin"]
+            )
+        )
+    if data.get("AcmeEndpointArn") is not None:
+        out["acme_endpoint_arn"] = data["AcmeEndpointArn"]
+    if data.get("AcmeAccountId") is not None:
+        out["acme_account_id"] = data["AcmeAccountId"]
     return out

@@ -21,11 +21,13 @@ class BedrockEmbeddingModelConfiguration(TypedDict, closed=True):
     audio: NotRequired[
         "capo_bedrock_agent.types.audio_configurations.AudioConfigurations"
     ]
-    """<p>Configuration settings for processing audio content in multimodal knowledge bases.</p>"""
+    """<p>Configuration settings for processing audio content in multimodal knowledge bases.</p> <important> <p>This field is deprecated. Use <code>modelConfiguration</code> instead.</p> </important>"""
     video: NotRequired[
         "capo_bedrock_agent.types.video_configurations.VideoConfigurations"
     ]
-    """<p>Configuration settings for processing video content in multimodal knowledge bases.</p>"""
+    """<p>Configuration settings for processing video content in multimodal knowledge bases.</p> <important> <p>This field is deprecated. Use <code>modelConfiguration</code> instead.</p> </important>"""
+    model_configuration: NotRequired["object"]
+    r"""<p>Model-specific configuration for the embedding model, provided as a JSON object. Use this field to specify settings that apply to the embedding model that you selected, such as how audio and video files are divided into segments.</p> <p>The fields that this object accepts depend on the embedding model. For the settings that each model accepts, see the documentation for that model.</p> <p>For an example of a <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_CreateKnowledgeBase.html\">CreateKnowledgeBase</a> request that uses this field to configure a multimodal embedding model, see the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_CreateKnowledgeBase.html#API_agent_CreateKnowledgeBase_Examples\">Examples</a> section of <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_CreateKnowledgeBase.html\">CreateKnowledgeBase</a>.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -53,6 +55,8 @@ def serialize_json(value: BedrockEmbeddingModelConfiguration) -> dict:
         out["video"] = capo_bedrock_agent.types.video_configurations.serialize_json(
             value["video"]
         )
+    if "model_configuration" in value:
+        out["modelConfiguration"] = value["model_configuration"]
     return out
 
 
@@ -80,4 +84,6 @@ def deserialize_json(data: dict) -> BedrockEmbeddingModelConfiguration:
         out["video"] = capo_bedrock_agent.types.video_configurations.deserialize_json(
             data["video"]
         )
+    if data.get("modelConfiguration") is not None:
+        out["model_configuration"] = data["modelConfiguration"]
     return out

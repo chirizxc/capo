@@ -24,7 +24,7 @@ class Address(TypedDict, closed=True):
     contact_name: "capo_outposts.types.contact_name.ContactName"
     """<p>The name of the contact.</p>"""
     contact_phone_number: "capo_outposts.types.contact_phone_number.ContactPhoneNumber"
-    """<p>The phone number of the contact.</p>"""
+    """<p>The phone number of the contact, including the country code (for example, <code>+12065550100</code>).</p>"""
     address_line1: "capo_outposts.types.address_line1.AddressLine1"
     """<p>The first line of the address.</p>"""
     address_line2: NotRequired["capo_outposts.types.address_line2.AddressLine2"]

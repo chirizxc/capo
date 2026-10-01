@@ -7,6 +7,8 @@ from typing_extensions import NotRequired, TypedDict
 from capo_marketplace_discovery.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import datetime
+
     import capo_marketplace_discovery.types.fulfillment_option_type
 
 
@@ -27,6 +29,12 @@ class CloudFormationFulfillmentOption(TypedDict, closed=True):
     """<p>Release notes describing changes in this version of the fulfillment option.</p>"""
     usage_instructions: NotRequired["str"]
     """<p>Instructions on how to deploy and use this CloudFormation template.</p>"""
+    available_from_time: NotRequired["datetime.datetime"]
+    """<p>The date and time when the CloudFormation fulfillment option became available for fulfillment.</p>"""
+    short_description: NotRequired["str"]
+    """<p>A short description of the fulfillment option.</p>"""
+    long_description: NotRequired["str"]
+    """<p>A detailed description of the fulfillment option.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -48,6 +56,18 @@ def serialize_json(value: CloudFormationFulfillmentOption) -> dict:
         out["releaseNotes"] = value["release_notes"]
     if "usage_instructions" in value:
         out["usageInstructions"] = value["usage_instructions"]
+    if "available_from_time" in value:
+        import capo_marketplace_discovery.types._prelude.timestamp
+
+        out["availableFromTime"] = (
+            capo_marketplace_discovery.types._prelude.timestamp.serialize_json(
+                value["available_from_time"]
+            )
+        )
+    if "short_description" in value:
+        out["shortDescription"] = value["short_description"]
+    if "long_description" in value:
+        out["longDescription"] = value["long_description"]
     return out
 
 
@@ -89,4 +109,16 @@ def deserialize_json(data: dict) -> CloudFormationFulfillmentOption:
         out["release_notes"] = data["releaseNotes"]
     if data.get("usageInstructions") is not None:
         out["usage_instructions"] = data["usageInstructions"]
+    if data.get("availableFromTime") is not None:
+        import capo_marketplace_discovery.types._prelude.timestamp
+
+        out["available_from_time"] = (
+            capo_marketplace_discovery.types._prelude.timestamp.deserialize_json(
+                data["availableFromTime"]
+            )
+        )
+    if data.get("shortDescription") is not None:
+        out["short_description"] = data["shortDescription"]
+    if data.get("longDescription") is not None:
+        out["long_description"] = data["longDescription"]
     return out

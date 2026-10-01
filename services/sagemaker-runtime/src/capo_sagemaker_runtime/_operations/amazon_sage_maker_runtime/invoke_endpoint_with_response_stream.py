@@ -184,6 +184,8 @@ def build_request(
         ]
     if "session_id" in input_:
         headers["X-Amzn-SageMaker-Session-Id"] = input_["session_id"]
+    if "prefix_aware_id" in input_:
+        headers["X-Amzn-SageMaker-Prefix-Aware-Id"] = input_["prefix_aware_id"]
     if "body" in input_:
         body: bytes | None = input_["body"]
         headers["content-type"] = "application/octet-stream"

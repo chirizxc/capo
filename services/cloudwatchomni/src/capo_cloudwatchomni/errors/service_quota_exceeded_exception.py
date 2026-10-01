@@ -1,0 +1,49 @@
+"""Generated from Smithy shape ``com.amazonaws.cloudwatchomni#ServiceQuotaExceededException``."""
+
+from typing_extensions import TypedDict
+
+from capo_cloudwatchomni.errors import DeserializationError, ServiceError
+
+
+class ServiceQuotaExceededException_(TypedDict, closed=True):
+    message: "str"
+
+
+# --- rpcv2Cbor ser/de ---
+def serialize_cbor(value: ServiceQuotaExceededException_) -> dict:
+    out: dict = {}
+    out["message"] = value["message"]
+    return out
+
+
+def deserialize_cbor(data: dict) -> ServiceQuotaExceededException_:
+    out: ServiceQuotaExceededException_ = {}  # type: ignore[typeddict-item]
+    if data.get("message") is not None:
+        out["message"] = data["message"]
+    else:
+        raise DeserializationError("ServiceQuotaExceededException_.message required")
+    return out
+
+
+class ServiceQuotaExceededException(ServiceError):
+    """Modeled error for Smithy shape ``com.amazonaws.cloudwatchomni#ServiceQuotaExceededException``."""
+
+    code: str | None = "ServiceQuotaExceededException"
+
+    def __init__(
+        self, data: ServiceQuotaExceededException_, message: str | None = None
+    ):
+        super().__init__(
+            "client",
+            is_throttling_error=False,
+            is_retryable=False,
+            code="ServiceQuotaExceededException",
+            message=message,
+        )
+        self.data = data
+
+    @classmethod
+    def from_cbor(
+        cls, data: dict, message: str | None = None
+    ) -> "ServiceQuotaExceededException":
+        return cls(deserialize_cbor(data), message)

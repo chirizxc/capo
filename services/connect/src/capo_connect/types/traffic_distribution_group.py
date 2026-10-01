@@ -5,30 +5,30 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_connect.types.acgr_instance_arn
+    import capo_connect.types.acgr_traffic_distribution_group_arn
+    import capo_connect.types.acgr_traffic_distribution_group_id
     import capo_connect.types.boolean
     import capo_connect.types.description250
-    import capo_connect.types.instance_arn
     import capo_connect.types.name128
     import capo_connect.types.tag_map
-    import capo_connect.types.traffic_distribution_group_arn
-    import capo_connect.types.traffic_distribution_group_id
     import capo_connect.types.traffic_distribution_group_status
 
 
 class TrafficDistributionGroup(TypedDict, closed=True):
     id: NotRequired[
-        "capo_connect.types.traffic_distribution_group_id.TrafficDistributionGroupId"
+        "capo_connect.types.acgr_traffic_distribution_group_id.ACGRTrafficDistributionGroupId"
     ]
     """<p>The identifier of the traffic distribution group. This can be the ID or the ARN if the API is being called in the Region where the traffic distribution group was created. The ARN must be provided if the call is from the replicated Region.</p>"""
     arn: NotRequired[
-        "capo_connect.types.traffic_distribution_group_arn.TrafficDistributionGroupArn"
+        "capo_connect.types.acgr_traffic_distribution_group_arn.ACGRTrafficDistributionGroupArn"
     ]
     """<p>The Amazon Resource Name (ARN) of the traffic distribution group.</p>"""
     name: NotRequired["capo_connect.types.name128.Name128"]
     """<p>The name of the traffic distribution group.</p>"""
     description: NotRequired["capo_connect.types.description250.Description250"]
     """<p>The description of the traffic distribution group.</p>"""
-    instance_arn: NotRequired["capo_connect.types.instance_arn.InstanceArn"]
+    instance_arn: NotRequired["capo_connect.types.acgr_instance_arn.ACGRInstanceArn"]
     """<p>The Amazon Resource Name (ARN).</p>"""
     status: NotRequired[
         "capo_connect.types.traffic_distribution_group_status.TrafficDistributionGroupStatus"

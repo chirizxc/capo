@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 
     import capo_marketplace_discovery.types.agreement_resource_id
     import capo_marketplace_discovery.types.catalog
+    import capo_marketplace_discovery.types.locale
     import capo_marketplace_discovery.types.nullable_string
     import capo_marketplace_discovery.types.offer_associated_entity_list
     import capo_marketplace_discovery.types.offer_id
@@ -20,6 +21,8 @@ if TYPE_CHECKING:
 
 
 class GetOfferOutput(TypedDict, closed=True):
+    locale: NotRequired["capo_marketplace_discovery.types.locale.Locale"]
+    """<p>The locale of the returned content. Indicates whether the response contains content in the requested locale, or fell back to the default locale. See <code>Locale</code> for details.</p>"""
     offer_id: "capo_marketplace_discovery.types.offer_id.OfferId"
     """<p>The unique identifier of the offer.</p>"""
     catalog: "capo_marketplace_discovery.types.catalog.Catalog"
@@ -28,10 +31,6 @@ class GetOfferOutput(TypedDict, closed=True):
         "capo_marketplace_discovery.types.nullable_string.NullableString"
     ]
     """<p>The display name of the offer. This is free-form text provided by the seller.</p>"""
-    agreement_proposal_id: (
-        "capo_marketplace_discovery.types.agreement_resource_id.AgreementResourceId"
-    )
-    """<p>An encoded string to be passed by the acceptor of the terms when creating an agreement.</p>"""
     expiration_time: NotRequired["datetime.datetime"]
     """<p>The date and time until when the offer can be procured. This value is null for offers that never expire.</p>"""
     available_from_time: NotRequired["datetime.datetime"]
@@ -40,6 +39,12 @@ class GetOfferOutput(TypedDict, closed=True):
         "capo_marketplace_discovery.types.seller_information.SellerInformation"
     )
     """<p>The entity responsible for selling the product under this offer.</p>"""
+    associated_entities: "capo_marketplace_discovery.types.offer_associated_entity_list.OfferAssociatedEntityList"
+    """<p>The products and offer sets associated with this offer.</p>"""
+    agreement_proposal_id: (
+        "capo_marketplace_discovery.types.agreement_resource_id.AgreementResourceId"
+    )
+    """<p>An encoded string to be passed by the acceptor of the terms when creating an agreement.</p>"""
     replacement_agreement_id: NotRequired[
         "capo_marketplace_discovery.types.agreement_resource_id.AgreementResourceId"
     ]
@@ -48,18 +53,17 @@ class GetOfferOutput(TypedDict, closed=True):
     """<p>The pricing model that determines how buyers are charged, such as usage-based, contract, BYOL, or free.</p>"""
     badges: "capo_marketplace_discovery.types.purchase_option_badge_list.PurchaseOptionBadgeList"
     """<p>Badges indicating special attributes of the offer, such as private pricing, future dated, or replacement offer.</p>"""
-    associated_entities: "capo_marketplace_discovery.types.offer_associated_entity_list.OfferAssociatedEntityList"
-    """<p>The products and offer sets associated with this offer.</p>"""
 
 
 # --- restJson1 ser/de ---
 def serialize_json(value: GetOfferOutput) -> dict:
     out: dict = {}
+    if "locale" in value:
+        out["locale"] = value["locale"]
     out["offerId"] = value["offer_id"]
     out["catalog"] = value["catalog"]
     if "offer_name" in value:
         out["offerName"] = value["offer_name"]
-    out["agreementProposalId"] = value["agreement_proposal_id"]
     if "expiration_time" in value:
         import capo_marketplace_discovery.types._prelude.timestamp
 
@@ -83,6 +87,14 @@ def serialize_json(value: GetOfferOutput) -> dict:
             value["seller_of_record"]
         )
     )
+    import capo_marketplace_discovery.types.offer_associated_entity_list
+
+    out["associatedEntities"] = (
+        capo_marketplace_discovery.types.offer_associated_entity_list.serialize_json(
+            value["associated_entities"]
+        )
+    )
+    out["agreementProposalId"] = value["agreement_proposal_id"]
     if "replacement_agreement_id" in value:
         out["replacementAgreementId"] = value["replacement_agreement_id"]
     import capo_marketplace_discovery.types.pricing_model
@@ -97,18 +109,13 @@ def serialize_json(value: GetOfferOutput) -> dict:
             value["badges"]
         )
     )
-    import capo_marketplace_discovery.types.offer_associated_entity_list
-
-    out["associatedEntities"] = (
-        capo_marketplace_discovery.types.offer_associated_entity_list.serialize_json(
-            value["associated_entities"]
-        )
-    )
     return out
 
 
 def deserialize_json(data: dict) -> GetOfferOutput:
     out: GetOfferOutput = {}  # type: ignore[typeddict-item]
+    if data.get("locale") is not None:
+        out["locale"] = data["locale"]
     if data.get("offerId") is not None:
         out["offer_id"] = data["offerId"]
     else:
@@ -119,10 +126,6 @@ def deserialize_json(data: dict) -> GetOfferOutput:
         raise DeserializationError("GetOfferOutput.catalog required")
     if data.get("offerName") is not None:
         out["offer_name"] = data["offerName"]
-    if data.get("agreementProposalId") is not None:
-        out["agreement_proposal_id"] = data["agreementProposalId"]
-    else:
-        raise DeserializationError("GetOfferOutput.agreement_proposal_id required")
     if data.get("expirationTime") is not None:
         import capo_marketplace_discovery.types._prelude.timestamp
 
@@ -149,6 +152,20 @@ def deserialize_json(data: dict) -> GetOfferOutput:
         )
     else:
         raise DeserializationError("GetOfferOutput.seller_of_record required")
+    if data.get("associatedEntities") is not None:
+        import capo_marketplace_discovery.types.offer_associated_entity_list
+
+        out["associated_entities"] = (
+            capo_marketplace_discovery.types.offer_associated_entity_list.deserialize_json(
+                data["associatedEntities"]
+            )
+        )
+    else:
+        raise DeserializationError("GetOfferOutput.associated_entities required")
+    if data.get("agreementProposalId") is not None:
+        out["agreement_proposal_id"] = data["agreementProposalId"]
+    else:
+        raise DeserializationError("GetOfferOutput.agreement_proposal_id required")
     if data.get("replacementAgreementId") is not None:
         out["replacement_agreement_id"] = data["replacementAgreementId"]
     if data.get("pricingModel") is not None:
@@ -171,14 +188,4 @@ def deserialize_json(data: dict) -> GetOfferOutput:
         )
     else:
         raise DeserializationError("GetOfferOutput.badges required")
-    if data.get("associatedEntities") is not None:
-        import capo_marketplace_discovery.types.offer_associated_entity_list
-
-        out["associated_entities"] = (
-            capo_marketplace_discovery.types.offer_associated_entity_list.deserialize_json(
-                data["associatedEntities"]
-            )
-        )
-    else:
-        raise DeserializationError("GetOfferOutput.associated_entities required")
     return out

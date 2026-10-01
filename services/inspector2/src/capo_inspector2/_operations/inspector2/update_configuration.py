@@ -17,6 +17,7 @@ import capo_inspector2.errors.throttling_exception
 import capo_inspector2.errors.validation_exception
 import capo_inspector2.types.ec2_configuration
 import capo_inspector2.types.ecr_configuration
+import capo_inspector2.types.update_configuration_inheritance
 import capo_inspector2.types.update_configuration_request
 import capo_inspector2.types.update_configuration_response
 from capo_inspector2._protocol.errors import parse_error_metadata_json

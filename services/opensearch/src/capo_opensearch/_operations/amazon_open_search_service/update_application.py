@@ -22,6 +22,7 @@ import capo_opensearch.errors.validation_exception
 import capo_opensearch.types.app_configs
 import capo_opensearch.types.data_sources
 import capo_opensearch.types.iam_identity_center_options
+import capo_opensearch.types.iam_identity_center_options_input
 import capo_opensearch.types.timestamp
 import capo_opensearch.types.update_application_request
 import capo_opensearch.types.update_application_response

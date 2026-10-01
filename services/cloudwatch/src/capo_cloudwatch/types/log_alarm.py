@@ -25,6 +25,7 @@ if TYPE_CHECKING:
     import capo_cloudwatch.types.threshold
     import capo_cloudwatch.types.timestamp
     import capo_cloudwatch.types.treat_missing_data
+    import capo_cloudwatch.types.warm_up_configuration
 
 
 class LogAlarm(TypedDict, closed=True):
@@ -98,6 +99,10 @@ class LogAlarm(TypedDict, closed=True):
         "capo_cloudwatch.types.action_log_line_role_arn.ActionLogLineRoleArn"
     ]
     """<p>The Amazon Resource Name (ARN) of the IAM role that CloudWatch assumes to retrieve log events for inclusion in alarm action notifications. Set when <code>ActionLogLineCount</code> is greater than 0.</p>"""
+    warm_up_configuration: NotRequired[
+        "capo_cloudwatch.types.warm_up_configuration.WarmUpConfiguration"
+    ]
+    r"""<p>The warm-up configuration for the alarm. A warm-up period delays alarm evaluation after you create or update the alarm. During the warm-up period, the alarm stays in <code>INSUFFICIENT_DATA</code> and does not perform alarm actions.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/alarm-warm-up.html\">Alarm warm-up periods</a> in the <i>Amazon CloudWatch User Guide</i>.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -211,6 +216,14 @@ def serialize_aws_json_1_0(value: LogAlarm) -> dict:
         out["ActionLogLineCount"] = value["action_log_line_count"]
     if "action_log_line_role_arn" in value:
         out["ActionLogLineRoleArn"] = value["action_log_line_role_arn"]
+    if "warm_up_configuration" in value:
+        import capo_cloudwatch.types.warm_up_configuration
+
+        out["WarmUpConfiguration"] = (
+            capo_cloudwatch.types.warm_up_configuration.serialize_aws_json_1_0(
+                value["warm_up_configuration"]
+            )
+        )
     return out
 
 
@@ -318,6 +331,14 @@ def deserialize_aws_json_1_0(data: dict) -> LogAlarm:
         out["action_log_line_count"] = data["ActionLogLineCount"]
     if data.get("ActionLogLineRoleArn") is not None:
         out["action_log_line_role_arn"] = data["ActionLogLineRoleArn"]
+    if data.get("WarmUpConfiguration") is not None:
+        import capo_cloudwatch.types.warm_up_configuration
+
+        out["warm_up_configuration"] = (
+            capo_cloudwatch.types.warm_up_configuration.deserialize_aws_json_1_0(
+                data["WarmUpConfiguration"]
+            )
+        )
     return out
 
 
@@ -452,6 +473,12 @@ def serialize_query(value: LogAlarm, pairs: list[tuple[str, str]], prefix: str) 
                 str(value["action_log_line_role_arn"]),
             )
         )
+    if "warm_up_configuration" in value:
+        import capo_cloudwatch.types.warm_up_configuration
+
+        capo_cloudwatch.types.warm_up_configuration.serialize_query(
+            value["warm_up_configuration"], pairs, f"{key_prefix}WarmUpConfiguration"
+        )
 
 
 def deserialize_query(el: Element) -> LogAlarm:
@@ -580,4 +607,13 @@ def deserialize_query(el: Element) -> LogAlarm:
     child_action_log_line_role_arn = el.find("ActionLogLineRoleArn")
     if child_action_log_line_role_arn is not None:
         out["action_log_line_role_arn"] = str(child_action_log_line_role_arn.text or "")
+    child_warm_up_configuration = el.find("WarmUpConfiguration")
+    if child_warm_up_configuration is not None:
+        import capo_cloudwatch.types.warm_up_configuration
+
+        out["warm_up_configuration"] = (
+            capo_cloudwatch.types.warm_up_configuration.deserialize_query(
+                child_warm_up_configuration
+            )
+        )
     return out

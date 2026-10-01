@@ -14,9 +14,9 @@ from capo_eks import AsyncEKSClient
 
 async def main():
     async with AsyncEKSClient() as eks:
-        # Example: call the associate_access_policy operation
-        response = await eks.associate_access_policy()
-        print(response["cluster_name"])
+        # Example: call the activate_certificate_authority operation
+        response = await eks.activate_certificate_authority()
+        print(response["update"])
 ```
 
 ## Pagination
@@ -46,7 +46,7 @@ from capo_eks.error import InvalidParameterException
 async def main():
     async with AsyncEKSClient() as eks:
         try:
-            await eks.associate_access_policy()
+            await eks.activate_certificate_authority()
         except InvalidParameterException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -65,11 +65,11 @@ from capo_eks import AsyncEKSClient
 async def main():
     async with AsyncEKSClient() as eks:
         # Default: 3 attempts for every operation
-        response = await eks.associate_access_policy()
+        response = await eks.activate_certificate_authority()
 
         # Override per operation
-        response = await eks.associate_access_policy(config_overrides={"retry_max_attempts": 5})
+        response = await eks.activate_certificate_authority(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await eks.associate_access_policy(config_overrides={"retry_max_attempts": 1})
+        response = await eks.activate_certificate_authority(config_overrides={"retry_max_attempts": 1})
 ```

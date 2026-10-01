@@ -8,7 +8,9 @@ from capo_auto_scaling._protocol.xml import Element
 
 if TYPE_CHECKING:
     import capo_auto_scaling.types.should_decrement_desired_capacity
+    import capo_auto_scaling.types.termination_instance_ids
     import capo_auto_scaling.types.xml_string_max_len19
+    import capo_auto_scaling.types.xml_string_max_len255
 
 
 class TerminateInstanceInAutoScalingGroupType(TypedDict, closed=True):
@@ -16,6 +18,14 @@ class TerminateInstanceInAutoScalingGroupType(TypedDict, closed=True):
         "capo_auto_scaling.types.xml_string_max_len19.XmlStringMaxLen19"
     ]
     """<p>The ID of the instance.</p>"""
+    instance_ids: NotRequired[
+        "capo_auto_scaling.types.termination_instance_ids.TerminationInstanceIds"
+    ]
+    """<p>The IDs of the instances. You can specify up to 100 instances.</p> <p>This parameter requires that you also specify <code>AutoScalingGroupName</code>.</p>"""
+    auto_scaling_group_name: NotRequired[
+        "capo_auto_scaling.types.xml_string_max_len255.XmlStringMaxLen255"
+    ]
+    """<p>The name of the Auto Scaling group. Required when using <code>InstanceIds</code>.</p>"""
     should_decrement_desired_capacity: NotRequired[
         "capo_auto_scaling.types.should_decrement_desired_capacity.ShouldDecrementDesiredCapacity"
     ]
@@ -31,6 +41,16 @@ def serialize_query(
     key_prefix = f"{prefix}." if prefix else ""
     if "instance_id" in value:
         pairs.append((f"{key_prefix}InstanceId", str(value["instance_id"])))
+    if "instance_ids" in value:
+        import capo_auto_scaling.types.termination_instance_ids
+
+        capo_auto_scaling.types.termination_instance_ids.serialize_query(
+            value["instance_ids"], pairs, f"{key_prefix}InstanceIds"
+        )
+    if "auto_scaling_group_name" in value:
+        pairs.append(
+            (f"{key_prefix}AutoScalingGroupName", str(value["auto_scaling_group_name"]))
+        )
     if "should_decrement_desired_capacity" in value:
         pairs.append(
             (
@@ -45,6 +65,18 @@ def deserialize_query(el: Element) -> TerminateInstanceInAutoScalingGroupType:
     child_instance_id = el.find("InstanceId")
     if child_instance_id is not None:
         out["instance_id"] = str(child_instance_id.text or "")
+    child_instance_ids = el.find("InstanceIds")
+    if child_instance_ids is not None:
+        import capo_auto_scaling.types.termination_instance_ids
+
+        out["instance_ids"] = (
+            capo_auto_scaling.types.termination_instance_ids.deserialize_query(
+                child_instance_ids
+            )
+        )
+    child_auto_scaling_group_name = el.find("AutoScalingGroupName")
+    if child_auto_scaling_group_name is not None:
+        out["auto_scaling_group_name"] = str(child_auto_scaling_group_name.text or "")
     child_should_decrement_desired_capacity = el.find("ShouldDecrementDesiredCapacity")
     if child_should_decrement_desired_capacity is not None:
         out["should_decrement_desired_capacity"] = (

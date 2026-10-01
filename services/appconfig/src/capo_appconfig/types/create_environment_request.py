@@ -8,14 +8,13 @@ from capo_appconfig.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_appconfig.types.description
-    import capo_appconfig.types.id
     import capo_appconfig.types.monitor_list
     import capo_appconfig.types.name
     import capo_appconfig.types.tag_map
 
 
 class CreateEnvironmentRequest(TypedDict, closed=True):
-    application_id: "capo_appconfig.types.id.Id"
+    application_id: "capo_appconfig.types.name.Name"
     """<p>The application ID.</p>"""
     name: "capo_appconfig.types.name.Name"
     """<p>A name for the environment.</p>"""

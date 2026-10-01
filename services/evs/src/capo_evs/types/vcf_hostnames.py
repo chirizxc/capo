@@ -14,7 +14,7 @@ class VcfHostnames(TypedDict, closed=True):
     v_center: "capo_evs.types.host_name.HostName"
     """<p>The VMware vCenter hostname.</p>"""
     nsx: "capo_evs.types.host_name.HostName"
-    """<p>The VMware NSX hostname.</p>"""
+    """<p>The VMware NSX Virtual IP (VIP) hostname.</p>"""
     nsx_manager1: "capo_evs.types.host_name.HostName"
     """<p>The hostname for the first VMware NSX Manager virtual machine (VM).</p>"""
     nsx_manager2: "capo_evs.types.host_name.HostName"

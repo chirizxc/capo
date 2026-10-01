@@ -48,6 +48,7 @@ if TYPE_CHECKING:
     import capo_wafv2.types.create_rule_group_response
     import capo_wafv2.types.create_web_acl_request
     import capo_wafv2.types.create_web_acl_response
+    import capo_wafv2.types.currency
     import capo_wafv2.types.custom_response_bodies
     import capo_wafv2.types.data_protection_config
     import capo_wafv2.types.default_action
@@ -97,6 +98,12 @@ if TYPE_CHECKING:
     import capo_wafv2.types.get_rate_based_statement_managed_keys_response
     import capo_wafv2.types.get_regex_pattern_set_request
     import capo_wafv2.types.get_regex_pattern_set_response
+    import capo_wafv2.types.get_revenue_statistics_request
+    import capo_wafv2.types.get_revenue_statistics_response
+    import capo_wafv2.types.get_revenue_statistics_summary_request
+    import capo_wafv2.types.get_revenue_statistics_summary_response
+    import capo_wafv2.types.get_revenue_statistics_time_series_request
+    import capo_wafv2.types.get_revenue_statistics_time_series_response
     import capo_wafv2.types.get_rule_group_request
     import capo_wafv2.types.get_rule_group_response
     import capo_wafv2.types.get_sampled_requests_request
@@ -107,6 +114,8 @@ if TYPE_CHECKING:
     import capo_wafv2.types.get_web_acl_for_resource_response
     import capo_wafv2.types.get_web_acl_request
     import capo_wafv2.types.get_web_acl_response
+    import capo_wafv2.types.group_by_type
+    import capo_wafv2.types.interval_type
     import capo_wafv2.types.ip_address_version
     import capo_wafv2.types.ip_addresses
     import capo_wafv2.types.list_api_keys_request
@@ -130,6 +139,8 @@ if TYPE_CHECKING:
     import capo_wafv2.types.list_resources_for_web_acl_response
     import capo_wafv2.types.list_rule_groups_request
     import capo_wafv2.types.list_rule_groups_response
+    import capo_wafv2.types.list_settlement_records_request
+    import capo_wafv2.types.list_settlement_records_response
     import capo_wafv2.types.list_tags_for_resource_request
     import capo_wafv2.types.list_tags_for_resource_response
     import capo_wafv2.types.list_web_ac_ls_request
@@ -138,7 +149,10 @@ if TYPE_CHECKING:
     import capo_wafv2.types.log_scope
     import capo_wafv2.types.log_type
     import capo_wafv2.types.logging_configuration
+    import capo_wafv2.types.max_data_points
     import capo_wafv2.types.metric_name
+    import capo_wafv2.types.monetization_config
+    import capo_wafv2.types.monetization_filter_list
     import capo_wafv2.types.next_marker
     import capo_wafv2.types.number_of_top_traffic_bots_per_path
     import capo_wafv2.types.on_source_d_do_s_protection_config
@@ -152,15 +166,21 @@ if TYPE_CHECKING:
     import capo_wafv2.types.put_managed_rule_set_versions_response
     import capo_wafv2.types.put_permission_policy_request
     import capo_wafv2.types.put_permission_policy_response
+    import capo_wafv2.types.ranking_sort_by
+    import capo_wafv2.types.ranking_statistic_type
     import capo_wafv2.types.regular_expression_list
     import capo_wafv2.types.resource_arn
     import capo_wafv2.types.resource_type
     import capo_wafv2.types.rules
     import capo_wafv2.types.scope
+    import capo_wafv2.types.settlement_record_limit
+    import capo_wafv2.types.settlement_sort_by
+    import capo_wafv2.types.sort_order
     import capo_wafv2.types.tag_key_list
     import capo_wafv2.types.tag_list
     import capo_wafv2.types.tag_resource_request
     import capo_wafv2.types.tag_resource_response
+    import capo_wafv2.types.time_series_statistic_type
     import capo_wafv2.types.time_window
     import capo_wafv2.types.timestamp
     import capo_wafv2.types.token_domains
@@ -287,7 +307,7 @@ class AsyncWAFV2Client:
 
         Args:
             web_acl_arn: <p>The Amazon Resource Name (ARN) of the web ACL that you want to associate with the resource.</p>
-            resource_arn: <p>The Amazon Resource Name (ARN) of the resource to associate with the web ACL. </p> <p>The ARN must be in one of the following formats:</p> <ul> <li> <p>For an Application Load Balancer: <code>arn:<i>partition</i>:elasticloadbalancing:<i>region</i>:<i>account-id</i>:loadbalancer/app/<i>load-balancer-name</i>/<i>load-balancer-id</i> </code> </p> </li> <li> <p>For an Amazon API Gateway REST API: <code>arn:<i>partition</i>:apigateway:<i>region</i>::/restapis/<i>api-id</i>/stages/<i>stage-name</i> </code> </p> </li> <li> <p>For an AppSync GraphQL API: <code>arn:<i>partition</i>:appsync:<i>region</i>:<i>account-id</i>:apis/<i>GraphQLApiId</i> </code> </p> </li> <li> <p>For an Amazon Cognito user pool: <code>arn:<i>partition</i>:cognito-idp:<i>region</i>:<i>account-id</i>:userpool/<i>user-pool-id</i> </code> </p> </li> <li> <p>For an App Runner service: <code>arn:<i>partition</i>:apprunner:<i>region</i>:<i>account-id</i>:service/<i>apprunner-service-name</i>/<i>apprunner-service-id</i> </code> </p> </li> <li> <p>For an Amazon Web Services Verified Access instance: <code>arn:<i>partition</i>:ec2:<i>region</i>:<i>account-id</i>:verified-access-instance/<i>instance-id</i> </code> </p> </li> <li> <p>For an Amplify application: <code>arn:<i>partition</i>:amplify:<i>region</i>:<i>account-id</i>:apps/<i>app-id</i> </code> </p> </li> </ul>
+            resource_arn: <p>The Amazon Resource Name (ARN) of the resource to associate with the web ACL. </p> <p>The ARN must be in one of the following formats:</p> <ul> <li> <p>For an Application Load Balancer: <code>arn:<i>partition</i>:elasticloadbalancing:<i>region</i>:<i>account-id</i>:loadbalancer/app/<i>load-balancer-name</i>/<i>load-balancer-id</i> </code> </p> </li> <li> <p>For an Amazon API Gateway REST API: <code>arn:<i>partition</i>:apigateway:<i>region</i>::/restapis/<i>api-id</i>/stages/<i>stage-name</i> </code> </p> </li> <li> <p>For an AppSync GraphQL API: <code>arn:<i>partition</i>:appsync:<i>region</i>:<i>account-id</i>:apis/<i>GraphQLApiId</i> </code> </p> </li> <li> <p>For an Amazon Cognito user pool: <code>arn:<i>partition</i>:cognito-idp:<i>region</i>:<i>account-id</i>:userpool/<i>user-pool-id</i> </code> </p> </li> <li> <p>For an App Runner service: <code>arn:<i>partition</i>:apprunner:<i>region</i>:<i>account-id</i>:service/<i>apprunner-service-name</i>/<i>apprunner-service-id</i> </code> </p> </li> <li> <p>For an Amazon Web Services Verified Access instance: <code>arn:<i>partition</i>:ec2:<i>region</i>:<i>account-id</i>:verified-access-instance/<i>instance-id</i> </code> </p> </li> <li> <p>For an Amplify application: <code>arn:<i>partition</i>:amplify:<i>region</i>:<i>account-id</i>:apps/<i>app-id</i> </code> </p> </li> <li> <p>For an Amazon Bedrock AgentCore Gateway: <code>arn:<i>partition</i>:bedrock-agentcore:<i>region</i>:<i>account-id</i>:gateway/<i>gateway-id</i> </code> </p> </li> </ul>
 
         Raises:
             capo_wafv2.errors.waf_feature_not_included_in_pricing_plan_exception.WAFFeatureNotIncludedInPricingPlanException: <p>The operation failed because the specified WAF feature isn't supported by the CloudFront pricing plan associated with the web ACL.</p>
@@ -587,6 +607,9 @@ class AsyncWAFV2Client:
         custom_response_bodies: Optional[
             "capo_wafv2.types.custom_response_bodies.CustomResponseBodies"
         ] = None,
+        monetization_config: Optional[
+            "capo_wafv2.types.monetization_config.MonetizationConfig"
+        ] = None,
     ) -> "capo_wafv2.types.create_rule_group_response.CreateRuleGroupResponse":
         r"""<p>Creates a <a>RuleGroup</a> per the specifications provided. </p> <p> A rule group defines a collection of rules to inspect and control web requests that you can use in a <a>WebACL</a>. When you create a rule group, you define an immutable capacity limit. If you update a rule group, you must stay within the capacity. This allows others to reuse the rule group with confidence in its capacity requirements. </p>
 
@@ -599,6 +622,7 @@ class AsyncWAFV2Client:
             visibility_config: <p>Defines and enables Amazon CloudWatch metrics and web request sample collection. </p>
             tags: <p>An array of key:value pairs to associate with the resource.</p>
             custom_response_bodies: <p>A map of custom response keys and content bodies. When you create a rule with a block action, you can send a custom response to the web request. You define these for the rule group, and then use them in the rules that you define in the rule group. </p> <p>For information about customizing web requests and responses, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html\">Customizing web requests and responses in WAF</a> in the <i>WAF Developer Guide</i>. </p> <p>For information about the limits on count and size for custom request and response settings, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/limits.html\">WAF quotas</a> in the <i>WAF Developer Guide</i>. </p>
+            monetization_config: <p>The monetization configuration for the rule group. Provide this when any rule in the rule group uses the <code>Monetize</code> action.</p>
 
         Raises:
             capo_wafv2.errors.waf_duplicate_item_exception.WAFDuplicateItemException: <p>WAF couldn’t perform the operation because the resource that you tried to save is a duplicate of an existing one.</p>
@@ -645,6 +669,8 @@ class AsyncWAFV2Client:
             input_["tags"] = tags
         if custom_response_bodies is not None:
             input_["custom_response_bodies"] = custom_response_bodies
+        if monetization_config is not None:
+            input_["monetization_config"] = monetization_config
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -689,8 +715,11 @@ class AsyncWAFV2Client:
         application_config: Optional[
             "capo_wafv2.types.application_config.ApplicationConfig"
         ] = None,
+        monetization_config: Optional[
+            "capo_wafv2.types.monetization_config.MonetizationConfig"
+        ] = None,
     ) -> "capo_wafv2.types.create_web_acl_response.CreateWebACLResponse":
-        r"""<p>Creates a <a>WebACL</a> per the specifications provided.</p> <p> A web ACL defines a collection of rules to use to inspect and control web requests. Each rule has a statement that defines what to look for in web requests and an action that WAF applies to requests that match the statement. In the web ACL, you assign a default action to take (allow, block) for any request that does not match any of the rules. The rules in a web ACL can be a combination of the types <a>Rule</a>, <a>RuleGroup</a>, and managed rule group. You can associate a web ACL with one or more Amazon Web Services resources to protect. The resource types include Amazon CloudFront distribution, Amazon API Gateway REST API, Application Load Balancer, AppSync GraphQL API, Amazon Cognito user pool, App Runner service, Amplify application, and Amazon Web Services Verified Access instance. </p>
+        r"""<p>Creates a <a>WebACL</a> per the specifications provided.</p> <p> A web ACL defines a collection of rules to use to inspect and control web requests. Each rule has a statement that defines what to look for in web requests and an action that WAF applies to requests that match the statement. In the web ACL, you assign a default action to take (allow, block) for any request that does not match any of the rules. The rules in a web ACL can be a combination of the types <a>Rule</a>, <a>RuleGroup</a>, and managed rule group. You can associate a web ACL with one or more Amazon Web Services resources to protect. The resource types include Amazon CloudFront distribution, Amazon API Gateway REST API, Application Load Balancer, AppSync GraphQL API, Amazon Cognito user pool, App Runner service, Amplify application, Amazon Web Services Verified Access instance, and Amazon Bedrock AgentCore Gateway. </p>
 
         Args:
             name: <p>The name of the web ACL. You cannot change the name of a web ACL after you create it.</p>
@@ -708,6 +737,7 @@ class AsyncWAFV2Client:
             association_config: <p>Specifies custom configurations for the associations between the web ACL and protected resources. </p> <p>Use this to customize the maximum size of the request body that your protected resources forward to WAF for inspection. You can customize this setting for CloudFront, API Gateway, Amazon Cognito, App Runner, or Verified Access resources. The default setting is 16 KB (16,384 bytes). </p> <note> <p>You are charged additional fees when your protected resources forward body sizes that are larger than the default. For more information, see <a href=\"http://aws.amazon.com/waf/pricing/\">WAF Pricing</a>.</p> </note> <p>For Application Load Balancer and AppSync, the limit is fixed at 8 KB (8,192 bytes).</p>
             on_source_d_do_s_protection_config: <p>Specifies the type of DDoS protection to apply to web request data for a web ACL. For most scenarios, it is recommended to use the default protection level, <code>ACTIVE_UNDER_DDOS</code>. If a web ACL is associated with multiple Application Load Balancers, the changes you make to DDoS protection in that web ACL will apply to all associated Application Load Balancers.</p>
             application_config: <p>Configures the ability for the WAF console to store and retrieve application attributes during the web ACL creation process. Application attributes help WAF give recommendations for protection packs.</p>
+            monetization_config: <p>The monetization configuration for the web ACL. Provide this when any rule in the web ACL uses the <code>Monetize</code> action.</p>
 
         Raises:
             capo_wafv2.errors.waf_configuration_warning_exception.WAFConfigurationWarningException: <p>The operation failed because you are inspecting the web request body, headers, or cookies without specifying how to handle oversize components. Rules that inspect the body must either provide an <code>OversizeHandling</code> configuration or they must be preceded by a <code>SizeConstraintStatement</code> that blocks the body content from being too large. Rules that inspect the headers or cookies must provide an <code>OversizeHandling</code> configuration. </p> <p>Provide the handling configuration and retry your operation.</p> <p>Alternately, you can suppress this warning by adding the following tag to the resource that you provide to this operation: <code>Tag</code> (key:<code>WAF:OversizeFieldsHandlingConstraintOptOut</code>, value:<code>true</code>).</p>
@@ -773,6 +803,8 @@ class AsyncWAFV2Client:
             )
         if application_config is not None:
             input_["application_config"] = application_config
+        if monetization_config is not None:
+            input_["monetization_config"] = monetization_config
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1391,7 +1423,7 @@ class AsyncWAFV2Client:
         r"""<p>Disassociates the specified resource from its web ACL association, if it has one. </p> <p>Use this for all resource types except for Amazon CloudFront distributions. For Amazon CloudFront, call <code>UpdateDistribution</code> for the distribution and provide an empty web ACL ID. For information, see <a href=\"https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html\">UpdateDistribution</a> in the <i>Amazon CloudFront API Reference</i>. </p> <p> <b>Required permissions for customer-managed IAM policies</b> </p> <p>This call requires permissions that are specific to the protected resource type. For details, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/security_iam_service-with-iam.html#security_iam_action-DisassociateWebACL\">Permissions for DisassociateWebACL</a> in the <i>WAF Developer Guide</i>.</p>
 
         Args:
-            resource_arn: <p>The Amazon Resource Name (ARN) of the resource to disassociate from the web ACL. </p> <p>The ARN must be in one of the following formats:</p> <ul> <li> <p>For an Application Load Balancer: <code>arn:<i>partition</i>:elasticloadbalancing:<i>region</i>:<i>account-id</i>:loadbalancer/app/<i>load-balancer-name</i>/<i>load-balancer-id</i> </code> </p> </li> <li> <p>For an Amazon API Gateway REST API: <code>arn:<i>partition</i>:apigateway:<i>region</i>::/restapis/<i>api-id</i>/stages/<i>stage-name</i> </code> </p> </li> <li> <p>For an AppSync GraphQL API: <code>arn:<i>partition</i>:appsync:<i>region</i>:<i>account-id</i>:apis/<i>GraphQLApiId</i> </code> </p> </li> <li> <p>For an Amazon Cognito user pool: <code>arn:<i>partition</i>:cognito-idp:<i>region</i>:<i>account-id</i>:userpool/<i>user-pool-id</i> </code> </p> </li> <li> <p>For an App Runner service: <code>arn:<i>partition</i>:apprunner:<i>region</i>:<i>account-id</i>:service/<i>apprunner-service-name</i>/<i>apprunner-service-id</i> </code> </p> </li> <li> <p>For an Amazon Web Services Verified Access instance: <code>arn:<i>partition</i>:ec2:<i>region</i>:<i>account-id</i>:verified-access-instance/<i>instance-id</i> </code> </p> </li> <li> <p>For an Amplify application: <code>arn:<i>partition</i>:amplify:<i>region</i>:<i>account-id</i>:apps/<i>app-id</i> </code> </p> </li> </ul>
+            resource_arn: <p>The Amazon Resource Name (ARN) of the resource to disassociate from the web ACL. </p> <p>The ARN must be in one of the following formats:</p> <ul> <li> <p>For an Application Load Balancer: <code>arn:<i>partition</i>:elasticloadbalancing:<i>region</i>:<i>account-id</i>:loadbalancer/app/<i>load-balancer-name</i>/<i>load-balancer-id</i> </code> </p> </li> <li> <p>For an Amazon API Gateway REST API: <code>arn:<i>partition</i>:apigateway:<i>region</i>::/restapis/<i>api-id</i>/stages/<i>stage-name</i> </code> </p> </li> <li> <p>For an AppSync GraphQL API: <code>arn:<i>partition</i>:appsync:<i>region</i>:<i>account-id</i>:apis/<i>GraphQLApiId</i> </code> </p> </li> <li> <p>For an Amazon Cognito user pool: <code>arn:<i>partition</i>:cognito-idp:<i>region</i>:<i>account-id</i>:userpool/<i>user-pool-id</i> </code> </p> </li> <li> <p>For an App Runner service: <code>arn:<i>partition</i>:apprunner:<i>region</i>:<i>account-id</i>:service/<i>apprunner-service-name</i>/<i>apprunner-service-id</i> </code> </p> </li> <li> <p>For an Amazon Web Services Verified Access instance: <code>arn:<i>partition</i>:ec2:<i>region</i>:<i>account-id</i>:verified-access-instance/<i>instance-id</i> </code> </p> </li> <li> <p>For an Amplify application: <code>arn:<i>partition</i>:amplify:<i>region</i>:<i>account-id</i>:apps/<i>app-id</i> </code> </p> </li> <li> <p>For an Amazon Bedrock AgentCore Gateway: <code>arn:<i>partition</i>:bedrock-agentcore:<i>region</i>:<i>account-id</i>:gateway/<i>gateway-id</i> </code> </p> </li> </ul>
 
         Raises:
             capo_wafv2.errors.waf_internal_error_exception.WAFInternalErrorException: <p>Your request is valid, but WAF couldn’t perform the operation because of a system problem. Retry your request. </p>
@@ -1903,6 +1935,228 @@ class AsyncWAFV2Client:
         await response.response.aclose()
         return response.output
 
+    async def get_revenue_statistics(
+        self,
+        statistic_type: "capo_wafv2.types.ranking_statistic_type.RankingStatisticType",
+        time_window: "capo_wafv2.types.time_window.TimeWindow",
+        scope: "capo_wafv2.types.scope.Scope",
+        currency: "capo_wafv2.types.currency.Currency",
+        *,
+        config_overrides: Optional[AsyncWAFV2ClientConfig] = None,
+        group_by: Optional["capo_wafv2.types.group_by_type.GroupByType"] = None,
+        filters: Optional[
+            "capo_wafv2.types.monetization_filter_list.MonetizationFilterList"
+        ] = None,
+        next_marker: Optional["capo_wafv2.types.next_marker.NextMarker"] = None,
+        limit: Optional[
+            "capo_wafv2.types.path_statistics_limit.PathStatisticsLimit"
+        ] = None,
+        sort_by: Optional["capo_wafv2.types.ranking_sort_by.RankingSortBy"] = None,
+        sort_order: Optional["capo_wafv2.types.sort_order.SortOrder"] = None,
+    ) -> (
+        "capo_wafv2.types.get_revenue_statistics_response.GetRevenueStatisticsResponse"
+    ):
+        """<p>Retrieves ranked monetization statistics. Use the <code>StatisticType</code> parameter to specify the ranking: <code>TOP_SOURCES_BY_REVENUE</code> for top sources by revenue, or <code>TOP_PATHS_BY_REVENUE</code> for top content paths by revenue. This operation is only available for <code>CLOUDFRONT</code> scope. The maximum supported time window is 90 days. When no <code>CurrencyMode</code> filter is provided, results default to <code>REAL</code>. To retrieve test data, include a <code>CurrencyMode</code> filter with the value <code>TEST</code>.</p>
+
+        Args:
+            statistic_type: <p> <code>TOP_SOURCES_BY_REVENUE</code> ranks revenue from AI bot traffic, grouped by the dimension you specify in the <code>GroupBy</code> parameter (<code>NAME</code>, <code>CATEGORY</code>, <code>INTENT</code>, <code>ORGANIZATION</code>, or <code>WEBACL</code>); <code>GroupBy</code> is required for this statistic type. <code>TOP_PATHS_BY_REVENUE</code> ranks revenue by path.</p>
+            time_window: <p>The time range for the query. Specify start and end timestamps.</p>
+            scope: <p>Specifies whether this is for a Amazon CloudFront distribution (<code>CLOUDFRONT</code>) or for a regional application (<code>REGIONAL</code>).</p>
+            currency: <p>The currency for the revenue amounts in the response.</p>
+            group_by: <p>The dimension to group results by: <code>NAME</code>, <code>CATEGORY</code>, <code>INTENT</code>, <code>ORGANIZATION</code>, or <code>WEBACL</code>. Required when <code>StatisticType</code> is <code>TOP_SOURCES_BY_REVENUE</code>. Not required for <code>TOP_PATHS_BY_REVENUE</code>, where results are grouped by content path. If <code>StatisticType</code> is <code>TOP_SOURCES_BY_REVENUE</code> and <code>GroupBy</code> is omitted, the request is rejected with a <code>WAFInvalidParameterException</code>.</p>
+            filters: <p>Optional filters to narrow the results.</p>
+            next_marker: <p>When you get a paginated response, this marker indicates that additional results are available. Use it in a subsequent request to retrieve the next page of results.</p>
+            limit: <p>The maximum number of results to return.</p>
+            sort_by: <p>The field to sort results by: <code>REVENUE</code>, <code>PERCENTAGE</code>, or <code>NAME</code>.</p>
+            sort_order: <p>The sort order: <code>ASC</code> for ascending or <code>DESC</code> for descending.</p>
+
+        Raises:
+            capo_wafv2.errors.waf_internal_error_exception.WAFInternalErrorException: <p>Your request is valid, but WAF couldn’t perform the operation because of a system problem. Retry your request. </p>
+            capo_wafv2.errors.waf_invalid_operation_exception.WAFInvalidOperationException: <p>The operation isn't valid. </p>
+            capo_wafv2.errors.waf_invalid_parameter_exception.WAFInvalidParameterException: <p>The operation failed because WAF didn't recognize a parameter in the request. For example: </p> <ul> <li> <p>You specified a parameter name or value that isn't valid.</p> </li> <li> <p>Your nested statement isn't valid. You might have tried to nest a statement that can’t be nested. </p> </li> <li> <p>You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't among the types available at <a>DefaultAction</a>.</p> </li> <li> <p>Your request references an ARN that is malformed, or corresponds to a resource with which a web ACL can't be associated.</p> </li> </ul>
+            capo_wafv2.errors.waf_nonexistent_item_exception.WAFNonexistentItemException: <p>WAF couldn’t perform the operation because your resource doesn't exist. If you've just created a resource that you're using in this operation, you might just need to wait a few minutes. It can take from a few seconds to a number of minutes for changes to propagate. </p>
+            capo_wafv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_wafv2.types.get_revenue_statistics_request.GetRevenueStatisticsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_wafv2.types.get_revenue_statistics_response.GetRevenueStatisticsResponse"
+        ]:
+            import capo_wafv2._operations.awswaf_20190729.get_revenue_statistics
+
+            (
+                output,
+                http_response,
+            ) = await capo_wafv2._operations.awswaf_20190729.get_revenue_statistics.async_get_revenue_statistics(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_wafv2.types.get_revenue_statistics_request.GetRevenueStatisticsRequest = {
+            "statistic_type": statistic_type,
+            "time_window": time_window,
+            "scope": scope,
+            "currency": currency,
+        }
+        if group_by is not None:
+            input_["group_by"] = group_by
+        if filters is not None:
+            input_["filters"] = filters
+        if next_marker is not None:
+            input_["next_marker"] = next_marker
+        if limit is not None:
+            input_["limit"] = limit
+        if sort_by is not None:
+            input_["sort_by"] = sort_by
+        if sort_order is not None:
+            input_["sort_order"] = sort_order
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_revenue_statistics_summary(
+        self,
+        time_window: "capo_wafv2.types.time_window.TimeWindow",
+        scope: "capo_wafv2.types.scope.Scope",
+        currency: "capo_wafv2.types.currency.Currency",
+        *,
+        config_overrides: Optional[AsyncWAFV2ClientConfig] = None,
+        filters: Optional[
+            "capo_wafv2.types.monetization_filter_list.MonetizationFilterList"
+        ] = None,
+    ) -> "capo_wafv2.types.get_revenue_statistics_summary_response.GetRevenueStatisticsSummaryResponse":
+        """<p>Retrieves a summary of monetization revenue for the specified time window. Returns total revenue, revenue by verification tier, total settlements, and total HTTP 402 responses served. This operation is only available for <code>CLOUDFRONT</code> scope. The maximum supported time window is 90 days. When no <code>CurrencyMode</code> filter is provided, results default to <code>REAL</code>. To retrieve test data, include a <code>CurrencyMode</code> filter with the value <code>TEST</code>.</p>
+
+        Args:
+            time_window: <p>The time range for the revenue summary query. Specify start and end timestamps.</p>
+            scope: <p>Specifies whether this is for a Amazon CloudFront distribution (<code>CLOUDFRONT</code>) or for a regional application (<code>REGIONAL</code>). AI bot monetization is only available for <code>CLOUDFRONT</code> scope.</p>
+            currency: <p>The currency for the revenue amounts in the response. Currently only <code>USDC</code> is supported.</p>
+            filters: <p>Optional filters to narrow the results. You can filter by source name, category, organization, intent, verified status, content path, web ACL ARN, or currency mode.</p>
+
+        Raises:
+            capo_wafv2.errors.waf_internal_error_exception.WAFInternalErrorException: <p>Your request is valid, but WAF couldn’t perform the operation because of a system problem. Retry your request. </p>
+            capo_wafv2.errors.waf_invalid_operation_exception.WAFInvalidOperationException: <p>The operation isn't valid. </p>
+            capo_wafv2.errors.waf_invalid_parameter_exception.WAFInvalidParameterException: <p>The operation failed because WAF didn't recognize a parameter in the request. For example: </p> <ul> <li> <p>You specified a parameter name or value that isn't valid.</p> </li> <li> <p>Your nested statement isn't valid. You might have tried to nest a statement that can’t be nested. </p> </li> <li> <p>You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't among the types available at <a>DefaultAction</a>.</p> </li> <li> <p>Your request references an ARN that is malformed, or corresponds to a resource with which a web ACL can't be associated.</p> </li> </ul>
+            capo_wafv2.errors.waf_nonexistent_item_exception.WAFNonexistentItemException: <p>WAF couldn’t perform the operation because your resource doesn't exist. If you've just created a resource that you're using in this operation, you might just need to wait a few minutes. It can take from a few seconds to a number of minutes for changes to propagate. </p>
+            capo_wafv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_wafv2.types.get_revenue_statistics_summary_request.GetRevenueStatisticsSummaryRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_wafv2.types.get_revenue_statistics_summary_response.GetRevenueStatisticsSummaryResponse"
+        ]:
+            import capo_wafv2._operations.awswaf_20190729.get_revenue_statistics_summary
+
+            (
+                output,
+                http_response,
+            ) = await capo_wafv2._operations.awswaf_20190729.get_revenue_statistics_summary.async_get_revenue_statistics_summary(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_wafv2.types.get_revenue_statistics_summary_request.GetRevenueStatisticsSummaryRequest = {
+            "time_window": time_window,
+            "scope": scope,
+            "currency": currency,
+        }
+        if filters is not None:
+            input_["filters"] = filters
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_revenue_statistics_time_series(
+        self,
+        statistic_type: "capo_wafv2.types.time_series_statistic_type.TimeSeriesStatisticType",
+        time_window: "capo_wafv2.types.time_window.TimeWindow",
+        scope: "capo_wafv2.types.scope.Scope",
+        interval: "capo_wafv2.types.interval_type.IntervalType",
+        currency: "capo_wafv2.types.currency.Currency",
+        *,
+        config_overrides: Optional[AsyncWAFV2ClientConfig] = None,
+        group_by: Optional["capo_wafv2.types.group_by_type.GroupByType"] = None,
+        filters: Optional[
+            "capo_wafv2.types.monetization_filter_list.MonetizationFilterList"
+        ] = None,
+        limit: Optional["capo_wafv2.types.max_data_points.MaxDataPoints"] = None,
+        next_marker: Optional["capo_wafv2.types.next_marker.NextMarker"] = None,
+    ) -> "capo_wafv2.types.get_revenue_statistics_time_series_response.GetRevenueStatisticsTimeSeriesResponse":
+        """<p>Retrieves time series data for monetization revenue. Returns data points aggregated at the specified interval for the given time window. This operation is only available for <code>CLOUDFRONT</code> scope. The maximum supported time window is 90 days. When no <code>CurrencyMode</code> filter is provided, results default to <code>REAL</code>. To retrieve test data, include a <code>CurrencyMode</code> filter with the value <code>TEST</code>.</p>
+
+        Args:
+            statistic_type: <p>The type of time series data to retrieve: <code>DATE_HISTOGRAM</code> for revenue over time, or <code>PAYMENT_TRAFFIC</code> for payment traffic patterns.</p>
+            time_window: <p>The time range for the query. Specify start and end timestamps.</p>
+            scope: <p>Specifies whether this is for a Amazon CloudFront distribution (<code>CLOUDFRONT</code>) or for a regional application (<code>REGIONAL</code>).</p>
+            interval: <p>The time interval for aggregating data points: <code>MINUTELY</code>, <code>FIVE_MINUTELY</code>, <code>HOURLY</code>, or <code>DAILY</code>.</p>
+            currency: <p>The currency for the amounts in the response.</p>
+            group_by: <p>The dimension to group results by.</p>
+            filters: <p>Optional filters to narrow the results.</p>
+            limit: <p>The maximum number of data points to return. Minimum: 1. Maximum: 10000.</p>
+            next_marker: <p>When you get a paginated response, this marker indicates that additional results are available.</p>
+
+        Raises:
+            capo_wafv2.errors.waf_internal_error_exception.WAFInternalErrorException: <p>Your request is valid, but WAF couldn’t perform the operation because of a system problem. Retry your request. </p>
+            capo_wafv2.errors.waf_invalid_operation_exception.WAFInvalidOperationException: <p>The operation isn't valid. </p>
+            capo_wafv2.errors.waf_invalid_parameter_exception.WAFInvalidParameterException: <p>The operation failed because WAF didn't recognize a parameter in the request. For example: </p> <ul> <li> <p>You specified a parameter name or value that isn't valid.</p> </li> <li> <p>Your nested statement isn't valid. You might have tried to nest a statement that can’t be nested. </p> </li> <li> <p>You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't among the types available at <a>DefaultAction</a>.</p> </li> <li> <p>Your request references an ARN that is malformed, or corresponds to a resource with which a web ACL can't be associated.</p> </li> </ul>
+            capo_wafv2.errors.waf_nonexistent_item_exception.WAFNonexistentItemException: <p>WAF couldn’t perform the operation because your resource doesn't exist. If you've just created a resource that you're using in this operation, you might just need to wait a few minutes. It can take from a few seconds to a number of minutes for changes to propagate. </p>
+            capo_wafv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_wafv2.types.get_revenue_statistics_time_series_request.GetRevenueStatisticsTimeSeriesRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_wafv2.types.get_revenue_statistics_time_series_response.GetRevenueStatisticsTimeSeriesResponse"
+        ]:
+            import capo_wafv2._operations.awswaf_20190729.get_revenue_statistics_time_series
+
+            (
+                output,
+                http_response,
+            ) = await capo_wafv2._operations.awswaf_20190729.get_revenue_statistics_time_series.async_get_revenue_statistics_time_series(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_wafv2.types.get_revenue_statistics_time_series_request.GetRevenueStatisticsTimeSeriesRequest = {
+            "statistic_type": statistic_type,
+            "time_window": time_window,
+            "scope": scope,
+            "interval": interval,
+            "currency": currency,
+        }
+        if group_by is not None:
+            input_["group_by"] = group_by
+        if filters is not None:
+            input_["filters"] = filters
+        if limit is not None:
+            input_["limit"] = limit
+        if next_marker is not None:
+            input_["next_marker"] = next_marker
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def get_rule_group(
         self,
         *,
@@ -2172,7 +2426,7 @@ class AsyncWAFV2Client:
         r"""<p>Retrieves the <a>WebACL</a> for the specified resource. </p> <p>This call uses <code>GetWebACL</code>, to verify that your account has permission to access the retrieved web ACL. If you get an error that indicates that your account isn't authorized to perform <code>wafv2:GetWebACL</code> on the resource, that error won't be included in your CloudTrail event history. </p> <p>For Amazon CloudFront, don't use this call. Instead, call the CloudFront action <code>GetDistributionConfig</code>. For information, see <a href=\"https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetDistributionConfig.html\">GetDistributionConfig</a> in the <i>Amazon CloudFront API Reference</i>. </p> <p> <b>Required permissions for customer-managed IAM policies</b> </p> <p>This call requires permissions that are specific to the protected resource type. For details, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/security_iam_service-with-iam.html#security_iam_action-GetWebACLForResource\">Permissions for GetWebACLForResource</a> in the <i>WAF Developer Guide</i>.</p>
 
         Args:
-            resource_arn: <p>The Amazon Resource Name (ARN) of the resource whose web ACL you want to retrieve. </p> <p>The ARN must be in one of the following formats:</p> <ul> <li> <p>For an Application Load Balancer: <code>arn:<i>partition</i>:elasticloadbalancing:<i>region</i>:<i>account-id</i>:loadbalancer/app/<i>load-balancer-name</i>/<i>load-balancer-id</i> </code> </p> </li> <li> <p>For an Amazon API Gateway REST API: <code>arn:<i>partition</i>:apigateway:<i>region</i>::/restapis/<i>api-id</i>/stages/<i>stage-name</i> </code> </p> </li> <li> <p>For an AppSync GraphQL API: <code>arn:<i>partition</i>:appsync:<i>region</i>:<i>account-id</i>:apis/<i>GraphQLApiId</i> </code> </p> </li> <li> <p>For an Amazon Cognito user pool: <code>arn:<i>partition</i>:cognito-idp:<i>region</i>:<i>account-id</i>:userpool/<i>user-pool-id</i> </code> </p> </li> <li> <p>For an App Runner service: <code>arn:<i>partition</i>:apprunner:<i>region</i>:<i>account-id</i>:service/<i>apprunner-service-name</i>/<i>apprunner-service-id</i> </code> </p> </li> <li> <p>For an Amazon Web Services Verified Access instance: <code>arn:<i>partition</i>:ec2:<i>region</i>:<i>account-id</i>:verified-access-instance/<i>instance-id</i> </code> </p> </li> <li> <p>For an Amplify application: <code>arn:<i>partition</i>:amplify:<i>region</i>:<i>account-id</i>:apps/<i>app-id</i> </code> </p> </li> </ul>
+            resource_arn: <p>The Amazon Resource Name (ARN) of the resource whose web ACL you want to retrieve. </p> <p>The ARN must be in one of the following formats:</p> <ul> <li> <p>For an Application Load Balancer: <code>arn:<i>partition</i>:elasticloadbalancing:<i>region</i>:<i>account-id</i>:loadbalancer/app/<i>load-balancer-name</i>/<i>load-balancer-id</i> </code> </p> </li> <li> <p>For an Amazon API Gateway REST API: <code>arn:<i>partition</i>:apigateway:<i>region</i>::/restapis/<i>api-id</i>/stages/<i>stage-name</i> </code> </p> </li> <li> <p>For an AppSync GraphQL API: <code>arn:<i>partition</i>:appsync:<i>region</i>:<i>account-id</i>:apis/<i>GraphQLApiId</i> </code> </p> </li> <li> <p>For an Amazon Cognito user pool: <code>arn:<i>partition</i>:cognito-idp:<i>region</i>:<i>account-id</i>:userpool/<i>user-pool-id</i> </code> </p> </li> <li> <p>For an App Runner service: <code>arn:<i>partition</i>:apprunner:<i>region</i>:<i>account-id</i>:service/<i>apprunner-service-name</i>/<i>apprunner-service-id</i> </code> </p> </li> <li> <p>For an Amazon Web Services Verified Access instance: <code>arn:<i>partition</i>:ec2:<i>region</i>:<i>account-id</i>:verified-access-instance/<i>instance-id</i> </code> </p> </li> <li> <p>For an Amplify application: <code>arn:<i>partition</i>:amplify:<i>region</i>:<i>account-id</i>:apps/<i>app-id</i> </code> </p> </li> <li> <p>For an Amazon Bedrock AgentCore Gateway: <code>arn:<i>partition</i>:bedrock-agentcore:<i>region</i>:<i>account-id</i>:gateway/<i>gateway-id</i> </code> </p> </li> </ul>
 
         Raises:
             capo_wafv2.errors.waf_internal_error_exception.WAFInternalErrorException: <p>Your request is valid, but WAF couldn’t perform the operation because of a system problem. Retry your request. </p>
@@ -2753,6 +3007,85 @@ class AsyncWAFV2Client:
             input_["next_marker"] = next_marker
         if limit is not None:
             input_["limit"] = limit
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_settlement_records(
+        self,
+        time_window: "capo_wafv2.types.time_window.TimeWindow",
+        scope: "capo_wafv2.types.scope.Scope",
+        currency: "capo_wafv2.types.currency.Currency",
+        *,
+        config_overrides: Optional[AsyncWAFV2ClientConfig] = None,
+        filters: Optional[
+            "capo_wafv2.types.monetization_filter_list.MonetizationFilterList"
+        ] = None,
+        sort_by: Optional[
+            "capo_wafv2.types.settlement_sort_by.SettlementSortBy"
+        ] = None,
+        sort_order: Optional["capo_wafv2.types.sort_order.SortOrder"] = None,
+        limit: Optional[
+            "capo_wafv2.types.settlement_record_limit.SettlementRecordLimit"
+        ] = None,
+        next_marker: Optional["capo_wafv2.types.next_marker.NextMarker"] = None,
+    ) -> "capo_wafv2.types.list_settlement_records_response.ListSettlementRecordsResponse":
+        """<p>Retrieves individual settlement transaction records for monetization. Each record represents a single payment transaction between a client and your protected resource. This operation is only available for <code>CLOUDFRONT</code> scope. The maximum supported time window is 90 days. When no <code>CurrencyMode</code> filter is provided, results default to <code>REAL</code>. To retrieve test data, include a <code>CurrencyMode</code> filter with the value <code>TEST</code>.</p>
+
+        Args:
+            time_window: <p>The time range for the query. Specify start and end timestamps.</p>
+            scope: <p>Specifies whether this is for a Amazon CloudFront distribution (<code>CLOUDFRONT</code>) or for a regional application (<code>REGIONAL</code>).</p>
+            currency: <p>The currency for the amounts in the response.</p>
+            filters: <p>Optional filters to narrow the results. You can filter by payer address, status, source name, network, or other settlement fields.</p>
+            sort_by: <p>The field to sort settlement records by: <code>TIMESTAMP</code>, <code>AMOUNT</code>, <code>NAME</code>, or <code>STATUS</code>.</p>
+            sort_order: <p>The sort order: <code>ASC</code> for ascending or <code>DESC</code> for descending.</p>
+            limit: <p>The maximum number of settlement records to return. Minimum: 1. Maximum: 100.</p>
+            next_marker: <p>When you get a paginated response, this marker indicates that additional results are available.</p>
+
+        Raises:
+            capo_wafv2.errors.waf_internal_error_exception.WAFInternalErrorException: <p>Your request is valid, but WAF couldn’t perform the operation because of a system problem. Retry your request. </p>
+            capo_wafv2.errors.waf_invalid_operation_exception.WAFInvalidOperationException: <p>The operation isn't valid. </p>
+            capo_wafv2.errors.waf_invalid_parameter_exception.WAFInvalidParameterException: <p>The operation failed because WAF didn't recognize a parameter in the request. For example: </p> <ul> <li> <p>You specified a parameter name or value that isn't valid.</p> </li> <li> <p>Your nested statement isn't valid. You might have tried to nest a statement that can’t be nested. </p> </li> <li> <p>You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't among the types available at <a>DefaultAction</a>.</p> </li> <li> <p>Your request references an ARN that is malformed, or corresponds to a resource with which a web ACL can't be associated.</p> </li> </ul>
+            capo_wafv2.errors.waf_nonexistent_item_exception.WAFNonexistentItemException: <p>WAF couldn’t perform the operation because your resource doesn't exist. If you've just created a resource that you're using in this operation, you might just need to wait a few minutes. It can take from a few seconds to a number of minutes for changes to propagate. </p>
+            capo_wafv2.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_wafv2.types.list_settlement_records_request.ListSettlementRecordsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_wafv2.types.list_settlement_records_response.ListSettlementRecordsResponse"
+        ]:
+            import capo_wafv2._operations.awswaf_20190729.list_settlement_records
+
+            (
+                output,
+                http_response,
+            ) = await capo_wafv2._operations.awswaf_20190729.list_settlement_records.async_list_settlement_records(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_wafv2.types.list_settlement_records_request.ListSettlementRecordsRequest = {
+            "time_window": time_window,
+            "scope": scope,
+            "currency": currency,
+        }
+        if filters is not None:
+            input_["filters"] = filters
+        if sort_by is not None:
+            input_["sort_by"] = sort_by
+        if sort_order is not None:
+            input_["sort_order"] = sort_order
+        if limit is not None:
+            input_["limit"] = limit
+        if next_marker is not None:
+            input_["next_marker"] = next_marker
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -3364,6 +3697,9 @@ class AsyncWAFV2Client:
         custom_response_bodies: Optional[
             "capo_wafv2.types.custom_response_bodies.CustomResponseBodies"
         ] = None,
+        monetization_config: Optional[
+            "capo_wafv2.types.monetization_config.MonetizationConfig"
+        ] = None,
     ) -> "capo_wafv2.types.update_rule_group_response.UpdateRuleGroupResponse":
         r"""<p>Updates the specified <a>RuleGroup</a>.</p> <note> <p>This operation completely replaces the mutable specifications that you already have for the rule group with the ones that you provide to this call. </p> <p>To modify a rule group, do the following: </p> <ol> <li> <p>Retrieve it by calling <a>GetRuleGroup</a> </p> </li> <li> <p>Update its settings as needed</p> </li> <li> <p>Provide the complete rule group specification to this call</p> </li> </ol> </note> <p> A rule group defines a collection of rules to inspect and control web requests that you can use in a <a>WebACL</a>. When you create a rule group, you define an immutable capacity limit. If you update a rule group, you must stay within the capacity. This allows others to reuse the rule group with confidence in its capacity requirements. </p> <p> <b>Temporary inconsistencies during updates</b> </p> <p>When you create or change a web ACL or other WAF resources, the changes take a small amount of time to propagate to all areas where the resources are stored. The propagation time can be from a few seconds to a number of minutes. </p> <p>The following are examples of the temporary inconsistencies that you might notice during change propagation: </p> <ul> <li> <p>After you create a web ACL, if you try to associate it with a resource, you might get an exception indicating that the web ACL is unavailable. </p> </li> <li> <p>After you add a rule group to a web ACL, the new rule group rules might be in effect in one area where the web ACL is used and not in another.</p> </li> <li> <p>After you change a rule action setting, you might see the old action in some places and the new action in others. </p> </li> <li> <p>After you add an IP address to an IP set that is in use in a blocking rule, the new address might be blocked in one area while still allowed in another.</p> </li> </ul>
 
@@ -3376,6 +3712,7 @@ class AsyncWAFV2Client:
             visibility_config: <p>Defines and enables Amazon CloudWatch metrics and web request sample collection. </p>
             lock_token: <p>A token used for optimistic locking. WAF returns a token to your <code>get</code> and <code>list</code> requests, to mark the state of the entity at the time of the request. To make changes to the entity associated with the token, you provide the token to operations like <code>update</code> and <code>delete</code>. WAF uses the token to ensure that no changes have been made to the entity since you last retrieved it. If a change has been made, the update fails with a <code>WAFOptimisticLockException</code>. If this happens, perform another <code>get</code>, and use the new token returned by that operation. </p>
             custom_response_bodies: <p>A map of custom response keys and content bodies. When you create a rule with a block action, you can send a custom response to the web request. You define these for the rule group, and then use them in the rules that you define in the rule group. </p> <p>For information about customizing web requests and responses, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html\">Customizing web requests and responses in WAF</a> in the <i>WAF Developer Guide</i>. </p> <p>For information about the limits on count and size for custom request and response settings, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/limits.html\">WAF quotas</a> in the <i>WAF Developer Guide</i>. </p>
+            monetization_config: <p>The monetization configuration for the rule group. Provide this when any rule in the rule group uses the <code>Monetize</code> action.</p>
 
         Raises:
             capo_wafv2.errors.waf_configuration_warning_exception.WAFConfigurationWarningException: <p>The operation failed because you are inspecting the web request body, headers, or cookies without specifying how to handle oversize components. Rules that inspect the body must either provide an <code>OversizeHandling</code> configuration or they must be preceded by a <code>SizeConstraintStatement</code> that blocks the body content from being too large. Rules that inspect the headers or cookies must provide an <code>OversizeHandling</code> configuration. </p> <p>Provide the handling configuration and retry your operation.</p> <p>Alternately, you can suppress this warning by adding the following tag to the resource that you provide to this operation: <code>Tag</code> (key:<code>WAF:OversizeFieldsHandlingConstraintOptOut</code>, value:<code>true</code>).</p>
@@ -3420,6 +3757,8 @@ class AsyncWAFV2Client:
             input_["rules"] = rules
         if custom_response_bodies is not None:
             input_["custom_response_bodies"] = custom_response_bodies
+        if monetization_config is not None:
+            input_["monetization_config"] = monetization_config
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -3465,8 +3804,11 @@ class AsyncWAFV2Client:
         application_config: Optional[
             "capo_wafv2.types.application_config.ApplicationConfig"
         ] = None,
+        monetization_config: Optional[
+            "capo_wafv2.types.monetization_config.MonetizationConfig"
+        ] = None,
     ) -> "capo_wafv2.types.update_web_acl_response.UpdateWebACLResponse":
-        r"""<p>Updates the specified <a>WebACL</a>. While updating a web ACL, WAF provides continuous coverage to the resources that you have associated with the web ACL. </p> <note> <p>This operation completely replaces the mutable specifications that you already have for the web ACL with the ones that you provide to this call. </p> <p>To modify a web ACL, do the following: </p> <ol> <li> <p>Retrieve it by calling <a>GetWebACL</a> </p> </li> <li> <p>Update its settings as needed</p> </li> <li> <p>Provide the complete web ACL specification to this call</p> </li> </ol> </note> <p> A web ACL defines a collection of rules to use to inspect and control web requests. Each rule has a statement that defines what to look for in web requests and an action that WAF applies to requests that match the statement. In the web ACL, you assign a default action to take (allow, block) for any request that does not match any of the rules. The rules in a web ACL can be a combination of the types <a>Rule</a>, <a>RuleGroup</a>, and managed rule group. You can associate a web ACL with one or more Amazon Web Services resources to protect. The resource types include Amazon CloudFront distribution, Amazon API Gateway REST API, Application Load Balancer, AppSync GraphQL API, Amazon Cognito user pool, App Runner service, Amplify application, and Amazon Web Services Verified Access instance. </p> <p> <b>Temporary inconsistencies during updates</b> </p> <p>When you create or change a web ACL or other WAF resources, the changes take a small amount of time to propagate to all areas where the resources are stored. The propagation time can be from a few seconds to a number of minutes. </p> <p>The following are examples of the temporary inconsistencies that you might notice during change propagation: </p> <ul> <li> <p>After you create a web ACL, if you try to associate it with a resource, you might get an exception indicating that the web ACL is unavailable. </p> </li> <li> <p>After you add a rule group to a web ACL, the new rule group rules might be in effect in one area where the web ACL is used and not in another.</p> </li> <li> <p>After you change a rule action setting, you might see the old action in some places and the new action in others. </p> </li> <li> <p>After you add an IP address to an IP set that is in use in a blocking rule, the new address might be blocked in one area while still allowed in another.</p> </li> </ul>
+        r"""<p>Updates the specified <a>WebACL</a>. While updating a web ACL, WAF provides continuous coverage to the resources that you have associated with the web ACL. </p> <note> <p>This operation completely replaces the mutable specifications that you already have for the web ACL with the ones that you provide to this call. </p> <p>To modify a web ACL, do the following: </p> <ol> <li> <p>Retrieve it by calling <a>GetWebACL</a> </p> </li> <li> <p>Update its settings as needed</p> </li> <li> <p>Provide the complete web ACL specification to this call</p> </li> </ol> </note> <p> A web ACL defines a collection of rules to use to inspect and control web requests. Each rule has a statement that defines what to look for in web requests and an action that WAF applies to requests that match the statement. In the web ACL, you assign a default action to take (allow, block) for any request that does not match any of the rules. The rules in a web ACL can be a combination of the types <a>Rule</a>, <a>RuleGroup</a>, and managed rule group. You can associate a web ACL with one or more Amazon Web Services resources to protect. The resource types include Amazon CloudFront distribution, Amazon API Gateway REST API, Application Load Balancer, AppSync GraphQL API, Amazon Cognito user pool, App Runner service, Amplify application, Amazon Web Services Verified Access instance, and Amazon Bedrock AgentCore Gateway. </p> <p> <b>Temporary inconsistencies during updates</b> </p> <p>When you create or change a web ACL or other WAF resources, the changes take a small amount of time to propagate to all areas where the resources are stored. The propagation time can be from a few seconds to a number of minutes. </p> <p>The following are examples of the temporary inconsistencies that you might notice during change propagation: </p> <ul> <li> <p>After you create a web ACL, if you try to associate it with a resource, you might get an exception indicating that the web ACL is unavailable. </p> </li> <li> <p>After you add a rule group to a web ACL, the new rule group rules might be in effect in one area where the web ACL is used and not in another.</p> </li> <li> <p>After you change a rule action setting, you might see the old action in some places and the new action in others. </p> </li> <li> <p>After you add an IP address to an IP set that is in use in a blocking rule, the new address might be blocked in one area while still allowed in another.</p> </li> </ul>
 
         Args:
             name: <p>The name of the web ACL. You cannot change the name of a web ACL after you create it.</p>
@@ -3485,6 +3827,7 @@ class AsyncWAFV2Client:
             association_config: <p>Specifies custom configurations for the associations between the web ACL and protected resources. </p> <p>Use this to customize the maximum size of the request body that your protected resources forward to WAF for inspection. You can customize this setting for CloudFront, API Gateway, Amazon Cognito, App Runner, or Verified Access resources. The default setting is 16 KB (16,384 bytes). </p> <note> <p>You are charged additional fees when your protected resources forward body sizes that are larger than the default. For more information, see <a href=\"http://aws.amazon.com/waf/pricing/\">WAF Pricing</a>.</p> </note> <p>For Application Load Balancer and AppSync, the limit is fixed at 8 KB (8,192 bytes).</p>
             on_source_d_do_s_protection_config: <p>Specifies the type of DDoS protection to apply to web request data for a web ACL. For most scenarios, it is recommended to use the default protection level, <code>ACTIVE_UNDER_DDOS</code>. If a web ACL is associated with multiple Application Load Balancers, the changes you make to DDoS protection in that web ACL will apply to all associated Application Load Balancers.</p>
             application_config: <p>Configures the ability for the WAF console to store and retrieve application attributes. Application attributes help WAF give recommendations for protection packs.</p> <p>When using <code>UpdateWebACL</code>, <code>ApplicationConfig</code> follows these rules:</p> <ul> <li> <p>If you omit <code>ApplicationConfig</code> from the request, all existing entries in the web ACL are retained.</p> </li> <li> <p>If you include <code>ApplicationConfig</code>, entries must match the existing values exactly. Any attempt to modify existing entries will result in an error.</p> </li> </ul>
+            monetization_config: <p>The monetization configuration for the web ACL. Provide this when any rule in the web ACL uses the <code>Monetize</code> action.</p>
 
         Raises:
             capo_wafv2.errors.waf_configuration_warning_exception.WAFConfigurationWarningException: <p>The operation failed because you are inspecting the web request body, headers, or cookies without specifying how to handle oversize components. Rules that inspect the body must either provide an <code>OversizeHandling</code> configuration or they must be preceded by a <code>SizeConstraintStatement</code> that blocks the body content from being too large. Rules that inspect the headers or cookies must provide an <code>OversizeHandling</code> configuration. </p> <p>Provide the handling configuration and retry your operation.</p> <p>Alternately, you can suppress this warning by adding the following tag to the resource that you provide to this operation: <code>Tag</code> (key:<code>WAF:OversizeFieldsHandlingConstraintOptOut</code>, value:<code>true</code>).</p>
@@ -3549,6 +3892,8 @@ class AsyncWAFV2Client:
             )
         if application_config is not None:
             input_["application_config"] = application_config
+        if monetization_config is not None:
+            input_["monetization_config"] = monetization_config
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

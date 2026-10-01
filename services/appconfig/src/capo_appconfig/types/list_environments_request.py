@@ -5,13 +5,13 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
-    import capo_appconfig.types.id
     import capo_appconfig.types.max_results
+    import capo_appconfig.types.name
     import capo_appconfig.types.next_token
 
 
 class ListEnvironmentsRequest(TypedDict, closed=True):
-    application_id: "capo_appconfig.types.id.Id"
+    application_id: "capo_appconfig.types.name.Name"
     """<p>The application ID.</p>"""
     max_results: NotRequired["capo_appconfig.types.max_results.MaxResults"]
     """<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>"""

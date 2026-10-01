@@ -2,7 +2,10 @@
 
 from typing import Literal, TypeAlias, cast
 
-ScheduledQueryDestinationType: TypeAlias = Literal["S3",]
+ScheduledQueryDestinationType: TypeAlias = Literal[
+    "S3",
+    "LOOKUP_TABLE",
+]
 
 
 # --- awsJson1_1 ser/de ---

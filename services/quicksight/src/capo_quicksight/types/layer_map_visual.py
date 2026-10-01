@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     import capo_quicksight.types.geospatial_layer_map_configuration
     import capo_quicksight.types.long_plain_text
     import capo_quicksight.types.short_restrictive_resource_id
+    import capo_quicksight.types.topic_identifier
     import capo_quicksight.types.visual_subtitle_label_options
     import capo_quicksight.types.visual_title_label_options
 
@@ -31,7 +32,11 @@ class LayerMapVisual(TypedDict, closed=True):
     ]
     """<p>The configuration settings of the visual.</p>"""
     data_set_identifier: "capo_quicksight.types.data_set_identifier.DataSetIdentifier"
-    """<p>The dataset that is used to create the layer map visual. You can't create a visual without a dataset.</p>"""
+    """<p>The dataset that is used to create the layer map visual. You can't create a visual without a dataset or a topic.</p>"""
+    topic_identifier: NotRequired[
+        "capo_quicksight.types.topic_identifier.TopicIdentifier"
+    ]
+    """<p>The topic that is used in the layer map visual. You can't create a visual without a dataset or a topic.</p>"""
     visual_content_alt_text: NotRequired[
         "capo_quicksight.types.long_plain_text.LongPlainText"
     ]
@@ -64,7 +69,9 @@ def serialize_json(value: LayerMapVisual) -> dict:
                 value["chart_configuration"]
             )
         )
-    out["DataSetIdentifier"] = value["data_set_identifier"]
+    out["DataSetIdentifier"] = value.get("data_set_identifier", "")
+    if "topic_identifier" in value:
+        out["TopicIdentifier"] = value["topic_identifier"]
     if "visual_content_alt_text" in value:
         out["VisualContentAltText"] = value["visual_content_alt_text"]
     return out
@@ -103,7 +110,9 @@ def deserialize_json(data: dict) -> LayerMapVisual:
     if data.get("DataSetIdentifier") is not None:
         out["data_set_identifier"] = data["DataSetIdentifier"]
     else:
-        raise DeserializationError("LayerMapVisual.data_set_identifier required")
+        out["data_set_identifier"] = ""
+    if data.get("TopicIdentifier") is not None:
+        out["topic_identifier"] = data["TopicIdentifier"]
     if data.get("VisualContentAltText") is not None:
         out["visual_content_alt_text"] = data["VisualContentAltText"]
     return out

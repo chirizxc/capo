@@ -10,6 +10,8 @@ if TYPE_CHECKING:
     import capo_mediatailor.types.__string
     import capo_mediatailor.types.ad_conditioning_configuration
     import capo_mediatailor.types.ad_decision_server_configuration
+    import capo_mediatailor.types.ads_personalization_concurrency
+    import capo_mediatailor.types.ads_personalization_timeouts
     import capo_mediatailor.types.avail_suppression
     import capo_mediatailor.types.bumper
     import capo_mediatailor.types.cdn_configuration
@@ -21,6 +23,7 @@ if TYPE_CHECKING:
     import capo_mediatailor.types.live_pre_roll_configuration
     import capo_mediatailor.types.log_configuration
     import capo_mediatailor.types.manifest_processing_rules
+    import capo_mediatailor.types.yield_optimization_configuration
 
 
 class GetPlaybackConfigurationResponse(TypedDict, closed=True):
@@ -71,11 +74,19 @@ class GetPlaybackConfigurationResponse(TypedDict, closed=True):
     playback_configuration_arn: NotRequired["capo_mediatailor.types.__string.__string"]
     """<p>The Amazon Resource Name (ARN) for the playback configuration.</p>"""
     playback_endpoint_prefix: NotRequired["capo_mediatailor.types.__string.__string"]
-    """<p>The URL that the player accesses to get a manifest from AWS Elemental MediaTailor. This session will use server-side reporting.</p>"""
+    """<p>The URL that your player accesses to get a manifest from AWS Elemental MediaTailor. The session uses server-side reporting.</p>"""
+    dual_stack_playback_endpoint_prefix: NotRequired[
+        "capo_mediatailor.types.__string.__string"
+    ]
+    """<p>The dual-stack (IPv4 and IPv6) URL that your player accesses to get a manifest from AWS Elemental MediaTailor. The session uses server-side reporting.</p>"""
     session_initialization_endpoint_prefix: NotRequired[
         "capo_mediatailor.types.__string.__string"
     ]
-    """<p>The URL that the player uses to initialize a session that uses client-side reporting.</p>"""
+    """<p>The URL that your player uses to initialize a session that uses client-side reporting.</p>"""
+    dual_stack_session_initialization_endpoint_prefix: NotRequired[
+        "capo_mediatailor.types.__string.__string"
+    ]
+    """<p>The dual-stack (IPv4 and IPv6) URL that your player uses to initialize a session that uses client-side reporting.</p>"""
     slate_ad_url: NotRequired["capo_mediatailor.types.__string.__string"]
     """<p>The URL for a high-quality video asset to transcode and use to fill in time that's not used by ads. AWS Elemental MediaTailor shows the slate to fill in gaps in media content. Configuring the slate is optional for non-VPAID playback configurations. For VPAID, the slate is required because MediaTailor provides it in the slots designated for dynamic ad content. The slate must be a high-quality asset that contains both audio and video.</p>"""
     tags: NotRequired["capo_mediatailor.types.__map_of__string.__mapOf__string"]
@@ -92,10 +103,22 @@ class GetPlaybackConfigurationResponse(TypedDict, closed=True):
         "capo_mediatailor.types.ad_decision_server_configuration.AdDecisionServerConfiguration"
     ]
     """<p>The configuration for customizing HTTP requests to the ad decision server (ADS). This includes settings for request method, headers, body content, and compression options.</p>"""
+    yield_optimization_configuration: NotRequired[
+        "capo_mediatailor.types.yield_optimization_configuration.YieldOptimizationConfiguration"
+    ]
+    """<p>Configuration for Yield Optimization, which fills unsold ad inventory in ad breaks with programmatic ads from Amazon Publisher Services (APS).</p>"""
     function_mapping: NotRequired[
         "capo_mediatailor.types.function_mapping.FunctionMapping"
     ]
-    r"""<p>A map of lifecycle hook event names to function identifiers. The function mapping specifies which function MediaTailor executes at each lifecycle hook during ad insertion. Valid keys are <code>PRE_SESSION_INITIALIZATION</code> and <code>PRE_ADS_REQUEST</code>. For more information, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/monetization-functions-hooks.html\">Functions lifecycle hooks</a> in the <i>MediaTailor User Guide</i>.</p>"""
+    r"""<p>A map of lifecycle hook event names to function identifiers. The function mapping specifies which function MediaTailor executes at each lifecycle hook during ad insertion. Valid keys are <code>PRE_SESSION_INITIALIZATION</code>, <code>PRE_ADS_REQUEST</code>, <code>POST_ADS_RESPONSE</code>, and <code>PRE_MANIFEST_INSERTION</code>. For more information, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/monetization-functions-hooks.html\">Functions lifecycle hooks</a> in the <i>MediaTailor User Guide</i>.</p>"""
+    ads_personalization_timeouts: NotRequired[
+        "capo_mediatailor.types.ads_personalization_timeouts.AdsPersonalizationTimeouts"
+    ]
+    """<p>The timeout settings for ad decision server interactions. These settings control how long MediaTailor waits for ADS responses and the total time budget for ad personalization across live, VOD, and prefetch workflows.</p>"""
+    ads_personalization_concurrency: NotRequired[
+        "capo_mediatailor.types.ads_personalization_concurrency.AdsPersonalizationConcurrency"
+    ]
+    """<p>The concurrency settings for ad decision server interactions. These settings control how many simultaneous ADS requests MediaTailor makes per manifest request.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -186,9 +209,17 @@ def serialize_json(value: GetPlaybackConfigurationResponse) -> dict:
         out["PlaybackConfigurationArn"] = value["playback_configuration_arn"]
     if "playback_endpoint_prefix" in value:
         out["PlaybackEndpointPrefix"] = value["playback_endpoint_prefix"]
+    if "dual_stack_playback_endpoint_prefix" in value:
+        out["DualStackPlaybackEndpointPrefix"] = value[
+            "dual_stack_playback_endpoint_prefix"
+        ]
     if "session_initialization_endpoint_prefix" in value:
         out["SessionInitializationEndpointPrefix"] = value[
             "session_initialization_endpoint_prefix"
+        ]
+    if "dual_stack_session_initialization_endpoint_prefix" in value:
+        out["DualStackSessionInitializationEndpointPrefix"] = value[
+            "dual_stack_session_initialization_endpoint_prefix"
         ]
     if "slate_ad_url" in value:
         out["SlateAdUrl"] = value["slate_ad_url"]
@@ -218,11 +249,35 @@ def serialize_json(value: GetPlaybackConfigurationResponse) -> dict:
                 value["ad_decision_server_configuration"]
             )
         )
+    if "yield_optimization_configuration" in value:
+        import capo_mediatailor.types.yield_optimization_configuration
+
+        out["YieldOptimizationConfiguration"] = (
+            capo_mediatailor.types.yield_optimization_configuration.serialize_json(
+                value["yield_optimization_configuration"]
+            )
+        )
     if "function_mapping" in value:
         import capo_mediatailor.types.function_mapping
 
         out["FunctionMapping"] = capo_mediatailor.types.function_mapping.serialize_json(
             value["function_mapping"]
+        )
+    if "ads_personalization_timeouts" in value:
+        import capo_mediatailor.types.ads_personalization_timeouts
+
+        out["AdsPersonalizationTimeouts"] = (
+            capo_mediatailor.types.ads_personalization_timeouts.serialize_json(
+                value["ads_personalization_timeouts"]
+            )
+        )
+    if "ads_personalization_concurrency" in value:
+        import capo_mediatailor.types.ads_personalization_concurrency
+
+        out["AdsPersonalizationConcurrency"] = (
+            capo_mediatailor.types.ads_personalization_concurrency.serialize_json(
+                value["ads_personalization_concurrency"]
+            )
         )
     return out
 
@@ -317,9 +372,17 @@ def deserialize_json(data: dict) -> GetPlaybackConfigurationResponse:
         out["playback_configuration_arn"] = data["PlaybackConfigurationArn"]
     if data.get("PlaybackEndpointPrefix") is not None:
         out["playback_endpoint_prefix"] = data["PlaybackEndpointPrefix"]
+    if data.get("DualStackPlaybackEndpointPrefix") is not None:
+        out["dual_stack_playback_endpoint_prefix"] = data[
+            "DualStackPlaybackEndpointPrefix"
+        ]
     if data.get("SessionInitializationEndpointPrefix") is not None:
         out["session_initialization_endpoint_prefix"] = data[
             "SessionInitializationEndpointPrefix"
+        ]
+    if data.get("DualStackSessionInitializationEndpointPrefix") is not None:
+        out["dual_stack_session_initialization_endpoint_prefix"] = data[
+            "DualStackSessionInitializationEndpointPrefix"
         ]
     if data.get("SlateAdUrl") is not None:
         out["slate_ad_url"] = data["SlateAdUrl"]
@@ -349,12 +412,36 @@ def deserialize_json(data: dict) -> GetPlaybackConfigurationResponse:
                 data["AdDecisionServerConfiguration"]
             )
         )
+    if data.get("YieldOptimizationConfiguration") is not None:
+        import capo_mediatailor.types.yield_optimization_configuration
+
+        out["yield_optimization_configuration"] = (
+            capo_mediatailor.types.yield_optimization_configuration.deserialize_json(
+                data["YieldOptimizationConfiguration"]
+            )
+        )
     if data.get("FunctionMapping") is not None:
         import capo_mediatailor.types.function_mapping
 
         out["function_mapping"] = (
             capo_mediatailor.types.function_mapping.deserialize_json(
                 data["FunctionMapping"]
+            )
+        )
+    if data.get("AdsPersonalizationTimeouts") is not None:
+        import capo_mediatailor.types.ads_personalization_timeouts
+
+        out["ads_personalization_timeouts"] = (
+            capo_mediatailor.types.ads_personalization_timeouts.deserialize_json(
+                data["AdsPersonalizationTimeouts"]
+            )
+        )
+    if data.get("AdsPersonalizationConcurrency") is not None:
+        import capo_mediatailor.types.ads_personalization_concurrency
+
+        out["ads_personalization_concurrency"] = (
+            capo_mediatailor.types.ads_personalization_concurrency.deserialize_json(
+                data["AdsPersonalizationConcurrency"]
             )
         )
     return out

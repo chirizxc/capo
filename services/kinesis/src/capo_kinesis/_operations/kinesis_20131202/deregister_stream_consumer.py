@@ -79,11 +79,14 @@ def build_request(
             UseDualStack=options.use_dual_stack,
             UseFIPS=options.use_fips,
             Endpoint=options.endpoint,
+            OperationType="control",
             StreamId=input_.get("stream_id"),
             StreamARN=input_.get("stream_arn"),
-            OperationType="control",
             ConsumerARN=input_.get("consumer_arn"),
             ResourceARN=options.resource_arn,
+            ChannelARN=options.channel_arn,
+            AccountId=options.account_id,
+            AccountIdEndpointMode=options.account_id_endpoint_mode,
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + ""

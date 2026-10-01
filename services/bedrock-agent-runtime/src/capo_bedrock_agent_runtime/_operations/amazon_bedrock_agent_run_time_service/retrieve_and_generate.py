@@ -28,6 +28,7 @@ import capo_bedrock_agent_runtime.types.retrieve_and_generate_output
 import capo_bedrock_agent_runtime.types.retrieve_and_generate_request
 import capo_bedrock_agent_runtime.types.retrieve_and_generate_response
 import capo_bedrock_agent_runtime.types.retrieve_and_generate_session_configuration
+import capo_bedrock_agent_runtime.types.user_context
 from capo_bedrock_agent_runtime._protocol.errors import parse_error_metadata_json
 from capo_bedrock_agent_runtime._rule_engine._endpoint_rule_set import (
     EndpointParams,

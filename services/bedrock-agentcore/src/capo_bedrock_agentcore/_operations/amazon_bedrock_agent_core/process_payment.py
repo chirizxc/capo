@@ -14,7 +14,9 @@ import capo_bedrock_agentcore._protocol.eventstream
 import capo_bedrock_agentcore.errors.access_denied_exception
 import capo_bedrock_agentcore.errors.conflict_exception
 import capo_bedrock_agentcore.errors.internal_server_exception
+import capo_bedrock_agentcore.errors.resource_not_found_exception
 import capo_bedrock_agentcore.errors.service_quota_exceeded_exception
+import capo_bedrock_agentcore.errors.subscription_required_exception
 import capo_bedrock_agentcore.errors.throttling_exception
 import capo_bedrock_agentcore.errors.validation_exception
 import capo_bedrock_agentcore.types.date_timestamp
@@ -52,8 +54,16 @@ def handle_error(response: zapros.Response) -> Never:
             raise capo_bedrock_agentcore.errors.internal_server_exception.InternalServerException.from_json(
                 data, message
             )
+        case "ResourceNotFoundException":
+            raise capo_bedrock_agentcore.errors.resource_not_found_exception.ResourceNotFoundException.from_json(
+                data, message
+            )
         case "ServiceQuotaExceededException":
             raise capo_bedrock_agentcore.errors.service_quota_exceeded_exception.ServiceQuotaExceededException.from_json(
+                data, message
+            )
+        case "SubscriptionRequiredException":
+            raise capo_bedrock_agentcore.errors.subscription_required_exception.SubscriptionRequiredException.from_json(
                 data, message
             )
         case "ThrottlingException":

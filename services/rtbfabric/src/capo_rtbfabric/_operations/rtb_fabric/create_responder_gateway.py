@@ -17,6 +17,7 @@ import capo_rtbfabric.errors.resource_not_found_exception
 import capo_rtbfabric.errors.service_quota_exceeded_exception
 import capo_rtbfabric.errors.throttling_exception
 import capo_rtbfabric.errors.validation_exception
+import capo_rtbfabric.types.client_routing_policy
 import capo_rtbfabric.types.create_responder_gateway_request
 import capo_rtbfabric.types.create_responder_gateway_response
 import capo_rtbfabric.types.gateway_type

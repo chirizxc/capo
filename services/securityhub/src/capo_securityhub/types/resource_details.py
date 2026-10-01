@@ -102,6 +102,7 @@ if TYPE_CHECKING:
     import capo_securityhub.types.aws_wafv2_rule_group_details
     import capo_securityhub.types.aws_wafv2_web_acl_details
     import capo_securityhub.types.aws_xray_encryption_config_details
+    import capo_securityhub.types.azure_resource_details
     import capo_securityhub.types.code_repository_details
     import capo_securityhub.types.container_details
     import capo_securityhub.types.field_map
@@ -500,6 +501,10 @@ class ResourceDetails(TypedDict, closed=True):
         "capo_securityhub.types.code_repository_details.CodeRepositoryDetails"
     ]
     """<p> Details about an external code repository with which you can connect your Amazon Web Services resources. The connection is established through Amazon Inspector. </p>"""
+    azure_resource: NotRequired[
+        "capo_securityhub.types.azure_resource_details.AzureResourceDetails"
+    ]
+    """<p>Details about an Azure resource that is related to a finding.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -1285,6 +1290,8 @@ def serialize_json(value: ResourceDetails) -> dict:
                 value["code_repository"]
             )
         )
+    if "azure_resource" in value:
+        out["AzureResource"] = value["azure_resource"]
     return out
 
 
@@ -2084,4 +2091,6 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["CodeRepository"]
             )
         )
+    if data.get("AzureResource") is not None:
+        out["azure_resource"] = data["AzureResource"]
     return out

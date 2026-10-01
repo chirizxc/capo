@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     import capo_pcs.types.custom_launch_template
     import capo_pcs.types.instance_list
     import capo_pcs.types.instance_profile_arn
+    import capo_pcs.types.node_lifecycle_actions_request
     import capo_pcs.types.purchase_option
     import capo_pcs.types.request_tag_map
     import capo_pcs.types.sb_client_token
@@ -49,6 +50,10 @@ class CreateComputeNodeGroupRequest(TypedDict, closed=True):
         "capo_pcs.types.compute_node_group_slurm_configuration_request.ComputeNodeGroupSlurmConfigurationRequest"
     ]
     """<p>Additional options related to the Slurm scheduler.</p>"""
+    node_lifecycle_actions: NotRequired[
+        "capo_pcs.types.node_lifecycle_actions_request.NodeLifecycleActionsRequest"
+    ]
+    """<p>The lifecycle actions to run on compute nodes in the compute node group. Use lifecycle actions to run custom scripts at defined stages of a compute node's lifecycle, such as when a compute node finishes bootstrapping or becomes ready to accept jobs.</p>"""
     client_token: NotRequired["capo_pcs.types.sb_client_token.SBClientToken"]
     """<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate 1 for you.</p>"""
     tags: NotRequired["capo_pcs.types.request_tag_map.RequestTagMap"]
@@ -105,6 +110,14 @@ def serialize_aws_json_1_0(value: CreateComputeNodeGroupRequest) -> dict:
         out["slurmConfiguration"] = (
             capo_pcs.types.compute_node_group_slurm_configuration_request.serialize_aws_json_1_0(
                 value["slurm_configuration"]
+            )
+        )
+    if "node_lifecycle_actions" in value:
+        import capo_pcs.types.node_lifecycle_actions_request
+
+        out["nodeLifecycleActions"] = (
+            capo_pcs.types.node_lifecycle_actions_request.serialize_aws_json_1_0(
+                value["node_lifecycle_actions"]
             )
         )
     if "client_token" in value:
@@ -202,6 +215,14 @@ def deserialize_aws_json_1_0(data: dict) -> CreateComputeNodeGroupRequest:
         out["slurm_configuration"] = (
             capo_pcs.types.compute_node_group_slurm_configuration_request.deserialize_aws_json_1_0(
                 data["slurmConfiguration"]
+            )
+        )
+    if data.get("nodeLifecycleActions") is not None:
+        import capo_pcs.types.node_lifecycle_actions_request
+
+        out["node_lifecycle_actions"] = (
+            capo_pcs.types.node_lifecycle_actions_request.deserialize_aws_json_1_0(
+                data["nodeLifecycleActions"]
             )
         )
     if data.get("clientToken") is not None:

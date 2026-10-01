@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     import capo_dynamodb.types.consumed_capacity_units
     import capo_dynamodb.types.secondary_indexes_capacity_map
     import capo_dynamodb.types.table_arn
+    import capo_dynamodb.types.vector_indexes_capacity_map
 
 
 class ConsumedCapacity(TypedDict, closed=True):
@@ -36,6 +37,10 @@ class ConsumedCapacity(TypedDict, closed=True):
         "capo_dynamodb.types.secondary_indexes_capacity_map.SecondaryIndexesCapacityMap"
     ]
     """<p>The amount of throughput consumed on each global index affected by the operation.</p>"""
+    vector_indexes: NotRequired[
+        "capo_dynamodb.types.vector_indexes_capacity_map.VectorIndexesCapacityMap"
+    ]
+    """<p>The amount of throughput consumed on each vector index affected by the operation. Each entry contains <code>VectorWriteRequestBytes</code> (for write operations) or <code>VectorSearchRequestBytes</code> (for search operations).</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -95,6 +100,14 @@ def serialize_aws_json_1_0(value: ConsumedCapacity) -> dict:
                 value["global_secondary_indexes"]
             )
         )
+    if "vector_indexes" in value:
+        import capo_dynamodb.types.vector_indexes_capacity_map
+
+        out["VectorIndexes"] = (
+            capo_dynamodb.types.vector_indexes_capacity_map.serialize_aws_json_1_0(
+                value["vector_indexes"]
+            )
+        )
     return out
 
 
@@ -128,6 +141,14 @@ def deserialize_aws_json_1_0(data: dict) -> ConsumedCapacity:
         out["global_secondary_indexes"] = (
             capo_dynamodb.types.secondary_indexes_capacity_map.deserialize_aws_json_1_0(
                 data["GlobalSecondaryIndexes"]
+            )
+        )
+    if data.get("VectorIndexes") is not None:
+        import capo_dynamodb.types.vector_indexes_capacity_map
+
+        out["vector_indexes"] = (
+            capo_dynamodb.types.vector_indexes_capacity_map.deserialize_aws_json_1_0(
+                data["VectorIndexes"]
             )
         )
     return out

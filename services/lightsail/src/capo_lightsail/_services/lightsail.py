@@ -176,6 +176,7 @@ if TYPE_CHECKING:
     import capo_lightsail.types.detach_static_ip_result
     import capo_lightsail.types.disable_add_on_request
     import capo_lightsail.types.disable_add_on_result
+    import capo_lightsail.types.distribution_custom_error_response_list
     import capo_lightsail.types.distribution_metric_name
     import capo_lightsail.types.domain_entry
     import capo_lightsail.types.domain_name
@@ -286,6 +287,8 @@ if TYPE_CHECKING:
     import capo_lightsail.types.get_operations_for_resource_result
     import capo_lightsail.types.get_operations_request
     import capo_lightsail.types.get_operations_result
+    import capo_lightsail.types.get_profile_request
+    import capo_lightsail.types.get_profile_result
     import capo_lightsail.types.get_regions_request
     import capo_lightsail.types.get_regions_result
     import capo_lightsail.types.get_relational_database_blueprints_request
@@ -1667,6 +1670,13 @@ class LightsailClient:
         viewer_minimum_tls_protocol_version: Optional[
             "capo_lightsail.types.viewer_minimum_tls_protocol_version_enum.ViewerMinimumTlsProtocolVersionEnum"
         ] = None,
+        enable_private_origin_access: Optional[
+            "capo_lightsail.types.boolean.boolean"
+        ] = None,
+        default_root_object: Optional["capo_lightsail.types.string.string"] = None,
+        custom_error_responses: Optional[
+            "capo_lightsail.types.distribution_custom_error_response_list.DistributionCustomErrorResponseList"
+        ] = None,
     ) -> "capo_lightsail.types.create_distribution_result.CreateDistributionResult":
         r"""<p>Creates an Amazon Lightsail content delivery network (CDN) distribution.</p> <p>A distribution is a globally distributed network of caching servers that improve the performance of your website or web application hosted on a Lightsail instance. For more information, see <a href=\"https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-content-delivery-network-distributions\">Content delivery networks in Amazon Lightsail</a>.</p>
 
@@ -1681,6 +1691,9 @@ class LightsailClient:
             tags: <p>The tag keys and optional values to add to the distribution during create.</p> <p>Use the <code>TagResource</code> action to tag a resource after it's created.</p>
             certificate_name: <p>The name of the SSL/TLS certificate that you want to attach to the distribution.</p> <p>Use the <a href=\"https://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetCertificates.html\">GetCertificates</a> action to get a list of certificate names that you can specify.</p>
             viewer_minimum_tls_protocol_version: <p>The minimum TLS protocol version for the SSL/TLS certificate.</p>
+            enable_private_origin_access: <p>Specifies whether to enable private origin access for the distribution. With private origin access, the distribution can serve objects that aren't publicly accessible from a Lightsail bucket.</p> <p>Lightsail grants the distribution permission to read the bucket's objects. Enabling private origin access doesn't change the bucket's access settings, and you can still retrieve publicly accessible objects directly from the bucket's endpoint.</p> <note> <p>You can enable private origin access only when the distribution's origin is a Lightsail bucket. If the origin is another resource type, the request fails.</p> </note>
+            default_root_object: <p>The object (for example, <code>index.html</code>) that the distribution returns when a viewer requests the root URL of the distribution (<code>/</code>) instead of a specific object. The object that you specify must be available from the origin.</p>
+            custom_error_responses: <p>An array of objects that describe the custom error responses for the distribution. With a custom error response, you can specify the page to return when the origin responds with a given HTTP error code. You can also specify the HTTP status code to send to the viewer.</p>
 
         Raises:
             capo_lightsail.errors.access_denied_exception.AccessDeniedException: <p>Lightsail throws this exception when the user cannot be authenticated or uses invalid credentials to access a resource.</p>
@@ -1727,6 +1740,12 @@ class LightsailClient:
             input_["viewer_minimum_tls_protocol_version"] = (
                 viewer_minimum_tls_protocol_version
             )
+        if enable_private_origin_access is not None:
+            input_["enable_private_origin_access"] = enable_private_origin_access
+        if default_root_object is not None:
+            input_["default_root_object"] = default_root_object
+        if custom_error_responses is not None:
+            input_["custom_error_responses"] = custom_error_responses
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -6660,6 +6679,45 @@ class LightsailClient:
         response.response.close()
         return response.output
 
+    def get_profile(
+        self, *, config_overrides: Optional[LightsailClientConfig] = None
+    ) -> "capo_lightsail.types.get_profile_result.GetProfileResult":
+        """<p>Returns information about the profile of the Amazon Lightsail account that makes the request. The response includes the profile type and, for accounts enrolled in the Lightsail partner program, the partner membership details.</p>
+
+        Raises:
+            capo_lightsail.errors.access_denied_exception.AccessDeniedException: <p>Lightsail throws this exception when the user cannot be authenticated or uses invalid credentials to access a resource.</p>
+            capo_lightsail.errors.account_setup_in_progress_exception.AccountSetupInProgressException: <p>Lightsail throws this exception when an account is still in the setup in progress state.</p>
+            capo_lightsail.errors.invalid_input_exception.InvalidInputException: <p>Lightsail throws this exception when user input does not conform to the validation rules of an input field.</p> <note> <p>Domain and distribution APIs are only available in the N. Virginia (<code>us-east-1</code>) Amazon Web Services Region. Please set your Amazon Web Services Region configuration to <code>us-east-1</code> to create, view, or edit these resources.</p> </note>
+            capo_lightsail.errors.service_exception.ServiceException: <p>A general service exception.</p>
+            capo_lightsail.errors.unauthenticated_exception.UnauthenticatedException: <p>Lightsail throws this exception when the user has not been authenticated.</p>
+            capo_lightsail.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_lightsail.types.get_profile_request.GetProfileRequest]",
+        ) -> OperationResponse[
+            "capo_lightsail.types.get_profile_result.GetProfileResult"
+        ]:
+            import capo_lightsail._operations.lightsail_20161128.get_profile
+
+            output, http_response = (
+                capo_lightsail._operations.lightsail_20161128.get_profile.get_profile(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_lightsail.types.get_profile_request.GetProfileRequest = {}
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def get_regions(
         self,
         *,
@@ -9084,6 +9142,13 @@ class LightsailClient:
         use_default_certificate: Optional[
             "capo_lightsail.types.boolean.boolean"
         ] = None,
+        enable_private_origin_access: Optional[
+            "capo_lightsail.types.boolean.boolean"
+        ] = None,
+        default_root_object: Optional["capo_lightsail.types.string.string"] = None,
+        custom_error_responses: Optional[
+            "capo_lightsail.types.distribution_custom_error_response_list.DistributionCustomErrorResponseList"
+        ] = None,
     ) -> "capo_lightsail.types.update_distribution_result.UpdateDistributionResult":
         r"""<p>Updates an existing Amazon Lightsail content delivery network (CDN) distribution.</p> <p>Use this action to update the configuration of your existing distribution.</p>
 
@@ -9097,6 +9162,9 @@ class LightsailClient:
             viewer_minimum_tls_protocol_version: <p>Use this parameter to update the minimum TLS protocol version for the SSL/TLS certificate that's attached to the distribution.</p>
             certificate_name: <p>The name of the SSL/TLS certificate that you want to attach to the distribution.</p> <p>Only certificates with a status of <code>ISSUED</code> can be attached to a distribution.</p> <p>Use the <a href=\"https://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetCertificates.html\">GetCertificates</a> action to get a list of certificate names that you can specify.</p>
             use_default_certificate: <p>Indicates whether the default SSL/TLS certificate is attached to the distribution. The default value is <code>true</code>. When <code>true</code>, the distribution uses the default domain name such as <code>d111111abcdef8.cloudfront.net</code>.</p> <p> Set this value to <code>false</code> to attach a new certificate to the distribution.</p>
+            enable_private_origin_access: <p>Specifies whether to enable private origin access for the distribution. With private origin access, the distribution can serve objects that aren't publicly accessible from a Lightsail bucket.</p> <p>Lightsail grants the distribution permission to read the bucket's objects. Enabling private origin access doesn't change the bucket's access settings, and you can still retrieve publicly accessible objects directly from the bucket's endpoint.</p> <note> <p>When you include this parameter, you must also include the <code>origin</code> parameter with the resource name, even if the origin is not changing.</p> <p>You can enable private origin access only when the distribution's origin is a Lightsail bucket. If the origin is another resource type, the request fails.</p> </note>
+            default_root_object: <p>The object (for example, <code>index.html</code>) that the distribution returns when a viewer requests the root URL of the distribution (<code>/</code>) instead of a specific object. The object that you specify must be available from the origin.</p>
+            custom_error_responses: <p>An array of objects that describe the custom error responses for the distribution. With a custom error response, you can specify the page to return when the origin responds with a given HTTP error code. You can also specify the HTTP status code to send to the viewer.</p>
 
         Raises:
             capo_lightsail.errors.access_denied_exception.AccessDeniedException: <p>Lightsail throws this exception when the user cannot be authenticated or uses invalid credentials to access a resource.</p>
@@ -9144,6 +9212,12 @@ class LightsailClient:
             input_["certificate_name"] = certificate_name
         if use_default_certificate is not None:
             input_["use_default_certificate"] = use_default_certificate
+        if enable_private_origin_access is not None:
+            input_["enable_private_origin_access"] = enable_private_origin_access
+        if default_root_object is not None:
+            input_["default_root_object"] = default_root_object
+        if custom_error_responses is not None:
+            input_["custom_error_responses"] = custom_error_responses
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),

@@ -9,9 +9,12 @@ if TYPE_CHECKING:
     import capo_sso_admin.types.date
     import capo_sso_admin.types.id
     import capo_sso_admin.types.instance_arn
+    import capo_sso_admin.types.instance_identity_store_arn
     import capo_sso_admin.types.instance_status
     import capo_sso_admin.types.name_type
     import capo_sso_admin.types.reason
+    import capo_sso_admin.types.region_metadata_list
+    import capo_sso_admin.types.region_name
 
 
 class InstanceMetadata(TypedDict, closed=True):
@@ -19,6 +22,10 @@ class InstanceMetadata(TypedDict, closed=True):
     r"""<p>The ARN of the Identity Center instance under which the operation will be executed. For more information about ARNs, see <a href=\"/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>"""
     identity_store_id: NotRequired["capo_sso_admin.types.id.Id"]
     """<p>The identifier of the identity store that is connected to the Identity Center instance.</p>"""
+    identity_store_arn: NotRequired[
+        "capo_sso_admin.types.instance_identity_store_arn.InstanceIdentityStoreArn"
+    ]
+    """<p>The ARN of the identity store that is connected to the Identity Center instance.</p>"""
     owner_account_id: NotRequired["capo_sso_admin.types.account_id.AccountId"]
     """<p>The Amazon Web Services account ID number of the owner of the Identity Center instance.</p>"""
     name: NotRequired["capo_sso_admin.types.name_type.NameType"]
@@ -29,6 +36,10 @@ class InstanceMetadata(TypedDict, closed=True):
     """<p>The current status of this Identity Center instance.</p>"""
     status_reason: NotRequired["capo_sso_admin.types.reason.Reason"]
     """<p>Provides additional context about the current status of the IAM Identity Center instance. This field is particularly useful when an instance is in a non-ACTIVE state, such as CREATE_FAILED. When an instance creation fails, this field contains information about the cause, which may include issues with KMS key configuration or insufficient permissions. </p>"""
+    primary_region: NotRequired["capo_sso_admin.types.region_name.RegionName"]
+    """<p>The primary Region where the IAM Identity Center instance was originally enabled. The primary Region cannot be removed.</p>"""
+    regions: NotRequired["capo_sso_admin.types.region_metadata_list.RegionMetadataList"]
+    """<p>The list of Regions enabled in the IAM Identity Center instance, including Regions with ACTIVE, ADDING, or REMOVING status.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -38,6 +49,8 @@ def serialize_aws_json_1_1(value: InstanceMetadata) -> dict:
         out["InstanceArn"] = value["instance_arn"]
     if "identity_store_id" in value:
         out["IdentityStoreId"] = value["identity_store_id"]
+    if "identity_store_arn" in value:
+        out["IdentityStoreArn"] = value["identity_store_arn"]
     if "owner_account_id" in value:
         out["OwnerAccountId"] = value["owner_account_id"]
     if "name" in value:
@@ -56,6 +69,16 @@ def serialize_aws_json_1_1(value: InstanceMetadata) -> dict:
         )
     if "status_reason" in value:
         out["StatusReason"] = value["status_reason"]
+    if "primary_region" in value:
+        out["PrimaryRegion"] = value["primary_region"]
+    if "regions" in value:
+        import capo_sso_admin.types.region_metadata_list
+
+        out["Regions"] = (
+            capo_sso_admin.types.region_metadata_list.serialize_aws_json_1_1(
+                value["regions"]
+            )
+        )
     return out
 
 
@@ -65,6 +88,8 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceMetadata:
         out["instance_arn"] = data["InstanceArn"]
     if data.get("IdentityStoreId") is not None:
         out["identity_store_id"] = data["IdentityStoreId"]
+    if data.get("IdentityStoreArn") is not None:
+        out["identity_store_arn"] = data["IdentityStoreArn"]
     if data.get("OwnerAccountId") is not None:
         out["owner_account_id"] = data["OwnerAccountId"]
     if data.get("Name") is not None:
@@ -83,4 +108,14 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceMetadata:
         )
     if data.get("StatusReason") is not None:
         out["status_reason"] = data["StatusReason"]
+    if data.get("PrimaryRegion") is not None:
+        out["primary_region"] = data["PrimaryRegion"]
+    if data.get("Regions") is not None:
+        import capo_sso_admin.types.region_metadata_list
+
+        out["regions"] = (
+            capo_sso_admin.types.region_metadata_list.deserialize_aws_json_1_1(
+                data["Regions"]
+            )
+        )
     return out

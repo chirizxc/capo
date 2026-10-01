@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     import capo_sagemaker.types.additional_model_data_sources
     import capo_sagemaker.types.container_hostname
     import capo_sagemaker.types.container_image
+    import capo_sagemaker.types.container_metrics_config
     import capo_sagemaker.types.container_mode
     import capo_sagemaker.types.environment_map
     import capo_sagemaker.types.image_config
@@ -53,6 +54,10 @@ class ContainerDefinition(TypedDict, closed=True):
         "capo_sagemaker.types.multi_model_config.MultiModelConfig"
     ]
     """<p>Specifies additional configuration for multi-model endpoints.</p>"""
+    container_metrics_config: NotRequired[
+        "capo_sagemaker.types.container_metrics_config.ContainerMetricsConfig"
+    ]
+    """<p>The configuration for container metrics scraping. Specifies the metrics endpoint path and publishing frequency. If not specified when <code>EnableDetailedObservability</code> is <code>True</code>, the default path <code>/metrics</code> on port <code>8080</code> is used. For first-party and Deep Learning Containers (DLC), the endpoint path is determined automatically and this configuration is optional.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -110,6 +115,14 @@ def serialize_aws_json_1_1(value: ContainerDefinition) -> dict:
         out["MultiModelConfig"] = (
             capo_sagemaker.types.multi_model_config.serialize_aws_json_1_1(
                 value["multi_model_config"]
+            )
+        )
+    if "container_metrics_config" in value:
+        import capo_sagemaker.types.container_metrics_config
+
+        out["ContainerMetricsConfig"] = (
+            capo_sagemaker.types.container_metrics_config.serialize_aws_json_1_1(
+                value["container_metrics_config"]
             )
         )
     return out
@@ -171,6 +184,14 @@ def deserialize_aws_json_1_1(data: dict) -> ContainerDefinition:
         out["multi_model_config"] = (
             capo_sagemaker.types.multi_model_config.deserialize_aws_json_1_1(
                 data["MultiModelConfig"]
+            )
+        )
+    if data.get("ContainerMetricsConfig") is not None:
+        import capo_sagemaker.types.container_metrics_config
+
+        out["container_metrics_config"] = (
+            capo_sagemaker.types.container_metrics_config.deserialize_aws_json_1_1(
+                data["ContainerMetricsConfig"]
             )
         )
     return out

@@ -9,6 +9,7 @@ from ._endpoint_runtime import (
     get_attr,
     interpolate,
     is_valid_host_label,
+    string_equals,
 )
 
 
@@ -56,60 +57,150 @@ def resolve(p: EndpointParams) -> Endpoint:  # type: ignore
                                 },
                                 headers={},
                             )
-                        if p.UseDualStack is True:
-                            if True is get_attr(
+                        if string_equals(
+                            get_attr(
                                 _locals["PartitionResult"],
-                                interpolate("supportsDualStack", p, _locals),
-                            ):
-                                return Endpoint(
-                                    url=interpolate(
-                                        "https://{EndpointId}.endpoints.email.global.{PartitionResult#dualStackDnsSuffix}",
+                                interpolate("name", p, _locals),
+                            ),
+                            interpolate("aws-us-gov", p, _locals),
+                        ):
+                            if p.UseDualStack is True:
+                                if True is get_attr(
+                                    _locals["PartitionResult"],
+                                    interpolate("supportsDualStack", p, _locals),
+                                ):
+                                    return Endpoint(
+                                        url=interpolate(
+                                            "https://{EndpointId}.endpoints.email.us-gov.{PartitionResult#dualStackDnsSuffix}",
+                                            p,
+                                            _locals,
+                                        ),
+                                        properties={
+                                            "authSchemes": [
+                                                {
+                                                    "name": interpolate(
+                                                        "sigv4a", p, _locals
+                                                    ),
+                                                    "signingName": interpolate(
+                                                        "ses", p, _locals
+                                                    ),
+                                                    "signingRegionSet": [
+                                                        interpolate("*", p, _locals)
+                                                    ],
+                                                }
+                                            ]
+                                        },
+                                        headers={},
+                                    )
+                                raise EndpointError(
+                                    interpolate(
+                                        "DualStack is enabled but this partition does not support DualStack",
                                         p,
                                         _locals,
-                                    ),
-                                    properties={
-                                        "authSchemes": [
-                                            {
-                                                "name": interpolate(
-                                                    "sigv4a", p, _locals
-                                                ),
-                                                "signingName": interpolate(
-                                                    "ses", p, _locals
-                                                ),
-                                                "signingRegionSet": [
-                                                    interpolate("*", p, _locals)
-                                                ],
-                                            }
-                                        ]
-                                    },
-                                    headers={},
+                                    )
                                 )
-                            raise EndpointError(
-                                interpolate(
-                                    "DualStack is enabled but this partition does not support DualStack",
+                        if string_equals(
+                            get_attr(
+                                _locals["PartitionResult"],
+                                interpolate("name", p, _locals),
+                            ),
+                            interpolate("aws-us-gov", p, _locals),
+                        ):
+                            return Endpoint(
+                                url=interpolate(
+                                    "https://{EndpointId}.endpoints.email.us-gov.{PartitionResult#dnsSuffix}",
                                     p,
                                     _locals,
-                                )
+                                ),
+                                properties={
+                                    "authSchemes": [
+                                        {
+                                            "name": interpolate("sigv4a", p, _locals),
+                                            "signingName": interpolate(
+                                                "ses", p, _locals
+                                            ),
+                                            "signingRegionSet": [
+                                                interpolate("*", p, _locals)
+                                            ],
+                                        }
+                                    ]
+                                },
+                                headers={},
                             )
-                        return Endpoint(
-                            url=interpolate(
-                                "https://{EndpointId}.endpoints.email.{PartitionResult#dnsSuffix}",
-                                p,
-                                _locals,
-                            ),
-                            properties={
-                                "authSchemes": [
-                                    {
-                                        "name": interpolate("sigv4a", p, _locals),
-                                        "signingName": interpolate("ses", p, _locals),
-                                        "signingRegionSet": [
-                                            interpolate("*", p, _locals)
-                                        ],
-                                    }
-                                ]
-                            },
-                            headers={},
-                        )
+                        if not (
+                            string_equals(
+                                get_attr(
+                                    _locals["PartitionResult"],
+                                    interpolate("name", p, _locals),
+                                ),
+                                interpolate("aws-us-gov", p, _locals),
+                            )
+                        ):
+                            if p.UseDualStack is True:
+                                if True is get_attr(
+                                    _locals["PartitionResult"],
+                                    interpolate("supportsDualStack", p, _locals),
+                                ):
+                                    return Endpoint(
+                                        url=interpolate(
+                                            "https://{EndpointId}.endpoints.email.global.{PartitionResult#dualStackDnsSuffix}",
+                                            p,
+                                            _locals,
+                                        ),
+                                        properties={
+                                            "authSchemes": [
+                                                {
+                                                    "name": interpolate(
+                                                        "sigv4a", p, _locals
+                                                    ),
+                                                    "signingName": interpolate(
+                                                        "ses", p, _locals
+                                                    ),
+                                                    "signingRegionSet": [
+                                                        interpolate("*", p, _locals)
+                                                    ],
+                                                }
+                                            ]
+                                        },
+                                        headers={},
+                                    )
+                                raise EndpointError(
+                                    interpolate(
+                                        "DualStack is enabled but this partition does not support DualStack",
+                                        p,
+                                        _locals,
+                                    )
+                                )
+                        if not (
+                            string_equals(
+                                get_attr(
+                                    _locals["PartitionResult"],
+                                    interpolate("name", p, _locals),
+                                ),
+                                interpolate("aws-us-gov", p, _locals),
+                            )
+                        ):
+                            return Endpoint(
+                                url=interpolate(
+                                    "https://{EndpointId}.endpoints.email.{PartitionResult#dnsSuffix}",
+                                    p,
+                                    _locals,
+                                ),
+                                properties={
+                                    "authSchemes": [
+                                        {
+                                            "name": interpolate("sigv4a", p, _locals),
+                                            "signingName": interpolate(
+                                                "ses", p, _locals
+                                            ),
+                                            "signingRegionSet": [
+                                                interpolate("*", p, _locals)
+                                            ],
+                                        }
+                                    ]
+                                },
+                                headers={},
+                            )
                     raise EndpointError(
                         interpolate(
                             "Invalid Configuration: FIPS is not supported with multi-region endpoints",

@@ -9,6 +9,7 @@ AgentRuntimeEndpointStatus: TypeAlias = Literal[
     "UPDATE_FAILED",
     "READY",
     "DELETING",
+    "DELETE_FAILED",
 ]
 
 

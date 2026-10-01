@@ -2,13 +2,14 @@
 
 from typing import TYPE_CHECKING
 
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 from capo_wafv2.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_wafv2.types.field_to_match
     import capo_wafv2.types.positional_constraint
+    import capo_wafv2.types.pre_parse_text_transformations
     import capo_wafv2.types.search_string
     import capo_wafv2.types.text_transformations
 
@@ -20,6 +21,10 @@ class ByteMatchStatement(TypedDict, closed=True):
     """<p>The part of the web request that you want WAF to inspect. </p>"""
     text_transformations: "capo_wafv2.types.text_transformations.TextTransformations"
     """<p>Text transformations eliminate some of the unusual formatting that attackers use in web requests in an effort to bypass detection. Text transformations are used in rule match statements, to transform the <code>FieldToMatch</code> request component before inspecting it, and they're used in rate-based rule statements, to transform request components before using them as custom aggregation keys. If you specify one or more transformations to apply, WAF performs all transformations on the specified content, starting from the lowest priority setting, and then uses the transformed component contents. </p>"""
+    pre_parse_text_transformations: NotRequired[
+        "capo_wafv2.types.pre_parse_text_transformations.PreParseTextTransformations"
+    ]
+    """<p>Pre-parse text transformations normalize the raw query string before WAF parses it into individual query arguments. They are applied before the standard text transformations. Pre-parse text transformations are only supported when <code>FieldToMatch</code> is <code>SingleQueryArgument</code> or <code>AllQueryArguments</code>. You can specify up to 10 pre-parse text transformations per rule statement.</p>"""
     positional_constraint: "capo_wafv2.types.positional_constraint.PositionalConstraint"
     """<p>The area within the portion of the web request that you want WAF to search for <code>SearchString</code>. Valid values include the following:</p> <p> <b>CONTAINS</b> </p> <p>The specified part of the web request must include the value of <code>SearchString</code>, but the location doesn't matter.</p> <p> <b>CONTAINS_WORD</b> </p> <p>The specified part of the web request must include the value of <code>SearchString</code>, and <code>SearchString</code> must contain only alphanumeric characters or underscore (A-Z, a-z, 0-9, or _). In addition, <code>SearchString</code> must be a word, which means that both of the following are true:</p> <ul> <li> <p> <code>SearchString</code> is at the beginning of the specified part of the web request or is preceded by a character other than an alphanumeric character or underscore (_). Examples include the value of a header and <code>;BadBot</code>.</p> </li> <li> <p> <code>SearchString</code> is at the end of the specified part of the web request or is followed by a character other than an alphanumeric character or underscore (_), for example, <code>BadBot;</code> and <code>-BadBot;</code>.</p> </li> </ul> <p> <b>EXACTLY</b> </p> <p>The value of the specified part of the web request must exactly match the value of <code>SearchString</code>.</p> <p> <b>STARTS_WITH</b> </p> <p>The value of <code>SearchString</code> must appear at the beginning of the specified part of the web request.</p> <p> <b>ENDS_WITH</b> </p> <p>The value of <code>SearchString</code> must appear at the end of the specified part of the web request.</p>"""
 
@@ -44,6 +49,14 @@ def serialize_aws_json_1_1(value: ByteMatchStatement) -> dict:
             value["text_transformations"]
         )
     )
+    if "pre_parse_text_transformations" in value:
+        import capo_wafv2.types.pre_parse_text_transformations
+
+        out["PreParseTextTransformations"] = (
+            capo_wafv2.types.pre_parse_text_transformations.serialize_aws_json_1_1(
+                value["pre_parse_text_transformations"]
+            )
+        )
     import capo_wafv2.types.positional_constraint
 
     out["PositionalConstraint"] = (
@@ -84,6 +97,14 @@ def deserialize_aws_json_1_1(data: dict) -> ByteMatchStatement:
         )
     else:
         raise DeserializationError("ByteMatchStatement.text_transformations required")
+    if data.get("PreParseTextTransformations") is not None:
+        import capo_wafv2.types.pre_parse_text_transformations
+
+        out["pre_parse_text_transformations"] = (
+            capo_wafv2.types.pre_parse_text_transformations.deserialize_aws_json_1_1(
+                data["PreParseTextTransformations"]
+            )
+        )
     if data.get("PositionalConstraint") is not None:
         import capo_wafv2.types.positional_constraint
 

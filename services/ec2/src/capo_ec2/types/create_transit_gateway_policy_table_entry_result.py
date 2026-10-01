@@ -14,6 +14,7 @@ class CreateTransitGatewayPolicyTableEntryResult(TypedDict, closed=True):
     transit_gateway_policy_table_entry: NotRequired[
         "capo_ec2.types.transit_gateway_policy_table_entry.TransitGatewayPolicyTableEntry"
     ]
+    """<p>Describes a transit gateway policy table entry</p>"""
 
 
 # --- ec2Query ser/de ---

@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     import capo_device_farm.types.device_minutes
     import capo_device_farm.types.execution_result
     import capo_device_farm.types.execution_status
+    import capo_device_farm.types.job_insights
     import capo_device_farm.types.message
     import capo_device_farm.types.name
     import capo_device_farm.types.string
@@ -52,6 +53,8 @@ class Job(TypedDict, closed=True):
     """<p>The endpoint for streaming device video.</p>"""
     video_capture: NotRequired["capo_device_farm.types.video_capture.VideoCapture"]
     """<p>This value is set to true if video capture is enabled. Otherwise, it is set to false.</p>"""
+    insights: NotRequired["capo_device_farm.types.job_insights.JobInsights"]
+    """<p>The insights for the job, including the report status and test-level metrics. This field contains data only if you specified <code>insightsTypes</code> when you scheduled the run.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -125,6 +128,12 @@ def serialize_aws_json_1_1(value: Job) -> dict:
         out["videoEndpoint"] = value["video_endpoint"]
     if "video_capture" in value:
         out["videoCapture"] = value["video_capture"]
+    if "insights" in value:
+        import capo_device_farm.types.job_insights
+
+        out["insights"] = capo_device_farm.types.job_insights.serialize_aws_json_1_1(
+            value["insights"]
+        )
     return out
 
 
@@ -202,4 +211,10 @@ def deserialize_aws_json_1_1(data: dict) -> Job:
         out["video_endpoint"] = data["videoEndpoint"]
     if data.get("videoCapture") is not None:
         out["video_capture"] = data["videoCapture"]
+    if data.get("insights") is not None:
+        import capo_device_farm.types.job_insights
+
+        out["insights"] = capo_device_farm.types.job_insights.deserialize_aws_json_1_1(
+            data["insights"]
+        )
     return out

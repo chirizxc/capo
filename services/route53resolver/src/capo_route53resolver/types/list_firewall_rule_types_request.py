@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 class ListFirewallRuleTypesRequest(TypedDict, closed=True):
     rule_type: NotRequired["capo_route53resolver.types.rule_type_name.RuleTypeName"]
-    """<p>The rule type to filter by. If specified, only rule types matching this value are returned.</p>"""
+    """<p>An optional filter that restricts the response to a single <a>FirewallRuleType</a> variant. Supported values: <code>FirewallAdvancedContentCategory</code>, <code>FirewallAdvancedThreatCategory</code>, <code>DnsThreatProtection</code>, and <code>PartnerThreatProtection</code>. If omitted, definitions across all variants are returned.</p>"""
     max_results: NotRequired["capo_route53resolver.types.max_results.MaxResults"]
     """<p>The maximum number of objects that you want Resolver to return for this request. If more objects are available, in the response, Resolver provides a <code>NextToken</code> value that you can use in a subsequent call to get the next batch of objects.</p>"""
     next_token: NotRequired["capo_route53resolver.types.next_token.NextToken"]

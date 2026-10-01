@@ -25,6 +25,7 @@ import capo_lex_models_v2.types.describe_bot_locale_response
 import capo_lex_models_v2.types.failure_reasons
 import capo_lex_models_v2.types.generative_ai_settings
 import capo_lex_models_v2.types.recommended_actions
+import capo_lex_models_v2.types.speaker_diarization_settings
 import capo_lex_models_v2.types.speech_detection_sensitivity
 import capo_lex_models_v2.types.speech_recognition_settings
 import capo_lex_models_v2.types.timestamp

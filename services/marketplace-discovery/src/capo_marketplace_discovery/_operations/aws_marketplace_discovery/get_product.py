@@ -96,7 +96,7 @@ def get_signer(
     if (
         options.credentials_provider is not None
         and name_to_schema
-        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express", "sigv4a"}
     ):
         raise RuntimeError(
             "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
@@ -115,6 +115,12 @@ def get_signer(
                 return capo_marketplace_discovery._auth._signers.SigV4Signer(
                     options.credentials_provider, auth_scheme=sigv4_config
                 )
+    if options.credentials_provider is not None:
+        sigv4_config = name_to_schema.get("sigv4a")
+        if sigv4_config is not None:
+            return capo_marketplace_discovery._auth._signers.SigV4ASigner(
+                options.credentials_provider, auth_scheme=sigv4_config
+            )
     raise RuntimeError("Auth was not resolved")
 
 

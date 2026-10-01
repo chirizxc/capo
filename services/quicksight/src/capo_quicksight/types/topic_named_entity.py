@@ -7,8 +7,11 @@ from typing_extensions import NotRequired, TypedDict
 from capo_quicksight.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_quicksight.types.description_sensitive_string
     import capo_quicksight.types.limited_string
     import capo_quicksight.types.named_entity_definitions
+    import capo_quicksight.types.named_entity_sort_list
+    import capo_quicksight.types.nullable_integer
     import capo_quicksight.types.semantic_entity_type
     import capo_quicksight.types.synonyms
 
@@ -17,7 +20,7 @@ class TopicNamedEntity(TypedDict, closed=True):
     entity_name: "capo_quicksight.types.limited_string.LimitedString"
     """<p>The name of the named entity.</p>"""
     entity_description: NotRequired[
-        "capo_quicksight.types.limited_string.LimitedString"
+        "capo_quicksight.types.description_sensitive_string.DescriptionSensitiveString"
     ]
     """<p>The description of the named entity.</p>"""
     entity_synonyms: NotRequired["capo_quicksight.types.synonyms.Synonyms"]
@@ -30,6 +33,16 @@ class TopicNamedEntity(TypedDict, closed=True):
         "capo_quicksight.types.named_entity_definitions.NamedEntityDefinitions"
     ]
     """<p>The definition of a named entity.</p>"""
+    sort: NotRequired[
+        "capo_quicksight.types.named_entity_sort_list.NamedEntitySortList"
+    ]
+    """<p>The sort configuration of the named entity.</p>"""
+    rank_order: NotRequired["capo_quicksight.types.nullable_integer.NullableInteger"]
+    """<p>The rank order of the named entity.</p>"""
+    presentation_order: NotRequired[
+        "capo_quicksight.types.nullable_integer.NullableInteger"
+    ]
+    """<p>The presentation order of the named entity.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -60,6 +73,16 @@ def serialize_json(value: TopicNamedEntity) -> dict:
                 value["definition"]
             )
         )
+    if "sort" in value:
+        import capo_quicksight.types.named_entity_sort_list
+
+        out["Sort"] = capo_quicksight.types.named_entity_sort_list.serialize_json(
+            value["sort"]
+        )
+    if "rank_order" in value:
+        out["RankOrder"] = value["rank_order"]
+    if "presentation_order" in value:
+        out["PresentationOrder"] = value["presentation_order"]
     return out
 
 
@@ -93,4 +116,14 @@ def deserialize_json(data: dict) -> TopicNamedEntity:
                 data["Definition"]
             )
         )
+    if data.get("Sort") is not None:
+        import capo_quicksight.types.named_entity_sort_list
+
+        out["sort"] = capo_quicksight.types.named_entity_sort_list.deserialize_json(
+            data["Sort"]
+        )
+    if data.get("RankOrder") is not None:
+        out["rank_order"] = data["RankOrder"]
+    if data.get("PresentationOrder") is not None:
+        out["presentation_order"] = data["PresentationOrder"]
     return out

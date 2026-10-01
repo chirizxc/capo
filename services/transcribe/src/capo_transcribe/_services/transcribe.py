@@ -62,6 +62,7 @@ if TYPE_CHECKING:
     import capo_transcribe.types.delete_vocabulary_request
     import capo_transcribe.types.describe_language_model_request
     import capo_transcribe.types.describe_language_model_response
+    import capo_transcribe.types.encryption_configuration
     import capo_transcribe.types.get_call_analytics_category_request
     import capo_transcribe.types.get_call_analytics_category_response
     import capo_transcribe.types.get_call_analytics_job_request
@@ -149,6 +150,8 @@ if TYPE_CHECKING:
     import capo_transcribe.types.untag_resource_response
     import capo_transcribe.types.update_call_analytics_category_request
     import capo_transcribe.types.update_call_analytics_category_response
+    import capo_transcribe.types.update_language_model_request
+    import capo_transcribe.types.update_language_model_response
     import capo_transcribe.types.update_medical_vocabulary_request
     import capo_transcribe.types.update_medical_vocabulary_response
     import capo_transcribe.types.update_vocabulary_filter_request
@@ -320,6 +323,9 @@ class TranscribeClient:
         input_data_config: "capo_transcribe.types.input_data_config.InputDataConfig",
         *,
         config_overrides: Optional[TranscribeClientConfig] = None,
+        encryption_configuration: Optional[
+            "capo_transcribe.types.encryption_configuration.EncryptionConfiguration"
+        ] = None,
         tags: Optional["capo_transcribe.types.tag_list.TagList"] = None,
     ) -> "capo_transcribe.types.create_language_model_response.CreateLanguageModelResponse":
         r"""<p>Creates a new custom language model.</p> <p>When creating a new custom language model, you must specify:</p> <ul> <li> <p>If you want a Wideband (audio sample rates over 16,000 Hz) or Narrowband (audio sample rates under 16,000 Hz) base model</p> </li> <li> <p>The location of your training and tuning files (this must be an Amazon S3 URI)</p> </li> <li> <p>The language of your model</p> </li> <li> <p>A unique name for your model</p> </li> </ul>
@@ -329,6 +335,7 @@ class TranscribeClient:
             base_model_name: <p>The Amazon Transcribe standard language model, or base model, used to create your custom language model. Amazon Transcribe offers two options for base models: Wideband and Narrowband.</p> <p>If the audio you want to transcribe has a sample rate of 16,000 Hz or greater, choose <code>WideBand</code>. To transcribe audio with a sample rate less than 16,000 Hz, choose <code>NarrowBand</code>.</p>
             model_name: <p>A unique name, chosen by you, for your custom language model.</p> <p>This name is case sensitive, cannot contain spaces, and must be unique within an Amazon Web Services account. If you try to create a new custom language model with the same name as an existing custom language model, you get a <code>ConflictException</code> error.</p>
             input_data_config: <p>Contains the Amazon S3 location of the training data you want to use to create a new custom language model, and permissions to access this location.</p> <p>When using <code>InputDataConfig</code>, you must include these sub-parameters: <code>S3Uri</code>, which is the Amazon S3 location of your training data, and <code>DataAccessRoleArn</code>, which is the Amazon Resource Name (ARN) of the role that has permission to access your specified Amazon S3 location. You can optionally include <code>TuningDataS3Uri</code>, which is the Amazon S3 location of your tuning data. If you specify different Amazon S3 locations for training and tuning data, the ARN you use must have permissions to access both locations.</p>
+            encryption_configuration: <p>Specifies the encryption configuration for your custom language model. Your model artifacts are encrypted with the specified KMS key or with an AWS-owned key if a key is not supplied.</p>
             tags: <p>Adds one or more custom tags, each in the form of a key:value pair, to a new custom language model at the time you create this new model.</p> <p>To learn more about using tags with Amazon Transcribe, refer to <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/tagging.html\">Tagging resources</a>.</p>
 
         Raises:
@@ -360,6 +367,8 @@ class TranscribeClient:
             "model_name": model_name,
             "input_data_config": input_data_config,
         }
+        if encryption_configuration is not None:
+            input_["encryption_configuration"] = encryption_configuration
         if tags is not None:
             input_["tags"] = tags
 
@@ -439,6 +448,9 @@ class TranscribeClient:
         data_access_role_arn: Optional[
             "capo_transcribe.types.data_access_role_arn.DataAccessRoleArn"
         ] = None,
+        encryption_configuration: Optional[
+            "capo_transcribe.types.encryption_configuration.EncryptionConfiguration"
+        ] = None,
     ) -> "capo_transcribe.types.create_vocabulary_response.CreateVocabularyResponse":
         r"""<p>Creates a new custom vocabulary.</p> <p>When creating a new custom vocabulary, you can either upload a text file that contains your new entries, phrases, and terms into an Amazon S3 bucket and include the URI in your request. Or you can include a list of terms directly in your request using the <code>Phrases</code> flag.</p> <p>Each language has a character set that contains all allowed characters for that specific language. If you use unsupported characters, your custom vocabulary request fails. Refer to <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html\">Character Sets for Custom Vocabularies</a> to get the character set for your language.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html\">Custom vocabularies</a>.</p>
 
@@ -448,7 +460,8 @@ class TranscribeClient:
             phrases: <p>Use this parameter if you want to create your custom vocabulary by including all desired terms, as comma-separated values, within your request. The other option for creating your custom vocabulary is to save your entries in a text file and upload them to an Amazon S3 bucket, then specify the location of your file using the <code>VocabularyFileUri</code> parameter.</p> <p>Note that if you include <code>Phrases</code> in your request, you cannot use <code>VocabularyFileUri</code>; you must choose one or the other.</p> <p>Each language has a character set that contains all allowed characters for that specific language. If you use unsupported characters, your custom vocabulary filter request fails. Refer to <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html\">Character Sets for Custom Vocabularies</a> to get the character set for your language.</p>
             vocabulary_file_uri: <p>The Amazon S3 location of the text file that contains your custom vocabulary. The URI must be located in the same Amazon Web Services Region as the resource you're calling.</p> <p>Here's an example URI path: <code>s3://DOC-EXAMPLE-BUCKET/my-vocab-file.txt</code> </p> <p>Note that if you include <code>VocabularyFileUri</code> in your request, you cannot use the <code>Phrases</code> flag; you must choose one or the other.</p>
             tags: <p>Adds one or more custom tags, each in the form of a key:value pair, to a new custom vocabulary at the time you create this new custom vocabulary.</p> <p>To learn more about using tags with Amazon Transcribe, refer to <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/tagging.html\">Tagging resources</a>.</p>
-            data_access_role_arn: <p>The Amazon Resource Name (ARN) of an IAM role that has permissions to access the Amazon S3 bucket that contains your input files (in this case, your custom vocabulary). If the role that you specify doesn’t have the appropriate permissions to access the specified Amazon S3 location, your request fails.</p> <p>IAM role ARNs have the format <code>arn:partition:iam::account:role/role-name-with-path</code>. For example: <code>arn:aws:iam::111122223333:role/Admin</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns\">IAM ARNs</a>.</p>
+            data_access_role_arn: <p>The Amazon Resource Name (ARN) of an IAM role that has permissions to access the Amazon S3 bucket that contains your input files (in this case, your custom vocabulary). If you include <code>EncryptionConfiguration</code> in your request, this role must also have permissions to access the specified KMS key. If the role that you specify doesn’t have the appropriate permissions, your request fails.</p> <p>IAM role ARNs have the format <code>arn:partition:iam::account:role/role-name-with-path</code>. For example: <code>arn:aws:iam::111122223333:role/Admin</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns\">IAM ARNs</a>.</p>
+            encryption_configuration: <p>Specifies the encryption configuration for your custom vocabulary. Your vocabulary artifacts are encrypted with the specified KMS key or with an AWS-owned key if a key is not supplied.</p>
 
         Raises:
             capo_transcribe.errors.bad_request_exception.BadRequestException: <p>Your request didn't pass one or more validation tests. This can occur when the entity you're trying to delete doesn't exist or if it's in a non-terminal state (such as <code>IN PROGRESS</code>). See the exception message field for more information.</p>
@@ -485,6 +498,8 @@ class TranscribeClient:
             input_["tags"] = tags
         if data_access_role_arn is not None:
             input_["data_access_role_arn"] = data_access_role_arn
+        if encryption_configuration is not None:
+            input_["encryption_configuration"] = encryption_configuration
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -506,6 +521,9 @@ class TranscribeClient:
         data_access_role_arn: Optional[
             "capo_transcribe.types.data_access_role_arn.DataAccessRoleArn"
         ] = None,
+        encryption_configuration: Optional[
+            "capo_transcribe.types.encryption_configuration.EncryptionConfiguration"
+        ] = None,
     ) -> "capo_transcribe.types.create_vocabulary_filter_response.CreateVocabularyFilterResponse":
         r"""<p>Creates a new custom vocabulary filter.</p> <p>You can use custom vocabulary filters to mask, delete, or flag specific words from your transcript. Custom vocabulary filters are commonly used to mask profanity in transcripts.</p> <p>Each language has a character set that contains all allowed characters for that specific language. If you use unsupported characters, your custom vocabulary filter request fails. Refer to <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html\">Character Sets for Custom Vocabularies</a> to get the character set for your language.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/vocabulary-filtering.html\">Vocabulary filtering</a>.</p>
 
@@ -515,7 +533,8 @@ class TranscribeClient:
             words: <p>Use this parameter if you want to create your custom vocabulary filter by including all desired terms, as comma-separated values, within your request. The other option for creating your vocabulary filter is to save your entries in a text file and upload them to an Amazon S3 bucket, then specify the location of your file using the <code>VocabularyFilterFileUri</code> parameter.</p> <p>Note that if you include <code>Words</code> in your request, you cannot use <code>VocabularyFilterFileUri</code>; you must choose one or the other.</p> <p>Each language has a character set that contains all allowed characters for that specific language. If you use unsupported characters, your custom vocabulary filter request fails. Refer to <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html\">Character Sets for Custom Vocabularies</a> to get the character set for your language.</p>
             vocabulary_filter_file_uri: <p>The Amazon S3 location of the text file that contains your custom vocabulary filter terms. The URI must be located in the same Amazon Web Services Region as the resource you're calling.</p> <p>Here's an example URI path: <code>s3://DOC-EXAMPLE-BUCKET/my-vocab-filter-file.txt</code> </p> <p>Note that if you include <code>VocabularyFilterFileUri</code> in your request, you cannot use <code>Words</code>; you must choose one or the other.</p>
             tags: <p>Adds one or more custom tags, each in the form of a key:value pair, to a new custom vocabulary filter at the time you create this new vocabulary filter.</p> <p>To learn more about using tags with Amazon Transcribe, refer to <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/tagging.html\">Tagging resources</a>.</p>
-            data_access_role_arn: <p>The Amazon Resource Name (ARN) of an IAM role that has permissions to access the Amazon S3 bucket that contains your input files (in this case, your custom vocabulary filter). If the role that you specify doesn’t have the appropriate permissions to access the specified Amazon S3 location, your request fails.</p> <p>IAM role ARNs have the format <code>arn:partition:iam::account:role/role-name-with-path</code>. For example: <code>arn:aws:iam::111122223333:role/Admin</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns\">IAM ARNs</a>.</p>
+            data_access_role_arn: <p>The Amazon Resource Name (ARN) of an IAM role that has permissions to access the Amazon S3 bucket that contains your input files (in this case, your custom vocabulary filter). If you include <code>EncryptionConfiguration</code> in your request, this role must also have permissions to access the specified KMS key. If the role that you specify doesn’t have the appropriate permissions, your request fails.</p> <p>IAM role ARNs have the format <code>arn:partition:iam::account:role/role-name-with-path</code>. For example: <code>arn:aws:iam::111122223333:role/Admin</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns\">IAM ARNs</a>.</p>
+            encryption_configuration: <p>Specifies the encryption configuration for your custom vocabulary filter. Your vocabulary filter artifacts are encrypted with the specified KMS key or with an AWS-owned key if a key is not supplied.</p>
 
         Raises:
             capo_transcribe.errors.bad_request_exception.BadRequestException: <p>Your request didn't pass one or more validation tests. This can occur when the entity you're trying to delete doesn't exist or if it's in a non-terminal state (such as <code>IN PROGRESS</code>). See the exception message field for more information.</p>
@@ -552,6 +571,8 @@ class TranscribeClient:
             input_["tags"] = tags
         if data_access_role_arn is not None:
             input_["data_access_role_arn"] = data_access_role_arn
+        if encryption_configuration is not None:
+            input_["encryption_configuration"] = encryption_configuration
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -2743,6 +2764,65 @@ class TranscribeClient:
         response.response.close()
         return response.output
 
+    def update_language_model(
+        self,
+        model_name: "capo_transcribe.types.model_name.ModelName",
+        *,
+        config_overrides: Optional[TranscribeClientConfig] = None,
+        data_access_role_arn: Optional[
+            "capo_transcribe.types.data_access_role_arn.DataAccessRoleArn"
+        ] = None,
+        encryption_configuration: Optional[
+            "capo_transcribe.types.encryption_configuration.EncryptionConfiguration"
+        ] = None,
+    ) -> "capo_transcribe.types.update_language_model_response.UpdateLanguageModelResponse":
+        r"""<p>Updates the encryption configuration for an existing custom language model. You can use this operation to change the KMS key used to encrypt your model artifacts. The model artifacts are re-encrypted in place. No model training is required.</p> <p>Your custom language model must not be in the <code>IN_PROGRESS</code> state when you call this operation. You cannot submit another update while a previous update is in progress. Use to check the current state of your model.</p> <p>Your custom language model remains available for transcription jobs while the update is being processed.</p>
+
+        Args:
+            model_name: <p>The name of the custom language model you want to update. Model names are case sensitive.</p>
+            data_access_role_arn: <p>The Amazon Resource Name (ARN) of an IAM role. If you include <code>EncryptionConfiguration</code> in your request, this role must have permissions to access the specified KMS key. If the role that you specify doesn't have the appropriate permissions, your request fails.</p> <p>IAM role ARNs have the format <code>arn:partition:iam::account:role/role-name-with-path</code>. For example: <code>arn:aws:iam::111122223333:role/Admin</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns\">IAM ARNs</a>.</p>
+            encryption_configuration: <p>Specifies the new encryption configuration for your custom language model. The model artifacts are re-encrypted in place using the specified KMS key or with an AWS-owned key if a key is not supplied.</p>
+
+        Raises:
+            capo_transcribe.errors.bad_request_exception.BadRequestException: <p>Your request didn't pass one or more validation tests. This can occur when the entity you're trying to delete doesn't exist or if it's in a non-terminal state (such as <code>IN PROGRESS</code>). See the exception message field for more information.</p>
+            capo_transcribe.errors.conflict_exception.ConflictException: <p>A resource already exists with this name. Resource names must be unique within an Amazon Web Services account.</p>
+            capo_transcribe.errors.internal_failure_exception.InternalFailureException: <p>There was an internal error. Check the error message, correct the issue, and try your request again.</p>
+            capo_transcribe.errors.limit_exceeded_exception.LimitExceededException: <p>You've either sent too many requests or your input file is too long. Wait before retrying your request, or use a smaller file and try your request again.</p>
+            capo_transcribe.errors.not_found_exception.NotFoundException: <p>We can't find the requested resource. Check that the specified name is correct and try your request again.</p>
+            capo_transcribe.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_transcribe.types.update_language_model_request.UpdateLanguageModelRequest]",
+        ) -> OperationResponse[
+            "capo_transcribe.types.update_language_model_response.UpdateLanguageModelResponse"
+        ]:
+            import capo_transcribe._operations.transcribe.update_language_model
+
+            output, http_response = (
+                capo_transcribe._operations.transcribe.update_language_model.update_language_model(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_transcribe.types.update_language_model_request.UpdateLanguageModelRequest = {
+            "model_name": model_name
+        }
+        if data_access_role_arn is not None:
+            input_["data_access_role_arn"] = data_access_role_arn
+        if encryption_configuration is not None:
+            input_["encryption_configuration"] = encryption_configuration
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
     def update_medical_vocabulary(
         self,
         vocabulary_name: "capo_transcribe.types.vocabulary_name.VocabularyName",
@@ -2807,15 +2887,19 @@ class TranscribeClient:
         data_access_role_arn: Optional[
             "capo_transcribe.types.data_access_role_arn.DataAccessRoleArn"
         ] = None,
+        encryption_configuration: Optional[
+            "capo_transcribe.types.encryption_configuration.EncryptionConfiguration"
+        ] = None,
     ) -> "capo_transcribe.types.update_vocabulary_response.UpdateVocabularyResponse":
-        r"""<p>Updates an existing custom vocabulary with new values. This operation overwrites all existing information with your new values; you cannot append new terms onto an existing custom vocabulary.</p>
+        r"""<p>Updates an existing custom vocabulary with new values. This operation overwrites all existing information with your new values; you cannot append new terms onto an existing custom vocabulary.</p> <p>Your custom vocabulary must be in a terminal state (<code>READY</code> or <code>FAILED</code>) before you can update it. You must include either <code>Phrases</code> or <code>VocabularyFileUri</code> in your request.</p>
 
         Args:
             vocabulary_name: <p>The name of the custom vocabulary you want to update. Custom vocabulary names are case sensitive.</p>
             language_code: <p>The language code that represents the language of the entries in the custom vocabulary you want to update. Each custom vocabulary must contain terms in only one language.</p> <p>A custom vocabulary can only be used to transcribe files in the same language as the custom vocabulary. For example, if you create a custom vocabulary using US English (<code>en-US</code>), you can only apply this custom vocabulary to files that contain English audio.</p> <p>For a list of supported languages and their associated language codes, refer to the <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html\">Supported languages</a> table.</p>
             phrases: <p>Use this parameter if you want to update your custom vocabulary by including all desired terms, as comma-separated values, within your request. The other option for updating your custom vocabulary is to save your entries in a text file and upload them to an Amazon S3 bucket, then specify the location of your file using the <code>VocabularyFileUri</code> parameter.</p> <p>Note that if you include <code>Phrases</code> in your request, you cannot use <code>VocabularyFileUri</code>; you must choose one or the other.</p> <p>Each language has a character set that contains all allowed characters for that specific language. If you use unsupported characters, your custom vocabulary filter request fails. Refer to <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html\">Character Sets for Custom Vocabularies</a> to get the character set for your language.</p>
             vocabulary_file_uri: <p>The Amazon S3 location of the text file that contains your custom vocabulary. The URI must be located in the same Amazon Web Services Region as the resource you're calling.</p> <p>Here's an example URI path: <code>s3://DOC-EXAMPLE-BUCKET/my-vocab-file.txt</code> </p> <p>Note that if you include <code>VocabularyFileUri</code> in your request, you cannot use the <code>Phrases</code> flag; you must choose one or the other.</p>
-            data_access_role_arn: <p>The Amazon Resource Name (ARN) of an IAM role that has permissions to access the Amazon S3 bucket that contains your input files (in this case, your custom vocabulary). If the role that you specify doesn’t have the appropriate permissions to access the specified Amazon S3 location, your request fails.</p> <p>IAM role ARNs have the format <code>arn:partition:iam::account:role/role-name-with-path</code>. For example: <code>arn:aws:iam::111122223333:role/Admin</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns\">IAM ARNs</a>.</p>
+            data_access_role_arn: <p>The Amazon Resource Name (ARN) of an IAM role that has permissions to access the Amazon S3 bucket that contains your input files (in this case, your custom vocabulary). If you include <code>EncryptionConfiguration</code> in your request, this role must also have permissions to access the specified KMS key. If the role that you specify doesn’t have the appropriate permissions, your request fails.</p> <p>IAM role ARNs have the format <code>arn:partition:iam::account:role/role-name-with-path</code>. For example: <code>arn:aws:iam::111122223333:role/Admin</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns\">IAM ARNs</a>.</p>
+            encryption_configuration: <p>Specifies the new encryption configuration for your custom vocabulary. The vocabulary artifacts are re-encrypted in place using the specified KMS key or with an AWS-owned key if a key is not supplied.</p>
 
         Raises:
             capo_transcribe.errors.bad_request_exception.BadRequestException: <p>Your request didn't pass one or more validation tests. This can occur when the entity you're trying to delete doesn't exist or if it's in a non-terminal state (such as <code>IN PROGRESS</code>). See the exception message field for more information.</p>
@@ -2851,6 +2935,8 @@ class TranscribeClient:
             input_["vocabulary_file_uri"] = vocabulary_file_uri
         if data_access_role_arn is not None:
             input_["data_access_role_arn"] = data_access_role_arn
+        if encryption_configuration is not None:
+            input_["encryption_configuration"] = encryption_configuration
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -2870,17 +2956,22 @@ class TranscribeClient:
         data_access_role_arn: Optional[
             "capo_transcribe.types.data_access_role_arn.DataAccessRoleArn"
         ] = None,
+        encryption_configuration: Optional[
+            "capo_transcribe.types.encryption_configuration.EncryptionConfiguration"
+        ] = None,
     ) -> "capo_transcribe.types.update_vocabulary_filter_response.UpdateVocabularyFilterResponse":
-        r"""<p>Updates an existing custom vocabulary filter with a new list of words. The new list you provide overwrites all previous entries; you cannot append new terms onto an existing custom vocabulary filter.</p>
+        r"""<p>Updates an existing custom vocabulary filter with a new list of words. The new list you provide overwrites all previous entries; you cannot append new terms onto an existing custom vocabulary filter.</p> <p>You must include either <code>Words</code> or <code>VocabularyFilterFileUri</code> in your request.</p>
 
         Args:
             vocabulary_filter_name: <p>The name of the custom vocabulary filter you want to update. Custom vocabulary filter names are case sensitive.</p>
             words: <p>Use this parameter if you want to update your custom vocabulary filter by including all desired terms, as comma-separated values, within your request. The other option for updating your vocabulary filter is to save your entries in a text file and upload them to an Amazon S3 bucket, then specify the location of your file using the <code>VocabularyFilterFileUri</code> parameter.</p> <p>Note that if you include <code>Words</code> in your request, you cannot use <code>VocabularyFilterFileUri</code>; you must choose one or the other.</p> <p>Each language has a character set that contains all allowed characters for that specific language. If you use unsupported characters, your custom vocabulary filter request fails. Refer to <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html\">Character Sets for Custom Vocabularies</a> to get the character set for your language.</p>
             vocabulary_filter_file_uri: <p>The Amazon S3 location of the text file that contains your custom vocabulary filter terms. The URI must be located in the same Amazon Web Services Region as the resource you're calling.</p> <p>Here's an example URI path: <code>s3://DOC-EXAMPLE-BUCKET/my-vocab-filter-file.txt</code> </p> <p>Note that if you include <code>VocabularyFilterFileUri</code> in your request, you cannot use <code>Words</code>; you must choose one or the other.</p>
-            data_access_role_arn: <p>The Amazon Resource Name (ARN) of an IAM role that has permissions to access the Amazon S3 bucket that contains your input files (in this case, your custom vocabulary filter). If the role that you specify doesn’t have the appropriate permissions to access the specified Amazon S3 location, your request fails.</p> <p>IAM role ARNs have the format <code>arn:partition:iam::account:role/role-name-with-path</code>. For example: <code>arn:aws:iam::111122223333:role/Admin</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns\">IAM ARNs</a>.</p>
+            data_access_role_arn: <p>The Amazon Resource Name (ARN) of an IAM role that has permissions to access the Amazon S3 bucket that contains your input files (in this case, your custom vocabulary filter). If you include <code>EncryptionConfiguration</code> in your request, this role must also have permissions to access the specified KMS key. If the role that you specify doesn’t have the appropriate permissions, your request fails.</p> <p>IAM role ARNs have the format <code>arn:partition:iam::account:role/role-name-with-path</code>. For example: <code>arn:aws:iam::111122223333:role/Admin</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns\">IAM ARNs</a>.</p>
+            encryption_configuration: <p>Specifies the new encryption configuration for your custom vocabulary filter. The vocabulary filter artifacts are re-encrypted in place using the specified KMS key or with an AWS-owned key if a key is not supplied.</p>
 
         Raises:
             capo_transcribe.errors.bad_request_exception.BadRequestException: <p>Your request didn't pass one or more validation tests. This can occur when the entity you're trying to delete doesn't exist or if it's in a non-terminal state (such as <code>IN PROGRESS</code>). See the exception message field for more information.</p>
+            capo_transcribe.errors.conflict_exception.ConflictException: <p>A resource already exists with this name. Resource names must be unique within an Amazon Web Services account.</p>
             capo_transcribe.errors.internal_failure_exception.InternalFailureException: <p>There was an internal error. Check the error message, correct the issue, and try your request again.</p>
             capo_transcribe.errors.limit_exceeded_exception.LimitExceededException: <p>You've either sent too many requests or your input file is too long. Wait before retrying your request, or use a smaller file and try your request again.</p>
             capo_transcribe.errors.not_found_exception.NotFoundException: <p>We can't find the requested resource. Check that the specified name is correct and try your request again.</p>
@@ -2911,6 +3002,8 @@ class TranscribeClient:
             input_["vocabulary_filter_file_uri"] = vocabulary_filter_file_uri
         if data_access_role_arn is not None:
             input_["data_access_role_arn"] = data_access_role_arn
+        if encryption_configuration is not None:
+            input_["encryption_configuration"] = encryption_configuration
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),

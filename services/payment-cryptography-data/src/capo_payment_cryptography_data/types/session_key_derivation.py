@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     import capo_payment_cryptography_data.types.session_key_emv2000
     import capo_payment_cryptography_data.types.session_key_emv_common
     import capo_payment_cryptography_data.types.session_key_mastercard
+    import capo_payment_cryptography_data.types.session_key_union_pay
     import capo_payment_cryptography_data.types.session_key_visa
 
 
@@ -39,12 +40,19 @@ class _SessionKeyDerivation_Visa(TypedDict, closed=True):
     Visa: "capo_payment_cryptography_data.types.session_key_visa.SessionKeyVisa"
 
 
+class _SessionKeyDerivation_UnionPay(TypedDict, closed=True):
+    UnionPay: (
+        "capo_payment_cryptography_data.types.session_key_union_pay.SessionKeyUnionPay"
+    )
+
+
 SessionKeyDerivation: TypeAlias = (
     _SessionKeyDerivation_EmvCommon
     | _SessionKeyDerivation_Mastercard
     | _SessionKeyDerivation_Emv2000
     | _SessionKeyDerivation_Amex
     | _SessionKeyDerivation_Visa
+    | _SessionKeyDerivation_UnionPay
 )
 
 
@@ -90,6 +98,14 @@ def serialize_json(value: SessionKeyDerivation) -> dict:
                 value["Visa"]
             )
         }
+    elif "UnionPay" in value:
+        import capo_payment_cryptography_data.types.session_key_union_pay
+
+        return {
+            "UnionPay": capo_payment_cryptography_data.types.session_key_union_pay.serialize_json(
+                value["UnionPay"]
+            )
+        }
     else:
         raise SerializationError("SessionKeyDerivation: no variant present")
 
@@ -133,6 +149,14 @@ def deserialize_json(data: dict) -> SessionKeyDerivation:
         return {
             "Visa": capo_payment_cryptography_data.types.session_key_visa.deserialize_json(
                 data["Visa"]
+            )
+        }
+    elif data.get("UnionPay") is not None:
+        import capo_payment_cryptography_data.types.session_key_union_pay
+
+        return {
+            "UnionPay": capo_payment_cryptography_data.types.session_key_union_pay.deserialize_json(
+                data["UnionPay"]
             )
         }
     else:

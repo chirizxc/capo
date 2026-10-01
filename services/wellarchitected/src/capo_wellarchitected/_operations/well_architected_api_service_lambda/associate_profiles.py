@@ -95,10 +95,11 @@ def build_request(
 ) -> zapros.Request:
     endpoint = resolve(
         EndpointParams(
-            Region=options.region,
             UseDualStack=options.use_dual_stack,
             UseFIPS=options.use_fips,
             Endpoint=options.endpoint,
+            Region=options.region,
+            SubServiceType=options.sub_service_type,
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + "/workloads/{WorkloadId}/associateProfiles"

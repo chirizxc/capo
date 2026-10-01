@@ -3,9 +3,11 @@
 from typing import TYPE_CHECKING, TypeAlias
 
 if TYPE_CHECKING:
-    import capo_healthlake.types.string
+    import capo_healthlake.types.health_lake_string
 
-DefaultProfiles: TypeAlias = list["capo_healthlake.types.string.String"]
+DefaultProfiles: TypeAlias = list[
+    "capo_healthlake.types.health_lake_string.HealthLakeString"
+]
 
 
 # --- awsJson1_0 ser/de ---

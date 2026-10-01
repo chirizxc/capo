@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     import capo_appintegrations.types.application_source_config
     import capo_appintegrations.types.application_type
     import capo_appintegrations.types.arn
+    import capo_appintegrations.types.auth_config
     import capo_appintegrations.types.boolean
     import capo_appintegrations.types.description
     import capo_appintegrations.types.iframe_config
@@ -74,6 +75,8 @@ class GetApplicationResponse(TypedDict, closed=True):
         "capo_appintegrations.types.application_type.ApplicationType"
     ]
     """<p>The type of application.</p>"""
+    auth_config: NotRequired["capo_appintegrations.types.auth_config.AuthConfig"]
+    """<p>The authentication settings that Connect Customer uses when calling the external application.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -159,6 +162,12 @@ def serialize_json(value: GetApplicationResponse) -> dict:
             capo_appintegrations.types.application_type.serialize_json(
                 value["application_type"]
             )
+        )
+    if "auth_config" in value:
+        import capo_appintegrations.types.auth_config
+
+        out["AuthConfig"] = capo_appintegrations.types.auth_config.serialize_json(
+            value["auth_config"]
         )
     return out
 
@@ -254,5 +263,11 @@ def deserialize_json(data: dict) -> GetApplicationResponse:
             capo_appintegrations.types.application_type.deserialize_json(
                 data["ApplicationType"]
             )
+        )
+    if data.get("AuthConfig") is not None:
+        import capo_appintegrations.types.auth_config
+
+        out["auth_config"] = capo_appintegrations.types.auth_config.deserialize_json(
+            data["AuthConfig"]
         )
     return out

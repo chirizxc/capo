@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 class GetImageRecipeRequest(TypedDict, closed=True):
     image_recipe_arn: "capo_imagebuilder.types.image_recipe_arn.ImageRecipeArn"
-    """<p>The Amazon Resource Name (ARN) of the image recipe that you want to retrieve.</p>"""
+    """<p>The Amazon Resource Name (ARN) of the image recipe that you want to retrieve. You can use the <code>x</code> wildcard in trailing version positions to retrieve the latest matching version, for example <code>x.x.x</code> or <code>1.x.x</code>.</p>"""
 
 
 # --- restJson1 ser/de ---

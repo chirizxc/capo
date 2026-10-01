@@ -20,7 +20,7 @@ class ToolSpecification(TypedDict, closed=True):
     input_schema: "capo_bedrock_agent.types.tool_input_schema.ToolInputSchema"
     """<p>The input schema for the tool.</p>"""
     strict: NotRequired["bool"]
-    """Whether to enforce strict JSON schema adherence for the tool input"""
+    """<p>Whether the tool schema is strictly enforced.</p>"""
 
 
 # --- restJson1 ser/de ---

@@ -10,17 +10,15 @@ if TYPE_CHECKING:
     import capo_chime_sdk_voice.types.capability_list
     import capo_chime_sdk_voice.types.geo_match_level
     import capo_chime_sdk_voice.types.geo_match_params
-    import capo_chime_sdk_voice.types.non_empty_string128
     import capo_chime_sdk_voice.types.number_selection_behavior
     import capo_chime_sdk_voice.types.participant_phone_number_list
     import capo_chime_sdk_voice.types.positive_integer
     import capo_chime_sdk_voice.types.proxy_session_name_string
+    import capo_chime_sdk_voice.types.voice_connector_id
 
 
 class CreateProxySessionRequest(TypedDict, closed=True):
-    voice_connector_id: (
-        "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128"
-    )
+    voice_connector_id: "capo_chime_sdk_voice.types.voice_connector_id.VoiceConnectorId"
     """<p>The Voice Connector ID.</p>"""
     participant_phone_numbers: "capo_chime_sdk_voice.types.participant_phone_number_list.ParticipantPhoneNumberList"
     """<p>The participant phone numbers.</p>"""

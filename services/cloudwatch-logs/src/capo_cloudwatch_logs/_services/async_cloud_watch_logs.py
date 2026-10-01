@@ -96,6 +96,7 @@ if TYPE_CHECKING:
     import capo_cloudwatch_logs.types.delete_scheduled_query_request
     import capo_cloudwatch_logs.types.delete_scheduled_query_response
     import capo_cloudwatch_logs.types.delete_subscription_filter_request
+    import capo_cloudwatch_logs.types.delete_syslog_configuration_request
     import capo_cloudwatch_logs.types.delete_transformer_request
     import capo_cloudwatch_logs.types.deletion_protection_enabled
     import capo_cloudwatch_logs.types.delivery
@@ -165,6 +166,7 @@ if TYPE_CHECKING:
     import capo_cloudwatch_logs.types.disassociate_source_from_s3_table_integration_response
     import capo_cloudwatch_logs.types.distribution
     import capo_cloudwatch_logs.types.emit_system_fields
+    import capo_cloudwatch_logs.types.end_time_offset
     import capo_cloudwatch_logs.types.entity
     import capo_cloudwatch_logs.types.evaluation_frequency
     import capo_cloudwatch_logs.types.events_limit
@@ -220,6 +222,8 @@ if TYPE_CHECKING:
     import capo_cloudwatch_logs.types.get_scheduled_query_history_response
     import capo_cloudwatch_logs.types.get_scheduled_query_request
     import capo_cloudwatch_logs.types.get_scheduled_query_response
+    import capo_cloudwatch_logs.types.get_storage_tier_policy_request
+    import capo_cloudwatch_logs.types.get_storage_tier_policy_response
     import capo_cloudwatch_logs.types.get_transformer_request
     import capo_cloudwatch_logs.types.get_transformer_response
     import capo_cloudwatch_logs.types.import_filter
@@ -227,6 +231,7 @@ if TYPE_CHECKING:
     import capo_cloudwatch_logs.types.import_status
     import capo_cloudwatch_logs.types.import_status_list
     import capo_cloudwatch_logs.types.include_linked_accounts
+    import capo_cloudwatch_logs.types.index_categories
     import capo_cloudwatch_logs.types.input_log_events
     import capo_cloudwatch_logs.types.input_log_stream_names
     import capo_cloudwatch_logs.types.integration_name
@@ -259,6 +264,9 @@ if TYPE_CHECKING:
     import capo_cloudwatch_logs.types.list_sources_for_s3_table_integration_max_results
     import capo_cloudwatch_logs.types.list_sources_for_s3_table_integration_request
     import capo_cloudwatch_logs.types.list_sources_for_s3_table_integration_response
+    import capo_cloudwatch_logs.types.list_syslog_configurations_max_results
+    import capo_cloudwatch_logs.types.list_syslog_configurations_request
+    import capo_cloudwatch_logs.types.list_syslog_configurations_response
     import capo_cloudwatch_logs.types.list_tags_for_resource_request
     import capo_cloudwatch_logs.types.list_tags_for_resource_response
     import capo_cloudwatch_logs.types.list_tags_log_group_request
@@ -322,7 +330,10 @@ if TYPE_CHECKING:
     import capo_cloudwatch_logs.types.put_resource_policy_request
     import capo_cloudwatch_logs.types.put_resource_policy_response
     import capo_cloudwatch_logs.types.put_retention_policy_request
+    import capo_cloudwatch_logs.types.put_storage_tier_policy_request
+    import capo_cloudwatch_logs.types.put_storage_tier_policy_response
     import capo_cloudwatch_logs.types.put_subscription_filter_request
+    import capo_cloudwatch_logs.types.put_syslog_configuration_request
     import capo_cloudwatch_logs.types.put_transformer_request
     import capo_cloudwatch_logs.types.query_definition_name
     import capo_cloudwatch_logs.types.query_definition_string
@@ -342,6 +353,7 @@ if TYPE_CHECKING:
     import capo_cloudwatch_logs.types.s3_table_integration_source_identifier
     import capo_cloudwatch_logs.types.schedule_expression
     import capo_cloudwatch_logs.types.schedule_timezone
+    import capo_cloudwatch_logs.types.schedule_type
     import capo_cloudwatch_logs.types.scheduled_query_description
     import capo_cloudwatch_logs.types.scheduled_query_identifier
     import capo_cloudwatch_logs.types.scheduled_query_log_group_identifiers
@@ -361,6 +373,7 @@ if TYPE_CHECKING:
     import capo_cloudwatch_logs.types.start_time_offset
     import capo_cloudwatch_logs.types.stop_query_request
     import capo_cloudwatch_logs.types.stop_query_response
+    import capo_cloudwatch_logs.types.storage_tier
     import capo_cloudwatch_logs.types.subscription_filter
     import capo_cloudwatch_logs.types.suppression_period
     import capo_cloudwatch_logs.types.suppression_state
@@ -391,6 +404,7 @@ if TYPE_CHECKING:
     import capo_cloudwatch_logs.types.update_lookup_table_response
     import capo_cloudwatch_logs.types.update_scheduled_query_request
     import capo_cloudwatch_logs.types.update_scheduled_query_response
+    import capo_cloudwatch_logs.types.vpc_endpoint_id
 
 
 class AsyncCloudWatchLogsClientConfig(TypedDict, total=False, closed=True):
@@ -1096,21 +1110,23 @@ class AsyncCloudWatchLogsClient:
     async def create_lookup_table(
         self,
         lookup_table_name: "capo_cloudwatch_logs.types.lookup_table_name.LookupTableName",
-        table_body: "capo_cloudwatch_logs.types.table_body.TableBody",
         *,
         config_overrides: Optional[AsyncCloudWatchLogsClientConfig] = None,
         description: Optional[
             "capo_cloudwatch_logs.types.lookup_table_description.LookupTableDescription"
         ] = None,
+        table_body: Optional["capo_cloudwatch_logs.types.table_body.TableBody"] = None,
+        query_id: Optional["capo_cloudwatch_logs.types.query_id.QueryId"] = None,
         kms_key_id: Optional["capo_cloudwatch_logs.types.kms_key_id.KmsKeyId"] = None,
         tags: Optional["capo_cloudwatch_logs.types.tags.Tags"] = None,
     ) -> "capo_cloudwatch_logs.types.create_lookup_table_response.CreateLookupTableResponse":
-        """<p>Creates a lookup table by uploading CSV data. You can use lookup tables to enrich log data in CloudWatch Logs Insights queries with reference data such as user details, application names, or error descriptions.</p> <p>The table name must be unique within your account and Region. The CSV content must include a header row with column names, use UTF-8 encoding, and not exceed 10 MB.</p>
+        """<p>Creates a lookup table by uploading CSV data or from CloudWatch Logs query results. You can use lookup tables to enrich log data in CloudWatch Logs queries with reference data such as user details, application names, or error descriptions.</p> <p>The table name must be unique within your account and Region. You must specify either <code>tableBody</code> or <code>queryId</code>, but not both. If you use <code>tableBody</code>, the CSV content must include a header row with column names, use UTF-8 encoding, and not exceed 10 MB.</p>
 
         Args:
             lookup_table_name: <p>The name of the lookup table. The name must be unique within your account and Region. The name can contain only alphanumeric characters and underscores, and can be up to 256 characters long.</p>
             description: <p>A description of the lookup table. The description can be up to 1024 characters long.</p>
-            table_body: <p>The CSV content of the lookup table. The first row must be a header row with column names. The content must use UTF-8 encoding and not exceed 10 MB.</p>
+            table_body: <p>The CSV content of the lookup table. The first row must be a header row with column names. The content must use UTF-8 encoding and not exceed 10 MB.</p> <p>You must specify either <code>tableBody</code> or <code>queryId</code>, but not both.</p>
+            query_id: <p>The ID of a completed or cancelled CloudWatch Logs query whose results populate the lookup table. A cancelled query populates the table with the partial results that were available when the query was stopped.</p> <p>You must specify either <code>tableBody</code> or <code>queryId</code>, but not both.</p>
             kms_key_id: <p>The ARN of the KMS key to use to encrypt the lookup table data. If you don't specify a key, the data is encrypted with an Amazon Web Services-owned key.</p>
             tags: <p>A list of key-value pairs to associate with the lookup table. You can associate as many as 50 tags with a lookup table. Tags can help you organize and categorize your resources.</p>
 
@@ -1141,11 +1157,14 @@ class AsyncCloudWatchLogsClient:
 
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_cloudwatch_logs.types.create_lookup_table_request.CreateLookupTableRequest = {
-            "lookup_table_name": lookup_table_name,
-            "table_body": table_body,
+            "lookup_table_name": lookup_table_name
         }
         if description is not None:
             input_["description"] = description
+        if table_body is not None:
+            input_["table_body"] = table_body
+        if query_id is not None:
+            input_["query_id"] = query_id
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
         if tags is not None:
@@ -1180,6 +1199,9 @@ class AsyncCloudWatchLogsClient:
         start_time_offset: Optional[
             "capo_cloudwatch_logs.types.start_time_offset.StartTimeOffset"
         ] = None,
+        end_time_offset: Optional[
+            "capo_cloudwatch_logs.types.end_time_offset.EndTimeOffset"
+        ] = None,
         destination_configuration: Optional[
             "capo_cloudwatch_logs.types.destination_configuration.DestinationConfiguration"
         ] = None,
@@ -1197,7 +1219,7 @@ class AsyncCloudWatchLogsClient:
         """<p>Creates a scheduled query that runs CloudWatch Logs Insights queries at regular intervals. Scheduled queries enable proactive monitoring by automatically executing queries to detect patterns and anomalies in your log data. Query results can be delivered to Amazon S3 for analysis or further processing.</p>
 
         Args:
-            name: <p>The name of the scheduled query. The name must be unique within your account and region. Valid characters are alphanumeric characters, hyphens, underscores, and periods. Length must be between 1 and 255 characters.</p>
+            name: <p>The name of the scheduled query. The name must be unique within your account and region. Length must be between 1 and 300 characters.</p>
             description: <p>An optional description for the scheduled query to help identify its purpose and functionality.</p>
             query_language: <p>The query language to use for the scheduled query. Valid values are <code>CWLI</code>, <code>PPL</code>, and <code>SQL</code>.</p>
             query_string: <p>The query string to execute. This is the same query syntax used in CloudWatch Logs Insights. Maximum length is 10,000 characters.</p>
@@ -1205,7 +1227,8 @@ class AsyncCloudWatchLogsClient:
             schedule_expression: <p>A cron expression that defines when the scheduled query runs. The expression uses standard cron syntax and supports minute-level precision. Maximum length is 256 characters.</p>
             timezone: <p>The timezone for evaluating the schedule expression. This determines when the scheduled query executes relative to the specified timezone.</p>
             start_time_offset: <p>The time offset in seconds that defines the lookback period for the query. This determines how far back in time the query searches from the execution time.</p>
-            destination_configuration: <p>Configuration for where to deliver query results. Currently supports Amazon S3 destinations for storing query output.</p>
+            end_time_offset: <p>The time offset in seconds that defines the end of the lookback period for the query. Together with <code>startTimeOffset</code>, this determines the time window relative to the execution time over which the query runs.</p>
+            destination_configuration: <p>Configuration for where to deliver query results. Supports Amazon S3 destinations for storing query output and lookup table destinations for automatically refreshing lookup tables with query results. You can configure one or both destination types.</p>
             schedule_start_time: <p>The start time for the scheduled query in Unix epoch format. The query will not execute before this time.</p>
             schedule_end_time: <p>The end time for the scheduled query in Unix epoch format. The query will stop executing after this time.</p>
             execution_role_arn: <p>The ARN of the IAM role that grants permissions to execute the query and deliver results to the specified destination. The role must have permissions to read from the specified log groups and write to the destination.</p>
@@ -1254,6 +1277,8 @@ class AsyncCloudWatchLogsClient:
             input_["timezone"] = timezone
         if start_time_offset is not None:
             input_["start_time_offset"] = start_time_offset
+        if end_time_offset is not None:
+            input_["end_time_offset"] = end_time_offset
         if destination_configuration is not None:
             input_["destination_configuration"] = destination_configuration
         if schedule_start_time is not None:
@@ -2173,6 +2198,60 @@ class AsyncCloudWatchLogsClient:
         await response.response.aclose()
         return response.output
 
+    async def delete_syslog_configuration(
+        self,
+        log_group_identifier: "capo_cloudwatch_logs.types.log_group_identifier.LogGroupIdentifier",
+        *,
+        config_overrides: Optional[AsyncCloudWatchLogsClientConfig] = None,
+        vpc_endpoint_id: Optional[
+            "capo_cloudwatch_logs.types.vpc_endpoint_id.VpcEndpointId"
+        ] = None,
+    ) -> None:
+        """<p>Deletes a syslog configuration for a log group. After deletion, syslog data is no longer ingested through the specified VPC endpoint.</p>
+
+        Args:
+            log_group_identifier: <p>The name or ARN of the log group to remove the syslog configuration from.</p>
+            vpc_endpoint_id: <p>The ID of the VPC endpoint associated with the syslog configuration to delete.</p>
+
+        Raises:
+            capo_cloudwatch_logs.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient permissions to perform this action.</p>
+            capo_cloudwatch_logs.errors.invalid_operation_exception.InvalidOperationException: <p>The operation is not valid on the specified resource.</p>
+            capo_cloudwatch_logs.errors.invalid_parameter_exception.InvalidParameterException: <p>A parameter is specified incorrectly.</p>
+            capo_cloudwatch_logs.errors.operation_aborted_exception.OperationAbortedException: <p>Multiple concurrent requests to update the same resource were in conflict.</p>
+            capo_cloudwatch_logs.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource does not exist.</p>
+            capo_cloudwatch_logs.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service cannot complete the request.</p>
+            capo_cloudwatch_logs.errors.throttling_exception.ThrottlingException: <p>The request was throttled because of quota limits.</p>
+            capo_cloudwatch_logs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_cloudwatch_logs.types.delete_syslog_configuration_request.DeleteSyslogConfigurationRequest]",
+        ) -> AsyncOperationResponse[None]:
+            import capo_cloudwatch_logs._operations.logs_20140328.delete_syslog_configuration
+
+            (
+                output,
+                http_response,
+            ) = await capo_cloudwatch_logs._operations.logs_20140328.delete_syslog_configuration.async_delete_syslog_configuration(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cloudwatch_logs.types.delete_syslog_configuration_request.DeleteSyslogConfigurationRequest = {
+            "log_group_identifier": log_group_identifier
+        }
+        if vpc_endpoint_id is not None:
+            input_["vpc_endpoint_id"] = vpc_endpoint_id
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def delete_transformer(
         self,
         log_group_identifier: "capo_cloudwatch_logs.types.log_group_identifier.LogGroupIdentifier",
@@ -2766,12 +2845,16 @@ class AsyncCloudWatchLogsClient:
         log_group_identifiers: "capo_cloudwatch_logs.types.describe_field_indexes_log_group_identifiers.DescribeFieldIndexesLogGroupIdentifiers",
         *,
         config_overrides: Optional[AsyncCloudWatchLogsClientConfig] = None,
+        index_categories: Optional[
+            "capo_cloudwatch_logs.types.index_categories.IndexCategories"
+        ] = None,
         next_token: Optional["capo_cloudwatch_logs.types.next_token.NextToken"] = None,
     ) -> "capo_cloudwatch_logs.types.describe_field_indexes_response.DescribeFieldIndexesResponse":
-        r"""<p>Returns a list of custom and default field indexes which are discovered in log data. For more information about field index policies, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutIndexPolicy.html\">PutIndexPolicy</a>.</p>
+        r"""<p>Returns a list of field indexes discovered in log data. By default, the response includes the <code>DEFAULT</code>, <code>CUSTOM</code>, and <code>INACTIVE</code> index categories. To return indexes from other categories, use the <code>indexCategories</code> parameter.</p> <p>For more information about field index policies, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutIndexPolicy.html\">PutIndexPolicy</a>.</p>
 
         Args:
             log_group_identifiers: <p>An array containing the names or ARNs of the log groups that you want to retrieve field indexes for.</p>
+            index_categories: <p>The index categories to return. The following values are supported:</p> <ul> <li> <p> <code>DEFAULT</code>: Fields that CloudWatch Logs indexes by default. Examples include <code>@logStream</code> and <code>@data_format</code>.</p> </li> <li> <p> <code>CUSTOM</code>: Fields that you added manually to the field index policy. CloudWatch Logs always indexes these fields. These fields count toward the quota of 20 fields for each log group.</p> </li> <li> <p> <code>AUTO</code>: Fields that CloudWatch Logs indexes automatically based on your query patterns and usage. These fields do not count toward the field index quota. CloudWatch Logs might update these fields based on changes in your query patterns. To keep a field indexed permanently, add it to an account-level or log-group level field index policy.</p> </li> <li> <p> <code>INACTIVE</code>: Fields that CloudWatch Logs indexed before but does not index now. This happens if you remove a field from the field index policy or if CloudWatch Logs automatically selects a different field based on your queries.</p> </li> </ul> <p>If you omit this parameter, the response includes the <code>DEFAULT</code>, <code>CUSTOM</code>, and <code>INACTIVE</code> categories.</p> <p>For more information about automatically indexed fields and using the <code>AUTO</code> category, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Field-Indexing-Automatic.html\">Automatically indexed fields</a>.</p>
 
         Raises:
             capo_cloudwatch_logs.errors.invalid_parameter_exception.InvalidParameterException: <p>A parameter is specified incorrectly.</p>
@@ -2801,6 +2884,8 @@ class AsyncCloudWatchLogsClient:
         input_: capo_cloudwatch_logs.types.describe_field_indexes_request.DescribeFieldIndexesRequest = {
             "log_group_identifiers": log_group_identifiers
         }
+        if index_categories is not None:
+            input_["index_categories"] = index_categories
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -3824,6 +3909,9 @@ class AsyncCloudWatchLogsClient:
         ] = None,
         next_token: Optional["capo_cloudwatch_logs.types.next_token.NextToken"] = None,
         limit: Optional["capo_cloudwatch_logs.types.events_limit.EventsLimit"] = None,
+        start_from_head: Optional[
+            "capo_cloudwatch_logs.types.start_from_head.StartFromHead"
+        ] = None,
         interleaved: Optional[
             "capo_cloudwatch_logs.types.interleaved.Interleaved"
         ] = None,
@@ -3831,18 +3919,19 @@ class AsyncCloudWatchLogsClient:
     ) -> (
         "capo_cloudwatch_logs.types.filter_log_events_response.FilterLogEventsResponse"
     ):
-        r"""<p>Lists log events from the specified log group. You can list all the log events or filter the results using one or more of the following:</p> <ul> <li> <p>A filter pattern</p> </li> <li> <p>A time range</p> </li> <li> <p>The log stream name, or a log stream name prefix that matches multiple log streams</p> </li> </ul> <p>You must have the <code>logs:FilterLogEvents</code> permission to perform this operation.</p> <p>You can specify the log group to search by using either <code>logGroupIdentifier</code> or <code>logGroupName</code>. You must include one of these two parameters, but you can't include both. </p> <p> <code>FilterLogEvents</code> is a paginated operation. Each page returned can contain up to 1 MB of log events or up to 10,000 log events. A returned page might only be partially full, or even empty. For example, if the result of a query would return 15,000 log events, the first page isn't guaranteed to have 10,000 log events even if they all fit into 1 MB.</p> <p>Partially full or empty pages don't necessarily mean that pagination is finished. If the results include a <code>nextToken</code>, there might be more log events available. You can return these additional log events by providing the nextToken in a subsequent <code>FilterLogEvents</code> operation. If the results don't include a <code>nextToken</code>, then pagination is finished. </p> <p>Specifying the <code>limit</code> parameter only guarantees that a single page doesn't return more log events than the specified limit, but it might return fewer events than the limit. This is the expected API behavior.</p> <p>The returned log events are sorted by event timestamp, the timestamp when the event was ingested by CloudWatch Logs, and the ID of the <code>PutLogEvents</code> request.</p> <p>If you are using CloudWatch cross-account observability, you can use this operation in a monitoring account and view data from the linked source accounts. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Unified-Cross-Account.html\">CloudWatch cross-account observability</a>.</p> <note> <p>If you are using <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch-Logs-Transformation.html\">log transformation</a>, the <code>FilterLogEvents</code> operation returns only the original versions of log events, before they were transformed. To view the transformed versions, you must use a <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html\">CloudWatch Logs query.</a> </p> </note>
+        r"""<p>Lists log events from the specified log group. You can list all the log events or filter the results using one or more of the following:</p> <ul> <li> <p>A filter pattern</p> </li> <li> <p>A time range</p> </li> <li> <p>The log stream name, or a log stream name prefix that matches multiple log streams</p> </li> </ul> <p>You must have the <code>logs:FilterLogEvents</code> permission to perform this operation.</p> <p>You can specify the log group to search by using either <code>logGroupIdentifier</code> or <code>logGroupName</code>. You must include one of these two parameters, but you can't include both. </p> <p> <code>FilterLogEvents</code> is a paginated operation. Each page returned can contain up to 1 MB of log events or up to 10,000 log events. A returned page might only be partially full, or even empty. For example, if the result of a query would return 15,000 log events, the first page isn't guaranteed to have 10,000 log events even if they all fit into 1 MB.</p> <p>Partially full or empty pages don't necessarily mean that pagination is finished. If the results include a <code>nextToken</code>, there might be more log events available. You can return these additional log events by providing the nextToken in a subsequent <code>FilterLogEvents</code> operation. If the results don't include a <code>nextToken</code>, then pagination is finished. </p> <p>Specifying the <code>limit</code> parameter only guarantees that a single page doesn't return more log events than the specified limit, but it might return fewer events than the limit. This is the expected API behavior.</p> <p>The returned log events are sorted by event timestamp, the timestamp when the event was ingested by CloudWatch Logs, and the ID of the <code>PutLogEvents</code> request. By default, the events are returned in ascending timestamp order (oldest first). To return events in descending timestamp order (newest first), set the <code>startFromHead</code> parameter to <code>false</code>.</p> <p>If you are using CloudWatch cross-account observability, you can use this operation in a monitoring account and view data from the linked source accounts. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Unified-Cross-Account.html\">CloudWatch cross-account observability</a>.</p> <note> <p>If you are using <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch-Logs-Transformation.html\">log transformation</a>, the <code>FilterLogEvents</code> operation returns only the original versions of log events, before they were transformed. To view the transformed versions, you must use a <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html\">CloudWatch Logs query.</a> </p> </note>
 
         Args:
             log_group_name: <p>The name of the log group to search.</p> <note> <p> You must include either <code>logGroupIdentifier</code> or <code>logGroupName</code>, but not both. </p> </note>
             log_group_identifier: <p>Specify either the name or ARN of the log group to view log events from. If the log group is in a source account and you are using a monitoring account, you must use the log group ARN.</p> <note> <p> You must include either <code>logGroupIdentifier</code> or <code>logGroupName</code>, but not both. </p> </note>
             log_stream_names: <p>Filters the results to only logs from the log streams in this list.</p> <p>If you specify a value for both <code>logStreamNames</code> and <code>logStreamNamePrefix</code>, the action returns an <code>InvalidParameterException</code> error.</p>
             log_stream_name_prefix: <p>Filters the results to include only events from log streams that have names starting with this prefix.</p> <p>If you specify a value for both <code>logStreamNamePrefix</code> and <code>logStreamNames</code>, the action returns an <code>InvalidParameterException</code> error.</p>
-            start_time: <p>The start of the time range, expressed as the number of milliseconds after <code>Jan 1, 1970 00:00:00 UTC</code>. Events with a timestamp before this time are not returned.</p>
+            start_time: <p>The start of the time range, expressed as the number of milliseconds after <code>Jan 1, 1970 00:00:00 UTC</code>. Events with a timestamp before this time are not returned.</p> <note> <p>Set <code>startTime</code> explicitly to reduce the chances of empty pages in the response.</p> </note>
             end_time: <p>The end of the time range, expressed as the number of milliseconds after <code>Jan 1, 1970 00:00:00 UTC</code>. Events with a timestamp later than this time are not returned.</p>
             filter_pattern: <p>The filter pattern to use. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html\">Filter and Pattern Syntax</a>.</p> <p>If not provided, all the events are matched.</p>
             next_token: <p>The token for the next set of events to return. (You received this token from a previous call.)</p>
             limit: <p>The maximum number of events to return. The default is 10,000 events.</p>
+            start_from_head: <p>If the value is true, the earliest log events are returned first. If the value is false, the latest log events are returned first. The default value is true.</p> <p>The <code>startFromHead</code> parameter sets the sort direction on the first request. On subsequent requests, the <code>nextToken</code> determines the sort direction. To continue paginating in the same direction, provide the returned <code>nextToken</code>. If you provide both <code>nextToken</code> and <code>startFromHead</code>, the direction of the <code>nextToken</code> is used.</p> <note> <p>Setting <code>startFromHead</code> to <code>false</code> is supported only when <code>startTime</code> is on or after <code>Jan 1, 2024 00:00:00 UTC</code>. A request with <code>startFromHead</code> set to <code>false</code> and a <code>startTime</code> before this date returns an <code>InvalidParameterException</code>.</p> </note>
             interleaved: <p>If the value is true, the operation attempts to provide responses that contain events from multiple log streams within the log group, interleaved in a single response. If the value is false, all the matched log events in the first log stream are searched first, then those in the next log stream, and so on.</p> <p> <b>Important</b> As of June 17, 2019, this parameter is ignored and the value is assumed to be true. The response from this operation always interleaves events from multiple log streams within a log group.</p>
             unmask: <p>Specify <code>true</code> to display the log event fields with all sensitive data unmasked and visible. The default is <code>false</code>.</p> <p>To use this operation with this parameter, you must be signed into an account with the <code>logs:Unmask</code> permission.</p>
 
@@ -3888,6 +3977,8 @@ class AsyncCloudWatchLogsClient:
             input_["next_token"] = next_token
         if limit is not None:
             input_["limit"] = limit
+        if start_from_head is not None:
+            input_["start_from_head"] = start_from_head
         if interleaved is not None:
             input_["interleaved"] = interleaved
         if unmask is not None:
@@ -3924,6 +4015,9 @@ class AsyncCloudWatchLogsClient:
         ] = None,
         next_token: Optional["capo_cloudwatch_logs.types.next_token.NextToken"] = None,
         limit: Optional["capo_cloudwatch_logs.types.events_limit.EventsLimit"] = None,
+        start_from_head: Optional[
+            "capo_cloudwatch_logs.types.start_from_head.StartFromHead"
+        ] = None,
         interleaved: Optional[
             "capo_cloudwatch_logs.types.interleaved.Interleaved"
         ] = None,
@@ -3942,6 +4036,7 @@ class AsyncCloudWatchLogsClient:
                 filter_pattern=filter_pattern,
                 next_token=_token,
                 limit=limit,
+                start_from_head=start_from_head,
                 interleaved=interleaved,
                 unmask=unmask,
             )
@@ -4306,7 +4401,7 @@ class AsyncCloudWatchLogsClient:
             log_group_name: <p>The name of the log group.</p> <note> <p> You must include either <code>logGroupIdentifier</code> or <code>logGroupName</code>, but not both. </p> </note>
             log_group_identifier: <p>Specify either the name or ARN of the log group to view events from. If the log group is in a source account and you are using a monitoring account, you must use the log group ARN.</p> <note> <p> You must include either <code>logGroupIdentifier</code> or <code>logGroupName</code>, but not both. </p> </note>
             log_stream_name: <p>The name of the log stream.</p>
-            start_time: <p>The start of the time range, expressed as the number of milliseconds after <code>Jan 1, 1970 00:00:00 UTC</code>. Events with a timestamp equal to this time or later than this time are included. Events with a timestamp earlier than this time are not included.</p>
+            start_time: <p>The start of the time range, expressed as the number of milliseconds after <code>Jan 1, 1970 00:00:00 UTC</code>. Events with a timestamp equal to this time or later than this time are included. Events with a timestamp earlier than this time are not included.</p> <note> <p>Set <code>startTime</code> explicitly to reduce the chances of empty pages in the response.</p> </note>
             end_time: <p>The end of the time range, expressed as the number of milliseconds after <code>Jan 1, 1970 00:00:00 UTC</code>. Events with a timestamp equal to or later than this time are not included.</p>
             next_token: <p>The token for the next set of items to return. (You received this token from a previous call.)</p>
             limit: <p>The maximum number of log events returned. If you don't specify a limit, the default is as many log events as can fit in a response size of 1 MB (up to 10,000 log events).</p>
@@ -4677,7 +4772,7 @@ class AsyncCloudWatchLogsClient:
     ) -> (
         "capo_cloudwatch_logs.types.get_query_results_response.GetQueryResultsResponse"
     ):
-        r"""<p>Returns the results from the specified query.</p> <p>Only the fields requested in the query are returned, along with a <code>@ptr</code> field, which is the identifier for the log record. You can use the value of <code>@ptr</code> in a <a href=\"https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogRecord.html\">GetLogRecord</a> operation to get the full log record.</p> <p> <code>GetQueryResults</code> does not start running a query. To run a query, use <a href=\"https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartQuery.html\">StartQuery</a>. For more information about how long results of previous queries are available, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch_limits_cwl.html\">CloudWatch Logs quotas</a>.</p> <p>If the value of the <code>Status</code> field in the output is <code>Running</code>, this operation returns only partial results. If you see a value of <code>Scheduled</code> or <code>Running</code> for the status, you can retry the operation later to see the final results. </p> <p>This operation is used both for retrieving results from interactive queries and from automated scheduled query executions. Scheduled queries use <code>GetQueryResults</code> internally to retrieve query results for processing and delivery to configured destinations.</p> <p>You can retrieve up to 100,000 log event results from a query, if available, by using pagination. Use the <code>nextToken</code> returned in the response to request additional pages of results, with each page returning up to 10,000 log events.</p> <p>If you are using CloudWatch cross-account observability, you can use this operation in a monitoring account to start queries in linked source accounts. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Unified-Cross-Account.html\">CloudWatch cross-account observability</a>.</p>
+        r"""<p>Returns the results from the specified query.</p> <p>Only the fields requested in the query are returned, along with a <code>@ptr</code> field, which is the identifier for the log record. You can use the value of <code>@ptr</code> in a <a href=\"https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogRecord.html\">GetLogRecord</a> operation to get the full log record.</p> <p> <code>GetQueryResults</code> does not start running a query. To run a query, use <a href=\"https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartQuery.html\">StartQuery</a>. For more information about how long results of previous queries are available, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch_limits_cwl.html\">CloudWatch Logs quotas</a>.</p> <p>If the value of the <code>Status</code> field in the output is <code>Running</code>, this operation returns only partial results. If you see a value of <code>Scheduled</code> or <code>Running</code> for the status, you can retry the operation later to see the final results. </p> <p>This operation is used both for retrieving results from interactive queries and from automated scheduled query executions. Scheduled queries use <code>GetQueryResults</code> internally to retrieve query results for processing and delivery to configured destinations.</p> <p>You can retrieve up to 100,000 log event results from a query, if available, by using pagination. Use the <code>nextToken</code> returned in the response to request additional pages of results, with each page returning up to 10,000 log events. This is only supported for Logs Insights QL and is currently not supported for PPL and SQL query languages.</p> <p>If you are using CloudWatch cross-account observability, you can use this operation in a monitoring account to start queries in linked source accounts. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Unified-Cross-Account.html\">CloudWatch cross-account observability</a>.</p>
 
         Args:
             query_id: <p>The ID number of the query.</p>
@@ -4872,6 +4967,46 @@ class AsyncCloudWatchLogsClient:
             _token = _resolve_path(_response, ("next_token",))
             if not _token:
                 break
+
+    async def get_storage_tier_policy(
+        self, *, config_overrides: Optional[AsyncCloudWatchLogsClientConfig] = None
+    ) -> "capo_cloudwatch_logs.types.get_storage_tier_policy_response.GetStorageTierPolicyResponse":
+        """<p>Returns the storage tier policy for the account.</p>
+
+        Raises:
+            capo_cloudwatch_logs.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient permissions to perform this action.</p>
+            capo_cloudwatch_logs.errors.invalid_parameter_exception.InvalidParameterException: <p>A parameter is specified incorrectly.</p>
+            capo_cloudwatch_logs.errors.operation_aborted_exception.OperationAbortedException: <p>Multiple concurrent requests to update the same resource were in conflict.</p>
+            capo_cloudwatch_logs.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource does not exist.</p>
+            capo_cloudwatch_logs.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service cannot complete the request.</p>
+            capo_cloudwatch_logs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_cloudwatch_logs.types.get_storage_tier_policy_request.GetStorageTierPolicyRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_cloudwatch_logs.types.get_storage_tier_policy_response.GetStorageTierPolicyResponse"
+        ]:
+            import capo_cloudwatch_logs._operations.logs_20140328.get_storage_tier_policy
+
+            (
+                output,
+                http_response,
+            ) = await capo_cloudwatch_logs._operations.logs_20140328.get_storage_tier_policy.async_get_storage_tier_policy(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cloudwatch_logs.types.get_storage_tier_policy_request.GetStorageTierPolicyRequest = {}
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
 
     async def get_transformer(
         self,
@@ -5473,12 +5608,16 @@ class AsyncCloudWatchLogsClient:
         state: Optional[
             "capo_cloudwatch_logs.types.scheduled_query_state.ScheduledQueryState"
         ] = None,
+        schedule_type: Optional[
+            "capo_cloudwatch_logs.types.schedule_type.ScheduleType"
+        ] = None,
     ) -> "capo_cloudwatch_logs.types.list_scheduled_queries_response.ListScheduledQueriesResponse":
         """<p>Lists all scheduled queries in your account and region. You can filter results by state to show only enabled or disabled queries.</p>
 
         Args:
             max_results: <p>The maximum number of scheduled queries to return. Valid range is 1 to 1000.</p>
             state: <p>Filter scheduled queries by state. Valid values are <code>ENABLED</code> and <code>DISABLED</code>. If not specified, all scheduled queries are returned.</p>
+            schedule_type: <p>Filter scheduled queries by schedule type. Valid values are <code>CUSTOMER_MANAGED</code> and <code>AWS_MANAGED</code>. If not specified, scheduled queries of all schedule types are returned.</p>
 
         Raises:
             capo_cloudwatch_logs.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient permissions to perform this action.</p>
@@ -5511,6 +5650,8 @@ class AsyncCloudWatchLogsClient:
             input_["next_token"] = next_token
         if state is not None:
             input_["state"] = state
+        if schedule_type is not None:
+            input_["schedule_type"] = schedule_type
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -5531,6 +5672,9 @@ class AsyncCloudWatchLogsClient:
         state: Optional[
             "capo_cloudwatch_logs.types.scheduled_query_state.ScheduledQueryState"
         ] = None,
+        schedule_type: Optional[
+            "capo_cloudwatch_logs.types.schedule_type.ScheduleType"
+        ] = None,
     ) -> "AsyncIterator[capo_cloudwatch_logs.types.scheduled_query_summary.ScheduledQuerySummary]":
         _token = next_token
         while True:
@@ -5539,6 +5683,7 @@ class AsyncCloudWatchLogsClient:
                 max_results=max_results,
                 next_token=_token,
                 state=state,
+                schedule_type=schedule_type,
             )
             _page = _resolve_path(_response, ("scheduled_queries",))
             for _item in _page or []:
@@ -5628,6 +5773,73 @@ class AsyncCloudWatchLogsClient:
             _token = _resolve_path(_response, ("next_token",))
             if not _token:
                 break
+
+    async def list_syslog_configurations(
+        self,
+        *,
+        config_overrides: Optional[AsyncCloudWatchLogsClientConfig] = None,
+        log_group_identifier: Optional[
+            "capo_cloudwatch_logs.types.log_group_identifier.LogGroupIdentifier"
+        ] = None,
+        vpc_endpoint_id: Optional[
+            "capo_cloudwatch_logs.types.vpc_endpoint_id.VpcEndpointId"
+        ] = None,
+        next_token: Optional["capo_cloudwatch_logs.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_cloudwatch_logs.types.list_syslog_configurations_max_results.ListSyslogConfigurationsMaxResults"
+        ] = None,
+    ) -> "capo_cloudwatch_logs.types.list_syslog_configurations_response.ListSyslogConfigurationsResponse":
+        """<p>Returns a list of syslog configurations. You can optionally filter the results by log group or VPC endpoint.</p>
+
+        Args:
+            log_group_identifier: <p>The name or ARN of the log group to filter syslog configurations for.</p>
+            vpc_endpoint_id: <p>The ID of the VPC endpoint to filter syslog configurations for.</p>
+            next_token: <p>The token for the next set of items to return. You received this token from a previous call.</p>
+            max_results: <p>The maximum number of syslog configurations to return in the response.</p>
+
+        Raises:
+            capo_cloudwatch_logs.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient permissions to perform this action.</p>
+            capo_cloudwatch_logs.errors.invalid_operation_exception.InvalidOperationException: <p>The operation is not valid on the specified resource.</p>
+            capo_cloudwatch_logs.errors.invalid_parameter_exception.InvalidParameterException: <p>A parameter is specified incorrectly.</p>
+            capo_cloudwatch_logs.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource does not exist.</p>
+            capo_cloudwatch_logs.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service cannot complete the request.</p>
+            capo_cloudwatch_logs.errors.throttling_exception.ThrottlingException: <p>The request was throttled because of quota limits.</p>
+            capo_cloudwatch_logs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_cloudwatch_logs.types.list_syslog_configurations_request.ListSyslogConfigurationsRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_cloudwatch_logs.types.list_syslog_configurations_response.ListSyslogConfigurationsResponse"
+        ]:
+            import capo_cloudwatch_logs._operations.logs_20140328.list_syslog_configurations
+
+            (
+                output,
+                http_response,
+            ) = await capo_cloudwatch_logs._operations.logs_20140328.list_syslog_configurations.async_list_syslog_configurations(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cloudwatch_logs.types.list_syslog_configurations_request.ListSyslogConfigurationsRequest = {}
+        if log_group_identifier is not None:
+            input_["log_group_identifier"] = log_group_identifier
+        if vpc_endpoint_id is not None:
+            input_["vpc_endpoint_id"] = vpc_endpoint_id
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
 
     async def list_tags_for_resource(
         self,
@@ -5732,7 +5944,7 @@ class AsyncCloudWatchLogsClient:
             "capo_cloudwatch_logs.types.selection_criteria.SelectionCriteria"
         ] = None,
     ) -> "capo_cloudwatch_logs.types.put_account_policy_response.PutAccountPolicyResponse":
-        r"""<p>Creates an account-level data protection policy, subscription filter policy, field index policy, transformer policy, or metric extraction policy that applies to all log groups, a subset of log groups, or a data source name and type combination in the account.</p> <p>For field index policies, you can configure indexed fields as <i>facets</i> to enable interactive exploration of your logs. Facets provide value distributions and counts for indexed fields in the CloudWatch Logs Insights console without requiring query execution. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Facets.html\">Use facets to group and explore logs</a>.</p> <p>To use this operation, you must be signed on with the correct permissions depending on the type of policy that you are creating.</p> <ul> <li> <p>To create a data protection policy, you must have the <code>logs:PutDataProtectionPolicy</code> and <code>logs:PutAccountPolicy</code> permissions.</p> </li> <li> <p>To create a subscription filter policy, you must have the <code>logs:PutSubscriptionFilter</code> and <code>logs:PutAccountPolicy</code> permissions.</p> </li> <li> <p>To create a transformer policy, you must have the <code>logs:PutTransformer</code> and <code>logs:PutAccountPolicy</code> permissions.</p> </li> <li> <p>To create a field index policy, you must have the <code>logs:PutIndexPolicy</code> and <code>logs:PutAccountPolicy</code> permissions.</p> </li> <li> <p>To configure facets for field index policies, you must have the <code>logs:PutIndexPolicy</code> and <code>logs:PutAccountPolicy</code> permissions.</p> </li> <li> <p>To create a metric extraction policy, you must have the <code>logs:PutMetricExtractionPolicy</code> and <code>logs:PutAccountPolicy</code> permissions.</p> </li> </ul> <p> <b>Data protection policy</b> </p> <p>A data protection policy can help safeguard sensitive data that's ingested by your log groups by auditing and masking the sensitive log data. Each account can have only one account-level data protection policy.</p> <important> <p>Sensitive data is detected and masked when it is ingested into a log group. When you set a data protection policy, log events ingested into the log groups before that time are not masked.</p> </important> <p>If you use <code>PutAccountPolicy</code> to create a data protection policy for your whole account, it applies to both existing log groups and all log groups that are created later in this account. The account-level policy is applied to existing log groups with eventual consistency. It might take up to 5 minutes before sensitive data in existing log groups begins to be masked.</p> <p>By default, when a user views a log event that includes masked data, the sensitive data is replaced by asterisks. A user who has the <code>logs:Unmask</code> permission can use a <a href=\"https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogEvents.html\">GetLogEvents</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_FilterLogEvents.html\">FilterLogEvents</a> operation with the <code>unmask</code> parameter set to <code>true</code> to view the unmasked log events. Users with the <code>logs:Unmask</code> can also view unmasked data in the CloudWatch Logs console by running a CloudWatch Logs Insights query with the <code>unmask</code> query command.</p> <p>For more information, including a list of types of data that can be audited and masked, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/mask-sensitive-log-data.html\">Protect sensitive log data with masking</a>.</p> <p>To use the <code>PutAccountPolicy</code> operation for a data protection policy, you must be signed on with the <code>logs:PutDataProtectionPolicy</code> and <code>logs:PutAccountPolicy</code> permissions.</p> <p>The <code>PutAccountPolicy</code> operation applies to all log groups in the account. You can use <a href=\"https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDataProtectionPolicy.html\">PutDataProtectionPolicy</a> to create a data protection policy that applies to just one log group. If a log group has its own data protection policy and the account also has an account-level data protection policy, then the two policies are cumulative. Any sensitive term specified in either policy is masked.</p> <p> <b>Subscription filter policy</b> </p> <p>A subscription filter policy sets up a real-time feed of log events from CloudWatch Logs to other Amazon Web Services services. Account-level subscription filter policies apply to both existing log groups and log groups that are created later in this account. Supported destinations are Kinesis Data Streams, Firehose, and Lambda. When log events are sent to the receiving service, they are Base64 encoded and compressed with the GZIP format.</p> <p>The following destinations are supported for subscription filters:</p> <ul> <li> <p>An Kinesis Data Streams data stream in the same account as the subscription policy, for same-account delivery.</p> </li> <li> <p>An Firehose data stream in the same account as the subscription policy, for same-account delivery.</p> </li> <li> <p>A Lambda function in the same account as the subscription policy, for same-account delivery.</p> </li> <li> <p>A logical destination in a different account created with <a href=\"https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDestination.html\">PutDestination</a>, for cross-account delivery. Kinesis Data Streams and Firehose are supported as logical destinations.</p> </li> </ul> <p>Each account can have one account-level subscription filter policy per Region. If you are updating an existing filter, you must specify the correct name in <code>PolicyName</code>. To perform a <code>PutAccountPolicy</code> subscription filter operation for any destination except a Lambda function, you must also have the <code>iam:PassRole</code> permission.</p> <p> <b>Transformer policy</b> </p> <p>Creates or updates a <i>log transformer policy</i> for your account. You use log transformers to transform log events into a different format, making them easier for you to process and analyze. You can also transform logs from different sources into standardized formats that contain relevant, source-specific information. After you have created a transformer, CloudWatch Logs performs this transformation at the time of log ingestion. You can then refer to the transformed versions of the logs during operations such as querying with CloudWatch Logs Insights or creating metric filters or subscription filters.</p> <p>You can also use a transformer to copy metadata from metadata keys into the log events themselves. This metadata can include log group name, log stream name, account ID and Region.</p> <p>A transformer for a log group is a series of processors, where each processor applies one type of transformation to the log events ingested into this log group. For more information about the available processors to use in a transformer, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch-Logs-Transformation.html#CloudWatch-Logs-Transformation-Processors\"> Processors that you can use</a>.</p> <p>Having log events in standardized format enables visibility across your applications for your log analysis, reporting, and alarming needs. CloudWatch Logs provides transformation for common log types with out-of-the-box transformation templates for major Amazon Web Services log sources such as VPC flow logs, Lambda, and Amazon RDS. You can use pre-built transformation templates or create custom transformation policies.</p> <p>You can create transformers only for the log groups in the Standard log class.</p> <p>You can have one account-level transformer policy that applies to all log groups in the account. Or you can create as many as 20 account-level transformer policies that are each scoped to a subset of log groups with the <code>selectionCriteria</code> parameter. If you have multiple account-level transformer policies with selection criteria, no two of them can use the same or overlapping log group name prefixes. For example, if you have one policy filtered to log groups that start with <code>my-log</code>, you can't have another transformer policy filtered to <code>my-logpprod</code> or <code>my-logging</code>.</p> <p>You can also set up a transformer at the log-group level. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutTransformer.html\">PutTransformer</a>. If there is both a log-group level transformer created with <code>PutTransformer</code> and an account-level transformer that could apply to the same log group, the log group uses only the log-group level transformer. It ignores the account-level transformer.</p> <p> <b>Field index policy</b> </p> <p>You can use field index policies to create indexes on fields found in log events for a log group or data source name and type combination. Creating field indexes can help lower the scan volume for CloudWatch Logs Insights queries that reference those fields, because these queries attempt to skip the processing of log events that are known to not match the indexed field. Good fields to index are fields that you often need to query for and fields or values that match only a small fraction of the total log events. Common examples of indexes include request ID, session ID, user IDs, or instance IDs. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Field-Indexing.html\">Create field indexes to improve query performance and reduce costs</a> </p> <p>To find the fields that are in your log group events, use the <a href=\"https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogGroupFields.html\">GetLogGroupFields</a> operation. To find the fields for a data source use the <a href=\"https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogFields.html\">GetLogFields</a> operation.</p> <p>For example, suppose you have created a field index for <code>requestId</code>. Then, any CloudWatch Logs Insights query on that log group that includes <code>requestId = <i>value</i> </code> or <code>requestId in [<i>value</i>, <i>value</i>, ...]</code> will attempt to process only the log events where the indexed field matches the specified value.</p> <p>Matches of log events to the names of indexed fields are case-sensitive. For example, an indexed field of <code>RequestId</code> won't match a log event containing <code>requestId</code>.</p> <p>You can have one account-level field index policy that applies to all log groups in the account. Or you can create as many as 20 account-level field index policies that are each scoped to a subset of log groups using <code>LogGroupNamePrefix</code> with the <code>selectionCriteria</code> parameter. You can have another 20 account-level field index policies using <code>DataSourceName</code> and <code>DataSourceType</code> for the <code>selectionCriteria</code> parameter. If you have multiple account-level index policies with <code>LogGroupNamePrefix</code> selection criteria, no two of them can use the same or overlapping log group name prefixes. For example, if you have one policy filtered to log groups that start with <i>my-log</i>, you can't have another field index policy filtered to <i>my-logpprod</i> or <i>my-logging</i>. Similarly, if you have multiple account-level index policies with <code>DataSourceName</code> and <code>DataSourceType</code> selection criteria, no two of them can use the same data source name and type combination. For example, if you have one policy filtered to the data source name <code>amazon_vpc</code> and data source type <code>flow</code> you cannot create another policy with this combination.</p> <p>If you create an account-level field index policy in a monitoring account in cross-account observability, the policy is applied only to the monitoring account and not to any source accounts.</p> <p>CloudWatch Logs provides default field indexes for all log groups in the Standard log class. Default field indexes are automatically available for the following fields: </p> <ul> <li> <p> <code>@logStream</code> </p> </li> <li> <p> <code>@aws.region</code> </p> </li> <li> <p> <code>@aws.account</code> </p> </li> <li> <p> <code>@source.log</code> </p> </li> <li> <p> <code>@data_source_name</code> </p> </li> <li> <p> <code>@data_source_type</code> </p> </li> <li> <p> <code>@data_format</code> </p> </li> <li> <p> <code>traceId</code> </p> </li> <li> <p> <code>severityText</code> </p> </li> <li> <p> <code>attributes.session.id</code> </p> </li> </ul> <p>CloudWatch Logs provides default field indexes for certain data source name and type combinations as well. Default field indexes are automatically available for the following data source name and type combinations as identified in the following list:</p> <p> <code>amazon_vpc.flow</code> </p> <ul> <li> <p> <code>action</code> </p> </li> <li> <p> <code>logStatus</code> </p> </li> <li> <p> <code>region</code> </p> </li> <li> <p> <code>flowDirection</code> </p> </li> <li> <p> <code>type</code> </p> </li> </ul> <p> <code>amazon_route53.resolver_query</code> </p> <ul> <li> <p> <code>transport</code> </p> </li> <li> <p> <code>rcode</code> </p> </li> </ul> <p> <code>aws_waf.access</code> </p> <ul> <li> <p> <code>action</code> </p> </li> <li> <p> <code>httpRequest.country</code> </p> </li> </ul> <p> <code>aws_cloudtrail.data</code>, <code>aws_cloudtrail.management</code> </p> <ul> <li> <p> <code>eventSource</code> </p> </li> <li> <p> <code>eventName</code> </p> </li> <li> <p> <code>awsRegion</code> </p> </li> <li> <p> <code>userAgent</code> </p> </li> <li> <p> <code>errorCode</code> </p> </li> <li> <p> <code>eventType</code> </p> </li> <li> <p> <code>managementEvent</code> </p> </li> <li> <p> <code>readOnly</code> </p> </li> <li> <p> <code>eventCategory</code> </p> </li> <li> <p> <code>requestId</code> </p> </li> </ul> <p>Default field indexes are in addition to any custom field indexes you define within your policy. Default field indexes are not counted towards your <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Field-Indexing-Syntax\">field index quota</a>. </p> <p>If you want to create a field index policy for a single log group, you can use <a href=\"https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutIndexPolicy.html\">PutIndexPolicy</a> instead of <code>PutAccountPolicy</code>. If you do so, that log group will use that log-group level policy and any account-level policies that match at the data source level; any account-level policy that matches at the log group level (for example, no selection criteria or log group name prefix selection criteria) will be ignored.</p> <p> <b>Metric extraction policy</b> </p> <p>A metric extraction policy controls whether CloudWatch Metrics can be created through the Embedded Metrics Format (EMF) for log groups in your account. By default, EMF metric creation is enabled for all log groups. You can use metric extraction policies to disable EMF metric creation for your entire account or specific log groups.</p> <p>When a policy disables EMF metric creation for a log group, log events in the EMF format are still ingested, but no CloudWatch Metrics are created from them.</p> <important> <p>Creating a policy disables metrics for Amazon Web Services features that use EMF to create metrics, such as CloudWatch Container Insights and CloudWatch Application Signals. To prevent turning off those features by accident, we recommend that you exclude the underlying log-groups through a selection-criteria such as <code>LogGroupNamePrefix NOT IN [\"/aws/containerinsights\", \"/aws/ecs/containerinsights\", \"/aws/application-signals/data\"]</code>.</p> </important> <p>Each account can have either one account-level metric extraction policy that applies to all log groups, or up to 5 policies that are each scoped to a subset of log groups with the <code>selectionCriteria</code> parameter. The selection criteria supports filtering by <code>LogGroupName</code> and <code>LogGroupNamePrefix</code> using the operators <code>IN</code> and <code>NOT IN</code>. You can specify up to 50 values in each <code>IN</code> or <code>NOT IN</code> list.</p> <p>The selection criteria can be specified in these formats:</p> <p> <code>LogGroupName IN [\"log-group-1\", \"log-group-2\"]</code> </p> <p> <code>LogGroupNamePrefix NOT IN [\"/aws/prefix1\", \"/aws/prefix2\"]</code> </p> <p>If you have multiple account-level metric extraction policies with selection criteria, no two of them can have overlapping criteria. For example, if you have one policy with selection criteria <code>LogGroupNamePrefix IN [\"my-log\"]</code>, you can't have another metric extraction policy with selection criteria <code>LogGroupNamePrefix IN [\"/my-log-prod\"]</code> or <code>LogGroupNamePrefix IN [\"/my-logging\"]</code>, as the set of log groups matching these prefixes would be a subset of the log groups matching the first policy's prefix, creating an overlap.</p> <p>When using <code>NOT IN</code>, only one policy with this operator is allowed per account.</p> <p>When combining policies with <code>IN</code> and <code>NOT IN</code> operators, the overlap check ensures that policies don't have conflicting effects. Two policies with <code>IN</code> and <code>NOT IN</code> operators do not overlap if and only if every value in the <code>IN </code>policy is completely contained within some value in the <code>NOT IN</code> policy. For example:</p> <ul> <li> <p>If you have a <code>NOT IN</code> policy for prefix <code>\"/aws/lambda\"</code>, you can create an <code>IN</code> policy for the exact log group name <code>\"/aws/lambda/function1\"</code> because the set of log groups matching <code>\"/aws/lambda/function1\"</code> is a subset of the log groups matching <code>\"/aws/lambda\"</code>.</p> </li> <li> <p>If you have a <code>NOT IN</code> policy for prefix <code>\"/aws/lambda\"</code>, you cannot create an <code>IN</code> policy for prefix <code>\"/aws\"</code> because the set of log groups matching <code>\"/aws\"</code> is not a subset of the log groups matching <code>\"/aws/lambda\"</code>.</p> </li> </ul>
+        r"""<p>Creates an account-level data protection policy, subscription filter policy, field index policy, transformer policy, or metric extraction policy that applies to all log groups, a subset of log groups, or a data source name and type combination in the account.</p> <important> <p> <code>PutAccountPolicy</code> is an account-wide administrative operation intended for CloudWatch Logs administrators. Because it affects all log groups (or a broad subset) in the account, you should grant <code>logs:PutAccountPolicy</code> permissions only to administrators who manage logging configuration across the account, not to application teams or individual log group owners.</p> </important> <p> <b>Conflict resolution between account-level and log-group-level policies</b> </p> <p>When both an account-level policy and a log-group-level policy of the same type apply to a log group, the resolution depends on the policy type:</p> <ul> <li> <p> <i>Data protection</i> — The two policies are cumulative. Any sensitive term specified in either the account-level or the log-group-level policy is masked.</p> </li> <li> <p> <i>Subscription filters</i> — Account-level and log-group-level subscription filters are additive. A log group can have up to 1 account-level and up to 2 log-group-level subscription filters.</p> </li> <li> <p> <i>Transformers</i> — A log-group-level transformer overrides the account-level transformer. If a log group has its own transformer, it ignores the account-level transformer policy.</p> </li> <li> <p> <i>Field index policies</i> — If a log group has its own field index policy (created with <code>PutIndexPolicy</code>), any account-level policy that uses <code>LogGroupNamePrefix</code> selection criteria or has no selection criteria is ignored for that log group. However, account-level policies that use <code>DataSourceName</code> and <code>DataSourceType</code> selection criteria still apply alongside the log-group-level policy.</p> </li> <li> <p> <i>Metric extraction policies</i> — Metric extraction policies are account-level only and have no log-group-level equivalent, so no conflict resolution applies.</p> </li> </ul> <p>For field index policies, you can configure indexed fields as <i>facets</i> to enable interactive exploration of your logs. Facets provide value distributions and counts for indexed fields in the CloudWatch Logs Insights console without requiring query execution. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Facets.html\">Use facets to group and explore logs</a>.</p> <p>To use this operation, you must be signed on with the correct permissions depending on the type of policy that you are creating.</p> <ul> <li> <p>To create a data protection policy, you must have the <code>logs:PutDataProtectionPolicy</code> and <code>logs:PutAccountPolicy</code> permissions.</p> </li> <li> <p>To create a subscription filter policy, you must have the <code>logs:PutSubscriptionFilter</code> and <code>logs:PutAccountPolicy</code> permissions.</p> </li> <li> <p>To create a transformer policy, you must have the <code>logs:PutTransformer</code> and <code>logs:PutAccountPolicy</code> permissions.</p> </li> <li> <p>To create a field index policy, you must have the <code>logs:PutIndexPolicy</code> and <code>logs:PutAccountPolicy</code> permissions.</p> </li> <li> <p>To configure facets for field index policies, you must have the <code>logs:PutIndexPolicy</code> and <code>logs:PutAccountPolicy</code> permissions.</p> </li> <li> <p>To create a metric extraction policy, you must have the <code>logs:PutMetricExtractionPolicy</code> and <code>logs:PutAccountPolicy</code> permissions.</p> </li> </ul> <p> <b>Data protection policy</b> </p> <p>A data protection policy can help safeguard sensitive data that's ingested by your log groups by auditing and masking the sensitive log data. Each account can have only one account-level data protection policy.</p> <important> <p>Sensitive data is detected and masked when it is ingested into a log group. When you set a data protection policy, log events ingested into the log groups before that time are not masked.</p> </important> <p>If you use <code>PutAccountPolicy</code> to create a data protection policy for your whole account, it applies to both existing log groups and all log groups that are created later in this account. The account-level policy is applied to existing log groups with eventual consistency. It might take up to 5 minutes before sensitive data in existing log groups begins to be masked.</p> <p>By default, when a user views a log event that includes masked data, the sensitive data is replaced by asterisks. A user who has the <code>logs:Unmask</code> permission can use a <a href=\"https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogEvents.html\">GetLogEvents</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_FilterLogEvents.html\">FilterLogEvents</a> operation with the <code>unmask</code> parameter set to <code>true</code> to view the unmasked log events. Users with the <code>logs:Unmask</code> can also view unmasked data in the CloudWatch Logs console by running a CloudWatch Logs Insights query with the <code>unmask</code> query command.</p> <p>For more information, including a list of types of data that can be audited and masked, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/mask-sensitive-log-data.html\">Protect sensitive log data with masking</a>.</p> <p>To use the <code>PutAccountPolicy</code> operation for a data protection policy, you must be signed on with the <code>logs:PutDataProtectionPolicy</code> and <code>logs:PutAccountPolicy</code> permissions.</p> <p>The <code>PutAccountPolicy</code> operation applies to all log groups in the account. You can use <a href=\"https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDataProtectionPolicy.html\">PutDataProtectionPolicy</a> to create a data protection policy that applies to just one log group. If a log group has its own data protection policy and the account also has an account-level data protection policy, then the two policies are cumulative. Any sensitive term specified in either policy is masked.</p> <p> <b>Subscription filter policy</b> </p> <p>A subscription filter policy sets up a real-time feed of log events from CloudWatch Logs to other Amazon Web Services services. Account-level subscription filter policies apply to both existing log groups and log groups that are created later in this account. Supported destinations are Kinesis Data Streams, Firehose, and Lambda. When log events are sent to the receiving service, they are Base64 encoded and compressed with the GZIP format.</p> <p>The following destinations are supported for subscription filters:</p> <ul> <li> <p>An Kinesis Data Streams data stream in the same account as the subscription policy, for same-account delivery.</p> </li> <li> <p>An Firehose data stream in the same account as the subscription policy, for same-account delivery.</p> </li> <li> <p>A Lambda function in the same account as the subscription policy, for same-account delivery.</p> </li> <li> <p>A logical destination in a different account created with <a href=\"https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDestination.html\">PutDestination</a>, for cross-account delivery. Kinesis Data Streams and Firehose are supported as logical destinations.</p> </li> </ul> <p>Each account can have one account-level subscription filter policy per Region. If you are updating an existing filter, you must specify the correct name in <code>PolicyName</code>. To perform a <code>PutAccountPolicy</code> subscription filter operation for any destination except a Lambda function, you must also have the <code>iam:PassRole</code> permission.</p> <p> <b>Transformer policy</b> </p> <p>Creates or updates a <i>log transformer policy</i> for your account. You use log transformers to transform log events into a different format, making them easier for you to process and analyze. You can also transform logs from different sources into standardized formats that contain relevant, source-specific information. After you have created a transformer, CloudWatch Logs performs this transformation at the time of log ingestion. You can then refer to the transformed versions of the logs during operations such as querying with CloudWatch Logs Insights or creating metric filters or subscription filters.</p> <p>You can also use a transformer to copy metadata from metadata keys into the log events themselves. This metadata can include log group name, log stream name, account ID and Region.</p> <p>A transformer for a log group is a series of processors, where each processor applies one type of transformation to the log events ingested into this log group. For more information about the available processors to use in a transformer, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch-Logs-Transformation.html#CloudWatch-Logs-Transformation-Processors\"> Processors that you can use</a>.</p> <p>Having log events in standardized format enables visibility across your applications for your log analysis, reporting, and alarming needs. CloudWatch Logs provides transformation for common log types with out-of-the-box transformation templates for major Amazon Web Services log sources such as VPC flow logs, Lambda, and Amazon RDS. You can use pre-built transformation templates or create custom transformation policies.</p> <p>You can create transformers only for the log groups in the Standard log class.</p> <p>You can have one account-level transformer policy that applies to all log groups in the account. Or you can create as many as 20 account-level transformer policies that are each scoped to a subset of log groups with the <code>selectionCriteria</code> parameter. If you have multiple account-level transformer policies with selection criteria, no two of them can use the same or overlapping log group name prefixes. For example, if you have one policy filtered to log groups that start with <code>my-log</code>, you can't have another transformer policy filtered to <code>my-logpprod</code> or <code>my-logging</code>.</p> <p>You can also set up a transformer at the log-group level. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutTransformer.html\">PutTransformer</a>. If there is both a log-group level transformer created with <code>PutTransformer</code> and an account-level transformer that could apply to the same log group, the log group uses only the log-group level transformer. It ignores the account-level transformer.</p> <p> <b>Field index policy</b> </p> <p>You can use field index policies to create indexes on fields found in log events for a log group or data source name and type combination. Creating field indexes can help lower the scan volume for CloudWatch Logs Insights queries that reference those fields, because these queries attempt to skip the processing of log events that are known to not match the indexed field. Good fields to index are fields that you often need to query for and fields or values that match only a small fraction of the total log events. Common examples of indexes include request ID, session ID, user IDs, or instance IDs. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Field-Indexing.html\">Create field indexes to improve query performance and reduce costs</a> </p> <p>To find the fields that are in your log group events, use the <a href=\"https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogGroupFields.html\">GetLogGroupFields</a> operation. To find the fields for a data source use the <a href=\"https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogFields.html\">GetLogFields</a> operation.</p> <p>For example, suppose you have created a field index for <code>requestId</code>. Then, any CloudWatch Logs Insights query on that log group that includes <code>requestId = <i>value</i> </code> or <code>requestId in [<i>value</i>, <i>value</i>, ...]</code> will attempt to process only the log events where the indexed field matches the specified value.</p> <p>Matches of log events to the names of indexed fields are case-sensitive. For example, an indexed field of <code>RequestId</code> won't match a log event containing <code>requestId</code>.</p> <p>You can have one account-level field index policy that applies to all log groups in the account. Or you can create as many as 20 account-level field index policies that are each scoped to a subset of log groups using <code>LogGroupNamePrefix</code> with the <code>selectionCriteria</code> parameter. You can have another 20 account-level field index policies using <code>DataSourceName</code> and <code>DataSourceType</code> for the <code>selectionCriteria</code> parameter. If you have multiple account-level index policies with <code>LogGroupNamePrefix</code> selection criteria, no two of them can use the same or overlapping log group name prefixes. For example, if you have one policy filtered to log groups that start with <i>my-log</i>, you can't have another field index policy filtered to <i>my-logpprod</i> or <i>my-logging</i>. Similarly, if you have multiple account-level index policies with <code>DataSourceName</code> and <code>DataSourceType</code> selection criteria, no two of them can use the same data source name and type combination. For example, if you have one policy filtered to the data source name <code>amazon_vpc</code> and data source type <code>flow</code> you cannot create another policy with this combination.</p> <p>If you create an account-level field index policy in a monitoring account in cross-account observability, the policy is applied only to the monitoring account and not to any source accounts.</p> <p>CloudWatch Logs provides default field indexes for all log groups in the Standard log class. Default field indexes are automatically available for the following fields: </p> <ul> <li> <p> <code>@logStream</code> </p> </li> <li> <p> <code>@aws.region</code> </p> </li> <li> <p> <code>@aws.account</code> </p> </li> <li> <p> <code>@source.log</code> </p> </li> <li> <p> <code>@data_source_name</code> </p> </li> <li> <p> <code>@data_source_type</code> </p> </li> <li> <p> <code>@data_format</code> </p> </li> <li> <p> <code>traceId</code> </p> </li> <li> <p> <code>severityText</code> </p> </li> <li> <p> <code>attributes.session.id</code> </p> </li> </ul> <p>CloudWatch Logs provides default field indexes for certain data source name and type combinations as well. Default field indexes are automatically available for the following data source name and type combinations as identified in the following list:</p> <p> <code>amazon_vpc.flow</code> </p> <ul> <li> <p> <code>action</code> </p> </li> <li> <p> <code>logStatus</code> </p> </li> <li> <p> <code>region</code> </p> </li> <li> <p> <code>flowDirection</code> </p> </li> <li> <p> <code>type</code> </p> </li> </ul> <p> <code>amazon_route53.resolver_query</code> </p> <ul> <li> <p> <code>transport</code> </p> </li> <li> <p> <code>rcode</code> </p> </li> </ul> <p> <code>aws_waf.access</code> </p> <ul> <li> <p> <code>action</code> </p> </li> <li> <p> <code>httpRequest.country</code> </p> </li> </ul> <p> <code>aws_cloudtrail.data</code>, <code>aws_cloudtrail.management</code> </p> <ul> <li> <p> <code>eventSource</code> </p> </li> <li> <p> <code>eventName</code> </p> </li> <li> <p> <code>awsRegion</code> </p> </li> <li> <p> <code>userAgent</code> </p> </li> <li> <p> <code>errorCode</code> </p> </li> <li> <p> <code>eventType</code> </p> </li> <li> <p> <code>managementEvent</code> </p> </li> <li> <p> <code>readOnly</code> </p> </li> <li> <p> <code>eventCategory</code> </p> </li> <li> <p> <code>requestId</code> </p> </li> </ul> <p>Default field indexes are in addition to any custom field indexes you define within your policy. Default field indexes are not counted towards your <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Field-Indexing-Syntax\">field index quota</a>. </p> <p>If you want to create a field index policy for a single log group, you can use <a href=\"https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutIndexPolicy.html\">PutIndexPolicy</a> instead of <code>PutAccountPolicy</code>. If you do so, that log group will use that log-group level policy and any account-level policies that match at the data source level; any account-level policy that matches at the log group level (for example, no selection criteria or log group name prefix selection criteria) will be ignored.</p> <p> <b>Metric extraction policy</b> </p> <p>A metric extraction policy controls whether CloudWatch Metrics can be created through the Embedded Metrics Format (EMF) for log groups in your account. By default, EMF metric creation is enabled for all log groups. You can use metric extraction policies to disable EMF metric creation for your entire account or specific log groups.</p> <p>When a policy disables EMF metric creation for a log group, log events in the EMF format are still ingested, but no CloudWatch Metrics are created from them.</p> <important> <p>Creating a policy disables metrics for Amazon Web Services features that use EMF to create metrics, such as CloudWatch Container Insights and CloudWatch Application Signals. To prevent turning off those features by accident, we recommend that you exclude the underlying log-groups through a selection-criteria such as <code>LogGroupNamePrefix NOT IN [\"/aws/containerinsights\", \"/aws/ecs/containerinsights\", \"/aws/application-signals/data\"]</code>.</p> </important> <p>Each account can have either one account-level metric extraction policy that applies to all log groups, or up to 5 policies that are each scoped to a subset of log groups with the <code>selectionCriteria</code> parameter. The selection criteria supports filtering by <code>LogGroupName</code> and <code>LogGroupNamePrefix</code> using the operators <code>IN</code> and <code>NOT IN</code>. You can specify up to 50 values in each <code>IN</code> or <code>NOT IN</code> list.</p> <p>The selection criteria can be specified in these formats:</p> <p> <code>LogGroupName IN [\"log-group-1\", \"log-group-2\"]</code> </p> <p> <code>LogGroupNamePrefix NOT IN [\"/aws/prefix1\", \"/aws/prefix2\"]</code> </p> <p>If you have multiple account-level metric extraction policies with selection criteria, no two of them can have overlapping criteria. For example, if you have one policy with selection criteria <code>LogGroupNamePrefix IN [\"my-log\"]</code>, you can't have another metric extraction policy with selection criteria <code>LogGroupNamePrefix IN [\"/my-log-prod\"]</code> or <code>LogGroupNamePrefix IN [\"/my-logging\"]</code>, as the set of log groups matching these prefixes would be a subset of the log groups matching the first policy's prefix, creating an overlap.</p> <p>When using <code>NOT IN</code>, only one policy with this operator is allowed per account.</p> <p>When combining policies with <code>IN</code> and <code>NOT IN</code> operators, the overlap check ensures that policies don't have conflicting effects. Two policies with <code>IN</code> and <code>NOT IN</code> operators do not overlap if and only if every value in the <code>IN </code>policy is completely contained within some value in the <code>NOT IN</code> policy. For example:</p> <ul> <li> <p>If you have a <code>NOT IN</code> policy for prefix <code>\"/aws/lambda\"</code>, you can create an <code>IN</code> policy for the exact log group name <code>\"/aws/lambda/function1\"</code> because the set of log groups matching <code>\"/aws/lambda/function1\"</code> is a subset of the log groups matching <code>\"/aws/lambda\"</code>.</p> </li> <li> <p>If you have a <code>NOT IN</code> policy for prefix <code>\"/aws/lambda\"</code>, you cannot create an <code>IN</code> policy for prefix <code>\"/aws\"</code> because the set of log groups matching <code>\"/aws\"</code> is not a subset of the log groups matching <code>\"/aws/lambda\"</code>.</p> </li> </ul>
 
         Args:
             policy_name: <p>A name for the policy. This must be unique within the account and cannot start with <code>aws/</code>.</p>
@@ -6024,7 +6236,7 @@ class AsyncCloudWatchLogsClient:
         Args:
             name: <p>A name for this delivery source. This name must be unique for all delivery sources in your account.</p>
             resource_arn: <p>The ARN of the Amazon Web Services resource that is generating and sending logs. For example, <code>arn:aws:workmail:us-east-1:123456789012:organization/m-1234EXAMPLEabcd1234abcd1234abcd1234</code> </p> <p>For the <code>SECURITY_FINDING_LOGS</code> logType, use a wildcard ARN for the hub resource. For Amazon Web Services Security Hub CSPM, use <code>arn:aws:securityhub:us-east-1:111122223333:hub/*</code> and for Amazon Web Services Security Hub, use <code>arn:aws:securityhub:us-east-1:111122223333:hubv2/*</code> </p>
-            log_type: <p>Defines the type of log that the source is sending.</p> <ul> <li> <p>For Amazon Bedrock Agents, the valid values are <code>APPLICATION_LOGS</code> and <code>EVENT_LOGS</code>.</p> </li> <li> <p>For Amazon Bedrock Knowledge Bases, the valid value is <code>APPLICATION_LOGS</code>.</p> </li> <li> <p>For Amazon Bedrock AgentCore Runtime, the valid values are <code>APPLICATION_LOGS</code>, <code>USAGE_LOGS</code> and <code>TRACES</code>.</p> </li> <li> <p>For Amazon Bedrock AgentCore Tools, the valid values are <code>APPLICATION_LOGS</code>, <code>USAGE_LOGS</code> and <code>TRACES</code>.</p> </li> <li> <p>For Amazon Bedrock AgentCore Identity, the valid values are <code>APPLICATION_LOGS</code> and <code>TRACES</code>.</p> </li> <li> <p>For Amazon Bedrock AgentCore Memory, the valid values are <code>APPLICATION_LOGS</code> and <code>TRACES</code>.</p> </li> <li> <p>For Amazon Bedrock AgentCore Gateway, the valid values are <code>APPLICATION_LOGS</code> and <code>TRACES</code>.</p> </li> <li> <p>For CloudFront, the valid value is <code>ACCESS_LOGS</code>.</p> </li> <li> <p>For DevOps Agent, the valid value is <code>APPLICATION_LOGS</code>.</p> </li> <li> <p>For Amazon CodeWhisperer, the valid value is <code>EVENT_LOGS</code>.</p> </li> <li> <p>For Elemental MediaPackage, the valid values are <code>EGRESS_ACCESS_LOGS</code> and <code>INGRESS_ACCESS_LOGS</code>.</p> </li> <li> <p>For Elemental MediaTailor, the valid values are <code>AD_DECISION_SERVER_LOGS</code>, <code>MANIFEST_SERVICE_LOGS</code>, and <code>TRANSCODE_LOGS</code>.</p> </li> <li> <p>For Amazon EKS Auto Mode, the valid values are <code>AUTO_MODE_BLOCK_STORAGE_LOGS</code>, <code>AUTO_MODE_COMPUTE_LOGS</code>, <code>AUTO_MODE_IPAM_LOGS</code>, and <code>AUTO_MODE_LOAD_BALANCING_LOGS</code>.</p> </li> <li> <p>For Entity Resolution, the valid value is <code>WORKFLOW_LOGS</code>.</p> </li> <li> <p>For IAM Identity Center, the valid value is <code>ERROR_LOGS</code>.</p> </li> <li> <p>For Network Firewall Proxy, the valid values are <code>ALERT_LOGS</code>, <code>ALLOW_LOGS</code>, and <code>DENY_LOGS</code>.</p> </li> <li> <p>For Network Load Balancer, the valid value is <code>NLB_ACCESS_LOGS</code>.</p> </li> <li> <p>For PCS, the valid values are <code>PCS_SCHEDULER_LOGS</code>, <code>PCS_JOBCOMP_LOGS</code>, and <code>PCS_SCHEDULER_AUDIT_LOGS</code>.</p> </li> <li> <p>For Quick, the valid values are <code>CHAT_LOGS</code> and <code>FEEDBACK_LOGS</code>.</p> </li> <li> <p>For Amazon Web Services RTB Fabric, the valid values is <code>APPLICATION_LOGS</code>.</p> </li> <li> <p>For Amazon Q, the valid values are <code>EVENT_LOGS</code> and <code>SYNC_JOB_LOGS</code>.</p> </li> <li> <p>For Amazon Web Services Security Hub CSPM, the valid value is <code>SECURITY_FINDING_LOGS</code>.</p> </li> <li> <p>For Amazon Web Services Security Hub, the valid value is <code>SECURITY_FINDING_LOGS</code>.</p> </li> <li> <p>For Amazon SES mail manager, the valid values are <code>APPLICATION_LOGS</code> and <code>TRAFFIC_POLICY_DEBUG_LOGS</code>.</p> </li> <li> <p>For Amazon WorkMail, the valid values are <code>ACCESS_CONTROL_LOGS</code>, <code>AUTHENTICATION_LOGS</code>, <code>WORKMAIL_AVAILABILITY_PROVIDER_LOGS</code>, <code>WORKMAIL_MAILBOX_ACCESS_LOGS</code>, and <code>WORKMAIL_PERSONAL_ACCESS_TOKEN_LOGS</code>.</p> </li> <li> <p>For Amazon VPC Route Server, the valid value is <code>EVENT_LOGS</code>.</p> </li> </ul>
+            log_type: <p>Defines the type of log that the source is sending.</p> <ul> <li> <p>For Application Load Balancer, the valid values are <code>ALB_ACCESS_LOGS</code>, <code>ALB_CONNECTION_LOGS</code>, and <code>ALB_HEALTH_CHECK_LOGS</code>.</p> </li> <li> <p>For Amazon Bedrock Agents, the valid values are <code>APPLICATION_LOGS</code> and <code>EVENT_LOGS</code>.</p> </li> <li> <p>For Amazon Bedrock Knowledge Bases, the valid values are <code>APPLICATION_LOGS</code> and <code>TRACES</code>.</p> </li> <li> <p>For Amazon Bedrock AgentCore Runtime, the valid values are <code>APPLICATION_LOGS</code>, <code>USAGE_LOGS</code> and <code>TRACES</code>.</p> </li> <li> <p>For Amazon Bedrock AgentCore Tools, the valid values are <code>APPLICATION_LOGS</code>, <code>USAGE_LOGS</code> and <code>TRACES</code>.</p> </li> <li> <p>For Amazon Bedrock AgentCore Identity, the valid values are <code>APPLICATION_LOGS</code> and <code>TRACES</code>.</p> </li> <li> <p>For Amazon Bedrock AgentCore Memory, the valid values are <code>APPLICATION_LOGS</code> and <code>TRACES</code>.</p> </li> <li> <p>For Amazon Bedrock AgentCore Gateway, the valid values are <code>APPLICATION_LOGS</code> and <code>TRACES</code>.</p> </li> <li> <p>For Amazon Bedrock AgentCore Payments, the valid values are <code>APPLICATION_LOGS</code> and <code>TRACES</code>.</p> </li> <li> <p>For CloudFront, the valid value is <code>ACCESS_LOGS</code>.</p> </li> <li> <p>For DevOps Agent, the valid value is <code>APPLICATION_LOGS</code>.</p> </li> <li> <p>For Amazon CodeWhisperer, the valid value is <code>EVENT_LOGS</code>.</p> </li> <li> <p>For Elemental MediaPackage, the valid values are <code>EGRESS_ACCESS_LOGS</code> and <code>INGRESS_ACCESS_LOGS</code>.</p> </li> <li> <p>For Elemental MediaTailor, the valid values are <code>AD_DECISION_SERVER_LOGS</code>, <code>MANIFEST_SERVICE_LOGS</code>, and <code>TRANSCODE_LOGS</code>.</p> </li> <li> <p>For Amazon EKS Auto Mode, the valid values are <code>AUTO_MODE_BLOCK_STORAGE_LOGS</code>, <code>AUTO_MODE_COMPUTE_LOGS</code>, <code>AUTO_MODE_IPAM_LOGS</code>, and <code>AUTO_MODE_LOAD_BALANCING_LOGS</code>.</p> </li> <li> <p>For Amazon EKS Capability Logs, the valid values are <code>EKS_CAPABILITY_ACK_LOGS</code>, <code>EKS_CAPABILITY_ARGOCD_APPLICATION_LOGS</code>, <code>EKS_CAPABILITY_ARGOCD_APPLICATIONSET_LOGS</code>, <code>EKS_CAPABILITY_ARGOCD_COMMITSERVER_LOGS</code>, <code>EKS_CAPABILITY_ARGOCD_REPOSERVER_LOGS</code>, <code>EKS_CAPABILITY_ARGOCD_SERVER_LOGS</code>, and <code>EKS_CAPABILITY_KRO_LOGS</code>.</p> </li> <li> <p>For Entity Resolution, the valid value is <code>WORKFLOW_LOGS</code>.</p> </li> <li> <p>For IAM Identity Center, the valid value is <code>ERROR_LOGS</code>.</p> </li> <li> <p>For Network Firewall Proxy, the valid values are <code>ALERT_LOGS</code>, <code>ALLOW_LOGS</code>, and <code>DENY_LOGS</code>.</p> </li> <li> <p>For Network Load Balancer, the valid value is <code>NLB_ACCESS_LOGS</code>.</p> </li> <li> <p>For PCS, the valid values are <code>PCS_SCHEDULER_LOGS</code>, <code>PCS_JOBCOMP_LOGS</code>, and <code>PCS_SCHEDULER_AUDIT_LOGS</code>.</p> </li> <li> <p>For Quick, the valid values are <code>AGENT_HOURS_LOGS</code>, <code>CHAT_LOGS</code>, <code>FEEDBACK_LOGS</code>, and <code>INDEX_USAGE_LOGS</code>.</p> </li> <li> <p>For Amazon Web Services RTB Fabric, the valid values is <code>APPLICATION_LOGS</code>.</p> </li> <li> <p>For Amazon Q, the valid values are <code>EVENT_LOGS</code> and <code>SYNC_JOB_LOGS</code>.</p> </li> <li> <p>For Amazon S3, the valid value is <code>S3_SERVER_ACCESS_LOGS</code>.</p> </li> <li> <p>For Amazon Web Services Security Hub CSPM, the valid value is <code>SECURITY_FINDING_LOGS</code>.</p> </li> <li> <p>For Amazon Web Services Security Hub, the valid value is <code>SECURITY_FINDING_LOGS</code>.</p> </li> <li> <p>For Amazon SES mail manager, the valid values are <code>APPLICATION_LOGS</code> and <code>TRAFFIC_POLICY_DEBUG_LOGS</code>.</p> </li> <li> <p>For Amazon WorkMail, the valid values are <code>ACCESS_CONTROL_LOGS</code>, <code>AUTHENTICATION_LOGS</code>, <code>WORKMAIL_AVAILABILITY_PROVIDER_LOGS</code>, <code>WORKMAIL_MAILBOX_ACCESS_LOGS</code>, and <code>WORKMAIL_PERSONAL_ACCESS_TOKEN_LOGS</code>.</p> </li> <li> <p>For Amazon VPC Route Server, the valid value is <code>EVENT_LOGS</code>.</p> </li> </ul>
             tags: <p>An optional list of key-value pairs to associate with the resource.</p> <p>For more information about tagging, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging Amazon Web Services resources</a> </p>
             delivery_source_configuration: <p>A map of key-value pairs to configure the delivery source. Both keys and values must be between 1 and 255 characters in length. For example, <code>{\"samplingRate\": \"50\"}</code>.</p>
 
@@ -6668,6 +6880,54 @@ class AsyncCloudWatchLogsClient:
         await response.response.aclose()
         return response.output
 
+    async def put_storage_tier_policy(
+        self,
+        storage_tier: "capo_cloudwatch_logs.types.storage_tier.StorageTier",
+        *,
+        config_overrides: Optional[AsyncCloudWatchLogsClientConfig] = None,
+    ) -> "capo_cloudwatch_logs.types.put_storage_tier_policy_response.PutStorageTierPolicyResponse":
+        """<p>Sets the storage tier policy for the account. When you set the storage tier to <code>INTELLIGENT_TIERING</code>, the service automatically moves log data to the most cost-effective storage tier based on access frequency.</p>
+
+        Args:
+            storage_tier: <p>The storage tier to set for the account. Use <code>INTELLIGENT_TIERING</code> to automatically optimize storage costs by moving log data to the appropriate tier based on access frequency.</p>
+
+        Raises:
+            capo_cloudwatch_logs.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient permissions to perform this action.</p>
+            capo_cloudwatch_logs.errors.invalid_parameter_exception.InvalidParameterException: <p>A parameter is specified incorrectly.</p>
+            capo_cloudwatch_logs.errors.operation_aborted_exception.OperationAbortedException: <p>Multiple concurrent requests to update the same resource were in conflict.</p>
+            capo_cloudwatch_logs.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource does not exist.</p>
+            capo_cloudwatch_logs.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service cannot complete the request.</p>
+            capo_cloudwatch_logs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_cloudwatch_logs.types.put_storage_tier_policy_request.PutStorageTierPolicyRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_cloudwatch_logs.types.put_storage_tier_policy_response.PutStorageTierPolicyResponse"
+        ]:
+            import capo_cloudwatch_logs._operations.logs_20140328.put_storage_tier_policy
+
+            (
+                output,
+                http_response,
+            ) = await capo_cloudwatch_logs._operations.logs_20140328.put_storage_tier_policy.async_put_storage_tier_policy(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cloudwatch_logs.types.put_storage_tier_policy_request.PutStorageTierPolicyRequest = {
+            "storage_tier": storage_tier
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
     async def put_subscription_filter(
         self,
         log_group_name: "capo_cloudwatch_logs.types.log_group_name.LogGroupName",
@@ -6701,7 +6961,7 @@ class AsyncCloudWatchLogsClient:
             distribution: <p>The method used to distribute log data to the destination. By default, log data is grouped by log stream, but the grouping can be set to random for a more even distribution. This property is only applicable when the destination is an Amazon Kinesis data stream. </p>
             apply_on_transformed_logs: <p>This parameter is valid only for log groups that have an active log transformer. For more information about log transformers, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutTransformer.html\">PutTransformer</a>.</p> <p>If the log group uses either a log-group level or account-level transformer, and you specify <code>true</code>, the subscription filter will be applied on the transformed version of the log events instead of the original ingested log events.</p>
             field_selection_criteria: <p>A filter expression that specifies which log events should be processed by this subscription filter based on system fields such as source account and source region. Uses selection criteria syntax with operators like <code>=</code>, <code>!=</code>, <code>AND</code>, <code>OR</code>, <code>IN</code>, <code>NOT IN</code>. Example: <code>@aws.region NOT IN [\"cn-north-1\"]</code> or <code>@aws.account = \"123456789012\" AND @aws.region = \"us-east-1\"</code>. Maximum length: 2000 characters.</p>
-            emit_system_fields: <p>A list of system fields to include in the log events sent to the subscription destination. Valid values are <code>@aws.account</code> and <code>@aws.region</code>. These fields provide source information for centralized log data in the forwarded payload.</p>
+            emit_system_fields: <p>A list of system fields to include in the log events sent to the subscription destination. Valid values are <code>@aws.account</code>, <code>@aws.region</code>, and <code>@source.log</code>. These fields provide source information for centralized log data in the forwarded payload.</p>
 
         Raises:
             capo_cloudwatch_logs.errors.invalid_operation_exception.InvalidOperationException: <p>The operation is not valid on the specified resource.</p>
@@ -6743,6 +7003,60 @@ class AsyncCloudWatchLogsClient:
             input_["field_selection_criteria"] = field_selection_criteria
         if emit_system_fields is not None:
             input_["emit_system_fields"] = emit_system_fields
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def put_syslog_configuration(
+        self,
+        log_group_identifier: "capo_cloudwatch_logs.types.log_group_identifier.LogGroupIdentifier",
+        *,
+        config_overrides: Optional[AsyncCloudWatchLogsClientConfig] = None,
+        vpc_endpoint_id: Optional[
+            "capo_cloudwatch_logs.types.vpc_endpoint_id.VpcEndpointId"
+        ] = None,
+    ) -> None:
+        """<p>Creates or updates a syslog configuration for a log group. This enables ingestion of syslog data through the specified VPC endpoint into the log group.</p>
+
+        Args:
+            log_group_identifier: <p>The name or ARN of the log group to associate with the syslog configuration.</p>
+            vpc_endpoint_id: <p>The ID of the VPC endpoint to use for syslog ingestion.</p>
+
+        Raises:
+            capo_cloudwatch_logs.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient permissions to perform this action.</p>
+            capo_cloudwatch_logs.errors.invalid_operation_exception.InvalidOperationException: <p>The operation is not valid on the specified resource.</p>
+            capo_cloudwatch_logs.errors.invalid_parameter_exception.InvalidParameterException: <p>A parameter is specified incorrectly.</p>
+            capo_cloudwatch_logs.errors.operation_aborted_exception.OperationAbortedException: <p>Multiple concurrent requests to update the same resource were in conflict.</p>
+            capo_cloudwatch_logs.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource does not exist.</p>
+            capo_cloudwatch_logs.errors.service_unavailable_exception.ServiceUnavailableException: <p>The service cannot complete the request.</p>
+            capo_cloudwatch_logs.errors.throttling_exception.ThrottlingException: <p>The request was throttled because of quota limits.</p>
+            capo_cloudwatch_logs.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_cloudwatch_logs.types.put_syslog_configuration_request.PutSyslogConfigurationRequest]",
+        ) -> AsyncOperationResponse[None]:
+            import capo_cloudwatch_logs._operations.logs_20140328.put_syslog_configuration
+
+            (
+                output,
+                http_response,
+            ) = await capo_cloudwatch_logs._operations.logs_20140328.put_syslog_configuration.async_put_syslog_configuration(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cloudwatch_logs.types.put_syslog_configuration_request.PutSyslogConfigurationRequest = {
+            "log_group_identifier": log_group_identifier
+        }
+        if vpc_endpoint_id is not None:
+            input_["vpc_endpoint_id"] = vpc_endpoint_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -6900,7 +7214,7 @@ class AsyncCloudWatchLogsClient:
             start_time: <p>The beginning of the time range to query. The range is inclusive, so the specified start time is included in the query. Specified as epoch time, the number of seconds since <code>January 1, 1970, 00:00:00 UTC</code>.</p>
             end_time: <p>The end of the time range to query. The range is inclusive, so the specified end time is included in the query. Specified as epoch time, the number of seconds since <code>January 1, 1970, 00:00:00 UTC</code>.</p>
             query_string: <p>The query string to use. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax.html\">CloudWatch Logs Insights Query Syntax</a>.</p>
-            limit: <p>The maximum number of log events to return in the query. If the query string uses the <code>fields</code> command, only the specified fields and their values are returned. The default is 10,000.</p> <p>The maximum value is 100,000.</p>
+            limit: <p>The maximum number of log events to return from the query. The maximum limit is 100,000. The maximum events returned in a single GetQueryResults API call is 10,000 log events per request. You can retrieve up to 100,000 log event results from a query by paginating with the <code>nextToken</code>. 100,000 limit is only supported for Logs Insights QL and is currently not supported for PPL and SQL query languages.</p>
 
         Raises:
             capo_cloudwatch_logs.errors.invalid_parameter_exception.InvalidParameterException: <p>A parameter is specified incorrectly.</p>
@@ -7483,20 +7797,22 @@ class AsyncCloudWatchLogsClient:
     async def update_lookup_table(
         self,
         lookup_table_arn: "capo_cloudwatch_logs.types.arn.Arn",
-        table_body: "capo_cloudwatch_logs.types.table_body.TableBody",
         *,
         config_overrides: Optional[AsyncCloudWatchLogsClientConfig] = None,
         description: Optional[
             "capo_cloudwatch_logs.types.lookup_table_description.LookupTableDescription"
         ] = None,
+        table_body: Optional["capo_cloudwatch_logs.types.table_body.TableBody"] = None,
+        query_id: Optional["capo_cloudwatch_logs.types.query_id.QueryId"] = None,
         kms_key_id: Optional["capo_cloudwatch_logs.types.kms_key_id.KmsKeyId"] = None,
     ) -> "capo_cloudwatch_logs.types.update_lookup_table_response.UpdateLookupTableResponse":
-        """<p>Updates an existing lookup table by replacing all of its CSV content. After the update completes, queries that use this table will use the new data.</p> <p>This is a full replacement operation. All existing content is replaced with the new CSV data.</p>
+        """<p>Updates an existing lookup table by replacing all of its content with new CSV data or CloudWatch Logs query results. After the update completes, queries that use this table use the new data.</p> <p>This is a full replacement operation. All existing content is replaced. You must specify either <code>tableBody</code> or <code>queryId</code>, but not both.</p>
 
         Args:
             lookup_table_arn: <p>The ARN of the lookup table to update.</p>
             description: <p>An updated description of the lookup table.</p>
-            table_body: <p>The new CSV content to replace the existing data. The first row must be a header row with column names. The content must use UTF-8 encoding and not exceed 10 MB.</p>
+            table_body: <p>The new CSV content to replace the existing data. The first row must be a header row with column names. The content must use UTF-8 encoding and not exceed 10 MB.</p> <p>You must specify either <code>tableBody</code> or <code>queryId</code>, but not both.</p>
+            query_id: <p>The ID of a completed or cancelled CloudWatch Logs query whose results replace the lookup table content. A cancelled query replaces the content with the partial results that were available when the query was stopped.</p> <p>You must specify either <code>tableBody</code> or <code>queryId</code>, but not both.</p>
             kms_key_id: <p>The ARN of the KMS key to use to encrypt the lookup table data. You can use this parameter to add, update, or remove the KMS key. To remove the KMS key and use an Amazon Web Services-owned key instead, specify an empty string.</p>
 
         Raises:
@@ -7525,11 +7841,14 @@ class AsyncCloudWatchLogsClient:
 
         interceptors_, options_ = self.operation_options(config_overrides)
         input_: capo_cloudwatch_logs.types.update_lookup_table_request.UpdateLookupTableRequest = {
-            "lookup_table_arn": lookup_table_arn,
-            "table_body": table_body,
+            "lookup_table_arn": lookup_table_arn
         }
         if description is not None:
             input_["description"] = description
+        if table_body is not None:
+            input_["table_body"] = table_body
+        if query_id is not None:
+            input_["query_id"] = query_id
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
 
@@ -7562,6 +7881,9 @@ class AsyncCloudWatchLogsClient:
         start_time_offset: Optional[
             "capo_cloudwatch_logs.types.start_time_offset.StartTimeOffset"
         ] = None,
+        end_time_offset: Optional[
+            "capo_cloudwatch_logs.types.end_time_offset.EndTimeOffset"
+        ] = None,
         destination_configuration: Optional[
             "capo_cloudwatch_logs.types.destination_configuration.DestinationConfiguration"
         ] = None,
@@ -7586,6 +7908,7 @@ class AsyncCloudWatchLogsClient:
             schedule_expression: <p>The updated cron expression that defines when the scheduled query runs.</p>
             timezone: <p>The updated timezone for evaluating the schedule expression.</p>
             start_time_offset: <p>The updated time offset in seconds that defines the lookback period for the query.</p>
+            end_time_offset: <p>The updated time offset in seconds that defines the end of the lookback period for the query.</p>
             destination_configuration: <p>The updated configuration for where to deliver query results.</p>
             schedule_start_time: <p>The updated start time for the scheduled query in Unix epoch format.</p>
             schedule_end_time: <p>The updated end time for the scheduled query in Unix epoch format.</p>
@@ -7594,6 +7917,7 @@ class AsyncCloudWatchLogsClient:
 
         Raises:
             capo_cloudwatch_logs.errors.access_denied_exception.AccessDeniedException: <p>You don't have sufficient permissions to perform this action.</p>
+            capo_cloudwatch_logs.errors.conflict_exception.ConflictException: <p>This operation attempted to create a resource that already exists.</p>
             capo_cloudwatch_logs.errors.internal_server_exception.InternalServerException: <p>An internal server error occurred while processing the request. This exception is returned when the service encounters an unexpected condition that prevents it from fulfilling the request.</p>
             capo_cloudwatch_logs.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource does not exist.</p>
             capo_cloudwatch_logs.errors.throttling_exception.ThrottlingException: <p>The request was throttled because of quota limits.</p>
@@ -7632,6 +7956,8 @@ class AsyncCloudWatchLogsClient:
             input_["timezone"] = timezone
         if start_time_offset is not None:
             input_["start_time_offset"] = start_time_offset
+        if end_time_offset is not None:
+            input_["end_time_offset"] = end_time_offset
         if destination_configuration is not None:
             input_["destination_configuration"] = destination_configuration
         if schedule_start_time is not None:

@@ -135,7 +135,9 @@ def get_signer(
             )
             if sigv4_config is not None:
                 return capo_sagemaker_runtime_http2._auth._signers.SigV4Signer(
-                    options.credentials_provider, auth_scheme=sigv4_config
+                    options.credentials_provider,
+                    auth_scheme=sigv4_config,
+                    event_stream=True,
                 )
     raise RuntimeError("Auth was not resolved")
 

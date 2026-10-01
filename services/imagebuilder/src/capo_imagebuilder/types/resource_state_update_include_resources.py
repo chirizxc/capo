@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 class ResourceStateUpdateIncludeResources(TypedDict, closed=True):
     amis: "capo_imagebuilder.types.boolean.Boolean"
-    """<p>Specifies whether the lifecycle action should apply to distributed AMIs</p>"""
+    """<p>Specifies whether the lifecycle action should apply to distributed AMIs.</p>"""
     snapshots: "capo_imagebuilder.types.boolean.Boolean"
     """<p>Specifies whether the lifecycle action should apply to snapshots associated with distributed AMIs.</p>"""
     containers: "capo_imagebuilder.types.boolean.Boolean"

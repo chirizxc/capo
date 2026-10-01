@@ -124,6 +124,7 @@ if TYPE_CHECKING:
     import capo_ivs.types.playback_restriction_policy_arn
     import capo_ivs.types.playback_restriction_policy_enable_strict_origin_enforcement
     import capo_ivs.types.playback_restriction_policy_name
+    import capo_ivs.types.post_roll_configuration
     import capo_ivs.types.put_metadata_request
     import capo_ivs.types.recording_configuration_arn
     import capo_ivs.types.recording_configuration_name
@@ -262,9 +263,9 @@ class AsyncivsClient:
             arns: <p>Array of ARNs, one per channel.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.service_unavailable.ServiceUnavailable: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.service_unavailable.ServiceUnavailable: <p>The service is temporarily unavailable.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -308,9 +309,9 @@ class AsyncivsClient:
             arns: <p>Array of ARNs, one per stream key.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.service_unavailable.ServiceUnavailable: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.service_unavailable.ServiceUnavailable: <p>The service is temporarily unavailable.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -354,10 +355,10 @@ class AsyncivsClient:
             viewer_sessions: <p>Array of viewer sessions, one per channel-ARN and viewer-ID pair.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs.errors.throttling_exception.ThrottlingException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -397,6 +398,9 @@ class AsyncivsClient:
         name: Optional[
             "capo_ivs.types.ad_configuration_name.AdConfigurationName"
         ] = None,
+        post_roll_configuration: Optional[
+            "capo_ivs.types.post_roll_configuration.PostRollConfiguration"
+        ] = None,
         tags: Optional["capo_ivs.types.tags.Tags"] = None,
     ) -> (
         "capo_ivs.types.create_ad_configuration_response.CreateAdConfigurationResponse"
@@ -406,17 +410,18 @@ class AsyncivsClient:
         Args:
             name: <p>Ad configuration name. Defaults to “”.</p>
             media_tailor_playback_configurations: <p>List of integration configurations with MediaTailor resources. The first item in the list is the default playback configuration used for the ad configuration. To select a different configuration per viewing session, see <a href=\"https://docs.aws.amazon.com/ivs/latest/LowLatencyUserGuide/private-channels-generate-tokens.html\">Generate and Sign IVS Playback Tokens</a>.</p>
+            post_roll_configuration: <p>Configuration for the post-roll ad break to use for this ad configuration. Default: disabled (<code>enabled</code> set to false, <code>durationSeconds</code> set to 15).</p>
             tags: <p>Array of 1-50 maps, each of the form <code>string:string (key:value)</code>. See <a href=\"https://docs.aws.amazon.com/tag-editor/latest/userguide/best-practices-and-strats.html\">Best practices and strategies</a> in <i>Tagging Amazon Web Services Resources and Tag Editor</i> for details, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS has no service-specific constraints beyond what is documented there.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p/>
-            capo_ivs.errors.throttling_exception.ThrottlingException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request would cause a service quota to be exceeded.</p>
+            capo_ivs.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -441,6 +446,8 @@ class AsyncivsClient:
         }
         if name is not None:
             input_["name"] = name
+        if post_roll_configuration is not None:
+            input_["post_roll_configuration"] = post_roll_configuration
         if tags is not None:
             input_["tags"] = tags
 
@@ -498,11 +505,11 @@ class AsyncivsClient:
             ad_configuration_arn: <p>ARN of the ad configuration associated with the channel.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request would cause a service quota to be exceeded.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -584,11 +591,11 @@ class AsyncivsClient:
             tags: <p>Array of 1-50 maps, each of the form <code>string:string (key:value)</code>. See <a href=\"https://docs.aws.amazon.com/tag-editor/latest/userguide/best-practices-and-strats.html\">Best practices and strategies</a> in <i>Tagging Amazon Web Services Resources and Tag Editor</i> for details, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS has no service-specific constraints beyond what is documented there.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p/>
-            capo_ivs.errors.throttling_exception.ThrottlingException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request would cause a service quota to be exceeded.</p>
+            capo_ivs.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -660,12 +667,12 @@ class AsyncivsClient:
             rendition_configuration: <p>Object that describes which renditions should be recorded for a stream.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request would cause a service quota to be exceeded.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -723,11 +730,11 @@ class AsyncivsClient:
             tags: <p>Array of 1-50 maps, each of the form <code>string:string (key:value)</code>. See <a href=\"https://docs.aws.amazon.com/tag-editor/latest/userguide/best-practices-and-strats.html\">Best practices and strategies</a> in <i>Tagging Amazon Web Services Resources and Tag Editor</i> for details, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS has no service-specific constraints beyond what is documented there.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request would cause a service quota to be exceeded.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -773,11 +780,11 @@ class AsyncivsClient:
             arn: <p>ARN of the ad configuration to be deleted.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -819,11 +826,11 @@ class AsyncivsClient:
             arn: <p>ARN of the channel to be deleted.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -867,10 +874,10 @@ class AsyncivsClient:
             arn: <p>ARN of the key pair to be deleted.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -914,11 +921,11 @@ class AsyncivsClient:
             arn: <p>ARN of the playback restriction policy to be deleted.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -960,11 +967,11 @@ class AsyncivsClient:
             arn: <p>ARN of the recording configuration to be deleted.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1006,10 +1013,10 @@ class AsyncivsClient:
             arn: <p>ARN of the stream key to be deleted.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1051,10 +1058,10 @@ class AsyncivsClient:
             arn: <p>ARN of the ad configuration to be retrieved.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1098,9 +1105,9 @@ class AsyncivsClient:
             arn: <p>ARN of the channel for which the configuration is to be retrieved.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1142,9 +1149,9 @@ class AsyncivsClient:
             arn: <p>ARN of the key pair to be returned.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1188,10 +1195,10 @@ class AsyncivsClient:
             arn: <p>ARN of the playback restriction policy to be returned.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1235,10 +1242,10 @@ class AsyncivsClient:
             arn: <p>ARN of the recording configuration to be retrieved.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1282,10 +1289,10 @@ class AsyncivsClient:
             channel_arn: <p>Channel ARN for stream to be accessed.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.channel_not_broadcasting.ChannelNotBroadcasting: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.channel_not_broadcasting.ChannelNotBroadcasting: <p>The stream is offline for the given channel ARN.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1329,9 +1336,9 @@ class AsyncivsClient:
             arn: <p>ARN for the stream key to be retrieved.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1375,9 +1382,9 @@ class AsyncivsClient:
             stream_id: <p>Unique identifier for a live or previously live stream in the specified channel. If no <code>streamId</code> is provided, this returns the most recent stream session for the channel, if it exists.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1431,11 +1438,11 @@ class AsyncivsClient:
             tags: <p>Any tags provided with the request are added to the playback key pair tags. See <a href=\"https://docs.aws.amazon.com/tag-editor/latest/userguide/best-practices-and-strats.html\">Best practices and strategies</a> in <i>Tagging Amazon Web Services Resources and Tag Editor</i> for details, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS has no service-specific constraints beyond what is documented there.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request would cause a service quota to be exceeded.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1485,13 +1492,13 @@ class AsyncivsClient:
             duration_seconds: <p>Duration of the ad break, in seconds.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.channel_not_broadcasting.ChannelNotBroadcasting: <p/>
-            capo_ivs.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.throttling_exception.ThrottlingException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.channel_not_broadcasting.ChannelNotBroadcasting: <p>The stream is offline for the given channel ARN.</p>
+            capo_ivs.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1540,9 +1547,9 @@ class AsyncivsClient:
             max_results: <p>Maximum number of ad configurations to return. Default: your service quota or 100, whichever is smaller.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1631,9 +1638,9 @@ class AsyncivsClient:
             max_results: <p>Maximum number of channels to return. Default: 100.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1730,8 +1737,8 @@ class AsyncivsClient:
             max_results: <p>Maximum number of key pairs to return. Default: your service quota or 100, whichever is smaller.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1802,10 +1809,10 @@ class AsyncivsClient:
             max_results: <p>Maximum number of policies to return. Default: 1.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1876,9 +1883,9 @@ class AsyncivsClient:
             max_results: <p>Maximum number of recording configurations to return. Default: your service quota or 100, whichever is smaller. </p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -1951,9 +1958,9 @@ class AsyncivsClient:
             max_results: <p>Maximum number of streamKeys to return. Default: 1.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2032,8 +2039,8 @@ class AsyncivsClient:
             max_results: <p>Maximum number of streams to return. Default: 100.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2110,9 +2117,9 @@ class AsyncivsClient:
             max_results: <p>Maximum number of streams to return. Default: 100.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2183,9 +2190,9 @@ class AsyncivsClient:
             resource_arn: <p>The ARN of the resource to be retrieved. The ARN must be URL-encoded.</p>
 
         Raises:
-            capo_ivs.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2231,11 +2238,11 @@ class AsyncivsClient:
             metadata: <p>Metadata to insert into the stream. Maximum: 1 KB per request.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.channel_not_broadcasting.ChannelNotBroadcasting: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.throttling_exception.ThrottlingException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.channel_not_broadcasting.ChannelNotBroadcasting: <p>The stream is offline for the given channel ARN.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2284,12 +2291,12 @@ class AsyncivsClient:
             viewer_session_versions_less_than_or_equal_to: <p>An optional filter on which versions of the viewer session to revoke. All versions less than or equal to the specified version will be revoked. Default: 0.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.throttling_exception.ThrottlingException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2338,11 +2345,11 @@ class AsyncivsClient:
             channel_arn: <p>ARN of the channel for which the stream is to be stopped.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.channel_not_broadcasting.ChannelNotBroadcasting: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.stream_unavailable.StreamUnavailable: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.channel_not_broadcasting.ChannelNotBroadcasting: <p>The stream is offline for the given channel ARN.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.stream_unavailable.StreamUnavailable: <p>The stream is temporarily unavailable.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2388,9 +2395,9 @@ class AsyncivsClient:
             tags: <p>Array of tags to be added or updated. Array of maps, each of the form <code>string:string (key:value)</code>. See <a href=\"https://docs.aws.amazon.com/tag-editor/latest/userguide/best-practices-and-strats.html\">Best practices and strategies</a> in <i>Tagging Amazon Web Services Resources and Tag Editor</i> for details, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS has no service-specific constraints beyond what is documented there.</p>
 
         Raises:
-            capo_ivs.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2437,9 +2444,9 @@ class AsyncivsClient:
             tag_keys: <p>Array of tag keys (strings) for the tags to be removed. See <a href=\"https://docs.aws.amazon.com/tag-editor/latest/userguide/best-practices-and-strats.html\">Best practices and strategies</a> in <i>Tagging Amazon Web Services Resources and Tag Editor</i> for details, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS has no service-specific constraints beyond what is documented there.</p>
 
         Raises:
-            capo_ivs.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2483,6 +2490,9 @@ class AsyncivsClient:
         media_tailor_playback_configurations: Optional[
             "capo_ivs.types.media_tailor_playback_configurations_list.MediaTailorPlaybackConfigurationsList"
         ] = None,
+        post_roll_configuration: Optional[
+            "capo_ivs.types.post_roll_configuration.PostRollConfiguration"
+        ] = None,
     ) -> (
         "capo_ivs.types.update_ad_configuration_response.UpdateAdConfigurationResponse"
     ):
@@ -2492,16 +2502,17 @@ class AsyncivsClient:
             arn: <p>ARN of the ad configuration to be updated.</p>
             name: <p>Ad configuration name. The value does not need to be unique.</p>
             media_tailor_playback_configurations: <p>List of integration configurations with MediaTailor resources. The first item in the list is the default playback configuration used for the ad configuration. To select a different configuration per viewing session, see <a href=\"https://docs.aws.amazon.com/ivs/latest/LowLatencyUserGuide/private-channels-generate-tokens.html\">Generate and Sign IVS Playback Tokens</a>.</p>
+            post_roll_configuration: <p>Configuration for the post-roll ad break to use for this ad configuration.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs.errors.internal_server_exception.InternalServerException: <p/>
-            capo_ivs.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p/>
-            capo_ivs.errors.throttling_exception.ThrottlingException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs.errors.internal_server_exception.InternalServerException: <p>Unexpected error during processing of request.</p>
+            capo_ivs.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Request would cause a service quota to be exceeded.</p>
+            capo_ivs.errors.throttling_exception.ThrottlingException: <p>Request was denied due to request throttling.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2530,6 +2541,8 @@ class AsyncivsClient:
             input_["media_tailor_playback_configurations"] = (
                 media_tailor_playback_configurations
             )
+        if post_roll_configuration is not None:
+            input_["post_roll_configuration"] = post_roll_configuration
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -2585,11 +2598,11 @@ class AsyncivsClient:
             ad_configuration_arn: <p>ARN of the ad configuration associated with the channel.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 
@@ -2671,11 +2684,11 @@ class AsyncivsClient:
             name: <p>Playback-restriction-policy name. The value does not need to be unique.</p>
 
         Raises:
-            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p/>
-            capo_ivs.errors.conflict_exception.ConflictException: <p/>
-            capo_ivs.errors.pending_verification.PendingVerification: <p/>
-            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p/>
-            capo_ivs.errors.validation_exception.ValidationException: <p/>
+            capo_ivs.errors.access_denied_exception.AccessDeniedException: <p>User does not have sufficient access to perform this action.</p>
+            capo_ivs.errors.conflict_exception.ConflictException: <p>Updating or deleting a resource can cause an inconsistent state.</p>
+            capo_ivs.errors.pending_verification.PendingVerification: <p>Your account is pending verification.</p>
+            capo_ivs.errors.resource_not_found_exception.ResourceNotFoundException: <p>Request references a resource which does not exist.</p>
+            capo_ivs.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>
             capo_ivs.errors.UnknownServiceError: The service returned an error code this client does not model.
         """
 

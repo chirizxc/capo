@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_medialive.types.__list_of_output_usage
     import capo_medialive.types.__string
     import capo_medialive.types.hls_auto_select
     import capo_medialive.types.hls_default
@@ -19,6 +20,10 @@ class MediaPackageV2DestinationSettings(TypedDict, closed=True):
     """Specifies whether MediaPackage should set this output as the auto-select rendition in the HLS manifest. YES means this must be the auto-select. NO means this should never be the auto-select. OMIT means MediaPackage decides what to set on this rendition. When you consider all the renditions, follow these guidelines. You can set zero or one renditions to YES. You can set zero or more renditions to NO, but you can't set all renditions to NO. You can set zero, some, or all to OMIT."""
     hls_default: NotRequired["capo_medialive.types.hls_default.HlsDefault"]
     """Specifies whether MediaPackage should set this output as the default rendition in the HLS manifest. YES means this must be the default. NO means this should never be the default. OMIT means MediaPackage decides what to set on this rendition. When you consider all the renditions, follow these guidelines. You can set zero or one renditions to YES. You can set zero or more renditions to NO, but you can't set all renditions to NO. You can set zero, some, or all to OMIT."""
+    output_usage: NotRequired[
+        "capo_medialive.types.__list_of_output_usage.__listOfOutputUsage"
+    ]
+    """List of usage tags declaring how this MediaPackage V2 output is used. Currently these are all multiview-related (multiviewPrimaryView, multiviewSecondaryView, multiviewEqualSizeView) and enable multiview validations and augmentations to help ensure proper multiview configuration and compatibility with MediaPackage. Leave empty (the default) if this output has no multiview role. If any video-carrying MediaPackage V2 output in an output group specifies a multiview value, every video-carrying MediaPackage V2 output in the group must also specify a multiview value; place standalone video outputs in a separate output group."""
 
 
 # --- restJson1 ser/de ---
@@ -40,6 +45,12 @@ def serialize_json(value: MediaPackageV2DestinationSettings) -> dict:
         out["hlsDefault"] = capo_medialive.types.hls_default.serialize_json(
             value["hls_default"]
         )
+    if "output_usage" in value:
+        import capo_medialive.types.__list_of_output_usage
+
+        out["outputUsage"] = capo_medialive.types.__list_of_output_usage.serialize_json(
+            value["output_usage"]
+        )
     return out
 
 
@@ -60,5 +71,13 @@ def deserialize_json(data: dict) -> MediaPackageV2DestinationSettings:
 
         out["hls_default"] = capo_medialive.types.hls_default.deserialize_json(
             data["hlsDefault"]
+        )
+    if data.get("outputUsage") is not None:
+        import capo_medialive.types.__list_of_output_usage
+
+        out["output_usage"] = (
+            capo_medialive.types.__list_of_output_usage.deserialize_json(
+                data["outputUsage"]
+            )
         )
     return out

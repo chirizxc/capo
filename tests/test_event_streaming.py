@@ -151,6 +151,7 @@ class TestAsyncSelectObjectContent:  # unasync: generate
 
         assert await agather(count, 5) == [str(BIG_ROWS).encode()] * 5
 
+
 class TestSelectObjectContent:  # unasync: generated
     def test_small_csv(self, s3: S3Client, csv_bucket: str):
         with s3.select_object_content(csv_bucket, "small.csv", **query(SELECT_ALL)) as out:
@@ -276,6 +277,7 @@ class TestAsyncTranscribeStreaming:  # unasync: generate
                 ) as out:
                     async for _ in out["transcript_result_stream"]:
                         pass
+
 
 class TestTranscribeStreaming:  # unasync: generated
     pytestmark = pytest.mark.paid

@@ -19,6 +19,21 @@ async def main():
         print(response["tags"])
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_notificationscontacts import AsyncNotificationsContactsClient
+
+
+async def main():
+    async with AsyncNotificationsContactsClient() as notifications_contacts:
+        # Example: paginate over list_email_contacts
+        async for item in notifications_contacts.iter_list_email_contacts():
+            print(item)
+```
+
 ## Error Handling
 
 The SDK raises exceptions for errors returned by the API. Catch them to handle failures gracefully.

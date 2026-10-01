@@ -13,11 +13,11 @@ if TYPE_CHECKING:
 
 class ComponentConfiguration(TypedDict, closed=True):
     component_arn: "capo_imagebuilder.types.component_version_arn_or_build_version_arn.ComponentVersionArnOrBuildVersionArn"
-    """<p>The Amazon Resource Name (ARN) of the component.</p>"""
+    """<p>The Amazon Resource Name (ARN) of the component. You can specify a build version ARN, or a component version ARN whose version segments can use <code>x</code> wildcards, for example <code>1.x.x</code>.</p>"""
     parameters: NotRequired[
         "capo_imagebuilder.types.component_parameter_list.ComponentParameterList"
     ]
-    """<p>A group of parameter settings that Image Builder uses to configure the component for a specific recipe.</p>"""
+    """<p>A group of parameter settings that Image Builder uses to configure the component for a specific recipe. You must supply a value for every component parameter that has no default value, and you can only supply parameters that the component defines.</p>"""
 
 
 # --- restJson1 ser/de ---

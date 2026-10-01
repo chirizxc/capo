@@ -12,7 +12,10 @@ if TYPE_CHECKING:
     import capo_pinpoint_sms_voice_v2.types.iam_role_arn
     import capo_pinpoint_sms_voice_v2.types.opt_out_list_name
     import capo_pinpoint_sms_voice_v2.types.rcs_agent_status
+    import capo_pinpoint_sms_voice_v2.types.rcs_event_type_list
     import capo_pinpoint_sms_voice_v2.types.two_way_channel_arn
+    import capo_pinpoint_sms_voice_v2.types.two_way_media_s3_bucket_name
+    import capo_pinpoint_sms_voice_v2.types.two_way_media_s3_key_prefix
 
 
 class UpdateRcsAgentResult(TypedDict, closed=True):
@@ -42,6 +45,22 @@ class UpdateRcsAgentResult(TypedDict, closed=True):
     """<p>An optional IAM Role Arn for a service to assume, to be able to post inbound SMS messages.</p>"""
     two_way_enabled: "bool"
     """<p>By default this is set to false. When set to true you can receive incoming text messages from your end recipients.</p>"""
+    two_way_media_s3_bucket_name: NotRequired[
+        "capo_pinpoint_sms_voice_v2.types.two_way_media_s3_bucket_name.TwoWayMediaS3BucketName"
+    ]
+    """<p>The name of the S3 bucket where inbound RCS media files are stored.</p>"""
+    two_way_media_s3_key_prefix: NotRequired[
+        "capo_pinpoint_sms_voice_v2.types.two_way_media_s3_key_prefix.TwoWayMediaS3KeyPrefix"
+    ]
+    """<p>The key prefix used for inbound RCS media objects in the S3 bucket.</p>"""
+    two_way_media_s3_role: NotRequired[
+        "capo_pinpoint_sms_voice_v2.types.iam_role_arn.IamRoleArn"
+    ]
+    """<p>The ARN of the IAM role used to write inbound RCS media files to the S3 bucket.</p>"""
+    two_way_rcs_events_enabled: NotRequired[
+        "capo_pinpoint_sms_voice_v2.types.rcs_event_type_list.RcsEventTypeList"
+    ]
+    """<p>The list of RCS event types enabled for two-way messaging on the agent.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -66,6 +85,20 @@ def serialize_aws_json_1_0(value: UpdateRcsAgentResult) -> dict:
     if "two_way_channel_role" in value:
         out["TwoWayChannelRole"] = value["two_way_channel_role"]
     out["TwoWayEnabled"] = value.get("two_way_enabled", False)
+    if "two_way_media_s3_bucket_name" in value:
+        out["TwoWayMediaS3BucketName"] = value["two_way_media_s3_bucket_name"]
+    if "two_way_media_s3_key_prefix" in value:
+        out["TwoWayMediaS3KeyPrefix"] = value["two_way_media_s3_key_prefix"]
+    if "two_way_media_s3_role" in value:
+        out["TwoWayMediaS3Role"] = value["two_way_media_s3_role"]
+    if "two_way_rcs_events_enabled" in value:
+        import capo_pinpoint_sms_voice_v2.types.rcs_event_type_list
+
+        out["TwoWayRcsEventsEnabled"] = (
+            capo_pinpoint_sms_voice_v2.types.rcs_event_type_list.serialize_aws_json_1_0(
+                value["two_way_rcs_events_enabled"]
+            )
+        )
     return out
 
 
@@ -111,4 +144,18 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateRcsAgentResult:
         out["two_way_enabled"] = data["TwoWayEnabled"]
     else:
         out["two_way_enabled"] = False
+    if data.get("TwoWayMediaS3BucketName") is not None:
+        out["two_way_media_s3_bucket_name"] = data["TwoWayMediaS3BucketName"]
+    if data.get("TwoWayMediaS3KeyPrefix") is not None:
+        out["two_way_media_s3_key_prefix"] = data["TwoWayMediaS3KeyPrefix"]
+    if data.get("TwoWayMediaS3Role") is not None:
+        out["two_way_media_s3_role"] = data["TwoWayMediaS3Role"]
+    if data.get("TwoWayRcsEventsEnabled") is not None:
+        import capo_pinpoint_sms_voice_v2.types.rcs_event_type_list
+
+        out["two_way_rcs_events_enabled"] = (
+            capo_pinpoint_sms_voice_v2.types.rcs_event_type_list.deserialize_aws_json_1_0(
+                data["TwoWayRcsEventsEnabled"]
+            )
+        )
     return out

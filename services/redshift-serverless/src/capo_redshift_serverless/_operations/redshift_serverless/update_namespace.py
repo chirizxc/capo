@@ -18,6 +18,7 @@ import capo_redshift_serverless.errors.validation_exception
 import capo_redshift_serverless.types.iam_role_arn_list
 import capo_redshift_serverless.types.log_export_list
 import capo_redshift_serverless.types.namespace
+import capo_redshift_serverless.types.s3_table_name_list
 import capo_redshift_serverless.types.update_namespace_request
 import capo_redshift_serverless.types.update_namespace_response
 from capo_redshift_serverless._protocol.errors import parse_error_metadata_json

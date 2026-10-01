@@ -8,6 +8,7 @@ from capo_connect.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_connect.types.arn
+    import capo_connect.types.evaluation_form_ai_version
     import capo_connect.types.evaluation_form_auto_evaluation_configuration
     import capo_connect.types.evaluation_form_description
     import capo_connect.types.evaluation_form_items_list
@@ -15,6 +16,7 @@ if TYPE_CHECKING:
     import capo_connect.types.evaluation_form_scoring_strategy
     import capo_connect.types.evaluation_form_target_configuration
     import capo_connect.types.evaluation_form_title
+    import capo_connect.types.evaluation_form_validation_status
     import capo_connect.types.evaluation_form_version_is_locked
     import capo_connect.types.evaluation_form_version_status
     import capo_connect.types.evaluation_review_configuration
@@ -75,6 +77,16 @@ class EvaluationForm(TypedDict, closed=True):
         "capo_connect.types.evaluation_form_language_configuration.EvaluationFormLanguageConfiguration"
     ]
     """<p>Configuration for language settings of this evaluation form.</p>"""
+    latest_validation_status: NotRequired[
+        "capo_connect.types.evaluation_form_validation_status.EvaluationFormValidationStatus"
+    ]
+    """<p>The status of the most recent validation run for this evaluation form. Valid values: <code>IN_PROGRESS</code>, <code>COMPLETED</code>, <code>FAILED</code>.</p>"""
+    last_validation_time: NotRequired["capo_connect.types.timestamp.Timestamp"]
+    """<p>The timestamp when the most recent validation was started for this evaluation form.</p>"""
+    ai_version: NotRequired[
+        "capo_connect.types.evaluation_form_ai_version.EvaluationFormAIVersion"
+    ]
+    """<p>The AI version to use for the evaluation form. This specifies which AI model version is used for automated evaluations.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -153,6 +165,22 @@ def serialize_json(value: EvaluationForm) -> dict:
                 value["language_configuration"]
             )
         )
+    if "latest_validation_status" in value:
+        import capo_connect.types.evaluation_form_validation_status
+
+        out["LatestValidationStatus"] = (
+            capo_connect.types.evaluation_form_validation_status.serialize_json(
+                value["latest_validation_status"]
+            )
+        )
+    if "last_validation_time" in value:
+        import capo_connect.types.timestamp
+
+        out["LastValidationTime"] = capo_connect.types.timestamp.serialize_json(
+            value["last_validation_time"]
+        )
+    if "ai_version" in value:
+        out["AIVersion"] = value["ai_version"]
     return out
 
 
@@ -266,4 +294,20 @@ def deserialize_json(data: dict) -> EvaluationForm:
                 data["LanguageConfiguration"]
             )
         )
+    if data.get("LatestValidationStatus") is not None:
+        import capo_connect.types.evaluation_form_validation_status
+
+        out["latest_validation_status"] = (
+            capo_connect.types.evaluation_form_validation_status.deserialize_json(
+                data["LatestValidationStatus"]
+            )
+        )
+    if data.get("LastValidationTime") is not None:
+        import capo_connect.types.timestamp
+
+        out["last_validation_time"] = capo_connect.types.timestamp.deserialize_json(
+            data["LastValidationTime"]
+        )
+    if data.get("AIVersion") is not None:
+        out["ai_version"] = data["AIVersion"]
     return out

@@ -16,6 +16,9 @@ ResaleAuthorizationSortBy: TypeAlias = Literal[
     "CreatedDate",
     "AvailabilityEndDate",
     "LastModifiedDate",
+    "ResellerRole",
+    "SourceAuthorization",
+    "IssuerAccountId",
 ]
 
 

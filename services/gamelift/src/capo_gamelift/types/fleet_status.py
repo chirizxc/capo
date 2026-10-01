@@ -13,6 +13,7 @@ FleetStatus: TypeAlias = Literal[
     "ERROR",
     "TERMINATED",
     "NOT_FOUND",
+    "EXPIRED",
 ]
 
 

@@ -17,6 +17,7 @@ import capo_redshift.types.describe_logging_status_message
 import capo_redshift.types.log_destination_type
 import capo_redshift.types.log_type_list
 import capo_redshift.types.logging_status
+import capo_redshift.types.s3_table_publish_status
 import capo_redshift.types.t_stamp
 from capo_redshift._protocol.errors import find_error_element, parse_error_metadata
 from capo_redshift._protocol.xml import fromstring

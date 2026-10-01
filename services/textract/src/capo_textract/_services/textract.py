@@ -223,13 +223,13 @@ class TextractClient:
         Args:
             document: <p>The input document as base64-encoded bytes or an Amazon S3 object. If you use the AWS CLI to call Amazon Textract operations, you can't pass image bytes. The document must be an image in JPEG, PNG, PDF, or TIFF format.</p> <p>If you're using an AWS SDK to call Amazon Textract, you might not need to base64-encode image bytes that are passed using the <code>Bytes</code> field. </p>
             feature_types: <p>A list of the types of analysis to perform. Add TABLES to the list to return information about the tables that are detected in the input document. Add FORMS to return detected form data. Add SIGNATURES to return the locations of detected signatures. Add LAYOUT to the list to return information about the layout of the document. All lines and words detected in the document are included in the response (including text that isn't related to the value of <code>FeatureTypes</code>). </p>
-            human_loop_config: <p>Sets the configuration for the human in the loop workflow for analyzing documents.</p>
+            human_loop_config: <p>Sets the configuration for the human in the loop workflow for analyzing documents.</p> <note> <p>Amazon Textract uses Amazon Augmented AI (A2I) to run the human review workflows that you specify in <code>HumanLoopConfig</code>. A2I entered maintenance mode in July 2026 and no longer accepts new customers. If your account is not an existing A2I customer, requests fail with an <code>InvalidParameterException</code>. For more information, see <a href=\"https://aws.amazon.com/about-aws/whats-new/2026/06/aws-service-availability/\">AWS service availability</a>. If you're an existing A2I customer but receive this error, contact AWS Support and request assistance from the A2I team.</p> </note>
             queries_config: <p>Contains Queries and the alias for those Queries, as determined by the input. </p>
             adapters_config: <p>Specifies the adapter to be used when analyzing a document.</p>
 
         Raises:
             capo_textract.errors.access_denied_exception.AccessDeniedException: <p>You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of an authorized user or IAM role to perform the operation.</p>
-            capo_textract.errors.bad_document_exception.BadDocumentException: <p>Amazon Textract isn't able to read the document. For more information on the document limits in Amazon Textract, see <a>limits</a>.</p>
+            capo_textract.errors.bad_document_exception.BadDocumentException: <p>Amazon Textract isn't able to read the document. For more information on the document limits in Amazon Textract, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/limits.html\">Hard limits</a>.</p>
             capo_textract.errors.document_too_large_exception.DocumentTooLargeException: <p>The document can't be processed because it's too large. The maximum document size for synchronous operations 10 MB. The maximum document size for asynchronous operations is 500 MB for PDF files.</p>
             capo_textract.errors.human_loop_quota_exceeded_exception.HumanLoopQuotaExceededException: <p>Indicates you have exceeded the maximum number of active human in the loop workflows available</p>
             capo_textract.errors.internal_server_error.InternalServerError: <p>Amazon Textract experienced a service issue. Try your call again.</p>
@@ -285,7 +285,7 @@ class TextractClient:
 
         Raises:
             capo_textract.errors.access_denied_exception.AccessDeniedException: <p>You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of an authorized user or IAM role to perform the operation.</p>
-            capo_textract.errors.bad_document_exception.BadDocumentException: <p>Amazon Textract isn't able to read the document. For more information on the document limits in Amazon Textract, see <a>limits</a>.</p>
+            capo_textract.errors.bad_document_exception.BadDocumentException: <p>Amazon Textract isn't able to read the document. For more information on the document limits in Amazon Textract, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/limits.html\">Hard limits</a>.</p>
             capo_textract.errors.document_too_large_exception.DocumentTooLargeException: <p>The document can't be processed because it's too large. The maximum document size for synchronous operations 10 MB. The maximum document size for asynchronous operations is 500 MB for PDF files.</p>
             capo_textract.errors.internal_server_error.InternalServerError: <p>Amazon Textract experienced a service issue. Try your call again.</p>
             capo_textract.errors.invalid_parameter_exception.InvalidParameterException: <p>An input parameter violated a constraint. For example, in synchronous operations, an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code> or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter. Validate your parameter before calling the API operation again.</p>
@@ -336,7 +336,7 @@ class TextractClient:
 
         Raises:
             capo_textract.errors.access_denied_exception.AccessDeniedException: <p>You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of an authorized user or IAM role to perform the operation.</p>
-            capo_textract.errors.bad_document_exception.BadDocumentException: <p>Amazon Textract isn't able to read the document. For more information on the document limits in Amazon Textract, see <a>limits</a>.</p>
+            capo_textract.errors.bad_document_exception.BadDocumentException: <p>Amazon Textract isn't able to read the document. For more information on the document limits in Amazon Textract, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/limits.html\">Hard limits</a>.</p>
             capo_textract.errors.document_too_large_exception.DocumentTooLargeException: <p>The document can't be processed because it's too large. The maximum document size for synchronous operations 10 MB. The maximum document size for asynchronous operations is 500 MB for PDF files.</p>
             capo_textract.errors.internal_server_error.InternalServerError: <p>Amazon Textract experienced a service issue. Try your call again.</p>
             capo_textract.errors.invalid_parameter_exception.InvalidParameterException: <p>An input parameter violated a constraint. For example, in synchronous operations, an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code> or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter. Validate your parameter before calling the API operation again.</p>
@@ -641,7 +641,7 @@ class TextractClient:
 
         Raises:
             capo_textract.errors.access_denied_exception.AccessDeniedException: <p>You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of an authorized user or IAM role to perform the operation.</p>
-            capo_textract.errors.bad_document_exception.BadDocumentException: <p>Amazon Textract isn't able to read the document. For more information on the document limits in Amazon Textract, see <a>limits</a>.</p>
+            capo_textract.errors.bad_document_exception.BadDocumentException: <p>Amazon Textract isn't able to read the document. For more information on the document limits in Amazon Textract, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/limits.html\">Hard limits</a>.</p>
             capo_textract.errors.document_too_large_exception.DocumentTooLargeException: <p>The document can't be processed because it's too large. The maximum document size for synchronous operations 10 MB. The maximum document size for asynchronous operations is 500 MB for PDF files.</p>
             capo_textract.errors.internal_server_error.InternalServerError: <p>Amazon Textract experienced a service issue. Try your call again.</p>
             capo_textract.errors.invalid_parameter_exception.InvalidParameterException: <p>An input parameter violated a constraint. For example, in synchronous operations, an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code> or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter. Validate your parameter before calling the API operation again.</p>
@@ -1348,7 +1348,7 @@ class TextractClient:
 
         Raises:
             capo_textract.errors.access_denied_exception.AccessDeniedException: <p>You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of an authorized user or IAM role to perform the operation.</p>
-            capo_textract.errors.bad_document_exception.BadDocumentException: <p>Amazon Textract isn't able to read the document. For more information on the document limits in Amazon Textract, see <a>limits</a>.</p>
+            capo_textract.errors.bad_document_exception.BadDocumentException: <p>Amazon Textract isn't able to read the document. For more information on the document limits in Amazon Textract, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/limits.html\">Hard limits</a>.</p>
             capo_textract.errors.document_too_large_exception.DocumentTooLargeException: <p>The document can't be processed because it's too large. The maximum document size for synchronous operations 10 MB. The maximum document size for asynchronous operations is 500 MB for PDF files.</p>
             capo_textract.errors.idempotent_parameter_mismatch_exception.IdempotentParameterMismatchException: <p>A <code>ClientRequestToken</code> input parameter was reused with an operation, but at least one of the other input parameters is different from the previous call to the operation. </p>
             capo_textract.errors.internal_server_error.InternalServerError: <p>Amazon Textract experienced a service issue. Try your call again.</p>
@@ -1433,7 +1433,7 @@ class TextractClient:
 
         Raises:
             capo_textract.errors.access_denied_exception.AccessDeniedException: <p>You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of an authorized user or IAM role to perform the operation.</p>
-            capo_textract.errors.bad_document_exception.BadDocumentException: <p>Amazon Textract isn't able to read the document. For more information on the document limits in Amazon Textract, see <a>limits</a>.</p>
+            capo_textract.errors.bad_document_exception.BadDocumentException: <p>Amazon Textract isn't able to read the document. For more information on the document limits in Amazon Textract, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/limits.html\">Hard limits</a>.</p>
             capo_textract.errors.document_too_large_exception.DocumentTooLargeException: <p>The document can't be processed because it's too large. The maximum document size for synchronous operations 10 MB. The maximum document size for asynchronous operations is 500 MB for PDF files.</p>
             capo_textract.errors.idempotent_parameter_mismatch_exception.IdempotentParameterMismatchException: <p>A <code>ClientRequestToken</code> input parameter was reused with an operation, but at least one of the other input parameters is different from the previous call to the operation. </p>
             capo_textract.errors.internal_server_error.InternalServerError: <p>Amazon Textract experienced a service issue. Try your call again.</p>
@@ -1513,7 +1513,7 @@ class TextractClient:
 
         Raises:
             capo_textract.errors.access_denied_exception.AccessDeniedException: <p>You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of an authorized user or IAM role to perform the operation.</p>
-            capo_textract.errors.bad_document_exception.BadDocumentException: <p>Amazon Textract isn't able to read the document. For more information on the document limits in Amazon Textract, see <a>limits</a>.</p>
+            capo_textract.errors.bad_document_exception.BadDocumentException: <p>Amazon Textract isn't able to read the document. For more information on the document limits in Amazon Textract, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/limits.html\">Hard limits</a>.</p>
             capo_textract.errors.document_too_large_exception.DocumentTooLargeException: <p>The document can't be processed because it's too large. The maximum document size for synchronous operations 10 MB. The maximum document size for asynchronous operations is 500 MB for PDF files.</p>
             capo_textract.errors.idempotent_parameter_mismatch_exception.IdempotentParameterMismatchException: <p>A <code>ClientRequestToken</code> input parameter was reused with an operation, but at least one of the other input parameters is different from the previous call to the operation. </p>
             capo_textract.errors.internal_server_error.InternalServerError: <p>Amazon Textract experienced a service issue. Try your call again.</p>
@@ -1590,7 +1590,7 @@ class TextractClient:
 
         Raises:
             capo_textract.errors.access_denied_exception.AccessDeniedException: <p>You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of an authorized user or IAM role to perform the operation.</p>
-            capo_textract.errors.bad_document_exception.BadDocumentException: <p>Amazon Textract isn't able to read the document. For more information on the document limits in Amazon Textract, see <a>limits</a>.</p>
+            capo_textract.errors.bad_document_exception.BadDocumentException: <p>Amazon Textract isn't able to read the document. For more information on the document limits in Amazon Textract, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/limits.html\">Hard limits</a>.</p>
             capo_textract.errors.document_too_large_exception.DocumentTooLargeException: <p>The document can't be processed because it's too large. The maximum document size for synchronous operations 10 MB. The maximum document size for asynchronous operations is 500 MB for PDF files.</p>
             capo_textract.errors.idempotent_parameter_mismatch_exception.IdempotentParameterMismatchException: <p>A <code>ClientRequestToken</code> input parameter was reused with an operation, but at least one of the other input parameters is different from the previous call to the operation. </p>
             capo_textract.errors.internal_server_error.InternalServerError: <p>Amazon Textract experienced a service issue. Try your call again.</p>

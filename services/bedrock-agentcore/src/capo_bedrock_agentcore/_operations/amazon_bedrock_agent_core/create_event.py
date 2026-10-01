@@ -24,6 +24,8 @@ import capo_bedrock_agentcore.types.branch
 import capo_bedrock_agentcore.types.create_event_input
 import capo_bedrock_agentcore.types.create_event_output
 import capo_bedrock_agentcore.types.event
+import capo_bedrock_agentcore.types.extraction_config
+import capo_bedrock_agentcore.types.extraction_mode
 import capo_bedrock_agentcore.types.metadata_map
 import capo_bedrock_agentcore.types.payload_type_list
 from capo_bedrock_agentcore._protocol.errors import parse_error_metadata_json

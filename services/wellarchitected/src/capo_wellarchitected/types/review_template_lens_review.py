@@ -5,6 +5,8 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import datetime
+
     import capo_wellarchitected.types.lens_alias
     import capo_wellarchitected.types.lens_arn
     import capo_wellarchitected.types.lens_name
@@ -14,7 +16,6 @@ if TYPE_CHECKING:
     import capo_wellarchitected.types.notes
     import capo_wellarchitected.types.question_counts
     import capo_wellarchitected.types.review_template_pillar_review_summaries
-    import capo_wellarchitected.types.timestamp
 
 
 class ReviewTemplateLensReview(TypedDict, closed=True):
@@ -30,7 +31,8 @@ class ReviewTemplateLensReview(TypedDict, closed=True):
         "capo_wellarchitected.types.review_template_pillar_review_summaries.ReviewTemplatePillarReviewSummaries"
     ]
     """<p>Pillar review summaries of a lens review.</p>"""
-    updated_at: NotRequired["capo_wellarchitected.types.timestamp.Timestamp"]
+    updated_at: NotRequired["datetime.datetime"]
+    """<p>The date and time when the review template lens review was last updated.</p>"""
     notes: NotRequired["capo_wellarchitected.types.notes.Notes"]
     question_counts: NotRequired[
         "capo_wellarchitected.types.question_counts.QuestionCounts"
@@ -65,9 +67,9 @@ def serialize_json(value: ReviewTemplateLensReview) -> dict:
             )
         )
     if "updated_at" in value:
-        import capo_wellarchitected.types.timestamp
+        import capo_wellarchitected.types._prelude.timestamp
 
-        out["UpdatedAt"] = capo_wellarchitected.types.timestamp.serialize_json(
+        out["UpdatedAt"] = capo_wellarchitected.types._prelude.timestamp.serialize_json(
             value["updated_at"]
         )
     if "notes" in value:
@@ -110,10 +112,12 @@ def deserialize_json(data: dict) -> ReviewTemplateLensReview:
             )
         )
     if data.get("UpdatedAt") is not None:
-        import capo_wellarchitected.types.timestamp
+        import capo_wellarchitected.types._prelude.timestamp
 
-        out["updated_at"] = capo_wellarchitected.types.timestamp.deserialize_json(
-            data["UpdatedAt"]
+        out["updated_at"] = (
+            capo_wellarchitected.types._prelude.timestamp.deserialize_json(
+                data["UpdatedAt"]
+            )
         )
     if data.get("Notes") is not None:
         out["notes"] = data["Notes"]

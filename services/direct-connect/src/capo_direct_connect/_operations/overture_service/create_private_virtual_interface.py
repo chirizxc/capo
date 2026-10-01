@@ -14,6 +14,7 @@ import capo_direct_connect._protocol.eventstream
 import capo_direct_connect.errors.direct_connect_client_exception
 import capo_direct_connect.errors.direct_connect_server_exception
 import capo_direct_connect.errors.duplicate_tag_keys_exception
+import capo_direct_connect.errors.limit_exceeded_exception
 import capo_direct_connect.errors.too_many_tags_exception
 import capo_direct_connect.types.address_family
 import capo_direct_connect.types.bgp_peer_list
@@ -46,6 +47,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "DuplicateTagKeysException":
             raise capo_direct_connect.errors.duplicate_tag_keys_exception.DuplicateTagKeysException.from_aws_json_1_1(
+                data, message
+            )
+        case "LimitExceededException":
+            raise capo_direct_connect.errors.limit_exceeded_exception.LimitExceededException.from_aws_json_1_1(
                 data, message
             )
         case "TooManyTagsException":

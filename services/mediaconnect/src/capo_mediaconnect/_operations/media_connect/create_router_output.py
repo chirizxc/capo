@@ -21,6 +21,7 @@ import capo_mediaconnect.errors.too_many_requests_exception
 import capo_mediaconnect.types.__map_of_string
 import capo_mediaconnect.types.create_router_output_request
 import capo_mediaconnect.types.create_router_output_response
+import capo_mediaconnect.types.fabric_configuration
 import capo_mediaconnect.types.maintenance_configuration
 import capo_mediaconnect.types.router_output
 import capo_mediaconnect.types.router_output_configuration

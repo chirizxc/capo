@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_iot_wireless.types.default_session_parameters_multicast
     import capo_iot_wireless.types.dl_class
     import capo_iot_wireless.types.participating_gateways_multicast
     import capo_iot_wireless.types.supported_rf_region
@@ -18,6 +19,10 @@ class LoRaWANMulticast(TypedDict, closed=True):
     participating_gateways: NotRequired[
         "capo_iot_wireless.types.participating_gateways_multicast.ParticipatingGatewaysMulticast"
     ]
+    default_session_parameters: NotRequired[
+        "capo_iot_wireless.types.default_session_parameters_multicast.DefaultSessionParametersMulticast"
+    ]
+    """<p>The default session parameters for the multicast group.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -43,6 +48,14 @@ def serialize_json(value: LoRaWANMulticast) -> dict:
                 value["participating_gateways"]
             )
         )
+    if "default_session_parameters" in value:
+        import capo_iot_wireless.types.default_session_parameters_multicast
+
+        out["DefaultSessionParameters"] = (
+            capo_iot_wireless.types.default_session_parameters_multicast.serialize_json(
+                value["default_session_parameters"]
+            )
+        )
     return out
 
 
@@ -66,6 +79,14 @@ def deserialize_json(data: dict) -> LoRaWANMulticast:
         out["participating_gateways"] = (
             capo_iot_wireless.types.participating_gateways_multicast.deserialize_json(
                 data["ParticipatingGateways"]
+            )
+        )
+    if data.get("DefaultSessionParameters") is not None:
+        import capo_iot_wireless.types.default_session_parameters_multicast
+
+        out["default_session_parameters"] = (
+            capo_iot_wireless.types.default_session_parameters_multicast.deserialize_json(
+                data["DefaultSessionParameters"]
             )
         )
     return out

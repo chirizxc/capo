@@ -9,10 +9,12 @@ from capo_ec2._protocol.xml import Element
 if TYPE_CHECKING:
     import capo_ec2.types.boolean
     import capo_ec2.types.capacity_reservation_id
+    import capo_ec2.types.capacity_reservation_modification_quote_id
     import capo_ec2.types.date_time
     import capo_ec2.types.end_date_type
     import capo_ec2.types.instance_match_criteria
     import capo_ec2.types.integer
+    import capo_ec2.types.millisecond_date_time
     import capo_ec2.types.string
 
 
@@ -37,6 +39,14 @@ class ModifyCapacityReservationRequest(TypedDict, closed=True):
         "capo_ec2.types.instance_match_criteria.InstanceMatchCriteria"
     ]
     """<p> The matching criteria (instance eligibility) that you want to use in the modified Capacity Reservation. If you change the instance eligibility of an existing Capacity Reservation from <code>targeted</code> to <code>open</code>, any running instances that match the attributes of the Capacity Reservation, have the <code>CapacityReservationPreference</code> set to <code>open</code>, and are not yet running in the Capacity Reservation, will automatically use the modified Capacity Reservation. </p> <p>To modify the instance eligibility, the Capacity Reservation must be completely idle (zero usage).</p>"""
+    accept_modification_terms: NotRequired["capo_ec2.types.boolean.Boolean"]
+    """<p>Indicates that you accept the modification terms of the quote identified by <code>QuoteId</code>. To apply a quoted modification, set this parameter to <code>true</code>.</p>"""
+    start_date: NotRequired["capo_ec2.types.millisecond_date_time.MillisecondDateTime"]
+    """<p>The new start date for the Capacity Reservation, in the ISO8601 format in the UTC time zone (<code>YYYY-MM-DDThh:mm:ss.sssZ</code>). Applies to future-dated Capacity Reservations only. Requires a quote from <code>CreateCapacityReservationDateChangeQuote</code>; pass the quote ID in <code>QuoteId</code> with <code>AcceptModificationTerms</code> set to <code>true</code>.</p>"""
+    quote_id: NotRequired[
+        "capo_ec2.types.capacity_reservation_modification_quote_id.CapacityReservationModificationQuoteId"
+    ]
+    """<p>The ID of the quote that describes the modification you want to apply. Generate a quote by using <code>CreateCapacityReservationDateChangeQuote</code>. The quote must be in the <code>active</code> state, and each quote can be used only once.</p>"""
 
 
 # --- ec2Query ser/de ---
@@ -79,6 +89,21 @@ def serialize_ec2_query(
             pairs,
             f"{key_prefix}InstanceMatchCriteria",
         )
+    if "accept_modification_terms" in value:
+        pairs.append(
+            (
+                f"{key_prefix}AcceptModificationTerms",
+                "true" if value["accept_modification_terms"] else "false",
+            )
+        )
+    if "start_date" in value:
+        import capo_ec2.types.millisecond_date_time
+
+        capo_ec2.types.millisecond_date_time.serialize_ec2_query(
+            value["start_date"], pairs, f"{key_prefix}StartDate"
+        )
+    if "quote_id" in value:
+        pairs.append((f"{key_prefix}QuoteId", str(value["quote_id"])))
 
 
 def deserialize_ec2_query(el: Element) -> ModifyCapacityReservationRequest:
@@ -119,4 +144,19 @@ def deserialize_ec2_query(el: Element) -> ModifyCapacityReservationRequest:
                 child_instance_match_criteria
             )
         )
+    child_accept_modification_terms = el.find("AcceptModificationTerms")
+    if child_accept_modification_terms is not None:
+        out["accept_modification_terms"] = (
+            child_accept_modification_terms.text or ""
+        ).lower() == "true"
+    child_start_date = el.find("StartDate")
+    if child_start_date is not None:
+        import capo_ec2.types.millisecond_date_time
+
+        out["start_date"] = capo_ec2.types.millisecond_date_time.deserialize_ec2_query(
+            child_start_date
+        )
+    child_quote_id = el.find("QuoteId")
+    if child_quote_id is not None:
+        out["quote_id"] = str(child_quote_id.text or "")
     return out

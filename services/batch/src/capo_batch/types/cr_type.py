@@ -7,6 +7,7 @@ CRType: TypeAlias = Literal[
     "SPOT",
     "FARGATE",
     "FARGATE_SPOT",
+    "ECS_MANAGED_INSTANCES",
 ]
 
 

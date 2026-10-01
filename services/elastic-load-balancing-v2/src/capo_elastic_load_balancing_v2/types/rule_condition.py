@@ -21,7 +21,7 @@ class RuleCondition(TypedDict, closed=True):
     field: NotRequired[
         "capo_elastic_load_balancing_v2.types.condition_field_name.ConditionFieldName"
     ]
-    """<p>The field in the HTTP request. The following are the possible values:</p> <ul> <li> <p> <code>http-header</code> </p> </li> <li> <p> <code>http-request-method</code> </p> </li> <li> <p> <code>host-header</code> </p> </li> <li> <p> <code>path-pattern</code> </p> </li> <li> <p> <code>query-string</code> </p> </li> <li> <p> <code>source-ip</code> </p> </li> </ul>"""
+    """<p>The name of the field. The possible values are:</p> <ul> <li> <p> <code>http-header</code> – [ALB] Matches on an HTTP header field.</p> </li> <li> <p> <code>http-request-method</code> – [ALB] Matches on the HTTP request method.</p> </li> <li> <p> <code>host-header</code> – [ALB] Matches on the host header.</p> </li> <li> <p> <code>path-pattern</code> – [ALB] Matches on the URL path of the request.</p> </li> <li> <p> <code>query-string</code> – [ALB] Matches on a query string parameter.</p> </li> <li> <p> <code>source-ip</code> – [ALB, NLB] Matches on the source IP address. For ALB, use <code>SourceIpConfig</code> with <code>Values</code> to specify CIDR ranges. For NLB, use <code>SourceIpConfig</code> with <code>IpAddressType</code> to match the IP address type (<code>ipv4</code> or <code>ipv6</code>).</p> </li> </ul>"""
     values: NotRequired[
         "capo_elastic_load_balancing_v2.types.list_of_string.ListOfString"
     ]

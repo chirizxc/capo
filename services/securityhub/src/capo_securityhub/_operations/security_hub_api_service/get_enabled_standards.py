@@ -17,6 +17,7 @@ import capo_securityhub.errors.invalid_input_exception
 import capo_securityhub.errors.limit_exceeded_exception
 import capo_securityhub.types.get_enabled_standards_request
 import capo_securityhub.types.get_enabled_standards_response
+import capo_securityhub.types.standards_providers
 import capo_securityhub.types.standards_subscription_arns
 import capo_securityhub.types.standards_subscriptions
 from capo_securityhub._protocol.errors import parse_error_metadata_json

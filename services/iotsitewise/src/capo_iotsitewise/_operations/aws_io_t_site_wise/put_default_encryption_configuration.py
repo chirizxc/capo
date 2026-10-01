@@ -15,6 +15,7 @@ import capo_iotsitewise.errors.conflicting_operation_exception
 import capo_iotsitewise.errors.internal_failure_exception
 import capo_iotsitewise.errors.invalid_request_exception
 import capo_iotsitewise.errors.limit_exceeded_exception
+import capo_iotsitewise.errors.resource_not_found_exception
 import capo_iotsitewise.errors.throttling_exception
 import capo_iotsitewise.types.configuration_status
 import capo_iotsitewise.types.encryption_type
@@ -44,6 +45,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "LimitExceededException":
             raise capo_iotsitewise.errors.limit_exceeded_exception.LimitExceededException.from_json(
+                data, message
+            )
+        case "ResourceNotFoundException":
+            raise capo_iotsitewise.errors.resource_not_found_exception.ResourceNotFoundException.from_json(
                 data, message
             )
         case "ThrottlingException":

@@ -12,11 +12,11 @@ class PointOfInterest(TypedDict, closed=True):
     begin_offset_millis: NotRequired[
         "capo_connect_contact_lens.types.offset_millis.OffsetMillis"
     ]
-    """<p>The beginning offset in milliseconds where the category rule was detected.</p>"""
+    """<p>The beginning offset (in milliseconds) where the match was detected.</p>"""
     end_offset_millis: NotRequired[
         "capo_connect_contact_lens.types.offset_millis.OffsetMillis"
     ]
-    """<p>The ending offset in milliseconds where the category rule was detected.</p>"""
+    """<p>The ending offset (in milliseconds) where the match was detected.</p>"""
 
 
 # --- restJson1 ser/de ---

@@ -5,6 +5,7 @@ from typing import Literal, TypeAlias, cast
 EvaluationFormScoringMode: TypeAlias = Literal[
     "QUESTION_ONLY",
     "SECTION_ONLY",
+    "POINTS_BASED",
 ]
 
 

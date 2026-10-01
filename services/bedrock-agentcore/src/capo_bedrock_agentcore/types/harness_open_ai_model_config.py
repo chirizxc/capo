@@ -8,6 +8,7 @@ from capo_bedrock_agentcore.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_bedrock_agentcore.types.api_key_arn
+    import capo_bedrock_agentcore.types.harness_open_ai_api_base
     import capo_bedrock_agentcore.types.harness_open_ai_api_format
     import capo_bedrock_agentcore.types.max_tokens
     import capo_bedrock_agentcore.types.model_id
@@ -20,6 +21,10 @@ class HarnessOpenAiModelConfig(TypedDict, closed=True):
     """<p>The OpenAI model ID.</p>"""
     api_key_arn: "capo_bedrock_agentcore.types.api_key_arn.ApiKeyArn"
     """<p>The ARN of your OpenAI API key on AgentCore Identity.</p>"""
+    api_base: NotRequired[
+        "capo_bedrock_agentcore.types.harness_open_ai_api_base.HarnessOpenAiApiBase"
+    ]
+    """<p>Optional custom endpoint URL for an OpenAI-compatible endpoint.</p>"""
     max_tokens: NotRequired["capo_bedrock_agentcore.types.max_tokens.MaxTokens"]
     """<p>The maximum number of tokens to allow in the generated response per iteration.</p>"""
     temperature: NotRequired["capo_bedrock_agentcore.types.temperature.Temperature"]
@@ -39,6 +44,8 @@ def serialize_json(value: HarnessOpenAiModelConfig) -> dict:
     out: dict = {}
     out["modelId"] = value["model_id"]
     out["apiKeyArn"] = value["api_key_arn"]
+    if "api_base" in value:
+        out["apiBase"] = value["api_base"]
     if "max_tokens" in value:
         out["maxTokens"] = value["max_tokens"]
     if "temperature" in value:
@@ -84,6 +91,8 @@ def deserialize_json(data: dict) -> HarnessOpenAiModelConfig:
         out["api_key_arn"] = data["apiKeyArn"]
     else:
         raise DeserializationError("HarnessOpenAiModelConfig.api_key_arn required")
+    if data.get("apiBase") is not None:
+        out["api_base"] = data["apiBase"]
     if data.get("maxTokens") is not None:
         out["max_tokens"] = data["maxTokens"]
     if data.get("temperature") is not None:

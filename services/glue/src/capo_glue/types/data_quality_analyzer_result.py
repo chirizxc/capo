@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_glue.types.data_quality_rule_result_description
+    import capo_glue.types.evaluated_distributions_map
     import capo_glue.types.evaluated_metrics_map
     import capo_glue.types.name_string
 
@@ -25,6 +26,10 @@ class DataQualityAnalyzerResult(TypedDict, closed=True):
         "capo_glue.types.evaluated_metrics_map.EvaluatedMetricsMap"
     ]
     """<p>A map of metrics associated with the evaluation of the analyzer.</p>"""
+    evaluated_distributions: NotRequired[
+        "capo_glue.types.evaluated_distributions_map.EvaluatedDistributionsMap"
+    ]
+    """<p>A map of distribution metrics associated with the evaluation of the analyzer.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -44,6 +49,14 @@ def serialize_aws_json_1_1(value: DataQualityAnalyzerResult) -> dict:
                 value["evaluated_metrics"]
             )
         )
+    if "evaluated_distributions" in value:
+        import capo_glue.types.evaluated_distributions_map
+
+        out["EvaluatedDistributions"] = (
+            capo_glue.types.evaluated_distributions_map.serialize_aws_json_1_1(
+                value["evaluated_distributions"]
+            )
+        )
     return out
 
 
@@ -61,6 +74,14 @@ def deserialize_aws_json_1_1(data: dict) -> DataQualityAnalyzerResult:
         out["evaluated_metrics"] = (
             capo_glue.types.evaluated_metrics_map.deserialize_aws_json_1_1(
                 data["EvaluatedMetrics"]
+            )
+        )
+    if data.get("EvaluatedDistributions") is not None:
+        import capo_glue.types.evaluated_distributions_map
+
+        out["evaluated_distributions"] = (
+            capo_glue.types.evaluated_distributions_map.deserialize_aws_json_1_1(
+                data["EvaluatedDistributions"]
             )
         )
     return out

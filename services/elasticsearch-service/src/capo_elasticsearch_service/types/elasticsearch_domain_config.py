@@ -18,10 +18,12 @@ if TYPE_CHECKING:
     import capo_elasticsearch_service.types.elasticsearch_cluster_config_status
     import capo_elasticsearch_service.types.elasticsearch_version_status
     import capo_elasticsearch_service.types.encryption_at_rest_options_status
+    import capo_elasticsearch_service.types.engine_mode_status
     import capo_elasticsearch_service.types.log_publishing_options_status
     import capo_elasticsearch_service.types.modifying_properties_list
     import capo_elasticsearch_service.types.node_to_node_encryption_options_status
     import capo_elasticsearch_service.types.snapshot_options_status
+    import capo_elasticsearch_service.types.use_case_status
     import capo_elasticsearch_service.types.vpc_derived_info_status
 
 
@@ -98,6 +100,14 @@ class ElasticsearchDomainConfig(TypedDict, closed=True):
         "capo_elasticsearch_service.types.automated_snapshot_pause_options_status.AutomatedSnapshotPauseOptionsStatus"
     ]
     """<p>Specifies <code>AutomatedSnapshotPauseOptions</code> for the domain. </p>"""
+    use_case: NotRequired[
+        "capo_elasticsearch_service.types.use_case_status.UseCaseStatus"
+    ]
+    """<p>The use case configured for the domain.</p>"""
+    engine_mode: NotRequired[
+        "capo_elasticsearch_service.types.engine_mode_status.EngineModeStatus"
+    ]
+    """<p>The engine mode configured for the domain.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -247,6 +257,22 @@ def serialize_json(value: ElasticsearchDomainConfig) -> dict:
                 value["automated_snapshot_pause_options"]
             )
         )
+    if "use_case" in value:
+        import capo_elasticsearch_service.types.use_case_status
+
+        out["UseCase"] = (
+            capo_elasticsearch_service.types.use_case_status.serialize_json(
+                value["use_case"]
+            )
+        )
+    if "engine_mode" in value:
+        import capo_elasticsearch_service.types.engine_mode_status
+
+        out["EngineMode"] = (
+            capo_elasticsearch_service.types.engine_mode_status.serialize_json(
+                value["engine_mode"]
+            )
+        )
     return out
 
 
@@ -394,6 +420,22 @@ def deserialize_json(data: dict) -> ElasticsearchDomainConfig:
         out["automated_snapshot_pause_options"] = (
             capo_elasticsearch_service.types.automated_snapshot_pause_options_status.deserialize_json(
                 data["AutomatedSnapshotPauseOptions"]
+            )
+        )
+    if data.get("UseCase") is not None:
+        import capo_elasticsearch_service.types.use_case_status
+
+        out["use_case"] = (
+            capo_elasticsearch_service.types.use_case_status.deserialize_json(
+                data["UseCase"]
+            )
+        )
+    if data.get("EngineMode") is not None:
+        import capo_elasticsearch_service.types.engine_mode_status
+
+        out["engine_mode"] = (
+            capo_elasticsearch_service.types.engine_mode_status.deserialize_json(
+                data["EngineMode"]
             )
         )
     return out

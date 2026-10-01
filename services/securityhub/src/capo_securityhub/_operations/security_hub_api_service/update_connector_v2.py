@@ -18,6 +18,8 @@ import capo_securityhub.errors.internal_server_exception
 import capo_securityhub.errors.resource_not_found_exception
 import capo_securityhub.errors.throttling_exception
 import capo_securityhub.errors.validation_exception
+import capo_securityhub.types.connector_status
+import capo_securityhub.types.enablement_status
 import capo_securityhub.types.provider_update_configuration
 import capo_securityhub.types.update_connector_v2_request
 import capo_securityhub.types.update_connector_v2_response
@@ -62,14 +64,18 @@ def handle_error(response: zapros.Response) -> Never:
 def handle_response(
     response: zapros.Response,
 ) -> capo_securityhub.types.update_connector_v2_response.UpdateConnectorV2Response:
-    out: capo_securityhub.types.update_connector_v2_response.UpdateConnectorV2Response = {}  # type: ignore[typeddict-item]
+    out: capo_securityhub.types.update_connector_v2_response.UpdateConnectorV2Response = capo_securityhub.types.update_connector_v2_response.deserialize_json(
+        json.loads(response.read())
+    )
     return out
 
 
 async def async_handle_response(
     response: zapros.Response,
 ) -> capo_securityhub.types.update_connector_v2_response.UpdateConnectorV2Response:
-    out: capo_securityhub.types.update_connector_v2_response.UpdateConnectorV2Response = {}  # type: ignore[typeddict-item]
+    out: capo_securityhub.types.update_connector_v2_response.UpdateConnectorV2Response = capo_securityhub.types.update_connector_v2_response.deserialize_json(
+        json.loads(await response.aread())
+    )
     return out
 
 

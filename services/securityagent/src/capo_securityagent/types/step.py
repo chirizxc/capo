@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 
 class Step(TypedDict, closed=True):
     name: NotRequired["capo_securityagent.types.step_name.StepName"]
-    """<p>The name of the step. Valid values include PREFLIGHT, STATIC_ANALYSIS, PENTEST, and FINALIZING.</p>"""
+    """<p>The name of the step. Valid values include PREFLIGHT, STATIC_ANALYSIS, PENTEST, VALIDATION, and FINALIZING.</p>"""
     status: NotRequired["capo_securityagent.types.step_status.StepStatus"]
     """<p>The current status of the step.</p>"""
     created_at: NotRequired["datetime.datetime"]

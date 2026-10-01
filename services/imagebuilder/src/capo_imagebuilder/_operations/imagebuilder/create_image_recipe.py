@@ -13,6 +13,7 @@ import capo_imagebuilder._auth._sigv4
 import capo_imagebuilder._protocol.eventstream
 import capo_imagebuilder.errors.call_rate_limit_exceeded_exception
 import capo_imagebuilder.errors.client_exception
+import capo_imagebuilder.errors.dry_run_operation_exception
 import capo_imagebuilder.errors.forbidden_exception
 import capo_imagebuilder.errors.idempotent_parameter_mismatch_exception
 import capo_imagebuilder.errors.invalid_request_exception
@@ -23,6 +24,7 @@ import capo_imagebuilder.errors.service_exception
 import capo_imagebuilder.errors.service_quota_exceeded_exception
 import capo_imagebuilder.errors.service_unavailable_exception
 import capo_imagebuilder.types.additional_instance_configuration
+import capo_imagebuilder.types.ami_watermarks_list
 import capo_imagebuilder.types.component_configuration_list
 import capo_imagebuilder.types.create_image_recipe_request
 import capo_imagebuilder.types.create_image_recipe_response
@@ -48,6 +50,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "ClientException":
             raise capo_imagebuilder.errors.client_exception.ClientException.from_json(
+                data, message
+            )
+        case "DryRunOperationException":
+            raise capo_imagebuilder.errors.dry_run_operation_exception.DryRunOperationException.from_json(
                 data, message
             )
         case "ForbiddenException":

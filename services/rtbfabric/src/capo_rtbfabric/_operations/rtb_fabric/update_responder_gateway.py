@@ -18,6 +18,7 @@ import capo_rtbfabric.errors.internal_server_exception
 import capo_rtbfabric.errors.resource_not_found_exception
 import capo_rtbfabric.errors.throttling_exception
 import capo_rtbfabric.errors.validation_exception
+import capo_rtbfabric.types.client_routing_policy
 import capo_rtbfabric.types.listener_config
 import capo_rtbfabric.types.managed_endpoint_configuration
 import capo_rtbfabric.types.protocol

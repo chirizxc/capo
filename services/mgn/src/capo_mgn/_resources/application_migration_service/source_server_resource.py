@@ -34,6 +34,7 @@ if TYPE_CHECKING:
     import capo_mgn.types.document_version
     import capo_mgn.types.ec2_instance_type
     import capo_mgn.types.finalize_cutover_request
+    import capo_mgn.types.fqdn_for_action_framework
     import capo_mgn.types.get_launch_configuration_request
     import capo_mgn.types.get_replication_configuration_request
     import capo_mgn.types.internet_protocol
@@ -44,6 +45,7 @@ if TYPE_CHECKING:
     import capo_mgn.types.list_source_server_actions_response
     import capo_mgn.types.mark_as_archived_request
     import capo_mgn.types.max_results_type
+    import capo_mgn.types.operating_system_string
     import capo_mgn.types.order_type
     import capo_mgn.types.pagination_token
     import capo_mgn.types.pause_replication_request
@@ -76,6 +78,7 @@ if TYPE_CHECKING:
     import capo_mgn.types.start_test_request_source_server_i_ds
     import capo_mgn.types.start_test_response
     import capo_mgn.types.stop_replication_request
+    import capo_mgn.types.storage_configuration
     import capo_mgn.types.strictly_positive_integer
     import capo_mgn.types.subnet_id
     import capo_mgn.types.tag_value
@@ -88,6 +91,7 @@ if TYPE_CHECKING:
     import capo_mgn.types.update_replication_configuration_request
     import capo_mgn.types.update_source_server_replication_type_request
     import capo_mgn.types.update_source_server_request
+    import capo_mgn.types.user_provided_id
     from capo_mgn._services.async_mgn import AsyncmgnClient, AsyncmgnClientConfig
     from capo_mgn._services.mgn import mgnClient, mgnClientConfig
 
@@ -105,6 +109,15 @@ class SourceServerResource:
         connector_action: Optional[
             "capo_mgn.types.source_server_connector_action.SourceServerConnectorAction"
         ] = None,
+        user_provided_id: Optional[
+            "capo_mgn.types.user_provided_id.UserProvidedId"
+        ] = None,
+        fqdn_for_action_framework: Optional[
+            "capo_mgn.types.fqdn_for_action_framework.FqdnForActionFramework"
+        ] = None,
+        platform: Optional[
+            "capo_mgn.types.operating_system_string.OperatingSystemString"
+        ] = None,
     ) -> "capo_mgn.types.source_server.SourceServer":
         """<p>Update Source Server.</p>
 
@@ -112,6 +125,9 @@ class SourceServerResource:
             account_id: <p>Update Source Server request account ID.</p>
             source_server_id: <p>Update Source Server request source server ID.</p>
             connector_action: <p>Update Source Server request connector action.</p>
+            user_provided_id: <p>Update Source Server request user provided ID.</p>
+            fqdn_for_action_framework: <p>Update Source Server request FQDN for action framework.</p>
+            platform: <p>Update Source Server request platform operating system.</p>
 
         Raises:
             capo_mgn.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
@@ -140,6 +156,12 @@ class SourceServerResource:
             input_["account_id"] = account_id
         if connector_action is not None:
             input_["connector_action"] = connector_action
+        if user_provided_id is not None:
+            input_["user_provided_id"] = user_provided_id
+        if fqdn_for_action_framework is not None:
+            input_["fqdn_for_action_framework"] = fqdn_for_action_framework
+        if platform is not None:
+            input_["platform"] = platform
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -217,7 +239,7 @@ class SourceServerResource:
             filters: <p>Request to filter Source Servers list.</p>
             max_results: <p>Request to filter Source Servers list by maximum results.</p>
             next_token: <p>Request to filter Source Servers list by next token.</p>
-            account_id: <p>Request to filter Source Servers list by Accoun ID.</p>
+            account_id: <p>Request to filter Source Servers list by Account ID.</p>
 
         Raises:
             capo_mgn.errors.uninitialized_account_exception.UninitializedAccountException: <p>Uninitialized account exception.</p>
@@ -316,7 +338,7 @@ class SourceServerResource:
         config_overrides: Optional[mgnClientConfig] = None,
         account_id: Optional["capo_mgn.types.account_id.AccountID"] = None,
     ) -> "capo_mgn.types.source_server.SourceServer":
-        """<p>Disconnects specific Source Servers from Application Migration Service. Data replication is stopped immediately. All AWS resources created by Application Migration Service for enabling the replication of these source servers will be terminated / deleted within 90 minutes. Launched Test or Cutover instances will NOT be terminated. If the agent on the source server has not been prevented from communicating with the Application Migration Service service, then it will receive a command to uninstall itself (within approximately 10 minutes). The following properties of the SourceServer will be changed immediately: dataReplicationInfo.dataReplicationState will be set to DISCONNECTED; The totalStorageBytes property for each of dataReplicationInfo.replicatedDisks will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDuration will be nullified.</p>
+        """<p>Disconnects specific Source Servers from Application Migration Service. Data replication is stopped immediately. All AWS resources created by Application Migration Service for enabling the replication of these source servers will be terminated / deleted within 90 minutes. Launched Test or Cutover instances will NOT be terminated. If the agent on the source server has not been prevented from communicating with Application Migration Service, then it will receive a command to uninstall itself (within approximately 10 minutes). The following properties of the SourceServer will be changed immediately: dataReplicationInfo.dataReplicationState will be set to DISCONNECTED; The totalStorageBytes property for each of dataReplicationInfo.replicatedDisks will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDuration will be nullified.</p>
 
         Args:
             source_server_id: <p>Request to disconnect Source Server from service by Server ID.</p>
@@ -363,7 +385,7 @@ class SourceServerResource:
         config_overrides: Optional[mgnClientConfig] = None,
         account_id: Optional["capo_mgn.types.account_id.AccountID"] = None,
     ) -> "capo_mgn.types.source_server.SourceServer":
-        """<p>Finalizes the cutover immediately for specific Source Servers. All AWS resources created by Application Migration Service for enabling the replication of these source servers will be terminated / deleted within 90 minutes. Launched Test or Cutover instances will NOT be terminated. The AWS Replication Agent will receive a command to uninstall itself (within 10 minutes). The following properties of the SourceServer will be changed immediately: dataReplicationInfo.dataReplicationState will be changed to DISCONNECTED; The SourceServer.lifeCycle.state will be changed to CUTOVER; The totalStorageBytes property fo each of dataReplicationInfo.replicatedDisks will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDuration will be nullified.</p>
+        """<p>Finalizes the cutover immediately for specific Source Servers. All AWS resources created by Application Migration Service for enabling the replication of these source servers will be terminated / deleted within 90 minutes. Launched Test or Cutover instances will NOT be terminated. The AWS Replication Agent will receive a command to uninstall itself (within 10 minutes). The following properties of the SourceServer will be changed immediately: dataReplicationInfo.dataReplicationState will be changed to DISCONNECTED; The SourceServer.lifeCycle.state will be changed to CUTOVER; The totalStorageBytes property for each of dataReplicationInfo.replicatedDisks will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDuration will be nullified.</p>
 
         Args:
             source_server_id: <p>Request to finalize Cutover by Source Server ID.</p>
@@ -569,7 +591,7 @@ class SourceServerResource:
         config_overrides: Optional[mgnClientConfig] = None,
         account_id: Optional["capo_mgn.types.account_id.AccountID"] = None,
     ) -> "capo_mgn.types.source_server.SourceServer":
-        """<p>Archives specific Source Servers by setting the SourceServer.isArchived property to true for specified SourceServers by ID. This command only works for SourceServers with a lifecycle. state which equals DISCONNECTED or CUTOVER.</p>
+        """<p>Archives specific Source Servers by setting the SourceServer.isArchived property to true for specified SourceServers by ID. This command only works for SourceServers with a lifecycle state that equals DISCONNECTED or CUTOVER.</p>
 
         Args:
             source_server_id: <p>Mark as archived by Source Server ID.</p>
@@ -625,7 +647,7 @@ class SourceServerResource:
         Raises:
             capo_mgn.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
-            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because its exceeded the service quota.</p>
+            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because it exceeded the service quota.</p>
             capo_mgn.errors.uninitialized_account_exception.UninitializedAccountException: <p>Uninitialized account exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -830,7 +852,7 @@ class SourceServerResource:
         Raises:
             capo_mgn.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
-            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because its exceeded the service quota.</p>
+            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because it exceeded the service quota.</p>
             capo_mgn.errors.uninitialized_account_exception.UninitializedAccountException: <p>Uninitialized account exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -926,7 +948,7 @@ class SourceServerResource:
         Raises:
             capo_mgn.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
-            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because its exceeded the service quota.</p>
+            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because it exceeded the service quota.</p>
             capo_mgn.errors.uninitialized_account_exception.UninitializedAccountException: <p>Uninitialized account exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -975,7 +997,7 @@ class SourceServerResource:
         Raises:
             capo_mgn.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
-            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because its exceeded the service quota.</p>
+            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because it exceeded the service quota.</p>
             capo_mgn.errors.uninitialized_account_exception.UninitializedAccountException: <p>Uninitialized account exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -1031,7 +1053,7 @@ class SourceServerResource:
         map_auto_tagging_mpe_id: Optional["capo_mgn.types.tag_value.TagValue"] = None,
         account_id: Optional["capo_mgn.types.account_id.AccountID"] = None,
     ) -> "capo_mgn.types.launch_configuration.LaunchConfiguration":
-        """<p>Updates multiple LaunchConfigurations by Source Server ID.</p> <note> <p>bootMode valid values are <code>LEGACY_BIOS | UEFI</code> </p> </note>
+        """<p>Updates multiple LaunchConfigurations by Source Server ID.</p> <note> <p>bootMode valid values are <code>LEGACY_BIOS | UEFI | USE_SOURCE</code> </p> </note>
 
         Args:
             source_server_id: <p>Update Launch configuration by Source Server ID request.</p>
@@ -1144,6 +1166,9 @@ class SourceServerResource:
             "capo_mgn.types.internet_protocol.InternetProtocol"
         ] = None,
         store_snapshot_on_local_zone: Optional[bool] = None,
+        storage_configuration: Optional[
+            "capo_mgn.types.storage_configuration.StorageConfiguration"
+        ] = None,
     ) -> "capo_mgn.types.replication_configuration.ReplicationConfiguration":
         """<p>Allows you to update multiple ReplicationConfigurations by Source Server ID.</p>
 
@@ -1167,9 +1192,10 @@ class SourceServerResource:
             account_id: <p>Update replication configuration Account ID request.</p>
             internet_protocol: <p>Update replication configuration internet protocol.</p>
             store_snapshot_on_local_zone: <p>Update replication configuration store snapshot on local zone.</p>
+            storage_configuration: <p>Update replication configuration storage configuration.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.uninitialized_account_exception.UninitializedAccountException: <p>Uninitialized account exception.</p>
@@ -1239,6 +1265,8 @@ class SourceServerResource:
             input_["internet_protocol"] = internet_protocol
         if store_snapshot_on_local_zone is not None:
             input_["store_snapshot_on_local_zone"] = store_snapshot_on_local_zone
+        if storage_configuration is not None:
+            input_["storage_configuration"] = storage_configuration
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -1470,6 +1498,15 @@ class AsyncSourceServerResource:
         connector_action: Optional[
             "capo_mgn.types.source_server_connector_action.SourceServerConnectorAction"
         ] = None,
+        user_provided_id: Optional[
+            "capo_mgn.types.user_provided_id.UserProvidedId"
+        ] = None,
+        fqdn_for_action_framework: Optional[
+            "capo_mgn.types.fqdn_for_action_framework.FqdnForActionFramework"
+        ] = None,
+        platform: Optional[
+            "capo_mgn.types.operating_system_string.OperatingSystemString"
+        ] = None,
     ) -> "capo_mgn.types.source_server.SourceServer":
         """<p>Update Source Server.</p>
 
@@ -1477,6 +1514,9 @@ class AsyncSourceServerResource:
             account_id: <p>Update Source Server request account ID.</p>
             source_server_id: <p>Update Source Server request source server ID.</p>
             connector_action: <p>Update Source Server request connector action.</p>
+            user_provided_id: <p>Update Source Server request user provided ID.</p>
+            fqdn_for_action_framework: <p>Update Source Server request FQDN for action framework.</p>
+            platform: <p>Update Source Server request platform operating system.</p>
 
         Raises:
             capo_mgn.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
@@ -1506,6 +1546,12 @@ class AsyncSourceServerResource:
             input_["account_id"] = account_id
         if connector_action is not None:
             input_["connector_action"] = connector_action
+        if user_provided_id is not None:
+            input_["user_provided_id"] = user_provided_id
+        if fqdn_for_action_framework is not None:
+            input_["fqdn_for_action_framework"] = fqdn_for_action_framework
+        if platform is not None:
+            input_["platform"] = platform
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
@@ -1584,7 +1630,7 @@ class AsyncSourceServerResource:
             filters: <p>Request to filter Source Servers list.</p>
             max_results: <p>Request to filter Source Servers list by maximum results.</p>
             next_token: <p>Request to filter Source Servers list by next token.</p>
-            account_id: <p>Request to filter Source Servers list by Accoun ID.</p>
+            account_id: <p>Request to filter Source Servers list by Account ID.</p>
 
         Raises:
             capo_mgn.errors.uninitialized_account_exception.UninitializedAccountException: <p>Uninitialized account exception.</p>
@@ -1685,7 +1731,7 @@ class AsyncSourceServerResource:
         config_overrides: Optional[AsyncmgnClientConfig] = None,
         account_id: Optional["capo_mgn.types.account_id.AccountID"] = None,
     ) -> "capo_mgn.types.source_server.SourceServer":
-        """<p>Disconnects specific Source Servers from Application Migration Service. Data replication is stopped immediately. All AWS resources created by Application Migration Service for enabling the replication of these source servers will be terminated / deleted within 90 minutes. Launched Test or Cutover instances will NOT be terminated. If the agent on the source server has not been prevented from communicating with the Application Migration Service service, then it will receive a command to uninstall itself (within approximately 10 minutes). The following properties of the SourceServer will be changed immediately: dataReplicationInfo.dataReplicationState will be set to DISCONNECTED; The totalStorageBytes property for each of dataReplicationInfo.replicatedDisks will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDuration will be nullified.</p>
+        """<p>Disconnects specific Source Servers from Application Migration Service. Data replication is stopped immediately. All AWS resources created by Application Migration Service for enabling the replication of these source servers will be terminated / deleted within 90 minutes. Launched Test or Cutover instances will NOT be terminated. If the agent on the source server has not been prevented from communicating with Application Migration Service, then it will receive a command to uninstall itself (within approximately 10 minutes). The following properties of the SourceServer will be changed immediately: dataReplicationInfo.dataReplicationState will be set to DISCONNECTED; The totalStorageBytes property for each of dataReplicationInfo.replicatedDisks will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDuration will be nullified.</p>
 
         Args:
             source_server_id: <p>Request to disconnect Source Server from service by Server ID.</p>
@@ -1733,7 +1779,7 @@ class AsyncSourceServerResource:
         config_overrides: Optional[AsyncmgnClientConfig] = None,
         account_id: Optional["capo_mgn.types.account_id.AccountID"] = None,
     ) -> "capo_mgn.types.source_server.SourceServer":
-        """<p>Finalizes the cutover immediately for specific Source Servers. All AWS resources created by Application Migration Service for enabling the replication of these source servers will be terminated / deleted within 90 minutes. Launched Test or Cutover instances will NOT be terminated. The AWS Replication Agent will receive a command to uninstall itself (within 10 minutes). The following properties of the SourceServer will be changed immediately: dataReplicationInfo.dataReplicationState will be changed to DISCONNECTED; The SourceServer.lifeCycle.state will be changed to CUTOVER; The totalStorageBytes property fo each of dataReplicationInfo.replicatedDisks will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDuration will be nullified.</p>
+        """<p>Finalizes the cutover immediately for specific Source Servers. All AWS resources created by Application Migration Service for enabling the replication of these source servers will be terminated / deleted within 90 minutes. Launched Test or Cutover instances will NOT be terminated. The AWS Replication Agent will receive a command to uninstall itself (within 10 minutes). The following properties of the SourceServer will be changed immediately: dataReplicationInfo.dataReplicationState will be changed to DISCONNECTED; The SourceServer.lifeCycle.state will be changed to CUTOVER; The totalStorageBytes property for each of dataReplicationInfo.replicatedDisks will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDuration will be nullified.</p>
 
         Args:
             source_server_id: <p>Request to finalize Cutover by Source Server ID.</p>
@@ -1943,7 +1989,7 @@ class AsyncSourceServerResource:
         config_overrides: Optional[AsyncmgnClientConfig] = None,
         account_id: Optional["capo_mgn.types.account_id.AccountID"] = None,
     ) -> "capo_mgn.types.source_server.SourceServer":
-        """<p>Archives specific Source Servers by setting the SourceServer.isArchived property to true for specified SourceServers by ID. This command only works for SourceServers with a lifecycle. state which equals DISCONNECTED or CUTOVER.</p>
+        """<p>Archives specific Source Servers by setting the SourceServer.isArchived property to true for specified SourceServers by ID. This command only works for SourceServers with a lifecycle state that equals DISCONNECTED or CUTOVER.</p>
 
         Args:
             source_server_id: <p>Mark as archived by Source Server ID.</p>
@@ -2000,7 +2046,7 @@ class AsyncSourceServerResource:
         Raises:
             capo_mgn.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
-            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because its exceeded the service quota.</p>
+            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because it exceeded the service quota.</p>
             capo_mgn.errors.uninitialized_account_exception.UninitializedAccountException: <p>Uninitialized account exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -2208,7 +2254,7 @@ class AsyncSourceServerResource:
         Raises:
             capo_mgn.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
-            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because its exceeded the service quota.</p>
+            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because it exceeded the service quota.</p>
             capo_mgn.errors.uninitialized_account_exception.UninitializedAccountException: <p>Uninitialized account exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -2306,7 +2352,7 @@ class AsyncSourceServerResource:
         Raises:
             capo_mgn.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
-            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because its exceeded the service quota.</p>
+            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because it exceeded the service quota.</p>
             capo_mgn.errors.uninitialized_account_exception.UninitializedAccountException: <p>Uninitialized account exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -2356,7 +2402,7 @@ class AsyncSourceServerResource:
         Raises:
             capo_mgn.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
-            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because its exceeded the service quota.</p>
+            capo_mgn.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>The request could not be completed because it exceeded the service quota.</p>
             capo_mgn.errors.uninitialized_account_exception.UninitializedAccountException: <p>Uninitialized account exception.</p>
             capo_mgn.errors.validation_exception.ValidationException: <p>Validate exception.</p>
             capo_mgn.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -2413,7 +2459,7 @@ class AsyncSourceServerResource:
         map_auto_tagging_mpe_id: Optional["capo_mgn.types.tag_value.TagValue"] = None,
         account_id: Optional["capo_mgn.types.account_id.AccountID"] = None,
     ) -> "capo_mgn.types.launch_configuration.LaunchConfiguration":
-        """<p>Updates multiple LaunchConfigurations by Source Server ID.</p> <note> <p>bootMode valid values are <code>LEGACY_BIOS | UEFI</code> </p> </note>
+        """<p>Updates multiple LaunchConfigurations by Source Server ID.</p> <note> <p>bootMode valid values are <code>LEGACY_BIOS | UEFI | USE_SOURCE</code> </p> </note>
 
         Args:
             source_server_id: <p>Update Launch configuration by Source Server ID request.</p>
@@ -2527,6 +2573,9 @@ class AsyncSourceServerResource:
             "capo_mgn.types.internet_protocol.InternetProtocol"
         ] = None,
         store_snapshot_on_local_zone: Optional[bool] = None,
+        storage_configuration: Optional[
+            "capo_mgn.types.storage_configuration.StorageConfiguration"
+        ] = None,
     ) -> "capo_mgn.types.replication_configuration.ReplicationConfiguration":
         """<p>Allows you to update multiple ReplicationConfigurations by Source Server ID.</p>
 
@@ -2550,9 +2599,10 @@ class AsyncSourceServerResource:
             account_id: <p>Update replication configuration Account ID request.</p>
             internet_protocol: <p>Update replication configuration internet protocol.</p>
             store_snapshot_on_local_zone: <p>Update replication configuration store snapshot on local zone.</p>
+            storage_configuration: <p>Update replication configuration storage configuration.</p>
 
         Raises:
-            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operating denied due to a file permission or access check error.</p>
+            capo_mgn.errors.access_denied_exception.AccessDeniedException: <p>Operation denied due to a file permission or access check error.</p>
             capo_mgn.errors.conflict_exception.ConflictException: <p>The request could not be completed due to a conflict with the current state of the target resource.</p>
             capo_mgn.errors.resource_not_found_exception.ResourceNotFoundException: <p>Resource not found exception.</p>
             capo_mgn.errors.uninitialized_account_exception.UninitializedAccountException: <p>Uninitialized account exception.</p>
@@ -2623,6 +2673,8 @@ class AsyncSourceServerResource:
             input_["internet_protocol"] = internet_protocol
         if store_snapshot_on_local_zone is not None:
             input_["store_snapshot_on_local_zone"] = store_snapshot_on_local_zone
+        if storage_configuration is not None:
+            input_["storage_configuration"] = storage_configuration
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

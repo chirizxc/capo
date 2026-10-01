@@ -20,7 +20,7 @@ class FilterLogEventsResponse(TypedDict, closed=True):
     ]
     """<p> <b>Important</b> As of May 15, 2020, this parameter is no longer supported. This parameter returns an empty list.</p> <p>Indicates which log streams have been searched and whether each has been searched completely.</p>"""
     next_token: NotRequired["capo_cloudwatch_logs.types.next_token.NextToken"]
-    """<p>The token to use when requesting the next set of items. The token expires after 24 hours.</p> <p>If the results don't include a <code>nextToken</code>, then pagination is finished. </p>"""
+    """<p>The token for the next set of items in the sorting direction specified by the <code>startFromHead</code> parameter in the first request. The token expires after 24 hours.</p> <p>If the results don't include a <code>nextToken</code>, then pagination is finished. </p>"""
 
 
 # --- awsJson1_1 ser/de ---

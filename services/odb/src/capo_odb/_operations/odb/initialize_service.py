@@ -15,6 +15,7 @@ import capo_odb.errors.access_denied_exception
 import capo_odb.errors.internal_server_exception
 import capo_odb.errors.throttling_exception
 import capo_odb.errors.validation_exception
+import capo_odb.types.access
 import capo_odb.types.initialize_service_input
 import capo_odb.types.initialize_service_output
 from capo_odb._protocol.errors import parse_error_metadata_json

@@ -22,6 +22,7 @@ import capo_mediaconnect.types.__map_of_string
 import capo_mediaconnect.types.create_router_input_request
 import capo_mediaconnect.types.create_router_input_response
 import capo_mediaconnect.types.maintenance_configuration
+import capo_mediaconnect.types.router_content_quality_analysis_configuration
 import capo_mediaconnect.types.router_input
 import capo_mediaconnect.types.router_input_configuration
 import capo_mediaconnect.types.router_input_tier

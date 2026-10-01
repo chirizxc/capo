@@ -13,11 +13,11 @@ if TYPE_CHECKING:
 
 class SecretReference(TypedDict, closed=True):
     secret_id: "capo_bedrock_agentcore_control.types.secret_id_type.SecretIdType"
-    """<p>The ID of the AWS Secrets Manager secret that stores the secret value.</p>"""
+    """<p>The ID of the Amazon Web Services Secrets Manager secret that stores the secret value.</p>"""
     json_key: (
         "capo_bedrock_agentcore_control.types.secret_json_key_type.SecretJsonKeyType"
     )
-    """<p>The JSON key used to extract the secret value from the AWS Secrets Manager secret.</p>"""
+    """<p>The JSON key used to extract the secret value from the Amazon Web Services Secrets Manager secret.</p>"""
 
 
 # --- restJson1 ser/de ---

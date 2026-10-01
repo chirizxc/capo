@@ -70,7 +70,7 @@ class EnvironmentDescription(TypedDict, closed=True):
     status: NotRequired[
         "capo_elastic_beanstalk.types.environment_status.EnvironmentStatus"
     ]
-    """<p>The current operational status of the environment:</p> <ul> <li> <p> <code>Launching</code>: Environment is in the process of initial deployment.</p> </li> <li> <p> <code>Updating</code>: Environment is in the process of updating its configuration settings or application version.</p> </li> <li> <p> <code>Ready</code>: Environment is available to have an action performed on it, such as update or terminate.</p> </li> <li> <p> <code>Terminating</code>: Environment is in the shut-down process.</p> </li> <li> <p> <code>Terminated</code>: Environment is not running.</p> </li> </ul>"""
+    r"""<p>The current operational status of the environment:</p> <ul> <li> <p> <code>Aborting</code>: Environment is in the process of aborting a deployment.</p> </li> <li> <p> <code>Launching</code>: Environment is in the process of initial deployment.</p> </li> <li> <p> <code>LinkingFrom</code>: Environment is in the process of being linked to by another environment. See <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-cfg-links.html\">Environment links</a> for details.</p> </li> <li> <p> <code>LinkingTo</code>: Environment is in the process of linking to another environment. See <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-cfg-links.html\">Environment links</a> for details.</p> </li> <li> <p> <code>Updating</code>: Environment is in the process of updating its configuration settings or application version.</p> </li> <li> <p> <code>Ready</code>: Environment is available to have an action performed on it, such as update or terminate.</p> </li> <li> <p> <code>Terminating</code>: Environment is in the shut-down process.</p> </li> <li> <p> <code>Terminated</code>: Environment is not running.</p> </li> </ul>"""
     abortable_operation_in_progress: NotRequired[
         "capo_elastic_beanstalk.types.abortable_operation_in_progress.AbortableOperationInProgress"
     ]
@@ -78,7 +78,7 @@ class EnvironmentDescription(TypedDict, closed=True):
     health: NotRequired[
         "capo_elastic_beanstalk.types.environment_health.EnvironmentHealth"
     ]
-    """<p>Describes the health status of the environment. AWS Elastic Beanstalk indicates the failure levels for a running environment:</p> <ul> <li> <p> <code>Red</code>: Indicates the environment is not responsive. Occurs when three or more consecutive failures occur for an environment.</p> </li> <li> <p> <code>Yellow</code>: Indicates that something is wrong. Occurs when two consecutive failures occur for an environment.</p> </li> <li> <p> <code>Green</code>: Indicates the environment is healthy and fully functional.</p> </li> <li> <p> <code>Grey</code>: Default health for a new environment. The environment is not fully launched and health checks have not started or health checks are suspended during an <code>UpdateEnvironment</code> or <code>RestartEnvironment</code> request.</p> </li> </ul> <p> Default: <code>Grey</code> </p>"""
+    """<p>Describes the health status of the environment. Elastic Beanstalk indicates the failure levels for a running environment:</p> <ul> <li> <p> <code>Red</code>: Indicates the environment is not responsive. Occurs when three or more consecutive failures occur for an environment.</p> </li> <li> <p> <code>Yellow</code>: Indicates that something is wrong. Occurs when two consecutive failures occur for an environment.</p> </li> <li> <p> <code>Green</code>: Indicates the environment is healthy and fully functional.</p> </li> <li> <p> <code>Grey</code>: Default health for a new environment. The environment is not fully launched and health checks have not started or health checks are suspended during an <code>UpdateEnvironment</code> or <code>RestartEnvironment</code> request.</p> </li> </ul> <p> Default: <code>Grey</code> </p>"""
     health_status: NotRequired[
         "capo_elastic_beanstalk.types.environment_health_status.EnvironmentHealthStatus"
     ]
@@ -86,7 +86,7 @@ class EnvironmentDescription(TypedDict, closed=True):
     resources: NotRequired[
         "capo_elastic_beanstalk.types.environment_resources_description.EnvironmentResourcesDescription"
     ]
-    """<p>The description of the AWS resources used by this environment.</p>"""
+    """<p>The description of the Amazon Web Services resources used by this environment.</p>"""
     tier: NotRequired["capo_elastic_beanstalk.types.environment_tier.EnvironmentTier"]
     """<p>Describes the current tier of this environment.</p>"""
     environment_links: NotRequired[
@@ -100,7 +100,7 @@ class EnvironmentDescription(TypedDict, closed=True):
     operations_role: NotRequired[
         "capo_elastic_beanstalk.types.operations_role.OperationsRole"
     ]
-    r"""<p>The Amazon Resource Name (ARN) of the environment's operations role. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/iam-operationsrole.html\">Operations roles</a> in the <i>AWS Elastic Beanstalk Developer Guide</i>.</p>"""
+    """<important> <p>The operations role feature of Elastic Beanstalk is in beta release and is subject to change.</p> </important> <p>The Amazon Resource Name (ARN) of the environment's operations role.</p>"""
 
 
 # --- awsQuery ser/de ---

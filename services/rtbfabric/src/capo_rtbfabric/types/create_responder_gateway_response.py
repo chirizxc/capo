@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 from capo_rtbfabric.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_rtbfabric.types.client_routing_policy
     import capo_rtbfabric.types.domain_name
     import capo_rtbfabric.types.gateway_id
     import capo_rtbfabric.types.listener_config
@@ -24,6 +25,10 @@ class CreateResponderGatewayResponse(TypedDict, closed=True):
         "capo_rtbfabric.types.domain_name.DomainName"
     ]
     """<p>The external inbound endpoint for the responder gateway.</p>"""
+    client_routing_policy: NotRequired[
+        "capo_rtbfabric.types.client_routing_policy.ClientRoutingPolicy"
+    ]
+    r"""<p>The client routing policy of the gateway. This policy controls which Availability Zones RTB Fabric uses to reach the gateway for the requester gateways that send traffic to it. For more information, see <a href=\"https://docs.aws.amazon.com/rtb-fabric/latest/userguide/working-with-responder-gateways.html#configuring-availability-zone-affinity\">Configuring Availability Zone affinity</a> in the <i>Amazon Web Services RTB Fabric User Guide</i>.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -43,6 +48,14 @@ def serialize_json(value: CreateResponderGatewayResponse) -> dict:
         )
     if "external_inbound_endpoint" in value:
         out["externalInboundEndpoint"] = value["external_inbound_endpoint"]
+    if "client_routing_policy" in value:
+        import capo_rtbfabric.types.client_routing_policy
+
+        out["clientRoutingPolicy"] = (
+            capo_rtbfabric.types.client_routing_policy.serialize_json(
+                value["client_routing_policy"]
+            )
+        )
     return out
 
 
@@ -68,4 +81,12 @@ def deserialize_json(data: dict) -> CreateResponderGatewayResponse:
         )
     if data.get("externalInboundEndpoint") is not None:
         out["external_inbound_endpoint"] = data["externalInboundEndpoint"]
+    if data.get("clientRoutingPolicy") is not None:
+        import capo_rtbfabric.types.client_routing_policy
+
+        out["client_routing_policy"] = (
+            capo_rtbfabric.types.client_routing_policy.deserialize_json(
+                data["clientRoutingPolicy"]
+            )
+        )
     return out

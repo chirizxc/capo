@@ -26,12 +26,15 @@ done
 #    not build for Pyodide (trio, pytest-xdist) or are not needed to run tests.
 #    msgpack (hishel's dependency) is unpinned because Pyodide ships its own
 #    build of it, which is older than the locked version.
+#    capo-eventbridgev2 is left out with its cbor2 dependency, whose locked
+#    version has no Pyodide wheel; tests/conftest.py ignores its test module.
 no_emit=()
 for service in "${SERVICES[@]}"; do
     no_emit+=(--no-emit-package "capo-$service")
 done
 uv export --only-group dev --no-hashes --no-emit-project "${no_emit[@]}" \
     --prune pyodide-build --prune ty --prune ry-cli --prune pytest-xdist --prune trio --prune msgpack \
+    --prune capo-eventbridgev2 \
     > .pyodide-reqs.txt
 
 # 4. install with the Pyodide venv's own pip

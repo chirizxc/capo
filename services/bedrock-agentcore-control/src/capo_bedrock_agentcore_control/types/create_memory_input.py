@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agentcore_control.types.indexed_keys_list
     import capo_bedrock_agentcore_control.types.memory_strategy_input_list
     import capo_bedrock_agentcore_control.types.name
+    import capo_bedrock_agentcore_control.types.namespace_keys_list
     import capo_bedrock_agentcore_control.types.non_empty_string
     import capo_bedrock_agentcore_control.types.stream_delivery_resources
     import capo_bedrock_agentcore_control.types.tags_map
@@ -44,6 +45,10 @@ class CreateMemoryInput(TypedDict, closed=True):
         "capo_bedrock_agentcore_control.types.indexed_keys_list.IndexedKeysList"
     ]
     """<p>Metadata keys to index for filtering. Once declared, indexed keys cannot be removed.</p>"""
+    namespace_keys: NotRequired[
+        "capo_bedrock_agentcore_control.types.namespace_keys_list.NamespaceKeysList"
+    ]
+    """<p>The namespace variable key definitions with optional validation rules. Use these <code>namespaceKeys</code> in <code>namespaceTemplates</code> to control namespace hierarchy.</p>"""
     stream_delivery_resources: NotRequired[
         "capo_bedrock_agentcore_control.types.stream_delivery_resources.StreamDeliveryResources"
     ]
@@ -79,6 +84,14 @@ def serialize_json(value: CreateMemoryInput) -> dict:
         out["indexedKeys"] = (
             capo_bedrock_agentcore_control.types.indexed_keys_list.serialize_json(
                 value["indexed_keys"]
+            )
+        )
+    if "namespace_keys" in value:
+        import capo_bedrock_agentcore_control.types.namespace_keys_list
+
+        out["namespaceKeys"] = (
+            capo_bedrock_agentcore_control.types.namespace_keys_list.serialize_json(
+                value["namespace_keys"]
             )
         )
     if "stream_delivery_resources" in value:
@@ -130,6 +143,14 @@ def deserialize_json(data: dict) -> CreateMemoryInput:
         out["indexed_keys"] = (
             capo_bedrock_agentcore_control.types.indexed_keys_list.deserialize_json(
                 data["indexedKeys"]
+            )
+        )
+    if data.get("namespaceKeys") is not None:
+        import capo_bedrock_agentcore_control.types.namespace_keys_list
+
+        out["namespace_keys"] = (
+            capo_bedrock_agentcore_control.types.namespace_keys_list.deserialize_json(
+                data["namespaceKeys"]
             )
         )
     if data.get("streamDeliveryResources") is not None:

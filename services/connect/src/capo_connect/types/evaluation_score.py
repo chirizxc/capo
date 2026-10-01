@@ -8,6 +8,8 @@ if TYPE_CHECKING:
     import capo_connect.types.boolean
     import capo_connect.types.double
     import capo_connect.types.evaluation_score_percentage
+    import capo_connect.types.integer
+    import capo_connect.types.performance_category_name
 
 
 class EvaluationScore(TypedDict, closed=True):
@@ -21,6 +23,14 @@ class EvaluationScore(TypedDict, closed=True):
     """<p>The flag that marks the item as automatic fail. If the item or a child item gets an automatic fail answer, this flag will be true.</p>"""
     applied_weight: NotRequired["capo_connect.types.double.Double"]
     """<p>Weight applied to this evaluation score.</p>"""
+    earned_points: "capo_connect.types.integer.Integer"
+    """<p>The points earned for the item.</p>"""
+    max_base_point: "capo_connect.types.integer.Integer"
+    """<p>The maximum base points possible for the item.</p>"""
+    performance_category: NotRequired[
+        "capo_connect.types.performance_category_name.PerformanceCategoryName"
+    ]
+    """<p>The performance category for the score.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -47,6 +57,16 @@ def serialize_json(value: EvaluationScore) -> dict:
             if value["applied_weight"] == float("-inf")
             else value["applied_weight"]
         )
+    out["EarnedPoints"] = value.get("earned_points", 0)
+    out["MaxBasePoint"] = value.get("max_base_point", 0)
+    if "performance_category" in value:
+        import capo_connect.types.performance_category_name
+
+        out["PerformanceCategory"] = (
+            capo_connect.types.performance_category_name.serialize_json(
+                value["performance_category"]
+            )
+        )
     return out
 
 
@@ -66,4 +86,20 @@ def deserialize_json(data: dict) -> EvaluationScore:
         out["automatic_fail"] = False
     if data.get("AppliedWeight") is not None:
         out["applied_weight"] = float(data["AppliedWeight"])
+    if data.get("EarnedPoints") is not None:
+        out["earned_points"] = data["EarnedPoints"]
+    else:
+        out["earned_points"] = 0
+    if data.get("MaxBasePoint") is not None:
+        out["max_base_point"] = data["MaxBasePoint"]
+    else:
+        out["max_base_point"] = 0
+    if data.get("PerformanceCategory") is not None:
+        import capo_connect.types.performance_category_name
+
+        out["performance_category"] = (
+            capo_connect.types.performance_category_name.deserialize_json(
+                data["PerformanceCategory"]
+            )
+        )
     return out

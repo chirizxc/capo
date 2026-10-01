@@ -1,0 +1,46 @@
+"""Generated from Smithy shape ``com.amazonaws.eventbridgev2#InvalidInputException``."""
+
+from typing_extensions import NotRequired, TypedDict
+
+from capo_eventbridgev2.errors import ServiceError
+
+
+class InvalidInputException_(TypedDict, closed=True):
+    message: NotRequired["str"]
+
+
+# --- rpcv2Cbor ser/de ---
+def serialize_cbor(value: InvalidInputException_) -> dict:
+    out: dict = {}
+    if "message" in value:
+        out["Message"] = value["message"]
+    return out
+
+
+def deserialize_cbor(data: dict) -> InvalidInputException_:
+    out: InvalidInputException_ = {}  # type: ignore[typeddict-item]
+    if data.get("Message") is not None:
+        out["message"] = data["Message"]
+    return out
+
+
+class InvalidInputException(ServiceError):
+    """Modeled error for Smithy shape ``com.amazonaws.eventbridgev2#InvalidInputException``."""
+
+    code: str | None = "InvalidInputException"
+
+    def __init__(self, data: InvalidInputException_, message: str | None = None):
+        super().__init__(
+            "client",
+            is_throttling_error=False,
+            is_retryable=False,
+            code="InvalidInputException",
+            message=message,
+        )
+        self.data = data
+
+    @classmethod
+    def from_cbor(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidInputException":
+        return cls(deserialize_cbor(data), message)

@@ -61,7 +61,7 @@ class QuickResponseSearchResultData(TypedDict, closed=True):
     last_modified_by: NotRequired["capo_qconnect.types.generic_arn.GenericArn"]
     """<p>The Amazon Resource Name (ARN) of the user who last updated the quick response search result data.</p>"""
     channels: NotRequired["capo_qconnect.types.channels.Channels"]
-    """<p>The Amazon Connect contact channels this quick response applies to. The supported contact channel types include <code>Chat</code>.</p>"""
+    """<p>The Connect Customer contact channels this quick response applies to. The supported contact channel types include <code>Chat</code>.</p>"""
     language: NotRequired["capo_qconnect.types.language_code.LanguageCode"]
     """<p>The language code value for the language in which the quick response is written.</p>"""
     attributes_not_interpolated: NotRequired[

@@ -13,6 +13,7 @@ import capo_mgn._auth._sigv4
 import capo_mgn._protocol.eventstream
 import capo_mgn.errors.access_denied_exception
 import capo_mgn.errors.resource_not_found_exception
+import capo_mgn.types.cidr_mappings_list
 import capo_mgn.types.get_network_migration_definition_request
 import capo_mgn.types.network_migration_definition
 import capo_mgn.types.scope_tags_map

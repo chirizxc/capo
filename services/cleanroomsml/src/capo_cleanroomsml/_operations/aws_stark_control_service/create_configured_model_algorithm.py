@@ -14,6 +14,7 @@ import capo_cleanroomsml._protocol.eventstream
 import capo_cleanroomsml.errors.access_denied_exception
 import capo_cleanroomsml.errors.conflict_exception
 import capo_cleanroomsml.errors.service_quota_exceeded_exception
+import capo_cleanroomsml.errors.throttling_exception
 import capo_cleanroomsml.errors.validation_exception
 import capo_cleanroomsml.types.container_config
 import capo_cleanroomsml.types.create_configured_model_algorithm_request
@@ -43,6 +44,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "ServiceQuotaExceededException":
             raise capo_cleanroomsml.errors.service_quota_exceeded_exception.ServiceQuotaExceededException.from_json(
+                data, message
+            )
+        case "ThrottlingException":
+            raise capo_cleanroomsml.errors.throttling_exception.ThrottlingException.from_json(
                 data, message
             )
         case "ValidationException":

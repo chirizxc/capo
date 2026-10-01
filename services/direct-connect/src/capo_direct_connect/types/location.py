@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
+    import capo_direct_connect.types.available_billing_mode_list
     import capo_direct_connect.types.available_mac_sec_port_speeds
     import capo_direct_connect.types.available_port_speeds
     import capo_direct_connect.types.location_code
@@ -32,6 +33,10 @@ class Location(TypedDict, closed=True):
         "capo_direct_connect.types.available_mac_sec_port_speeds.AvailableMacSecPortSpeeds"
     ]
     """<p>The available MAC Security (MACsec) port speeds for the location.</p>"""
+    available_billing_modes: NotRequired[
+        "capo_direct_connect.types.available_billing_mode_list.AvailableBillingModeList"
+    ]
+    """<p>The billing modes available at the location, including the port speeds and Amazon Web Services Regions supported by each mode.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -67,6 +72,14 @@ def serialize_aws_json_1_1(value: Location) -> dict:
                 value["available_mac_sec_port_speeds"]
             )
         )
+    if "available_billing_modes" in value:
+        import capo_direct_connect.types.available_billing_mode_list
+
+        out["availableBillingModes"] = (
+            capo_direct_connect.types.available_billing_mode_list.serialize_aws_json_1_1(
+                value["available_billing_modes"]
+            )
+        )
     return out
 
 
@@ -100,6 +113,14 @@ def deserialize_aws_json_1_1(data: dict) -> Location:
         out["available_mac_sec_port_speeds"] = (
             capo_direct_connect.types.available_mac_sec_port_speeds.deserialize_aws_json_1_1(
                 data["availableMacSecPortSpeeds"]
+            )
+        )
+    if data.get("availableBillingModes") is not None:
+        import capo_direct_connect.types.available_billing_mode_list
+
+        out["available_billing_modes"] = (
+            capo_direct_connect.types.available_billing_mode_list.deserialize_aws_json_1_1(
+                data["availableBillingModes"]
             )
         )
     return out

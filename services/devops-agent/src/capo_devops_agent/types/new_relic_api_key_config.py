@@ -7,15 +7,15 @@ from typing_extensions import NotRequired, TypedDict
 from capo_devops_agent.errors import DeserializationError
 
 if TYPE_CHECKING:
-    import capo_devops_agent.types.api_key_value
     import capo_devops_agent.types.new_relic_alert_policy_ids
+    import capo_devops_agent.types.new_relic_api_key
     import capo_devops_agent.types.new_relic_application_ids
     import capo_devops_agent.types.new_relic_entity_guids
     import capo_devops_agent.types.new_relic_region
 
 
 class NewRelicApiKeyConfig(TypedDict, closed=True):
-    api_key: "capo_devops_agent.types.api_key_value.ApiKeyValue"
+    api_key: "capo_devops_agent.types.new_relic_api_key.NewRelicApiKey"
     """<p>New Relic User API Key</p>"""
     account_id: "str"
     """<p>New Relic Account ID</p>"""

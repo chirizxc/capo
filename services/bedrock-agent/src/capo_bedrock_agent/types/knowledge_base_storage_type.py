@@ -2,6 +2,7 @@
 
 from typing import Literal, TypeAlias, cast
 
+"""<p>The storage type of a knowledge base.</p>"""
 KnowledgeBaseStorageType: TypeAlias = Literal[
     "OPENSEARCH_SERVERLESS",
     "PINECONE",

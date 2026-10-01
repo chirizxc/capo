@@ -16,6 +16,7 @@ import capo_sagemaker.types.available_upgrade
 import capo_sagemaker.types.describe_partner_app_request
 import capo_sagemaker.types.describe_partner_app_response
 import capo_sagemaker.types.error_info
+import capo_sagemaker.types.idc_config_output
 import capo_sagemaker.types.partner_app_auth_type
 import capo_sagemaker.types.partner_app_config
 import capo_sagemaker.types.partner_app_maintenance_config

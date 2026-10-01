@@ -7,7 +7,9 @@ from typing_extensions import TypedDict
 from capo_bedrock_agentcore.errors import DeserializationError, SerializationError
 
 if TYPE_CHECKING:
+    import capo_bedrock_agentcore.types.batch_evaluation_trace_config
     import capo_bedrock_agentcore.types.cloud_watch_logs_trace_config
+    import capo_bedrock_agentcore.types.online_evaluation_trace_config
     import capo_bedrock_agentcore.types.spans
 
 
@@ -19,8 +21,19 @@ class _AgentTracesConfig_cloudwatchLogs(TypedDict, closed=True):
     cloudwatchLogs: "capo_bedrock_agentcore.types.cloud_watch_logs_trace_config.CloudWatchLogsTraceConfig"
 
 
+class _AgentTracesConfig_batchEvaluation(TypedDict, closed=True):
+    batchEvaluation: "capo_bedrock_agentcore.types.batch_evaluation_trace_config.BatchEvaluationTraceConfig"
+
+
+class _AgentTracesConfig_onlineEvaluation(TypedDict, closed=True):
+    onlineEvaluation: "capo_bedrock_agentcore.types.online_evaluation_trace_config.OnlineEvaluationTraceConfig"
+
+
 AgentTracesConfig: TypeAlias = (
-    _AgentTracesConfig_sessionSpans | _AgentTracesConfig_cloudwatchLogs
+    _AgentTracesConfig_sessionSpans
+    | _AgentTracesConfig_cloudwatchLogs
+    | _AgentTracesConfig_batchEvaluation
+    | _AgentTracesConfig_onlineEvaluation
 )
 
 
@@ -42,6 +55,22 @@ def serialize_json(value: AgentTracesConfig) -> dict:
                 value["cloudwatchLogs"]
             )
         }
+    elif "batchEvaluation" in value:
+        import capo_bedrock_agentcore.types.batch_evaluation_trace_config
+
+        return {
+            "batchEvaluation": capo_bedrock_agentcore.types.batch_evaluation_trace_config.serialize_json(
+                value["batchEvaluation"]
+            )
+        }
+    elif "onlineEvaluation" in value:
+        import capo_bedrock_agentcore.types.online_evaluation_trace_config
+
+        return {
+            "onlineEvaluation": capo_bedrock_agentcore.types.online_evaluation_trace_config.serialize_json(
+                value["onlineEvaluation"]
+            )
+        }
     else:
         raise SerializationError("AgentTracesConfig: no variant present")
 
@@ -61,6 +90,22 @@ def deserialize_json(data: dict) -> AgentTracesConfig:
         return {
             "cloudwatchLogs": capo_bedrock_agentcore.types.cloud_watch_logs_trace_config.deserialize_json(
                 data["cloudwatchLogs"]
+            )
+        }
+    elif data.get("batchEvaluation") is not None:
+        import capo_bedrock_agentcore.types.batch_evaluation_trace_config
+
+        return {
+            "batchEvaluation": capo_bedrock_agentcore.types.batch_evaluation_trace_config.deserialize_json(
+                data["batchEvaluation"]
+            )
+        }
+    elif data.get("onlineEvaluation") is not None:
+        import capo_bedrock_agentcore.types.online_evaluation_trace_config
+
+        return {
+            "onlineEvaluation": capo_bedrock_agentcore.types.online_evaluation_trace_config.deserialize_json(
+                data["onlineEvaluation"]
             )
         }
     else:

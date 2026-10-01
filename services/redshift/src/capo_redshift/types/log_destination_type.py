@@ -7,6 +7,7 @@ from capo_redshift._protocol.xml import Element
 LogDestinationType: TypeAlias = Literal[
     "s3",
     "cloudwatch",
+    "s3table",
 ]
 
 

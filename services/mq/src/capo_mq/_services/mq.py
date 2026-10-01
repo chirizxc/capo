@@ -31,6 +31,7 @@ from capo_mq._services._pipeline import (
 
 if TYPE_CHECKING:
     import capo_mq.types.__boolean
+    import capo_mq.types.__integer
     import capo_mq.types.__list_of__string
     import capo_mq.types.__list_of_user
     import capo_mq.types.__map_of__string
@@ -65,6 +66,8 @@ if TYPE_CHECKING:
     import capo_mq.types.describe_configuration_response
     import capo_mq.types.describe_configuration_revision_request
     import capo_mq.types.describe_configuration_revision_response
+    import capo_mq.types.describe_shared_resources_request
+    import capo_mq.types.describe_shared_resources_response
     import capo_mq.types.describe_user_request
     import capo_mq.types.describe_user_response
     import capo_mq.types.encryption_options
@@ -87,6 +90,7 @@ if TYPE_CHECKING:
     import capo_mq.types.promote_response
     import capo_mq.types.reboot_broker_request
     import capo_mq.types.reboot_broker_response
+    import capo_mq.types.shared_resource
     import capo_mq.types.update_broker_request
     import capo_mq.types.update_broker_response
     import capo_mq.types.update_configuration_request
@@ -224,6 +228,7 @@ class mqClient:
         security_groups: Optional[
             "capo_mq.types.__list_of__string.__listOf__string"
         ] = None,
+        storage_size: Optional["capo_mq.types.__integer.__integer"] = None,
         storage_type: Optional[
             "capo_mq.types.broker_storage_type.BrokerStorageType"
         ] = None,
@@ -255,6 +260,7 @@ class mqClient:
             maintenance_window_start_time: <p>The parameters that determine the WeeklyStartTime.</p>
             publicly_accessible: <p>Enables connections from applications outside of the VPC that hosts the broker's subnets. Set to false by default, if no value is provided.</p>
             security_groups: <p>The list of rules (1 minimum, 125 maximum) that authorize connections to brokers.</p>
+            storage_size: <p>The broker's storage size in GB.</p>
             storage_type: <p>The broker's storage type.</p>
             subnet_ids: <p>The list of groups that define which subnets and IP ranges the broker can use from different Availability Zones. If you specify more than one subnet, the subnets must be in different Availability Zones. Amazon MQ will not be able to create VPC endpoints for your broker with multiple subnets in the same Availability Zone. A SINGLE_INSTANCE deployment requires one subnet (for example, the default subnet). An ACTIVE_STANDBY_MULTI_AZ Amazon MQ for ActiveMQ deployment requires two subnets. A CLUSTER_MULTI_AZ Amazon MQ for RabbitMQ deployment has no subnet requirements when deployed with public accessibility. Deployment without public accessibility requires at least one subnet.</p> <important><p>If you specify subnets in a <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html\">shared VPC</a> for a RabbitMQ broker, the associated VPC to which the specified subnets belong must be owned by your Amazon Web Services account. Amazon MQ will not be able to create VPC endpoints in VPCs that are not owned by your Amazon Web Services account.</p></important>
             tags: <p>Create tags when creating the broker.</p>
@@ -316,6 +322,8 @@ class mqClient:
             input_["publicly_accessible"] = publicly_accessible
         if security_groups is not None:
             input_["security_groups"] = security_groups
+        if storage_size is not None:
+            input_["storage_size"] = storage_size
         if storage_type is not None:
             input_["storage_type"] = storage_type
         if subnet_ids is not None:
@@ -948,6 +956,83 @@ class mqClient:
         response.response.close()
         return response.output
 
+    def describe_shared_resources(
+        self,
+        broker_id: "capo_mq.types.__string.__string",
+        *,
+        config_overrides: Optional[mqClientConfig] = None,
+        max_results: Optional["capo_mq.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_mq.types.__string.__string"] = None,
+    ) -> "capo_mq.types.describe_shared_resources_response.DescribeSharedResourcesResponse":
+        """<p>Returns the resources shared to a broker.</p>
+
+        Args:
+            broker_id: <p>The unique ID that Amazon MQ generates for the broker.</p>
+            max_results: <p>The maximum number of resources that Amazon MQ can return per page (20 by default). This value must be an integer from 5 to 100.</p>
+            next_token: <p>The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty.</p>
+
+        Raises:
+            capo_mq.errors.bad_request_exception.BadRequestException: <p>Returns information about an error.</p>
+            capo_mq.errors.forbidden_exception.ForbiddenException: <p>Returns information about an error.</p>
+            capo_mq.errors.internal_server_error_exception.InternalServerErrorException: <p>Returns information about an error.</p>
+            capo_mq.errors.not_found_exception.NotFoundException: <p>Returns information about an error.</p>
+            capo_mq.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_mq.types.describe_shared_resources_request.DescribeSharedResourcesRequest]",
+        ) -> OperationResponse[
+            "capo_mq.types.describe_shared_resources_response.DescribeSharedResourcesResponse"
+        ]:
+            import capo_mq._operations.mq.describe_shared_resources
+
+            output, http_response = (
+                capo_mq._operations.mq.describe_shared_resources.describe_shared_resources(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_mq.types.describe_shared_resources_request.DescribeSharedResourcesRequest = {
+            "broker_id": broker_id
+        }
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_describe_shared_resources(
+        self,
+        broker_id: "capo_mq.types.__string.__string",
+        *,
+        config_overrides: Optional[mqClientConfig] = None,
+        max_results: Optional["capo_mq.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_mq.types.__string.__string"] = None,
+    ) -> "Iterator[capo_mq.types.shared_resource.SharedResource]":
+        _token = next_token
+        while True:
+            _response = self.describe_shared_resources(
+                broker_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("shared_resources",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
     def describe_user(
         self,
         broker_id: "capo_mq.types.__string.__string",
@@ -1369,9 +1454,13 @@ class mqClient:
         maintenance_window_start_time: Optional[
             "capo_mq.types.weekly_start_time.WeeklyStartTime"
         ] = None,
+        resource_share_arns: Optional[
+            "capo_mq.types.__list_of__string.__listOf__string"
+        ] = None,
         security_groups: Optional[
             "capo_mq.types.__list_of__string.__listOf__string"
         ] = None,
+        storage_size: Optional["capo_mq.types.__integer.__integer"] = None,
         data_replication_mode: Optional[
             "capo_mq.types.data_replication_mode.DataReplicationMode"
         ] = None,
@@ -1388,7 +1477,9 @@ class mqClient:
             ldap_server_metadata: <p>Optional. The metadata of the LDAP server used to authenticate and authorize connections to the broker. Does not apply to RabbitMQ brokers.</p>
             logs: <p>Enables Amazon CloudWatch logging for brokers.</p>
             maintenance_window_start_time: <p>The parameters that determine the WeeklyStartTime.</p>
+            resource_share_arns: <p>The list of resource shares to update on the broker</p>
             security_groups: <p>The list of security groups (1 minimum, 5 maximum) that authorizes connections to brokers.</p>
+            storage_size: <p>The broker's storage size in GB.</p>
             data_replication_mode: <p>Defines whether this broker is a part of a data replication pair.</p>
 
         Raises:
@@ -1432,8 +1523,12 @@ class mqClient:
             input_["logs"] = logs
         if maintenance_window_start_time is not None:
             input_["maintenance_window_start_time"] = maintenance_window_start_time
+        if resource_share_arns is not None:
+            input_["resource_share_arns"] = resource_share_arns
         if security_groups is not None:
             input_["security_groups"] = security_groups
+        if storage_size is not None:
+            input_["storage_size"] = storage_size
         if data_replication_mode is not None:
             input_["data_replication_mode"] = data_replication_mode
 

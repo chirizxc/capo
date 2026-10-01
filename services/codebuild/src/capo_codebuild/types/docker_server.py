@@ -20,7 +20,7 @@ class DockerServer(TypedDict, closed=True):
     ]
     """<p>A list of one or more security groups IDs.</p> <note> <p>Security groups configured for Docker servers should allow ingress network traffic from the VPC configured in the project. They should allow ingress on port 9876.</p> </note>"""
     status: NotRequired["capo_codebuild.types.docker_server_status.DockerServerStatus"]
-    """<p>A DockerServerStatus object to use for this docker server.</p>"""
+    """<p>A DockerServerStatus object to use for this docker server.</p> <note> <p>Note that <code>status</code> is only an output and cannot be passed in as an input.</p> </note>"""
 
 
 # --- awsJson1_1 ser/de ---

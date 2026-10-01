@@ -23,7 +23,7 @@ class NetworkMigrationCodeGenerationArtifact(TypedDict, closed=True):
     artifact_type: NotRequired[
         "capo_mgn.types.network_migration_code_generation_artifact_type.NetworkMigrationCodeGenerationArtifactType"
     ]
-    """<p>The type of the artifact, such as CLOUDFORMATION_TEMPLATE or TERRAFORM_MODULE.</p>"""
+    """<p>The type of the generated artifact.</p>"""
     artifact_sub_type: NotRequired[
         "capo_mgn.types.network_migration_code_generation_artifact_sub_type.NetworkMigrationCodeGenerationArtifactSubType"
     ]

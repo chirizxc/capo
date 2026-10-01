@@ -1,0 +1,31 @@
+"""Generated from Smithy shape ``com.amazonaws.resiliencehubv2#ObservabilityAlarmInput``."""
+
+from typing import TYPE_CHECKING
+
+from typing_extensions import TypedDict
+
+from capo_resiliencehubv2.errors import DeserializationError
+
+if TYPE_CHECKING:
+    import capo_resiliencehubv2.types.cloud_watch_alarm_arn
+
+
+class ObservabilityAlarmInput(TypedDict, closed=True):
+    alarm_arn: "capo_resiliencehubv2.types.cloud_watch_alarm_arn.CloudWatchAlarmArn"
+    """<p>The ARN of the CloudWatch alarm.</p>"""
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: ObservabilityAlarmInput) -> dict:
+    out: dict = {}
+    out["alarmArn"] = value["alarm_arn"]
+    return out
+
+
+def deserialize_json(data: dict) -> ObservabilityAlarmInput:
+    out: ObservabilityAlarmInput = {}  # type: ignore[typeddict-item]
+    if data.get("alarmArn") is not None:
+        out["alarm_arn"] = data["alarmArn"]
+    else:
+        raise DeserializationError("ObservabilityAlarmInput.alarm_arn required")
+    return out

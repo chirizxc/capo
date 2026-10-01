@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_transfer.types.as2_transports
     import capo_transfer.types.passive_ip
+    import capo_transfer.types.proxy_config
     import capo_transfer.types.set_stat_option
     import capo_transfer.types.tls_session_resumption_mode
 
@@ -22,6 +23,8 @@ class ProtocolDetails(TypedDict, closed=True):
     """<p>Use the <code>SetStatOption</code> to ignore the error that is generated when the client attempts to use <code>SETSTAT</code> on a file you are uploading to an S3 bucket.</p> <p>Some SFTP file transfer clients can attempt to change the attributes of remote files, including timestamp and permissions, using commands, such as <code>SETSTAT</code> when uploading the file. However, these commands are not compatible with object storage systems, such as Amazon S3. Due to this incompatibility, file uploads from these clients can result in errors even when the file is otherwise successfully uploaded.</p> <p>Set the value to <code>ENABLE_NO_OP</code> to have the Transfer Family server ignore the <code>SETSTAT</code> command, and upload files without needing to make any changes to your SFTP client. While the <code>SetStatOption</code> <code>ENABLE_NO_OP</code> setting ignores the error, it does generate a log entry in Amazon CloudWatch Logs, so you can determine when the client is making a <code>SETSTAT</code> call.</p> <note> <p>If you want to preserve the original timestamp for your file, and modify other file attributes using <code>SETSTAT</code>, you can use Amazon EFS as backend storage with Transfer Family.</p> </note>"""
     as2_transports: NotRequired["capo_transfer.types.as2_transports.As2Transports"]
     """<p>Indicates the transport method for the AS2 messages. Currently, only HTTP is supported.</p>"""
+    proxy_config: NotRequired["capo_transfer.types.proxy_config.ProxyConfig"]
+    r"""<p>The configuration for PROXY protocol version 2 (PPv2) support on the Transfer Family server. For more information, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/working-with-nlb.html\">Working with Network Load Balancers</a>.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -53,6 +56,12 @@ def serialize_aws_json_1_1(value: ProtocolDetails) -> dict:
                 value["as2_transports"]
             )
         )
+    if "proxy_config" in value:
+        import capo_transfer.types.proxy_config
+
+        out["ProxyConfig"] = capo_transfer.types.proxy_config.serialize_aws_json_1_1(
+            value["proxy_config"]
+        )
     return out
 
 
@@ -83,5 +92,11 @@ def deserialize_aws_json_1_1(data: dict) -> ProtocolDetails:
             capo_transfer.types.as2_transports.deserialize_aws_json_1_1(
                 data["As2Transports"]
             )
+        )
+    if data.get("ProxyConfig") is not None:
+        import capo_transfer.types.proxy_config
+
+        out["proxy_config"] = capo_transfer.types.proxy_config.deserialize_aws_json_1_1(
+            data["ProxyConfig"]
         )
     return out

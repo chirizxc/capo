@@ -539,7 +539,7 @@ class EntityResolutionClient:
         ] = None,
         tags: Optional["capo_entityresolution.types.tag_map.TagMap"] = None,
     ) -> "capo_entityresolution.types.create_matching_workflow_output.CreateMatchingWorkflowOutput":
-        r"""<p>Creates a matching workflow that defines the configuration for a data processing job. The workflow name must be unique. To modify an existing workflow, use <code>UpdateMatchingWorkflow</code>. </p> <important> <p>For workflows where <code>resolutionType</code> is <code>ML_MATCHING</code> or <code>PROVIDER</code>, incremental processing is not supported. </p> </important>
+        r"""<p>Creates a matching workflow that defines the configuration for a data processing job. The workflow name must be unique. To modify an existing workflow, use <code>UpdateMatchingWorkflow</code>. </p> <important> <p>For workflows where <code>resolutionType</code> is <code>PROVIDER</code>, incremental processing is not supported. </p> </important>
 
         Args:
             workflow_name: <p>The name of the workflow. There can't be multiple <code>MatchingWorkflows</code> with the same name.</p>
@@ -547,7 +547,7 @@ class EntityResolutionClient:
             input_source_config: <p>A list of <code>InputSource</code> objects, which have the fields <code>InputSourceARN</code> and <code>SchemaName</code>.</p>
             output_source_config: <p>A list of <code>OutputSource</code> objects, each of which contains fields <code>outputS3Path</code>, <code>applyNormalization</code>, <code>KMSArn</code>, and <code>output</code>.</p>
             resolution_techniques: <p>An object which defines the <code>resolutionType</code> and the <code>ruleBasedProperties</code>.</p>
-            incremental_run_config: <p>Optional. An object that defines the incremental run type. This object contains only the <code>incrementalRunType</code> field, which appears as \"Automatic\" in the console. </p> <important> <p>For workflows where <code>resolutionType</code> is <code>ML_MATCHING</code> or <code>PROVIDER</code>, incremental processing is not supported. </p> </important>
+            incremental_run_config: <p>Optional. An object that defines the incremental run type. This object contains only the <code>incrementalRunType</code> field, which appears as \"Automatic\" in the console. </p> <important> <p>For workflows where <code>resolutionType</code> is <code>PROVIDER</code>, incremental processing is not supported. </p> </important>
             role_arn: <p>The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes this role to create resources on your behalf as part of workflow execution.</p>
             tags: <p>The tags used to organize, track, or control access for this resource.</p>
 
@@ -665,7 +665,7 @@ class EntityResolutionClient:
         *,
         config_overrides: Optional[EntityResolutionClientConfig] = None,
     ) -> "capo_entityresolution.types.delete_id_mapping_workflow_output.DeleteIdMappingWorkflowOutput":
-        """<p>Deletes the <code>IdMappingWorkflow</code> with a given name. This operation will succeed even if a workflow with the given name does not exist.</p>
+        """<p>Deletes the <code>IdMappingWorkflow</code> with a given name. This operation returns a <code>ResourceNotFoundException</code> if a workflow with the given name does not exist.</p>
 
         Args:
             workflow_name: <p>The name of the workflow to be deleted.</p>
@@ -674,6 +674,7 @@ class EntityResolutionClient:
             capo_entityresolution.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action. </p>
             capo_entityresolution.errors.conflict_exception.ConflictException: <p>The request couldn't be processed because of conflict in the current state of the resource. Example: Workflow already exists, Schema already exists, Workflow is currently running, etc. </p>
             capo_entityresolution.errors.internal_server_exception.InternalServerException: <p>This exception occurs when there is an internal failure in the Entity Resolution service. </p>
+            capo_entityresolution.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource couldn't be found. </p>
             capo_entityresolution.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling. </p>
             capo_entityresolution.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by Entity Resolution. </p>
             capo_entityresolution.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -714,7 +715,7 @@ class EntityResolutionClient:
     ) -> (
         "capo_entityresolution.types.delete_id_namespace_output.DeleteIdNamespaceOutput"
     ):
-        """<p>Deletes the <code>IdNamespace</code> with a given name.</p>
+        """<p>Deletes the <code>IdNamespace</code> with a given name. This operation returns a <code>ResourceNotFoundException</code> if an ID namespace with the given name does not exist.</p>
 
         Args:
             id_namespace_name: <p>The name of the ID namespace.</p>
@@ -722,6 +723,7 @@ class EntityResolutionClient:
         Raises:
             capo_entityresolution.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action. </p>
             capo_entityresolution.errors.internal_server_exception.InternalServerException: <p>This exception occurs when there is an internal failure in the Entity Resolution service. </p>
+            capo_entityresolution.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource couldn't be found. </p>
             capo_entityresolution.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling. </p>
             capo_entityresolution.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by Entity Resolution. </p>
             capo_entityresolution.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -760,7 +762,7 @@ class EntityResolutionClient:
         *,
         config_overrides: Optional[EntityResolutionClientConfig] = None,
     ) -> "capo_entityresolution.types.delete_matching_workflow_output.DeleteMatchingWorkflowOutput":
-        """<p>Deletes the <code>MatchingWorkflow</code> with a given name. This operation will succeed even if a workflow with the given name does not exist.</p>
+        """<p>Deletes the <code>MatchingWorkflow</code> with a given name. This operation returns a <code>ResourceNotFoundException</code> if a workflow with the given name does not exist.</p>
 
         Args:
             workflow_name: <p>The name of the workflow to be retrieved.</p>
@@ -769,6 +771,7 @@ class EntityResolutionClient:
             capo_entityresolution.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action. </p>
             capo_entityresolution.errors.conflict_exception.ConflictException: <p>The request couldn't be processed because of conflict in the current state of the resource. Example: Workflow already exists, Schema already exists, Workflow is currently running, etc. </p>
             capo_entityresolution.errors.internal_server_exception.InternalServerException: <p>This exception occurs when there is an internal failure in the Entity Resolution service. </p>
+            capo_entityresolution.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource couldn't be found. </p>
             capo_entityresolution.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling. </p>
             capo_entityresolution.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by Entity Resolution. </p>
             capo_entityresolution.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -858,7 +861,7 @@ class EntityResolutionClient:
         *,
         config_overrides: Optional[EntityResolutionClientConfig] = None,
     ) -> "capo_entityresolution.types.delete_schema_mapping_output.DeleteSchemaMappingOutput":
-        """<p>Deletes the <code>SchemaMapping</code> with a given name. This operation will succeed even if a schema with the given name does not exist. This operation will fail if there is a <code>MatchingWorkflow</code> object that references the <code>SchemaMapping</code> in the workflow's <code>InputSourceConfig</code>.</p>
+        """<p>Deletes the <code>SchemaMapping</code> with a given name. This operation returns a <code>ResourceNotFoundException</code> if a schema with the given name does not exist. This operation will fail if there is a <code>MatchingWorkflow</code> object that references the <code>SchemaMapping</code> in the workflow's <code>InputSourceConfig</code>.</p>
 
         Args:
             schema_name: <p>The name of the schema to delete.</p>
@@ -867,6 +870,7 @@ class EntityResolutionClient:
             capo_entityresolution.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action. </p>
             capo_entityresolution.errors.conflict_exception.ConflictException: <p>The request couldn't be processed because of conflict in the current state of the resource. Example: Workflow already exists, Schema already exists, Workflow is currently running, etc. </p>
             capo_entityresolution.errors.internal_server_exception.InternalServerException: <p>This exception occurs when there is an internal failure in the Entity Resolution service. </p>
+            capo_entityresolution.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource couldn't be found. </p>
             capo_entityresolution.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling. </p>
             capo_entityresolution.errors.validation_exception.ValidationException: <p>The input fails to satisfy the constraints specified by Entity Resolution. </p>
             capo_entityresolution.errors.UnknownServiceError: The service returned an error code this client does not model.
@@ -914,7 +918,7 @@ class EntityResolutionClient:
         Args:
             workflow_name: <p> The name of the rule-based matching workflow.</p>
             records: <p> The records to match.</p>
-            processing_type: <p>The processing mode that determines how Match IDs are generated and results are saved. Each mode provides different levels of accuracy, response time, and completeness of results.</p> <p>If not specified, defaults to <code>CONSISTENT</code>.</p> <p> <code>CONSISTENT</code>: Performs immediate lookup and matching against all existing records, with results saved synchronously. Provides highest accuracy but slower response time.</p> <p> <code>EVENTUAL</code> (shown as <i>Background</i> in the console): Performs initial match ID lookup or generation immediately, with record updates processed asynchronously in the background. Offers faster initial response time, with complete matching results available later in S3. </p> <p> <code>EVENTUAL_NO_LOOKUP</code> (shown as <i>Quick ID generation</i> in the console): Generates new match IDs without checking existing matches, with updates processed asynchronously. Provides fastest response time but should only be used for records known to be unique. </p>
+            processing_type: <p>The processing mode that determines how Match IDs are generated and results are saved. Each mode provides different levels of accuracy, response time, and completeness of results.</p> <p>If not specified, defaults to <code>CONSISTENT</code>.</p> <p> <code>CONSISTENT</code>: Performs immediate lookup and matching against all existing records, with results saved synchronously. Provides highest accuracy but slower response time.</p> <p> <code>EVENTUAL</code> (shown as <i>Background</i> in the console): Performs initial match ID lookup or generation immediately, with record updates processed asynchronously in the background. Offers faster initial response time, with complete matching results available later in S3. </p> <p> <code>EVENTUAL_NO_LOOKUP</code> (shown as <i>Quick ID generation</i> in the console): Generates new match IDs without checking existing matches, with updates processed asynchronously. Provides fastest response time but should only be used for records known to be unique. </p> <note> <p>Advanced matching workflows don't support the <code>processingType</code> field.</p> </note>
 
         Raises:
             capo_entityresolution.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action. </p>
@@ -2384,7 +2388,7 @@ class EntityResolutionClient:
             "capo_entityresolution.types.incremental_run_config.IncrementalRunConfig"
         ] = None,
     ) -> "capo_entityresolution.types.update_matching_workflow_output.UpdateMatchingWorkflowOutput":
-        r"""<p>Updates an existing matching workflow. The workflow must already exist for this operation to succeed.</p> <important> <p>For workflows where <code>resolutionType</code> is <code>ML_MATCHING</code> or <code>PROVIDER</code>, incremental processing is not supported. </p> </important>
+        r"""<p>Updates an existing matching workflow. The workflow must already exist for this operation to succeed.</p> <important> <p>For workflows where <code>resolutionType</code> is <code>PROVIDER</code>, incremental processing is not supported. </p> </important>
 
         Args:
             workflow_name: <p>The name of the workflow to be retrieved.</p>
@@ -2392,7 +2396,7 @@ class EntityResolutionClient:
             input_source_config: <p>A list of <code>InputSource</code> objects, which have the fields <code>InputSourceARN</code> and <code>SchemaName</code>.</p>
             output_source_config: <p>A list of <code>OutputSource</code> objects, each of which contains fields <code>outputS3Path</code>, <code>applyNormalization</code>, <code>KMSArn</code>, and <code>output</code>.</p>
             resolution_techniques: <p>An object which defines the <code>resolutionType</code> and the <code>ruleBasedProperties</code>.</p>
-            incremental_run_config: <p>Optional. An object that defines the incremental run type. This object contains only the <code>incrementalRunType</code> field, which appears as \"Automatic\" in the console. </p> <important> <p>For workflows where <code>resolutionType</code> is <code>ML_MATCHING</code> or <code>PROVIDER</code>, incremental processing is not supported. </p> </important>
+            incremental_run_config: <p>Optional. An object that defines the incremental run type. This object contains only the <code>incrementalRunType</code> field, which appears as \"Automatic\" in the console. </p> <important> <p>For workflows where <code>resolutionType</code> is <code>PROVIDER</code>, incremental processing is not supported. </p> </important>
             role_arn: <p>The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes this role to create resources on your behalf as part of workflow execution.</p>
 
         Raises:

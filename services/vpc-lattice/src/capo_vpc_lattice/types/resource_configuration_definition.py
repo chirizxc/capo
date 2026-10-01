@@ -8,6 +8,7 @@ from capo_vpc_lattice.errors import DeserializationError, SerializationError
 
 if TYPE_CHECKING:
     import capo_vpc_lattice.types.arn_resource
+    import capo_vpc_lattice.types.cidr_resource
     import capo_vpc_lattice.types.dns_resource
     import capo_vpc_lattice.types.ip_resource
 
@@ -24,10 +25,15 @@ class _ResourceConfigurationDefinition_arnResource(TypedDict, closed=True):
     arnResource: "capo_vpc_lattice.types.arn_resource.ArnResource"
 
 
+class _ResourceConfigurationDefinition_cidrResource(TypedDict, closed=True):
+    cidrResource: "capo_vpc_lattice.types.cidr_resource.CidrResource"
+
+
 ResourceConfigurationDefinition: TypeAlias = (
     _ResourceConfigurationDefinition_dnsResource
     | _ResourceConfigurationDefinition_ipResource
     | _ResourceConfigurationDefinition_arnResource
+    | _ResourceConfigurationDefinition_cidrResource
 )
 
 
@@ -57,6 +63,14 @@ def serialize_json(value: ResourceConfigurationDefinition) -> dict:
                 value["arnResource"]
             )
         }
+    elif "cidrResource" in value:
+        import capo_vpc_lattice.types.cidr_resource
+
+        return {
+            "cidrResource": capo_vpc_lattice.types.cidr_resource.serialize_json(
+                value["cidrResource"]
+            )
+        }
     else:
         raise SerializationError("ResourceConfigurationDefinition: no variant present")
 
@@ -84,6 +98,14 @@ def deserialize_json(data: dict) -> ResourceConfigurationDefinition:
         return {
             "arnResource": capo_vpc_lattice.types.arn_resource.deserialize_json(
                 data["arnResource"]
+            )
+        }
+    elif data.get("cidrResource") is not None:
+        import capo_vpc_lattice.types.cidr_resource
+
+        return {
+            "cidrResource": capo_vpc_lattice.types.cidr_resource.deserialize_json(
+                data["cidrResource"]
             )
         }
     else:

@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_direct_connect.types.direct_connect_gateway_state
     import capo_direct_connect.types.long_asn
     import capo_direct_connect.types.owner_account
+    import capo_direct_connect.types.prefix_pool_allocated_count
     import capo_direct_connect.types.state_change_error
     import capo_direct_connect.types.tag_list
 
@@ -35,6 +36,10 @@ class DirectConnectGateway(TypedDict, closed=True):
         "capo_direct_connect.types.state_change_error.StateChangeError"
     ]
     """<p>The error message if the state of an object failed to advance.</p>"""
+    total_prefix_pool_allocations: NotRequired[
+        "capo_direct_connect.types.prefix_pool_allocated_count.PrefixPoolAllocatedCount"
+    ]
+    """<p>The total number of inbound route prefixes allocated to the attachments on the Direct Connect gateway. The count combines the IPv4 and IPv6 address families.</p>"""
     tags: NotRequired["capo_direct_connect.types.tag_list.TagList"]
     """<p>Information about a tag.</p>"""
 
@@ -60,6 +65,8 @@ def serialize_aws_json_1_1(value: DirectConnectGateway) -> dict:
         )
     if "state_change_error" in value:
         out["stateChangeError"] = value["state_change_error"]
+    if "total_prefix_pool_allocations" in value:
+        out["totalPrefixPoolAllocations"] = value["total_prefix_pool_allocations"]
     if "tags" in value:
         import capo_direct_connect.types.tag_list
 
@@ -89,6 +96,8 @@ def deserialize_aws_json_1_1(data: dict) -> DirectConnectGateway:
         )
     if data.get("stateChangeError") is not None:
         out["state_change_error"] = data["stateChangeError"]
+    if data.get("totalPrefixPoolAllocations") is not None:
+        out["total_prefix_pool_allocations"] = data["totalPrefixPoolAllocations"]
     if data.get("tags") is not None:
         import capo_direct_connect.types.tag_list
 

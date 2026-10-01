@@ -12,6 +12,7 @@ EvaluationFormLanguageCode: TypeAlias = Literal[
     "ja-JP",
     "ko-KR",
     "zh-CN",
+    "ms-MY",
 ]
 
 

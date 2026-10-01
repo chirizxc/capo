@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_sagemaker.types.ai_benchmark_job_arn
+    import capo_sagemaker.types.ai_recommendation_adapter_details
     import capo_sagemaker.types.ai_recommendation_deployment_configuration
     import capo_sagemaker.types.ai_recommendation_model_details
     import capo_sagemaker.types.ai_recommendation_optimization_detail_list
@@ -36,6 +37,10 @@ class AIRecommendation(TypedDict, closed=True):
         "capo_sagemaker.types.expected_performance_list.ExpectedPerformanceList"
     ]
     """<p>The expected performance metrics for this recommendation.</p>"""
+    adapter_details: NotRequired[
+        "capo_sagemaker.types.ai_recommendation_adapter_details.AIRecommendationAdapterDetails"
+    ]
+    """<p>The LoRA adapter details for this recommendation. This field contains both the model package ARNs and Amazon S3 URIs for each adapter, regardless of which form was originally supplied. This field is absent when the job was created without LoRA adapters.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -77,6 +82,14 @@ def serialize_aws_json_1_1(value: AIRecommendation) -> dict:
                 value["expected_performance"]
             )
         )
+    if "adapter_details" in value:
+        import capo_sagemaker.types.ai_recommendation_adapter_details
+
+        out["AdapterDetails"] = (
+            capo_sagemaker.types.ai_recommendation_adapter_details.serialize_aws_json_1_1(
+                value["adapter_details"]
+            )
+        )
     return out
 
 
@@ -116,6 +129,14 @@ def deserialize_aws_json_1_1(data: dict) -> AIRecommendation:
         out["expected_performance"] = (
             capo_sagemaker.types.expected_performance_list.deserialize_aws_json_1_1(
                 data["ExpectedPerformance"]
+            )
+        )
+    if data.get("AdapterDetails") is not None:
+        import capo_sagemaker.types.ai_recommendation_adapter_details
+
+        out["adapter_details"] = (
+            capo_sagemaker.types.ai_recommendation_adapter_details.deserialize_aws_json_1_1(
+                data["AdapterDetails"]
             )
         )
     return out

@@ -28,7 +28,7 @@ class MessageInsightsDataSource(TypedDict, closed=True):
     max_results: NotRequired[
         "capo_sesv2.types.message_insights_export_max_results.MessageInsightsExportMaxResults"
     ]
-    """<p>The maximum number of results.</p>"""
+    """<p>The maximum number of results.</p> <note> <p>If you don't specify <code>MaxResults</code>, the export returns a maximum of 1,000 results.</p> </note>"""
 
 
 # --- restJson1 ser/de ---

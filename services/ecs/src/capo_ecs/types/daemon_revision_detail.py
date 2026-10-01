@@ -19,6 +19,8 @@ class DaemonRevisionDetail(TypedDict, closed=True):
     """<p>The capacity providers associated with this daemon revision.</p>"""
     total_running_count: "capo_ecs.types.integer.Integer"
     """<p>The total number of daemon tasks running for this revision.</p>"""
+    total_without_daemon_count: "capo_ecs.types.integer.Integer"
+    """<p>The total number of instances running without the daemon task for this revision, across all capacity providers. These instances aren't included in <code>totalRunningCount</code>.</p>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -35,6 +37,7 @@ def serialize_aws_json_1_1(value: DaemonRevisionDetail) -> dict:
             )
         )
     out["totalRunningCount"] = value.get("total_running_count", 0)
+    out["totalWithoutDaemonCount"] = value.get("total_without_daemon_count", 0)
     return out
 
 
@@ -54,4 +57,8 @@ def deserialize_aws_json_1_1(data: dict) -> DaemonRevisionDetail:
         out["total_running_count"] = data["totalRunningCount"]
     else:
         out["total_running_count"] = 0
+    if data.get("totalWithoutDaemonCount") is not None:
+        out["total_without_daemon_count"] = data["totalWithoutDaemonCount"]
+    else:
+        out["total_without_daemon_count"] = 0
     return out

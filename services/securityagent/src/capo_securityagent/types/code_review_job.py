@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     import capo_securityagent.types.execution_context_list
     import capo_securityagent.types.integrated_repository_list
     import capo_securityagent.types.job_status
+    import capo_securityagent.types.report_destination
     import capo_securityagent.types.service_role
     import capo_securityagent.types.source_code_repository_list
     import capo_securityagent.types.step_list
@@ -58,6 +59,12 @@ class CodeReviewJob(TypedDict, closed=True):
         "capo_securityagent.types.code_remediation_strategy.CodeRemediationStrategy"
     ]
     """<p>The code remediation strategy for the code review job.</p>"""
+    max_task_hours: NotRequired["float"]
+    """<p>The maximum number of billable task hours allowed for this code review job. If the cumulative task hours reach this limit, the job is gracefully stopped.</p>"""
+    report_destination: NotRequired[
+        "capo_securityagent.types.report_destination.ReportDestination"
+    ]
+    """<p>The destination for publishing scan reports to an integrated document provider.</p>"""
     created_at: NotRequired["datetime.datetime"]
     """<p>The date and time the code review job was created, in UTC format.</p>"""
     updated_at: NotRequired["datetime.datetime"]
@@ -137,6 +144,24 @@ def serialize_json(value: CodeReviewJob) -> dict:
         out["codeRemediationStrategy"] = (
             capo_securityagent.types.code_remediation_strategy.serialize_json(
                 value["code_remediation_strategy"]
+            )
+        )
+    if "max_task_hours" in value:
+        out["maxTaskHours"] = (
+            "NaN"
+            if value["max_task_hours"] != value["max_task_hours"]
+            else "Infinity"
+            if value["max_task_hours"] == float("inf")
+            else "-Infinity"
+            if value["max_task_hours"] == float("-inf")
+            else value["max_task_hours"]
+        )
+    if "report_destination" in value:
+        import capo_securityagent.types.report_destination
+
+        out["reportDestination"] = (
+            capo_securityagent.types.report_destination.serialize_json(
+                value["report_destination"]
             )
         )
     if "created_at" in value:
@@ -228,6 +253,16 @@ def deserialize_json(data: dict) -> CodeReviewJob:
         out["code_remediation_strategy"] = (
             capo_securityagent.types.code_remediation_strategy.deserialize_json(
                 data["codeRemediationStrategy"]
+            )
+        )
+    if data.get("maxTaskHours") is not None:
+        out["max_task_hours"] = float(data["maxTaskHours"])
+    if data.get("reportDestination") is not None:
+        import capo_securityagent.types.report_destination
+
+        out["report_destination"] = (
+            capo_securityagent.types.report_destination.deserialize_json(
+                data["reportDestination"]
             )
         )
     if data.get("createdAt") is not None:

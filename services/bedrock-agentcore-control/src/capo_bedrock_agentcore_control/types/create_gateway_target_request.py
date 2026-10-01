@@ -22,7 +22,7 @@ class CreateGatewayTargetRequest(TypedDict, closed=True):
         "capo_bedrock_agentcore_control.types.gateway_identifier.GatewayIdentifier"
     )
     """<p>The identifier of the gateway to create a target for.</p>"""
-    name: "capo_bedrock_agentcore_control.types.target_name.TargetName"
+    name: NotRequired["capo_bedrock_agentcore_control.types.target_name.TargetName"]
     """<p>The name of the gateway target. The name must be unique within the gateway.</p>"""
     description: NotRequired[
         "capo_bedrock_agentcore_control.types.target_description.TargetDescription"
@@ -53,7 +53,8 @@ class CreateGatewayTargetRequest(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: CreateGatewayTargetRequest) -> dict:
     out: dict = {}
-    out["name"] = value["name"]
+    if "name" in value:
+        out["name"] = value["name"]
     if "description" in value:
         out["description"] = value["description"]
     if "client_token" in value:
@@ -96,8 +97,6 @@ def deserialize_json(data: dict) -> CreateGatewayTargetRequest:
     out: CreateGatewayTargetRequest = {}  # type: ignore[typeddict-item]
     if data.get("name") is not None:
         out["name"] = data["name"]
-    else:
-        raise DeserializationError("CreateGatewayTargetRequest.name required")
     if data.get("description") is not None:
         out["description"] = data["description"]
     if data.get("clientToken") is not None:

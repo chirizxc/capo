@@ -14,6 +14,7 @@ import capo_synthetics._protocol.eventstream
 import capo_synthetics.errors.internal_server_exception
 import capo_synthetics.errors.request_entity_too_large_exception
 import capo_synthetics.errors.validation_exception
+import capo_synthetics.types.add_replica_locations
 import capo_synthetics.types.artifact_config_input
 import capo_synthetics.types.browser_configs
 import capo_synthetics.types.canary

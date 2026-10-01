@@ -2,13 +2,15 @@
 
 from typing import TYPE_CHECKING
 
-from typing_extensions import TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 from capo_securityagent.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_securityagent.types.private_connection_name
     import capo_securityagent.types.provider
     import capo_securityagent.types.provider_type
+    import capo_securityagent.types.target_url
 
 
 class IntegrationSummary(TypedDict, closed=True):
@@ -22,6 +24,12 @@ class IntegrationSummary(TypedDict, closed=True):
     """<p>The type of the integration provider.</p>"""
     display_name: "str"
     """<p>The display name of the integration.</p>"""
+    target_url: NotRequired["capo_securityagent.types.target_url.TargetUrl"]
+    """<p>The HTTPS URL of the customer self-hosted instance, such as a GitHub Enterprise Server or self-managed GitLab instance. This value is absent for SaaS integrations.</p>"""
+    private_connection_name: NotRequired[
+        "capo_securityagent.types.private_connection_name.PrivateConnectionName"
+    ]
+    """<p>The name of the private connection used to reach the integration's self-hosted instance over private networking, if one is configured.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -40,6 +48,10 @@ def serialize_json(value: IntegrationSummary) -> dict:
         value["provider_type"]
     )
     out["displayName"] = value["display_name"]
+    if "target_url" in value:
+        out["targetUrl"] = value["target_url"]
+    if "private_connection_name" in value:
+        out["privateConnectionName"] = value["private_connection_name"]
     return out
 
 
@@ -73,4 +85,8 @@ def deserialize_json(data: dict) -> IntegrationSummary:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("IntegrationSummary.display_name required")
+    if data.get("targetUrl") is not None:
+        out["target_url"] = data["targetUrl"]
+    if data.get("privateConnectionName") is not None:
+        out["private_connection_name"] = data["privateConnectionName"]
     return out

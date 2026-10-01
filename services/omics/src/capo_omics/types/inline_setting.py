@@ -28,9 +28,9 @@ class InlineSetting(TypedDict, closed=True):
     parameters: NotRequired["capo_omics.types.run_parameters.RunParameters"]
     """<p>Per-run workflow parameters. Merged with <code>defaultRunSetting.parameters</code>; values in this object take precedence when keys overlap.</p>"""
     output_bucket_owner_id: NotRequired["capo_omics.types.aws_account_id.AwsAccountId"]
-    """<p>The expected AWS account ID of the owner of the output S3 bucket for this run.</p>"""
+    """<p>The expected Amazon Web Services account ID of the owner of the output S3 bucket for this run.</p>"""
     run_tags: NotRequired["capo_omics.types.tag_map.TagMap"]
-    """<p>Per-run AWS tags. Merged with <code>defaultRunSetting.runTags</code>; values in this object take precedence when keys overlap.</p>"""
+    """<p>Per-run Amazon Web Services tags. Merged with <code>defaultRunSetting.runTags</code>; values in this object take precedence when keys overlap.</p>"""
     engine_settings: NotRequired["capo_omics.types.engine_settings.EngineSettings"]
     """<p>Per-run engine-specific settings. Use this field to specify configuration options that are specific to the workflow engine (for example, Nextflow profiles). Overrides <code>defaultRunSetting.engineSettings</code> for this run.</p>"""
 

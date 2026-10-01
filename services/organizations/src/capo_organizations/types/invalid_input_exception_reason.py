@@ -42,6 +42,7 @@ InvalidInputExceptionReason: TypeAlias = Literal[
     "INVALID_START_DATE",
     "END_DATE_NOT_END_OF_MONTH",
     "END_DATE_TOO_EARLY",
+    "END_DATE_TOO_LATE",
     "INVALID_END_DATE",
 ]
 

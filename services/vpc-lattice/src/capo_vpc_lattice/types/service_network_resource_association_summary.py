@@ -64,7 +64,7 @@ class ServiceNetworkResourceAssociationSummary(TypedDict, closed=True):
     dns_entry: NotRequired["capo_vpc_lattice.types.dns_entry.DnsEntry"]
     """<p>The DNS entry for the service.</p>"""
     private_dns_entry: NotRequired["capo_vpc_lattice.types.dns_entry.DnsEntry"]
-    """<p>The private DNS entry for the service.</p>"""
+    """<p>The private DNS entry for the service. This entry includes only the domain name.</p>"""
     is_managed_association: NotRequired["capo_vpc_lattice.types.boolean.Boolean"]
     """<p>Specifies whether the association is managed by Amazon.</p>"""
     failure_code: NotRequired["str"]

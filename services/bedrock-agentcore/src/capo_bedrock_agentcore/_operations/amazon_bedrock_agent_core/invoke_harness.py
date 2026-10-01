@@ -15,6 +15,7 @@ import capo_bedrock_agentcore.errors.access_denied_exception
 import capo_bedrock_agentcore.errors.internal_server_exception
 import capo_bedrock_agentcore.errors.resource_not_found_exception
 import capo_bedrock_agentcore.errors.runtime_client_error
+import capo_bedrock_agentcore.errors.service_quota_exceeded_exception
 import capo_bedrock_agentcore.errors.throttling_exception
 import capo_bedrock_agentcore.errors.validation_exception
 import capo_bedrock_agentcore.types.harness_allowed_tools
@@ -61,6 +62,10 @@ def handle_error(response: zapros.Response) -> Never:
             )
         case "RuntimeClientError":
             raise capo_bedrock_agentcore.errors.runtime_client_error.RuntimeClientError.from_json(
+                data, message
+            )
+        case "ServiceQuotaExceededException":
+            raise capo_bedrock_agentcore.errors.service_quota_exceeded_exception.ServiceQuotaExceededException.from_json(
                 data, message
             )
         case "ThrottlingException":
@@ -149,6 +154,8 @@ def build_request(
     params: list[tuple[str, str]] = []
     if "harness_arn" in input_:
         params.append(("harnessArn", input_["harness_arn"]))
+    if "qualifier" in input_:
+        params.append(("qualifier", input_["qualifier"]))
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     if "runtime_session_id" in input_:
         headers["X-Amzn-Bedrock-AgentCore-Runtime-Session-Id"] = input_[
@@ -156,6 +163,14 @@ def build_request(
         ]
     if "runtime_user_id" in input_:
         headers["X-Amzn-Bedrock-AgentCore-Runtime-User-Id"] = input_["runtime_user_id"]
+    if "trace_parent" in input_:
+        headers["traceparent"] = input_["trace_parent"]
+    if "trace_state" in input_:
+        headers["tracestate"] = input_["trace_state"]
+    if "trace_id" in input_:
+        headers["X-Amzn-Trace-Id"] = input_["trace_id"]
+    if "baggage" in input_:
+        headers["baggage"] = input_["baggage"]
     body: bytes | None = json.dumps(
         capo_bedrock_agentcore.types.invoke_harness_request.serialize_json(input_),
         allow_nan=False,

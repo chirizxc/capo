@@ -24,6 +24,7 @@ if TYPE_CHECKING:
     import capo_bedrock_agent.types.delete_prompt_response
     import capo_bedrock_agent.types.get_prompt_request
     import capo_bedrock_agent.types.get_prompt_response
+    import capo_bedrock_agent.types.included_data
     import capo_bedrock_agent.types.kms_key_arn
     import capo_bedrock_agent.types.list_prompts_request
     import capo_bedrock_agent.types.list_prompts_response
@@ -143,12 +144,16 @@ class PromptResource:
         *,
         config_overrides: Optional[BedrockAgentClientConfig] = None,
         prompt_version: Optional["capo_bedrock_agent.types.version.Version"] = None,
+        included_data: Optional[
+            "capo_bedrock_agent.types.included_data.IncludedData"
+        ] = None,
     ) -> "capo_bedrock_agent.types.get_prompt_response.GetPromptResponse":
         r"""<p>Retrieves information about the working draft (<code>DRAFT</code> version) of a prompt or a version of it, depending on whether you include the <code>promptVersion</code> field or not. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-manage.html#prompt-management-view.html\">View information about prompts using Prompt management</a> and <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-deploy.html#prompt-management-versions-view.html\">View information about a version of your prompt</a> in the Amazon Bedrock User Guide.</p>
 
         Args:
             prompt_identifier: <p>The unique identifier of the prompt.</p>
             prompt_version: <p>The version of the prompt about which you want to retrieve information. Omit this field to return information about the working draft of the prompt.</p>
+            included_data: <p>Controls the scope of data returned. Set to <code>METADATA_ONLY</code> to return only resource metadata. Set to <code>ALL_DATA</code> or omit this field to return the full response.</p>
 
         Raises:
             capo_bedrock_agent.errors.access_denied_exception.AccessDeniedException: <p>The request is denied because of missing access permissions.</p>
@@ -179,6 +184,8 @@ class PromptResource:
         }
         if prompt_version is not None:
             input_["prompt_version"] = prompt_version
+        if included_data is not None:
+            input_["included_data"] = included_data
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -536,12 +543,16 @@ class AsyncPromptResource:
         *,
         config_overrides: Optional[AsyncBedrockAgentClientConfig] = None,
         prompt_version: Optional["capo_bedrock_agent.types.version.Version"] = None,
+        included_data: Optional[
+            "capo_bedrock_agent.types.included_data.IncludedData"
+        ] = None,
     ) -> "capo_bedrock_agent.types.get_prompt_response.GetPromptResponse":
         r"""<p>Retrieves information about the working draft (<code>DRAFT</code> version) of a prompt or a version of it, depending on whether you include the <code>promptVersion</code> field or not. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-manage.html#prompt-management-view.html\">View information about prompts using Prompt management</a> and <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management-deploy.html#prompt-management-versions-view.html\">View information about a version of your prompt</a> in the Amazon Bedrock User Guide.</p>
 
         Args:
             prompt_identifier: <p>The unique identifier of the prompt.</p>
             prompt_version: <p>The version of the prompt about which you want to retrieve information. Omit this field to return information about the working draft of the prompt.</p>
+            included_data: <p>Controls the scope of data returned. Set to <code>METADATA_ONLY</code> to return only resource metadata. Set to <code>ALL_DATA</code> or omit this field to return the full response.</p>
 
         Raises:
             capo_bedrock_agent.errors.access_denied_exception.AccessDeniedException: <p>The request is denied because of missing access permissions.</p>
@@ -573,6 +584,8 @@ class AsyncPromptResource:
         }
         if prompt_version is not None:
             input_["prompt_version"] = prompt_version
+        if included_data is not None:
+            input_["included_data"] = included_data
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),

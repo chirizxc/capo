@@ -16,11 +16,11 @@ import capo_healthlake.errors.internal_server_exception
 import capo_healthlake.errors.resource_not_found_exception
 import capo_healthlake.errors.throttling_exception
 import capo_healthlake.errors.validation_exception
+import capo_healthlake.types.health_lake_timestamp
 import capo_healthlake.types.import_job_properties_list
 import capo_healthlake.types.job_status
 import capo_healthlake.types.list_fhir_import_jobs_request
 import capo_healthlake.types.list_fhir_import_jobs_response
-import capo_healthlake.types.timestamp
 from capo_healthlake._protocol.errors import parse_error_metadata_json
 from capo_healthlake._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_healthlake._services._pipeline import AsyncOperationOptions, OperationOptions

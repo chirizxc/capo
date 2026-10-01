@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     import capo_glue.types.boolean_nullable
     import capo_glue.types.catalog_id_string
     import capo_glue.types.name_string
+    import capo_glue.types.table_attributes_list
     import capo_glue.types.timestamp
     import capo_glue.types.transaction_id_string
 
@@ -34,6 +35,10 @@ class GetTableRequest(TypedDict, closed=True):
         "capo_glue.types.boolean_nullable.BooleanNullable"
     ]
     """<p>Specifies whether to include status details related to a request to create or update an Glue Data Catalog view.</p>"""
+    attributes_to_get: NotRequired[
+        "capo_glue.types.table_attributes_list.TableAttributesList"
+    ]
+    """<p>Specifies the table fields returned by the <code>GetTable</code> call. This parameter doesn't accept an empty list.</p> <p>The following are the valid combinations of values:</p> <ul> <li> <p> <code>DEFAULT</code> - Returns the Hive-style table definition only.</p> </li> <li> <p> <code>LATEST_ICEBERG_METADATA</code> - Returns only the latest Apache Iceberg table metadata.</p> </li> <li> <p> <code>DEFAULT</code>, <code>LATEST_ICEBERG_METADATA</code> - Returns both the Hive-style table definition and the latest Apache Iceberg table metadata.</p> </li> </ul>"""
 
 
 # --- awsJson1_1 ser/de ---
@@ -59,6 +64,14 @@ def serialize_aws_json_1_1(value: GetTableRequest) -> dict:
         )
     if "include_status_details" in value:
         out["IncludeStatusDetails"] = value["include_status_details"]
+    if "attributes_to_get" in value:
+        import capo_glue.types.table_attributes_list
+
+        out["AttributesToGet"] = (
+            capo_glue.types.table_attributes_list.serialize_aws_json_1_1(
+                value["attributes_to_get"]
+            )
+        )
     return out
 
 
@@ -90,4 +103,12 @@ def deserialize_aws_json_1_1(data: dict) -> GetTableRequest:
         )
     if data.get("IncludeStatusDetails") is not None:
         out["include_status_details"] = data["IncludeStatusDetails"]
+    if data.get("AttributesToGet") is not None:
+        import capo_glue.types.table_attributes_list
+
+        out["attributes_to_get"] = (
+            capo_glue.types.table_attributes_list.deserialize_aws_json_1_1(
+                data["AttributesToGet"]
+            )
+        )
     return out

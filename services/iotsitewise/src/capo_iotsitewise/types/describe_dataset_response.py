@@ -8,13 +8,18 @@ from capo_iotsitewise.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_iotsitewise.types.arn
+    import capo_iotsitewise.types.dataset_config
+    import capo_iotsitewise.types.dataset_enrichment
     import capo_iotsitewise.types.dataset_source
     import capo_iotsitewise.types.dataset_status
+    import capo_iotsitewise.types.dataset_type_enum
+    import capo_iotsitewise.types.description
     import capo_iotsitewise.types.id
-    import capo_iotsitewise.types.restricted_description
+    import capo_iotsitewise.types.metadata
     import capo_iotsitewise.types.restricted_name
     import capo_iotsitewise.types.timestamp
     import capo_iotsitewise.types.version
+    import capo_iotsitewise.types.workspace_name
 
 
 class DescribeDatasetResponse(TypedDict, closed=True):
@@ -24,10 +29,18 @@ class DescribeDatasetResponse(TypedDict, closed=True):
     r"""<p>The <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html\">ARN</a> of the dataset. The format is <code>arn:${Partition}:iotsitewise:${Region}:${Account}:dataset/${DatasetId}</code>.</p>"""
     dataset_name: "capo_iotsitewise.types.restricted_name.RestrictedName"
     """<p>The name of the dataset.</p>"""
-    dataset_description: (
-        "capo_iotsitewise.types.restricted_description.RestrictedDescription"
-    )
+    dataset_description: "capo_iotsitewise.types.description.Description"
     """<p>A description about the dataset, and its functionality.</p>"""
+    dataset_type: NotRequired[
+        "capo_iotsitewise.types.dataset_type_enum.DatasetTypeEnum"
+    ]
+    """<p>The type of dataset: a session dataset, a curated dataset, or a connection to an external datasource.</p>"""
+    dataset_config: NotRequired["capo_iotsitewise.types.dataset_config.DatasetConfig"]
+    """<p>The configuration for the dataset.</p>"""
+    workspace_name: NotRequired["capo_iotsitewise.types.workspace_name.WorkspaceName"]
+    """<p>The name of the workspace that contains the dataset.</p>"""
+    metadata: NotRequired["capo_iotsitewise.types.metadata.Metadata"]
+    """<p>The metadata for the dataset.</p>"""
     dataset_source: "capo_iotsitewise.types.dataset_source.DatasetSource"
     """<p>The data source for the dataset.</p>"""
     dataset_status: "capo_iotsitewise.types.dataset_status.DatasetStatus"
@@ -38,6 +51,10 @@ class DescribeDatasetResponse(TypedDict, closed=True):
     """<p>The date the dataset was last updated, in Unix epoch time.</p>"""
     dataset_version: NotRequired["capo_iotsitewise.types.version.Version"]
     """<p>The version of the dataset.</p>"""
+    enrichment_status: NotRequired[
+        "capo_iotsitewise.types.dataset_enrichment.DatasetEnrichment"
+    ]
+    """<p>The enrichment status of the dataset.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -47,6 +64,26 @@ def serialize_json(value: DescribeDatasetResponse) -> dict:
     out["datasetArn"] = value["dataset_arn"]
     out["datasetName"] = value["dataset_name"]
     out["datasetDescription"] = value["dataset_description"]
+    if "dataset_type" in value:
+        import capo_iotsitewise.types.dataset_type_enum
+
+        out["datasetType"] = capo_iotsitewise.types.dataset_type_enum.serialize_json(
+            value["dataset_type"]
+        )
+    if "dataset_config" in value:
+        import capo_iotsitewise.types.dataset_config
+
+        out["datasetConfig"] = capo_iotsitewise.types.dataset_config.serialize_json(
+            value["dataset_config"]
+        )
+    if "workspace_name" in value:
+        out["workspaceName"] = value["workspace_name"]
+    if "metadata" in value:
+        import capo_iotsitewise.types.metadata
+
+        out["metadata"] = capo_iotsitewise.types.metadata.serialize_json(
+            value["metadata"]
+        )
     import capo_iotsitewise.types.dataset_source
 
     out["datasetSource"] = capo_iotsitewise.types.dataset_source.serialize_json(
@@ -69,6 +106,14 @@ def serialize_json(value: DescribeDatasetResponse) -> dict:
     )
     if "dataset_version" in value:
         out["datasetVersion"] = value["dataset_version"]
+    if "enrichment_status" in value:
+        import capo_iotsitewise.types.dataset_enrichment
+
+        out["enrichmentStatus"] = (
+            capo_iotsitewise.types.dataset_enrichment.serialize_json(
+                value["enrichment_status"]
+            )
+        )
     return out
 
 
@@ -91,6 +136,26 @@ def deserialize_json(data: dict) -> DescribeDatasetResponse:
     else:
         raise DeserializationError(
             "DescribeDatasetResponse.dataset_description required"
+        )
+    if data.get("datasetType") is not None:
+        import capo_iotsitewise.types.dataset_type_enum
+
+        out["dataset_type"] = capo_iotsitewise.types.dataset_type_enum.deserialize_json(
+            data["datasetType"]
+        )
+    if data.get("datasetConfig") is not None:
+        import capo_iotsitewise.types.dataset_config
+
+        out["dataset_config"] = capo_iotsitewise.types.dataset_config.deserialize_json(
+            data["datasetConfig"]
+        )
+    if data.get("workspaceName") is not None:
+        out["workspace_name"] = data["workspaceName"]
+    if data.get("metadata") is not None:
+        import capo_iotsitewise.types.metadata
+
+        out["metadata"] = capo_iotsitewise.types.metadata.deserialize_json(
+            data["metadata"]
         )
     if data.get("datasetSource") is not None:
         import capo_iotsitewise.types.dataset_source
@@ -134,4 +199,12 @@ def deserialize_json(data: dict) -> DescribeDatasetResponse:
         )
     if data.get("datasetVersion") is not None:
         out["dataset_version"] = data["datasetVersion"]
+    if data.get("enrichmentStatus") is not None:
+        import capo_iotsitewise.types.dataset_enrichment
+
+        out["enrichment_status"] = (
+            capo_iotsitewise.types.dataset_enrichment.deserialize_json(
+                data["enrichmentStatus"]
+            )
+        )
     return out

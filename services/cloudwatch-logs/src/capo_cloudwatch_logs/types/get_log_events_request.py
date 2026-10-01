@@ -29,7 +29,7 @@ class GetLogEventsRequest(TypedDict, closed=True):
     log_stream_name: "capo_cloudwatch_logs.types.log_stream_name.LogStreamName"
     """<p>The name of the log stream.</p>"""
     start_time: NotRequired["capo_cloudwatch_logs.types.timestamp.Timestamp"]
-    """<p>The start of the time range, expressed as the number of milliseconds after <code>Jan 1, 1970 00:00:00 UTC</code>. Events with a timestamp equal to this time or later than this time are included. Events with a timestamp earlier than this time are not included.</p>"""
+    """<p>The start of the time range, expressed as the number of milliseconds after <code>Jan 1, 1970 00:00:00 UTC</code>. Events with a timestamp equal to this time or later than this time are included. Events with a timestamp earlier than this time are not included.</p> <note> <p>Set <code>startTime</code> explicitly to reduce the chances of empty pages in the response.</p> </note>"""
     end_time: NotRequired["capo_cloudwatch_logs.types.timestamp.Timestamp"]
     """<p>The end of the time range, expressed as the number of milliseconds after <code>Jan 1, 1970 00:00:00 UTC</code>. Events with a timestamp equal to or later than this time are not included.</p>"""
     next_token: NotRequired["capo_cloudwatch_logs.types.next_token.NextToken"]

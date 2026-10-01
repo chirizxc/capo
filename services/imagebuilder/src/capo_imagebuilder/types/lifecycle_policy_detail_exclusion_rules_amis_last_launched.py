@@ -15,7 +15,7 @@ class LifecyclePolicyDetailExclusionRulesAmisLastLaunched(TypedDict, closed=True
     value: "capo_imagebuilder.types.lifecycle_policy_detail_exclusion_rules_amis_last_launched_value.LifecyclePolicyDetailExclusionRulesAmisLastLaunchedValue"
     """<p>The integer number of units for the time period. For example <code>6</code> (months).</p>"""
     unit: "capo_imagebuilder.types.lifecycle_policy_time_unit.LifecyclePolicyTimeUnit"
-    """<p>Defines the unit of time that the lifecycle policy uses to calculate elapsed time since the last instance launched from the AMI. For example: days, weeks, months, or years.</p>"""
+    """<p>Defines the unit of time that the lifecycle policy uses to calculate elapsed time since the last launch.</p>"""
 
 
 # --- restJson1 ser/de ---

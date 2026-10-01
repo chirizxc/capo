@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     import capo_chime_sdk_voice.types.phone_number_order_status
     import capo_chime_sdk_voice.types.phone_number_order_type
     import capo_chime_sdk_voice.types.phone_number_product_type
+    import capo_chime_sdk_voice.types.string
 
 
 class PhoneNumberOrder(TypedDict, closed=True):
@@ -42,9 +43,7 @@ class PhoneNumberOrder(TypedDict, closed=True):
         "capo_chime_sdk_voice.types.iso8601_timestamp.Iso8601Timestamp"
     ]
     """<p>The updated phone number order time stamp, in ISO 8601 format.</p>"""
-    foc_date: NotRequired[
-        "capo_chime_sdk_voice.types.iso8601_timestamp.Iso8601Timestamp"
-    ]
+    foc_date: NotRequired["capo_chime_sdk_voice.types.string.String"]
     """<p>The Firm Order Commitment (FOC) date for phone number porting orders. This field is null if a phone number order is not a porting order.</p>"""
 
 
@@ -102,11 +101,7 @@ def serialize_json(value: PhoneNumberOrder) -> dict:
             )
         )
     if "foc_date" in value:
-        import capo_chime_sdk_voice.types.iso8601_timestamp
-
-        out["FocDate"] = capo_chime_sdk_voice.types.iso8601_timestamp.serialize_json(
-            value["foc_date"]
-        )
+        out["FocDate"] = value["foc_date"]
     return out
 
 
@@ -163,9 +158,5 @@ def deserialize_json(data: dict) -> PhoneNumberOrder:
             )
         )
     if data.get("FocDate") is not None:
-        import capo_chime_sdk_voice.types.iso8601_timestamp
-
-        out["foc_date"] = capo_chime_sdk_voice.types.iso8601_timestamp.deserialize_json(
-            data["FocDate"]
-        )
+        out["foc_date"] = data["FocDate"]
     return out

@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     import capo_quicksight.types.q_business_insights_status
     import capo_quicksight.types.string
     import capo_quicksight.types.visual_custom_action_defaults
+    import capo_quicksight.types.visual_messages
 
 
 class AssetOptions(TypedDict, closed=True):
@@ -29,6 +30,8 @@ class AssetOptions(TypedDict, closed=True):
         "capo_quicksight.types.visual_custom_action_defaults.VisualCustomActionDefaults"
     ]
     """<p>A list of visual custom actions for the analysis.</p>"""
+    visual_messages: NotRequired["capo_quicksight.types.visual_messages.VisualMessages"]
+    """<p>The configuration options for the messages that are displayed on visuals in the analysis.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -66,6 +69,12 @@ def serialize_json(value: AssetOptions) -> dict:
                 value["custom_action_defaults"]
             )
         )
+    if "visual_messages" in value:
+        import capo_quicksight.types.visual_messages
+
+        out["VisualMessages"] = capo_quicksight.types.visual_messages.serialize_json(
+            value["visual_messages"]
+        )
     return out
 
 
@@ -102,5 +111,11 @@ def deserialize_json(data: dict) -> AssetOptions:
             capo_quicksight.types.visual_custom_action_defaults.deserialize_json(
                 data["CustomActionDefaults"]
             )
+        )
+    if data.get("VisualMessages") is not None:
+        import capo_quicksight.types.visual_messages
+
+        out["visual_messages"] = capo_quicksight.types.visual_messages.deserialize_json(
+            data["VisualMessages"]
         )
     return out

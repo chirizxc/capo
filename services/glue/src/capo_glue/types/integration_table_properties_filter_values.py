@@ -1,0 +1,19 @@
+"""Generated from Smithy shape ``com.amazonaws.glue#IntegrationTablePropertiesFilterValues``."""
+
+from typing import TYPE_CHECKING, TypeAlias
+
+if TYPE_CHECKING:
+    import capo_glue.types.string128
+
+IntegrationTablePropertiesFilterValues: TypeAlias = list[
+    "capo_glue.types.string128.String128"
+]
+
+
+# --- awsJson1_1 ser/de ---
+def serialize_aws_json_1_1(value: IntegrationTablePropertiesFilterValues) -> list:
+    return list(value)
+
+
+def deserialize_aws_json_1_1(data: list) -> IntegrationTablePropertiesFilterValues:
+    return [item for item in data if item is not None]

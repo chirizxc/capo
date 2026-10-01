@@ -18,6 +18,7 @@ import capo_transcribe.errors.limit_exceeded_exception
 import capo_transcribe.types.create_vocabulary_request
 import capo_transcribe.types.create_vocabulary_response
 import capo_transcribe.types.date_time
+import capo_transcribe.types.encryption_configuration
 import capo_transcribe.types.language_code
 import capo_transcribe.types.phrases
 import capo_transcribe.types.tag_list

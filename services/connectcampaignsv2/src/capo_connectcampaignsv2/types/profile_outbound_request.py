@@ -8,6 +8,7 @@ from capo_connectcampaignsv2.errors import DeserializationError
 
 if TYPE_CHECKING:
     import capo_connectcampaignsv2.types.client_token
+    import capo_connectcampaignsv2.types.event_trigger_context
     import capo_connectcampaignsv2.types.profile_id
     import capo_connectcampaignsv2.types.time_stamp
 
@@ -16,6 +17,9 @@ class ProfileOutboundRequest(TypedDict, closed=True):
     client_token: "capo_connectcampaignsv2.types.client_token.ClientToken"
     profile_id: "capo_connectcampaignsv2.types.profile_id.ProfileId"
     expiration_time: NotRequired["capo_connectcampaignsv2.types.time_stamp.TimeStamp"]
+    event_trigger_context: NotRequired[
+        "capo_connectcampaignsv2.types.event_trigger_context.EventTriggerContext"
+    ]
 
 
 # --- restJson1 ser/de ---
@@ -28,6 +32,14 @@ def serialize_json(value: ProfileOutboundRequest) -> dict:
 
         out["expirationTime"] = capo_connectcampaignsv2.types.time_stamp.serialize_json(
             value["expiration_time"]
+        )
+    if "event_trigger_context" in value:
+        import capo_connectcampaignsv2.types.event_trigger_context
+
+        out["eventTriggerContext"] = (
+            capo_connectcampaignsv2.types.event_trigger_context.serialize_json(
+                value["event_trigger_context"]
+            )
         )
     return out
 
@@ -48,6 +60,14 @@ def deserialize_json(data: dict) -> ProfileOutboundRequest:
         out["expiration_time"] = (
             capo_connectcampaignsv2.types.time_stamp.deserialize_json(
                 data["expirationTime"]
+            )
+        )
+    if data.get("eventTriggerContext") is not None:
+        import capo_connectcampaignsv2.types.event_trigger_context
+
+        out["event_trigger_context"] = (
+            capo_connectcampaignsv2.types.event_trigger_context.deserialize_json(
+                data["eventTriggerContext"]
             )
         )
     return out

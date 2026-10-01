@@ -36,6 +36,8 @@ class UpdatePlanRequest(TypedDict, closed=True):
         "capo_arc_region_switch.types.report_configuration.ReportConfiguration"
     ]
     """<p>The updated report configuration for the plan.</p>"""
+    service_quota_checks_enabled: NotRequired["bool"]
+    """<p>Specifies whether service quota checks are enabled for the Region switch plan.</p>"""
 
 
 # --- awsJson1_0 ser/de ---
@@ -78,6 +80,8 @@ def serialize_aws_json_1_0(value: UpdatePlanRequest) -> dict:
                 value["report_configuration"]
             )
         )
+    if "service_quota_checks_enabled" in value:
+        out["serviceQuotaChecksEnabled"] = value["service_quota_checks_enabled"]
     return out
 
 
@@ -129,4 +133,6 @@ def deserialize_aws_json_1_0(data: dict) -> UpdatePlanRequest:
                 data["reportConfiguration"]
             )
         )
+    if data.get("serviceQuotaChecksEnabled") is not None:
+        out["service_quota_checks_enabled"] = data["serviceQuotaChecksEnabled"]
     return out

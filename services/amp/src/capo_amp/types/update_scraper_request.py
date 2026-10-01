@@ -6,6 +6,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
     import capo_amp.types.destination
+    import capo_amp.types.exporter_list
     import capo_amp.types.idempotency_token
     import capo_amp.types.role_configuration
     import capo_amp.types.scrape_configuration
@@ -23,13 +24,15 @@ class UpdateScraperRequest(TypedDict, closed=True):
     ]
     r"""<p>Contains the base-64 encoded YAML configuration for the scraper.</p> <note> <p>For more information about configuring a scraper, see <a href=\"https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-collector-how-to.html\">Using an Amazon Web Services managed collector</a> in the <i>Amazon Managed Service for Prometheus User Guide</i>.</p> </note>"""
     destination: NotRequired["capo_amp.types.destination.Destination"]
-    """<p>The new Amazon Managed Service for Prometheus workspace to send metrics to.</p>"""
+    """<p>The new destination where the scraper sends metrics. Valid destinations are Amazon Managed Service for Prometheus workspaces and CloudWatch datasets.</p>"""
     role_configuration: NotRequired[
         "capo_amp.types.role_configuration.RoleConfiguration"
     ]
     """<p>Use this structure to enable cross-account access, so that you can use a target account to access Prometheus metrics from source accounts.</p>"""
     client_token: NotRequired["capo_amp.types.idempotency_token.IdempotencyToken"]
     """<p>A unique identifier that you can provide to ensure the idempotency of the request. Case-sensitive.</p>"""
+    exporters: NotRequired["capo_amp.types.exporter_list.ExporterList"]
+    """<p>The exporter configurations for the scraper. You can configure at most one Amazon OpenSearch Service domain. If you don't specify a value, the existing exporter configuration remains unchanged.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -57,6 +60,12 @@ def serialize_json(value: UpdateScraperRequest) -> dict:
         )
     if "client_token" in value:
         out["clientToken"] = value["client_token"]
+    if "exporters" in value:
+        import capo_amp.types.exporter_list
+
+        out["exporters"] = capo_amp.types.exporter_list.serialize_json(
+            value["exporters"]
+        )
     return out
 
 
@@ -86,4 +95,10 @@ def deserialize_json(data: dict) -> UpdateScraperRequest:
         )
     if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
+    if data.get("exporters") is not None:
+        import capo_amp.types.exporter_list
+
+        out["exporters"] = capo_amp.types.exporter_list.deserialize_json(
+            data["exporters"]
+        )
     return out

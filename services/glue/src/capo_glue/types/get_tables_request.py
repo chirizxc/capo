@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     import capo_glue.types.filter_string
     import capo_glue.types.name_string
     import capo_glue.types.table_attributes_list
+    import capo_glue.types.table_resource_share_type
     import capo_glue.types.timestamp
     import capo_glue.types.token
     import capo_glue.types.transaction_id_string
@@ -40,6 +41,10 @@ class GetTablesRequest(TypedDict, closed=True):
     """<p>The time as of when to read the table contents. If not set, the most recent transaction commit time will be used. Cannot be specified along with <code>TransactionId</code>.</p>"""
     audit_context: NotRequired["capo_glue.types.audit_context.AuditContext"]
     r"""<p>A structure containing the Lake Formation <a href=\"https://docs.aws.amazon.com/glue/latest/webapi/API_AuditContext.html\">audit context</a>.</p>"""
+    resource_share_type: NotRequired[
+        "capo_glue.types.table_resource_share_type.TableResourceShareType"
+    ]
+    """<p>Specifies which tables the <code>GetTables</code> call returns. The allowable values are <code>FEDERATED</code> or <code>ALL</code>. </p> <ul> <li> <p>If set to <code>FEDERATED</code>, returns only federated tables, which reference an entity outside the Glue Data Catalog.</p> </li> <li> <p>If set to <code>ALL</code>, returns all tables in the database, both federated and non-federated. </p> </li> </ul>"""
     include_status_details: NotRequired[
         "capo_glue.types.boolean_nullable.BooleanNullable"
     ]
@@ -75,6 +80,14 @@ def serialize_aws_json_1_1(value: GetTablesRequest) -> dict:
 
         out["AuditContext"] = capo_glue.types.audit_context.serialize_aws_json_1_1(
             value["audit_context"]
+        )
+    if "resource_share_type" in value:
+        import capo_glue.types.table_resource_share_type
+
+        out["ResourceShareType"] = (
+            capo_glue.types.table_resource_share_type.serialize_aws_json_1_1(
+                value["resource_share_type"]
+            )
         )
     if "include_status_details" in value:
         out["IncludeStatusDetails"] = value["include_status_details"]
@@ -116,6 +129,14 @@ def deserialize_aws_json_1_1(data: dict) -> GetTablesRequest:
 
         out["audit_context"] = capo_glue.types.audit_context.deserialize_aws_json_1_1(
             data["AuditContext"]
+        )
+    if data.get("ResourceShareType") is not None:
+        import capo_glue.types.table_resource_share_type
+
+        out["resource_share_type"] = (
+            capo_glue.types.table_resource_share_type.deserialize_aws_json_1_1(
+                data["ResourceShareType"]
+            )
         )
     if data.get("IncludeStatusDetails") is not None:
         out["include_status_details"] = data["IncludeStatusDetails"]

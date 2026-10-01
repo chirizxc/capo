@@ -1,0 +1,17 @@
+"""Generated from Smithy shape ``com.amazonaws.resiliencehubv2#ExperimentArnList``."""
+
+from typing import TYPE_CHECKING, TypeAlias
+
+if TYPE_CHECKING:
+    import capo_resiliencehubv2.types.arn
+
+ExperimentArnList: TypeAlias = list["capo_resiliencehubv2.types.arn.Arn"]
+
+
+# --- restJson1 ser/de ---
+def serialize_json(value: ExperimentArnList) -> list:
+    return list(value)
+
+
+def deserialize_json(data: list) -> ExperimentArnList:
+    return [item for item in data if item is not None]

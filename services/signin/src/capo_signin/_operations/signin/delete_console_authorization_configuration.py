@@ -109,6 +109,7 @@ def build_request(
             Endpoint=options.endpoint,
             Region=options.region,
             IsControlPlane=True,
+            IsOAuthEndpoint=options.is_o_auth_endpoint,
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + "/delete-console-authorization-configuration"

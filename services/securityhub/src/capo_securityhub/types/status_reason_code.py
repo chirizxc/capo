@@ -5,6 +5,7 @@ from typing import Literal, TypeAlias, cast
 StatusReasonCode: TypeAlias = Literal[
     "NO_AVAILABLE_CONFIGURATION_RECORDER",
     "MAXIMUM_NUMBER_OF_CONFIG_RULES_EXCEEDED",
+    "NO_AVAILABLE_MULTICLOUD_CONNECTOR",
     "INTERNAL_ERROR",
 ]
 

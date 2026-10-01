@@ -15,15 +15,15 @@ if TYPE_CHECKING:
 
 class DeleteFHIRDatastoreResponse(TypedDict, closed=True):
     datastore_id: "capo_healthlake.types.datastore_id.DatastoreId"
-    """<p>The AWS-generated ID for the deleted data store.</p>"""
+    """<p>The Amazon Web Services-generated ID for the deleted data store.</p>"""
     datastore_arn: "capo_healthlake.types.datastore_arn.DatastoreArn"
-    """<p>The Amazon Resource Name (ARN) that grants access permission to AWS HealthLake.</p>"""
+    """<p>The Amazon Resource Name (ARN) that grants access permission to HealthLake.</p>"""
     datastore_status: "capo_healthlake.types.datastore_status.DatastoreStatus"
     """<p>The data store status.</p>"""
     datastore_endpoint: (
         "capo_healthlake.types.bounded_length_string.BoundedLengthString"
     )
-    """<p>The AWS endpoint of the data store to be deleted.</p>"""
+    """<p>The Amazon Web Services endpoint of the data store to be deleted.</p>"""
 
 
 # --- awsJson1_0 ser/de ---

@@ -9,6 +9,7 @@ if TYPE_CHECKING:
 
     import capo_gameliftstreams.types.arn
     import capo_gameliftstreams.types.export_files_metadata
+    import capo_gameliftstreams.types.iam_role_arn
     import capo_gameliftstreams.types.location_name
     import capo_gameliftstreams.types.protocol
     import capo_gameliftstreams.types.stream_session_status
@@ -43,6 +44,8 @@ class StreamSessionSummary(TypedDict, closed=True):
     """<p>Provides details about the stream session's exported files. </p>"""
     location: NotRequired["capo_gameliftstreams.types.location_name.LocationName"]
     r"""<p>The location where Amazon GameLift Streams hosts and streams your application. For example, <code>us-east-1</code>. For a complete list of locations that Amazon GameLift Streams supports, refer to <a href=\"https://docs.aws.amazon.com/gameliftstreams/latest/developerguide/regions-quotas.html\">Regions, quotas, and limitations</a> in the <i>Amazon GameLift Streams Developer Guide</i>. </p>"""
+    role_arn: NotRequired["capo_gameliftstreams.types.iam_role_arn.IamRoleArn"]
+    """<p>The ARN of the AWS Identity and Access Management (IAM) role that Amazon GameLift Streams assumes on behalf of your application during the stream session.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -98,6 +101,8 @@ def serialize_json(value: StreamSessionSummary) -> dict:
         )
     if "location" in value:
         out["Location"] = value["location"]
+    if "role_arn" in value:
+        out["RoleArn"] = value["role_arn"]
     return out
 
 
@@ -157,4 +162,6 @@ def deserialize_json(data: dict) -> StreamSessionSummary:
         )
     if data.get("Location") is not None:
         out["location"] = data["Location"]
+    if data.get("RoleArn") is not None:
+        out["role_arn"] = data["RoleArn"]
     return out

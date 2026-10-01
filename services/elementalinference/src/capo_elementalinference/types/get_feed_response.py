@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     import capo_elementalinference.types.feed_id
     import capo_elementalinference.types.feed_status
     import capo_elementalinference.types.get_output_list
+    import capo_elementalinference.types.iam_role_arn
     import capo_elementalinference.types.resource_name
     import capo_elementalinference.types.string_list
     import capo_elementalinference.types.tag_map
@@ -28,6 +29,10 @@ class GetFeedResponse(TypedDict, closed=True):
     """<p>The dataEndpoints of the feed.</p>"""
     outputs: "capo_elementalinference.types.get_output_list.GetOutputList"
     """<p>An array of the outputs in the feed.</p>"""
+    access_role_arn: NotRequired[
+        "capo_elementalinference.types.iam_role_arn.IamRoleArn"
+    ]
+    """<p>The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role that Elemental Inference assumes. Elemental Inference uses this role to access resources in your account on your behalf. This property is absent if the feed doesn't have an IAM role. </p>"""
     status: "capo_elementalinference.types.feed_status.FeedStatus"
     """<p>The status of the feed.</p>"""
     association: NotRequired[
@@ -54,6 +59,8 @@ def serialize_json(value: GetFeedResponse) -> dict:
     out["outputs"] = capo_elementalinference.types.get_output_list.serialize_json(
         value["outputs"]
     )
+    if "access_role_arn" in value:
+        out["accessRoleArn"] = value["access_role_arn"]
     import capo_elementalinference.types.feed_status
 
     out["status"] = capo_elementalinference.types.feed_status.serialize_json(
@@ -108,6 +115,8 @@ def deserialize_json(data: dict) -> GetFeedResponse:
         )
     else:
         raise DeserializationError("GetFeedResponse.outputs required")
+    if data.get("accessRoleArn") is not None:
+        out["access_role_arn"] = data["accessRoleArn"]
     if data.get("status") is not None:
         import capo_elementalinference.types.feed_status
 

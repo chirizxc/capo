@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 if TYPE_CHECKING:
     import capo_sagemaker.types.account_default_status
     import capo_sagemaker.types.default_domain_id_list
+    import capo_sagemaker.types.kms_key_id
     import capo_sagemaker.types.mlflow_app_name
     import capo_sagemaker.types.model_registration_mode
     import capo_sagemaker.types.role_arn
@@ -22,6 +23,8 @@ class CreateMlflowAppRequest(TypedDict, closed=True):
     """<p>The S3 URI for a general purpose bucket to use as the MLflow App artifact store.</p>"""
     role_arn: NotRequired["capo_sagemaker.types.role_arn.RoleArn"]
     """<p>The Amazon Resource Name (ARN) for an IAM role in your account that the MLflow App uses to access the artifact store in Amazon S3. The role should have the <code>AmazonS3FullAccess</code> permission.</p>"""
+    kms_key_id: NotRequired["capo_sagemaker.types.kms_key_id.KmsKeyId"]
+    """<p>The ID of the Amazon Web Services KMS key used to encrypt the data at rest associated with the MLflow App. If you don't specify a value, the MLflow App is not encrypted with a customer-managed key.</p>"""
     model_registration_mode: NotRequired[
         "capo_sagemaker.types.model_registration_mode.ModelRegistrationMode"
     ]
@@ -51,6 +54,8 @@ def serialize_aws_json_1_1(value: CreateMlflowAppRequest) -> dict:
         out["ArtifactStoreUri"] = value["artifact_store_uri"]
     if "role_arn" in value:
         out["RoleArn"] = value["role_arn"]
+    if "kms_key_id" in value:
+        out["KmsKeyId"] = value["kms_key_id"]
     if "model_registration_mode" in value:
         import capo_sagemaker.types.model_registration_mode
 
@@ -94,6 +99,8 @@ def deserialize_aws_json_1_1(data: dict) -> CreateMlflowAppRequest:
         out["artifact_store_uri"] = data["ArtifactStoreUri"]
     if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
+    if data.get("KmsKeyId") is not None:
+        out["kms_key_id"] = data["KmsKeyId"]
     if data.get("ModelRegistrationMode") is not None:
         import capo_sagemaker.types.model_registration_mode
 

@@ -62,6 +62,10 @@ class GeocodeParsedQueryAddressComponents(TypedDict, closed=True):
         "capo_geo_places.types.parsed_query_secondary_address_component_list.ParsedQuerySecondaryAddressComponentList"
     ]
     """<p>Parsed secondary address components from the provided query text.</p> <note> <p>Coverage for <code>ParsedQuery.Address.SecondaryAddressComponents</code> is available in the following countries:</p> <p>AUS, AUT, BRA, CAN, ESP, FRA, GBR, HKG, IDN, IND, NZL, TUR, TWN, USA</p> </note>"""
+    other_components: NotRequired[
+        "capo_geo_places.types.parsed_query_component_list.ParsedQueryComponentList"
+    ]
+    """<p>Additional information extracted from the query that does not correspond to standard address components.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -167,6 +171,14 @@ def serialize_json(value: GeocodeParsedQueryAddressComponents) -> dict:
         out["SecondaryAddressComponents"] = (
             capo_geo_places.types.parsed_query_secondary_address_component_list.serialize_json(
                 value["secondary_address_components"]
+            )
+        )
+    if "other_components" in value:
+        import capo_geo_places.types.parsed_query_component_list
+
+        out["OtherComponents"] = (
+            capo_geo_places.types.parsed_query_component_list.serialize_json(
+                value["other_components"]
             )
         )
     return out
@@ -276,6 +288,14 @@ def deserialize_json(data: dict) -> GeocodeParsedQueryAddressComponents:
         out["secondary_address_components"] = (
             capo_geo_places.types.parsed_query_secondary_address_component_list.deserialize_json(
                 data["SecondaryAddressComponents"]
+            )
+        )
+    if data.get("OtherComponents") is not None:
+        import capo_geo_places.types.parsed_query_component_list
+
+        out["other_components"] = (
+            capo_geo_places.types.parsed_query_component_list.deserialize_json(
+                data["OtherComponents"]
             )
         )
     return out
