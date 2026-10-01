@@ -1,7 +1,7 @@
 [project]
 name = "capo-detective"
 version = "0.1.0"
-description = "Python SDK for Detective."
+description = "Python SDK for AWS Detective."
 readme = "README.md"
 requires-python = ">=3.10"
 classifiers = [

@@ -1,7 +1,7 @@
 [project]
 name = "capo-codestar-notifications"
 version = "0.3.0"
-description = "Python SDK for Codestar Notifications."
+description = "Python SDK for AWS Codestar Notifications."
 readme = "README.md"
 requires-python = ">=3.10"
 classifiers = [

@@ -20,6 +20,7 @@ import capo_datazone.errors.service_quota_exceeded_exception
 import capo_datazone.errors.throttling_exception
 import capo_datazone.errors.unauthorized_exception
 import capo_datazone.errors.validation_exception
+import capo_datazone.types.blueprint_category
 import capo_datazone.types.create_environment_blueprint_input
 import capo_datazone.types.create_environment_blueprint_output
 import capo_datazone.types.custom_parameter_list

@@ -9,6 +9,7 @@ from capo_datazone.errors import DeserializationError
 if TYPE_CHECKING:
     import datetime
 
+    import capo_datazone.types.blueprint_category
     import capo_datazone.types.description
     import capo_datazone.types.environment_blueprint_id
     import capo_datazone.types.environment_blueprint_name
@@ -32,6 +33,10 @@ class EnvironmentBlueprintSummary(TypedDict, closed=True):
     """<p>The timestamp of when an environment blueprint was created.</p>"""
     updated_at: NotRequired["datetime.datetime"]
     """<p>The timestamp of when the blueprint was enabled.</p>"""
+    blueprint_category: NotRequired[
+        "capo_datazone.types.blueprint_category.BlueprintCategory"
+    ]
+    """<p>The category of the environment blueprint. The only valid value is <code>TOOLING</code>.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -60,6 +65,14 @@ def serialize_json(value: EnvironmentBlueprintSummary) -> dict:
 
         out["updatedAt"] = capo_datazone._protocol.serialize.fmt_date_time(
             value["updated_at"]
+        )
+    if "blueprint_category" in value:
+        import capo_datazone.types.blueprint_category
+
+        out["blueprintCategory"] = (
+            capo_datazone.types.blueprint_category.serialize_json(
+                value["blueprint_category"]
+            )
         )
     return out
 
@@ -103,5 +116,13 @@ def deserialize_json(data: dict) -> EnvironmentBlueprintSummary:
 
         out["updated_at"] = datetime.datetime.fromisoformat(
             data["updatedAt"].replace("Z", "+00:00")
+        )
+    if data.get("blueprintCategory") is not None:
+        import capo_datazone.types.blueprint_category
+
+        out["blueprint_category"] = (
+            capo_datazone.types.blueprint_category.deserialize_json(
+                data["blueprintCategory"]
+            )
         )
     return out

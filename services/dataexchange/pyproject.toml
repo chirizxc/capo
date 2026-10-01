@@ -1,7 +1,7 @@
 [project]
 name = "capo-dataexchange"
 version = "0.1.0"
-description = "Python SDK for Dataexchange."
+description = "Python SDK for AWS Dataexchange."
 readme = "README.md"
 requires-python = ">=3.10"
 classifiers = [

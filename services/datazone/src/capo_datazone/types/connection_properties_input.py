@@ -9,6 +9,7 @@ from capo_datazone.errors import DeserializationError, SerializationError
 if TYPE_CHECKING:
     import capo_datazone.types.amazon_q_properties_input
     import capo_datazone.types.athena_properties_input
+    import capo_datazone.types.git_properties_input
     import capo_datazone.types.glue_properties_input
     import capo_datazone.types.hyper_pod_properties_input
     import capo_datazone.types.iam_properties_input
@@ -16,6 +17,7 @@ if TYPE_CHECKING:
     import capo_datazone.types.mlflow_properties_input
     import capo_datazone.types.redshift_properties_input
     import capo_datazone.types.s3_properties_input
+    import capo_datazone.types.snowflake_properties_input
     import capo_datazone.types.spark_emr_properties_input
     import capo_datazone.types.spark_glue_properties_input
     import capo_datazone.types.vpc_properties_input
@@ -65,6 +67,12 @@ class _ConnectionPropertiesInput_s3Properties(TypedDict, closed=True):
     s3Properties: "capo_datazone.types.s3_properties_input.S3PropertiesInput"
 
 
+class _ConnectionPropertiesInput_snowflakeProperties(TypedDict, closed=True):
+    snowflakeProperties: (
+        "capo_datazone.types.snowflake_properties_input.SnowflakePropertiesInput"
+    )
+
+
 class _ConnectionPropertiesInput_amazonQProperties(TypedDict, closed=True):
     amazonQProperties: (
         "capo_datazone.types.amazon_q_properties_input.AmazonQPropertiesInput"
@@ -95,6 +103,10 @@ class _ConnectionPropertiesInput_vpcProperties(TypedDict, closed=True):
     vpcProperties: "capo_datazone.types.vpc_properties_input.VpcPropertiesInput"
 
 
+class _ConnectionPropertiesInput_gitProperties(TypedDict, closed=True):
+    gitProperties: "capo_datazone.types.git_properties_input.GitPropertiesInput"
+
+
 ConnectionPropertiesInput: TypeAlias = (
     _ConnectionPropertiesInput_athenaProperties
     | _ConnectionPropertiesInput_glueProperties
@@ -104,12 +116,14 @@ ConnectionPropertiesInput: TypeAlias = (
     | _ConnectionPropertiesInput_sparkEmrProperties
     | _ConnectionPropertiesInput_sparkGlueProperties
     | _ConnectionPropertiesInput_s3Properties
+    | _ConnectionPropertiesInput_snowflakeProperties
     | _ConnectionPropertiesInput_amazonQProperties
     | _ConnectionPropertiesInput_mlflowProperties
     | _ConnectionPropertiesInput_workflowsMwaaProperties
     | _ConnectionPropertiesInput_workflowsServerlessProperties
     | _ConnectionPropertiesInput_lakehouseProperties
     | _ConnectionPropertiesInput_vpcProperties
+    | _ConnectionPropertiesInput_gitProperties
 )
 
 
@@ -179,6 +193,14 @@ def serialize_json(value: ConnectionPropertiesInput) -> dict:
                 value["s3Properties"]
             )
         }
+    elif "snowflakeProperties" in value:
+        import capo_datazone.types.snowflake_properties_input
+
+        return {
+            "snowflakeProperties": capo_datazone.types.snowflake_properties_input.serialize_json(
+                value["snowflakeProperties"]
+            )
+        }
     elif "amazonQProperties" in value:
         import capo_datazone.types.amazon_q_properties_input
 
@@ -225,6 +247,14 @@ def serialize_json(value: ConnectionPropertiesInput) -> dict:
         return {
             "vpcProperties": capo_datazone.types.vpc_properties_input.serialize_json(
                 value["vpcProperties"]
+            )
+        }
+    elif "gitProperties" in value:
+        import capo_datazone.types.git_properties_input
+
+        return {
+            "gitProperties": capo_datazone.types.git_properties_input.serialize_json(
+                value["gitProperties"]
             )
         }
     else:
@@ -296,6 +326,14 @@ def deserialize_json(data: dict) -> ConnectionPropertiesInput:
                 data["s3Properties"]
             )
         }
+    elif data.get("snowflakeProperties") is not None:
+        import capo_datazone.types.snowflake_properties_input
+
+        return {
+            "snowflakeProperties": capo_datazone.types.snowflake_properties_input.deserialize_json(
+                data["snowflakeProperties"]
+            )
+        }
     elif data.get("amazonQProperties") is not None:
         import capo_datazone.types.amazon_q_properties_input
 
@@ -342,6 +380,14 @@ def deserialize_json(data: dict) -> ConnectionPropertiesInput:
         return {
             "vpcProperties": capo_datazone.types.vpc_properties_input.deserialize_json(
                 data["vpcProperties"]
+            )
+        }
+    elif data.get("gitProperties") is not None:
+        import capo_datazone.types.git_properties_input
+
+        return {
+            "gitProperties": capo_datazone.types.git_properties_input.deserialize_json(
+                data["gitProperties"]
             )
         }
     else:

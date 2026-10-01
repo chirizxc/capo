@@ -25,9 +25,11 @@ import capo_datazone.types.create_notebook_input
 import capo_datazone.types.create_notebook_output
 import capo_datazone.types.created_at
 import capo_datazone.types.environment_config
+import capo_datazone.types.git_metadata
 import capo_datazone.types.metadata
 import capo_datazone.types.notebook_error
 import capo_datazone.types.notebook_status
+import capo_datazone.types.notebook_type
 import capo_datazone.types.parameters
 import capo_datazone.types.updated_at
 from capo_datazone._protocol.errors import parse_error_metadata_json

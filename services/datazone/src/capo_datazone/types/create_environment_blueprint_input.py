@@ -7,6 +7,7 @@ from typing_extensions import NotRequired, TypedDict
 from capo_datazone.errors import DeserializationError
 
 if TYPE_CHECKING:
+    import capo_datazone.types.blueprint_category
     import capo_datazone.types.custom_parameter_list
     import capo_datazone.types.description
     import capo_datazone.types.domain_id
@@ -29,6 +30,10 @@ class CreateEnvironmentBlueprintInput(TypedDict, closed=True):
         "capo_datazone.types.custom_parameter_list.CustomParameterList"
     ]
     """<p>The user parameters of this Amazon DataZone blueprint.</p>"""
+    blueprint_category: NotRequired[
+        "capo_datazone.types.blueprint_category.BlueprintCategory"
+    ]
+    """<p>The category of the Amazon DataZone blueprint. The only valid value is <code>TOOLING</code>, which creates a blueprint that provisions the tooling resources of a project.</p>"""
 
 
 # --- restJson1 ser/de ---
@@ -50,6 +55,14 @@ def serialize_json(value: CreateEnvironmentBlueprintInput) -> dict:
         out["userParameters"] = (
             capo_datazone.types.custom_parameter_list.serialize_json(
                 value["user_parameters"]
+            )
+        )
+    if "blueprint_category" in value:
+        import capo_datazone.types.blueprint_category
+
+        out["blueprintCategory"] = (
+            capo_datazone.types.blueprint_category.serialize_json(
+                value["blueprint_category"]
             )
         )
     return out
@@ -81,6 +94,14 @@ def deserialize_json(data: dict) -> CreateEnvironmentBlueprintInput:
         out["user_parameters"] = (
             capo_datazone.types.custom_parameter_list.deserialize_json(
                 data["userParameters"]
+            )
+        )
+    if data.get("blueprintCategory") is not None:
+        import capo_datazone.types.blueprint_category
+
+        out["blueprint_category"] = (
+            capo_datazone.types.blueprint_category.deserialize_json(
+                data["blueprintCategory"]
             )
         )
     return out

@@ -1,7 +1,7 @@
 [project]
 name = "capo-kinesis"
 version = "0.1.0"
-description = "Python SDK for Kinesis."
+description = "Python SDK for AWS Kinesis."
 readme = "README.md"
 requires-python = ">=3.10"
 classifiers = [

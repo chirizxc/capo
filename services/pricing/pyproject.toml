@@ -1,7 +1,7 @@
 [project]
 name = "capo-pricing"
 version = "0.1.0"
-description = "Python SDK for Pricing."
+description = "Python SDK for AWS Pricing."
 readme = "README.md"
 requires-python = ">=3.10"
 classifiers = [

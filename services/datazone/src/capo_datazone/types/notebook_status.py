@@ -6,6 +6,8 @@ from typing import Literal, TypeAlias, cast
 NotebookStatus: TypeAlias = Literal[
     "ACTIVE",
     "ARCHIVED",
+    "SYNC_IN_PROGRESS",
+    "SYNC_FAILED",
 ]
 
 

@@ -34,6 +34,7 @@ if TYPE_CHECKING:
     import capo_datazone.types.notebook_name
     import capo_datazone.types.notebook_status
     import capo_datazone.types.notebook_summary
+    import capo_datazone.types.notebook_type
     import capo_datazone.types.pagination_token
     import capo_datazone.types.parameters
     import capo_datazone.types.project_id
@@ -60,6 +61,7 @@ class Notebook:
         *,
         config_overrides: Optional[DataZoneClientConfig] = None,
         description: Optional["capo_datazone.types.description.Description"] = None,
+        type: Optional["capo_datazone.types.notebook_type.NotebookType"] = None,
         metadata: Optional["capo_datazone.types.metadata.Metadata"] = None,
         parameters: Optional["capo_datazone.types.parameters.Parameters"] = None,
         client_token: Optional["capo_datazone.types.client_token.ClientToken"] = None,
@@ -71,6 +73,7 @@ class Notebook:
             owning_project_identifier: <p>The identifier of the project that owns the notebook.</p>
             name: <p>The name of the notebook. The name must be between 1 and 256 characters.</p>
             description: <p>The description of the notebook.</p>
+            type: <p>The type of the notebook.</p>
             metadata: <p>The metadata for the notebook, specified as key-value pairs. You can specify up to 50 entries, with keys up to 128 characters and values up to 1024 characters.</p>
             parameters: <p>The sensitive parameters for the notebook, specified as key-value pairs. You can specify up to 50 entries, with keys up to 128 characters and values up to 1024 characters.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request. This field is automatically populated if not provided.</p>
@@ -109,6 +112,8 @@ class Notebook:
         }
         if description is not None:
             input_["description"] = description
+        if type is not None:
+            input_["type"] = type
         if metadata is not None:
             input_["metadata"] = metadata
         if parameters is not None:
@@ -186,6 +191,7 @@ class Notebook:
         status: Optional["capo_datazone.types.notebook_status.NotebookStatus"] = None,
         name: Optional["capo_datazone.types.notebook_name.NotebookName"] = None,
         cell_order: Optional["capo_datazone.types.cell_order.CellOrder"] = None,
+        type: Optional["capo_datazone.types.notebook_type.NotebookType"] = None,
         metadata: Optional["capo_datazone.types.metadata.Metadata"] = None,
         parameters: Optional["capo_datazone.types.parameters.Parameters"] = None,
         environment_configuration: Optional[
@@ -202,6 +208,7 @@ class Notebook:
             status: <p>The updated status of the notebook.</p>
             name: <p>The updated name of the notebook.</p>
             cell_order: <p>The updated ordered list of cells in the notebook.</p>
+            type: <p>The updated type of the notebook.</p>
             metadata: <p>The updated metadata for the notebook, specified as key-value pairs.</p>
             parameters: <p>The updated sensitive parameters for the notebook, specified as key-value pairs.</p>
             environment_configuration: <p>The updated environment configuration for the notebook.</p>
@@ -245,6 +252,8 @@ class Notebook:
             input_["name"] = name
         if cell_order is not None:
             input_["cell_order"] = cell_order
+        if type is not None:
+            input_["type"] = type
         if metadata is not None:
             input_["metadata"] = metadata
         if parameters is not None:
@@ -324,6 +333,7 @@ class Notebook:
         sort_order: Optional["capo_datazone.types.sort_order.SortOrder"] = None,
         sort_by: Optional["capo_datazone.types.sort_key.SortKey"] = None,
         status: Optional["capo_datazone.types.notebook_status.NotebookStatus"] = None,
+        type: Optional["capo_datazone.types.notebook_type.NotebookType"] = None,
         next_token: Optional[
             "capo_datazone.types.pagination_token.PaginationToken"
         ] = None,
@@ -337,6 +347,7 @@ class Notebook:
             sort_order: <p>The sort order for the results.</p>
             sort_by: <p>The field to sort the results by.</p>
             status: <p>The status to filter notebooks by.</p>
+            type: <p>The type to filter notebooks by.</p>
             next_token: <p>When the number of notebooks is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of notebooks, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListNotebooks</code> to list the next set of notebooks.</p>
 
         Raises:
@@ -375,6 +386,8 @@ class Notebook:
             input_["sort_by"] = sort_by
         if status is not None:
             input_["status"] = status
+        if type is not None:
+            input_["type"] = type
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -399,6 +412,7 @@ class AsyncNotebook:
         *,
         config_overrides: Optional[AsyncDataZoneClientConfig] = None,
         description: Optional["capo_datazone.types.description.Description"] = None,
+        type: Optional["capo_datazone.types.notebook_type.NotebookType"] = None,
         metadata: Optional["capo_datazone.types.metadata.Metadata"] = None,
         parameters: Optional["capo_datazone.types.parameters.Parameters"] = None,
         client_token: Optional["capo_datazone.types.client_token.ClientToken"] = None,
@@ -410,6 +424,7 @@ class AsyncNotebook:
             owning_project_identifier: <p>The identifier of the project that owns the notebook.</p>
             name: <p>The name of the notebook. The name must be between 1 and 256 characters.</p>
             description: <p>The description of the notebook.</p>
+            type: <p>The type of the notebook.</p>
             metadata: <p>The metadata for the notebook, specified as key-value pairs. You can specify up to 50 entries, with keys up to 128 characters and values up to 1024 characters.</p>
             parameters: <p>The sensitive parameters for the notebook, specified as key-value pairs. You can specify up to 50 entries, with keys up to 128 characters and values up to 1024 characters.</p>
             client_token: <p>A unique, case-sensitive identifier to ensure idempotency of the request. This field is automatically populated if not provided.</p>
@@ -449,6 +464,8 @@ class AsyncNotebook:
         }
         if description is not None:
             input_["description"] = description
+        if type is not None:
+            input_["type"] = type
         if metadata is not None:
             input_["metadata"] = metadata
         if parameters is not None:
@@ -527,6 +544,7 @@ class AsyncNotebook:
         status: Optional["capo_datazone.types.notebook_status.NotebookStatus"] = None,
         name: Optional["capo_datazone.types.notebook_name.NotebookName"] = None,
         cell_order: Optional["capo_datazone.types.cell_order.CellOrder"] = None,
+        type: Optional["capo_datazone.types.notebook_type.NotebookType"] = None,
         metadata: Optional["capo_datazone.types.metadata.Metadata"] = None,
         parameters: Optional["capo_datazone.types.parameters.Parameters"] = None,
         environment_configuration: Optional[
@@ -543,6 +561,7 @@ class AsyncNotebook:
             status: <p>The updated status of the notebook.</p>
             name: <p>The updated name of the notebook.</p>
             cell_order: <p>The updated ordered list of cells in the notebook.</p>
+            type: <p>The updated type of the notebook.</p>
             metadata: <p>The updated metadata for the notebook, specified as key-value pairs.</p>
             parameters: <p>The updated sensitive parameters for the notebook, specified as key-value pairs.</p>
             environment_configuration: <p>The updated environment configuration for the notebook.</p>
@@ -587,6 +606,8 @@ class AsyncNotebook:
             input_["name"] = name
         if cell_order is not None:
             input_["cell_order"] = cell_order
+        if type is not None:
+            input_["type"] = type
         if metadata is not None:
             input_["metadata"] = metadata
         if parameters is not None:
@@ -667,6 +688,7 @@ class AsyncNotebook:
         sort_order: Optional["capo_datazone.types.sort_order.SortOrder"] = None,
         sort_by: Optional["capo_datazone.types.sort_key.SortKey"] = None,
         status: Optional["capo_datazone.types.notebook_status.NotebookStatus"] = None,
+        type: Optional["capo_datazone.types.notebook_type.NotebookType"] = None,
         next_token: Optional[
             "capo_datazone.types.pagination_token.PaginationToken"
         ] = None,
@@ -680,6 +702,7 @@ class AsyncNotebook:
             sort_order: <p>The sort order for the results.</p>
             sort_by: <p>The field to sort the results by.</p>
             status: <p>The status to filter notebooks by.</p>
+            type: <p>The type to filter notebooks by.</p>
             next_token: <p>When the number of notebooks is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of notebooks, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListNotebooks</code> to list the next set of notebooks.</p>
 
         Raises:
@@ -719,6 +742,8 @@ class AsyncNotebook:
             input_["sort_by"] = sort_by
         if status is not None:
             input_["status"] = status
+        if type is not None:
+            input_["type"] = type
         if next_token is not None:
             input_["next_token"] = next_token
 

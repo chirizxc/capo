@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     import capo_datazone.types.domain_id
     import capo_datazone.types.max_results
     import capo_datazone.types.notebook_status
+    import capo_datazone.types.notebook_type
     import capo_datazone.types.pagination_token
     import capo_datazone.types.project_id
     import capo_datazone.types.sort_key
@@ -27,6 +28,8 @@ class ListNotebooksInput(TypedDict, closed=True):
     """<p>The field to sort the results by.</p>"""
     status: NotRequired["capo_datazone.types.notebook_status.NotebookStatus"]
     """<p>The status to filter notebooks by.</p>"""
+    type: NotRequired["capo_datazone.types.notebook_type.NotebookType"]
+    """<p>The type to filter notebooks by.</p>"""
     next_token: NotRequired["capo_datazone.types.pagination_token.PaginationToken"]
     """<p>When the number of notebooks is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of notebooks, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListNotebooks</code> to list the next set of notebooks.</p>"""
 

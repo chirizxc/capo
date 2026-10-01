@@ -22,9 +22,11 @@ import capo_datazone.errors.validation_exception
 import capo_datazone.types.cell_order
 import capo_datazone.types.created_at
 import capo_datazone.types.environment_config
+import capo_datazone.types.git_metadata
 import capo_datazone.types.metadata
 import capo_datazone.types.notebook_error
 import capo_datazone.types.notebook_status
+import capo_datazone.types.notebook_type
 import capo_datazone.types.parameters
 import capo_datazone.types.update_notebook_input
 import capo_datazone.types.update_notebook_output

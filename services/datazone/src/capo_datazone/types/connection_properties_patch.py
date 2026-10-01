@@ -9,12 +9,14 @@ from capo_datazone.errors import DeserializationError, SerializationError
 if TYPE_CHECKING:
     import capo_datazone.types.amazon_q_properties_patch
     import capo_datazone.types.athena_properties_patch
+    import capo_datazone.types.git_properties_patch
     import capo_datazone.types.glue_properties_patch
     import capo_datazone.types.iam_properties_patch
     import capo_datazone.types.lakehouse_properties_patch
     import capo_datazone.types.mlflow_properties_patch
     import capo_datazone.types.redshift_properties_patch
     import capo_datazone.types.s3_properties_patch
+    import capo_datazone.types.snowflake_properties_patch
     import capo_datazone.types.spark_emr_properties_patch
     import capo_datazone.types.vpc_properties_patch
 
@@ -49,6 +51,12 @@ class _ConnectionPropertiesPatch_s3Properties(TypedDict, closed=True):
     s3Properties: "capo_datazone.types.s3_properties_patch.S3PropertiesPatch"
 
 
+class _ConnectionPropertiesPatch_snowflakeProperties(TypedDict, closed=True):
+    snowflakeProperties: (
+        "capo_datazone.types.snowflake_properties_patch.SnowflakePropertiesPatch"
+    )
+
+
 class _ConnectionPropertiesPatch_amazonQProperties(TypedDict, closed=True):
     amazonQProperties: (
         "capo_datazone.types.amazon_q_properties_patch.AmazonQPropertiesPatch"
@@ -71,6 +79,10 @@ class _ConnectionPropertiesPatch_vpcProperties(TypedDict, closed=True):
     vpcProperties: "capo_datazone.types.vpc_properties_patch.VpcPropertiesPatch"
 
 
+class _ConnectionPropertiesPatch_gitProperties(TypedDict, closed=True):
+    gitProperties: "capo_datazone.types.git_properties_patch.GitPropertiesPatch"
+
+
 ConnectionPropertiesPatch: TypeAlias = (
     _ConnectionPropertiesPatch_athenaProperties
     | _ConnectionPropertiesPatch_glueProperties
@@ -78,10 +90,12 @@ ConnectionPropertiesPatch: TypeAlias = (
     | _ConnectionPropertiesPatch_redshiftProperties
     | _ConnectionPropertiesPatch_sparkEmrProperties
     | _ConnectionPropertiesPatch_s3Properties
+    | _ConnectionPropertiesPatch_snowflakeProperties
     | _ConnectionPropertiesPatch_amazonQProperties
     | _ConnectionPropertiesPatch_mlflowProperties
     | _ConnectionPropertiesPatch_lakehouseProperties
     | _ConnectionPropertiesPatch_vpcProperties
+    | _ConnectionPropertiesPatch_gitProperties
 )
 
 
@@ -135,6 +149,14 @@ def serialize_json(value: ConnectionPropertiesPatch) -> dict:
                 value["s3Properties"]
             )
         }
+    elif "snowflakeProperties" in value:
+        import capo_datazone.types.snowflake_properties_patch
+
+        return {
+            "snowflakeProperties": capo_datazone.types.snowflake_properties_patch.serialize_json(
+                value["snowflakeProperties"]
+            )
+        }
     elif "amazonQProperties" in value:
         import capo_datazone.types.amazon_q_properties_patch
 
@@ -165,6 +187,14 @@ def serialize_json(value: ConnectionPropertiesPatch) -> dict:
         return {
             "vpcProperties": capo_datazone.types.vpc_properties_patch.serialize_json(
                 value["vpcProperties"]
+            )
+        }
+    elif "gitProperties" in value:
+        import capo_datazone.types.git_properties_patch
+
+        return {
+            "gitProperties": capo_datazone.types.git_properties_patch.serialize_json(
+                value["gitProperties"]
             )
         }
     else:
@@ -220,6 +250,14 @@ def deserialize_json(data: dict) -> ConnectionPropertiesPatch:
                 data["s3Properties"]
             )
         }
+    elif data.get("snowflakeProperties") is not None:
+        import capo_datazone.types.snowflake_properties_patch
+
+        return {
+            "snowflakeProperties": capo_datazone.types.snowflake_properties_patch.deserialize_json(
+                data["snowflakeProperties"]
+            )
+        }
     elif data.get("amazonQProperties") is not None:
         import capo_datazone.types.amazon_q_properties_patch
 
@@ -250,6 +288,14 @@ def deserialize_json(data: dict) -> ConnectionPropertiesPatch:
         return {
             "vpcProperties": capo_datazone.types.vpc_properties_patch.deserialize_json(
                 data["vpcProperties"]
+            )
+        }
+    elif data.get("gitProperties") is not None:
+        import capo_datazone.types.git_properties_patch
+
+        return {
+            "gitProperties": capo_datazone.types.git_properties_patch.deserialize_json(
+                data["gitProperties"]
             )
         }
     else:

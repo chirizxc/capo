@@ -20,8 +20,10 @@ import capo_datazone.errors.throttling_exception
 import capo_datazone.errors.unauthorized_exception
 import capo_datazone.errors.validation_exception
 import capo_datazone.types.created_at
+import capo_datazone.types.delete_progress
 import capo_datazone.types.domain_status
 import capo_datazone.types.domain_version
+import capo_datazone.types.failure_reasons_list
 import capo_datazone.types.get_domain_input
 import capo_datazone.types.get_domain_output
 import capo_datazone.types.single_sign_on

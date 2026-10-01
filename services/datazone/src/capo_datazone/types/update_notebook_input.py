@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     import capo_datazone.types.notebook_id
     import capo_datazone.types.notebook_name
     import capo_datazone.types.notebook_status
+    import capo_datazone.types.notebook_type
     import capo_datazone.types.parameters
 
 
@@ -30,6 +31,8 @@ class UpdateNotebookInput(TypedDict, closed=True):
     """<p>The updated name of the notebook.</p>"""
     cell_order: NotRequired["capo_datazone.types.cell_order.CellOrder"]
     """<p>The updated ordered list of cells in the notebook.</p>"""
+    type: NotRequired["capo_datazone.types.notebook_type.NotebookType"]
+    """<p>The updated type of the notebook.</p>"""
     metadata: NotRequired["capo_datazone.types.metadata.Metadata"]
     """<p>The updated metadata for the notebook, specified as key-value pairs.</p>"""
     parameters: NotRequired["capo_datazone.types.parameters.Parameters"]
@@ -61,6 +64,10 @@ def serialize_json(value: UpdateNotebookInput) -> dict:
         out["cellOrder"] = capo_datazone.types.cell_order.serialize_json(
             value["cell_order"]
         )
+    if "type" in value:
+        import capo_datazone.types.notebook_type
+
+        out["type"] = capo_datazone.types.notebook_type.serialize_json(value["type"])
     if "metadata" in value:
         import capo_datazone.types.metadata
 
@@ -102,6 +109,10 @@ def deserialize_json(data: dict) -> UpdateNotebookInput:
         out["cell_order"] = capo_datazone.types.cell_order.deserialize_json(
             data["cellOrder"]
         )
+    if data.get("type") is not None:
+        import capo_datazone.types.notebook_type
+
+        out["type"] = capo_datazone.types.notebook_type.deserialize_json(data["type"])
     if data.get("metadata") is not None:
         import capo_datazone.types.metadata
 

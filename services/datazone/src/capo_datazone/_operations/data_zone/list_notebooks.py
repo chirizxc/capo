@@ -21,6 +21,7 @@ import capo_datazone.types.list_notebooks_input
 import capo_datazone.types.list_notebooks_output
 import capo_datazone.types.notebook_status
 import capo_datazone.types.notebook_summary_list
+import capo_datazone.types.notebook_type
 import capo_datazone.types.sort_key
 import capo_datazone.types.sort_order
 from capo_datazone._protocol.errors import parse_error_metadata_json
@@ -117,6 +118,7 @@ def build_request(
         )
     )  # noqa: F841
     import capo_datazone.types.notebook_status
+    import capo_datazone.types.notebook_type
     import capo_datazone.types.sort_key
     import capo_datazone.types.sort_order
 
@@ -144,6 +146,10 @@ def build_request(
                 "status",
                 capo_datazone.types.notebook_status.serialize_json(input_["status"]),
             )
+        )
+    if "type" in input_:
+        params.append(
+            ("type", capo_datazone.types.notebook_type.serialize_json(input_["type"]))
         )
     if "next_token" in input_:
         params.append(("nextToken", input_["next_token"]))

@@ -1,7 +1,7 @@
 [project]
 name = "capo-compute-optimizer-automation"
 version = "0.3.0"
-description = "Python SDK for Compute Optimizer Automation."
+description = "Python SDK for AWS Compute Optimizer Automation."
 readme = "README.md"
 requires-python = ">=3.10"
 classifiers = [

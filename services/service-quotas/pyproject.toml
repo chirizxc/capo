@@ -1,7 +1,7 @@
 [project]
 name = "capo-service-quotas"
 version = "0.1.0"
-description = "Python SDK for Service Quotas."
+description = "Python SDK for AWS Service Quotas."
 readme = "README.md"
 requires-python = ">=3.10"
 classifiers = [

@@ -1,7 +1,7 @@
 [project]
 name = "capo-repostspace"
 version = "0.1.0"
-description = "Python SDK for Repostspace."
+description = "Python SDK for AWS Repostspace."
 readme = "README.md"
 requires-python = ">=3.10"
 classifiers = [

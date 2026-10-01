@@ -7,12 +7,12 @@ from typing_extensions import TypedDict
 from capo_connecthealth.errors import DeserializationError
 
 if TYPE_CHECKING:
-    import capo_connecthealth.types.sensitive_alphanumeric_string
     import capo_connecthealth.types.sensitive_markdown_string
+    import capo_connecthealth.types.sensitive_section_header_string
 
 
 class TemplateSectionInstruction(TypedDict, closed=True):
-    section_header: "capo_connecthealth.types.sensitive_alphanumeric_string.SensitiveAlphanumericString"
+    section_header: "capo_connecthealth.types.sensitive_section_header_string.SensitiveSectionHeaderString"
     """<p>The header for this section of the template</p>"""
     section_instruction: (
         "capo_connecthealth.types.sensitive_markdown_string.SensitiveMarkdownString"

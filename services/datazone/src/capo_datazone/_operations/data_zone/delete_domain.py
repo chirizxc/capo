@@ -132,6 +132,10 @@ def build_request(
         params.append(
             ("skipDeletionCheck", "true" if input_["skip_deletion_check"] else "false")
         )
+    if "cascade_delete" in input_:
+        params.append(
+            ("cascadeDelete", "true" if input_["cascade_delete"] else "false")
+        )
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))

@@ -1,7 +1,7 @@
 [project]
 name = "capo-internetmonitor"
 version = "0.1.0"
-description = "Python SDK for Internetmonitor."
+description = "Python SDK for AWS Internetmonitor."
 readme = "README.md"
 requires-python = ">=3.10"
 classifiers = [

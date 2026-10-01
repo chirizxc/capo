@@ -1,7 +1,7 @@
 [project]
 name = "capo-b2bi"
 version = "0.4.0"
-description = "Python SDK for B2Bi."
+description = "Python SDK for AWS B2Bi."
 readme = "README.md"
 requires-python = ">=3.10"
 classifiers = [

@@ -1,7 +1,7 @@
 [project]
 name = "capo-appconfigdata"
 version = "0.4.0"
-description = "Python SDK for Appconfigdata."
+description = "Python SDK for AWS Appconfigdata."
 readme = "README.md"
 requires-python = ">=3.10"
 classifiers = [

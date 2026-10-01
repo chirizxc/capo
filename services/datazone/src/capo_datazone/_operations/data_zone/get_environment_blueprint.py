@@ -18,6 +18,7 @@ import capo_datazone.errors.resource_not_found_exception
 import capo_datazone.errors.throttling_exception
 import capo_datazone.errors.unauthorized_exception
 import capo_datazone.errors.validation_exception
+import capo_datazone.types.blueprint_category
 import capo_datazone.types.custom_parameter_list
 import capo_datazone.types.deployment_properties
 import capo_datazone.types.get_environment_blueprint_input

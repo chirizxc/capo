@@ -1,7 +1,7 @@
 [project]
 name = "capo-securityhub"
 version = "0.1.0"
-description = "Python SDK for Securityhub."
+description = "Python SDK for AWS Securityhub."
 readme = "README.md"
 requires-python = ">=3.10"
 classifiers = [
