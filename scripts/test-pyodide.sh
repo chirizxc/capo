@@ -33,7 +33,7 @@ for service in "${SERVICES[@]}"; do
     no_emit+=(--no-emit-package "capo-$service")
 done
 uv export --only-group dev --no-hashes --no-emit-project "${no_emit[@]}" \
-    --prune pyodide-build --prune ty --prune ry-cli --prune pytest-xdist --prune trio --prune msgpack \
+    --prune pyodide-build --prune ty --prune ry-cli --prune ruff --prune pytest-xdist --prune trio --prune msgpack \
     --prune capo-eventbridgev2 \
     > .pyodide-reqs.txt
 
