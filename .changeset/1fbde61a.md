@@ -33,7 +33,6 @@
 "aws-sdk-cloudtrail": minor
 "aws-sdk-cloudwatch": minor
 "aws-sdk-cloudwatch-logs": minor
-"aws-sdk-cloudwatchomni": minor
 "aws-sdk-codebuild": minor
 "aws-sdk-codecommit": minor
 "aws-sdk-codedeploy": minor
@@ -69,7 +68,6 @@
 "aws-sdk-emr-containers": minor
 "aws-sdk-entityresolution": minor
 "aws-sdk-eventbridge": minor
-"aws-sdk-eventbridgev2": minor
 "aws-sdk-evs": minor
 "aws-sdk-firehose": minor
 "aws-sdk-gamelift": minor
@@ -171,7 +169,6 @@
 "aws-sdk-partnercentral-account": minor
 "aws-sdk-partnercentral-benefits": minor
 "aws-sdk-partnercentral-channel": minor
-"aws-sdk-partnercentral-revenue-measurement": minor
 "aws-sdk-partnercentral-selling": minor
 "aws-sdk-payment-cryptography": minor
 "aws-sdk-payment-cryptography-data": minor
