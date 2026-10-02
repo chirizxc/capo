@@ -17,7 +17,11 @@ import capo_sso.errors.unauthorized_exception
 import capo_sso.types.logout_request
 from capo_sso._protocol.errors import parse_error_metadata_json
 from capo_sso._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_sso._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_sso._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_sso.errors import UnknownServiceError
 
 
@@ -103,7 +107,7 @@ def logout(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         response.close()
@@ -117,7 +121,7 @@ async def async_logout(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         await response.aclose()

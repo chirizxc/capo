@@ -24,7 +24,11 @@ import capo_comprehend.types.language_code
 import capo_comprehend.types.list_of_detect_entities_result
 from capo_comprehend._protocol.errors import parse_error_metadata_json
 from capo_comprehend._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_comprehend._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_comprehend._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_comprehend.errors import UnknownServiceError
 
 
@@ -145,7 +149,7 @@ def batch_detect_entities(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -163,7 +167,7 @@ async def async_batch_detect_entities(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

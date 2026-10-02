@@ -19,7 +19,11 @@ import capo_iam.types.set_default_policy_version_request
 from capo_iam._protocol.errors import find_error_element, parse_error_metadata
 from capo_iam._protocol.xml import fromstring
 from capo_iam._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_iam._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_iam._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_iam.errors import UnknownServiceError
 
 
@@ -114,7 +118,7 @@ def set_default_policy_version(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         response.close()
@@ -129,7 +133,7 @@ async def async_set_default_policy_version(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         await response.aclose()

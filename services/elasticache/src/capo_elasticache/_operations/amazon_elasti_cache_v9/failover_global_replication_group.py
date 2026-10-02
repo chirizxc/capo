@@ -21,7 +21,11 @@ import capo_elasticache.types.global_replication_group
 from capo_elasticache._protocol.errors import find_error_element, parse_error_metadata
 from capo_elasticache._protocol.xml import fromstring
 from capo_elasticache._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_elasticache._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_elasticache._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_elasticache.errors import UnknownServiceError
 
 
@@ -143,7 +147,7 @@ def failover_global_replication_group(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -161,7 +165,7 @@ async def async_failover_global_replication_group(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

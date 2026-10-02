@@ -30,6 +30,7 @@ from capo_partnercentral_revenue_measurement._rule_engine._endpoint_rule_set imp
 from capo_partnercentral_revenue_measurement._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_partnercentral_revenue_measurement.errors import (
     UnknownServiceError,
@@ -163,7 +164,7 @@ def list_marketplace_revenue_share_allocations(
             or response.headers.get("smithy-protocol") != "rpc-v2-cbor"
         ):
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -184,7 +185,7 @@ async def async_list_marketplace_revenue_share_allocations(
             or response.headers.get("smithy-protocol") != "rpc-v2-cbor"
         ):
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

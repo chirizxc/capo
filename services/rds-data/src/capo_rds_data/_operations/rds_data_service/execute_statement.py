@@ -37,7 +37,11 @@ import capo_rds_data.types.sql_parameters_list
 import capo_rds_data.types.sql_records
 from capo_rds_data._protocol.errors import parse_error_metadata_json
 from capo_rds_data._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_rds_data._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_rds_data._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_rds_data.errors import UnknownServiceError
 
 
@@ -203,7 +207,7 @@ def execute_statement(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -221,7 +225,7 @@ async def async_execute_statement(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

@@ -20,7 +20,11 @@ import capo_ssm.types.unlabel_parameter_version_request
 import capo_ssm.types.unlabel_parameter_version_result
 from capo_ssm._protocol.errors import parse_error_metadata_json
 from capo_ssm._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_ssm._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_ssm._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_ssm.errors import UnknownServiceError
 
 
@@ -135,7 +139,7 @@ def unlabel_parameter_version(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -153,7 +157,7 @@ async def async_unlabel_parameter_version(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

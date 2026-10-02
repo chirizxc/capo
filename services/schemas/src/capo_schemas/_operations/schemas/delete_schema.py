@@ -21,7 +21,11 @@ import capo_schemas.errors.unauthorized_exception
 import capo_schemas.types.delete_schema_request
 from capo_schemas._protocol.errors import parse_error_metadata_json
 from capo_schemas._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_schemas._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_schemas._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_schemas.errors import UnknownServiceError
 
 
@@ -123,7 +127,7 @@ def delete_schema(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         response.close()
@@ -138,7 +142,7 @@ async def async_delete_schema(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         await response.aclose()

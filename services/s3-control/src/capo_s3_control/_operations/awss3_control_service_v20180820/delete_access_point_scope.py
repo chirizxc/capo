@@ -15,7 +15,11 @@ from capo_s3_control._protocol.errors import parse_error_metadata
 from capo_s3_control._protocol.xml import fromstring
 from capo_s3_control._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_s3_control._rule_engine._endpoint_runtime import apply_label
-from capo_s3_control._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_s3_control._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_s3_control.errors import UnknownServiceError
 
 
@@ -102,7 +106,7 @@ def delete_access_point_scope(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         response.close()
@@ -117,7 +121,7 @@ async def async_delete_access_point_scope(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         await response.aclose()

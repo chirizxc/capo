@@ -23,6 +23,7 @@ from capo_cloudwatchomni._rule_engine._endpoint_rule_set import EndpointParams, 
 from capo_cloudwatchomni._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_cloudwatchomni.errors import UnknownServiceError
 
@@ -148,7 +149,7 @@ def search_principals(
             or response.headers.get("smithy-protocol") != "rpc-v2-cbor"
         ):
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -169,7 +170,7 @@ async def async_search_principals(
             or response.headers.get("smithy-protocol") != "rpc-v2-cbor"
         ):
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

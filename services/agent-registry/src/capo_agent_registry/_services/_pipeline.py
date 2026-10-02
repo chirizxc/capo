@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Iterator, Sequence
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Awaitable, Callable, Generic, TypeVar, cast
 
+from typing_extensions import Never
 from zapros import (
     AsyncClient,
     Client,
@@ -129,6 +130,22 @@ async def aexecute_pipeline(
         return handler
 
     return await make_chain(0)(request)
+
+
+def raise_error(response: Response, handle_error: Callable[[Response], Never]) -> Never:
+    try:
+        handle_error(response)
+    except ServiceError as exc:
+        # The response itself can say a retry is safe, even when the error is
+        # not marked @retryable: a 429, a transient 5xx or a Retry-After header.
+        if response.status == 429:
+            exc.is_throttling_error = True
+        if (
+            response.status in (429, 500, 502, 503, 504)
+            or "retry-after" in response.headers
+        ):
+            exc.is_retryable = True
+        raise
 
 
 def _is_retryable(exc: Exception) -> bool:

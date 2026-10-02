@@ -19,7 +19,11 @@ import capo_ivschat.errors.validation_exception
 import capo_ivschat.types.delete_logging_configuration_request
 from capo_ivschat._protocol.errors import parse_error_metadata_json
 from capo_ivschat._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_ivschat._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_ivschat._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_ivschat.errors import UnknownServiceError
 
 
@@ -116,7 +120,7 @@ def delete_logging_configuration(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         response.close()
@@ -131,7 +135,7 @@ async def async_delete_logging_configuration(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         await response.aclose()

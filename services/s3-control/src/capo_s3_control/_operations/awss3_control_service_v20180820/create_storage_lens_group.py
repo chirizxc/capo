@@ -16,7 +16,11 @@ import capo_s3_control.types.tag_list
 from capo_s3_control._protocol.errors import parse_error_metadata
 from capo_s3_control._protocol.xml import Element, fromstring, tostring
 from capo_s3_control._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_s3_control._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_s3_control._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_s3_control.errors import UnknownServiceError
 
 
@@ -113,7 +117,7 @@ def create_storage_lens_group(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         response.close()
@@ -128,7 +132,7 @@ async def async_create_storage_lens_group(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         await response.aclose()

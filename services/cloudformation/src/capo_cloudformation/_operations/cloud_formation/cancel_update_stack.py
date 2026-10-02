@@ -22,6 +22,7 @@ from capo_cloudformation._rule_engine._endpoint_rule_set import EndpointParams, 
 from capo_cloudformation._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_cloudformation.errors import UnknownServiceError
 
@@ -107,7 +108,7 @@ def cancel_update_stack(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         response.close()
@@ -122,7 +123,7 @@ async def async_cancel_update_stack(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         await response.aclose()

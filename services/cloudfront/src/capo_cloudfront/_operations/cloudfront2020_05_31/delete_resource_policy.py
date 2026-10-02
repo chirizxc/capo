@@ -20,7 +20,11 @@ import capo_cloudfront.types.delete_resource_policy_request
 from capo_cloudfront._protocol.errors import find_error_element, parse_error_metadata
 from capo_cloudfront._protocol.xml import Element, SubElement, fromstring, tostring
 from capo_cloudfront._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_cloudfront._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_cloudfront._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_cloudfront.errors import UnknownServiceError
 
 STATUS_CODE_TO_CODE = {
@@ -134,7 +138,7 @@ def delete_resource_policy(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         response.close()
@@ -149,7 +153,7 @@ async def async_delete_resource_policy(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         await response.aclose()

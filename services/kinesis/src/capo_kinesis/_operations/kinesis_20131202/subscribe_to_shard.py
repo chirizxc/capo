@@ -29,7 +29,11 @@ from capo_kinesis._protocol.eventstream import (
     read_messages,
 )
 from capo_kinesis._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_kinesis._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_kinesis._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_kinesis.errors import UnknownServiceError
 
 
@@ -173,7 +177,7 @@ def subscribe_to_shard(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -190,7 +194,7 @@ async def async_subscribe_to_shard(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

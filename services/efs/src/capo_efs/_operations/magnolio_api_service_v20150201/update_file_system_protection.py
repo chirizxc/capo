@@ -25,7 +25,11 @@ import capo_efs.types.replication_overwrite_protection
 import capo_efs.types.update_file_system_protection_request
 from capo_efs._protocol.errors import parse_error_metadata_json
 from capo_efs._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_efs._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_efs._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_efs.errors import UnknownServiceError
 
 
@@ -156,7 +160,7 @@ def update_file_system_protection(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -174,7 +178,7 @@ async def async_update_file_system_protection(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()

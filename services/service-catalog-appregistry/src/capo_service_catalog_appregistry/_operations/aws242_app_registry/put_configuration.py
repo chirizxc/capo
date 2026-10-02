@@ -24,6 +24,7 @@ from capo_service_catalog_appregistry._rule_engine._endpoint_rule_set import (
 from capo_service_catalog_appregistry._services._pipeline import (
     AsyncOperationOptions,
     OperationOptions,
+    raise_error,
 )
 from capo_service_catalog_appregistry.errors import UnknownServiceError
 
@@ -117,7 +118,7 @@ def put_configuration(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         response.close()
@@ -132,7 +133,7 @@ async def async_put_configuration(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         await response.aclose()

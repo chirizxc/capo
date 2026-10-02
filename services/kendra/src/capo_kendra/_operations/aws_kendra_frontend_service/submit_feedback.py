@@ -22,7 +22,11 @@ import capo_kendra.types.relevance_feedback_list
 import capo_kendra.types.submit_feedback_request
 from capo_kendra._protocol.errors import parse_error_metadata_json
 from capo_kendra._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_kendra._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_kendra._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_kendra.errors import UnknownServiceError
 
 
@@ -124,7 +128,7 @@ def submit_feedback(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         response.close()
@@ -139,7 +143,7 @@ async def async_submit_feedback(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return None, response
     except BaseException:
         await response.aclose()

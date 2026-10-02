@@ -22,7 +22,11 @@ import capo_mgn.types.post_launch_actions
 import capo_mgn.types.tags_map
 from capo_mgn._protocol.errors import parse_error_metadata_json
 from capo_mgn._rule_engine._endpoint_rule_set import EndpointParams, resolve
-from capo_mgn._services._pipeline import AsyncOperationOptions, OperationOptions
+from capo_mgn._services._pipeline import (
+    AsyncOperationOptions,
+    OperationOptions,
+    raise_error,
+)
 from capo_mgn.errors import UnknownServiceError
 
 
@@ -138,7 +142,7 @@ def create_launch_configuration_template(
     try:
         if response.status >= 300:
             response.read()
-            handle_error(response)
+            raise_error(response, handle_error)
         return handle_response(response), response
     except BaseException:
         response.close()
@@ -156,7 +160,7 @@ async def async_create_launch_configuration_template(
     try:
         if response.status >= 300:
             await response.aread()
-            handle_error(response)
+            raise_error(response, handle_error)
         return await async_handle_response(response), response
     except BaseException:
         await response.aclose()
